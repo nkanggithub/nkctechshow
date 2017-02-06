@@ -876,7 +876,7 @@ public class RestUtils {
 		if(localInd == "Y"){
 			try {
 					//String url = "http://shenan.duapp.com/getDataQualityReportByParameter?stateProvince="+s+"&"+"nonlatinCity="+c+"&cityRegion="+cr;
-					String url = "http://shenan.duapp.com/getDataQualityReportByParameterV2?";
+					String url = "http://"+Constants.baehost+"/getDataQualityReportByParameterV2?";
 					if(stateProvince != "" && stateProvince.toLowerCase() != "null"){
 						stateProvince = URLEncoder.encode(stateProvince, "UTF-8");
 						url =  url + "stateProvince="+stateProvince;
@@ -1570,7 +1570,7 @@ public class RestUtils {
 		return ret;
 	}
 	public static  String getMDLUserLists(String openid){
-		String urlStr = "http://shenan.duapp.com/CallGetWeChatUserFromMongoDB";
+		String urlStr = "http://"+Constants.baehost+"/CallGetWeChatUserFromMongoDB";
 		if(openid!=null&&!"".equals(openid)){
 			urlStr+="?openid="+openid;
 		}
@@ -1597,7 +1597,7 @@ public class RestUtils {
          return strBuf.toString();  
 	}
 	public static  String getCallUpdateUserWithSignature(String openid,String svg){
-		String urlStr = "http://shenan.duapp.com/CallUpdateUserWithSignature";
+		String urlStr = "http://"+Constants.baehost+"/CallUpdateUserWithSignature";
 		try {
 			urlStr+="?openid="+openid+"&svg="+URLEncoder.encode(svg, "utf-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -1702,7 +1702,7 @@ public class RestUtils {
 		
 public static String regist(WeChatMDLUser user) {
 			
-			String urlStr = "http://shenan.duapp.com/CallRegisterUser";
+			String urlStr = "http://"+Constants.baehost+"/CallRegisterUser";
 			ArrayList<String> arr = new ArrayList<String>();
 			if(user.getOpenid()!=null&&!"".equals(user.getOpenid())){
 				arr.add("openid="+user.getOpenid());
@@ -2004,7 +2004,7 @@ public static String regist(WeChatMDLUser user) {
 
     public static String sendNotificationToUser(String openId,String toOpenId,Notification note){
     	String result ="";
-    			String str="{\"title\":\""+note.getTitle()+"\",\"description\":\""+"From "+MongoDBBasic.getRegisterUserByOpenID(openId).get(0)+":"+note.getContent()+"\",\"url\":\"http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+note.getNum()+"&uid="+openId+"\",\"picurl\":"
+    			String str="{\"title\":\""+note.getTitle()+"\",\"description\":\""+"From "+MongoDBBasic.getRegisterUserByOpenID(openId).get(0)+":"+note.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+note.getNum()+"&uid="+openId+"\",\"picurl\":"
     					+ "\"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlTWX&oid=00D90000000pkXM\"}";
     	        String json = "{\"touser\":\""+toOpenId+"\",\"msgtype\":\"news\",\"news\":" +
 
@@ -2032,8 +2032,8 @@ public static String regist(WeChatMDLUser user) {
     	    }
     public static String sendRecognitionToUser(String openId,String toOpenId,CongratulateHistory ch){
     	String result ="";
-    			String str="{\"title\":\"Congratulations!! "+ch.getTo()+" \",\"description\":\""+ch.getTo()+" must have done something amazing and has been recognized by"+ch.getFrom()+"!!!\",\"url\":\"http://shenan.duapp.com/mdm/RecognitionCenter.jsp?num="+ch.getNum()+"&uid="+openId+"\",\"picurl\":"
-    					+ "\"http://shenan.duapp.com/MetroStyleFiles/RecognitionImage.jpg\"}";
+    			String str="{\"title\":\"Congratulations!! "+ch.getTo()+" \",\"description\":\""+ch.getTo()+" must have done something amazing and has been recognized by"+ch.getFrom()+"!!!\",\"url\":\"http://"+Constants.baehost+"/mdm/RecognitionCenter.jsp?num="+ch.getNum()+"&uid="+openId+"\",\"picurl\":"
+    					+ "\"http://"+Constants.baehost+"/MetroStyleFiles/RecognitionImage.jpg\"}";
     	        String json = "{\"touser\":\""+toOpenId+"\",\"msgtype\":\"news\",\"news\":" +
 
     	                "{\"articles\":[" +str +"]}"+"}";
