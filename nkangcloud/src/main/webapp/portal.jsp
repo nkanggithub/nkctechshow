@@ -1145,9 +1145,9 @@
             //var MobileUrl = 'https://athpitg-idp-it.houston.hp.com/affwebservices/public/saml2sso?SPID=https://hp--PLMESIT.cs10.my.salesforce.com&RelayState=';
             //var DesktopUrl = 'https://athpitg-idp-it.houston.hp.com/affwebservices/public/saml2sso?SPID=https://hp--PLMESIT.cs10.my.salesforce.com&RelayState=';
             //var TabletUrl = 'https://athpitg-idp-it.houston.hp.com/affwebservices/public/saml2sso?SPID=https://hp--PLMESIT.cs10.my.salesforce.com&RelayState=';
-            var MobileUrl = 'http://shenan.duapp.com/main.jsp';
-            var DesktopUrl = 'http://shenan.duapp.com/main.jsp';
-            var TabletUrl = 'http://shenan.duapp.com/main.jsp';
+            var MobileUrl = 'http://<%=Constants.baehost %>/main.jsp';
+            var DesktopUrl = 'http://<%=Constants.baehost %>/main.jsp';
+            var TabletUrl = 'http://<%=Constants.baehost %>/main.jsp';
             var GenRelayState = '';
             var GenRelayTab='';
             //var DefaultMobileUrl = 'https://hp--plmesit--c.cs10.visual.force.com/apex/mSLPLanding0';
