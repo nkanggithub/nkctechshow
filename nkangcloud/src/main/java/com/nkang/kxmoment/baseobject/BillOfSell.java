@@ -294,13 +294,49 @@ public class BillOfSell {
 		this.inventoryCoding = inventoryCoding;
 	}
 	public String info() {
-		String infoString=this.advanceShipmentDate + "\n"
-				+ this.amountPurchased + "\n"
-				+this.businessType + "\n"
-				+this.count + "\n"
-				+this.currency + "\n"
+		String infoString=this.businessType + "\n"
+				+this.sellType + "\n"
+				+this.orderNumber + "\n"
+				+this.orderTime + "\n"
 				+this.customerName + "\n"
-				+this.deductible;
+				
+				+ this.currency + "\n"
+				+this.parities + "\n"
+				+this.salesDepartments + "\n"
+				+this.salesman + "\n"
+				+this.inventoryCoding + "\n"
+				+ this.inventoryCode + "\n"
+				
+				+this.inventoryName + "\n"
+				+this.specificationsModels + "\n"
+				+this.measurement + "\n"
+				+this.count + "\n"
+				+ this.unitPrice + "\n"
+				+this.priceExcludingTax + "\n"
+				+this.noTaxAmount + "\n"
+				
+				+this.tax + "\n"
+				+this.totalPriceWithTax + "\n"
+				+ this.taxRateString + "\n"
+				+this.deductible + "\n"
+				+this.deductible2 + "\n"
+				+this.advanceShipmentDate + "\n"
+				
+				+this.ordersForChildTableID + "\n"
+				+ this.unfilledOrderCount + "\n"
+				+this.noInvoiceCount + "\n"
+				+this.reservedNum + "\n"
+				+this.notDeliverNum + "\n"
+				
+				+this.notDeliverAmount + "\n"
+				+ this.noInvoiceCounts + "\n"
+				+this.noInvoiceAmount + "\n"
+				+this.amountPurchased + "\n"
+				+this.noamountPurchased + "\n"
+				+this.noProduction + "\n"
+				+this.noOutsourcing + "\n"
+				+this.noImportVolume + "\n"
+				;
 		return infoString;
 		
 	}
