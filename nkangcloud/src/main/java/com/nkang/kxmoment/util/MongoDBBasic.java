@@ -1,18 +1,14 @@
 package com.nkang.kxmoment.util;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
@@ -29,6 +25,8 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSInputFile;
 import com.nkang.kxmoment.baseobject.BillOfSell;
 import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.ClientMeta;
@@ -2246,6 +2244,8 @@ public class MongoDBBasic {
 		 * chang-zheng to update user CongratulateHistory
 		 */
 		public static boolean updateNotification(String OpenID, Notification note) {
+			System.out.println("openID--------------------"+OpenID);
+			System.out.println("picture--------------------"+note.getPicture());
 			mongoDB = getMongoDB();
 			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(
 					new java.util.Date().getTime());
@@ -2294,12 +2294,15 @@ public class MongoDBBasic {
 		 * chang-zheng to update user getNotification
 		 */
 	public static List<Notification> getNotification(String OpenID, String num) {
+		System.out.println("openid:----"+OpenID);
+		System.out.println("num:----"+num);
 		mongoDB = getMongoDB();
 		List<Notification> nfList = new ArrayList<Notification>();
 		DBObject query = new BasicDBObject();
 		query.put("OpenID", OpenID);
 		DBCursor queryresults = mongoDB.getCollection(wechat_user).find(query).limit(1);
 		if (null != queryresults) {
+			System.out.print("queryresults is not null");
 			while (queryresults.hasNext()) {
 				DBObject o = queryresults.next();
 				Object TechnologyCar = o.get("TechnologyCar");
@@ -2311,10 +2314,13 @@ public class MongoDBBasic {
 						if (co instanceof DBObject) {
 							if (!StringUtils.isEmpty(num)) {
 								if (null != ((DBObject) co).get("num")) {
+									System.out.print("num is not null");
 									if (num.equals(((DBObject) co).get("num").toString())) {
+										System.out.print("num existed----------");
 										nt.setContent(((DBObject) co).get("content").toString());
 										nt.setNum(num);
-										nt.setPicture(((DBObject) co).get("picture").toString());
+										if (null != ((DBObject) co).get("picture")) {
+										nt.setPicture(((DBObject) co).get("picture").toString());}
 										nt.setTime(((DBObject) co).get("time").toString());
 										nt.setTitle(((DBObject) co).get("title").toString());
 										nt.setType(((DBObject) co).get("type").toString());
@@ -2337,6 +2343,8 @@ public class MongoDBBasic {
 
 			}
 		}
+		System.out.println("title is ------------:"+nfList.get(0).getTitle());
+		System.out.println("size is ------------:"+nfList.size());
 		return nfList;
 	}
 	
