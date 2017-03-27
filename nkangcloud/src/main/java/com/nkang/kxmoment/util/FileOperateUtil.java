@@ -183,6 +183,6 @@ public class FileOperateUtil {
     				}
     			}
     		}
-    	return "APJ:"+ platforRelated.getClosed_APJ()+"<br>"+"USA:"+ platforRelated.getClosed_USA()+"<br>"+"MEXICO:"+ platforRelated.getClosed_MEXICO()+"<br>"+"EMEA:"+ platforRelated.getClosed_EMEA();
+    	return "APJ : "+ platforRelated.getClosed_APJ()+"<br>"+"USA : "+ platforRelated.getClosed_USA()+"<br>"+"MEXICO : "+ platforRelated.getClosed_MEXICO()+"<br>"+"EMEA : "+ platforRelated.getClosed_EMEA()+"<br>"+"Other : "+ platforRelated.getClosed_OTHER();
     }
 }
