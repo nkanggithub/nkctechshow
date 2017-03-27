@@ -456,6 +456,7 @@ function showRecognitionDetail(from,to,point,type,coments)
 	}
 function postRecognition(){
 	var imgType="0";
+	var img="";
 	if($("#hiddenGift").val()!=""){
 		img=$("#hiddenGift").val();
 	    imgType="1";
@@ -738,7 +739,7 @@ function recognizationPanel(){
 				+"	<div class='rcommon'><p class='bsLabel'>类型</p><select class='bsBtn' id='type'><option>Bais For Action</option><option>Innovators at Heart</option><option>Partnership First</option></select></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>Points</p><input id='points' type='text' placeholder='请输入points' class='input-xlarge bsBtn'></div>"
 				+"	<div class='rcommon'><textarea id='comments' style='height:130px;width:95%;line-height:20px' placeholder='请输入感言' class='input-xlarge bsBtn'></textarea></div>"
-				+"	<div class='rcommon' style='text-align:center;margin-top:100px'><button onclick='postRecognition()' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -20px;left: -95px;' ><input type='checkbox' id='sendAll'>发送所有人</div></div>"
+				+"	<div class='rcommon' style='text-align:center;margin-top:100px'><button onclick='postRecognition()' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -25px;text-align:left;width:30%;' ><input type='checkbox' id='sendAll'>发送所有人</div></div>"
 				+"	</div>"
 				+"	</div>"
 				+"  <div class='tab-pane' id='bElements'>"
