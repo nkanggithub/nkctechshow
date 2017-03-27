@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
@@ -2006,6 +2007,41 @@ public static String regist(WeChatMDLUser user) {
     	String result ="";
     			String str="{\"title\":\""+note.getTitle()+"\",\"description\":\""+"From "+MongoDBBasic.getRegisterUserByOpenID(openId).get(0)+":"+note.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+note.getNum()+"&uid="+openId+"\",\"picurl\":"
     					+ "\"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlTWX&oid=00D90000000pkXM\"}";
+    	        String json = "{\"touser\":\""+toOpenId+"\",\"msgtype\":\"news\",\"news\":" +
+
+    	                "{\"articles\":[" +str +"]}"+"}";
+
+
+    	        System.out.println(json);
+
+/*    	       String access_token = "FsEa1w7lutsnI4usB6I_yareExnJ-l7_8-RKkpF47TIU4vjBF_XA6bArxARRf-6B1irPpkFFeZvmi1LAGP9iuTVIgfd38fE39izmQ30_eL4pPftP_bH4s41FWgrryVuvRZUcAEACKF";*/
+    	        String access_token =  MongoDBBasic.getValidAccessKey();
+
+    	       String action = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token="+access_token;
+
+    	       try {
+
+    	    	 	result =  connectWeiXinInterface(action,json);
+
+    	       } catch (Exception e) {
+
+    	           e.printStackTrace();
+
+    	       }
+    	       return result;
+
+    	    }
+    public static String sendNotificationToUser(String openId,String toOpenId,String img,ArticleMessage am){
+    	String result ="";
+    	String str="";
+    	if("".equals(am.getWebUrl())||""==am.getWebUrl()){
+    			str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+"发布者 - 永佳和:"+am.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+am.getNum()+"\",\"picurl\":"
+    					+ "\""+img+"\"}";
+    	}else
+    	{
+    		str="{\"title\":\""+am.getTitle()+"\",\"description\":\"重庆永佳和塑胶有限公司\",\"url\":\""+am.getWebUrl()+"\",\"picurl\":"
+					+ "\""+img+"\"}";
+    	}
     	        String json = "{\"touser\":\""+toOpenId+"\",\"msgtype\":\"news\",\"news\":" +
 
     	                "{\"articles\":[" +str +"]}"+"}";
