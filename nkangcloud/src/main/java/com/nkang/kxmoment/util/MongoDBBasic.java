@@ -27,6 +27,7 @@ import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSInputFile;
+import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.BillOfSell;
 import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.ClientMeta;
@@ -48,6 +49,7 @@ public class MongoDBBasic {
 	private static String access_key = "Access_Key";
 	private static String wechat_user = "Wechat_User";
 	private static String client_pool = "ClientPool";
+	private static String Article_Message = "Article_Message";
 	private static String wechat_comments = "Wechat_Comments";
 	private static String ClientMeta = "Client_Meta";
 	private static String collectionBill = "SaleBill";
@@ -2039,6 +2041,7 @@ public class MongoDBBasic {
 	    	    	innerInsert.put("comments", conhis.getComments());
 	    	    	innerInsert.put("type", conhis.getType());
 	    	    	innerInsert.put("point", conhis.getPoint());
+	    	    	innerInsert.put("giftImg", conhis.getGiftImg());
 	    	    	innerInsert.put("congratulateDate", DateUtil.timestamp2Str(cursqlTS));
 	    	    	arrayHistdbo.add(innerInsert);
 	    	    	update.put("CongratulateHistory", arrayHistdbo);
@@ -2097,6 +2100,7 @@ public class MongoDBBasic {
 	    											ch.setTo(((DBObject)co).get("to").toString());
 	    											ch.setPoint(((DBObject)co).get("point").toString());
 	    											ch.setType(((DBObject)co).get("type").toString());
+	    											ch.setGiftImg(((DBObject)co).get("giftImg").toString());
 	    											chList.add(ch);
 	                    						}
 	                        					}
@@ -2109,6 +2113,7 @@ public class MongoDBBasic {
     											ch.setTo(((DBObject)co).get("to").toString());
     											ch.setPoint(((DBObject)co).get("point").toString());
     											ch.setType(((DBObject)co).get("type").toString());
+    											ch.setGiftImg(((DBObject)co).get("giftImg").toString());
     											chList.add(ch);
 	                        				}
 	                        				
@@ -2407,6 +2412,123 @@ public class MongoDBBasic {
 			
 		}
 		
+	}
+	public static int getArticleMessageMaxNum() {
+		DBCursor cor  = mongoDB.getCollection(Article_Message).find();
+		String maxNum="";
+		if(cor!=null){
+			while (cor.hasNext()) {
+				DBObject objam = cor.next();
+				maxNum=objam.get("num") == null ? "" : objam.get("num").toString();
+				System.out.println("maxNum----------------"+maxNum);
+			}
+		}
+		if(!"".equals(maxNum)){
+		return Integer.parseInt(maxNum);
+		}else{
+			return 0;}
+	}
+	public static String saveArticleMessage(ArticleMessage articleMessage){
+		mongoDB = getMongoDB();
+		DBObject query = new BasicDBObject();
+		String ret="ArticleMessage fail";
+		if(articleMessage!=null){
+			if(mongoDB == null){
+				mongoDB = getMongoDB();
+			}
+			query.put("num", articleMessage.getNum());
+			DBObject queryresult = mongoDB.getCollection(Article_Message).findOne(query);
+
+			DBObject insertQuery = new BasicDBObject();
+			
+			WriteResult writeResult;
+			if(queryresult==null){
+
+				System.out.println("add new Article--------------");
+				insertQuery.put("num",articleMessage.getNum());
+				insertQuery.put("title",articleMessage.getTitle());
+				insertQuery.put("type",articleMessage.getType());
+				insertQuery.put("content",articleMessage.getContent());
+				insertQuery.put("time",articleMessage.getTime());
+				insertQuery.put("picture",articleMessage.getPicture());
+				insertQuery.put("webUrl",articleMessage.getWebUrl());
+				insertQuery.put("visitedNum",articleMessage.getVisitedNum());
+				if(!"".equals(articleMessage.getAuthor())){
+				insertQuery.put("author",articleMessage.getAuthor());}
+				writeResult=mongoDB.getCollection(Article_Message).insert(insertQuery);
+				ret="insert articleMessage ok  -->" + writeResult;
+			}else{
+				System.out.println("update old Article--------------");
+				if(articleMessage.getNum()==null && queryresult.get("num")!=null){
+					insertQuery.put("num",queryresult.get("num").toString());
+				}else {
+					insertQuery.put("num",articleMessage.getNum());
+				}
+				
+				if(articleMessage.getTitle()==null && queryresult.get("title")!=null){
+					insertQuery.put("title",queryresult.get("title").toString());
+				}else {
+					insertQuery.put("title",articleMessage.getTitle());
+				}
+				
+				if(articleMessage.getType()==null && queryresult.get("type")!=null){
+					insertQuery.put("type",queryresult.get("type").toString());
+				}else {
+					insertQuery.put("type",articleMessage.getType());
+				}
+				
+
+				if(articleMessage.getContent()==null && queryresult.get("content")!=null){
+					insertQuery.put("content",queryresult.get("content").toString());
+				}else {
+					insertQuery.put("content",articleMessage.getContent());
+				}
+
+				if(articleMessage.getTime()==null && queryresult.get("time")!=null){
+					insertQuery.put("time",queryresult.get("time").toString());
+				}else {
+					insertQuery.put("time",articleMessage.getTime());
+				}
+				
+				if(articleMessage.getPicture()==null && queryresult.get("picture")!=null){
+					insertQuery.put("picture",queryresult.get("picture").toString());
+				}else {
+					insertQuery.put("picture",articleMessage.getPicture());
+				}
+
+				if(articleMessage.getWebUrl()==null && queryresult.get("webUrl")!=null){
+					insertQuery.put("webUrl",queryresult.get("webUrl").toString());
+				}else {
+					insertQuery.put("webUrl",articleMessage.getWebUrl());
+				}
+
+				if(articleMessage.getAuthor()==null && queryresult.get("author")!=null){
+					insertQuery.put("author",queryresult.get("author").toString());
+				}else {
+					insertQuery.put("author",articleMessage.getAuthor());
+				}
+				if(articleMessage.getVisitedNum()==null && queryresult.get("visitedNum")!=null){
+					insertQuery.put("visitedNum",queryresult.get("visitedNum").toString());
+				}else {
+					insertQuery.put("visitedNum",articleMessage.getVisitedNum());
+				}
+				
+				BasicDBObject doc = new BasicDBObject();  
+				doc.put("$set", insertQuery);
+				writeResult=mongoDB.getCollection(Article_Message).update(new BasicDBObject().append("num", articleMessage.getNum()), doc);
+				ret="update Article_Message ok  -->" + writeResult;
+			}
+		}
+		return ret;
+	}
+	public static List<String> getAllOpenIDByIsRegistered(){
+		mongoDB = getMongoDB();
+		DBObject query = new BasicDBObject();
+		query.put("IsRegistered", "true");
+		@SuppressWarnings("unchecked")
+		List<String> dbuser = mongoDB.getCollection(wechat_user).distinct("OpenID",query);
+			
+		return dbuser;
 	}
 	
 }
