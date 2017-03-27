@@ -32,7 +32,7 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                 <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0">
                  <tbody>
                   <tr>
-                   <td valign="top" style="padding:0in 0in 0in 0in"><p class="MsoNormal" style="/* line-height:14.0pt */"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><b><img id="_x0000_i1025" src="https://myrecognitionpprd.int.hpe.com/hpenterprise/images/designtheme/hp2/1/hpe-logo.png" style="
+                   <td valign="top" style="width:60%"><p class="MsoNormal" style="/* line-height:14.0pt */"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><b><img id="_x0000_i1025" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" style="
     width: 100%;
 "></b>
                       <o:p></o:p></span></p></td>
@@ -43,7 +43,7 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                 <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;">
                  <tbody>
                   <tr>
-                   <td valign="top" style="padding:0in 0in 0in 0in"><h1 align="right" style="margin:0in;margin-bottom:.0001pt;text-align:right;margin-bottom:0!important;color:inherit;margin-bottom: 10px!important;word-wrap:normal;"><span style="font-size: 1px;font-family:&quot;Arial&quot;,sans-serif;color:black;">MyRecognition @hpe
+                   <td valign="top" style="padding:0in 0in 0in 0in"><h1 align="right" style="margin:0in;margin-bottom:.0001pt;text-align:right;margin-bottom:0!important;color:inherit;margin-bottom: 24px!important;word-wrap:normal;"><span style="font-size: 12px;font-family:&quot;Arial&quot;,sans-serif;color:black;">
                       <o:p></o:p></span></h1></td>
                   </tr>
                  </tbody>
@@ -59,7 +59,7 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                 <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;/* border-collapse:collapse; */padding-bottom:0!important;">
                  <tbody>
                   <tr>
-                   <td valign="top"><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><img id="_x0000_i1026" src="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/m2e-hero.jpg" style="
+                   <td valign="top"><p class="MsoNormal" style="margin-top:0px;"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><img id="_x0000_i1026" src="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/m2e-hero.jpg" style="
     width: 100%;
 ">
                       <o:p></o:p></span></p></td>
@@ -84,7 +84,7 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                       <tr>
                        <td width="40%" valign="top" style="width: 40%;padding:0in 7.5pt 0in 7.5pt;"><p class="MsoNormal" align="center" style="text-align:center"><span style="font-size: 30px;font-family:&quot;Arial&quot;,sans-serif;color:black;display: block;margin-top: 40px;"><%=ch.getPoint() %>
                           <o:p></o:p></span></p></td>
-                       <td width="60%" valign="top" style="width: 60.0%;-moz-hyphens: auto;border-collapse:collapse!important;"><p class="MsoNormal" style="line-height:14.0pt;"><strong><span style="font-size: 22px;font-family:&quot;Arial&quot;,sans-serif;color:black;display: block;">Points</span></strong><span style="font-size: 1px;font-family:&quot;Arial&quot;,sans-serif;color:black;display: block;line-height: 15px;"><br>have been deposited into your account for immediate use
+                       <td width="60%" valign="top" style="width: 60.0%;-moz-hyphens: auto;border-collapse:collapse!important;"><p class="MsoNormal" style="line-height:14.0pt;"><strong><span style="font-size: 22px;font-family:&quot;Arial&quot;,sans-serif;color:black;display: block;">Points</span></strong><span style="font-size: 13px;font-family:&quot;Arial&quot;,sans-serif;color:black;display: block;line-height: 15px;"><br>have been deposited into your account for immediate use
                           <o:p></o:p></span></p></td>
                       </tr>
                      </tbody>
@@ -168,7 +168,7 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                 </table></td>
               </tr>
              </tbody>
-            </table><p style="margin: 10px;margin-bottom: 20px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Thank you for putting HPE values into action! Please click the green box above to read the full message. A copy of this recognition was sent to your manager.
+            </table><p style="margin: 10px;margin-bottom: 20px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Thank you for putting DXC values into action! Please click the green box above to read the full message. A copy of this recognition was sent to your manager.
               <o:p></o:p></span></p>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;display:table;border-spacing: 0">
              <tbody>
