@@ -397,7 +397,7 @@ public class PoiUtil {
 							                		}else if(China.contains(assignedTo.toString())){
 							                			platforRelated.setClosed_APJ(platforRelated.getClosed_APJ()+1);
 													}else if(Other.contains(assignedTo.toString())){
-							                			platforRelated.setClosed_APJ(platforRelated.getClosed_OTHER()+1);
+							                			platforRelated.setClosed_OTHER(platforRelated.getClosed_OTHER()+1);
 													}
 							                		
 												}
