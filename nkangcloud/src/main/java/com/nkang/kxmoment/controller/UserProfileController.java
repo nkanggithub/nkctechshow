@@ -1,13 +1,19 @@
 package com.nkang.kxmoment.controller;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -15,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baidubce.services.bos.model.PutObjectResponse;
+import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
@@ -22,6 +30,7 @@ import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
 import com.nkang.kxmoment.util.ToolUtils;
+import com.nkang.kxmoment.util.BosUtils.MyBosClient;
 
 @Controller
 @RequestMapping("/userProfile")
@@ -163,12 +172,17 @@ public class UserProfileController {
 		int num=MongoDBBasic.getRecognitionMaxNumByOpenID(openid)+1;
 		String fromOpenid=MongoDBBasic.getRegisterUserByrealName(request.getParameter("from"));
 		CongratulateHistory conhis=new CongratulateHistory();
+		String img="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/points-link-2.png";
+		if("1".equals(request.getParameter("to"))){
+			img="http://wonderfulcq.bj.bcebos.com/"+request.getParameter("img");
+		}
 		conhis.setNum(num+"");
 		conhis.setFrom(request.getParameter("from"));
 		conhis.setTo(request.getParameter("to"));
 		conhis.setType(request.getParameter("type"));
 		conhis.setPoint(request.getParameter("points"));
 		conhis.setComments(request.getParameter("comments"));
+		conhis.setGiftImg(img);
 		conhis.setCongratulateDate(new Date().toLocaleString());
 		MongoDBBasic.updateUserCongratulateHistory(openid,conhis);
 		List<String> openIDs=new ArrayList<String>();
@@ -222,22 +236,32 @@ public class UserProfileController {
 	@RequestMapping("/addNotification")
 	public @ResponseBody String addNotification(HttpServletRequest request,
 			HttpServletResponse response ){
-		Notification note=new Notification();
+		ArticleMessage am=new ArticleMessage();
 		String openid=request.getParameter("openId");
-		int num=MongoDBBasic.getNotificationMaxNumByOpenID(openid)+1;
-		note.setNum(num+"");
-		note.setType(request.getParameter("type"));
-		note.setTitle(request.getParameter("title"));
-		note.setContent(request.getParameter("content"));
-		note.setTime(new Date().toLocaleString());
-		MongoDBBasic.updateNotification(openid,note);
-		List<String> openIDs=MongoDBBasic.getAllOpenIDByIsActivewithIsRegistered();
-			for(int i=0;i<openIDs.size();i++){
-				RestUtils.sendNotificationToUser(openid,openIDs.get(i),note);
+		String img = request.getParameter("img");
+		String imgType = request.getParameter("imgType");
+		if("1".equals(imgType)){
+			img="http://wonderfulcq.bj.bcebos.com/"+img;
+		}
+		int num=MongoDBBasic.getArticleMessageMaxNum()+1;
+		System.out.println("new Article num--------------"+num);
+		am.setNum(num+"");
+		am.setType(request.getParameter("type"));
+		am.setTitle(request.getParameter("title"));
+		am.setContent(request.getParameter("content"));
+		am.setWebUrl(request.getParameter("url"));
+		am.setAuthor(openid);
+		am.setVisitedNum("0");
+		am.setTime(new Date().toLocaleString());
+		MongoDBBasic.saveArticleMessage(am);
+		List<String> allUser = MongoDBBasic.getAllOpenIDByIsRegistered();
+			for(int i=0;i<allUser.size();i++){
+				RestUtils.sendNotificationToUser(openid,allUser.get(i),img,am);
 			}
 		
-		return "ok";
+		return allUser.size()+"";
 	} 
+		
 	
 	/*chang-zheng
 	 * 
@@ -256,5 +280,46 @@ public class UserProfileController {
 		return "ok";
 	} 
 	
+	@RequestMapping(value = "/uploadPicture", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String uploadPicture(HttpServletRequest request,HttpServletResponse response){
+	
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+	    factory.setSizeThreshold(1024 * 1024);
+	    ServletFileUpload upload = new ServletFileUpload(factory);
+	    upload.setFileSizeMax(1024 * 1024 * 2);
+	    upload.setHeaderEncoding("utf-8");
+	    upload.setSizeMax(1024 * 1024 * 4);
+
+		 List<FileItem> fileList = null;
+		 	String message = "文件导入失败，请重新导入..";
+		 	Map map =new HashMap<String,List>();
+		 	PutObjectResponse putObjectResponseFromInputStream=null;
+		 	String bk = MyBosClient.client.listBuckets().getBuckets().get(0).getName();
+		    try {
+		        fileList = upload.parseRequest(new ServletRequestContext(request));
+		        if(fileList != null){
+		            for(FileItem item:fileList){
+		            	//String filename="";
+		            	   if(!item.isFormField() && item.getSize() > 0){
+		                	InputStream is = item.getInputStream();
+		                	message=item.getName();
+		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, is);
+		                	
+		                    if(is!=null){
+		                    	is.close();
+		                    }
+		                }
+		            }
+		        }
+		           
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
+		    
+		    }
+		    return message;
+
+	}
 
 }
