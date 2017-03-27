@@ -1,4 +1,4 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>
+﻿﻿<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%@ page import="com.nkang.kxmoment.baseobject.GeoLocation"%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
@@ -120,6 +120,22 @@ input#search:focus {
     -webkit-filter: drop-shadow(30px 0 #fff);
     filter: drop-shadow(20px 0);   
 }
+
+.imgSelect{
+height:50%;
+width:24%;
+position:relative;
+float:left;
+}
+.imgSelect img{
+width: 100%;height:100%;}
+.imgCB
+{
+position: absolute;
+bottom: 2px;
+right: 2px;
+width: 15px;
+height: 15px;}
 </style>
 
 
@@ -251,6 +267,26 @@ function checkReg() {
 			}
 		}
 	});
+}
+function uploadPic(obj){
+		if($(obj).val()!='') {
+			  $("#submit_form").ajaxSubmit(function(message) {
+				  console.log(message);
+				  $("#hiddenPic").val(message);
+			  } );
+
+		}
+		return false;
+}
+function uploadGiftPic(obj){
+	if($(obj).val()!='') {
+		  $("#submit_gif").ajaxSubmit(function(message) {
+			  console.log(message);
+			  $("#hiddenGift").val(message);
+		  } );
+
+	}
+	return false;
 }
 function startDictation() {
     if (window.hasOwnProperty('webkitSpeechRecognition')) 
@@ -419,6 +455,11 @@ function showRecognitionDetail(from,to,point,type,coments)
 	    });
 	}
 function postRecognition(){
+	var imgType="0";
+	if($("#hiddenGift").val()!=""){
+		img=$("#hiddenGift").val();
+	    imgType="1";
+	}
 	var isAll="false";
 	if($("#sendAll").is(':checked'))
 		{
@@ -440,7 +481,9 @@ function postRecognition(){
         	points:$("#points").val(),
         	to:$("#to option:selected").val(),
         	type:$("#type option:selected").val(),
-        	comments:$("#comments").val()
+        	comments:$("#comments").val(),
+        	img:img,
+        	imgType:imgType
         	
         },
         async: true,
@@ -455,7 +498,13 @@ function postRecognition(){
 
 }
 function postNotification(){
+	var img=$(".imgSelect input[type='checkbox']:checked").siblings("img").attr("src");
+	var imgType="0";
 	var type=$("#notificationType option:selected").val();
+	if($("#hiddenPic").val()!=""){
+		img=$("#hiddenPic").val();
+	    imgType="1";
+	}
 	$.ajax({
         cache: false,
         type: "POST",
@@ -463,7 +512,10 @@ function postNotification(){
         data:{
         	openId:$("#uid").val(),
         	title:$("#notificationTitle").val(),
+        	url:$("#notificationURL").val(),
         	type:type,
+        	img:img,
+        	imgType:imgType,
         	content:$("#content").val()
         	
         },
@@ -653,10 +705,13 @@ function signaturePanel(){
 function mesSend(){
 	showCommonPanel();
 	$("body").append("	<div id='sendR'>"
-			+"	<div class='rcommon'><p class='bsLabel'>标题</p><input id='notificationTitle' type='text' placeholder='请输入标题' class='input-xlarge bsBtn'></div>"
-			+"	<div class='rcommon'><p class='bsLabel'>类型</p><select class='bsBtn' id='notificationType'><option value='techCar'>技术快车</option><option value='mtp'>MTP</option><option value='interaction'>团队沟通</option><option value='tb'>团队建设</option></select></div>"
+			+"	<div class='rcommon' style='height:40px'><p class='bsLabel'>图文标题</p><input id='notificationTitle' type='text' placeholder='请输入标题' class='input-xlarge bsBtn'></div>"
+			+"	<div class='rcommon' style='height:40px'><p class='bsLabel'>主题图片</p><form id='submit_form' name='submit_form' action='../userProfile/uploadPicture' enctype='multipart/form-data' method='post'><input id='upload_file' style='width:60%' name='upload_file' onchange='uploadPic(this)' type='file' placeholder='请输入标题' class='input-xlarge bsBtn'></form><input id='hiddenPic' type='hidden' /></div>"
+			+"  <div class='rcommon' style='height:160px;margin-bottom: 8px;'><div class='imgSelect'><input type='checkbox' class='imgCB' checked='true'><img src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602305452&di=14b5b01aade695d780cf3dbf89cd7392&imgtype=0&src=http%3A%2F%2Fimg01.taopic.com%2F160907%2F318765-160ZFQ52837.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602293964&di=5b70b7f2c1dbf9aae98dba9143897e2d&imgtype=0&src=http%3A%2F%2Fimg01.taopic.com%2F160816%2F240437-160Q60A3119.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602432167&di=7e223d3ad19485014fb9a57c875c00f3&imgtype=0&src=http%3A%2F%2Fwww.taopic.com%2Fuploads%2Fallimg%2F110914%2F34250-11091410324328.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602512392&di=173870f13b3a95bfe9b71c9a2ab75b3c&imgtype=0&src=http%3A%2F%2Fwww.yc9y.com%2Fupfiles%2Farticle%2Fimage%2F20160802%2F20160802095320_22922.png'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602549485&di=af00ddd5cc0391d1616e8b4864502288&imgtype=0&src=http%3A%2F%2Fpic.qjimage.com%2Ftongro_rf004%2Fhigh%2Ftis067a1608.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=428411870,2259267624&fm=23&gp=0.jpg'></div></div>"
+			+"  <div id='commonPush' style='margin-top: 10px;'><div class='rcommon'><p class='bsLabel'>图文类型</p><select class='bsBtn' id='notificationType'><option value='techCar'>技术快车</option><option value='mtp'>mtp</option><option value='interaction'>团队沟通</option><option value='tb'>团队建设</option></select></div>"
+			+"	<div class='rcommon'><p class='bsLabel'>网页链接</p><input id='notificationURL' type='text' placeholder='不想输入网络链接？那直接填内容吧' class='input-xlarge bsBtn'></div>"
 			+"	<div class='rcommon'><textarea id='content' style='height:180px;width:95%;line-height:20px' placeholder='请输入内容' class='input-xlarge bsBtn'></textarea></div>"
-			+"	<div class='rcommon' style='text-align:center;'><button style='margin-top:20px' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div>"
+			+"	<div class='rcommon' style='text-align:center;'><button style='margin-top:20px' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div></div>"
 			+"	</div>"
 			+"<div id='footer'><span class='clientCopyRight'><nobr>"+copyRight+"</nobr></span></div>");
 	$('#sendR').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
@@ -679,6 +734,7 @@ function recognizationPanel(){
 				+"	<div id='sendRe'>"
 				+"	<div class='rcommon'><p class='bsLabel'>发送人</p><p class='bsBtn' id='from'>"+realName+"</p></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>接收人</p><select class='bsBtn' id='to'>"+selectContent+"</select></div>"
+				+"	<div class='rcommon' style='height:40px'><p class='bsLabel'>礼物图片</p><form id='submit_gift' name='submit_gift' action='../userProfile/uploadPicture' enctype='multipart/form-data' method='post'><input id='upload_file' style='width:60%' name='upload_file' onchange='uploadGiftPic(this)' type='file'  class='input-xlarge bsBtn'></form><input id='hiddenGift' type='hidden' /></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>类型</p><select class='bsBtn' id='type'><option>Bais For Action</option><option>Innovators at Heart</option><option>Partnership First</option></select></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>Points</p><input id='points' type='text' placeholder='请输入points' class='input-xlarge bsBtn'></div>"
 				+"	<div class='rcommon'><textarea id='comments' style='height:130px;width:95%;line-height:20px' placeholder='请输入感言' class='input-xlarge bsBtn'></textarea></div>"
