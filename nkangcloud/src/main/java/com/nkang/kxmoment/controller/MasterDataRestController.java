@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
-import com.nkang.kxmoment.baseobject.BillOfSell;
 import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.GeoLocation;
@@ -26,7 +25,6 @@ import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
-import com.nkang.kxmoment.util.BillOfSellPoi;
 import com.nkang.kxmoment.util.DBUtils;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
@@ -824,7 +822,7 @@ public class MasterDataRestController {
 	/*
 	 * chang-zheng
 	 * FOR billOfSell
-	 */
+	 
 	@RequestMapping("/saveBill")
 	public static String saveBill(){
 		String ret = "success !!";
@@ -848,5 +846,5 @@ public class MasterDataRestController {
 		
 		return ret;
 		
-	}
+	}*/
 }
