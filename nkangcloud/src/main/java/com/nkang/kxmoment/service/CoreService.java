@@ -234,7 +234,8 @@ public class CoreService
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article2);
 						String hardcodeUID = "oqPI_xLq1YEJOczHi4DS2-1U0zqc";
-						if(hardcodeUID.equalsIgnoreCase(fromUserName)){
+						String hardcodeUID2 = "oqPI_xACjXB7pVPGi5KH9Nzqonj4";
+						if(hardcodeUID.equalsIgnoreCase(fromUserName)||hardcodeUID2.equalsIgnoreCase(fromUserName)){
 							Article article3 = new Article();
 							article3.setTitle("产品管理");
 							article3.setDescription("Administration");
