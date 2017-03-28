@@ -96,7 +96,7 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                 <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing: 0">
                  <tbody>
                   <tr>
-                   <td valign="top" style="padding:0in 0in 0in 0in"><p class="MsoNormal" style="line-height:14.0pt"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><a href="https://login.ext.hpe.com/idp/startSSO.ping?PartnerSpId=hpe_biw_sp"><b><span style="text-decoration:none"><img border="0" id="_x0000_i1027" src="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/points-link-2.png<%-- <%=ch.getGiftImg() %> --%>" style="
+                   <td valign="top" style="padding:0in 0in 0in 0in"><p class="MsoNormal" style="line-height:14.0pt"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><a href="https://login.ext.hpe.com/idp/startSSO.ping?PartnerSpId=hpe_biw_sp"><b><span style="text-decoration:none"><img border="0" id="_x0000_i1027" src="<%=ch.getGiftImg() %>" style="
     width: 80%;
 "></span></b></a>
                       <o:p></o:p></span></p></td>
