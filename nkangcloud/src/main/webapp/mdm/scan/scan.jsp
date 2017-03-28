@@ -9,7 +9,7 @@
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
 <%	
 String uid = request.getParameter("UID");
-/*String AccessKey = RestUtils.callGetValidAccessKey();
+String AccessKey = RestUtils.callGetValidAccessKey();
 WeChatUser wcu;
 session.setAttribute("UID", uid);
 if (session.getAttribute("location") == null) {
@@ -18,9 +18,7 @@ if (session.getAttribute("location") == null) {
 	session.setAttribute("wcu", wcu);
 } else {
 	wcu = (WeChatUser) session.getAttribute("wcu");
-} */
-HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-//MongoDBBasic.updateVisited(uid,currentDate,"scan",wcu.getHeadimgurl(),wcu.getNickname());
+} 
 %>
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
@@ -58,7 +56,7 @@ ul li.Work_Mates_div_list_div2 {
                     <div class="border3">
                         <div class="radar">
                             <span class="avatar">
-                                <img src="<%=res.get("HeadUrl")%>" width="100%">
+                                <img src="<%=wcu.getHeadimgurl()%>" width="100%">
                             </span>
                         </div>
                     </div>
@@ -68,19 +66,6 @@ ul li.Work_Mates_div_list_div2 {
         </div>
     </div>
     <script>
-    $(document).ready(function (){ 
-    	jQuery.ajax({
-    		type : "POST",
-    		url : "../../insertVisited",
-    		data : {openid:"<%=uid %>",
-    			pageName:"scan",
-    			imgUrl:"<%=res.get("HeadUrl") %>",
-    			nickName:"<%=res.get("NickName") %>"},
-    		cache : false,
-    		success : function(resData) {
-    		}
-        });
-    });
     $(".btn").html("停止扫描");
 	$(".pointer").addClass("pointerAnim");  //添加雷达旋转动画
 	var timeout = 1000;  //每隔1000ms
