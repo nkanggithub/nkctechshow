@@ -68,6 +68,7 @@ if (session.getAttribute("location") == null) {
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles//CSS/animation-effects.css"/>
 <link rel="stylesheet" type="text/css" href="../Jsp/CSS/common.css">
 <script type="text/javascript" src="../Jsp/JS/slides.js"></script>
+<script type="text/javascript" src="../nkang/jquery-form.js"></script>
 
 
 <!-- <link rel="stylesheet" href="../Jsp/CSS/w3.css"> -->
@@ -280,7 +281,7 @@ function uploadPic(obj){
 }
 function uploadGiftPic(obj){
 	if($(obj).val()!='') {
-		  $("#submit_gif").ajaxSubmit(function(message) {
+		  $("#submit_gift").ajaxSubmit(function(message) {
 			  console.log(message);
 			  $("#hiddenGift").val(message);
 		  } );
@@ -461,6 +462,8 @@ function postRecognition(){
 		img=$("#hiddenGift").val();
 	    imgType="1";
 	}
+	console.log("img-------"+img);
+	console.log("imgType-------"+imgType);
 	var isAll="false";
 	if($("#sendAll").is(':checked'))
 		{
