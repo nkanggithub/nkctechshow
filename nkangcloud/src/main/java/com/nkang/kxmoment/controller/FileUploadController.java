@@ -101,8 +101,7 @@ public class FileUploadController {
 	}
 	
 	@RequestMapping(value = "/uploadReport", produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String readXlsOfuploadReport(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView readXlsOfuploadReport(HttpServletRequest request,HttpServletResponse response){
 		try {
 			ReadAGM();
 		} catch (IOException e1) {
@@ -142,7 +141,7 @@ public class FileUploadController {
 		    
 		    }
 		    mv.addObject("map", map);
-			return message;
+			return mv;
 	}
 	
 	
