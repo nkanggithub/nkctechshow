@@ -103,7 +103,6 @@ public class MongoDBBasic {
 			log.info("updateAccessKey--" + e.getMessage());
 		}
 	}
-	
 	public static String QueryAccessKey(){
 		String validKey = null;
 		mongoDB = getMongoDB();
