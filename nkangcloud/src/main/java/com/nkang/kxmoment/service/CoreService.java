@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -390,7 +391,43 @@ public class CoreService
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
-					} else if (eventKey.equals("nbpartner")) {// Partner
+					} else if (eventKey.equals("nbcolleague")) {
+						String CurType = "nbcolleague";
+						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
+						String lat = geol.getLAT();
+						String lng = geol.getLNG();
+						String addr = geol.getFAddr();
+
+						List<ExtendedOpportunity> NearByOpptsExt =  new ArrayList<ExtendedOpportunity>();
+						List<String> cityInfo = new ArrayList<String>();
+						cityInfo = RestUtils.getUserCityInfoWithLatLng(lat,lng);
+						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
+
+						Article article = new Article();
+						Random rand = new Random();
+						int randNum = rand.nextInt(30);
+						article.setTitle("点击扫描您附近的同事");
+						article.setDescription("您当前所在位置:" + addr);
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DnElT&oid=00D90000000pkXM");
+						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
+						articleList.add(article);
+						int opptCount = 7;
+						if(NearByOpptsExt.size() < opptCount ){
+							opptCount = NearByOpptsExt.size();
+						}
+						for(int i = 0; i < opptCount ;  i++){
+							Article articlevar = new Article();
+							articlevar.setTitle(NearByOpptsExt.get(i).getOpptName() + "\n" + NearByOpptsExt.get(i).getSegmentArea() + "\n" + NearByOpptsExt.get(i).getDistance() + " KM");
+							articlevar.setDescription("NearBy Opportunity");
+							articlevar.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
+							articlevar.setUrl("http://"+Constants.baehost+"/index.jsp");
+							articleList.add(articlevar);
+						}
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
+					}else if (eventKey.equals("nbpartner")) {// Partner
 						String CurType = "partner";
 						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
 						String lat = geol.getLAT();
