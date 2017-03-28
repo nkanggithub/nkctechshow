@@ -32,7 +32,7 @@ Integer other=(Integer)map.get("OTHER");
     	            "chart": {
     	                "caption": "IM Metrics",
     	                "subCaption": "",
-    	                "numberPrefix": "$",
+    	                "numberPrefix": "",
     	                "startingAngle": "20",
     	                "showPercentValues": "1",
     	                "showPercentInTooltip": "0",
