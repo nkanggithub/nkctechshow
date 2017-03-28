@@ -19,6 +19,14 @@ public class WeChatMDLUser extends WeChatUser {
 	public String IsRegistered;
 	public ArrayList tag;
 	public HashMap like;
+
+	public double distance;
+	public double getDistance() {
+		return distance;
+	}
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
 	public String getIsActive() {
 		return IsActive;
 	}
