@@ -173,7 +173,7 @@ public class UserProfileController {
 		String fromOpenid=MongoDBBasic.getRegisterUserByrealName(request.getParameter("from"));
 		CongratulateHistory conhis=new CongratulateHistory();
 		String img="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/points-link-2.png";
-		if("1".equals(request.getParameter("to"))){
+		if("1".equals(request.getParameter("imgType"))){
 			img="http://wonderfulcq.bj.bcebos.com/"+request.getParameter("img");
 		}
 		conhis.setNum(num+"");
