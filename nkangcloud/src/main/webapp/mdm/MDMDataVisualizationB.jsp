@@ -16,7 +16,6 @@ Integer other=(Integer)map.get("OTHER");
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>数据可视化</title>
     <link href="../Jsp/JS/pizzaChart/css/app.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
-<script src="../Jsp/JS/pizzaChart/js/custom.modernizr.js"></script>
 
     	<script type="text/javascript" src="../Jsp/JS/fusioncharts.js"></script>
 	<script type="text/javascript" src="../Jsp/JS/fusioncharts.theme.fint.js"></script>
@@ -45,21 +44,24 @@ Integer other=(Integer)map.get("OTHER");
     	            },
     	            "data": [
     	                {
-    	                    "label": "Food",
-    	                    "value": "285040"
+    	                    "label": "APJ",
+    	                    "value": "<%=apj %>"
+    	                },
+    	                {
+    	                    "label": "USA",
+    	                    "value": "<%=usa %>"
     	                }, 
     	                {
-    	                    "label": "Apparels",
-    	                    "value": "146330"
+    	                    "label": "MEXICO",
+    	                    "value": "<%=mexico %>"
     	                }, 
     	                {
-    	                    "label": "Electronics",
-    	                    "value": "105070"
-    	                }, 
+    	                    "label": "EMEA",
+    	                    "value": "<%=emea %>"
+    	                },
     	                {
-    	                    "label": "Household",
-    	                    "value": "49100",
-    	                    "isSliced": "1"
+    	                    "label": "OTHER",
+    	                    "value": "<%=other %>"
     	                }
     	            ]
     	        }
