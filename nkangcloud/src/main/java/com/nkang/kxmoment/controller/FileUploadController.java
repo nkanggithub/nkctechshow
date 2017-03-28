@@ -109,7 +109,7 @@ public class FileUploadController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	
+		ModelAndView mv=new ModelAndView("MDMDataVisualizationB");
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 	    factory.setSizeThreshold(1024 * 1024);
 	    ServletFileUpload upload = new ServletFileUpload(factory);
@@ -118,6 +118,7 @@ public class FileUploadController {
 	    upload.setSizeMax(1024 * 1024 * 4);
 
 		 List<FileItem> fileList = null;
+		 Map map =new HashMap<String,Integer>();
 		 	String message = "文件导入失败，请重新导入..";
 		    try {
 		        fileList = upload.parseRequest(new ServletRequestContext(request));
@@ -126,7 +127,7 @@ public class FileUploadController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
-		                	message=FileOperateUtil.OperateOnReport(is);
+		                	map=FileOperateUtil.OperateOnReport(is);
 		                    if(is!=null){
 		                    	is.close();
 		                    }
@@ -140,6 +141,7 @@ public class FileUploadController {
 		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
 		    
 		    }
+		    mv.addObject("map", map);
 			return message;
 	}
 	
