@@ -25,13 +25,13 @@ Integer other=(Integer)map.get("OTHER");
     	    var revenueChart = new FusionCharts({
     	        type: 'doughnut2d',
     	        renderAt: 'chart-container',
-    	        width: '450',
-    	        height: '300',
+    	        width: '880',
+    	        height: '550',
     	        dataFormat: 'json',
     	        dataSource: {
     	            "chart": {
-    	                "caption": "Split of revenue by product categories",
-    	                "subCaption": "Last year",
+    	                "caption": "IM Metrics",
+    	                "subCaption": "",
     	                "numberPrefix": "$",
     	                "startingAngle": "20",
     	                "showPercentValues": "1",
