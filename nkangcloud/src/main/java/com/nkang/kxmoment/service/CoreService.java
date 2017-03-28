@@ -408,21 +408,9 @@ public class CoreService
 						int randNum = rand.nextInt(30);
 						article.setTitle("点击扫描您附近的同事");
 						article.setDescription("您当前所在位置:" + addr);
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DnElT&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2gP&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
-						int opptCount = 7;
-						if(NearByOpptsExt.size() < opptCount ){
-							opptCount = NearByOpptsExt.size();
-						}
-						for(int i = 0; i < opptCount ;  i++){
-							Article articlevar = new Article();
-							articlevar.setTitle(NearByOpptsExt.get(i).getOpptName() + "\n" + NearByOpptsExt.get(i).getSegmentArea() + "\n" + NearByOpptsExt.get(i).getDistance() + " KM");
-							articlevar.setDescription("NearBy Opportunity");
-							articlevar.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
-							articlevar.setUrl("http://"+Constants.baehost+"/index.jsp");
-							articleList.add(articlevar);
-						}
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
