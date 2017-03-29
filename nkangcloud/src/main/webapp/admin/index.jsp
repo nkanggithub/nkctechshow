@@ -56,9 +56,28 @@
 <script src="../Jsp/JS/modernizr.js"></script>
 <script src="../Jsp/JS/jSignature.min.noconflict.js"></script>
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
+<script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <script type="text/javascript">
 var clientThemeColor,HpLogoSrc,LogoData;
 $(window).load(function() {
+	$('#return-top').hide();  
+    $(function(){  
+        $(window).scroll(function(){  
+            if($(window).scrollTop()>200){  
+                $('#return-top').fadeIn(200);  
+                }  
+                else{$('#return-top').fadeOut(200);}  
+            });  
+            $('#return-top').click(function(){  
+                $('body,html').animate({scrollTop:0},200);  
+                return false;  
+                });  
+        });  
+    });
+    
+    
 	getLogoLists();
 	getMDLUserLists();
 });
@@ -482,14 +501,14 @@ function updateUserInfo(openId){
 		<div id="logo_now_color" style="border-top: 4px solid #fff; padding: 5px;">
 			<ul class="nav nav-tabs" id="myTabs"
 				style="border-color: rgb(0, 179, 136);">
-				<li class="active"><a href="#logoElements" data-toggle="tab"
-					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">LOGO管理</a></li>
-				<li><a href="#WorkMates" data-toggle="tab"
+				<li  class="active"><a href="#WorkMates" data-toggle="tab"
 					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">人员管理</a></li>
+				<li><a href="#logoElements" data-toggle="tab"
+					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">LOGO管理</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
-				<div class="tab-pane active" id="logoElements">
+				<div class="tab-pane" id="logoElements">
 					<!-- start logoElements-->
 					<div class="Work_Mates_div2" id="Logo_div">
 					</div>
@@ -588,46 +607,11 @@ function updateUserInfo(openId){
 								</div>
 				
 				
-				<div class="tab-pane" id="WorkMates">
-					<div class="Work_Mates_div2" id="Work_Mates_div">
-						<!-- <div class="Work_Mates_div_list_div2">
-							<span class="total_num"><img
-								src="../MetroStyleFiles/role.png">总人数：44&nbsp;&nbsp;&nbsp;已注册人数：12</span>
-							<div class="clear"></div>
-						</div>
-						<div class="Work_Mates_div_list_div2">
-							<div class="Work_Mates_img_div2">
-								<img
-									src="http://wx.qlogo.cn/mmopen/3ial0wgAS7u3B8Oc7LqK5ZJb3ViaMo87OiaoNqLjWrKk7TLtITLqbMXWjWEZDGxZbn6ZpuiaKU1PiasiaiaULdSSW3scW9S1b9uWzt9/0"
-									alt="userImage" class="matesUserImage"
-									onclick="getUserInfo('康宁','http://wx.qlogo.cn/mmopen/3ial0wgAS7u3B8Oc7LqK5ZJb3ViaMo87OiaoNqLjWrKk7TLtITLqbMXWjWEZDGxZbn6ZpuiaKU1PiasiaiaULdSSW3scW9S1b9uWzt9/0','oqPI_xLq1YEJOczHi4DS2-1U0zqc');">
-							</div>
-							<div class="Work_Mates_text_div">
-								<h2>
-									<span
-										onclick="getUserInfo('康宁','http://wx.qlogo.cn/mmopen/3ial0wgAS7u3B8Oc7LqK5ZJb3ViaMo87OiaoNqLjWrKk7TLtITLqbMXWjWEZDGxZbn6ZpuiaKU1PiasiaiaULdSSW3scW9S1b9uWzt9/0','oqPI_xLq1YEJOczHi4DS2-1U0zqc');">康宁</span><span
-										class="role">Team Lead</span>
-									<div style="float: right;">
-										<img src="../MetroStyleFiles/reward.png" style="height: 25px;"><span
-											style="font-size: 12px; color: #07090B; font-weight: normal;">11</span>
-										<div></div>
-									</div>
-								</h2>
-								<div>
-									<div class="tag">java</div>
-									<div class="tag">html</div>
-									<div class="tag">webservice</div>
-									<div class="tag">etl</div>
-									<br> <span class="selfIntro">写点什么吧又不知道写什么...</span>
-								</div>
-							</div>
-							<div
-								style="float: right; margin-top: -45px; background-color: #eee; color: #333; font-size: 13px; padding: 3px;">907
-								Days</div>
-							<div class="clear"></div>
-						</div> -->
+				<div class="tab-pane  active" id="WorkMates">
+					<div class="Work_Mates_div2" id="Work_Mates_div"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true">
 
 					</div>
+					<div id="return-top" style="display: block;"><img class="scroll-top" src="../mdm/images/quotation2.gif" alt="" width="100px"></div>
 				</div>
 				
 				
