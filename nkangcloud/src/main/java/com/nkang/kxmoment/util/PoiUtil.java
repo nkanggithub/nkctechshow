@@ -397,11 +397,11 @@ public class PoiUtil {
 													}else if(FileOperateUtil.Other.contains(assignedTo.toString())){
 							                			platforRelated.setClosed_OTHER(platforRelated.getClosed_OTHER()+1);
 							                			continue;
-													}else {
+													}/*else {
 														List<String> ls = platforRelated.getOutNames();
 														ls.add(assignedTo.toString());
 														platforRelated.setOutNames(ls);
-													}
+													}*/
 							                		
 												}
 							                }
