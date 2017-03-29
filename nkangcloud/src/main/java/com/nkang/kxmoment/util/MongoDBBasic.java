@@ -185,6 +185,7 @@ public class MongoDBBasic {
 			String clientThemeColor = queryresults.get("ClientThemeColor")==null?"":queryresults.get("ClientThemeColor").toString();
 			String clientStockCode =queryresults.get("ClientCode")==null?"": queryresults.get("ClientCode").toString();
 			String clientActive = queryresults.get("Active")==null?"":queryresults.get("Active").toString();
+			String metricsMapping = queryresults.get("MetricsMapping")==null?"":queryresults.get("MetricsMapping").toString();
 			BasicDBList slide = (BasicDBList) queryresults.get("Slide");
     		if(slide != null){
     			ArrayList list=new ArrayList();
@@ -204,6 +205,7 @@ public class MongoDBBasic {
 			cm.setClientActive(clientActive);
 			cm.setClientStockCode(clientStockCode);
 			cm.setClientThemeColor(clientThemeColor);
+			cm.setMetricsMapping(metricsMapping);
 	    }
 		catch(Exception e){
 			log.info("QueryClientMeta--" + e.getMessage());
