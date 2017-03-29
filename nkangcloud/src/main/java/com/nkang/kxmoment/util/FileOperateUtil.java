@@ -20,10 +20,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.PlatforRelated;
 
 public class FileOperateUtil {
-
+	 static List<String> Jeffrey;
+	 static List<String> Antonio;
+	 static List<String> Nils;
+	 static List<String> China;
+	 static List<String> Other;
+	
 	public static String FILEDIR = null;
     /**
      * 上传
@@ -150,8 +156,47 @@ public class FileOperateUtil {
     		}
     	return map;
     }
-
-    public static String readAGM(InputStream is){
+    
+    public static void readMetricsMapping() {
+        Jeffrey = new ArrayList<String>();
+        Antonio = new ArrayList<String>();
+        Nils = new ArrayList<String>();
+        China = new ArrayList<String>();
+        Other = new ArrayList<String>();
+        ClientMeta cm = new ClientMeta();
+        cm=MongoDBBasic.QueryClientMeta("DXC");
+        String str = cm.getMetricsMapping();
+        String[] ss =str.split(",");
+		for(String s : ss){
+			System.out.println(s);
+			String[] sss =s.split("\\|");
+			if(sss.length>1){
+				if("Jeffrey".equals(sss[1])){
+					Jeffrey.add(sss[0]);
+					continue;
+				}
+				if("Antonio".equals(sss[1])){
+            		Antonio.add(sss[0]);
+            		continue;
+            	}
+            	if("Nils".equals(sss[1])){
+            		Nils.add(sss[0]);
+            		continue;
+            	}
+            	if("China".equals(sss[1])){
+            		China.add(sss[0]);
+            		continue;
+            	}
+            	if("Other".equals(sss[1])){
+            		Other.add(sss[0]);
+            	}
+				
+			}
+			
+		}
+ }
+ 
+	/*  public static String readAGM(InputStream is){
     	PoiUtil bos = new PoiUtil();
     	String message="";
     	try {
@@ -163,7 +208,7 @@ public class FileOperateUtil {
 		return message;
     	
     }
-    
+    */
     public static Map<String,Integer> OperateOnReport(InputStream is){
     	PoiUtil bos = new PoiUtil();
     	Map<String,Integer> map = new HashMap<String,Integer>();

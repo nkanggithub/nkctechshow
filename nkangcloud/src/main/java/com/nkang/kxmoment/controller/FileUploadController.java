@@ -7,8 +7,10 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -19,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.util.FileOperateUtil;
+import com.nkang.kxmoment.util.MongoDBBasic;
 
 @Controller
 @RequestMapping("/fileUpload")
@@ -27,12 +31,9 @@ public class FileUploadController {
 	private static Logger log=Logger.getLogger(FileUploadController.class);
 	@RequestMapping(value = "/uploadPlatforRelated", produces = "text/html;charset=UTF-8")
 	public ModelAndView readXlsOfPlatforRelated(HttpServletRequest request,HttpServletResponse response){
-		try {
-			ReadAGM();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+		FileOperateUtil.readMetricsMapping();
+		
 		ModelAndView mv=new ModelAndView("MDMDataVisualization");
 	
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -74,7 +75,7 @@ public class FileUploadController {
 			return mv;
 
 	}
-	
+	/*
 	public void ReadAGM() throws IOException{
 		
 	    String url  = FileUploadController.class.getClassLoader().getResource("AGM_Maping.xls").getPath();
@@ -98,16 +99,13 @@ public class FileUploadController {
 			}
 		}
 		//	return message;  
-	}
+	}*/
 	
 	@RequestMapping(value = "/uploadReport", produces = "text/html;charset=UTF-8")
 	public ModelAndView readXlsOfuploadReport(HttpServletRequest request,HttpServletResponse response){
-		try {
-			ReadAGM();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+		FileOperateUtil.readMetricsMapping();
+		
 		ModelAndView mv=new ModelAndView("MDMDataVisualizationB");
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 	    factory.setSizeThreshold(1024 * 1024);

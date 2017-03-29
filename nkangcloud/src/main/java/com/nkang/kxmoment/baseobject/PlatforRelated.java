@@ -1,4 +1,7 @@
 package com.nkang.kxmoment.baseobject;
+
+import java.util.List;
+
 /*
  * for AGM_Backlog
  */
@@ -26,6 +29,17 @@ public class PlatforRelated {
 	int Closed_MEXICO;
 	int Closed_EMEA;
 	int Closed_OTHER;
+	
+	List<String> outNames;
+	
+	public List<String> getOutNames() {
+		return outNames;
+	}
+
+	public void setOutNames(List<String> outNames) {
+		this.outNames = outNames;
+	}
+
 	public int getClosed_OTHER() {
 		return Closed_OTHER;
 	}
