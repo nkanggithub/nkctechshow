@@ -11,14 +11,14 @@ public class ClientMeta {
 	private String clientStockCode;
 	private String clientActive;
 	private ArrayList<?> Slide;
-	private String MetricsMapping;
+	private String metricsMapping;
 	
 	
 	public String getMetricsMapping() {
-		return MetricsMapping;
+		return metricsMapping;
 	}
 	public void setMetricsMapping(String metricsMapping) {
-		MetricsMapping = metricsMapping;
+		this.metricsMapping = metricsMapping;
 	}
 	public ArrayList<?> getSlide() {
 		return Slide;
