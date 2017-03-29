@@ -326,7 +326,6 @@ jQuery
 			data = '{"results":' + data + '}';
 			var jsons = eval('(' + data + ')');
 			var ul = "",regNumber=0;
-			ul='<div class="Work_Mates_div_list_div2" style="border-bottom:0px;">'
 			for (var i = 0; i < jsons.results.length; i++) {
 				var temp = jsons.results[i];
 				var selfIntro=temp.selfIntro;
@@ -413,7 +412,7 @@ jQuery
 			$("#Work_Mates_div_list_div2").html('<span class="total_num"><img src="../MetroStyleFiles/role.png" style="height:20px;"/>总人数：'+ jsons.results.length
 					+'&nbsp;&nbsp;&nbsp;已注册人数：'+regNumber
 					+'</span><div class="clear"></div>');
-			$("#Work_Mates_div").append(ul);
+			$("#Work_Mates_div").html(ul);
 		}
 	});
 }
@@ -616,7 +615,7 @@ function updateUserInfo(openId){
 				<div id="Work_Mates_div_list_div2" class="Work_Mates_div_list_div2"></div>
 			
 				<div  style="position: absolute; top: 160px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
-					<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:45px">
+					<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 					</ul>
 				
 </div>
