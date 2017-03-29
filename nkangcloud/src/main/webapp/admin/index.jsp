@@ -59,6 +59,9 @@
 
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
+<style>
+ #return-top{position:fixed;bottom:40px;right:10px; text-align:center; display:none;z-index:9999;} 
+</style>
 <script type="text/javascript">
 var clientThemeColor,HpLogoSrc,LogoData;
 $(window).load(function() {
@@ -606,9 +609,12 @@ function updateUserInfo(openId){
 				
 				
 				<div class="tab-pane  active" id="WorkMates">
-					<div class="Work_Mates_div2" id="Work_Mates_div"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true">
-
+				<div  style="position: absolute; top: 120px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
+ 
+					<div class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 					</div>
+				
+</div>
 					<div id="return-top" style="display: block;"><img class="scroll-top" src="../mdm/images/quotation2.gif" alt="" width="100px"></div>
 				</div>
 				
