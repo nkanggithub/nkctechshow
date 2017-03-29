@@ -53,6 +53,7 @@ public class MongoDBBasic {
 	private static String wechat_comments = "Wechat_Comments";
 	private static String ClientMeta = "Client_Meta";
 	private static String collectionBill = "SaleBill";
+	private static String Metrics = "MetricsMapping";
 
 	public static DB getMongoDB(){
 		if(mongoDB != null){
@@ -135,6 +136,47 @@ public class MongoDBBasic {
 	    try{
 			DBObject query = new BasicDBObject();
 			query.put("Active", "Y");
+			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
+			String clientCopyRight = queryresults.get("ClientCopyRight")==null?"":queryresults.get("ClientCopyRight").toString();
+			String clientLogo = queryresults.get("ClientLogo")==null?"":queryresults.get("ClientLogo").toString();
+			String clientName = queryresults.get("ClientName")==null?"":queryresults.get("ClientName").toString();
+			String clientSubName = queryresults.get("ClientSubName")==null?"":queryresults.get("ClientSubName").toString();
+			String clientThemeColor = queryresults.get("ClientThemeColor")==null?"":queryresults.get("ClientThemeColor").toString();
+			String clientStockCode =queryresults.get("ClientCode")==null?"": queryresults.get("ClientCode").toString();
+			String clientActive = queryresults.get("Active")==null?"":queryresults.get("Active").toString();
+			BasicDBList slide = (BasicDBList) queryresults.get("Slide");
+    		if(slide != null){
+    			ArrayList list=new ArrayList();
+        		Object[] tagObjects = slide.toArray();
+        		for(Object dbobj : tagObjects){
+        			if(dbobj instanceof DBObject){
+        				HashMap<String, String> temp=new HashMap<String, String>();
+        				list.add( ((DBObject)dbobj).get("src").toString());
+        			}
+        		}
+        		cm.setSlide(list);
+    		}
+			cm.setClientCopyRight(clientCopyRight);
+			cm.setClientLogo(clientLogo);
+			cm.setClientName(clientName);
+			cm.setClientSubName(clientSubName);
+			cm.setClientActive(clientActive);
+			cm.setClientStockCode(clientStockCode);
+			cm.setClientThemeColor(clientThemeColor);
+	    }
+		catch(Exception e){
+			log.info("QueryClientMeta--" + e.getMessage());
+		}
+	    return cm;
+	}
+	
+	public static ClientMeta QueryClientMeta(String ClientCode){
+		ClientMeta cm = new ClientMeta();
+		mongoDB = getMongoDB();
+	    try{
+			DBObject query = new BasicDBObject();
+			query.put("Active", "Y");
+			query.put("ClientCode", ClientCode);
 			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
 			String clientCopyRight = queryresults.get("ClientCopyRight")==null?"":queryresults.get("ClientCopyRight").toString();
 			String clientLogo = queryresults.get("ClientLogo")==null?"":queryresults.get("ClientLogo").toString();
