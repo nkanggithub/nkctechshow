@@ -18,12 +18,9 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.util.FileOperateUtil;
-import com.nkang.kxmoment.util.MongoDBBasic;
 
 @Controller
 @RequestMapping("/fileUpload")
