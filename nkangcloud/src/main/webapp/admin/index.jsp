@@ -63,22 +63,27 @@
  #return-top{position:fixed;bottom:40px;right:10px; text-align:center; display:none;z-index:9999;} 
 </style>
 <script type="text/javascript">
-var clientThemeColor,HpLogoSrc,LogoData;
-$(window).load(function() {
-	$('#return-top').hide();  
+$(function(){  
+    $('#return-top').hide();  
     $(function(){  
         $(window).scroll(function(){  
             if($(window).scrollTop()>200){  
                 $('#return-top').fadeIn(200);  
                 }  
                 else{$('#return-top').fadeOut(200);}  
+              
             });  
             $('#return-top').click(function(){  
+                  
                 $('body,html').animate({scrollTop:0},200);  
                 return false;  
-                });  
-        }); 
-    
+                  
+                })  
+        })  
+    });
+var clientThemeColor,HpLogoSrc,LogoData;
+
+$(window).load(function() {
 	getLogoLists();
 	getMDLUserLists();
 });
@@ -615,7 +620,7 @@ function updateUserInfo(openId){
 					</div>
 				
 </div>
-					<div id="return-top" style="display: block;"><img class="scroll-top" src="../mdm/images/quotation2.gif" alt="" width="100px"></div>
+					<div id="return-top" style="display: block;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="100px"></div>
 				</div>
 				
 				
