@@ -2149,6 +2149,38 @@ public static String regist(WeChatMDLUser user) {
        return "status:"+result;
 
     }
+    
+    
+    /*
+     * 
+     * 
+     */
+    public static String callQueryClientMetaByClientCode() throws UnsupportedEncodingException {
+		String url = "http://"+Constants.baehost+"/QueryClientMetaByClientCode";
+		String message= "errorrrr";
+		try {
+	           URL urlGet = new URL(url);
+	           HttpURLConnection http = (HttpURLConnection) urlGet.openConnection();
+	           http.setRequestMethod("PUT"); //must be get request
+	           http.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+	           http.setDoOutput(true);
+	           http.setDoInput(true);
+	          
+	           http.connect();
+	           InputStream is = http.getInputStream();
+	           int size = is.available();
+	           byte[] jsonBytes = new byte[size];
+	           is.read(jsonBytes);
+	           message = new String(jsonBytes, "UTF-8");
+	           //JSONObject demoJson = new JSONObject(message);
+	           is.close();
+	           //System.out.println(message + "- success http ---------" + url);
+	       } catch (Exception e) {
+	    	   return "failed";
+	       } 
+		return message;
+		}
+    
 }
 
 
