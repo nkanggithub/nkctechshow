@@ -282,7 +282,9 @@ public class MasterDataRestController {
 									@RequestParam(value="ClientThemeColor", required=false) String ClientThemeColor,
 									@RequestParam(value="Slide1", required=false) String Slide1,
 									@RequestParam(value="Slide2", required=false) String Slide2,
-									@RequestParam(value="Slide3", required=false) String Slide3)
+									@RequestParam(value="Slide3", required=false) String Slide3,
+									@RequestParam(value="MetricsMapping", required=false) String metricsMapping
+									)
 	{
 		boolean result=false;
 		ClientMeta cm=new ClientMeta();
@@ -292,6 +294,7 @@ public class MasterDataRestController {
 		cm.setClientSubName(ClientSubName);
 		cm.setClientCopyRight(ClientCopyRight);
 		cm.setClientThemeColor(ClientThemeColor);
+		cm.setMetricsMapping(metricsMapping);
 		ArrayList<HashMap<String, String>> slideList=new ArrayList<HashMap<String, String>>();
 		HashMap<String, String> a=new HashMap<String, String>();
 		a.put("src", Slide1);
@@ -795,6 +798,19 @@ public class MasterDataRestController {
 		}
 		return cm;
 	}
+	
+	@RequestMapping("/QueryClientMetaByClientCode")
+	public static ClientMeta QueryClientMetaByClientCode(){
+		ClientMeta cm = new ClientMeta();
+		try{
+			cm = MongoDBBasic.QueryClientMeta("DXC");
+		}		
+		catch(Exception e){
+			cm = null;
+		}
+		return cm;
+	}
+	
 	@RequestMapping("/QueryClientMetaList")
 	public static ArrayList<ClientMeta> QueryClientMetaList(){
 		ArrayList<ClientMeta> cm = new ArrayList<ClientMeta>();
