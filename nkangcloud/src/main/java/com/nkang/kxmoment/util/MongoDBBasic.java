@@ -422,6 +422,7 @@ public class MongoDBBasic {
     	    	update.put("ClientThemeColor", cm.getClientThemeColor());
     	    	update.put("ClientName", cm.getClientName());
     	    	update.put("Slide", cm.getSlide());
+    	    	update.put("MetricsMapping", cm.getMetricsMapping());
     	    	doc.put("$set", update);  
     	    	WriteResult wr = mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode", cm.getClientStockCode()), doc);
     			ret = true;
