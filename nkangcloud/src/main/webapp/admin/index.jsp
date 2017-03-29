@@ -374,7 +374,7 @@ jQuery
 					congratulate='<div style="float:right;"><img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
 						+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
 				}
-				var li='	<div class="Work_Mates_div_list_div2">'
+				var li='	<li class="Work_Mates_div_list_div2">'
 					+'                                           	 	<div class="Work_Mates_img_div2">'
 					+'                                        			 <img src="'
 					+ temp.headimgurl
@@ -407,13 +407,12 @@ jQuery
 					+'                                        		</div>'
 					+workDay
 					+'                                                <div class="clear"></div>'
-					+'                                          </div>';
+					+'                                          </li>';
 				ul += li;
 			}
-			ul='<div class="Work_Mates_div_list_div2">'
-			+'<span class="total_num"><img src="../MetroStyleFiles/role.png"/>总人数：'+ jsons.results.length
-			+'&nbsp;&nbsp;&nbsp;已注册人数：'+regNumber
-			+'</span><div class="clear"></div></div>'+ul;
+			$("#Work_Mates_div_list_div2").html('<span class="total_num"><img src="../MetroStyleFiles/role.png" style="height:20px;"/>总人数：'+ jsons.results.length
+					+'&nbsp;&nbsp;&nbsp;已注册人数：'+regNumber
+					+'</span><div class="clear"></div>');
 			$("#Work_Mates_div").html(ul);
 		}
 	});
@@ -614,10 +613,11 @@ function updateUserInfo(openId){
 				
 				
 				<div class="tab-pane  active" id="WorkMates">
-				<div  style="position: absolute; top: 120px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
- 
-					<div class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
-					</div>
+				<div id="Work_Mates_div_list_div2" class="Work_Mates_div_list_div2"></div>
+			
+				<div  style="position: absolute; top: 150px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
+					<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:45px">
+					</ul>
 				
 </div>
 					<div id="return-top" style="display: block;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="100px"></div>
