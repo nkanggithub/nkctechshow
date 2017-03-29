@@ -800,7 +800,7 @@ public class MasterDataRestController {
 	}
 	
 	@RequestMapping("/QueryClientMetaByClientCode")
-	public static ClientMeta QueryClientMetaByClientCode(){
+	public static String QueryClientMetaByClientCode(){
 		ClientMeta cm = new ClientMeta();
 		try{
 			cm = MongoDBBasic.QueryClientMeta("DXC");
@@ -808,7 +808,7 @@ public class MasterDataRestController {
 		catch(Exception e){
 			cm = null;
 		}
-		return cm;
+		return cm.getMetricsMapping();
 	}
 	
 	@RequestMapping("/QueryClientMetaList")
