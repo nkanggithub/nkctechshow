@@ -11,10 +11,15 @@ CongratulateHistory ch=new CongratulateHistory();
 if(!chList.isEmpty()){
 	ch=chList.get(0);
 }
-String openid=MongoDBBasic.getRegisterUserByrealName(ch.getFrom());
-String signature=MongoDBBasic.getUserWithSignature(openid);
-
-
+/*
+CongratulateHistory ch=new CongratulateHistory();
+ch.setComments("thanks");
+ch.setGiftImg("http://wonderfulcq.bj.bcebos.com/IMG_0287.JPG");
+ch.setPoint("200");
+ch.setFrom("panda");
+ch.setTo("潘嗒嗒");
+ch.setUserImg("http://wx.qlogo.cn/mmopen/soSX1MtHexV6ibXOvfzOoePPqRib4AiaVIT1oCZZ7j0oVfacOT4xibmjF2sqHltyu1sXPPfqkwpXxoWDibQxnaX7FupTpHRNj2S8k/0");
+ch.setType(" Bais For Action.");*/
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
@@ -22,13 +27,15 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="description">
 <meta content="" name="hpe">
+<title><%=ch.getFrom() %> must have done something amazing and has been recognized by <%=ch.getTo() %></title>
+<script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
   </head>
 <body style="margin:0;">
-            
+            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=ch.getTo() %></p><img src="<%=ch.getUserImg() %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
               <tr>
-               <td width="270" valign="top" style="width:202.5pt;padding:0in 7.5pt 0in 15.0pt">
+               <td width="270" valign="top" style="width:202.5pt;padding:0in 7.5pt 0in 15.0pt;padding-left:0px;">
                 <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0">
                  <tbody>
                   <tr>
@@ -93,12 +100,15 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                  </tbody>
                 </table></td>
                <td width="274" style="width: 50%;background:#464646;padding:0in 12.0pt 0in 6.0pt;">
-                <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing: 0">
+                <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align:center;width:100.0%;border-collapse:collapse;border-spacing: 0">
                  <tbody>
                   <tr>
-                   <td valign="top" style="padding:0in 0in 0in 0in"><p class="MsoNormal" style="line-height:14.0pt"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><a href="https://login.ext.hpe.com/idp/startSSO.ping?PartnerSpId=hpe_biw_sp"><b><span style="text-decoration:none"><img border="0" id="_x0000_i1027" src="<%=ch.getGiftImg() %>" style="
-    width: 80%;
-"></span></b></a>
+                   <td valign="top" style="padding:0in 0in 0in 0in"><p class="MsoNormal" style="line-height:14.0pt;text-align:center;position:relative;">
+                   <img src="../Jsp/PIC/gift.png" alt="" style="position: absolute;left: 3%;top: 0px;width: 40px;">
+                   <span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black;   display: block;margin-left: 30px;">
+                   <b><span style="text-decoration:none"><img border="0" id="_x0000_i1027" src="<%=ch.getGiftImg() %>" style="
+    width: 50%;
+"></span></b>
                       <o:p></o:p></span></p></td>
                   </tr>
                  </tbody>
@@ -130,7 +140,7 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
                 </table></td>
               </tr>
              </tbody>
-            </table><p style="margin: 10px;line-height:14.0pt;"><span style="font-size: 15px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Below shows the impact you made to HPE:
+            </table><p style="margin: 10px;line-height:14.0pt;"><span style="font-size: 15px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Below shows the impact you made to DXC:
               <o:p></o:p></span></p>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;display:table;border-spacing: 0">
              <tbody>
@@ -206,17 +216,19 @@ String signature=MongoDBBasic.getUserWithSignature(openid);
 	<div id="footer">
 		<span class="clientCopyRight"><nobr></nobr></span>
 	</div>
-	<script>
+ 	<script>
          jQuery.ajax({
      		type : "GET",
      		url : "../QueryClientMeta",
      		data : {},
      		cache : false,
      		success : function(data) {
+     			if(data){
      			var jsons = eval(data);
-     			$('img.HpLogo').attr('src',jsons.clientLogo);
+     			//$('img.HpLogo').attr('src',jsons.clientLogo);
      			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
+     			}
      		}
      	});
-         </script>
+         </script> 
 </body></html>
