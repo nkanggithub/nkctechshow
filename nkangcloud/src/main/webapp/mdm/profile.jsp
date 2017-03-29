@@ -462,6 +462,7 @@ function postRecognition(){
 		img=$("#hiddenGift").val();
 	    imgType="1";
 	}
+	var userImage=$("#userPic").val();
 	console.log("img-------"+img);
 	console.log("imgType-------"+imgType);
 	var isAll="false";
@@ -487,7 +488,8 @@ function postRecognition(){
         	type:$("#type option:selected").val(),
         	comments:$("#comments").val(),
         	img:img,
-        	imgType:imgType
+        	imgType:imgType,
+        	userImage:userImage
         	
         },
         async: true,
@@ -1422,6 +1424,7 @@ function getNowFormatDate() {
 	<input id="uid" type="hidden" value="<%=uid%>" />
 	<input id="timer" type="hidden" value="" />
 	<input id="realName" type="hidden" value="" />
+	<input id="userPic" type="hidden" value="<%=wcu.getHeadimgurl() %>" />
 	<select id="hiddenSelect" style="display:none">
 	</select>
 	<div class="navbar" style="width: 100%;">
