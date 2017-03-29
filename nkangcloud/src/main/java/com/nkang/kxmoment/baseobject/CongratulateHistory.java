@@ -8,6 +8,13 @@ public class CongratulateHistory {
 	String type;
 	String point;
 	String giftImg;
+	String userImg;
+	public String getUserImg() {
+		return userImg;
+	}
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
+	}
 	public String getGiftImg() {
 		return giftImg;
 	}
