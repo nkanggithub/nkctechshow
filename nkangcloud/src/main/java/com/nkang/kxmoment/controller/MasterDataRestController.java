@@ -808,7 +808,11 @@ public class MasterDataRestController {
 		catch(Exception e){
 			cm = null;
 		}
-		return cm.getMetricsMapping();
+		String message=cm.getMetricsMapping();
+		if(message==null||message==""){
+			message="no no no '''...";
+		}
+		return message;
 	}
 	
 	@RequestMapping("/QueryClientMetaList")
