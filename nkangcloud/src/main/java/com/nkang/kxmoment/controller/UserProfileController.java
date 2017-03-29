@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baidubce.services.bos.model.PutObjectResponse;
+import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
@@ -173,6 +174,7 @@ public class UserProfileController {
 		String fromOpenid=MongoDBBasic.getRegisterUserByrealName(request.getParameter("from"));
 		CongratulateHistory conhis=new CongratulateHistory();
 		String img="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/points-link-2.png";
+		System.out.println("request.getParameter('imgType')----"+request.getParameter("imgType"));
 		if("1".equals(request.getParameter("imgType"))){
 			img="http://wonderfulcq.bj.bcebos.com/"+request.getParameter("img");
 		}
@@ -182,6 +184,7 @@ public class UserProfileController {
 		conhis.setType(request.getParameter("type"));
 		conhis.setPoint(request.getParameter("points"));
 		conhis.setComments(request.getParameter("comments"));
+		conhis.setUserImg(request.getParameter("userImage"));
 		conhis.setGiftImg(img);
 		conhis.setCongratulateDate(new Date().toLocaleString());
 		MongoDBBasic.updateUserCongratulateHistory(openid,conhis);
@@ -295,7 +298,9 @@ public class UserProfileController {
 		 	String message = "文件导入失败，请重新导入..";
 		 	Map map =new HashMap<String,List>();
 		 	PutObjectResponse putObjectResponseFromInputStream=null;
-		 	String bk = MyBosClient.client.listBuckets().getBuckets().get(0).getName();
+		 	String bk = Constants.bucketName;
+		 	/*for(int i=0;i<MyBosClient.client.listBuckets().getBuckets().size();i++){
+		 	System.out.println("MyBosClient.client.listBuckets("+i+")"+MyBosClient.client.listBuckets().getBuckets().get(i).getName());}*/
 		    try {
 		        fileList = upload.parseRequest(new ServletRequestContext(request));
 		        if(fileList != null){
