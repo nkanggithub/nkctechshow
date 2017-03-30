@@ -195,11 +195,11 @@ public class FileOperateUtil {
             		continue;
             	}
             	if("China".equals(sss[1].trim())){
-            		China.add(sss[0]);
+            		China.add(sss[0].trim());
             		continue;
             	}
             	if("Other".equals(sss[1].trim())){
-            		Other.add(sss[0]);
+            		Other.add(sss[0].trim());
             	}
 				
 			}
