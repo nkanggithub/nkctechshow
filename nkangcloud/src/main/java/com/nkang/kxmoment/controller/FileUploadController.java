@@ -166,18 +166,19 @@ public class FileUploadController {
 	@ResponseBody
 	public ModelAndView getIMMetrics(HttpServletRequest request, @RequestParam(value="ClientStockCode", required=true) String clientStockCode) {
 		ModelAndView mv=new ModelAndView("MDMDataVisualizationB");
+		Map<String, Integer> map = new HashMap<String,Integer>();
 		PlatforRelated pr = MongoDBBasic.getPlatforRelated(clientStockCode);
-		String message="Star null...";
-		if(pr!=null){
-			message = "runDone_apj="+pr.getDone_APJ()+"; "+"IM_apj="+pr.getClosed_APJ();
+		if(pr==null){
+			return mv;
 		}
-		Map<String, Integer> map =new HashMap<String,Integer>();
+		
 		map.put("APJ", pr.getClosed_APJ());
 		map.put("USA", pr.getClosed_USA());
 		map.put("MEXICO", pr.getClosed_MEXICO());
 		map.put("EMEA", pr.getClosed_EMEA());
 		map.put("OTHER", pr.getClosed_OTHER());
 		mv.addObject("map", map);
+		//return map.get("APJ")+" "+map.get("USA")+" "+map.get("MEXICO")+" "+map.get("EMEA")+" "+map.get("OTHER");
 		return mv;
 	}
 	
