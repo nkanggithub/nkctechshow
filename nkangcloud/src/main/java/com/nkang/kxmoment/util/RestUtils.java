@@ -2034,11 +2034,11 @@ public static String regist(WeChatMDLUser user) {
     	String result ="";
     	String str="";
     	if("".equals(am.getWebUrl())||""==am.getWebUrl()){
-    			str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+"发布者 - 永佳和:"+am.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+am.getNum()+"\",\"picurl\":"
+    			str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+"发布者 - DXC Technology:"+am.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+am.getNum()+"\",\"picurl\":"
     					+ "\""+img+"\"}";
     	}else
     	{
-    		str="{\"title\":\""+am.getTitle()+"\",\"description\":\"重庆永佳和塑胶有限公司\",\"url\":\""+am.getWebUrl()+"\",\"picurl\":"
+    		str="{\"title\":\""+am.getTitle()+"\",\"description\":\"DXC Technology\",\"url\":\""+am.getWebUrl()+"\",\"picurl\":"
 					+ "\""+img+"\"}";
     	}
     	        String json = "{\"touser\":\""+toOpenId+"\",\"msgtype\":\"news\",\"news\":" +
