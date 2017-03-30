@@ -258,17 +258,26 @@ public class PoiUtil {
 					                	 HSSFCell status = hssfRow.getCell(1);
 							                if(status!=null){
 							                	if("Done".equals(status.toString().trim())){
-							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString())){
+							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
 							                			platforRelated.setDone_USA(platforRelated.getDone_USA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
 							                			platforRelated.setDone_MEXICO(platforRelated.getDone_MEXICO()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
 							                			platforRelated.setDone_EMEA(platforRelated.getDone_EMEA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.China.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
 							                			platforRelated.setDone_APJ(platforRelated.getDone_APJ()+1);
+													}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
+														continue;
+													}else{
+														List<String> ls = platforRelated.getOutNames();
+														if(ls==null){
+															ls=new ArrayList<String>();
+														}
+														ls.add(assignedTo.toString());
+														platforRelated.setOutNames(ls);
 													}
 							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
 							                			platforRelated.setDone_USA(platforRelated.getDone_USA()+1);
@@ -284,17 +293,26 @@ public class PoiUtil {
 													}
 							                		*/
 							                	}else if(!"New".equals(status.toString().trim())&&!"Done".equals(status.toString().trim())){
-							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString())){
+							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInProgress_USA(platforRelated.getInProgress_USA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInProgress_MEXICO(platforRelated.getInProgress_MEXICO()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInProgress_EMEA(platforRelated.getInProgress_EMEA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.China.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInProgress_APJ(platforRelated.getInProgress_APJ()+1);
+													}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
+														continue;
+													}else{
+														List<String> ls = platforRelated.getOutNames();
+														if(ls==null){
+															ls=new ArrayList<String>();
+														}
+														ls.add(assignedTo.toString());
+														platforRelated.setOutNames(ls);
 													}
 							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
 							                			platforRelated.setInProgress_USA(platforRelated.getInProgress_USA()+1);
@@ -309,17 +327,26 @@ public class PoiUtil {
 							                			platforRelated.setInProgress_APJ(platforRelated.getInProgress_APJ()+1);
 													}*/
 							                	}else if("New".equals(status.toString().trim())){
-							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString())){
+							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInPlanning_USA(platforRelated.getInPlanning_USA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInPlanning_MEXICO(platforRelated.getInPlanning_MEXICO()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInPlanning_EMEA(platforRelated.getInPlanning_EMEA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.China.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInPlanning_APJ(platforRelated.getInPlanning_APJ()+1);
+													}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
+														continue;
+													}else{
+														List<String> ls = platforRelated.getOutNames();
+														if(ls==null){
+															ls=new ArrayList<String>();
+														}
+														ls.add(assignedTo.toString());
+														platforRelated.setOutNames(ls);
 													}
 							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
 							                			platforRelated.setInPlanning_USA(platforRelated.getInPlanning_USA()+1);
@@ -386,18 +413,18 @@ public class PoiUtil {
 							                	if("Closed".equals(status.toString().trim())){
 							                		platforRelated.setTotal(platforRelated.getTotal()+1);
 							                		
-							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString())){
+							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
 							                			platforRelated.setClosed_USA(platforRelated.getClosed_USA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
 							                			platforRelated.setClosed_MEXICO(platforRelated.getClosed_MEXICO()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
 							                			platforRelated.setClosed_EMEA(platforRelated.getClosed_EMEA()+1);
 							                			continue;
-							                		}else if(FileOperateUtil.China.contains(assignedTo.toString())){
+							                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
 							                			platforRelated.setClosed_APJ(platforRelated.getClosed_APJ()+1);
-													}else if(FileOperateUtil.Other.contains(assignedTo.toString())){
+													}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
 							                			platforRelated.setClosed_OTHER(platforRelated.getClosed_OTHER()+1);
 							                			continue;
 													}else {
