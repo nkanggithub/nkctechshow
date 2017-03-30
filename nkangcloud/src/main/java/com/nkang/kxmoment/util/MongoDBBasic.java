@@ -451,32 +451,36 @@ public class MongoDBBasic {
             if (null != dbcur) {
             	while(dbcur.hasNext()){
             		DBObject o = dbcur.next();
+            		PlatforRelated obj = (PlatforRelated)o.get("PlatforRelated");
+            		if(obj==null){
+            			obj=platforRelated; 
+            		}
             		DBObject dbo = new BasicDBObject();
-            		dbo.put("PlatforRelated.Closed_APJ", platforRelated.getClosed_APJ()); 
-            		dbo.put("PlatforRelated.Closed_EMEA", platforRelated.getClosed_EMEA()); 
-            		dbo.put("PlatforRelated.Closed_MEXICO", platforRelated.getClosed_MEXICO()); 
-        			dbo.put("PlatforRelated.Closed_OTHER", platforRelated.getClosed_OTHER());
-        			dbo.put("PlatforRelated.Closed_USA", platforRelated.getClosed_USA());
+            		dbo.put("PlatforRelated.Closed_APJ", platforRelated.getClosed_APJ()==0?obj.getClosed_APJ():platforRelated.getClosed_APJ()); 
+            		dbo.put("PlatforRelated.Closed_EMEA", platforRelated.getClosed_EMEA()==0?obj.getClosed_EMEA():platforRelated.getClosed_EMEA()); 
+            		dbo.put("PlatforRelated.Closed_MEXICO", platforRelated.getClosed_MEXICO()==0?obj.getClosed_MEXICO():platforRelated.getClosed_MEXICO()); 
+        			dbo.put("PlatforRelated.Closed_OTHER", platforRelated.getClosed_OTHER()==0?obj.getClosed_OTHER():platforRelated.getClosed_OTHER());
+        			dbo.put("PlatforRelated.Closed_USA", platforRelated.getClosed_USA()==0?obj.getClosed_USA():platforRelated.getClosed_USA());
         			
-        			dbo.put("PlatforRelated.Done_APJ", platforRelated.getDone_APJ());
-        			dbo.put("PlatforRelated.Done_EMEA", platforRelated.getDone_EMEA());
-        			dbo.put("PlatforRelated.Done_MEXICO", platforRelated.getDone_MEXICO());
-        			dbo.put("PlatforRelated.Done_USA", platforRelated.getDone_USA()); 
+        			dbo.put("PlatforRelated.Done_APJ", platforRelated.getDone_APJ()==0?obj.getDone_APJ():platforRelated.getDone_APJ());
+        			dbo.put("PlatforRelated.Done_EMEA", platforRelated.getDone_EMEA()==0?obj.getDone_EMEA():platforRelated.getDone_EMEA());
+        			dbo.put("PlatforRelated.Done_MEXICO", platforRelated.getDone_MEXICO()==0?obj.getDone_MEXICO():platforRelated.getDone_MEXICO());
+        			dbo.put("PlatforRelated.Done_USA", platforRelated.getDone_USA()==0?obj.getDone_USA():platforRelated.getDone_USA()); 
         			
-        			dbo.put("PlatforRelated.InPlanning_APJ", platforRelated.getInPlanning_APJ()); 
-        			dbo.put("PlatforRelated.InPlanning_EMEA", platforRelated.getInPlanning_EMEA()); 
-        			dbo.put("PlatforRelated.InPlanning_MEXICO", platforRelated.getInPlanning_MEXICO()); 
-        			dbo.put("PlatforRelated.InPlanning_USA", platforRelated.getInPlanning_USA()); 
+        			dbo.put("PlatforRelated.InPlanning_APJ", platforRelated.getInPlanning_APJ()==0?obj.getInPlanning_APJ():platforRelated.getInPlanning_APJ()); 
+        			dbo.put("PlatforRelated.InPlanning_EMEA", platforRelated.getInPlanning_EMEA()==0?obj.getInPlanning_EMEA():platforRelated.getInPlanning_EMEA()); 
+        			dbo.put("PlatforRelated.InPlanning_MEXICO", platforRelated.getInPlanning_MEXICO()==0?obj.getInPlanning_MEXICO():platforRelated.getInPlanning_MEXICO()); 
+        			dbo.put("PlatforRelated.InPlanning_USA", platforRelated.getInPlanning_USA()==0?obj.getInPlanning_USA():platforRelated.getInPlanning_USA()); 
         			
-        			dbo.put("PlatforRelated.InProgress_APJ", platforRelated.getInProgress_APJ()); 
-        			dbo.put("PlatforRelated.InProgress_EMEA", platforRelated.getInProgress_EMEA()); 
-        			dbo.put("PlatforRelated.InProgress_MEXICO", platforRelated.getInProgress_MEXICO()); 
-        			dbo.put("PlatforRelated.InProgress_USA", platforRelated.getInProgress_USA()); 
+        			dbo.put("PlatforRelated.InProgress_APJ", platforRelated.getInProgress_APJ()==0?obj.getInProgress_APJ():platforRelated.getInProgress_APJ()); 
+        			dbo.put("PlatforRelated.InProgress_EMEA", platforRelated.getInProgress_EMEA()==0?obj.getInProgress_EMEA():platforRelated.getInProgress_EMEA()); 
+        			dbo.put("PlatforRelated.InProgress_MEXICO", platforRelated.getInProgress_MEXICO()==0?obj.getInProgress_MEXICO():platforRelated.getInProgress_MEXICO()); 
+        			dbo.put("PlatforRelated.InProgress_USA", platforRelated.getInProgress_USA()==0?obj.getInProgress_USA():platforRelated.getInProgress_USA()); 
         			
-        			dbo.put("PlatforRelated.IMMetricstotal", platforRelated.getIMMetricstotal()); 
-        			dbo.put("PlatforRelated.RunMaintainMetricstotal", platforRelated.getRunMaintainMetricstotal()); 
-        			dbo.put("PlatforRelated.UnAssinged", platforRelated.getUnAssinged()); 
-//        			Object obj = o.get("PlatforRelated");
+        			dbo.put("PlatforRelated.IMMetricstotal", platforRelated.getIMMetricstotal()==0?obj.getIMMetricstotal():platforRelated.getIMMetricstotal()); 
+        			dbo.put("PlatforRelated.RunMaintainMetricstotal", platforRelated.getRunMaintainMetricstotal()==0?obj.getRunMaintainMetricstotal():platforRelated.getRunMaintainMetricstotal()); 
+        			dbo.put("PlatforRelated.UnAssinged", platforRelated.getUnAssinged()==0?obj.getUnAssinged():platforRelated.getUnAssinged()); 
+        			
 //        			if(obj == null){
 //            			dbo.put("Teamer.registerDate", obj.getRegisterDate());
 //        			}
