@@ -22,7 +22,8 @@ public class PlatforRelated {
 	int InPlanning_EMEA;
 	
 	int unAssinged;
-	int total;
+	int IMMetricstotal;
+	int RunMaintainMetricstotal;
 	
 	int Closed_APJ;
 	int Closed_USA;
@@ -84,12 +85,21 @@ public class PlatforRelated {
 		return Done_APJ;
 	}
 
-	public int getTotal() {
-		return total;
+
+	public int getIMMetricstotal() {
+		return IMMetricstotal;
 	}
 
-	public void setTotal(int total) {
-		this.total = total;
+	public void setIMMetricstotal(int iMMetricstotal) {
+		IMMetricstotal = iMMetricstotal;
+	}
+
+	public int getRunMaintainMetricstotal() {
+		return RunMaintainMetricstotal;
+	}
+
+	public void setRunMaintainMetricstotal(int runMaintainMetricstotal) {
+		RunMaintainMetricstotal = runMaintainMetricstotal;
 	}
 
 	public void setDone_APJ(int done_APJ) {
