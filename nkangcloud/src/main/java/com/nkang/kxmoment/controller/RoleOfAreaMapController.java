@@ -1,10 +1,13 @@
 package com.nkang.kxmoment.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mongodb.Mongo;
@@ -15,10 +18,13 @@ import com.nkang.kxmoment.util.RestUtils;
 @Controller
 @RequestMapping("/roleOfAreaMap")
 public class RoleOfAreaMapController {
+	@RequestMapping(value = "/findList", produces = "text/html;charset=UTF-8")
+	public ArrayList<RoleOfAreaMap> findList(
+			@RequestParam(value="flag", required=false) String flag) {
+		return MongoDBBasic.QueryRoleOfAreaMap(flag);
+	}
 	@RequestMapping(value = "/setRoleOfAreaMap", produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public boolean setRoleOfAreaMap(HttpServletRequest request,
-			HttpServletResponse response) {
+	public boolean setRoleOfAreaMap() {
 		RoleOfAreaMap role=new RoleOfAreaMap();
 		role.setId("Role001");
 		role.setFlag("Role");
