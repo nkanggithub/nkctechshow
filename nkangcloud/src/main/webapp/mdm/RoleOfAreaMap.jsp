@@ -18,7 +18,7 @@ HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 <title>我的订阅</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
-<script type="text/javascript" src="../nkang/jquery-1.8.0.js"></script>
+<script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles//CSS/animation-effects.css"/>
