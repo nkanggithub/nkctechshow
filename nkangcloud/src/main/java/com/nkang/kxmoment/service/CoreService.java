@@ -427,7 +427,18 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 						
-					}else if (eventKey.equals("nbpartner")) {// Partner
+					}
+					else if (eventKey.equals("opsmetric")) {//我的订阅
+						Article article = new Article();
+						article.setTitle("查看产品运维报表");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9Njx&oid=00D90000000pkXM");
+						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp");
+						articleList.add(article);
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);
+					}
+					else if (eventKey.equals("nbpartner")) {// Partner
 						String CurType = "partner";
 						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
 						String lat = geol.getLAT();
