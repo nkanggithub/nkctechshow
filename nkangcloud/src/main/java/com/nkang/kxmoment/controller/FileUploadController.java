@@ -135,7 +135,7 @@ public class FileUploadController {
 		         			map.put("EMEA", platforRelated.getClosed_EMEA());
 		         			map.put("OTHER", platforRelated.getClosed_OTHER());
 		         			outNames=platforRelated.getOutNames();
-		         			total=platforRelated.getTotal();
+		         			total=platforRelated.getIMMetricstotal();
 		                    if(is!=null){
 		                    	is.close();
 		                    }
