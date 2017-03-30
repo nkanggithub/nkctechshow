@@ -2048,5 +2048,6 @@ function getNowFormatDate() {
 		<span class="clientCopyRight"><nobr></nobr></span>
 	</div>
 	<!-- END FOOTER -->
+		 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
 </body>
 </html>
