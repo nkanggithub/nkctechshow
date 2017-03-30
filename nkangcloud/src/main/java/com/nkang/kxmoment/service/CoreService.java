@@ -420,7 +420,7 @@ public class CoreService
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
 						article.setTitle("点击查看我的订阅");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9Njx&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9QfG&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
