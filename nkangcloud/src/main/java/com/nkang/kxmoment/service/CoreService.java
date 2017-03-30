@@ -415,6 +415,29 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 						
+					}else if (eventKey.equals("FOLLOW")) {//我的订阅
+						String CurType = "FOLLOW";
+						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
+						String lat = geol.getLAT();
+						String lng = geol.getLNG();
+						String addr = geol.getFAddr();
+
+						List<ExtendedOpportunity> NearByOpptsExt =  new ArrayList<ExtendedOpportunity>();
+						List<String> cityInfo = new ArrayList<String>();
+						cityInfo = RestUtils.getUserCityInfoWithLatLng(lat,lng);
+						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
+
+						Article article = new Article();
+						Random rand = new Random();
+						int randNum = rand.nextInt(30);
+						article.setTitle("点击查看我的订阅");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9Njx&oid=00D90000000pkXM");
+						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
+						articleList.add(article);
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
 					}else if (eventKey.equals("nbpartner")) {// Partner
 						String CurType = "partner";
 						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
