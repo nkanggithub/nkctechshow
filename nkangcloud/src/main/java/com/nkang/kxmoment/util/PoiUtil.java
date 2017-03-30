@@ -374,15 +374,18 @@ public class PoiUtil {
 					                if (hssfRow == null) {
 					                    continue;
 					                }
-					                platforRelated.setTotal(platforRelated.getTotal()+1);
+					                
 					                HSSFCell assignedTo = hssfRow.getCell(7);
 					                if(assignedTo==null || "".equals(assignedTo+"") ){
 					                	platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
+					                	platforRelated.setTotal(platforRelated.getTotal()+1);
 					                	continue;
 					                }else{
 					                	 HSSFCell status = hssfRow.getCell(5);
 							                if(status!=null){
 							                	if("Closed".equals(status.toString().trim())){
+							                		platforRelated.setTotal(platforRelated.getTotal()+1);
+							                		
 							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString())){
 							                			platforRelated.setClosed_USA(platforRelated.getClosed_USA()+1);
 							                			continue;
@@ -397,11 +400,14 @@ public class PoiUtil {
 													}else if(FileOperateUtil.Other.contains(assignedTo.toString())){
 							                			platforRelated.setClosed_OTHER(platforRelated.getClosed_OTHER()+1);
 							                			continue;
-													}/*else {
+													}else {
 														List<String> ls = platforRelated.getOutNames();
+														if(ls==null){
+															ls=new ArrayList<String>();
+														}
 														ls.add(assignedTo.toString());
 														platforRelated.setOutNames(ls);
-													}*/
+													}
 							                		
 												}
 							                }
