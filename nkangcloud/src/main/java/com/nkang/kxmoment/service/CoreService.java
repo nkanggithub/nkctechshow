@@ -415,18 +415,7 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 						
-					}else if (eventKey.equals("FOLLOW")) {//我的订阅
-						String CurType = "FOLLOW";
-						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
-						String lat = geol.getLAT();
-						String lng = geol.getLNG();
-						String addr = geol.getFAddr();
-
-						List<ExtendedOpportunity> NearByOpptsExt =  new ArrayList<ExtendedOpportunity>();
-						List<String> cityInfo = new ArrayList<String>();
-						cityInfo = RestUtils.getUserCityInfoWithLatLng(lat,lng);
-						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
-
+					}else if (eventKey.equals("mysubscription")) {//我的订阅
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
