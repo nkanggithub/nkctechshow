@@ -2,6 +2,7 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <%
 Map map = (HashMap<String,List>)request.getAttribute("map");
 Integer apj=(Integer)map.get("APJ");
@@ -9,6 +10,10 @@ Integer usa=(Integer)map.get("USA");
 Integer mexico=(Integer)map.get("MEXICO");
 Integer emea=(Integer)map.get("EMEA");
 Integer other=(Integer)map.get("OTHER");
+
+int total = (Integer)request.getAttribute("total");
+
+List<String> NameLs = (ArrayList<String>)request.getAttribute("outNames"); 
 %>
 <!DOCTYPE html>
 <html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,4 +77,9 @@ Integer other=(Integer)map.get("OTHER");
 </head>
 <body>
 <div id="chart-container" style="text-align:center;margin-top: 20px;"></div>
+<div> total =  <%=total %></div>
+<div><% if(NameLs!=null)for(int i=0;i<NameLs.size();i++){%>
+  outNames =  <%=NameLs.get(i)%><br>
+	
+<%}%></div>
 </body></html>
