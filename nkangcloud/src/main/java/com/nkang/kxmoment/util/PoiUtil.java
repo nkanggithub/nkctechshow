@@ -253,10 +253,10 @@ public class PoiUtil {
 					                HSSFCell assignedTo = hssfRow.getCell(0);
 					                if(assignedTo==null || "".equals(assignedTo+"") ){
 					                	platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
-					                	platforRelated.setTotal(platforRelated.getTotal()+1);
+					                	platforRelated.setRunMaintainMetricstotal(platforRelated.getRunMaintainMetricstotal()+1);
 					                	continue;
 					                }else{
-					                	platforRelated.setTotal(platforRelated.getTotal()+1);
+					                	platforRelated.setRunMaintainMetricstotal(platforRelated.getRunMaintainMetricstotal()+1);
 					                	 HSSFCell status = hssfRow.getCell(1);
 							                if(status!=null){
 							                	if("Done".equals(status.toString().trim())){
@@ -413,13 +413,13 @@ public class PoiUtil {
 					                HSSFCell assignedTo = hssfRow.getCell(7);
 					                if(assignedTo==null || "".equals(assignedTo+"") ){
 					                	platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
-					                	platforRelated.setTotal(platforRelated.getTotal()+1);
+					                	platforRelated.setIMMetricstotal(platforRelated.getIMMetricstotal()+1);
 					                	continue;
 					                }else{
 					                	 HSSFCell status = hssfRow.getCell(5);
 							                if(status!=null){
 							                	if("Closed".equals(status.toString().trim())){
-							                		platforRelated.setTotal(platforRelated.getTotal()+1);
+							                		platforRelated.setIMMetricstotal(platforRelated.getIMMetricstotal()+1);
 							                		
 							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
 							                			platforRelated.setClosed_USA(platforRelated.getClosed_USA()+1);
