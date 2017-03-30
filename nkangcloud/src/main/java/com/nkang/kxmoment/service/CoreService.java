@@ -392,6 +392,10 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 					} else if (eventKey.equals("nbcolleague")) {
+						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
+						String lat = geol.getLAT();
+						String lng = geol.getLNG();
+						String addr = geol.getFAddr();
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
