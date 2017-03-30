@@ -146,9 +146,11 @@ public class FileUploadController {
 		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
 		    
 		    }
-		    request.getSession().setAttribute("outNames", outNames);
-		    request.getSession().setAttribute("total", total);
+		   //request.getSession().setAttribute("outNames", outNames);
+		   // request.getSession().setAttribute("total", total);
 		    mv.addObject("map", map);
+		    mv.addObject("total", total);
+		    mv.addObject("outNames", outNames);
 			return mv;
 	}
 	
