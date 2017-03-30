@@ -18,10 +18,14 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.util.FileOperateUtil;
+import com.nkang.kxmoment.util.MongoDBBasic;
+import com.nkang.kxmoment.util.ToolUtils;
 
 @Controller
 @RequestMapping("/fileUpload")
@@ -157,5 +161,14 @@ public class FileUploadController {
 			return mv;
 	}
 	
-	
+	@RequestMapping(value = "/getMetrics", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String getMetrics(HttpServletRequest request, @RequestParam(value="ClientStockCode", required=true) String clientStockCode) {
+		PlatforRelated pr = MongoDBBasic.getPlatforRelated(clientStockCode);
+		String message="";
+		if(pr!=null){
+			message = "runDone_apj="+pr.getDone_APJ()+"; "+"IM_apj="+pr.getClosed_APJ();
+		}
+		return message;
+	}
 }
