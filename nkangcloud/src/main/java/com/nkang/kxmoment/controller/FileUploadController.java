@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.util.FileOperateUtil;
 
 @Controller
@@ -110,9 +111,10 @@ public class FileUploadController {
 	    upload.setFileSizeMax(1024 * 1024 * 2);
 	    upload.setHeaderEncoding("utf-8");
 	    upload.setSizeMax(1024 * 1024 * 4);
-
+	    int total = 0;
 		 List<FileItem> fileList = null;
-		 Map map =new HashMap<String,Integer>();
+		 List<String> outNames=null;
+		 Map<String, Integer> map =new HashMap<String,Integer>();
 		 	String message = "文件导入失败，请重新导入..";
 		    try {
 		        fileList = upload.parseRequest(new ServletRequestContext(request));
@@ -120,8 +122,17 @@ public class FileUploadController {
 		            for(FileItem item:fileList){
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
+		            		PlatforRelated  platforRelated=new PlatforRelated();
 		                	InputStream is = item.getInputStream();
-		                	map=FileOperateUtil.OperateOnReport(is);
+		                	//map=FileOperateUtil.OperateOnReport(is);
+		                	platforRelated=FileOperateUtil.OperateOnReport(is);
+		                	map.put("APJ", platforRelated.getClosed_APJ());
+		         			map.put("USA", platforRelated.getClosed_USA());
+		         			map.put("MEXICO", platforRelated.getClosed_MEXICO());
+		         			map.put("EMEA", platforRelated.getClosed_EMEA());
+		         			map.put("OTHER", platforRelated.getClosed_OTHER());
+		         			outNames=platforRelated.getOutNames();
+		         			total=platforRelated.getTotal();
 		                    if(is!=null){
 		                    	is.close();
 		                    }
@@ -135,6 +146,8 @@ public class FileUploadController {
 		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
 		    
 		    }
+		    request.getSession().setAttribute("outNames", outNames);
+		    request.getSession().setAttribute("total", total);
 		    mv.addObject("map", map);
 			return mv;
 	}
