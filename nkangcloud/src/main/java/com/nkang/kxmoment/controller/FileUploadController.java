@@ -165,7 +165,7 @@ public class FileUploadController {
 	@ResponseBody
 	public String getMetrics(HttpServletRequest request, @RequestParam(value="ClientStockCode", required=true) String clientStockCode) {
 		PlatforRelated pr = MongoDBBasic.getPlatforRelated(clientStockCode);
-		String message="";
+		String message="Star null...";
 		if(pr!=null){
 			message = "runDone_apj="+pr.getDone_APJ()+"; "+"IM_apj="+pr.getClosed_APJ();
 		}
