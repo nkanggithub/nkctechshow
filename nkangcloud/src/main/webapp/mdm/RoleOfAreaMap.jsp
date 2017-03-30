@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
  <%@ page import="java.util.*,org.json.JSONObject"%>
-<%@ page import="com.nkang.kxmoment.baseobject.OnlineQuotation"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
@@ -9,7 +8,9 @@
 <%	
 String AccessKey = RestUtils.callGetValidAccessKey();
 String uid = request.getParameter("UID");
+/* 
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+*/
 %>
 <!Doctype html>
 <html>
@@ -154,19 +155,6 @@ cursor:pointer;
 </style>
 
 <script>
-$(document).ready(function (){ 
-	jQuery.ajax({
-		type : "POST",
-		url : "../../insertVisited",
-		data : {openid:"<%=uid %>",
-			pageName:"quoteDetailExternal",
-			imgUrl:"<%=res.get("HeadUrl") %>",
-			nickName:"<%=res.get("NickName") %>"},
-		cache : false,
-		success : function(resData) {
-		}
-    });
-});
 $(function(){
 	   $(function(){  
 	      	 $(window).scroll(function(){  
@@ -303,21 +291,21 @@ function UpdateTag(item,flag,obj){
 	});
 }
 function getAllDatas(){
-	$.ajax({
+	/* $.ajax({
 		 url:'../queryUserKM',
 		 type:"POST",
 		 data : {
 			 openid : $("#openid").val()
 		 },
-		 success:function(KMLikeArr){
+		 success:function(KMLikeArr){ */
 		 	$.ajax({
-			 url:'../PlasticItem/findList?page=1&count=999',
-			 type:"POST",
+			 url:'../roleOfAreaMap/findList',
+			 type:"GET",
 			 success:function(res){
 			 var resData=res.data;
 			 if(resData.length)
 			{
-				var NoLikeArr=new Array();
+				/* var NoLikeArr=new Array();
 				var LikeArr=new Array();
 				if(KMLikeArr.length>0){
 						 for(var i=0;i<resData.length;i++){
@@ -334,50 +322,26 @@ function getAllDatas(){
 		 		}else{
 		 			NoLikeArr=resData;
 		 		}
-				var data=$.merge(LikeArr, NoLikeArr);   
+				var data=$.merge(LikeArr, NoLikeArr);    */
+				var data=resData;
 				 var html="";
 				 var totalNum=0;
 				 for(var i=0;i<data.length;i++){
 					 if(data[i].itemNo!=""){
 						 totalNum++;
 						 var priceColor="lose";
-						 var change='';
-						 if(data[i].price=="暂停报价"||data[i].price==0){
-							 priceColor="lose";
-						 }else if(data[i].diffPrice==0){
-							 priceColor="normal";
-						 }else if(data[i].diffPrice<0){
-							 priceColor="low";
-							 change='		<span class="change low">'+data[i].diffPrice+'&nbsp;<b>↓</b></span>';
-						 }else if(data[i].diffPrice>0){
-							 priceColor="high";
-							 change='		<span class="change high">'+data[i].diffPrice+'&nbsp;<b>↑</b></span>';
-						 }
 						 var tag='';
 						 var attention='';
 						 var priceStyle='';
-						 var unit='<span class="unit">元/吨</span>';
+						 var unit='<span class="unit"></span>';
 						 if(data[i]["like"]==true){
 							 tag='<span class="tag">已关注</span>';
 							 attention='attention';
 						 }
-						 var myDate = new Date();
-						 var nowHour=myDate.getHours();       //获取当前小时数(0-23)
-						 var nowMinu=myDate.getMinutes();     //获取当前分钟数(0-59)
-						 if(nowHour<10||nowHour>=18||data[i].priceStatus==1){
-							 priceStyle=' style="text-decoration:line-through;color:#aaa;" ';
-							 change='';
-						 }
-						 
-						 if(data[i].priceStatus==0){
-							 data[i].price="暂停报价";
-							 unit='';
-						 }
 						 html+='<li class="singleQuote">'
 							 +'	<div class="firstLayer '+attention+'">'
-							 +'		<div class="quoteTitle"><span class="item">'+data[i].itemNo+'</span>'+tag+'</div>'
-							 +'		<div class="quotePrice '+priceColor+'" onclick="ToCharPage(\''+data[i].itemNo+'\')" '+priceStyle+'><span class="price">'+data[i].price+'</span>'+unit+'</div>'
-			  				 + change
+							 +'		<div class="quoteTitle"><span class="item">'+data[i].name+'</span>'+tag+'</div>'
+							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price"></span>'+unit+'</div>'
 							 /*  +'		<span class="change high">+10</span>' */
 							 +'		<div class="clear"></div>'
 							 +'	</div>'
@@ -386,13 +350,13 @@ function getAllDatas(){
 				 }
 				 $("#QuoteList").html(html);
 				 
-				 $("input.ui-input-text.ui-body-c").attr("placeholder","输入牌号【"+totalNum+"个牌号供您查询】");
+				 $("input.ui-input-text.ui-body-c").attr("placeholder","输入关键字【"+totalNum+"个供您查询】");
 				 }
 			 }
 		 });
 		 		
-		}
-	});
+	/* 	}
+	}); */
 }
 </script>
 </head>
@@ -404,18 +368,17 @@ function getAllDatas(){
 </div>
 <div id="return-top" style="display: block;"><img class="scroll-top" src="../mdm/images/quotation.gif" alt="" width="100px"></div>
 <div style="padding:10px;padding-top:5px;border-bottom:2px solid #0067B6;position:relative;padding-bottom:0px;"> 
-					<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DkptH&amp;oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display:inline !important;height:35px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
-					<span class="clientSubName" style="font-size:12px;padding-left:7px;color:#333;">市场如水 企业如舟</span>
-					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">永佳和塑胶有限公司</h2>
-					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您,<% if("true".equals(res.get("IsAuthenticated"))){ %><img style="height:20px;vertical-align: sub;padding-left: 5px;padding-right: 3px;" src="images/VIP.png"/><%} %><%=res.get("NickName") %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:36px;right:10px;" src="<%=res.get("HeadUrl")%>" alt=""/>
-				<input id="openid" type="hidden" value="<%=uid%>"/>
-				<marquee direction="left" scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()" style="margin-top:-10px;">
-<nobr><span style="font-size:12px;">重庆永佳和塑胶有限公司【<%=res.get("market0") %>】<%=res.get("market1") %>(电话：<a href="tel:<%=res.get("market2") %>"><%=res.get("market2") %></a>)</span></nobr></marquee>
+					<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display:inline !important;height:35px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
+					<span class="clientSubName" style="font-size:12px;padding-left:7px;color:#333;">MDM China</span>
+					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">DXC Technology Coperation</h2>
+					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您,aaaa</p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:36px;right:10px;" src="" alt=""/>
+				<input id="openid" type="hidden" value="<%=uid %> "/>
+				
 
 				</div>
 <!--<input class="searchBox" id='hy' />-->
 <div  style="position: absolute; top: 120px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
- <ul id="QuoteList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入牌号" data-inset="true" style="margin-top:15px">
+ <ul id="QuoteList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 <!-- <li class="singleQuote">
 	<div class="firstLayer  attention">
 	
