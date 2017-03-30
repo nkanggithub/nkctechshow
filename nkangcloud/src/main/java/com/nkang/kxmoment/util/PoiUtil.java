@@ -315,7 +315,9 @@ public class PoiUtil {
 														if(ls==null){
 															ls=new ArrayList<String>();
 														}
-														ls.add(assignedTo.toString());
+														if(!ls.contains(assignedTo.toString())){
+															ls.add(assignedTo.toString());
+														}
 														platforRelated.setOutNames(ls);
 													}
 							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
@@ -349,7 +351,9 @@ public class PoiUtil {
 														if(ls==null){
 															ls=new ArrayList<String>();
 														}
-														ls.add(assignedTo.toString());
+														if(!ls.contains(assignedTo.toString())){
+															ls.add(assignedTo.toString());
+														}
 														platforRelated.setOutNames(ls);
 													}
 							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
@@ -436,7 +440,9 @@ public class PoiUtil {
 														if(ls==null){
 															ls=new ArrayList<String>();
 														}
-														ls.add(assignedTo.toString());
+														if(!ls.contains(assignedTo.toString())){
+															ls.add(assignedTo.toString());
+														}
 														platforRelated.setOutNames(ls);
 													}
 							                		
