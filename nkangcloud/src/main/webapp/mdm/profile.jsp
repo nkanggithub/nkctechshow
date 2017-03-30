@@ -182,6 +182,9 @@ var LastToLikeDate="",lastLikeTo="";
 var HpLogoSrc="",copyRight="",clientThemeColor="";
 getLogo();
 $(window).load(function() {
+	$(".imgSelect input").live("click",function(){
+		$(this).parent().siblings().find("input").attr("checked", false);
+	})
 	$('head').append("<style>.naviArrow.is-selected::after{content: ''; display: block;width: 0;height: 0;border-left: .9em solid transparent;border-right: .9em solid transparent;border-top: .9em solid "+clientThemeColor+";position: relative;top: 0px;left: 50%;-webkit-transform: translateX(-50%); -ms-transform: translateX(-50%);transform: translateX(-50%);}</style>");
 	$("#navSupport").on("click",function(){
 		$(this).append("<a class='naviArrow is-selected'></a>").css("border-top","10px solid "+clientThemeColor);
