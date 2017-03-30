@@ -2,12 +2,15 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <%
 Map map = (HashMap<String,List>)request.getAttribute("map");
 List<Integer> apj=(List<Integer>)map.get("APJ");
 List<Integer> usa=(List<Integer>)map.get("USA");
 List<Integer> mexico=(List<Integer>)map.get("MEXICO");
 List<Integer> emea=(List<Integer>)map.get("EMEA");
+
+List<String> NameLs = (ArrayList<String>)request.getAttribute("OutOfMapping"); 
 %>
 <!DOCTYPE html>
 <html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -135,4 +138,8 @@ List<Integer> emea=(List<Integer>)map.get("EMEA");
 </head>
 <body>
 <div id="chart-container" style="text-align:center;margin-top: 20px;"></div>
+<div><% if(NameLs!=null)for(int i=0;i<NameLs.size();i++){%>
+      outNames =  <%=NameLs.get(i)%><br>
+	
+<%}%></div>
 </body></html>
