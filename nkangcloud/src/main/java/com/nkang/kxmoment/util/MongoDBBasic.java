@@ -165,6 +165,7 @@ public class MongoDBBasic {
 			String clientStockCode =queryresults.get("ClientCode")==null?"": queryresults.get("ClientCode").toString();
 			String clientActive = queryresults.get("Active")==null?"":queryresults.get("Active").toString();
 			String metricsMapping = queryresults.get("MetricsMapping")==null?"":queryresults.get("MetricsMapping").toString();
+			
 			BasicDBList slide = (BasicDBList) queryresults.get("Slide");
     		if(slide != null){
     			ArrayList list=new ArrayList();
@@ -477,7 +478,7 @@ public class MongoDBBasic {
         			DBObject o = new BasicDBObject();
         			o = (DBObject)obj;
             		DBObject dbo = new BasicDBObject();
-            		dbo.put("PlatforRelated.Closed_APJ", platforRelated.getClosed_APJ()==0?o.get("PlatforRelated.getClosed_APJ"):platforRelated.getClosed_APJ()); 
+            		dbo.put("PlatforRelated.Closed_APJ", platforRelated.getClosed_APJ()==0?o.get("PlatforRelated.Closed_APJ"):platforRelated.getClosed_APJ()); 
             		dbo.put("PlatforRelated.Closed_EMEA", platforRelated.getClosed_EMEA()==0?o.get("PlatforRelated.Closed_EMEA"):platforRelated.getClosed_EMEA()); 
             		dbo.put("PlatforRelated.Closed_MEXICO", platforRelated.getClosed_MEXICO()==0?o.get("PlatforRelated.Closed_MEXICO"):platforRelated.getClosed_MEXICO()); 
         			dbo.put("PlatforRelated.Closed_OTHER", platforRelated.getClosed_OTHER()==0?o.get("PlatforRelated.Closed_OTHER"):platforRelated.getClosed_OTHER());
@@ -513,6 +514,50 @@ public class MongoDBBasic {
 			log.info("registerUser--" + e.getMessage());
 		}
 		return ret;
+	}
+	
+	public static PlatforRelated getPlatforRelated(String ClientStockCode){
+		mongoDB = getMongoDB();
+		PlatforRelated platforRelated = new PlatforRelated();
+		
+	    	DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", ClientStockCode));
+	    	  if (null != dbcur) {
+	            	while(dbcur.hasNext()){
+	            		DBObject DBObj = dbcur.next();
+	            		Object obj = DBObj.get("PlatforRelated");
+	            		if(obj ==null){
+	        				obj = DBObj;
+	        			}
+	        			DBObject o = new BasicDBObject();
+	        			o = (DBObject)obj;
+	            		platforRelated.setClosed_APJ((Integer)o.get("PlatforRelated.Closed_APJ"));
+	            		platforRelated.setClosed_EMEA((Integer)o.get("PlatforRelated.Closed_EMEA"));
+	            		platforRelated.setClosed_MEXICO((Integer)o.get("PlatforRelated.Closed_MEXICO"));
+	            		platforRelated.setClosed_OTHER((Integer)o.get("PlatforRelated.Closed_OTHER"));
+	            		platforRelated.setClosed_USA((Integer)o.get("PlatforRelated.Closed_USA"));
+	            		
+	            		platforRelated.setDone_APJ((Integer)o.get("PlatforRelated.Done_APJ"));
+	            		platforRelated.setDone_EMEA((Integer)o.get("PlatforRelated.Done_EMEA"));
+	            		platforRelated.setDone_MEXICO((Integer)o.get("PlatforRelated.Done_MEXICO"));
+	            		platforRelated.setDone_USA((Integer)o.get("PlatforRelated.Done_USA"));
+	            		
+	            		platforRelated.setIMMetricstotal((Integer)o.get("PlatforRelated.IMMetricstotal"));
+	            		platforRelated.setInPlanning_APJ((Integer)o.get("PlatforRelated.InPlanning_APJ"));
+	            		platforRelated.setInPlanning_EMEA((Integer)o.get("PlatforRelated.InPlanning_EMEA"));
+	            		platforRelated.setInPlanning_MEXICO((Integer)o.get("PlatforRelated.InPlanning_MEXICO"));
+	            		platforRelated.setInPlanning_USA((Integer)o.get("PlatforRelated.InPlanning_USA"));
+	            		
+	            		platforRelated.setInProgress_APJ((Integer)o.get("PlatforRelated.InProgress_APJ"));
+	            		platforRelated.setInProgress_EMEA((Integer)o.get("PlatforRelated.InProgress_EMEA"));
+	            		platforRelated.setInProgress_MEXICO((Integer)o.get("PlatforRelated.InProgress_MEXICO"));
+	            		platforRelated.setInProgress_USA((Integer)o.get("PlatforRelated.InProgress_USA"));
+	            		
+	            		platforRelated.setRunMaintainMetricstotal((Integer)o.get("PlatforRelated.RunMaintainMetricstotal"));
+	            		platforRelated.setUnAssinged((Integer)o.get("PlatforRelated.UnAssinged"));
+
+	            	}
+	    	  }
+			return platforRelated;
 	}
 	
 	
