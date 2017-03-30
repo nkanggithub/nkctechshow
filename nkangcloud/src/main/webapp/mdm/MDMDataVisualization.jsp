@@ -134,8 +134,9 @@ List<String> NameLs = (ArrayList<String>)request.getAttribute("OutOfMapping");
 <div style="height: 100px; border-bottom: 4px solid black;">
 <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="width: 25%;"></div>
 <div id="chart-container" style="text-align:center;margin-top: 40px;"></div>
-<div>请联系管理员，更新Mapping <br><% if(NameLs!=null)for(int i=0;i<NameLs.size();i++){%>
-      outNames =  <%=NameLs.get(i)%><br>
+<div><% if(NameLs!=null){ %>请联系管理员，更新Mapping <br> <%} %>
+<% if(NameLs!=null)for(int i=0;i<NameLs.size();i++){%>
+      outName =  <%=NameLs.get(i)%><br>
 	
 <%}%></div>
 </body></html>
