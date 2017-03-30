@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -161,14 +162,60 @@ public class FileUploadController {
 			return mv;
 	}
 	
-	@RequestMapping(value = "/getMetrics", produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/getIMMetrics", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String getMetrics(HttpServletRequest request, @RequestParam(value="ClientStockCode", required=true) String clientStockCode) {
+	public ModelAndView getIMMetrics(HttpServletRequest request, @RequestParam(value="ClientStockCode", required=true) String clientStockCode) {
+		ModelAndView mv=new ModelAndView("MDMDataVisualizationB");
 		PlatforRelated pr = MongoDBBasic.getPlatforRelated(clientStockCode);
 		String message="Star null...";
 		if(pr!=null){
 			message = "runDone_apj="+pr.getDone_APJ()+"; "+"IM_apj="+pr.getClosed_APJ();
 		}
-		return message;
+		Map<String, Integer> map =new HashMap<String,Integer>();
+		map.put("APJ", pr.getClosed_APJ());
+		map.put("USA", pr.getClosed_USA());
+		map.put("MEXICO", pr.getClosed_MEXICO());
+		map.put("EMEA", pr.getClosed_EMEA());
+		map.put("OTHER", pr.getClosed_OTHER());
+		mv.addObject("map", map);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/getRunMaintainMetrics", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public ModelAndView getRunMaintainMetrics(HttpServletRequest request, @RequestParam(value="ClientStockCode", required=true) String clientStockCode) {
+		ModelAndView mv=new ModelAndView("MDMDataVisualization");
+		Map<String, List> map =new HashMap<String,List>();
+		PlatforRelated platforRelated = MongoDBBasic.getPlatforRelated(clientStockCode);
+		if(platforRelated==null){
+			return mv;
+		}
+		
+		List<Integer> APJlt = new ArrayList<Integer>();
+		APJlt.add(platforRelated.getDone_APJ());
+		APJlt.add(platforRelated.getInProgress_APJ());
+		APJlt.add(platforRelated.getInPlanning_APJ());
+		
+		List<Integer> USAlt = new ArrayList<Integer>();
+		USAlt.add(platforRelated.getDone_USA());
+		USAlt.add(platforRelated.getInProgress_USA());
+		USAlt.add(platforRelated.getInPlanning_USA());
+		
+		List<Integer> MEXICOlt = new ArrayList<Integer>();
+		MEXICOlt.add(platforRelated.getDone_MEXICO());
+		MEXICOlt.add(platforRelated.getInProgress_MEXICO());
+		MEXICOlt.add(platforRelated.getInPlanning_MEXICO());
+		
+		List<Integer> EMEAlt = new ArrayList<Integer>();
+		EMEAlt.add(platforRelated.getDone_EMEA());
+		EMEAlt.add(platforRelated.getInProgress_EMEA());
+		EMEAlt.add(platforRelated.getInPlanning_EMEA());
+		
+		map.put("APJ", APJlt);
+		map.put("USA", USAlt);
+		map.put("MEXICO", MEXICOlt);
+		map.put("EMEA", EMEAlt);
+		mv.addObject("map", map);
+		return mv;
 	}
 }
