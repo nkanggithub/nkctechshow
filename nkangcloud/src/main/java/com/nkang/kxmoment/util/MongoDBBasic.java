@@ -38,6 +38,7 @@ import com.nkang.kxmoment.baseobject.MdmDataQualityView;
 import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
+import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
@@ -53,7 +54,7 @@ public class MongoDBBasic {
 	private static String wechat_comments = "Wechat_Comments";
 	private static String ClientMeta = "Client_Meta";
 	private static String collectionBill = "SaleBill";
-	private static String Metrics = "MetricsMapping";
+	private static String Metrics = "Metrics";
 
 	public static DB getMongoDB(){
 		if(mongoDB != null){
@@ -427,6 +428,7 @@ public class MongoDBBasic {
     	    	update.put("ClientName", cm.getClientName());
     	    	update.put("Slide", cm.getSlide());
     	    	update.put("MetricsMapping", cm.getMetricsMapping());
+    	    	
     	    	doc.put("$set", update);  
     	    	WriteResult wr = mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode", cm.getClientStockCode()), doc);
     			ret = true;
@@ -436,6 +438,61 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+	
+/*
+ * chang-zheng
+ */
+	public static boolean updatePlatforRelated(PlatforRelated platforRelated,String ClientStockCode){
+		mongoDB = getMongoDB();
+		//java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime()); 
+		Boolean ret = false;
+	    try{
+	    	DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", ClientStockCode));
+            if (null != dbcur) {
+            	while(dbcur.hasNext()){
+            		DBObject o = dbcur.next();
+            		DBObject dbo = new BasicDBObject();
+            		dbo.put("PlatforRelated.Closed_APJ", platforRelated.getClosed_APJ()); 
+            		dbo.put("PlatforRelated.Closed_EMEA", platforRelated.getClosed_EMEA()); 
+            		dbo.put("PlatforRelated.Closed_MEXICO", platforRelated.getClosed_MEXICO()); 
+        			dbo.put("PlatforRelated.Closed_OTHER", platforRelated.getClosed_OTHER());
+        			dbo.put("PlatforRelated.Closed_USA", platforRelated.getClosed_USA());
+        			
+        			dbo.put("PlatforRelated.Done_APJ", platforRelated.getDone_APJ());
+        			dbo.put("PlatforRelated.Done_EMEA", platforRelated.getDone_EMEA());
+        			dbo.put("PlatforRelated.Done_MEXICO", platforRelated.getDone_MEXICO());
+        			dbo.put("PlatforRelated.Done_USA", platforRelated.getDone_USA()); 
+        			
+        			dbo.put("PlatforRelated.InPlanning_APJ", platforRelated.getInPlanning_APJ()); 
+        			dbo.put("PlatforRelated.InPlanning_EMEA", platforRelated.getInPlanning_EMEA()); 
+        			dbo.put("PlatforRelated.InPlanning_MEXICO", platforRelated.getInPlanning_MEXICO()); 
+        			dbo.put("PlatforRelated.InPlanning_USA", platforRelated.getInPlanning_USA()); 
+        			
+        			dbo.put("PlatforRelated.InProgress_APJ", platforRelated.getInProgress_APJ()); 
+        			dbo.put("PlatforRelated.InProgress_EMEA", platforRelated.getInProgress_EMEA()); 
+        			dbo.put("PlatforRelated.InProgress_MEXICO", platforRelated.getInProgress_MEXICO()); 
+        			dbo.put("PlatforRelated.InProgress_USA", platforRelated.getInProgress_USA()); 
+        			
+        			dbo.put("PlatforRelated.IMMetricstotal", platforRelated.getIMMetricstotal()); 
+        			dbo.put("PlatforRelated.RunMaintainMetricstotal", platforRelated.getRunMaintainMetricstotal()); 
+        			dbo.put("PlatforRelated.UnAssinged", platforRelated.getUnAssinged()); 
+//        			Object obj = o.get("PlatforRelated");
+//        			if(obj == null){
+//            			dbo.put("Teamer.registerDate", obj.getRegisterDate());
+//        			}
+        			BasicDBObject doc = new BasicDBObject();  
+        			doc.put("$set", dbo);  
+        			WriteResult wr = mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode", ClientStockCode),doc);
+            		ret = true;
+            	}
+            }
+	    }
+		catch(Exception e){
+			log.info("registerUser--" + e.getMessage());
+		}
+		return ret;
+	}
+	
 	
 	public static boolean updateUser(String OpenID, String Lat, String Lng, WeChatUser wcu){
 		mongoDB = getMongoDB();
