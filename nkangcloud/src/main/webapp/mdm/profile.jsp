@@ -508,7 +508,7 @@ function postRecognition(){
 			            alert("Connection error");
 			        },
 			        success: function(data) {
-			        	swal("Congratulations!", "Recognization to "+to+" already sent successful!", "success");
+			        	swal("恭喜!", "给"+to+"的Recognition已发送成功，他已收到该消息！", "success");
 			        	hideBouncePanel();
 			        }
 			    });
@@ -536,7 +536,7 @@ function postRecognition(){
 			            alert("Connection error");
 			        },
 			        success: function(data) {
-			        	swal("Congratulations!", "Recognization to "+to+" already sent successful!", "success");
+			        	swal("恭喜!", "给"+to+"的Recognition已发送成功，有"+data+"个人已收到该消息！", "success");
 			        	hideBouncePanel();
 			        }
 			    });
@@ -572,7 +572,7 @@ function postNotification(){
             alert("Connection error");
         },
         success: function(data) {
-        	swal("Success!", "Your Notification has been submitted successfully", "success");
+        	swal("恭喜！", data+"个人已收到您的Notification", "success");
         	hideBouncePanel();
         }
     });
