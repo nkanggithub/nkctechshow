@@ -117,6 +117,9 @@ public class FileOperateUtil {
     	PoiUtil bos = new PoiUtil();
     		try {
     			PlatforRelated  platforRelated  = bos.platformRelated(is);
+    			if(platforRelated!=null){
+    				MongoDBBasic.updatePlatforRelated(platforRelated, "DXC");
+    			}
     			List APJlt = new ArrayList<Integer>();
     			APJlt.add(platforRelated.getDone_APJ());
     			APJlt.add(platforRelated.getInProgress_APJ());
@@ -166,17 +169,17 @@ public class FileOperateUtil {
         Nils = new ArrayList<String>();
         China = new ArrayList<String>();
         Other = new ArrayList<String>();
-    //    ClientMeta cm = new ClientMeta();
+        ClientMeta cm = new ClientMeta();
        
-//        cm=MongoDBBasic.QueryClientMeta("DXC");
-//        String str = cm.getMetricsMapping();
-        String str="";
+        cm=MongoDBBasic.QueryClientMeta("DXC");
+        String str = cm.getMetricsMapping();
+       /* String str="";
         try {
         	  str = RestUtils.callQueryClientMetaByClientCode();
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
         String[] ss =str.split(",");
 		for(String s : ss){
 			System.out.println(s);
@@ -226,6 +229,10 @@ public class FileOperateUtil {
     	PlatforRelated  platforRelated=new PlatforRelated();
     		try {
     			 platforRelated  = bos.uploadReport(is);
+    			 if(platforRelated!=null){
+    				 MongoDBBasic.updatePlatforRelated(platforRelated,"DXC");
+    			 }
+    			
     			/*	
      			map.put("APJ", platforRelated.getClosed_APJ());
      			map.put("USA", platforRelated.getClosed_USA());
