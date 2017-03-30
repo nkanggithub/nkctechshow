@@ -249,12 +249,14 @@ public class PoiUtil {
 					                if (hssfRow == null) {
 					                    continue;
 					                }
-					                platforRelated.setTotal(platforRelated.getTotal()+1);
+					                
 					                HSSFCell assignedTo = hssfRow.getCell(0);
 					                if(assignedTo==null || "".equals(assignedTo+"") ){
 					                	platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
+					                	platforRelated.setTotal(platforRelated.getTotal()+1);
 					                	continue;
 					                }else{
+					                	platforRelated.setTotal(platforRelated.getTotal()+1);
 					                	 HSSFCell status = hssfRow.getCell(1);
 							                if(status!=null){
 							                	if("Done".equals(status.toString().trim())){
@@ -276,7 +278,9 @@ public class PoiUtil {
 														if(ls==null){
 															ls=new ArrayList<String>();
 														}
-														ls.add(assignedTo.toString());
+														if(!ls.contains(assignedTo.toString())){
+															ls.add(assignedTo.toString());
+														}
 														platforRelated.setOutNames(ls);
 													}
 							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
