@@ -450,7 +450,13 @@ public class MongoDBBasic {
 	    	DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", ClientStockCode));
             if (null != dbcur) {
             	while(dbcur.hasNext()){
-            		DBObject o = dbcur.next();
+            		DBObject DBObj = dbcur.next();
+            		Object obj = DBObj.get("PlatforRelated");
+            		if(obj ==null){
+        				obj = DBObj;
+        			}
+        			DBObject o = new BasicDBObject();
+        			o = (DBObject)obj;
             		DBObject dbo = new BasicDBObject();
             		dbo.put("PlatforRelated.Closed_APJ", platforRelated.getClosed_APJ()==0?o.get("PlatforRelated.getClosed_APJ"):platforRelated.getClosed_APJ()); 
             		dbo.put("PlatforRelated.Closed_EMEA", platforRelated.getClosed_EMEA()==0?o.get("PlatforRelated.Closed_EMEA"):platforRelated.getClosed_EMEA()); 
@@ -461,7 +467,7 @@ public class MongoDBBasic {
         			dbo.put("PlatforRelated.Done_APJ", platforRelated.getDone_APJ()==0?o.get("PlatforRelated.Done_APJ"):platforRelated.getDone_APJ());
         			dbo.put("PlatforRelated.Done_EMEA", platforRelated.getDone_EMEA()==0?o.get("PlatforRelated.Done_EMEA"):platforRelated.getDone_EMEA());
         			dbo.put("PlatforRelated.Done_MEXICO", platforRelated.getDone_MEXICO()==0?o.get("PlatforRelated.Done_MEXICO"):platforRelated.getDone_MEXICO());
-        			dbo.put("PlatforRelated.Done_USA", platforRelated.getDone_USA()==0?o.get("PlatforRelated.Done_USA()"):platforRelated.getDone_USA()); 
+        			dbo.put("PlatforRelated.Done_USA", platforRelated.getDone_USA()==0?o.get("PlatforRelated.Done_USA"):platforRelated.getDone_USA()); 
         			
         			dbo.put("PlatforRelated.InPlanning_APJ", platforRelated.getInPlanning_APJ()==0?o.get("PlatforRelated.InPlanning_APJ"):platforRelated.getInPlanning_APJ()); 
         			dbo.put("PlatforRelated.InPlanning_EMEA", platforRelated.getInPlanning_EMEA()==0?o.get("PlatforRelated.InPlanning_EMEA"):platforRelated.getInPlanning_EMEA()); 
