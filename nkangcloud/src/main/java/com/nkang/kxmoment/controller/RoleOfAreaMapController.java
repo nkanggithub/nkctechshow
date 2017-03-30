@@ -13,7 +13,7 @@ import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
 
 @Controller
-@RequestMapping("/userProfile")
+@RequestMapping("/roleOfAreaMap")
 public class RoleOfAreaMapController {
 	@RequestMapping(value = "/setRoleOfAreaMap", produces = "text/html;charset=UTF-8")
 	@ResponseBody
