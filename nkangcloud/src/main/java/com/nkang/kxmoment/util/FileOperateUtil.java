@@ -136,11 +136,13 @@ public class FileOperateUtil {
     			EMEAlt.add(platforRelated.getInProgress_EMEA());
     			EMEAlt.add(platforRelated.getInPlanning_EMEA());
     			
+    			List outOfMapping = platforRelated.getOutNames();
     			
     			map.put("APJ", APJlt);
     			map.put("USA", USAlt);
     			map.put("MEXICO", MEXICOlt);
     			map.put("EMEA", EMEAlt);
+    			map.put("OutOfMapping", outOfMapping);
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -180,23 +182,23 @@ public class FileOperateUtil {
 			System.out.println(s);
 			String[] sss =s.split("\\|");
 			if(sss.length>1){
-				if("Jeffrey".equals(sss[1])){
-					Jeffrey.add(sss[0]);
+				if("Jeffrey".equals(sss[1].trim())){
+					Jeffrey.add(sss[0].trim());
 					continue;
 				}
-				if("Antonio".equals(sss[1])){
-            		Antonio.add(sss[0]);
+				if("Antonio".equals(sss[1].trim())){
+            		Antonio.add(sss[0].trim());
             		continue;
             	}
-            	if("Nils".equals(sss[1])){
-            		Nils.add(sss[0]);
+            	if("Nils".equals(sss[1].trim())){
+            		Nils.add(sss[0].trim());
             		continue;
             	}
-            	if("China".equals(sss[1])){
+            	if("China".equals(sss[1].trim())){
             		China.add(sss[0]);
             		continue;
             	}
-            	if("Other".equals(sss[1])){
+            	if("Other".equals(sss[1].trim())){
             		Other.add(sss[0]);
             	}
 				
