@@ -431,7 +431,7 @@ public class CoreService
 					else if (eventKey.equals("opsmetric")) {//我的订阅
 						Article article = new Article();
 						article.setTitle("查看产品运维报表");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9Njx&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9QgE&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp");
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
