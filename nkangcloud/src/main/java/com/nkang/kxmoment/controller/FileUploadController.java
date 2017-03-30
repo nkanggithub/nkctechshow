@@ -44,6 +44,7 @@ public class FileUploadController {
 		 List<FileItem> fileList = null;
 		 	String message = "文件导入失败，请重新导入..";
 		 	Map map =new HashMap<String,List>();
+		 	List<String> OutOfMapping = null;
 		    try {
 		        fileList = upload.parseRequest(new ServletRequestContext(request));
 		        if(fileList != null){
@@ -56,6 +57,7 @@ public class FileUploadController {
 		                	 message=message+map.get("USA").toString()+"<br>";
 		                	 message=message+map.get("MEXICO").toString()+"<br>";
 		                	 message=message+map.get("EMEA").toString()+"<br>";
+		                	 OutOfMapping = (List<String>) map.get("OutOfMapping");
 		                    if(is!=null){
 		                    	is.close();
 		                    }
@@ -70,6 +72,7 @@ public class FileUploadController {
 		    
 		    }
 		    mv.addObject("map", map);
+		    mv.addObject("OutOfMapping", OutOfMapping);
 			return mv;
 
 	}
