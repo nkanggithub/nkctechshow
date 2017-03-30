@@ -150,6 +150,34 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+	public static ArrayList<RoleOfAreaMap> QueryRoleOfAreaMap(String flag){
+		mongoDB = getMongoDB();
+		ArrayList<RoleOfAreaMap> list = new ArrayList<RoleOfAreaMap>();
+		DBObject query = new BasicDBObject();
+		if(!flag.isEmpty()){
+			query.put("flag", flag);
+		}
+		DBCursor queryresults = mongoDB.getCollection(role_area).find(query);
+		if (null != queryresults) {
+			while (queryresults.hasNext()) {
+				DBObject o = queryresults.next();
+				RoleOfAreaMap temp=new RoleOfAreaMap();
+				if(o.get("id")==null){
+					temp.setId(o.get("id").toString());
+				}
+				if(o.get("flag")==null){
+					temp.setFlag(o.get("flag").toString());
+				}
+				if(o.get("name")==null){
+					temp.setName(o.get("name").toString());
+				}
+				list.add(temp);
+			}
+		}
+		return list;
+	}
+	
+	
 	public static ClientMeta QueryClientMeta(){
 		ClientMeta cm = new ClientMeta();
 		mongoDB = getMongoDB();
