@@ -594,8 +594,6 @@ a {
     }
 
 .container-fluid {
-    padding-right: 30px;
-    padding-left: 30px;
     *zoom: 1;
 }
 
@@ -1147,10 +1145,6 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 
 .input-large {
     width: 210px;
-}
-
-.input-xlarge {
-    width: 270px;
 }
 
 .input-xxlarge {

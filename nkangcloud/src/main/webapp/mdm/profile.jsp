@@ -45,7 +45,7 @@ if (session.getAttribute("location") == null) {
 <meta content="" name="hpe" />
 
 
-<link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css"/>
+
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap-responsive.min.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/font-awesome/css/font-awesome.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style.css"/>
@@ -64,12 +64,13 @@ if (session.getAttribute("location") == null) {
 <script type="text/javascript" src="../nkang/easyui/jquery.min.js"></script>
 <script type="text/javascript">var $113 = $;</script>
 <script type="text/javascript" src="../nkang/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles//CSS/animation-effects.css"/>
 <link rel="stylesheet" type="text/css" href="../Jsp/CSS/common.css">
 <script type="text/javascript" src="../Jsp/JS/slides.js"></script>
 <script type="text/javascript" src="../nkang/jquery-form.js"></script>
+<link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css"/>
 
+<script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 
 <!-- <link rel="stylesheet" href="../Jsp/CSS/w3.css"> -->
 <style>
@@ -465,42 +466,77 @@ function postRecognition(){
 	var userImage=$("#userPic").val();
 	console.log("img-------"+img);
 	console.log("imgType-------"+imgType);
-	var isAll="false";
-	if($("#sendAll").is(':checked'))
-		{
-		isAll="true";
-		}
-	else
-		{
-		isAll="false";
-		}
 	var to = $("#to option:selected").val();
-	$.ajax({
-        cache: false,
-        type: "POST",
-        url:"../userProfile/userCongratulate",
-        data:{
-        	openID:$("#openID").val(),
-        	isAll:isAll,
-        	from:$("#from").text(),
-        	points:$("#points").val(),
-        	to:$("#to option:selected").val(),
-        	type:$("#type option:selected").val(),
-        	comments:$("#comments").val(),
-        	img:img,
-        	imgType:imgType,
-        	userImage:userImage
-        	
-        },
-        async: true,
-        error: function(request) {
-            alert("Connection error");
-        },
-        success: function(data) {
-        	swal("Congratulations!", "Recognization to "+to+" already sent successful!", "success");
-        	hideBouncePanel();
-        }
-    });
+	swal({  
+        title:"是否发送给所有人？",  
+        text:"<input type='hidden'>",
+        html:"true",
+        showConfirmButton:"true", 
+		showCancelButton: true,   
+		closeOnConfirm: false,  
+        confirmButtonText:"是",  
+        cancelButtonText:"否",
+        animation:"slide-from-top"  
+      }, 
+		function(inputValue){
+			if (inputValue === false){
+				$.ajax({
+			        cache: false,
+			        type: "POST",
+			        url:"../userProfile/userCongratulate",
+			        data:{
+			        	openID:$("#openID").val(),
+			        	isAll:"false",
+			        	from:$("#from").text(),
+			        	points:$("#points").val(),
+			        	to:$("#to option:selected").val(),
+			        	type:$("#type option:selected").val(),
+			        	comments:$("#comments").val(),
+			        	img:img,
+			        	imgType:imgType,
+			        	userImage:userImage
+			        	
+			        },
+			        async: true,
+			        error: function(request) {
+			            alert("Connection error");
+			        },
+			        success: function(data) {
+			        	swal("Congratulations!", "Recognization to "+to+" already sent successful!", "success");
+			        	hideBouncePanel();
+			        }
+			    });
+			 return false;}
+			else{
+				$.ajax({
+			        cache: false,
+			        type: "POST",
+			        url:"../userProfile/userCongratulate",
+			        data:{
+			        	openID:$("#openID").val(),
+			        	isAll:"true",
+			        	from:$("#from").text(),
+			        	points:$("#points").val(),
+			        	to:$("#to option:selected").val(),
+			        	type:$("#type option:selected").val(),
+			        	comments:$("#comments").val(),
+			        	img:img,
+			        	imgType:imgType,
+			        	userImage:userImage
+			        	
+			        },
+			        async: true,
+			        error: function(request) {
+			            alert("Connection error");
+			        },
+			        success: function(data) {
+			        	swal("Congratulations!", "Recognization to "+to+" already sent successful!", "success");
+			        	hideBouncePanel();
+			        }
+			    });
+			}});
+
+
 
 }
 function postNotification(){
@@ -715,9 +751,9 @@ function mesSend(){
 			+"	<div class='rcommon' style='height:40px'><p class='bsLabel'>主题图片</p><form id='submit_form' name='submit_form' action='../userProfile/uploadPicture' enctype='multipart/form-data' method='post'><input id='upload_file' style='width:60%' name='upload_file' onchange='uploadPic(this)' type='file' placeholder='请输入标题' class='input-xlarge bsBtn'></form><input id='hiddenPic' type='hidden' /></div>"
 			+"  <div class='rcommon' style='height:160px;margin-bottom: 8px;'><div class='imgSelect'><input type='checkbox' class='imgCB' checked='true'><img src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602305452&di=14b5b01aade695d780cf3dbf89cd7392&imgtype=0&src=http%3A%2F%2Fimg01.taopic.com%2F160907%2F318765-160ZFQ52837.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602293964&di=5b70b7f2c1dbf9aae98dba9143897e2d&imgtype=0&src=http%3A%2F%2Fimg01.taopic.com%2F160816%2F240437-160Q60A3119.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602432167&di=7e223d3ad19485014fb9a57c875c00f3&imgtype=0&src=http%3A%2F%2Fwww.taopic.com%2Fuploads%2Fallimg%2F110914%2F34250-11091410324328.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602512392&di=173870f13b3a95bfe9b71c9a2ab75b3c&imgtype=0&src=http%3A%2F%2Fwww.yc9y.com%2Fupfiles%2Farticle%2Fimage%2F20160802%2F20160802095320_22922.png'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602549485&di=af00ddd5cc0391d1616e8b4864502288&imgtype=0&src=http%3A%2F%2Fpic.qjimage.com%2Ftongro_rf004%2Fhigh%2Ftis067a1608.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=428411870,2259267624&fm=23&gp=0.jpg'></div></div>"
 			+"  <div id='commonPush' style='margin-top: 10px;'><div class='rcommon'><p class='bsLabel'>图文类型</p><select class='bsBtn' id='notificationType'><option value='techCar'>技术快车</option><option value='mtp'>mtp</option><option value='interaction'>团队沟通</option><option value='tb'>团队建设</option></select></div>"
-			+"	<div class='rcommon'><p class='bsLabel'>网页链接</p><input id='notificationURL' type='text' placeholder='不想输入网络链接？那直接填内容吧' class='input-xlarge bsBtn'></div>"
+			+"	<div class='rcommon'><p class='bsLabel'>网页链接</p><input id='notificationURL' type='text' style='width:75%' placeholder='不想输入网络链接？那直接填内容吧' class='input-xlarge bsBtn'></div>"
 			+"	<div class='rcommon'><textarea id='content' style='height:180px;width:95%;line-height:20px' placeholder='请输入内容' class='input-xlarge bsBtn'></textarea></div>"
-			+"	<div class='rcommon' style='text-align:center;'><button style='margin-top:20px' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div></div>"
+			+"	<div class='rcommon' ><button style='margin-top:20px;width:95%' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div></div>"
 			+"	</div>"
 			+"<div id='footer'><span class='clientCopyRight'><nobr>"+copyRight+"</nobr></span></div>");
 	$('#sendR').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
@@ -737,14 +773,14 @@ function recognizationPanel(){
 				+"	<li id='bbElements'><a href='#bElements' onclick='getRecognitionInfoByOpenID()' data-toggle='tab'>收到的Recognition</a></li></ul>"
 				+"  <div class='tab-content' id='dvTabContent' style='border: 0px;'>"
 				+"	<div class='tab-pane active' id='aElements'>"
-				+"	<div id='sendRe'>"
+				+"	<div id='sendRe' style='height:110%;overflow:scroll;'>"
 				+"	<div class='rcommon'><p class='bsLabel'>发送人</p><p class='bsBtn' id='from'>"+realName+"</p></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>接收人</p><select class='bsBtn' id='to'>"+selectContent+"</select></div>"
 				+"	<div class='rcommon' style='height:40px'><p class='bsLabel'>礼物图片</p><form id='submit_gift' name='submit_gift' action='../userProfile/uploadPicture' enctype='multipart/form-data' method='post'><input id='upload_file' style='width:60%' name='upload_file' onchange='uploadGiftPic(this)' type='file'  class='input-xlarge bsBtn'></form><input id='hiddenGift' type='hidden' /></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>类型</p><select class='bsBtn' id='type'><option>Bais For Action</option><option>Innovators at Heart</option><option>Partnership First</option></select></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>Points</p><input id='points' type='text' placeholder='请输入points' class='input-xlarge bsBtn'></div>"
 				+"	<div class='rcommon'><textarea id='comments' style='height:130px;width:95%;line-height:20px' placeholder='请输入感言' class='input-xlarge bsBtn'></textarea></div>"
-				+"	<div class='rcommon' style='text-align:center;margin-top:100px'><button onclick='postRecognition()' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -25px;text-align:left;width:30%;' ><input type='checkbox' id='sendAll'>发送所有人</div></div>"
+				+"	<div class='rcommon' style='margin-top:100px'><button onclick='postRecognition()' style='height:35px;width:95%;' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -25px;text-align:left;width:30%;' ></div></div>"
 				+"	</div>"
 				+"	</div>"
 				+"  <div class='tab-pane' id='bElements'>"

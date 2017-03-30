@@ -450,11 +450,12 @@ canvas{
 	}
 #sendR
 {
-	    width: 80%;
+	    width: 92%;
     position: absolute;
     top: 120px;
-    left: 10%;
+    left: 6%;
     z-index: 999;
+    height:100%;
 }
 
 /* .naviArrow.is-selected::after{
