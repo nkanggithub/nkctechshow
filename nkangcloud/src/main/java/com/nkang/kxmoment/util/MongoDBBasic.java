@@ -39,6 +39,7 @@ import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.PlatforRelated;
+import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
@@ -55,7 +56,9 @@ public class MongoDBBasic {
 	private static String ClientMeta = "Client_Meta";
 	private static String collectionBill = "SaleBill";
 	private static String Metrics = "Metrics";
-
+	private static String role_area = "RoleOfAreaMap";
+	
+	
 	public static DB getMongoDB(){
 		if(mongoDB != null){
 			return mongoDB;
@@ -130,6 +133,22 @@ public class MongoDBBasic {
 			log.info("QueryAccessKey--" + e.getMessage());
 		}
 	    return validKey;
+	}
+	public static boolean createRoleOfAreaMap(RoleOfAreaMap role){
+		mongoDB = getMongoDB(); 
+		Boolean ret = false;
+	    try{
+	    	DBObject insert = new BasicDBObject();
+	    	insert.put("id", role.getId());
+	    	insert.put("flag", role.getFlag());
+	    	insert.put("name", role.getName());
+	    	mongoDB.getCollection(role_area).insert(insert);
+			ret = true;
+	    }
+		catch(Exception e){
+			log.info("createRoleOfAreaMap--" + e.getMessage());
+		}
+		return ret;
 	}
 	public static ClientMeta QueryClientMeta(){
 		ClientMeta cm = new ClientMeta();
