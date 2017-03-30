@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -163,9 +164,17 @@ public class FileOperateUtil {
         Nils = new ArrayList<String>();
         China = new ArrayList<String>();
         Other = new ArrayList<String>();
-        ClientMeta cm = new ClientMeta();
-        cm=MongoDBBasic.QueryClientMeta("DXC");
-        String str = cm.getMetricsMapping();
+    //    ClientMeta cm = new ClientMeta();
+       
+//        cm=MongoDBBasic.QueryClientMeta("DXC");
+//        String str = cm.getMetricsMapping();
+        String str="";
+        try {
+        	  str = RestUtils.callQueryClientMetaByClientCode();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         String[] ss =str.split(",");
 		for(String s : ss){
 			System.out.println(s);
@@ -209,18 +218,18 @@ public class FileOperateUtil {
     	
     }
     */
-    public static Map<String,Integer> OperateOnReport(InputStream is){
+    public static PlatforRelated OperateOnReport(InputStream is){
     	PoiUtil bos = new PoiUtil();
-    	Map<String,Integer> map = new HashMap<String,Integer>();
+    	//Map<String,Integer> map = new HashMap<String,Integer>();
     	PlatforRelated  platforRelated=new PlatforRelated();
     		try {
     			 platforRelated  = bos.uploadReport(is);
-    				
+    			/*	
      			map.put("APJ", platforRelated.getClosed_APJ());
      			map.put("USA", platforRelated.getClosed_USA());
      			map.put("MEXICO", platforRelated.getClosed_MEXICO());
      			map.put("EMEA", platforRelated.getClosed_EMEA());
-     			map.put("OTHER", platforRelated.getClosed_OTHER());
+     			map.put("OTHER", platforRelated.getClosed_OTHER());*/
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -236,6 +245,6 @@ public class FileOperateUtil {
     			}
     		}
     //	return "APJ : "+ platforRelated.getClosed_APJ()+"<br>"+"USA : "+ platforRelated.getClosed_USA()+"<br>"+"MEXICO : "+ platforRelated.getClosed_MEXICO()+"<br>"+"EMEA : "+ platforRelated.getClosed_EMEA()+"<br>"+"Other : "+ platforRelated.getClosed_OTHER();
-			return map;
+			return platforRelated;
     }
 }
