@@ -76,6 +76,8 @@ List<String> NameLs = (ArrayList<String>)request.getAttribute("outNames");
     </script> 
 </head>
 <body>
+<div style="height: 120px; border-bottom: 4px solid black;">
+<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="width: 25%;"></div>
 <div id="chart-container" style="text-align:center;margin-top: 20px;"></div>
 <div> total =  <%=total %></div>
 <div>请联系管理员，更新Mapping <br><% if(NameLs!=null)for(int i=0;i<NameLs.size();i++){%>

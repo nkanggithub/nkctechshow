@@ -13,14 +13,8 @@ List<Integer> emea=(List<Integer>)map.get("EMEA");
 List<String> NameLs = (ArrayList<String>)request.getAttribute("OutOfMapping"); 
 %>
 <!DOCTYPE html>
-<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>数据可视化</title>
-    <link href="../Jsp/JS/pizzaChart/css/app.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
-<script src="../Jsp/JS/pizzaChart/js/custom.modernizr.js"></script>
-
-</style>
     	<script type="text/javascript" src="../Jsp/JS/fusioncharts.js"></script>
     	<script type="text/javascript" src="../Jsp/JS/fusioncharts.powercharts.js"></script>
 	<script type="text/javascript" src="../Jsp/JS/fusioncharts.theme.fint.js"></script>
@@ -30,8 +24,8 @@ List<String> NameLs = (ArrayList<String>)request.getAttribute("OutOfMapping");
         var estProcChart = new FusionCharts({
             type: 'errorline',
             renderAt: 'chart-container',
-            width: '880',
-            height: '550',
+            width: '660',
+            height: '440',
             dataFormat: 'json',
             dataSource: {
                 "chart": {
@@ -136,8 +130,10 @@ List<String> NameLs = (ArrayList<String>)request.getAttribute("OutOfMapping");
     });
     </script> 
 </head>
-<body>
-<div id="chart-container" style="text-align:center;margin-top: 20px;"></div>
+<body style="margin:0px">
+<div style="height: 100px; border-bottom: 4px solid black;">
+<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="width: 25%;"></div>
+<div id="chart-container" style="text-align:center;margin-top: 40px;"></div>
 <div>请联系管理员，更新Mapping <br><% if(NameLs!=null)for(int i=0;i<NameLs.size();i++){%>
       outNames =  <%=NameLs.get(i)%><br>
 	
