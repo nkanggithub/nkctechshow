@@ -202,7 +202,6 @@ body {
 }
 
 a {
-    color: #08c;
     text-decoration: none;
 }
 
@@ -981,11 +980,14 @@ legend {
         color: #999;
     }
 
-label, input, button, select, textarea {
+ input, button, select, textarea {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
 	color:#333333 !important;
+}
+label{
+	color:white !important;
 }
 
 label {
