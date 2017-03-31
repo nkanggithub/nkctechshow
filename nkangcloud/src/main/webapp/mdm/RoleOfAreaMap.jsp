@@ -171,6 +171,7 @@ cursor:pointer;
 </style>
 
 <script>
+var likeRoleNum=0;
 $(function(){
 	   $(function(){  
 	      	 $(window).scroll(function(){  
@@ -283,30 +284,34 @@ function UpdateTag(item,flag,obj){
 	var tempObj=$(obj).parent().parent(".singleQuote");
 	$(".singleQuote").removeClass("editBtn");
 	$(".singleQuote").find(".edit").remove();
-	$.ajax({
-		 url:'../roleOfAreaMap/saveUserKM',
-		 type:"POST",
-		 data : {
-			 openid : $("#openid").val(),
-			 kmItem : item,
-			 flag : flag
-		 },
-		 success:function(result){
-			 if(result==true){
-				 if(flag=='add'){
-					 swal("关注成功 ", "恭喜你成功关注该项", "success");
-					 tempObj.find(".firstLayer").addClass("attention");
-					 tempObj.find(".firstLayer").find(".quoteTitle").append('<span class="tag">已关注</span>');
-				 }else  if(flag=='del'){
-					 swal("取消成功", "你取消了对该项的关注", "success");
-					 tempObj.find(".firstLayer").removeClass("attention");
-					 tempObj.find(".firstLayer").find(".quoteTitle").find(".tag").remove();
+	if(likeRoleNum>=2&&item.indexOf("Role")==0){
+		 swal("操作失败", "最多只能关注两个职位", "error");
+	}else{
+		$.ajax({
+			 url:'../roleOfAreaMap/saveUserKM',
+			 type:"POST",
+			 data : {
+				 openid : $("#openid").val(),
+				 kmItem : item,
+				 flag : flag
+			 },
+			 success:function(result){
+				 if(result==true){
+					 if(flag=='add'){
+						 swal("关注成功 ","恭喜你成功关注该项", "success");
+						 tempObj.find(".firstLayer").addClass("attention");
+						 tempObj.find(".firstLayer").find(".quoteTitle").append('<span class="tag">已关注</span>');
+					 }else  if(flag=='del'){
+						 swal("取消成功","你取消了对该项的关注", "success");
+						 tempObj.find(".firstLayer").removeClass("attention");
+						 tempObj.find(".firstLayer").find(".quoteTitle").find(".tag").remove();
+					 }
+				 }else{
+					 swal("操作失败", "请刷新页面后重试", "error");
 				 }
-			 }else{
-				 swal("操作失败", "请刷新页面后重试", "error");
 			 }
-		 }
-	});	
+		});	
+	}
 }
 function getAllDatas(){
 	$.ajax({
@@ -324,6 +329,7 @@ function getAllDatas(){
 			{
 			    var NoLikeArr=new Array();
 				var LikeArr=new Array();
+				likeRoleNum=0;
 				if(KMLikeArr.length>0){
 						 for(var i=0;i<resData.length;i++){
 						 		var itemTemp=$.trim(resData[i].id);
@@ -332,6 +338,10 @@ function getAllDatas(){
 						 			resData[i]["like"]=true;
 						 			LikeArr.push(resData[i]);
 						 			KMLikeArr.splice(index,1);
+						 			if(resData[i].flag=='Role')
+					 				{
+					 					likeRoleNum++;
+					 				}
 						 		}else{
 						 			NoLikeArr.push(resData[i]);
 						 		}
@@ -345,7 +355,6 @@ function getAllDatas(){
 				 var totalNum=0;
 				 for(var i=0;i<data.length;i++){
 					 if(data[i].id!=""){
-						 totalNum++;
 						 var priceColor="lose";
 						 var tag='';
 						 var attention='';
@@ -368,13 +377,14 @@ function getAllDatas(){
 							roleHtml+=tempHtml;
 						}else{
 							areaHtml+=tempHtml;
+							totalNum++;
 						}
 					 }
 				 }
 				 $("#roleList").html(roleHtml);
 				 $("#areaList").html(areaHtml);
 				 
-				// $("input.ui-input-text.ui-body-c").attr("placeholder","输入关键字【"+totalNum+"个供您查询】");
+				 $("input.ui-input-text.ui-body-c").attr("placeholder","输入关键字【"+totalNum+"个供您查询】");
 				 }
 			 }
 		 });
