@@ -452,10 +452,10 @@ canvas{
 {
 	    width: 92%;
     position: absolute;
-    top: 30px;
+    top: 100px;
     left: 6%;
     z-index: 999;
-    height:120%;
+    height:100%;
 }
 
 /* .naviArrow.is-selected::after{

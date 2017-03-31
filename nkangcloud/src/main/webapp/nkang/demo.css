@@ -24,7 +24,7 @@ h2 {
 }
 #data_model_div
 {
-    position: fixed;
+    position: absolute;
     top: 0;
     height: 130%;
     right: 0;
