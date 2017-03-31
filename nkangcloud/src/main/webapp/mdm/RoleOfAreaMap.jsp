@@ -272,7 +272,7 @@ function hideBouncePanel()
 	$("body").find("#data_model_div").remove();
 }
 function UpdateTag(item,flag,obj){
-	var tempObj=$(obj).parent();
+	var tempObj=$(obj).parent().parent(".singleQuote");
 	$(".singleQuote").removeClass("editBtn");
 	$(".singleQuote").find(".edit").remove();
 	$.ajax({
@@ -287,12 +287,12 @@ function UpdateTag(item,flag,obj){
 			 if(result==true){
 				 if(flag=='add'){
 					 swal("关注成功 ", "恭喜你成功关注该项", "success");
-					 tempObj.parent(".singleQuote").find(".firstLayer").addClass("attention");
-					 tempObj.parent(".singleQuote").find(".firstLayer").find(".quoteTitle").append('<span class="tag">已关注</span>');
+					 tempObj.find(".firstLayer").addClass("attention");
+					 tempObj.find(".firstLayer").find(".quoteTitle").append('<span class="tag">已关注</span>');
 				 }else  if(flag=='del'){
 					 swal("取消成功", "你取消了对该项的关注", "success");
-					 tempObj.parent(".singleQuote").find(".firstLayer").removeClass("attention");
-					 tempObj.parent(".singleQuote").find(".firstLayer").find(".quoteTitle").find(".tag").remove();
+					 tempObj.find(".firstLayer").removeClass("attention");
+					 tempObj.find(".firstLayer").find(".quoteTitle").find(".tag").remove();
 				 }
 			 }else{
 				 swal("操作失败", "请刷新页面后重试", "error");
