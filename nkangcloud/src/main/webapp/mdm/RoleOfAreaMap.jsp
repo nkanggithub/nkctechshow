@@ -18,7 +18,10 @@ HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 <title>我的订阅</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
+<link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap-responsive.min.css" />
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
+<script src="../nkang/assets_athena/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles//CSS/animation-effects.css"/>
@@ -28,6 +31,9 @@ HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 <script type="text/javascript" src="../Jsp/JS/fusioncharts.powercharts.js"></script>
 <script type="text/javascript" src="../Jsp/JS/fusioncharts.theme.fint.js"></script>
 <style>
+body{
+	padding:0px;
+}
 #echarts{height: 350px;width:750px;}
 span.chartButton.now {
     background-color: #005CA1;
@@ -323,7 +329,8 @@ function getAllDatas(){
 		 		}
 				var data=$.merge(LikeArr, NoLikeArr);    */
 				var data=resData;
-				 var html="";
+				 var roleHtml="";
+				 var areaHtml="";
 				 var totalNum=0;
 				 for(var i=0;i<data.length;i++){
 					 if(data[i].itemNo!=""){
@@ -337,7 +344,7 @@ function getAllDatas(){
 							 tag='<span class="tag">已关注</span>';
 							 attention='attention';
 						 }
-						 html+='<li class="singleQuote">'
+						 var tempHtml='<li class="singleQuote">'
 							 +'	<div class="firstLayer '+attention+'">'
 							 +'		<div class="quoteTitle"><span class="item">'+data[i].name+'</span>'+tag+'</div>'
 							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price"></span>'+unit+'</div>'
@@ -345,11 +352,18 @@ function getAllDatas(){
 							 +'		<div class="clear"></div>'
 							 +'	</div>'
 							 +'</li>'; 
+							 
+						if(data[i].flag=='Role'){
+							roleHtml+=tempHtml;
+						}else{
+							areaHtml+=tempHtml;
+						}
 					 }
 				 }
-				 $("#QuoteList").html(html);
+				 $("#roleList").html(roleHtml);
+				 $("#areaList").html(areaHtml);
 				 
-				 $("input.ui-input-text.ui-body-c").attr("placeholder","输入关键字【"+totalNum+"个供您查询】");
+				// $("input.ui-input-text.ui-body-c").attr("placeholder","输入关键字【"+totalNum+"个供您查询】");
 				 }
 			 }
 		 });
@@ -365,38 +379,46 @@ function getAllDatas(){
  <img class="picClose" style="position:absolute;top:10px;right:10px;width:15px;height:auto;" src="../MetroStyleFiles/Close2.png" alt=""/> 
 
 </div>
-<div id="return-top" style="display: block;"><img class="scroll-top" src="../mdm/images/quotation.gif" alt="" width="100px"></div>
-<div style="padding:10px;padding-top:5px;border-bottom:2px solid #0067B6;position:relative;padding-bottom:0px;"> 
+<div id="return-top" style="display: block;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="50px"></div>
+<div style="padding:10px;padding-top:5px;border-bottom:2px solid #000;position:relative;padding-bottom:5px;margin-bottom:5px;"> 
 					<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display:inline !important;height:35px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
 					<span class="clientSubName" style="font-size:12px;padding-left:7px;color:#333;">MDM China</span>
 					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">DXC Technology Coperation</h2>
 					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您,aaaa</p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:36px;right:10px;" src="" alt=""/>
 				<input id="openid" type="hidden" value="<%=uid %> "/>
-				
+</div>		
+	<div class="TABclass">
+		<div id="logo_now_color" style="border-top: 4px solid #fff; padding-top: 5px;">
+			<ul class="nav nav-tabs" id="myTabs"
+				style="border-color: rgb(0, 179, 136);">
+				<li  class="active"><a href="#roleElements" data-toggle="tab"
+					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">岗位职称</a></li>
+				<li><a href="#areaElements" data-toggle="tab"
+					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">技术领域</a></li>
+			</ul>
+			<div class="tab-content" id="dvTabContent"
+				style="border: 0px; padding-top: 0px;margin-top:0px;">
+				<div class="tab-pane" id="areaElements">
+				<!-- start logoElements-->
+					<div  style="position: absolute; top: 125px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
+						<ul id="areaList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
+						</ul>
+					</div>
+					<!-- end logoElements-->
+				</div>
+				<div class="tab-pane active" id="roleElements">
+					<!-- start logoElements
+					<div  style="position: absolute; top: 120px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
+						<ul id="roleList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
+						</ul>
+					</div>-->
+					<ul id="roleList"  style="margin: 0px;padding: 0px; margin-top: -20px;">
+						</ul>
+					<!-- end logoElements-->
 
 				</div>
-<!--<input class="searchBox" id='hy' />-->
-<div  style="position: absolute; top: 120px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
- <ul id="QuoteList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
-<!-- <li class="singleQuote">
-	<div class="firstLayer  attention">
-	
-		<div class="quoteTitle"><span class="id">GE150</span><span class="tag">已关注</span></div>
-		<div class="quotePrice high">￥<span class="price">11670</span></div>
-		<span class="change high">+10</span>
-		<div class="clear"></div>
+			</div>
+		</div>
 	</div>
-</li>
-<li class="singleQuote">
-	<div class="firstLayer">
-	
-		<div class="quoteTitle"><span >GE150</span></div>
-		<div class="quotePrice low">￥<span>11670</span></div>
-		<div class="clear"></div>
-	</div>
-</li>
- -->
-</ul>
-</div>
 </body>
 </html>
