@@ -154,21 +154,24 @@ public class MongoDBBasic {
 		mongoDB = getMongoDB();
 		ArrayList<RoleOfAreaMap> list = new ArrayList<RoleOfAreaMap>();
 		DBObject query = new BasicDBObject();
-		if(!flag.isEmpty()){
+		DBCursor queryresults;
+		if(flag!=null&&!flag.isEmpty()){
 			query.put("flag", flag);
+			queryresults = mongoDB.getCollection(role_area).find(query);
+		}else{
+			queryresults = mongoDB.getCollection(role_area).find();
 		}
-		DBCursor queryresults = mongoDB.getCollection(role_area).find(query);
 		if (null != queryresults) {
 			while (queryresults.hasNext()) {
 				DBObject o = queryresults.next();
 				RoleOfAreaMap temp=new RoleOfAreaMap();
-				if(o.get("id")==null){
+				if(o.get("id")!=null){
 					temp.setId(o.get("id").toString());
 				}
-				if(o.get("flag")==null){
+				if(o.get("flag")!=null){
 					temp.setFlag(o.get("flag").toString());
 				}
-				if(o.get("name")==null){
+				if(o.get("name")!=null){
 					temp.setName(o.get("name").toString());
 				}
 				list.add(temp);
