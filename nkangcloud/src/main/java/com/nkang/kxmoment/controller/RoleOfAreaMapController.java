@@ -1,6 +1,7 @@
 package com.nkang.kxmoment.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,20 @@ import com.nkang.kxmoment.util.RestUtils;
 @RestController
 @RequestMapping("/roleOfAreaMap")
 public class RoleOfAreaMapController {
+	@RequestMapping(value = "/saveUserKM")
+	public static boolean saveUserKM(@RequestParam(value="openid", required=true) String openid,
+			@RequestParam(value="kmItem", required=true) String kmItem,
+			@RequestParam(value="flag", required=true) String flag) {
+		boolean res=false;
+		res=MongoDBBasic.saveUserKM(openid, kmItem,flag);
+		return res;
+	}
+	@RequestMapping(value = "/queryUserKM")
+	public static List<String> queryUserKM(@RequestParam(value="openid", required=true) String openid) {
+		List<String> res=new ArrayList<String>();
+		res=MongoDBBasic.queryUserKM(openid);
+		return res;
+	}
 	@RequestMapping("/findList")
 	public ArrayList<RoleOfAreaMap> findList(
 			@RequestParam(value="flag", required=false) String flag) {
