@@ -192,7 +192,7 @@ public class MongoDBBasic {
 	    	if("add".equals(flag)){
 	    		kmSets.add(kmItem);
 	    	}
-    	    update.put("kmLists",kmSets);
+    	    update.put("likeLists",kmSets);
 	    	doc.put("$set", update);  
 			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID",openid), doc);
             ret = true;
