@@ -2,13 +2,20 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
-<%-- <%
-Map map = (HashMap<String,List>)request.getAttribute("map");
-List<Integer> apj=(List<Integer>)map.get("APJ");
-List<Integer> usa=(List<Integer>)map.get("USA");
-List<Integer> mexico=(List<Integer>)map.get("MEXICO");
-List<Integer> emea=(List<Integer>)map.get("EMEA");
-%> --%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%
+Map runMaintain = MongoDBBasic.getRunMaintainMetrics();
+List<Integer> apj=(List<Integer>)runMaintain.get("APJ");
+List<Integer> usa=(List<Integer>)runMaintain.get("USA");
+List<Integer> mexico=(List<Integer>)runMaintain.get("MEXICO");
+List<Integer> emea=(List<Integer>)runMaintain.get("EMEA");
+Map immetrics = MongoDBBasic.getIMMetrics();
+Integer apj2=(Integer)immetrics.get("APJ");
+Integer usa2=(Integer)immetrics.get("USA");
+Integer mexico2=(Integer)immetrics.get("MEXICO");
+Integer emea2=(Integer)immetrics.get("EMEA");
+Integer other=(Integer)immetrics.get("OTHER");
+%>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -55,74 +62,75 @@ List<Integer> emea=(List<Integer>)map.get("EMEA");
                     }
                 ],
                 "dataset": [
-                    {
-                        "seriesname": "APJ",
-                        "data": [
-                                 {
-                                     "value": "8",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "1",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "4",
-                                     "errorvalue": ""
-                                 },
-                                 ]
-                    },
-                    {
-                        "seriesname": "USA",
-                        "data": [
-                                 {
-                                     "value": "3",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "2",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "1",
-                                     "errorvalue": ""
-                                 },
-                                 ]
-                    },
-                    {
-                        "seriesname": "Mexico",
-                        "data": [
-                                 {
-                                     "value": "1",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "2",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "2",
-                                     "errorvalue": ""
-                                 },
-                                 ]
-                    },
-                    {
-                        "seriesname": "EMEA",
-                        "data": [
-                                 {
-                                     "value": "1",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "1",
-                                     "errorvalue": ""
-                                 },
-                                 {
-                                     "value": "1",
-                                     "errorvalue": ""
-                                 },
-                                 ]
-                    }
+                            {
+                                "seriesname": "APJ",
+                                "data": [
+        <%  for(int i=0;i<apj.size();i++){ 
+        	 if(i==apj.size()-1){%>
+        	 {
+                "value": "<%=apj.get(i)%>",
+                "errorvalue": ""
+            }
+        	 <%}else{%>
+        	 {
+                "value": "<%=apj.get(i)%>",
+                "errorvalue": ""
+            },
+        <%}%>
+        <%}%>
+                                ]
+                            }, {
+                                "seriesname": "USA",
+                                "data": [
+        <%  for(int i=0;i<usa.size();i++){ 
+        	 if(i==usa.size()-1){%>
+        	 {
+               "value": "<%=usa.get(i)%>",
+               "errorvalue": ""
+           }
+        	 <%}else{%>
+        	 {
+               "value": "<%=usa.get(i)%>",
+               "errorvalue": ""
+           },
+        <%}%>
+        <%}%>
+                                ]
+                            }, {
+                                "seriesname": "Mexico",
+                                "data": [
+        <%  for(int i=0;i<mexico.size();i++){ 
+        	 if(i==mexico.size()-1){%>
+        	 {
+               "value": "<%=mexico.get(i)%>",
+               "errorvalue": ""
+           }
+        	 <%}else{%>
+        	 {
+               "value": "<%=mexico.get(i)%>",
+               "errorvalue": ""
+           },
+        <%}%>
+        <%}%>
+                                ]
+                            }, {
+                                "seriesname": "EMEA",
+                                "data": [
+        <%  for(int i=0;i<emea.size();i++){ 
+        	 if(i==mexico.size()-1){%>
+        	 {
+              "value": "<%=emea.get(i)%>",
+              "errorvalue": ""
+          }
+        	 <%}else{%>
+        	 {
+              "value": "<%=emea.get(i)%>",
+              "errorvalue": ""
+          },
+        <%}%>
+        <%}%>
+                                ]
+                            }
                 ]
             }
         }).render();
@@ -147,26 +155,26 @@ List<Integer> emea=(List<Integer>)map.get("EMEA");
 	                "theme": "fint"
 	            },
 	            "data": [
-	                {
-	                    "label": "APJ",
-	                    "value": "243"
-	                },
-	                {
-	                    "label": "USA",
-	                    "value": "10"
-	                }, 
-	                {
-	                    "label": "MEXICO",
-	                    "value": "108"
-	                }, 
-	                {
-	                    "label": "EMEA",
-	                    "value": "17"
-	                },
-	                {
-	                    "label": "OTHER",
-	                    "value": "5"
-	                }
+	    	                {
+	    	                    "label": "APJ",
+	    	                    "value": "<%=apj2 %>"
+	    	                },
+	    	                {
+	    	                    "label": "USA",
+	    	                    "value": "<%=usa2 %>"
+	    	                }, 
+	    	                {
+	    	                    "label": "MEXICO",
+	    	                    "value": "<%=mexico2 %>"
+	    	                }, 
+	    	                {
+	    	                    "label": "EMEA",
+	    	                    "value": "<%=emea2 %>"
+	    	                },
+	    	                {
+	    	                    "label": "OTHER",
+	    	                    "value": "<%=other %>"
+	    	                }
 	            ]
 	        }
 	    }).render();
