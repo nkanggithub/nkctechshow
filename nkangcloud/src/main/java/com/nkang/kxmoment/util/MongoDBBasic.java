@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -133,6 +134,74 @@ public class MongoDBBasic {
 			log.info("QueryAccessKey--" + e.getMessage());
 		}
 	    return validKey;
+	}
+	public static List<String> queryUserKM(String openid){
+		mongoDB = getMongoDB();
+		List<String> kmLists = new ArrayList<String>();
+	    try{
+	    	DBCursor dbcur = mongoDB.getCollection(wechat_user).find(new BasicDBObject().append("OpenID", openid));
+            if (null != dbcur) {
+            	while(dbcur.hasNext()){
+            		DBObject o = dbcur.next();
+            		if(o.get("likeLists")!=null){
+            			BasicDBList hist = (BasicDBList) o.get("likeLists");
+                		Object[] kmObjects = hist.toArray();
+                		for(Object dbobj : kmObjects){
+                			if(dbobj instanceof String){
+                				kmLists.add((String) dbobj);
+                			}
+                		}
+            		}
+            	}
+            }
+	    }
+		catch(Exception e){
+			log.info("queryUserKM--" + e.getMessage());
+		}
+		return kmLists;
+	}
+	public static boolean saveUserKM(String openid,String kmItem,String flag){
+		kmItem=kmItem.trim();
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+	    try{
+	    	HashSet<String> kmSets = new HashSet<String>();
+	    	DBCursor dbcur = mongoDB.getCollection(wechat_user).find(new BasicDBObject().append("OpenID", openid));
+            if (null != dbcur) {
+            	while(dbcur.hasNext()){
+            		DBObject o = dbcur.next();
+            		if(o.get("likeLists")!=null){
+            			BasicDBList hist = (BasicDBList) o.get("likeLists");
+                		Object[] kmObjects = hist.toArray();
+                		for(Object dbobj : kmObjects){
+                			if(dbobj instanceof String){
+                				if("del".equals(flag)){
+                					if(!kmItem.equals((String) dbobj)){
+                						kmSets.add((String) dbobj);
+                					}
+                				}else{
+                					kmSets.add((String) dbobj);
+                				}
+                			}
+                		}
+            		}
+            	}
+            }
+            BasicDBObject doc = new BasicDBObject();  
+	    	DBObject update = new BasicDBObject();
+	    	if("add".equals(flag)){
+	    		kmSets.add(kmItem);
+	    	}
+    	    update.put("kmLists",kmSets);
+	    	doc.put("$set", update);  
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID",openid), doc);
+            ret = true;
+            
+	    }
+		catch(Exception e){
+			log.info("saveUserKM--" + e.getMessage());
+		}
+		return ret;
 	}
 	public static boolean createRoleOfAreaMap(RoleOfAreaMap role){
 		mongoDB = getMongoDB(); 
