@@ -19,12 +19,12 @@ import com.nkang.kxmoment.util.RestUtils;
 @RestController
 @RequestMapping("/roleOfAreaMap")
 public class RoleOfAreaMapController {
-	@RequestMapping(value = "/findList", produces = "text/html;charset=UTF-8")
+	@RequestMapping("/findList")
 	public ArrayList<RoleOfAreaMap> findList(
 			@RequestParam(value="flag", required=false) String flag) {
 		return MongoDBBasic.QueryRoleOfAreaMap(flag);
 	}
-	@RequestMapping(value = "/setRoleOfAreaMap", produces = "text/html;charset=UTF-8")
+	@RequestMapping("/setRoleOfAreaMap")
 	public boolean setRoleOfAreaMap() {
 		RoleOfAreaMap role=new RoleOfAreaMap();
 		role.setId("Role001");
