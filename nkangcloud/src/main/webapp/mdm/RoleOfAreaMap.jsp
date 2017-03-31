@@ -33,6 +33,8 @@ HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 <style>
 body{
 	padding:0px;
+	width:100%;
+	overflow:hidden;
 }
 #echarts{height: 350px;width:750px;}
 span.chartButton.now {
@@ -137,7 +139,7 @@ ul li.singleQuote .firstLayer  .change{
 {
 	width:50%;
 	height:100%;
-	line-height:70px;
+	line-height:90px;
 	margin-right:auto;
 	margin-left:auto;
 	font-weight:bold;
@@ -176,14 +178,14 @@ $(function(){
 	               return false;  
 	            });  
 	   });
-	    
+	    /**
 	   $(".quoteTitle").live("click",function(){
 			$("#pic").css("display","block");
 		});
 		$(".picClose").live("click",function(){
 			$("#pic").css("display","none");
 		});
-	   
+	  */ 
 	   
 	getAllDatas();
 	$(".singleQuote").live("swiperight",function(){
@@ -192,6 +194,9 @@ $(function(){
 		$(this).remove(".edit");
 	}); 
 	$(".singleQuote").live("swipeleft",function(){
+		$(this).siblings().removeClass("editBtn");
+		$(this).siblings().remove(".edit");
+		
 		$(this).css("overflow","visible");
 		$(this).addClass("editBtn");
 		var tagNum=$(this).find('span.tag').length;
@@ -201,8 +206,6 @@ $(function(){
 		}else{
 			$(this).append('<div class="edit no"><p onclick="UpdateTag(\''+item+'\',\'del\',this)">取消<br/>关注</p></div>');
 		}
-		$(this).siblings().removeClass("editBtn");
-		$(this).siblings().remove(".edit");
 	});
 });
 function ToCharPage(item){
@@ -390,7 +393,7 @@ function getAllDatas(){
 	<div class="TABclass">
 		<div id="logo_now_color" style="border-top: 4px solid #fff; padding-top: 5px;">
 			<ul class="nav nav-tabs" id="myTabs"
-				style="border-color: rgb(0, 179, 136);">
+				style="border-color: rgb(0, 179, 136);" style="padding-left: 5px;">
 				<li  class="active"><a href="#roleElements" data-toggle="tab"
 					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">岗位职称</a></li>
 				<li><a href="#areaElements" data-toggle="tab"
@@ -412,10 +415,11 @@ function getAllDatas(){
 						<ul id="roleList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 						</ul>
 					</div>-->
+					<div style="width:100%;overflow:hidden">
 					<ul id="roleList"  style="margin: 0px;padding: 0px; margin-top: -20px;">
 						</ul>
 					<!-- end logoElements-->
-
+					</div>
 				</div>
 			</div>
 		</div>
