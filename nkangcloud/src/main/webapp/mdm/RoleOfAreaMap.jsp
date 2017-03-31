@@ -272,8 +272,6 @@ function hideBouncePanel()
 	$("body").find("#data_model_div").remove();
 }
 function UpdateTag(item,flag,obj){
-	$(".singleQuote").removeClass("editBtn");
-	$(".singleQuote").find(".edit").remove();;
 	$.ajax({
 		 url:'../roleOfAreaMap/saveUserKM',
 		 type:"POST",
@@ -297,7 +295,9 @@ function UpdateTag(item,flag,obj){
 				 swal("操作失败", "请刷新页面后重试", "error");
 			 }
 		 }
-	});
+	});	
+	$(".singleQuote").removeClass("editBtn");
+	$(".singleQuote").find(".edit").remove();
 }
 function getAllDatas(){
 	$.ajax({
