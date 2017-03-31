@@ -2805,6 +2805,55 @@ public class MongoDBBasic {
 			
 		return dbuser;
 	}
+	public static Map getRunMaintainMetrics()
+	{
+		Map<String, List> map =new HashMap<String,List>();
+		PlatforRelated platforRelated = MongoDBBasic.getPlatforRelated("DXC");
+		if(platforRelated==null){
+			return map;
+		}
+		
+		List<Integer> APJlt = new ArrayList<Integer>();
+		APJlt.add(platforRelated.getDone_APJ());
+		APJlt.add(platforRelated.getInProgress_APJ());
+		APJlt.add(platforRelated.getInPlanning_APJ());
+		
+		List<Integer> USAlt = new ArrayList<Integer>();
+		USAlt.add(platforRelated.getDone_USA());
+		USAlt.add(platforRelated.getInProgress_USA());
+		USAlt.add(platforRelated.getInPlanning_USA());
+		
+		List<Integer> MEXICOlt = new ArrayList<Integer>();
+		MEXICOlt.add(platforRelated.getDone_MEXICO());
+		MEXICOlt.add(platforRelated.getInProgress_MEXICO());
+		MEXICOlt.add(platforRelated.getInPlanning_MEXICO());
+		
+		List<Integer> EMEAlt = new ArrayList<Integer>();
+		EMEAlt.add(platforRelated.getDone_EMEA());
+		EMEAlt.add(platforRelated.getInProgress_EMEA());
+		EMEAlt.add(platforRelated.getInPlanning_EMEA());
+		
+		map.put("APJ", APJlt);
+		map.put("USA", USAlt);
+		map.put("MEXICO", MEXICOlt);
+		map.put("EMEA", EMEAlt);
+		return map;
+	}
+	public static Map getIMMetrics()
+	{
+		Map<String, Integer> map = new HashMap<String,Integer>();
+		PlatforRelated pr = MongoDBBasic.getPlatforRelated("DXC");
+		if(pr==null){
+			return map;
+		}
+		
+		map.put("APJ", pr.getClosed_APJ());
+		map.put("USA", pr.getClosed_USA());
+		map.put("MEXICO", pr.getClosed_MEXICO());
+		map.put("EMEA", pr.getClosed_EMEA());
+		map.put("OTHER", pr.getClosed_OTHER());
+		return map;
+	}
 	
 }
 					
