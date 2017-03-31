@@ -191,16 +191,16 @@ $(function(){
 	$(".singleQuote").live("swiperight",function(){
 		$(this).css("overflow","hidden");
 		$(this).removeClass("editBtn");
-		$(this).remove(".edit");
+		$(this).find(".edit").remove();
 	}); 
 	$(".singleQuote").live("swipeleft",function(){
 		$(this).siblings().removeClass("editBtn");
-		$(this).siblings().remove(".edit");
+		$(this).siblings().find(".edit").remove();
 		
 		$(this).css("overflow","visible");
 		$(this).addClass("editBtn");
 		var tagNum=$(this).find('span.tag').length;
-		var item=$(this).find('span.item').text();
+		var item=$(this).find('span.id').text();
 		if(tagNum==0){
 			$(this).append('<div class="edit"><p onclick="UpdateTag(\''+item+'\',\'add\',this)"><img src="../mdm/images/focus.png" />关注</p></div>');
 		}else{
@@ -273,9 +273,9 @@ function hideBouncePanel()
 }
 function UpdateTag(item,flag,obj){
 	$(".singleQuote").removeClass("editBtn");
-	$(".singleQuote").remove(".edit");
+	$(".singleQuote").find(".edit").remove();;
 	$.ajax({
-		 url:'../saveUserKM',
+		 url:'../roleOfAreaMap/saveUserKM',
 		 type:"POST",
 		 data : {
 			 openid : $("#openid").val(),
@@ -285,11 +285,11 @@ function UpdateTag(item,flag,obj){
 		 success:function(result){
 			 if(result==true){
 				 if(flag=='add'){
-					 swal("关注成功 ", "恭喜你成功关注该牌号", "success");
+					 swal("关注成功 ", "恭喜你成功关注该项", "success");
 					 $(obj).parent().parent(".singleQuote").find(".firstLayer").addClass("attention");
 					 $(obj).parent().parent(".singleQuote").find(".firstLayer").find(".quoteTitle").append('<span class="tag">已关注</span>');
 				 }else  if(flag=='del'){
-					 swal("取消成功", "你取消了对该牌号的关注", "success");
+					 swal("取消成功", "你取消了对该项的关注", "success");
 					 $(obj).parent().parent(".singleQuote").find(".firstLayer").removeClass("attention");
 					 $(obj).parent().parent(".singleQuote").find(".firstLayer").find(".quoteTitle").find(".tag").remove();
 				 }
@@ -300,24 +300,24 @@ function UpdateTag(item,flag,obj){
 	});
 }
 function getAllDatas(){
-	/* $.ajax({
-		 url:'../queryUserKM',
-		 type:"POST",
+	$.ajax({
+		 url:'../roleOfAreaMap/queryUserKM',
+		 type:"GET",
 		 data : {
 			 openid : $("#openid").val()
 		 },
-		 success:function(KMLikeArr){ */
+		 success:function(KMLikeArr){ 
 		 	$.ajax({
 			 url:'../roleOfAreaMap/findList',
 			 type:"GET",
 			 success:function(resData){
 			 if(resData.length)
 			{
-				/* var NoLikeArr=new Array();
+			    var NoLikeArr=new Array();
 				var LikeArr=new Array();
 				if(KMLikeArr.length>0){
 						 for(var i=0;i<resData.length;i++){
-						 		var itemTemp=$.trim(resData[i].itemNo);
+						 		var itemTemp=$.trim(resData[i].id);
 						 		var index=$.inArray(itemTemp,KMLikeArr);
 						 		if(index>-1){
 						 			resData[i]["like"]=true;
@@ -330,13 +330,12 @@ function getAllDatas(){
 		 		}else{
 		 			NoLikeArr=resData;
 		 		}
-				var data=$.merge(LikeArr, NoLikeArr);    */
-				var data=resData;
+				var data=$.merge(LikeArr, NoLikeArr); 
 				 var roleHtml="";
 				 var areaHtml="";
 				 var totalNum=0;
 				 for(var i=0;i<data.length;i++){
-					 if(data[i].itemNo!=""){
+					 if(data[i].id!=""){
 						 totalNum++;
 						 var priceColor="lose";
 						 var tag='';
@@ -349,7 +348,7 @@ function getAllDatas(){
 						 }
 						 var tempHtml='<li class="singleQuote">'
 							 +'	<div class="firstLayer '+attention+'">'
-							 +'		<div class="quoteTitle"><span class="item">'+data[i].name+'</span>'+tag+'</div>'
+							 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item">'+data[i].name+'</span>'+tag+'</div>'
 							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price"></span>'+unit+'</div>'
 							 /*  +'		<span class="change high">+10</span>' */
 							 +'		<div class="clear"></div>'
@@ -371,8 +370,8 @@ function getAllDatas(){
 			 }
 		 });
 		 		
-	/* 	}
-	}); */
+		}
+	}); 
 }
 </script>
 </head>
