@@ -301,8 +301,7 @@ function getAllDatas(){
 		 	$.ajax({
 			 url:'../roleOfAreaMap/findList',
 			 type:"GET",
-			 success:function(res){
-			 var resData=res.data;
+			 success:function(resData){
 			 if(resData.length)
 			{
 				/* var NoLikeArr=new Array();
