@@ -604,7 +604,7 @@ function updateUserInfo(openId){
 					</ul>
 				
 </div>
-					<div id="return-top" style="display: block;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="100px"></div>
+					<div id="return-top" style="display: block;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="50px"></div>
 				</div>
 				
 				
