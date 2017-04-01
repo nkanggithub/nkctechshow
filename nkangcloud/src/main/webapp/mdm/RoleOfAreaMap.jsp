@@ -177,7 +177,7 @@ $(function(){
 	                 $('#return-top').fadeIn(200);  
 	               }  
 	               else{
-	            	 //  $('#return-top').fadeOut(200);
+	            	   $('#return-top').fadeOut(200);
 	            	 }  
 	           });  
 	           $('#return-top').click(function(){  
