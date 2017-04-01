@@ -40,8 +40,6 @@ if (session.getAttribute("location") == null) {
 <style>
 body{
 	padding:0px;
-	width:100%;
-	overflow:hidden;
 }
 #echarts{height: 350px;width:750px;}
 span.chartButton.now {
