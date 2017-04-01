@@ -46,6 +46,44 @@
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <style>
  #return-top{position:fixed;bottom:40px;right:10px; text-align:center; display:none;z-index:9999;} 
+.edit
+{
+	width: 60px;
+    height: 100%;
+    color: #fff;
+    font-family:微软雅黑;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    right: -60px;
+	font-size:14px;
+    background: #438CD0;
+    border-bottom: 1px solid #ccc;
+}
+.edit.km{
+	right: -120px;
+    background: orange;
+}
+.edit img {
+    width:25px;height:auto;position:absolute;top:25px;margin-left: 2px;
+}
+.edit.km p{
+	line-height:35px;
+	padding-top:20px;
+}
+.edit p
+{
+	width:50%;
+	height:100%;
+	line-height:145px;
+	margin-right:auto;
+	margin-left:auto;
+}
+.editBtn
+{
+	position: relative;
+    left: -120px;
+}
 </style>
 <script type="text/javascript">
 $(function(){  
@@ -71,6 +109,21 @@ var clientThemeColor,HpLogoSrc,LogoData;
 $(window).load(function() {
 	getLogoLists();
 	getMDLUserLists();
+	$("li.Work_Mates_div_list_div2").live("swiperight",function(){
+		$(this).css("overflow","hidden");
+		$(this).removeClass("editBtn");
+		$(this).remove(".edit");
+	}); 
+	$("li.Work_Mates_div_list_div2").live("swipeleft",function(){
+		$(this).css("overflow","visible");
+		$(this).addClass("editBtn");
+		var openid=$(this).find("span.openid").text();
+		var name=$(this).find("span.name").text();
+		$(this).append("<div class='edit'><p onclick='showUpdateUserPanel(\""+openid+"\",\""+name+"\")'><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
+		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>***<br/>管理</p></div>");
+		$(this).siblings().removeClass("editBtn");
+		$(this).siblings().remove(".edit");
+	});
 });
 function showLogoPanel(index){
 	showCommonPanel();
@@ -489,11 +542,11 @@ function updateUserInfo(openId){
 	<div class="TABclass">
 		<div id="logo_now_color" style="border-top: 4px solid #fff; padding: 5px;">
 			<ul class="nav nav-tabs" id="myTabs"
-				style="border-color: rgb(0, 179, 136);">
+				style="border-color: #000;">
 				<li  class="active"><a href="#WorkMates" data-toggle="tab"
-					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">人员管理</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">人员管理</a></li>
 				<li><a href="#logoElements" data-toggle="tab"
-					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">LOGO管理</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">LOGO管理</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
