@@ -284,7 +284,7 @@ function UpdateTag(item,flag,obj){
 	var tempObj=$(obj).parent().parent(".singleQuote");
 	$(".singleQuote").removeClass("editBtn");
 	$(".singleQuote").find(".edit").remove();
-	if(likeRoleNum>=2&&item.indexOf("Role")==0){
+	if(likeRoleNum>=2&&item.indexOf("Role")==0&&flag=='add'){
 		 swal("操作失败", "最多只能关注两个职位", "error");
 	}else{
 		$.ajax({
@@ -308,6 +308,9 @@ function UpdateTag(item,flag,obj){
 						 swal("取消成功","你取消了对该项的关注", "success");
 						 tempObj.find(".firstLayer").removeClass("attention");
 						 tempObj.find(".firstLayer").find(".quoteTitle").find(".tag").remove();
+						 if(item.indexOf("Role")==0){
+							 likeRoleNum--;
+						 }
 					 }
 				 }else{
 					 swal("操作失败", "请刷新页面后重试", "error");
