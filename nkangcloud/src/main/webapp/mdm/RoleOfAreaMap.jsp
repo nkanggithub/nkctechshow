@@ -415,11 +415,11 @@ function getAllDatas(){
 	<div class="TABclass">
 		<div id="logo_now_color" style="border-top: 4px solid #fff; padding-top: 5px;">
 			<ul class="nav nav-tabs" id="myTabs"
-				style="border-color: rgb(0, 179, 136);" style="padding-left: 5px;">
+				style="border-color: #000;" style="padding-left: 5px;">
 				<li  class="active"><a href="#roleElements" data-toggle="tab"
-					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">岗位职称</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">岗位职称</a></li>
 				<li><a href="#areaElements" data-toggle="tab"
-					style="border-right-color: rgb(0, 179, 136); border-top-color: rgb(0, 179, 136); border-left-color: rgb(0, 179, 136);">技术领域</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">技术领域</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
