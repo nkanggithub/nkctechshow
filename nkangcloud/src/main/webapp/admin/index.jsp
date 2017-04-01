@@ -125,6 +125,111 @@ $(window).load(function() {
 		$(this).siblings().remove(".edit");
 	});
 });
+
+function showUpdateUserPanel(openid,name){
+	showCommonPanel();
+	$(".Work_Mates_div_list_div2").removeClass("editBtn");
+	$(".Work_Mates_div_list_div2").remove(".edit");
+	$("body").append('<div id="UpdateUserPart" class="bouncePart" style="position:fixed;z-index:999;top:100px;width:80%;margin-left:10%;"><legend>编辑【'+name+'】的基本信息</legend><div id="UpdateUserPartDiv" style="margin-top:0px;margin-bottom: -20px;background-color:#fff;">'
+			+'<center>正在加载中...</center>'		
+	+'						</div>');
+	$('#UpdateUserPart').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+	      $(this).removeClass("bounceInDown animated");
+	 });
+	jQuery.ajax({
+		type : "GET",
+		url : "../CallGetWeChatUserFromMongoDB",
+		data : {
+			openid : openid
+		},
+		cache : false,
+		success : function(data) {
+			if (data.length > 0) {
+				var IsRegistered=data[0].IsRegistered==null?'false':data[0].IsRegistered;
+				var IsAuthenticated=data[0].IsAuthenticated==null?'false':data[0].IsAuthenticated;
+				var IsActived=data[0].isActive==null?'false':data[0].isActive;
+				var registerDate=data[0].registerDate==null?'':data[0].registerDate.replace(/\//g,"-");
+				var realName=data[0].realName==null?'':data[0].realName;
+				var phone=data[0].phone==null?'':data[0].phone;
+				var email=data[0].email==null?'':data[0].email;
+				var role=data[0].role==null?'':data[0].role;
+				var selfIntro=data[0].selfIntro==null?'':data[0].selfIntro;
+				$("#UpdateUserPartDiv").html('<form id="atest">'
+			            +'												<input type="hidden" name="uid" id="atest_uid" value="'+openid+'"/>'
+			            +'												<table id="tableForm" style="margin-top:-20px;">'
+			            +'													<tr>'
+			            +'														<td><nobr>真实姓名:</nobr></td>'
+			            +'														<td><input type="text" name="realName" value="'+realName+'"/></td>'
+			            +'													</tr>'
+			            +'													<tr>'
+			            +'														<td>手机号码:</td>'
+			            +'														<td><input type="text" name="phone" value="'+phone+'"/></td>'
+			            +'													</tr>'
+			            +'													<tr>'
+			            +'														<td>电子邮箱:</td>'
+			            +'														<td><input type="text" name="email" value="'+email+'"/></td>'
+			            +'													</tr>'
+			            +'													<tr>'
+			            +'														<td>用户职位:</td>'
+			            +'														<td><input type="text" name="companyRole" value="'+role+'"/></td>'
+			            +'													</tr>'
+			            +'												    <tr>'
+			            +'													    <td>注册时间:</td>'
+			            +'													    <td align="left" class="tdText" >'
+			            +'													    	<input name="registerDate" type="date" id="registerDate" required style="text-align: -webkit-center; width: 130px;"  value="'+registerDate+'">'
+			            +'													    </td>'
+			            +'												    </tr>'
+			            +'												    <tr>'
+			            +'												        <td>确认注册:</td>'
+			            +'												        <td  align="left" class="tdText">'
+			            +'												        	<input type="radio" name="isRegistered" value="true"  '+(IsRegistered=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isRegistered" '+(IsRegistered!="true"?'checked="checked"':'')+' value="false"/>否'
+			            +'												        </td>'
+			            +'												    </tr> '
+			            +'												    <tr>'
+			            +'												        <td>聊天组:</td>'
+			            +'												        <td  align="left" class="tdText">'
+			            +'												        	<input type="radio" name="isActived" value="true"  '+(IsActived=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isActived" '+(IsActived!="true"?'checked="checked"':'')+' value="false"/>否'
+			            +'												        </td>'
+			            +'												    </tr> '
+			            +'												    <tr>'
+			            +'												        <td>isAuthenticated:</td>'
+			            +'												        <td  align="left" class="tdText">'
+			            +'												        	<input type="radio" name="isAuthenticated" value="true"  '+(IsAuthenticated=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAuthenticated" '+(IsAuthenticated!="true"?'checked="checked"':'')+' value="false"/>否'
+			            +'												        </td>'
+			            +'												    </tr> '
+			            +'												    <tr>'
+			            +'												 </table>'
+			            +'												 </form>'
+			            +'												 <button class="btnAthena EbtnLess" style="background-color:#005CA1;margin-left: 90px;margin-top:15px;" id="updateUserInfoBtn">确定</button>');
+				$("#updateUserInfoBtn").click(function(){
+					var isRegistered = $("input[name='isRegistered']:checked").val();
+					var registerDate = $("#registerDate").val();
+					if(isRegistered==null || registerDate==null){
+						swal("修改信息失败", "请输入正确的信息", "error");
+					}
+					$.ajax({
+						url:"../updateUserInfo",
+						data:$("#atest").serialize(),
+						type:"POST",
+						dataType:"json",
+						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						cache:false,
+						async:false,
+						success:function(result) {
+							if(result){
+								swal("更改成功!", "恭喜!", "success"); 
+								hideBouncePanel();
+								getMDLUserLists();
+							} else {
+								swal("更改失败!", "请填写正确的信息.", "error");
+							}
+						}
+					});
+				});
+			}
+		}
+	});
+}
 function showLogoPanel(index){
 	showCommonPanel();
 	var thisLogo=LogoData[index];
@@ -284,75 +389,6 @@ function updateLogo(id){
 		}
 	});
 }
-function getUserInfo(username, headimgurl, openId) {
-	$("#info_interact").css("display","block");
-	$("#info_interact2").css("display","block");
-	$("#info_imgurl").attr("src",headimgurl);
-	//$("#info_username span").html(username+'<img src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
-jQuery
-	.ajax({
-		type : "GET",
-		url : "../userProfile/getMDLUserLists",
-		data : {
-			UID : openId
-			
-		},
-		cache : false,
-		success : function(data) {
-			data = data.replace(/:null/g, ':"未注册"');
-			data = '{"results":' + data + '}';
-			var jsons = eval('(' + data + ')');
-			if (jsons.results.length > 0) {
-				$("#info_tag tr").html("");
-				$("#info_interact img.like").attr("onclick","toLike('"+username+"','"+jsons.results[0].openid+"')");
-				$("#info_interact2 span.like").text(jsons.results[0].like.number==""?0:jsons.results[0].like.number);
-				if(jsons.results[0].role!="未注册"){
-					$("#info_username span").html(jsons.results[0].realName);
-					$("#info_interact img.zan").attr("onclick","recognizationPanelByPerson('"+jsons.results[0].realName+"')");
-					$("#info_interact2 span.zan").text(jsons.results[0].CongratulateNum);
-					if(jsons.results[0].tag!="未注册"){
-						for(var j=0;j<jsons.results[0].tag.length;j++){
-							var tag=jsons.results[0].tag[j];
-							for (var key in tag) { 
-								var td='<td>'
-									+'				<div id="'+key+'" data-dimension="70" data-text="'
-									+tag[key]
-									+'%" data-info="" data-width="8" data-fontsize="18" data-percent="'
-									+tag[key]
-									+'" data-fgcolor="#FFF" data-bgcolor="#aaa" data-fill=""></div>'
-									//+'" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd"></div>'
-									+'				<span style="font-size:12px;">'
-									+key
-									+'</span>'
-									+'														</td>';
-
-								$("#info_tag tr").append(td);
-								$('#'+key).circliful();
-							}
-						}
-					}
-					data = data.replace(/:"未注册"/g, ':"未编辑"');
-					jsons = eval('(' + data + ')');
-					$("#info_all").css('display','table');
-					$("img.zan").css('display','block');
-					$("span.zan").css('display','block');
-					$("#info_username span").html(username+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+jsons.results[0].role+']</span>'+'<img onclick="updateUserInfo(\''+ openId + '\')" src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
-					$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].phone);
-					$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].groupid);
-					$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;<a style='color:#fff;' href='mailto:"+jsons.results[0].email+"'>"+jsons.results[0].email+"</a>");
-					$("#info_selfIntro").text(jsons.results[0].selfIntro);
-				}else{
-					$("#info_username span").html('未注册');
-					$("img.zan").css('display','none');
-					$("span.zan").css('display','none');
-					$("#info_all").css('display','none');
-					$("#info_selfIntro").text('');
-				}
-				$('#UserInfo').modal('show');
-			}
-		}
-	});
-}
 function getMDLUserLists() {
 jQuery
 	.ajax({
@@ -415,22 +451,10 @@ jQuery
 					+'                                           	 	<div class="Work_Mates_img_div2">'
 					+'                                        			 <img src="'
 					+ temp.headimgurl
-					+ '" alt="userImage" class="matesUserImage" alt="no_username" onclick="getUserInfo(\''
-					+ temp.nickname
-					+ '\',\''
-					+ temp.headimgurl
-					+ '\',\''
-					+ temp.openid
-					+ '\');"/> '
+					+ '" alt="userImage" class="matesUserImage" alt="no_username"/> '
 					+'                                         		</div>'
 					+'                                         		<div class="Work_Mates_text_div">'
-					+'                                        			 <h2><span  onclick="getUserInfo(\''
-					+ temp.nickname
-					+ '\',\''
-					+ temp.headimgurl
-					+ '\',\''
-					+ temp.openid
-					+ '\');">'
+					+'                                        			 <h2><span >'
 					+ temp.nickname
 					+ '</span><span class="role">'
 					+role+'</span>'
@@ -453,67 +477,6 @@ jQuery
 			$("#Work_Mates_div").html(ul);
 		}
 	});
-}
-
-function updateUserInfo(openId){
-	$('#UserInfo').modal('hide');
-	$('#updateUserInfoForm').modal('show');
-	$.ajax({
-		type : "GET",
-		url : "../userProfile/getMDLUserLists",
-		data : {
-			UID : openId
-		},
-		cache : false,
-		success : function(data) {
-			data = data.replace(/:null/g, ':"未注册"');
-			data = '{"results":' + data + '}';
-			var jsons = eval('(' + data + ')');
-			console.log(jsons.results[0].IsActive+".."+jsons.results[0].IsAuthenticated+".."+jsons.results[0].IsRegistered);
-			if (jsons.results.length > 0) {
-				 if(jsons.results[0].IsActive !="未注册"){
-					 jsons.results[0].IsActive=="true"?$("input[name='isActived']").eq(0).attr("checked","true"):$("input[name='isActived']").eq(1).attr("checked","true");
-				}
-				if(jsons.results[0].IsAuthenticated !="未注册"){
-					jsons.results[0].IsAuthenticated=="true" ? $("input[name='isAuthenticated']").eq(0).attr("checked","true"):$("input[name='isAuthenticated']").eq(1).attr("checked","true");
-				}
-				if(jsons.results[0].IsRegistered !="未注册"){
-					jsons.results[0].IsRegistered=="true"?$("input[name='isRegistered']").eq(0).attr("checked","true"):$("input[name='isRegistered']").eq(1).attr("checked","true");
-				}
-			    if(jsons.results[0].registerDate !="未注册"){
-			    	$("#registerDate").val(jsons.results[0].registerDate.replace(/\//g,"-"));
-			    } 
-			}
-		}
-	});
-	$("#updateUserInfoBtn").click(function(){
-		var isActived = $("input[name='isActived']:checked").val();
-		var isAuthenticated = $("input[name='isAuthenticated']:checked").val();
-		var isRegistered = $("input[name='isRegistered']:checked").val();
-		var registerDate = $("#registerDate").val();
-		if(isActived==null || isAuthenticated==null ||  isRegistered==null || registerDate==null){
-			swal("updateUserInformation fail! Don't input blank content", "Pls input your correct information.", "error");
-		}
-		
-		$.ajax({
-			url:"../updateUserInfo",
-			data:{uid:openId,isActived:isActived,isAuthenticated:isAuthenticated,isRegistered:isRegistered,registerDate:registerDate},
-			type:"POST",
-			dataType:"json",
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-			cache:false,
-			async:false,
-			success:function(result) {
-				if(result){
-					$('#updateUserInfoForm').modal('hide');
-					swal("updateUserInformation successfully!", "Congratulations!", "success"); 
-				} else {
-					swal("updateUserInformation fail!", "Pls input your correct information.", "error");
-				}
-			}
-		});
-	});
-	
 }
 
 </script>
@@ -555,113 +518,15 @@ function updateUserInfo(openId){
 					<div class="Work_Mates_div2" id="Logo_div">
 					</div>
 					<!-- end logoElements-->
-
 				</div>
-				<div id="UserInfo" class="modal hide fade" tabindex="-1"
-									role="dialog" aria-labelledby="myModalLabel1"
-									aria-hidden="true" data-backdrop="static">
-									<div class="modal-body readmoreHpop"
-										style="white-space: pre-line; padding: 0px;">
-										<img src="../MetroStyleFiles/Close2.png" data-dismiss="modal"
-											aria-hidden="true"
-											style="float: right; height: 27px; cursor: pointer; margin-top: -15px; margin-right: 5px;" />
-										<div id="userInfoDiv">
-											<div id="info_interact"  style="position: absolute;width:100%;">
-												<img class="like" src="../MetroStyleFiles/like.png"/>
-												<img class="zan"  data-dismiss="modal" aria-hidden="true" onclick="recognizationPanel()" src="../MetroStyleFiles/zan.png"/>
-											</div>
-											<div id="info_interact2"
-												style="position: absolute; width: 100%; display: block; margin-top: 45px;">
-												<span class="like"
-													style="float: left; margin-left: 25px; width: 40px; text-align: center;"></span>
-												<span class="zan"
-													style="float: right; margin-right: 30px; margin-top: -20px; width: 40px; text-align: center;"></span>
-											</div>
-											<img id="info_imgurl"
-												src="http://wx.qlogo.cn/mmopen/soSX1MtHexV6ibXOvfzOoeEwjLFW3dyR80Mic1pzmg5b1qV0EFD4aegic9hic5iawRIDgJIImrY0XybC57j16ka4SabDCqy3TTtd2/0"
-												alt="userImage" class="matesUserImage2" style="position: relative;">
-											<div id="info_username" style="margin-top:-20px;">
-												<span></span>
-											</div>
-											<table id="info_all">
-												<tr>
-													<td><img src="../MetroStyleFiles/group2.png"/></td>
-													<td><div id="info_group"></div></td>
-												</tr>
-												<tr>
-													<td><img src="../MetroStyleFiles/telephone2.png"/></td>
-													<td><div id="info_phone"></div></td>
-												</tr>
-												<tr>
-													<td><img src="../MetroStyleFiles/email2.png"/></td>
-													<td><div id="info_email"></div></td>
-												</tr>
-											</table>
-											<div id="info_selfIntro" style="margin-top:-10px;width:100%;text-align:center;"></div>
-											<div style="width:100%; padding:0px;margin-top:-35px;margin-bottom:-40px;overflow-x: auto;">
-												<table id="info_tag" style="margin-left:auto;margin-right:auto;">
-													<tr>
-													</tr>
-												</table>											
-											</div>
-										</div>
-									</div>
-								</div>
-
-
-							
-								<div id="updateUserInfoForm" class="modal hide fade" tabindex="-1"
-									role="dialog" aria-labelledby="myModalLabel1"
-									aria-hidden="true" data-backdrop="static">
-									<div class="modal-body"
-										style="white-space: pre-line; padding: 0px; margin-top:100px">
-										<img src="../MetroStyleFiles/Close2.png" data-dismiss="modal"
-											aria-hidden="true"
-											style="float: right; height: 27px; cursor: pointer; margin-top: -15px; margin-right: 5px;" />
-												<table id="tableForm" style="margin-top:20px;">
-												    <tr>
-												        <td>是否激活</td>
-												        <td class="tdText">
-												        	<input type="radio" name="isActived" value="true"/>是&nbsp;&nbsp;&nbsp;<input type="radio" name="isActived" checked="checked" value="false"/>否
-												        </td>
-												    </tr>
-												    <tr>
-												        <td>是否验证</td>
-												        <td class="tdText">
-												        	<input type="radio" name="isAuthenticated" value="true"/>是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAuthenticated" checked="checked" value="false"/>否
-												        </td>
-												    </tr>
-												    <tr>
-												        <td>是否注册</td>
-												        <td class="tdText">
-												        	<input type="radio" name="isRegistered" value="true"/>是&nbsp;&nbsp;&nbsp;<input type="radio" name="isRegistered" checked="checked" value="false"/>否
-												        </td>
-												    </tr>
-												    <tr>
-													    <td>注册时间</td>
-													    <td class="tdText" >
-													    	<input type="date" id="registerDate" required style="text-align: -webkit-center; width: 130px; margin-left: 80px;">
-													    </td>
-												    </tr>
-												 </table>
-												 <button class="btnAthena EbtnLess" style="background-color:#00B287;margin-bottom: -35px;" id="updateUserInfoBtn">确定</button>
-									</div>
-								</div>
-				
-				
 				<div class="tab-pane  active" id="WorkMates">
 				<div id="Work_Mates_div_list_div2" class="Work_Mates_div_list_div2"></div>
-			
-				<div  style="position: absolute; top: 160px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
-					<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
-					</ul>
-				
-</div>
+					<div  style="position: absolute; top: 160px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
+						<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
+						</ul>
+					</div>
 					<div id="return-top" style="display: block;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="50px"></div>
 				</div>
-				
-				
-				
 			</div>
 		</div>
 	</div>
