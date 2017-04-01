@@ -301,6 +301,9 @@ function UpdateTag(item,flag,obj){
 						 swal("关注成功 ","恭喜你成功关注该项", "success");
 						 tempObj.find(".firstLayer").addClass("attention");
 						 tempObj.find(".firstLayer").find(".quoteTitle").append('<span class="tag">已关注</span>');
+						 if(item.indexOf("Role")==0){
+							 likeRoleNum++;
+						 }
 					 }else  if(flag=='del'){
 						 swal("取消成功","你取消了对该项的关注", "success");
 						 tempObj.find(".firstLayer").removeClass("attention");
