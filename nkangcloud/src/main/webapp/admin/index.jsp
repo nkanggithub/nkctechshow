@@ -500,6 +500,11 @@ jQuery
 					regNumber++;
 					workDay='<div style="float:right;margin-top:-45px;background-color:#eee;color:#333;font-size:13px;padding:3px;">'+workDay+' Days</div>';
 				}
+				var lastUpdatedDate="暂无互动";
+				if(temp.lastUpdatedDate!=null&&temp.lastUpdatedDate!='null'){
+					lastUpdatedDate=temp.lastUpdatedDate.substring(0,10);
+				}
+				
 				if(temp.congratulateNum==null||temp.congratulateNum=='null'||temp.congratulateNum==undefined||temp.congratulateNum==0){
 					
 				}else{
@@ -507,10 +512,11 @@ jQuery
 						+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
 				}
 				var li='	<li class="Work_Mates_div_list_div2">'
-					+'                                           	 	<div class="Work_Mates_img_div2">'
+					+'                                           	 	<div class="Work_Mates_img_div2"  style="margin-top:-10px;margin-bottom:-20px;">'
 					+'                                        			 <img src="'
 					+ temp.headimgurl
 					+ '" alt="userImage" class="matesUserImage" alt="no_username"/> '
+					+'<p style="margin: 0 0 10px;font-size: 12px;text-align: center;color: #375FA7;margin-top: -5px;">'+lastUpdatedDate+'</p>'
 					+'                                         		</div>'
 					+'                                         		<div class="Work_Mates_text_div">'
 					+'                                        			 <h2><span class="name">'
