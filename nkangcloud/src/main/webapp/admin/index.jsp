@@ -97,18 +97,16 @@ $(function(){
               
             });  
             $('#return-top').click(function(){  
-                  
                 $('body,html').animate({scrollTop:0},200);  
-                return false;  
-                  
-                })  
-        })  
+                	return false;  
+                });
+        });
     });
 var clientThemeColor,HpLogoSrc,LogoData;
-
+var RoleList,RoleObj=new Object();
 $(window).load(function() {
+	findRoleList();
 	getLogoLists();
-	getMDLUserLists();
 	$("li.Work_Mates_div_list_div2").live("swiperight",function(){
 		$(this).css("overflow","hidden");
 		$(this).removeClass("editBtn");
@@ -126,6 +124,22 @@ $(window).load(function() {
 	});
 });
 
+function findRoleList(){
+	$.ajax({
+		 url:'../roleOfAreaMap/findList',
+		 type:"GET",
+		 data : {
+			 flag : 'Role'
+		 },
+		 success:function(resData){
+			 RoleList=resData;
+			 for(var i=0;i<RoleList.length;i++){
+				 RoleObj[RoleList[i].id]=RoleList[i].name;
+			 }
+			 getMDLUserLists();
+		}
+	});
+}
 function showUpdateUserPanel(openid,name){
 	showCommonPanel();
 	$(".Work_Mates_div_list_div2").removeClass("editBtn");
@@ -154,6 +168,14 @@ function showUpdateUserPanel(openid,name){
 				var email=data[0].email==null?'':data[0].email;
 				var role=data[0].role==null?'':data[0].role;
 				var selfIntro=data[0].selfIntro==null?'':data[0].selfIntro;
+				var roleSelect='														<option value="">-请选择-</option>';
+				for(var i=0;i<RoleList.length;i++){
+					if(role==RoleList[i].id){
+						roleSelect+='														<option selected="true" value="'+RoleList[i].id+'">'+RoleList[i].name+'</option>';
+					}else{
+						roleSelect+='														<option value="'+RoleList[i].id+'">'+RoleList[i].name+'</option>';
+					}
+				}
 				$("#UpdateUserPartDiv").html('<form id="atest">'
 			            +'												<input type="hidden" name="uid" id="atest_uid" value="'+openid+'"/>'
 			            +'												<table id="tableForm" style="margin-top:-20px;">'
@@ -173,16 +195,7 @@ function showUpdateUserPanel(openid,name){
 			            +'														<td>用户职位:</td>'
 			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
 			            +'														<td><select  name="role">'
-			            +'														<option value="">-请选择-</option>'
-			            +'														<option value="Role001">应用负责人 (App Lead)</option>'
-			            +'														<option value="Role002">开发协调大师 (SM)</option>'
-			            +'														<option value="Role003">产品负责人 (PO/BA)</option>'
-			            +'														<option value="Role004">技术专家 (Tech Lead)</option>'
-			            +'														<option value="Role005">软件开发工程师</option>'
-			            +'														<option value="Role006">软件测试工程师</option>'
-			            +'														<option value="Role007">产品运维工程师</option>'
-			            +'														<option value="Role008">系统架构师</option>'
-			            +'														<option value="Role009">质量控制工程师</option>'
+			            +roleSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
 			            +'												    <tr>'
@@ -415,7 +428,12 @@ jQuery
 			for (var i = 0; i < jsons.results.length; i++) {
 				var temp = jsons.results[i];
 				var selfIntro=temp.selfIntro;
-				var role=temp.role;
+				var role;
+				try{
+				 	role=RoleObj[temp.role];
+				}catch(e){
+					
+				}
 				var workDay=temp.workDay;
 				var tag=temp.tag;
 				var tagHtml="";
