@@ -499,6 +499,9 @@ jQuery
 				}else{
 					regNumber++;
 					workDay='<div style="float:right;margin-top:-45px;background-color:#eee;color:#333;font-size:13px;padding:3px;">'+workDay+' Days</div>';
+					if(temp.IsRegistered!="true"){
+						workDay='<div style="float:right;background-color:#eee;color:red;font-size:13px;padding:3px;margin-right:5px;position:relative;margin-top:-28px;opacity:0.85;">待审核</div>';
+					}
 				}
 				var lastUpdatedDate="暂无互动";
 				if(temp.lastUpdatedDate!=null&&temp.lastUpdatedDate!='null'){
