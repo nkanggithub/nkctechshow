@@ -207,6 +207,7 @@ function findRoleList(){
 	            }
 	        }
 	    }).render();
+	});
 }
 function showUpdateUserPanel(openid,name){
 	showCommonPanel();
