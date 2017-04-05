@@ -54,7 +54,7 @@ public class UserProfileController {
 				sucNum++;
 			}
 		}
-		return sucNum+"条数据同步成功!";
+		return (sucNum+1)+"条数据同步成功!";
 //		WeChatUser user=RestUtils.getWeChatUserInfo(akey, IdLists.get(0).replaceAll("\"",""));
 //		return IdLists.get(0)+"==========="+user.toString();
 	}
