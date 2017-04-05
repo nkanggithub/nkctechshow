@@ -171,8 +171,8 @@ function showUpdateUserPanel(openid,name){
 			            +'													</tr>'
 			            +'													<tr>'
 			            +'														<td>用户职位:</td>'
-			           /*  +'														<td><input type="text" name="companyRole" value="'+role+'"/></td>' */
-			            +'														<td><select  name="companyRole">'
+			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
+			            +'														<td><select  name="role">'
 			            +'														<option value="">-请选择-</option>'
 			            +'														<option value="Role001">应用负责人 (App Lead)</option>'
 			            +'														<option value="Role002">开发协调大师 (SM)</option>'
