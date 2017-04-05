@@ -7,6 +7,7 @@ public class WeChatMDLUser extends WeChatUser {
 
 	public String realName;
 	public String registerDate;
+	public String lastUpdatedDate;
 	public int workDay;
 	public int CongratulateNum;
 	public String role;
@@ -21,6 +22,12 @@ public class WeChatMDLUser extends WeChatUser {
 	public HashMap like;
 
 	public double distance;
+	public String getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
+	public void setLastUpdatedDate(String lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
 	public double getDistance() {
 		return distance;
 	}
