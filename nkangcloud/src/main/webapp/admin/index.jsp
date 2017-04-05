@@ -337,14 +337,14 @@ function getLogoLists() {
 							+'							</div>';
 						clientThemeColor=temp.clientThemeColor;
 						HpLogoSrc=temp.clientLogo;
-						$('#logo_now').html('<img'
+					/* 	$('#logo_now').html('<img'
 								+'				src="'+temp.clientLogo+'"'
 								+'				alt="Logo" class="HpLogo"'
 								+'				style="display: inline !important; height: 30px; float: none; padding: 0px; vertical-align: bottom;"><span'
 								+'				class="clientSubName"'
 								+'				style="font-size: 12px; padding-left: 7px; color: #333;">'+temp.clientSubName+'</span>'
 								+'				<h1 style="color: #333; font-size: 18px;" class="clientName">'+temp.clientName+'</h1>');
-						$('#logo_now_color').css('border-color',temp.clientThemeColor);
+						$('#logo_now_color').css('border-color',temp.clientThemeColor); */
 					}else{
 						buttonText='<div style="float: right; margin-top: -80px; background-color: #0197D6; color: #fff; font-weight:bold; font-size: 13px; padding: 3px;width:50px;text-align:center;border-radius:6px;" onclick="updateLogo(\''+temp.clientStockCode+'\')">'
 							+'								应用'
@@ -454,10 +454,11 @@ jQuery
 					+ '" alt="userImage" class="matesUserImage" alt="no_username"/> '
 					+'                                         		</div>'
 					+'                                         		<div class="Work_Mates_text_div">'
-					+'                                        			 <h2><span >'
+					+'                                        			 <h2><span class="name">'
 					+ temp.nickname
 					+ '</span><span class="role">'
-					+role+'</span>'
+					+role+'</span><span style="display:none;" class="openid">'
+					+temp.openid+'</span>'
 					+congratulate
 					+'</h2>'
 					+ '<div>'
@@ -485,9 +486,7 @@ jQuery
 <body style="padding: 0px !important; margin: 0px;">
 	<div class="navbar-inner" style="background-color: #fff !important;">
 		<div class="container-fluid">
-			<a 
-				style="float: left; padding-top: 10px;"  id="logo_now"> 
-			</a>
+			<a style="float: left; padding-top: 10px;" id="logo_now"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display: inline !important; height: 30px; float: none; padding: 0px; vertical-align: bottom;"><span class="clientSubName" style="font-size: 12px; padding-left: 7px; color: #333;">MDM China</span>				<h1 style="color: #333; font-size: 18px;" class="clientName">DXC Technology Coperation</h1></a>
 			<div class="clear"></div>
 			<ul class="nav pull-right top-menu" style="margin-top: -70px;display:none;">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
