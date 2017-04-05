@@ -376,7 +376,7 @@ public class UserProfileController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
-		                	message=uid+"."+item.getName().split("\\.")[1];
+		                	message=uid+".jpg";
 		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, is);
 		                	
 		                    if(is!=null){

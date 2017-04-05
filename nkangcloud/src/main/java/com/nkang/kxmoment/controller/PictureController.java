@@ -33,7 +33,7 @@ public class PictureController{
     public ArrayList<FaceObj>  upload(HttpServletRequest request) {
 		String openid = request.getParameter("openid");
 		
-		String URL = "http://wonderfulcq.bj.bcebos.com/"+openid+".png";
+		String URL = "http://wonderfulcq.bj.bcebos.com/"+openid+".jpg";
 		String str="";
 		FaceRecognition faceRecognition = new FaceRecognition();
 		ArrayList<FaceObj> ls = new ArrayList<FaceObj>();
