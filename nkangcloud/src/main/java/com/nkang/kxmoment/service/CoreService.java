@@ -223,7 +223,7 @@ public class CoreService
 					else if(eventKey.equals("MYAPPS")){
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle("移动应用");
+						article.setTitle("DXC Technology|移动应用");
 						article.setDescription("移动应用");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
