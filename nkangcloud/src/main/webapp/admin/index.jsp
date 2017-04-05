@@ -45,7 +45,7 @@
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <style>
- #return-top{position:fixed;bottom:40px;right:10px; text-align:center; display:none;z-index:9999;} 
+ #return-top{position:fixed;bottom:40px;right:10px; text-align:center; display:none;z-index:998;} 
 .edit
 {
 	width: 60px;
