@@ -140,6 +140,12 @@ function findRoleList(){
 		}
 	});
 	
+	var data=[];
+	for(var i=0;i<RoleList.length;i++){
+		data[i]["label"]=RoleList[i].name;
+		data[i]["value"]=8;
+	}
+	
 	FusionCharts.ready(function () {
 	    var revenueChart = new FusionCharts({
 	        type: 'doughnut2d',
@@ -173,32 +179,7 @@ function findRoleList(){
 	                "subcaptionFontSize": "14",
 	                "subcaptionFontBold": "0"
 	            },
-	            "data": [
-	                {
-	                    "label": "上游客户:4人",
-	                    "value": 4
-	                }, 
-	                {
-	                    "label": "下游工厂:5人",
-	                    "value": 5
-	                }, 
-	                {
-	                    "label": "贸易商:6人",
-	                    "value": 6
-	                }, 
-	                {
-	                    "label": "代理商:7人",
-	                    "value": 7
-	                }, 
-	                {
-	                    "label": "内部员工:8人",
-	                    "value": 8
-	                }, 
-	                {
-	                    "label": "未分类:9人",
-	                    "value": 9
-	                }
-	            ],
+	            "data": data,
 	            "events": { 
 	                "beforeLinkedItemOpen": function(eventObj, dataObj) { 
 	                    console.log(eventObj);
@@ -626,7 +607,7 @@ jQuery
 					
 					
 				<div id="Work_Mates_div_list_div2" class="Work_Mates_div_list_div2"></div>
-					<div  style="position: absolute; top: 160px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
+					<div  style="position: absolute; top: 480px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
 						<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 						</ul>
 					</div>
