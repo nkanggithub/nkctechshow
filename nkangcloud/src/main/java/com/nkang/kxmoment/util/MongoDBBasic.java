@@ -729,18 +729,22 @@ public class MongoDBBasic {
 		return ret;
 	}
 	
-	public static boolean updateUserWithManageStatus(String openid, String isActived,String isAuthenticated,String isRegistered,String registerDate){
+	public static boolean updateUserWithManageStatus(WeChatMDLUser user){
 		mongoDB = getMongoDB();
 		boolean ret = false;
 		try{
 			BasicDBObject doc = new BasicDBObject();
 			DBObject update = new BasicDBObject();
-			update.put("IsActive", isActived);
-			update.put("IsAuthenticated", isAuthenticated);
-			update.put("IsRegistered", isRegistered);
-			update.put("Teamer.registerDate", registerDate);
+			update.put("IsActive", user.getIsActive());
+			update.put("IsAuthenticated", user.getIsAuthenticated());
+			update.put("IsRegistered", user.getIsRegistered());
+			update.put("Teamer.registerDate", user.getRegisterDate());
+			update.put("Teamer.realName", user.getRealName());
+			update.put("Teamer.email", user.getEmail());
+			update.put("Teamer.phone", user.getPhone());
+			update.put("Teamer.role", user.getRole());
 			doc.put("$set", update); 
-			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", openid), doc);     
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", user.getOpenid()), doc);     
 			ret = true;
 		}
 		catch(Exception e){
