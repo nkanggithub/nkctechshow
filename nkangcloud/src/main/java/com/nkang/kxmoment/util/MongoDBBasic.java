@@ -615,7 +615,55 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
-	
+	public static boolean delNullUser(){
+		Boolean ret = false;
+		mongoDB = getMongoDB();
+		DBCollection dbCol = mongoDB.getCollection(wechat_user);  
+        BasicDBObject doc = new BasicDBObject();  
+        doc.put("OpenID", null);  
+        dbCol.remove(doc);  
+        ret = true;
+		return ret;
+	}
+	public static boolean updateUser(WeChatUser wcu){
+		mongoDB = getMongoDB();
+		java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime()); 
+		Boolean ret = false;
+	    try{
+            BasicDBObject doc = new BasicDBObject();  
+	    	DBObject update = new BasicDBObject();
+	    	update.put("HeadUrl", wcu.getHeadimgurl());
+	    	update.put("NickName", wcu.getNickname());
+    	    update.put("Created", DateUtil.timestamp2Str(cursqlTS));
+	    	doc.put("$set", update);  
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", wcu.getOpenid()), doc);
+            ret = true;
+	    }
+		catch(Exception e){
+			log.info("updateUser--" + e.getMessage());
+		}
+		return ret;
+	}
+	public static boolean syncWechatUserToMongo(WeChatUser wcu){
+		mongoDB = getMongoDB();
+		boolean result=false;
+		WeChatUser ret = null;
+	    try{
+	    	DBObject query = new BasicDBObject();
+	    	query.put("OpenID", wcu.getOpenid());
+	    	DBObject queryresult = mongoDB.getCollection(wechat_user).findOne(query);
+	    	if(queryresult != null){
+	    		result=updateUser(wcu);
+	    	}else{
+	    		result=createUser(wcu);
+	    	}
+	    	result=true;
+	    }
+		catch(Exception e){
+			log.info("queryWeChatUser--" + e.getMessage());
+		}
+		return result;
+	}
 	public static PlatforRelated getPlatforRelated(String clientStockCode){
 		mongoDB = getMongoDB();
 		PlatforRelated platforRelated = new PlatforRelated();
