@@ -545,8 +545,8 @@ jQuery
 				noRoleNum=noRoleNum-data[i]["value"];
 			}
 			data[RoleList.length]=new Object();
-			data[RoleList.length]["label"]='未分类';
 			data[RoleList.length]["value"]=noRoleNum;
+			data[RoleList.length]["label"]='未分类:'+noRoleNum+'人';
 			
 			FusionCharts.ready(function(){
 			    var revenueChart = new FusionCharts({
