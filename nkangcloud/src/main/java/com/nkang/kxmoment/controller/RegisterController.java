@@ -90,15 +90,23 @@ public class RegisterController {
 		String isAuthenticated = request.getParameter("isAuthenticated");
 		String isRegistered = request.getParameter("isRegistered");
 		String registerDate = request.getParameter("registerDate");
+		String role = request.getParameter("role");
+		String realName = request.getParameter("realName");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
 		WeChatMDLUser user = new WeChatMDLUser();
 		user.setOpenid(URLEncoder.encode(openId, "UTF-8"));
 		user.setIsActive(isActived);
 		user.setIsAuthenticated(isAuthenticated);
 		user.setIsRegistered(isRegistered);
+		user.setRole(role);
+		user.setRealName(realName);
+		user.setPhone(phone);
+		user.setEmail(email);
 		if(!StringUtils.isNullOrEmpty(registerDate)){
 			user.setRegisterDate(registerDate);
 		}
-		return MongoDBBasic.updateUserWithManageStatus(user.getOpenid(), user.getIsActive(), user.getIsAuthenticated(), user.getIsRegistered(),user.getRegisterDate());
+		return MongoDBBasic.updateUserWithManageStatus(user);
 	}
 	
 	@RequestMapping("/ajaxValidateTelephone")
