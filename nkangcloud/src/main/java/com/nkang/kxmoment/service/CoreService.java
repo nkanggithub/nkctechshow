@@ -225,22 +225,22 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle("移动应用");
 						article.setDescription("移动应用");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlU0c&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
 						article2.setTitle("微应用");
 						article2.setDescription("My Personal Applications");
-						article2.setPicUrl("http://www.ecozine.com/sites/default/files/imagecache/category_blog/imagefield_default_images/icn-profile_0.png");
+						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7K&oid=00D90000000pkXM");
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article2);
 						String hardcodeUID = "oqPI_xLq1YEJOczHi4DS2-1U0zqc";
 						String hardcodeUID2 = "oqPI_xACjXB7pVPGi5KH9Nzqonj4";
 						if(hardcodeUID.equalsIgnoreCase(fromUserName)||hardcodeUID2.equalsIgnoreCase(fromUserName)){
 							Article article3 = new Article();
-							article3.setTitle("产品管理");
+							article3.setTitle("微管理");
 							article3.setDescription("Administration");
-							article3.setPicUrl("http://www.ecozine.com/sites/default/files/imagecache/category_blog/imagefield_default_images/icn-profile_0.png");
+							article3.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7e&oid=00D90000000pkXM");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp");
 							articleList.add(article3);
 						}
