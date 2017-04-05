@@ -502,7 +502,7 @@ jQuery
 		</div>
 	</div>
 	<div class="TABclass">
-		<div id="logo_now_color" style="border-top: 4px solid #fff; padding: 5px;">
+		<div id="logo_now_color" style="border-top: 4px solid #000; padding: 5px;">
 			<ul class="nav nav-tabs" id="myTabs"
 				style="border-color: #000;">
 				<li  class="active"><a href="#WorkMates" data-toggle="tab"
