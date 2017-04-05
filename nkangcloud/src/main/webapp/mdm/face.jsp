@@ -78,6 +78,7 @@ table tr td:nth-child(even) {
 </a>	
 <img style="position:absolute;top:8px;right:20px;" src="" alt="Logo" class="HpLogo">
 <div style="width:100%;height:4px;position:absolute;top:70px;" class="clientTheme"></div>
+<input id="uid" type="hidden" value="<%=uid %>" />
 <!-- <div id="text" style="margin-top:150px;width:80%;margin-left:10%;text-align:center;">
 </div> -->
 <form id='submit_form' name='submit_form' action='../userProfile/uploadSelfie?openId=<%=uid%> ' enctype='multipart/form-data' method='post'>
@@ -87,11 +88,64 @@ table tr td:nth-child(even) {
 					<label for="file-5" style="text-align:center;"><figure style="background-color:black"><svg style="fill:white;" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span style="color:black">Choose a file&hellip;</span></label>
 				</div>
 				</form>
+				<div id="text" style="text-align: center;position: absolute;top: 400px; width: 80%;left: 10%;"></div>
 <script>
 function uploadPic(obj){
 	if($(obj).val()!='') {
 		  $("#submit_form").ajaxSubmit(function(message) {
 			  swal("恭喜！", "您的图片已上传成功!", "success"); 
+			  	$.ajax({  
+			        cache : false,  
+			        type : "GET",
+					url : "../uploadPicture", 
+					async: false,  
+					data : {openid:$('#uid').val()},
+			        timeout: 2000, 
+			        success: function(data){
+						$("#text").html("");
+						var div="";
+						if (data.length > 0) {
+							for(var i=0;i<data.length;i++){
+								var temp =  data[i];
+								div+='<div class ="DetectedPerson">'
+									+'	<div  class="myfacevalue">'
+									+'	<canvas '
+									+'			class="myfacevalue" onclick="javascript:alert(\'颜值\');"'
+									+'			data-type="radial-gauge"'
+									+'	        data-value="'+temp.levelNum+'"'
+									+'	        data-width="350"'
+									+'	        data-height="350"'
+									+'	        data-bar-width="10"'
+									+'	        data-bar-shadow="5"'
+									+'	        data-color-bar-progress="rgba(50,200,50,.75)"'
+									+'	></canvas>'
+									+'	</div>'
+									+'	<div class="myfacevalueattribute">'
+									+'		<table>'
+									+'			<tr><td>Smile</td><td>'+temp.smile+'</td></tr>'
+									+'			<tr><td>Age</td><td>'+temp.age+'</td></tr>'
+									+'			<tr><td>Glasses</td><td>'+temp.glasses+'</td></tr>'
+									+'			<tr><td>Gender</td><td>'+temp.gender+'</td></tr>'
+									+'			<tr><td>MouStache</td><td>'+temp.moustache+'</td></tr>'
+									+'			<tr><td>Beard</td><td>'+temp.beard+'</td></tr>'
+									+'			<tr><td>Anger</td><td>'+temp.anger.substr(0,9)+'</td></tr>'
+									+'			<tr><td>Contempt</td><td>'+temp.contempt.substr(0,9)+'</td></tr>'
+									+'			<tr><td>Disgust</td><td>'+temp.disgust.substr(0,9)+'</td></tr>'
+									+'			<tr><td>Fear</td><td>'+temp.fear.substr(0,9)+'</td></tr>'
+									+'			<tr><td>Happiness</td><td>'+temp.happiness.substr(0,9)+'</td></tr>'
+									+'			<tr><td>Sadness</td><td>'+temp.sadness.substr(0,9)+'</td></tr>'
+									+'			<tr><td>Surprise</td><td>'+temp.surprise.substr(0,9)+'</td></tr>'
+									+'		</table>'
+									+'	</div>'
+									+'	<div class="clear"></div>'
+									+'</div>';
+							}
+						}else{
+							div="you don't have one photo..";
+						}
+						$("#text").html(div);
+			        }
+			  	}); 
 		  } );
 
 	}
@@ -110,59 +164,7 @@ function uploadPic(obj){
 			$('.icon > img.exit ').css('-webkit-filter','drop-shadow(30px 0 '+jsons.clientThemeColor+')');
 		}
 	});
-  	$.ajax({  
-	        cache : false,  
-	        type : "GET",
-			url : "../uploadPicture", 
-			async: false,  
-			data : {openid:$('#uid').val()},
-	        timeout: 2000, 
-	        success: function(data){
-				$("#text").html("");
-				var div="";
-				if (data.length > 0) {
-					for(var i=0;i<data.length;i++){
-						var temp =  data[i];
-						$("#imgCurrentpic").attr("href",temp.currentUrl);
-						div+='<div class ="DetectedPerson">'
-							+'	<div  class="myfacevalue">'
-							+'	<canvas '
-							+'			class="myfacevalue" onclick="javascript:alert(\'颜值\');"'
-							+'			data-type="radial-gauge"'
-							+'	        data-value="'+temp.levelNum+'"'
-							+'	        data-width="350"'
-							+'	        data-height="350"'
-							+'	        data-bar-width="10"'
-							+'	        data-bar-shadow="5"'
-							+'	        data-color-bar-progress="rgba(50,200,50,.75)"'
-							+'	></canvas>'
-							+'	</div>'
-							+'	<div class="myfacevalueattribute">'
-							+'		<table>'
-							+'			<tr><td>Smile</td><td>'+temp.smile+'</td></tr>'
-							+'			<tr><td>Age</td><td>'+temp.age+'</td></tr>'
-							+'			<tr><td>Glasses</td><td>'+temp.glasses+'</td></tr>'
-							+'			<tr><td>Gender</td><td>'+temp.gender+'</td></tr>'
-							+'			<tr><td>MouStache</td><td>'+temp.moustache+'</td></tr>'
-							+'			<tr><td>Beard</td><td>'+temp.beard+'</td></tr>'
-							+'			<tr><td>Anger</td><td>'+temp.anger.substr(0,9)+'</td></tr>'
-							+'			<tr><td>Contempt</td><td>'+temp.contempt.substr(0,9)+'</td></tr>'
-							+'			<tr><td>Disgust</td><td>'+temp.disgust.substr(0,9)+'</td></tr>'
-							+'			<tr><td>Fear</td><td>'+temp.fear.substr(0,9)+'</td></tr>'
-							+'			<tr><td>Happiness</td><td>'+temp.happiness.substr(0,9)+'</td></tr>'
-							+'			<tr><td>Sadness</td><td>'+temp.sadness.substr(0,9)+'</td></tr>'
-							+'			<tr><td>Surprise</td><td>'+temp.surprise.substr(0,9)+'</td></tr>'
-							+'		</table>'
-							+'	</div>'
-							+'	<div class="clear"></div>'
-							+'</div>';
-					}
-				}else{
-					div="you don't have one photo..";
-				}
-				$("#text").html(div);
-	        }
-	  	}); 
+
   	</script>
   	
 		 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
