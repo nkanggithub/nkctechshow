@@ -122,8 +122,27 @@ $(window).load(function() {
 		$(this).siblings().removeClass("editBtn");
 		$(this).siblings().remove(".edit");
 	});
+	$("#syncUser").click(function(){
+		syncUser();
+	});
+	$("#refreshUser").click(function(){
+		getMDLUserLists();
+	});
 });
-
+function syncUser(){
+	$("#syncUser").attr("src","../MetroStyleFiles/loading.gif");
+	jQuery.ajax({
+		type : "GET",
+		url : "../userProfile/getWechatUserLists",
+		data : {},
+		cache : false,
+		success : function(data) {
+			swal("同步成功！", data, "success"); 
+			$("#syncUser").attr("src","../MetroStyleFiles/sync.png");
+			getMDLUserLists();
+		}
+	});
+}
 function findRoleList(){
 	$.ajax({
 		 url:'../roleOfAreaMap/findList',
@@ -137,58 +156,12 @@ function findRoleList(){
 				 RoleObj[RoleList[i].id]=RoleList[i].name;
 			 }
 			 getMDLUserLists();
+			 
+			 
+			 
 		}
 	});
 	
-	var data=[];
-	for(var i=0;i<RoleList.length;i++){
-		data[i]["label"]=RoleList[i].name;
-		data[i]["value"]=8;
-	}
-	
-	FusionCharts.ready(function () {
-	    var revenueChart = new FusionCharts({
-	        type: 'doughnut2d',
-	        renderAt: 'chart-container',
-	        width: '350',
-	        height: '300',
-	        dataFormat: 'json',
-	        dataSource: {
-	            "chart": {
-	                "caption": "",
-	                "subCaption": "",
-	                "numberSuffix": "人",
-	                "paletteColors": "#8e0000,#8e7080,#0075c2,#1aaf5d,#f2c500,#f45b00",
-	                "bgColor": "#ffffff",
-	                "showBorder": "0",
-	                "use3DLighting": "0",
-	                "showShadow": "0",
-	                "enableSmartLabels": "0",
-	                "startingAngle": "310",
-	                "showLabels": "0",
-	                "showPercentValues": "1",
-	                "showLegend": "1",
-	                "legendShadow": "0",
-	                "legendBorderAlpha": "0",
-	                "defaultCenterLabel": "总人数: 44人",
-	                "centerLabel": " $label",
-	                "centerLabelBold": "1",
-	                "showTooltip": "0",
-	                "decimals": "0",
-	                "captionFontSize": "14",
-	                "subcaptionFontSize": "14",
-	                "subcaptionFontBold": "0"
-	            },
-	            "data": data,
-	            "events": { 
-	                "beforeLinkedItemOpen": function(eventObj, dataObj) { 
-	                    console.log(eventObj);
-	                    console.log(dataObj);
-	                }
-	            }
-	        }
-	    }).render();
-	});
 }
 function showUpdateUserPanel(openid,name){
 	showCommonPanel();
@@ -475,14 +448,20 @@ jQuery
 			data = '{"results":' + data + '}';
 			var jsons = eval('(' + data + ')');
 			var ul = "",regNumber=0;
+			var RoleNum=new Object(),noRoleNum=0;
 			for (var i = 0; i < jsons.results.length; i++) {
 				var temp = jsons.results[i];
 				var selfIntro=temp.selfIntro;
 				var role;
 				try{
 				 	role=RoleObj[temp.role];
+				 	if(RoleNum[temp.role]==null||RoleNum[temp.role]==undefined){
+				 		RoleNum[temp.role]=1;
+				 	}else{
+				 		RoleNum[temp.role]++;
+				 	}
 				}catch(e){
-					
+					noRoleNum++;
 				}
 				var workDay=temp.workDay;
 				var tag=temp.tag;
@@ -556,6 +535,65 @@ jQuery
 					+'&nbsp;&nbsp;&nbsp;已注册人数：'+regNumber
 					+'</span><div class="clear"></div>');
 			$("#Work_Mates_div").html(ul);
+			
+			var data=[];
+			noRoleNum=jsons.results.length;
+			for(var i=0;i<RoleList.length;i++){
+				data[i]=new Object();
+				data[i]["value"] = (RoleNum[RoleList[i].id]==undefined?0:RoleNum[RoleList[i].id]) ;
+				data[i]["label"]=RoleList[i].name +":"+data[i]["value"]+"人";
+				noRoleNum=noRoleNum-data[i]["value"];
+			}
+			data[RoleList.length]=new Object();
+			data[RoleList.length]["label"]='未分类';
+			data[RoleList.length]["value"]=noRoleNum;
+			
+			FusionCharts.ready(function(){
+			    var revenueChart = new FusionCharts({
+			        type: 'doughnut2d',
+			        renderAt: 'chart-container',
+			        width: '350',
+			        height: '300',
+			        dataFormat: 'json',
+			        dataSource: {
+			            "chart": {
+			                "caption": "",
+			                "subCaption": "",
+			                "numberSuffix": "人",
+			                "paletteColors": "#8e0000,#8e7080,#0075c2,#1aaf5d,#f2c500,#f45b00",
+			                "bgColor": "#ffffff",
+			                "showBorder": "0",
+			                "use3DLighting": "0",
+			                "showShadow": "0",
+			                "enableSmartLabels": "0",
+			                "startingAngle": "310",
+			                "showLabels": "0",
+			                "showPercentValues": "1",
+			                "showLegend": "1",
+			                "legendShadow": "0",
+			                "legendBorderAlpha": "0",
+			                "defaultCenterLabel": "共"+jsons.results.length+"人",
+			                "centerLabel": " $label",
+			                "centerLabelBold": "1",
+			                "showTooltip": "0",
+			                "decimals": "0",
+			                "captionFontSize": "14",
+			                "subcaptionFontSize": "14",
+			                "subcaptionFontBold": "0"
+			            },
+			            "data": data,
+			            "events": { 
+			                "beforeLinkedItemOpen": function(eventObj, dataObj) { 
+			                    console.log(eventObj);
+			                    console.log(dataObj);
+			                }
+			            }
+			        }
+			    }).render();
+			});
+			
+			
+			
 		}
 	});
 }
