@@ -329,5 +329,48 @@ public class UserProfileController {
 		    return message;
 
 	}
+	@RequestMapping(value = "/uploadSelfie", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String uploadSelfie(HttpServletRequest request,HttpServletResponse response,@RequestParam(value = "openId") String uid){
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		System.out.println("uid=="+uid);
+	    factory.setSizeThreshold(1024 * 1024);
+	    ServletFileUpload upload = new ServletFileUpload(factory);
+	    upload.setFileSizeMax(1024 * 1024 * 2);
+	    upload.setHeaderEncoding("utf-8");
+	    upload.setSizeMax(1024 * 1024 * 4);
+
+		 List<FileItem> fileList = null;
+		 	String message = "文件导入失败，请重新导入..";
+		 	Map map =new HashMap<String,List>();
+		 	PutObjectResponse putObjectResponseFromInputStream=null;
+		 	String bk = MyBosClient.client.listBuckets().getBuckets().get(1).getName();
+		 	for(int i=0;i<MyBosClient.client.listBuckets().getBuckets().size();i++){
+		 	System.out.println("MyBosClient.client.listBuckets("+i+")"+MyBosClient.client.listBuckets().getBuckets().get(i).getName());}
+		    try {
+		        fileList = upload.parseRequest(new ServletRequestContext(request));
+		        if(fileList != null){
+		            for(FileItem item:fileList){
+		            	//String filename="";
+		            	   if(!item.isFormField() && item.getSize() > 0){
+		                	InputStream is = item.getInputStream();
+		                	message=uid;
+		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, is);
+		                	
+		                    if(is!=null){
+		                    	is.close();
+		                    }
+		                }
+		            }
+		        }
+		           
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
+		    
+		    }
+		    return message;
+
+	}
 
 }
