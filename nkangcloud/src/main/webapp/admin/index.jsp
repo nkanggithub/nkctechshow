@@ -240,7 +240,7 @@ function showUpdateUserPanel(openid,name){
 			            +'												        </td>'
 			            +'												    </tr> '
 			            +'												    <tr>'
-			            +'												        <td>isAuthenticated:</td>'
+			            +'												        <td>消息推送:</td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isAuthenticated" value="true"  '+(IsAuthenticated=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAuthenticated" '+(IsAuthenticated!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
@@ -641,7 +641,7 @@ jQuery
 					<div id="chart-container" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
 					
 					
-					<div  style="position: absolute; top: 480px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
+					<div  style="position: absolute; top: 440px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
 						<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 						</ul>
 					</div>
