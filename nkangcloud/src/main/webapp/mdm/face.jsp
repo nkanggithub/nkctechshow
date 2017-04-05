@@ -82,7 +82,7 @@ table tr td:nth-child(even) {
 										
 <!-- <div id="text" style="margin-top:150px;width:80%;margin-left:10%;text-align:center;">
 </div> -->
-<form id='submit_form' name='submit_form' action='../userProfile/uploadSelfie?openId="<%=uid%>" ' enctype='multipart/form-data' method='post'>
+<form id='submit_form' name='submit_form' action='../userProfile/uploadSelfie?openId=<%=uid%> ' enctype='multipart/form-data' method='post'>
 		<div style="position:absolute;top:180px;right:28%;">
 		
 					<input type="file" name="file-5[]" style="display:none;" onchange='uploadPic(this)' id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
