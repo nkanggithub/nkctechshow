@@ -41,7 +41,7 @@
 <script src="../Jsp/JS/modernizr.js"></script>
 <script src="../Jsp/JS/jSignature.min.noconflict.js"></script>
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
-
+<script src="../Jsp/JS/fusioncharts.js" type="text/javascript"></script>
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <style>
@@ -139,6 +139,74 @@ function findRoleList(){
 			 getMDLUserLists();
 		}
 	});
+	
+	FusionCharts.ready(function () {
+	    var revenueChart = new FusionCharts({
+	        type: 'doughnut2d',
+	        renderAt: 'chart-container',
+	        width: '350',
+	        height: '300',
+	        dataFormat: 'json',
+	        dataSource: {
+	            "chart": {
+	                "caption": "",
+	                "subCaption": "",
+	                "numberSuffix": "人",
+	                "paletteColors": "#8e0000,#8e7080,#0075c2,#1aaf5d,#f2c500,#f45b00",
+	                "bgColor": "#ffffff",
+	                "showBorder": "0",
+	                "use3DLighting": "0",
+	                "showShadow": "0",
+	                "enableSmartLabels": "0",
+	                "startingAngle": "310",
+	                "showLabels": "0",
+	                "showPercentValues": "1",
+	                "showLegend": "1",
+	                "legendShadow": "0",
+	                "legendBorderAlpha": "0",
+	                "defaultCenterLabel": "总人数: 44人",
+	                "centerLabel": " $label",
+	                "centerLabelBold": "1",
+	                "showTooltip": "0",
+	                "decimals": "0",
+	                "captionFontSize": "14",
+	                "subcaptionFontSize": "14",
+	                "subcaptionFontBold": "0"
+	            },
+	            "data": [
+	                {
+	                    "label": "上游客户:4人",
+	                    "value": 4
+	                }, 
+	                {
+	                    "label": "下游工厂:5人",
+	                    "value": 5
+	                }, 
+	                {
+	                    "label": "贸易商:6人",
+	                    "value": 6
+	                }, 
+	                {
+	                    "label": "代理商:7人",
+	                    "value": 7
+	                }, 
+	                {
+	                    "label": "内部员工:8人",
+	                    "value": 8
+	                }, 
+	                {
+	                    "label": "未分类:9人",
+	                    "value": 9
+	                }
+	            ],
+	            "events": { 
+	                "beforeLinkedItemOpen": function(eventObj, dataObj) { 
+	                    console.log(eventObj);
+	                    console.log(dataObj);
+	                }
+	            }
+	        }
+	    }).render();
 }
 function showUpdateUserPanel(openid,name){
 	showCommonPanel();
@@ -516,8 +584,10 @@ jQuery
 <body style="padding: 0px !important; margin: 0px;">
 	<div class="navbar-inner" style="background-color: #fff !important;">
 		<div class="container-fluid">
-			<a style="float: left; padding-top: 10px;" id="logo_now"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display: inline !important; height: 30px; float: none; padding: 0px; vertical-align: bottom;"><span class="clientSubName" style="font-size: 12px; padding-left: 7px; color: #333;">MDM China</span>				<h1 style="color: #333; font-size: 18px;" class="clientName">DXC Technology Coperation</h1></a>
-			<div class="clear"></div>
+			<!-- <a style="float: left; padding-top: 10px;" id="logo_now"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display: inline !important; height: 30px; float: none; padding: 0px; vertical-align: bottom;"><span class="clientSubName" style="font-size: 12px; padding-left: 7px; color: #333;">MDM China</span>				<h1 style="color: #333; font-size: 18px;" class="clientName">DXC Technology Coperation</h1></a>
+			 -->
+			 <a style="float: left; padding-top: 10px;" id="logo_now"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">				</a>
+			 <div class="clear"></div>
 			<ul class="nav pull-right top-menu" style="margin-top: -70px;display:none;">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"
@@ -549,6 +619,11 @@ jQuery
 					<!-- end logoElements-->
 				</div>
 				<div class="tab-pane  active" id="WorkMates">
+				<img id="refreshUser"  src="../MetroStyleFiles/refresh2.png" style="height:25px;float:right;margin-top:8px;margin-left:15px;"/>
+					<img id="syncUser"  src="../MetroStyleFiles/sync.png" style="height:30px;float:right;margin-top:7px;"/>
+					<div id="chart-container" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
+					
+					
 				<div id="Work_Mates_div_list_div2" class="Work_Mates_div_list_div2"></div>
 					<div  style="position: absolute; top: 160px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
 						<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
