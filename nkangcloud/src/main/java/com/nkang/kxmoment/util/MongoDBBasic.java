@@ -1769,6 +1769,10 @@ public class MongoDBBasic {
             				if(teamobj.get("role") != null){
             					weChatMDLUser.setRole(teamobj.get("role").toString());
             				}
+
+                			if(o.get("LastUpdatedDate") != null){
+                				weChatMDLUser.setLastUpdatedDate(o.get("LastUpdatedDate").toString());
+                			}
             				if(teamobj.get("registerDate") != null){
             					weChatMDLUser.setRegisterDate(teamobj.get("registerDate").toString());
             					SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
