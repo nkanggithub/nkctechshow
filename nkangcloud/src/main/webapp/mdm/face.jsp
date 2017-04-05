@@ -9,9 +9,19 @@ String uid = request.getParameter("UID");
   <title>HPE - Face Recognition</title>
   <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  
+<link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/profile.css"/>
+
+		<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/component.css" />
   <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
+  
+<script type="text/javascript" src="../nkang/jquery-form.js"></script>
+
+<script	src="../MetroStyleFiles/sweetalert.min.js"></script>
+  
 <style>
 
 .DetectedPerson{
@@ -69,11 +79,27 @@ table tr td:nth-child(even) {
 <img style="position:absolute;top:8px;right:20px;" src="" alt="Logo" class="HpLogo">
 <div style="width:100%;height:4px;position:absolute;top:70px;" class="clientTheme"></div>
 <div style="width:80%;position:absolute;top:103px;left:10%;font-size: 21px;padding:6px 0;color: #444444;border-bottom:1px solid #ddd;">看我颜值如何爆表<a id="imgCurrentpic" style="font-size:10px;color:#333;">查看照片>></a></div>
-<input id="uid" type="hidden" value="<%=uid%>" />											
-<div id="text" style="margin-top:150px;width:80%;margin-left:10%;text-align:center;">
-</div>
+										
+<!-- <div id="text" style="margin-top:150px;width:80%;margin-left:10%;text-align:center;">
+</div> -->
+<form id='submit_form' name='submit_form' action='../userProfile/uploadSelfie?openId="<%=uid%>" ' enctype='multipart/form-data' method='post'>
+		<div style="position:absolute;top:180px;right:28%;">
+		
+					<input type="file" name="file-5[]" style="display:none;" onchange='uploadPic(this)' id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
+					<label for="file-5" style="text-align:center;"><figure style="background-color:black"><svg style="fill:white;" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span style="color:black">Choose a file&hellip;</span></label>
+				</div>
+				</form>
 <script>
-	jQuery.ajax({
+function uploadPic(obj){
+	if($(obj).val()!='') {
+		  $("#submit_form").ajaxSubmit(function(message) {
+			  swal("恭喜！", "您的图片已上传成功!", "success"); 
+		  } );
+
+	}
+	return false;
+}
+	 jQuery.ajax({
 		type : "GET",
 		url : "../QueryClientMeta",
 		data : {},
@@ -138,8 +164,10 @@ table tr td:nth-child(even) {
 				}
 				$("#text").html(div);
 	        }
-	  	});
+	  	}); 
   	</script>
+  	
+		 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
   <script type="text/javascript" src="../Jsp/JS/gauge.min.js"></script>
 </body>
 </html>
