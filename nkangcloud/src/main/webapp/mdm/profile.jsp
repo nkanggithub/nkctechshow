@@ -1677,14 +1677,8 @@ function getNowFormatDate() {
 												 <a href="face.jsp?UID=<%=uid%>">
 												 <img src="../MetroStyleFiles/menu-face.png" /></a>
 													<h4>测颜值</h4></td>
-												<td><img src="../MetroStyleFiles/menu-develop.png" />
-													<h4>开发中</h4></td>
-											</tr>
-											<tr>
-												<td><img src="../MetroStyleFiles/menu-develop.png" />
-													<h4>开发中</h4></td>
-												<td><img src="../MetroStyleFiles/menu-develop.png" />
-													<h4>开发中</h4></td>
+												<td><img src="../MetroStyleFiles/Add1.png" />
+													<h4>更多应用</h4></td>
 											</tr>
 										</table>
 									</div>

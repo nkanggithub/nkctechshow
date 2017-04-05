@@ -142,7 +142,7 @@ Integer other=(Integer)immetrics.get("OTHER");
 	        dataFormat: 'json',
 	        dataSource: {
 	            "chart": {
-	                "caption": "IM Metrics",
+	                "caption": "Closed IM Metrics By Region",
 	                "subCaption": "",
 	                "numberPrefix": "",
 	                "startingAngle": "20",
