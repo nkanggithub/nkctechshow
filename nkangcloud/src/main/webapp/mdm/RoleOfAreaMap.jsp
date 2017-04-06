@@ -6,18 +6,8 @@
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
 <%	
-String AccessKey = RestUtils.callGetValidAccessKey();
 String uid = request.getParameter("UID");
-/* 
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-*/
-WeChatUser wcu;
-if (session.getAttribute("location") == null) {
-	wcu = RestUtils.getWeChatUserInfo(AccessKey, uid);
-	session.setAttribute("wcu", wcu);
-} else {
-	wcu = (WeChatUser) session.getAttribute("wcu");
-}
 %>
 <!Doctype html>
 <html>
@@ -331,11 +321,19 @@ function getAllDatas(){
 			 success:function(resData){
 			 if(resData.length)
 			{
+				var NowRoleArr=new Array();
 			    var NoLikeArr=new Array();
 				var LikeArr=new Array();
 				likeRoleNum=0;
+				var nowRole=$("#role").val();
+				 
 				if(KMLikeArr.length>0){
 						 for(var i=0;i<resData.length;i++){
+							 
+							 if(resData[i].flag=='Role'&&resData[i].id==nowRole)
+				 			 {
+								 NowRoleArr.push(resData[i]);
+				 			 }else{
 						 		var itemTemp=$.trim(resData[i].id);
 						 		var index=$.inArray(itemTemp,KMLikeArr);
 						 		if(index>-1){
@@ -349,11 +347,12 @@ function getAllDatas(){
 						 		}else{
 						 			NoLikeArr.push(resData[i]);
 						 		}
+				 			 }
 						}
 		 		}else{
 		 			NoLikeArr=resData;
 		 		}
-				var data=$.merge(LikeArr, NoLikeArr); 
+				var data=$.merge($.merge(NowRoleArr, LikeArr), NoLikeArr); 
 				 var roleHtml="";
 				 var areaHtml="";
 				 var totalNum=0;
@@ -409,8 +408,8 @@ function getAllDatas(){
 					<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display:inline !important;height:35px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
 					<span class="clientSubName" style="font-size:12px;padding-left:7px;color:#333;">MDM China</span>
 					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">DXC Technology Coperation</h2>
-					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您,<%=wcu.getNickname() %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:36px;right:10px;" src="<%=wcu.getHeadimgurl() %>" alt=""/>
-				<input id="openid" type="hidden" value="<%=uid%>"/>
+					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您,<%=res.get("NickName") %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:36px;right:10px;" src="<%=res.get("HeadUrl") %>" alt=""/>
+				<input id="openid" type="hidden" value="<%=uid%>"/><input id="role" type="hidden" value="<%=res.get("role")%>"/>
 </div>		
 	<div class="TABclass">
 		<div id="logo_now_color" style="border-top: 4px solid #fff; padding-top: 5px;">
