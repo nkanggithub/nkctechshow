@@ -3,7 +3,7 @@
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
-<%
+<%-- <%
 Map runMaintain = MongoDBBasic.getRunMaintainMetrics();
 List<Integer> apj=(List<Integer>)runMaintain.get("APJ");
 List<Integer> usa=(List<Integer>)runMaintain.get("USA");
@@ -15,7 +15,7 @@ Integer usa2=(Integer)immetrics.get("USA");
 Integer mexico2=(Integer)immetrics.get("MEXICO");
 Integer emea2=(Integer)immetrics.get("EMEA");
 Integer other=(Integer)immetrics.get("OTHER");
-%>
+%> --%>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -28,7 +28,7 @@ Integer other=(Integer)immetrics.get("OTHER");
 	
 
      <script>
-    FusionCharts.ready(function () {
+   <%--  FusionCharts.ready(function () {
         var estProcChart = new FusionCharts({
             type: 'errorline',
             renderAt: 'chart-container1',
@@ -178,7 +178,7 @@ Integer other=(Integer)immetrics.get("OTHER");
 	            ]
 	        }
 	    }).render();
-    });
+    }); --%>
     </script> 
 </head>
 <body style="margin:0px">
@@ -195,8 +195,13 @@ Integer other=(Integer)immetrics.get("OTHER");
 			
 		</div>
 		
-		<img style="width: 50%;position: absolute;left: 25%;top: 400px;" src="../mdm/images/swipe_left.png" alt="" />
+		<img id="guide" style="display:none;width: 50%;position: absolute;left: 25%;top: 400px;" src="../mdm/images/swipe_left.png" alt="" />
 	<script type="text/javascript">
+	setTimeout(function(){//定时器 
+		$("#guide").fadeIn(3000);
+		$("#guide").fadeOut(3000);
+		},
+		500);
 	 var a=new pageSwitch('container',{
      duration:1500,
      start:0,

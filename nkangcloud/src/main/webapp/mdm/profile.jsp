@@ -221,7 +221,7 @@ $(window).load(function() {
 	});
 	//$(".mes-openbt").openmes({ext: 'php'});
 	$('input#search:focus').css('background-color',clientThemeColor);
-		var stockUrl = "http://hq.sinajs.cn/list=gb_$ixic,gb_$dji,gb_$inx,gb_hpe,gb_hpq,gb_csc";
+		var stockUrl = "http://hq.sinajs.cn/list=gb_$ixic,gb_$dji,gb_$inx,gb_hpe,gb_hpq,gb_dxc";
 		checkReg();
 		getStockData(stockUrl);
 		getMDLUserLists();
