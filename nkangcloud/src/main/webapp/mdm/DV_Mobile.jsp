@@ -194,6 +194,8 @@ Integer other=(Integer)immetrics.get("OTHER");
 			</div>
 			
 		</div>
+		
+		<img style="width: 50%;position: absolute;left: 25%;top: 400px;" src="../mdm/images/swipe_left.png" alt="" />
 	<script type="text/javascript">
 	 var a=new pageSwitch('container',{
      duration:1500,
