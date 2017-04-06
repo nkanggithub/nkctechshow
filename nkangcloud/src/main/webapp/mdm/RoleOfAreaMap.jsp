@@ -194,14 +194,18 @@ $(function(){
 		$(this).siblings().removeClass("editBtn");
 		$(this).siblings().find(".edit").remove();
 		
-		$(this).css("overflow","visible");
-		$(this).addClass("editBtn");
-		var tagNum=$(this).find('span.tag').length;
-		var item=$(this).find('span.id').text();
-		if(tagNum==0){
-			$(this).append('<div class="edit"><p onclick="UpdateTag(\''+item+'\',\'add\',this)"><img src="../mdm/images/focus.png" />关注</p></div>');
-		}else{
-			$(this).append('<div class="edit no"><p onclick="UpdateTag(\''+item+'\',\'del\',this)">取消<br/>关注</p></div>');
+		
+		var priceNum=$(this).find('span.price').length;
+		if(priceNum==0){
+			$(this).css("overflow","visible");
+			$(this).addClass("editBtn");
+			var tagNum=$(this).find('span.tag').length;
+			var item=$(this).find('span.id').text();
+			if(tagNum==0){
+				$(this).append('<div class="edit"><p onclick="UpdateTag(\''+item+'\',\'add\',this)"><img src="../mdm/images/focus.png" />关注</p></div>');
+			}else{
+				$(this).append('<div class="edit no"><p onclick="UpdateTag(\''+item+'\',\'del\',this)">取消<br/>关注</p></div>');
+			}
 		}
 	});
 });
@@ -362,11 +366,10 @@ function getAllDatas(){
 					 var attention='';
 					 var priceStyle='';
 					 var unit='<span class="unit"></span>';
-					 tag='<span class="tag">当前职位</span>';
 					 roleHtml='<li class="singleQuote">'
 						 +'	<div class="firstLayer '+attention+'">'
 						 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+NowRoleArr[0].id+'</span><span class="item"><b>'+NowRoleArr[0].name+'</b></span>'+tag+'</div>'
-						 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price"></span>'+unit+'</div>'
+						 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price" style="font-size:13px;font-weight:blod;color:#1A7CAB;">当前职位</span>'+unit+'</div>'
 						 +'		<div class="clear"></div>'
 						 +'	</div>'
 						 +'</li>'; 
@@ -385,7 +388,7 @@ function getAllDatas(){
 						 var tempHtml='<li class="singleQuote">'
 							 +'	<div class="firstLayer '+attention+'">'
 							 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item">'+data[i].name+'</span>'+tag+'</div>'
-							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price"></span>'+unit+'</div>'
+							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price2"></span>'+unit+'</div>'
 							 /*  +'		<span class="change high">+10</span>' */
 							 +'		<div class="clear"></div>'
 							 +'	</div>'
