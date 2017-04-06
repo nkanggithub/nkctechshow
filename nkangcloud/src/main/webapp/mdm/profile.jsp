@@ -770,7 +770,7 @@ function mesSend(){
 		 success:function(resData){
 			 if(resData){
 				 for(var i=0;i<resData.length;i++){
-					 selected=selected+"<option value='"+data.name+"'>"+data.name+"</option>";
+					 selected=selected+"<option value='"+resData.name+"'>"+resData.name+"</option>";
 				 }
 			 }
 		 }
