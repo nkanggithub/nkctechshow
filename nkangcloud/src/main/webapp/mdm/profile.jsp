@@ -1406,7 +1406,7 @@ function addStock() {
 						$('#stockListHeader').css("display","block");
 						$('#stock').css("display","block");
 						$('#addStock').css("display","none");
-						var url = "http://hq.sinajs.cn/list=gb_$ixic,gb_$dji,gb_$inx,gb_hpe,gb_hpq,gb_csc";
+						var url = "http://hq.sinajs.cn/list=gb_$ixic,gb_$dji,gb_$inx,gb_hpe,gb_hpq,gb_dxc";
 						
 					    if(stockCode!=null || stockCode!="undefined"){
 					    	if(allAddStockCodes.length==0){
