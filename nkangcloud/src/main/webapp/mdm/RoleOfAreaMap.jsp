@@ -352,10 +352,25 @@ function getAllDatas(){
 		 		}else{
 		 			NoLikeArr=resData;
 		 		}
-				var data=$.merge($.merge(NowRoleArr, LikeArr), NoLikeArr); 
+				var data=$.merge(LikeArr, NoLikeArr); 
 				 var roleHtml="";
 				 var areaHtml="";
 				 var totalNum=0;
+				 if(NowRoleArr.length>0){
+					 var priceColor="lose";
+					 var tag='';
+					 var attention='';
+					 var priceStyle='';
+					 var unit='<span class="unit"></span>';
+					 tag='<span class="tag">已关注</span>';
+					 roleHtml='<li class="singleQuote">'
+						 +'	<div class="firstLayer '+attention+'">'
+						 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item"><b>'+data[i].name+'</b></span>'+tag+'</div>'
+						 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price"></span>'+unit+'</div>'
+						 +'		<div class="clear"></div>'
+						 +'	</div>'
+						 +'</li>'; 
+				 }
 				 for(var i=0;i<data.length;i++){
 					 if(data[i].id!=""){
 						 var priceColor="lose";
