@@ -365,7 +365,7 @@ function getAllDatas(){
 					 tag='<span class="tag">当前职位</span>';
 					 roleHtml='<li class="singleQuote">'
 						 +'	<div class="firstLayer '+attention+'">'
-						 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item"><b>'+data[i].name+'</b></span>'+tag+'</div>'
+						 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+NowRoleArr[0].id+'</span><span class="item"><b>'+NowRoleArr[0].name+'</b></span>'+tag+'</div>'
 						 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price"></span>'+unit+'</div>'
 						 +'		<div class="clear"></div>'
 						 +'	</div>'
@@ -420,9 +420,11 @@ function getAllDatas(){
 </div>
 <div id="return-top" style="display: none;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="50px"></div>
 <div style="padding:10px;padding-top:5px;border-bottom:2px solid #000;position:relative;padding-bottom:5px;margin-bottom:5px;"> 
-					<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display:inline !important;height:35px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
-					<span class="clientSubName" style="font-size:12px;padding-left:7px;color:#333;">MDM China</span>
+					<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display:inline !important;height:55px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
+					<!-- <span class="clientSubName" style="font-size:12px;padding-left:7px;color:#333;">MDM China</span>
 					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">DXC Technology Coperation</h2>
+					 -->
+			
 					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您,<%=res.get("NickName") %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:36px;right:10px;" src="<%=res.get("HeadUrl") %>" alt=""/>
 				<input id="openid" type="hidden" value="<%=uid%>"/><input id="role" type="hidden" value="<%=res.get("role")%>"/>
 </div>		
