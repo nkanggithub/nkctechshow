@@ -496,7 +496,7 @@ jQuery
 					}
 				} */
 				
-				 if(phone!=null&&phone!='null'){
+				 if(phone!=null&&phone!='null'&&phone!=''){
 					 tagHtml+='													<div class="tag">'
 							+'TEL:'+phone
 							+'													</div>';
