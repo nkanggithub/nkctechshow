@@ -362,7 +362,7 @@ function getAllDatas(){
 					 var attention='';
 					 var priceStyle='';
 					 var unit='<span class="unit"></span>';
-					 tag='<span class="tag">已关注</span>';
+					 tag='<span class="tag">当前职位</span>';
 					 roleHtml='<li class="singleQuote">'
 						 +'	<div class="firstLayer '+attention+'">'
 						 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item"><b>'+data[i].name+'</b></span>'+tag+'</div>'
