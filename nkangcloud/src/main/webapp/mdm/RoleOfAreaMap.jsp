@@ -12,7 +12,7 @@ HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 <!Doctype html>
 <html>
 <head>
-<title>我的订阅</title>
+<title>DXC | 我的订阅</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css" />
@@ -436,9 +436,9 @@ function getAllDatas(){
 			<ul class="nav nav-tabs" id="myTabs"
 				style="border-color: #000;" style="padding-left: 5px;">
 				<li  class="active"><a href="#roleElements" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">job Role</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">Career Path</a></li>
 				<li><a href="#areaElements" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">interest Area</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">Interested Area</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
