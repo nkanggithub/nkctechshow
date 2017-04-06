@@ -240,7 +240,7 @@ public class CoreService
 							article3.setTitle("微管理");
 							article3.setDescription("Administration");
 							article3.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7e&oid=00D90000000pkXM");
-							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp");
+							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
 							articleList.add(article3);
 						}
 						newsMessage.setArticleCount(articleList.size());
