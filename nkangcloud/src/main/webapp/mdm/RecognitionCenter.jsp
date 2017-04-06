@@ -28,6 +28,7 @@ ch.setType(" Bais For Action.");*/
 <meta content="" name="description">
 <meta content="" name="hpe">
 <title><%=ch.getFrom() %> must have done something amazing and has been recognized by <%=ch.getTo() %></title>
+<link rel="stylesheet" type="text/css" href="../nkang/css_athena/style.css"/>
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
   </head>
 <body style="margin:0;">
@@ -210,9 +211,7 @@ ch.setType(" Bais For Action.");*/
    
    </div>
   
- 
 
-<div id="sign" style="position:absolute;top:500px;right:50px;"></div>
 	<div id="footer">
 		<span class="clientCopyRight"><nobr></nobr></span>
 	</div>
