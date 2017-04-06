@@ -6,7 +6,7 @@ String uid = request.getParameter("UID");
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>HPE - Face Recognition</title>
+  <title>DXC - Face Recognition</title>
   <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   
@@ -73,7 +73,7 @@ table tr td:nth-child(even) {
   width: 40px;
   height: 40px;
       position: absolute;
-    top: 38%;
+    top: 50%;
     left: 45%;
     display:none;
      }
