@@ -32,7 +32,7 @@ String uid = request.getParameter("UID");
 
 .myfacevalue{
 	float:left;
-	width:55% !important;
+	width:52% !important;
 	text-align:right;
 }
 .myfacevalue canvas{
@@ -82,13 +82,13 @@ table tr td:nth-child(even) {
 <!-- <div id="text" style="margin-top:150px;width:80%;margin-left:10%;text-align:center;">
 </div> -->
 <form id='submit_form' name='submit_form' action='../userProfile/uploadSelfie?openId=<%=uid%> ' enctype='multipart/form-data' method='post'>
-		<div style="position:absolute;top:180px;right:28%;">
+		<div style="position:absolute;top:150px;right:28%;">
 		
 					<input type="file" name="file-5[]" style="display:none;" onchange='uploadPic(this)' id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
 					<label for="file-5" style="text-align:center;"><figure style="background-color:black"><svg style="fill:white;" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span style="color:black">Choose a file&hellip;</span></label>
 				</div>
 				</form>
-				<div id="text" style="text-align: center;position: absolute;top: 400px; width: 80%;left: 10%;"></div>
+				<div id="text" style="text-align: center;position: absolute;top: 370px; width: 80%;left: 10%;"></div>
 <script>
 function uploadPic(obj){
 	if($(obj).val()!='') {
@@ -109,16 +109,7 @@ function uploadPic(obj){
 								var temp =  data[i];
 								div+='<div class ="DetectedPerson">'
 									+'	<div  class="myfacevalue">'
-									+'	<canvas '
-									+'			class="myfacevalue" onclick="javascript:alert(\'颜值\');"'
-									+'			data-type="radial-gauge"'
-									+'	        data-value="'+temp.levelNum+'"'
-									+'	        data-width="350"'
-									+'	        data-height="350"'
-									+'	        data-bar-width="10"'
-									+'	        data-bar-shadow="5"'
-									+'	        data-color-bar-progress="rgba(50,200,50,.75)"'
-									+'	></canvas>'
+									+ '<img src="http://wonderfulcq.bj.bcebos.com/'+$('#uid').val()+'.jpg" alt="" width="100%">'
 									+'	</div>'
 									+'	<div class="myfacevalueattribute">'
 									+'		<table>'
