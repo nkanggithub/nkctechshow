@@ -31,6 +31,7 @@ if (session.getAttribute("location") == null) {
 	wcu = (WeChatUser) session.getAttribute("wcu");
 	curLoc = (String) session.getAttribute("location");
 }
+boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -258,6 +259,11 @@ function getLogo(){
 			}
 		}
 	});
+}
+function noAuth(){
+
+		swal("你没有权限哦", "只有Leader才有权限访问哦！", "error");
+
 }
 function checkReg() {
 	jQuery.ajax({
@@ -1659,11 +1665,11 @@ function getNowFormatDate() {
 														src="../MetroStyleFiles/menu-stock.png" />
 														<h4>股票</h4>
 												</td>
-												<td><img onclick="mesSend()" src="../MetroStyleFiles/menu-technology.png" />
+												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="../MetroStyleFiles/menu-technology.png" />
 													<h4>消息推送</h4></td>
 											</tr>
 											<tr>
-												<td>		<img  onclick="recognizationPanel()"
+												<td>		<img    <%if(IsAuthenticated==true) { %> onclick="recognizationPanel()" <%}else{ %>onclick="noAuth()"<%} %>
 														src="../MetroStyleFiles/menu-recognition.png" />
 														<h4>奖项管理</h4>
 												</td>
