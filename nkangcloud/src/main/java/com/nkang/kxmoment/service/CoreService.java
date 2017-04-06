@@ -235,7 +235,7 @@ public class CoreService
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article2);
 						String hardcodeUID = "oqPI_xLq1YEJOczHi4DS2-1U0zqc";
-						if(hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(hardcodeUID, "isAdmin")){
+						if(hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
 							Article article3 = new Article();
 							article3.setTitle("微管理");
 							article3.setDescription("Administration");
