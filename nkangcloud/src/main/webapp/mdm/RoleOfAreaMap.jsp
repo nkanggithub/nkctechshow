@@ -368,7 +368,7 @@ function getAllDatas(){
 					 var unit='<span class="unit"></span>';
 					 roleHtml='<li class="singleQuote">'
 						 +'	<div class="firstLayer '+attention+'">'
-						 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+NowRoleArr[0].id+'</span><span class="item"><b>'+NowRoleArr[0].name+'</b></span>'+tag+'</div>'
+						 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+NowRoleArr[0].id+'</span><span class="item">'+NowRoleArr[0].name+'</span>'+tag+'</div>'
 						 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price" style="font-size:13px;font-weight:blod;color:#1A7CAB;">当前职位</span>'+unit+'</div>'
 						 +'		<div class="clear"></div>'
 						 +'	</div>'
