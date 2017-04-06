@@ -448,9 +448,12 @@ function getRealName(){
 		cache : false,
 		success : function(data) {
 			if(data){
-		$("#realName").val(data.toString());}
+		$("#realName").val(data.toString());
+		$("#username").text(data.toString());}
 			else
-				{$("#realName").val("");}
+				{$("#realName").val("");
+				
+				}
 		}
 	});
 }
@@ -1492,7 +1495,7 @@ function getNowFormatDate() {
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"
 						style="font-size: 15px; margin: 0px; padding: 5px 0px;">
-							Welcome <span class="username colorBlue" id="username"> <%=wcu.getNickname() %>
+							Welcome <span class="username colorBlue" id="username">
 						</span>
 					</a> <span><a style="float: right;"> <img id="userImage"
 								src="<%=wcu.getHeadimgurl() %>" alt="userImage"
