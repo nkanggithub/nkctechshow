@@ -182,19 +182,11 @@ $(function(){
 var LastToLikeDate="",lastLikeTo="";
 var HpLogoSrc="",copyRight="",clientThemeColor="";
 getLogo();
+
+var selectedType="<option value='常规沟通'>常规沟通</option>";
+
 $(window).load(function() {
-	var selectedType="<option value='常规沟通'>常规沟通</option>";
-	$.ajax({
-		 url:'../roleOfAreaMap/findList',
-		 type:"GET",
-		 success:function(resData){
-			 if(resData){
-				 for(var i=0;i<resData.length;i++){
-					 selected=selected+"<option value='"+resData[i].name+"'>"+resData[i].name+"</option>";
-				 }
-			 }
-		 }
-	});
+
 	$(".imgSelect input").live("click",function(){
 		$(this).parent().siblings().find("input").attr("checked", false);
 	})
@@ -241,7 +233,21 @@ $(window).load(function() {
 		getCompanyInfo();
 		getRealName();
 		getAllRegisterUsers();
+		getRole();
 });
+function getRole(){
+	$.ajax({
+		 url:'../roleOfAreaMap/findList',
+		 type:"GET",
+		 success:function(resData){
+			 if(resData){
+				 for(var i=0;i<resData.length;i++){
+					 selectedType=selectedType+"<option value='"+resData[i].name+"'>"+resData[i].name+"</option>";
+				 }
+			 }
+		 }
+	});
+}
 function getLogo(){
 	jQuery.ajax({
 		type : "GET",
