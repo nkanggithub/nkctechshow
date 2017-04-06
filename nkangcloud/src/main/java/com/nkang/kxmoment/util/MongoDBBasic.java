@@ -1893,6 +1893,9 @@ public class MongoDBBasic {
             			if(o.get("IsRegistered") != null){
                 			weChatMDLUser.setIsRegistered(o.get("IsRegistered").toString());
                 		}
+            			if(o.get("isAdmin") != null){
+                			weChatMDLUser.setIsAdmin(o.get("isAdmin").toString());
+                		}
                 		if(!StringUtils.isEmpty(OpenID)){
                 			
                 		}
