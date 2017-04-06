@@ -36,7 +36,7 @@ if (session.getAttribute("location") == null) {
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta charset="utf-8" />
-<title>HPE - Master Data Management</title>
+<title>DXC - Master Data Management</title>
 <!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	 -->
 
