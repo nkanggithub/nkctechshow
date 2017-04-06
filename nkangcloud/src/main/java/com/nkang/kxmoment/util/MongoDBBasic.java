@@ -135,6 +135,22 @@ public class MongoDBBasic {
 		}
 	    return validKey;
 	}
+	public static boolean checkUserAuth(String OpenID,String RoleName){
+		mongoDB = getMongoDB();
+	    try{
+	    	DBObject query = new BasicDBObject();
+	    	query.put("OpenID", OpenID);
+	    	query.put(RoleName, "true");
+	    	DBObject queryresult = mongoDB.getCollection(wechat_user).findOne(query);
+	    	if(queryresult != null){
+	    		return true;
+	    	}
+	    }
+		catch(Exception e){
+			log.info("queryEmail--" + e.getMessage());
+		}
+		return false;
+	}
 	public static List<String> queryUserKM(String openid){
 		mongoDB = getMongoDB();
 		List<String> kmLists = new ArrayList<String>();
