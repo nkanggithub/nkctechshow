@@ -262,7 +262,7 @@ function getLogo(){
 }
 function noAuth(){
 
-		swal("你没有权限哦", "只有Leader才有权限访问哦！", "error");
+		swal("you are unauthoried", "please contact admin to get the access", "error");
 
 }
 function checkReg() {
