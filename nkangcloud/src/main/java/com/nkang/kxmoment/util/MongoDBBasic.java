@@ -225,12 +225,12 @@ public class MongoDBBasic {
 				if(teamobj.get("realName") != null){
 					res.put("NickName", teamobj.get("realName").toString());
 				}
+				if(teamobj.get("role") != null){
+	    			res.put("role", teamobj.get("role").toString());
+	    		}
 			}
 			if(o.get("IsAuthenticated") != null){
     			res.put("IsAuthenticated", o.get("IsAuthenticated").toString());
-    		}
-			if(o.get("role") != null){
-    			res.put("role", o.get("role").toString());
     		}
 		}
 		return res;
