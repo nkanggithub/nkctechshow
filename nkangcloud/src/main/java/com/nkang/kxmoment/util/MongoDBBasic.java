@@ -836,6 +836,7 @@ public class MongoDBBasic {
 			update.put("IsActive", user.getIsActive());
 			update.put("IsAuthenticated", user.getIsAuthenticated());
 			update.put("IsRegistered", user.getIsRegistered());
+			update.put("isAdmin", user.getIsAdmin());
 			update.put("Teamer.registerDate", user.getRegisterDate());
 			update.put("Teamer.realName", user.getRealName());
 			update.put("Teamer.email", user.getEmail());
