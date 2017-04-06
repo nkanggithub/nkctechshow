@@ -17,7 +17,7 @@ if(MongoDBBasic.checkUserAuth(uid, "isAdmin")||hardcodeUID.equalsIgnoreCase(uid)
 <head>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
-<meta content="" name="hpe" />
+<meta content="" name="dxc" />
 
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap-responsive.min.css" />
@@ -631,7 +631,7 @@ jQuery
 }
 
 </script>
-<title>admin</title>
+<title>DXC - Admin Console</title>
 </head>
 <body style="padding: 0px !important; margin: 0px;">
 	<div class="navbar-inner" style="background-color: #fff !important;">
