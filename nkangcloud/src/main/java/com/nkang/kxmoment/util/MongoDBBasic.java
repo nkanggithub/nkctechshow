@@ -35,6 +35,7 @@ import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.ExtendedOpportunity;
 import com.nkang.kxmoment.baseobject.GeoLocation;
+import com.nkang.kxmoment.baseobject.Market;
 import com.nkang.kxmoment.baseobject.MdmDataQualityView;
 import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
@@ -203,6 +204,40 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+	
+	public static HashMap<String, String> getWeChatUserFromOpenID(String OpenID){
+		mongoDB = getMongoDB();
+		DBObject query = new BasicDBObject();
+		query.put("OpenID", OpenID);
+		HashMap<String, String> res=new HashMap<String, String>();
+		DBCursor queryresults = mongoDB.getCollection(wechat_user).find(query).limit(1);
+		if (null != queryresults) {
+    		DBObject o = queryresults.next();
+			if(o.get("HeadUrl") != null){
+    			res.put("HeadUrl", o.get("HeadUrl").toString());
+    		}
+			if(o.get("NickName") != null){
+    			res.put("NickName", o.get("NickName").toString());
+    		}
+			Object teamer = o.get("Teamer");
+			DBObject teamobj = new BasicDBObject();
+			teamobj = (DBObject)teamer;
+			if(teamobj != null){
+				if(teamobj.get("realName") != null){
+					res.put("NickName", teamobj.get("realName").toString());
+				}
+			}
+			if(o.get("IsAuthenticated") != null){
+    			res.put("IsAuthenticated", o.get("IsAuthenticated").toString());
+    		}
+			if(o.get("role") != null){
+    			res.put("role", o.get("role").toString());
+    		}
+		}
+		return res;
+	}
+	
+	
 	public static boolean createRoleOfAreaMap(RoleOfAreaMap role){
 		mongoDB = getMongoDB(); 
 		Boolean ret = false;
