@@ -465,6 +465,7 @@ jQuery
 				}
 				var workDay=temp.workDay;
 				var tag=temp.tag;
+				var phone=temp.phone;
 				var tagHtml="";
 				var congratulate="";
 				
@@ -485,7 +486,7 @@ jQuery
 				if(role==null||role=='null'){
 					role="";
 				}
-				if(tag!=null&&tag!='null'){
+				/* if(tag!=null&&tag!='null'){
 					for(var j=0;j<tag.length&&j<4;j++){
 						for (var key in tag[j]) { 
 							tagHtml+='													<div class="tag">'
@@ -493,7 +494,13 @@ jQuery
 							+'													</div>';
 						}
 					}
-				}
+				} */
+				
+				 if(phone!=null&&phone!='null'){
+					 tagHtml+='													<div class="tag">'
+							+'TEL:'+phone
+							+'													</div>';
+				 }
 				if(workDay==null||workDay=='null'||workDay==0){
 					workDay="";
 				}else{
@@ -559,7 +566,7 @@ jQuery
 			        type: 'doughnut2d',
 			        renderAt: 'chart-container',
 			        width: '350',
-			        height: '300',
+			        height: '400',
 			        dataFormat: 'json',
 			        dataSource: {
 			            "chart": {
@@ -650,7 +657,7 @@ jQuery
 					<div id="chart-container" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
 					
 					
-					<div  style="position: absolute; top: 440px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
+					<div  style="position: absolute; top: 540px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
 						<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 						</ul>
 					</div>
