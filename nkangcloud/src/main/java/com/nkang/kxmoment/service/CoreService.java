@@ -225,7 +225,7 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle("DXC Technology|移动应用");
 						article.setDescription("移动应用");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9m1P&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mpP&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
