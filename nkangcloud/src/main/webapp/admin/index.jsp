@@ -497,9 +497,9 @@ jQuery
 				} */
 				
 				 if(phone!=null&&phone!='null'&&phone!=''){
-					 tagHtml+='													<div class="tag">'
+					 tagHtml+='													<div class="tag"><a href="tel:'+phone+'" style="color:#fff;">'
 							+'TEL:'+phone
-							+'													</div>';
+							+'													</a></div>';
 				 }
 				if(workDay==null||workDay=='null'||workDay==0){
 					workDay="";
