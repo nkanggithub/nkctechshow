@@ -2677,6 +2677,32 @@ public class MongoDBBasic {
 			return ret;
 		}
 		
+		public static List<ArticleMessage> getArticleMessageByNum(String num) {
+			mongoDB = getMongoDB();
+			List<ArticleMessage> amList = new ArrayList<ArticleMessage>();
+			ArticleMessage am = null;
+			DBCursor queryresults;
+			try{
+					DBObject query = new BasicDBObject();
+					query.put("num", num);
+					queryresults = mongoDB.getCollection(Article_Message).find(query).limit(1);
+				if (null != queryresults) {
+	            	while(queryresults.hasNext()){
+					DBObject o = queryresults.next();
+					am=new ArticleMessage();
+					am.setNum(o.get("num") == null ? "" : o.get("num").toString());
+					am.setContent(o.get("content") == null ? "" : o.get("content").toString());
+					am.setTime(o.get("time") == null ? "" : o.get("time").toString());
+					am.setTitle(o.get("title") == null ? "" : o.get("title").toString());
+					am.setVisitedNum(o.get("visitedNum") == null ? "" : o.get("visitedNum").toString());
+					amList.add(am);
+	            	}
+				}
+			}catch(Exception e){
+				log.info("getArcticleMessageByNum--" + e.getMessage());
+			}
+			return amList;
+		}
 		/*
 		 * chang-zheng to update user getNotification
 		 */
