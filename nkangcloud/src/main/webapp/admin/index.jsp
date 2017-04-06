@@ -185,6 +185,7 @@ function showUpdateUserPanel(openid,name){
 				var IsRegistered=data[0].IsRegistered==null?'false':data[0].IsRegistered;
 				var IsAuthenticated=data[0].IsAuthenticated==null?'false':data[0].IsAuthenticated;
 				var IsActived=data[0].isActive==null?'false':data[0].isActive;
+				var isAdmin=data[0].isAdmin==null?'false':data[0].isAdmin;
 				var registerDate=data[0].registerDate==null?'':data[0].registerDate.replace(/\//g,"-");
 				var realName=data[0].realName==null?'':data[0].realName;
 				var phone=data[0].phone==null?'':data[0].phone;
@@ -243,6 +244,12 @@ function showUpdateUserPanel(openid,name){
 			            +'												        <td>消息推送:</td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isAuthenticated" value="true"  '+(IsAuthenticated=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAuthenticated" '+(IsAuthenticated!="true"?'checked="checked"':'')+' value="false"/>否'
+			            +'												        </td>'
+			            +'												    </tr> '
+			            +'												    <tr>'
+			            +'												        <td>后台管理:</td>'
+			            +'												        <td  align="left" class="tdText">'
+			            +'												        	<input type="radio" name="isAdmin" value="true"  '+(isAdmin=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAdmin" '+(isAdmin!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
 			            +'												    </tr> '
 			            +'												    <tr>'
