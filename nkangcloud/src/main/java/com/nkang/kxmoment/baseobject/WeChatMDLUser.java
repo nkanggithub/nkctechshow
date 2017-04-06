@@ -16,12 +16,19 @@ public class WeChatMDLUser extends WeChatUser {
 	public String phone;
 	public String point;
 	public String IsActive;
+	public String isAdmin;
 	public String IsAuthenticated;
 	public String IsRegistered;
 	public ArrayList tag;
 	public HashMap like;
 
 	public double distance;
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	public String getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
