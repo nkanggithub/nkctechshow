@@ -1495,7 +1495,7 @@ function getNowFormatDate() {
 }
 </script>
 </head>
-<body style="margin: 0px; padding: 0px !important;">
+<body style="margin: 0px !important;width:100%  !important; padding: 0px !important;overflow-x:hidden;">
 	<input id="uid" type="hidden" value="<%=uid%>" />
 	<input id="timer" type="hidden" value="" />
 	<input id="realName" type="hidden" value="" />
