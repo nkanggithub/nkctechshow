@@ -31,7 +31,7 @@ public class RegisterController {
 		request.setCharacterEncoding("UTF-8"); 
 		String openId = request.getParameter("uid");
 		String name = request.getParameter("name");
-		String role = request.getParameter("role");
+	//	String role = request.getParameter("role");
 		Date now = new Date(); 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String registerDate = dateFormat.format(now);
@@ -39,41 +39,23 @@ public class RegisterController {
 		String selfIntro = request.getParameter("selfIntro");
 		String telephone = request.getParameter("telephone");
 		String email = request.getParameter("email");
-		String group = request.getParameter("group");
-		String java = request.getParameter("javatag");
-		String html = request.getParameter("htmltag");
-		String webservice = request.getParameter("webservicetag");
-		String etl = request.getParameter("etltag");
+	//	String group = request.getParameter("group");
+
 		ArrayList list = new ArrayList();
 		Map map = new HashMap();
-		
-		if(!StringUtils.isNullOrEmpty(java) && Integer.parseInt(java)>0 && Integer.parseInt(java)<=100){
-			map.put("java", java);
-		}
-		
-		if(!StringUtils.isNullOrEmpty(html) && Integer.parseInt(html)>0 && Integer.parseInt(html)<=100){
-			map.put("html", html);
-		}
-		
-		if(!StringUtils.isNullOrEmpty(webservice) && Integer.parseInt(webservice)>0 && Integer.parseInt(webservice)<=100){
-			map.put("webservice", webservice);
-		}
-		
-		if(!StringUtils.isNullOrEmpty(etl) && Integer.parseInt(etl)>0 && Integer.parseInt(etl)<=100){
-			map.put("etl", etl);
-		}
+
 		list.add(map);
 		System.out.println(list);
 		WeChatMDLUser user = new WeChatMDLUser();
 		user.setOpenid(URLEncoder.encode(openId, "UTF-8"));
 		user.setRealName(URLEncoder.encode(name, "UTF-8"));
-		user.setRole(URLEncoder.encode(role, "UTF-8"));
+	//	user.setRole(URLEncoder.encode(role, "UTF-8"));
 		user.setRegisterDate(registerDate);
 		user.setSelfIntro(URLEncoder.encode(selfIntro, "UTF-8"));
 		user.setPhone(URLEncoder.encode(telephone, "UTF-8"));
 		user.setEmail(URLEncoder.encode(email, "UTF-8"));
-		user.setGroupid(URLEncoder.encode(group, "UTF-8"));
-		user.setTag(list);
+	//	user.setGroupid(URLEncoder.encode(group, "UTF-8"));
+	//	user.setTag(list);
 		//if(validateRegist(user)){
 			return Boolean.parseBoolean(RestUtils.regist(user));
 //		}
