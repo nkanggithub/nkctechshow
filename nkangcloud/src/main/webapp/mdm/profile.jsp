@@ -965,8 +965,8 @@ function register() {
 	}
 	
 function showRegister(){
-	$('#UserInfo').modal('hide');
-	$('#registerform').modal('show');
+//	$('#UserInfo').modal('hide');
+//	$('#registerform').modal('show');
 	$.ajax({
 		type : "GET",
 		url : "../userProfile/getMDLUserLists",
@@ -975,20 +975,50 @@ function showRegister(){
 		},
 		cache : false,
 		success : function(data) {
-			data = data.replace(/:null/g, ':"未注册"');
-			data = '{"results":' + data + '}';
-			var jsons = eval('(' + data + ')');
-			if (jsons.results.length > 0) {
-				if(jsons.results[0].realName !="未注册"){
-					$("#realname").val(jsons.results[0].realName);
+			if(data){
+				var realName="";
+				var phone="";
+				var email="";
+				var selfIntro="";
+				data = data.replace(/:null/g, ':"未注册"');
+				data = '{"results":' + data + '}';
+				var jsons = eval('(' + data + ')');
+				if (jsons.results.length > 0) {
+					if(jsons.results[0].realName !="未注册"){
+						realName=jsons.results[0].realName;
+					}
+					if(jsons.results[0].phone !="未注册"){
+						phone=jsons.results[0].phone;
+					}
+					if(jsons.results[0].email !="未注册"){
+						email=jsons.results[0].email;
+					}
+					 if(jsons.results[0].selfIntro !="未注册"){
+							selfIntro=jsons.results[0].selfIntro;
+					    }
 				}
-				if(jsons.results[0].phone !="未注册"){
-					$("#phone").val(jsons.results[0].phone);
-				}
-				if(jsons.results[0].email !="未注册"){
-					$("#email").val(jsons.results[0].email);
-				}
-				$("#roleSelect option[value='"+jsons.results[0].role+"']").attr("selected",true);
+				var formText="<p style='width:40%;float:left;height:40px;line-height:40px;'>真实姓名：</p><input id='realname' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+realName+"' />"
+				+"<p style='width:40%;float:left;height:40px;line-height:40px;'>电话号码：</p><input id='phone' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+phone+"' />"
+				+"<p style='width:40%;float:left;height:40px;line-height:40px;'>邮箱地址：</p><input id='email' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+email+"' />"
+				+"<p style='width:40%;float:left;height:40px;line-height:40px;'>个人简介：</p><input id='selfIntro' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+selfIntro+"' />";
+				swal({  
+			        title:"编辑个人信息",  
+			        text:formText,
+			        html:"true",
+			        showConfirmButton:true, 
+					showCancelButton: true,   
+					closeOnConfirm: false,  
+			        cancelButtonText:"关闭",
+			        confirmButtonText:"确定", 
+			        animation:"slide-from-top"  
+			      }, 
+					function(inputValue){
+			    	  if (inputValue === false){ return false; }
+			    	  updateInfo();
+			      });
+			} 
+
+	/* 			$("#roleSelect option[value='"+jsons.results[0].role+"']").attr("selected",true);
 			    var count=$("#roleSelect option").length;
 			    for(var i=0;i<count;i++)  
 			       {           if($("#roleSelect").get(0).options[i].text == jsons.results[0].role)  
@@ -1006,44 +1036,21 @@ function showRegister(){
 			            
 			              break;  
 			          }  
-			      }
-			   /*  if(jsons.results[0].tag!="未注册"){
-					for(var j=0;j<jsons.results[0].tag.length;j++){
-						var tag=jsons.results[0].tag[j];
-						for (var key in tag) { 
-							if(key=="java"){
-								$113("#javatag").slider("setValue",tag[key]);
-							} 
-							
-							if(key =="html"){
-								$113("#htmltag").slider("setValue",tag[key]);
-							} 
-							
-							if(key =="webservice"){
-								$113("#webservicetag").slider("setValue",tag[key]);
-							} 
-							
-							if(key =="etl"){
-								$113("#etltag").slider("setValue",tag[key]);
-							}
-						}
-					}
-				} */
+			      } */
+
 			    
-			    if(jsons.results[0].selfIntro !="未注册"){
-					$("#selfIntro").val(jsons.results[0].selfIntro);
-			    }
+			   
 			}
-		}
 	});
-	$("#registerBtn").click(function(){
+}
+	 function updateInfo(){
 		var uid = $("#uid").val();
 		var name = $("#realname").val();
 		var phone = $("#phone").val();
 		var email = $("#email").val();
 		//var suppovisor = $("#suppovisor").val();
-		var role = $("#roleSelect option:selected").val();
-		var group = $("#groupSelect option:selected").val();
+		//var role = $("#roleSelect option:selected").val();
+		//var group = $("#groupSelect option:selected").val();
 		/* var javatag = $("#javatag").val();
 		var htmltag = $("#htmltag").val(); 
 		var webservicetag = $("#webservicetag").val();
@@ -1063,8 +1070,7 @@ function showRegister(){
 		 }else{
 			$.ajax({
 				url:"../regist",
-				data:{uid:uid,name:name,telephone:phone,email:email,
-					role:role,group:group,selfIntro:selfIntro},
+				data:{uid:uid,name:name,telephone:phone,email:email,selfIntro:selfIntro},
 				type:"POST",
 				dataType:"json",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -1081,9 +1087,9 @@ function showRegister(){
 				}
 			});
 		}
-	});
+	};
 	
-}
+
 
 function getUserInfo(username, headimgurl, openId) {
 			$("#info_interact").css("display","block");
@@ -1546,7 +1552,7 @@ function getNowFormatDate() {
 						</span>
 					</a> <span><a style="float: right;"> <img id="userImage"
 								src="<%=wcu.getHeadimgurl() %>" alt="userImage"
-								class="userImage" alt="no_username" onclick="register()" />
+								class="userImage" alt="no_username" onclick="showRegister()" />
 						</a></span></li>
 				</ul>
 			</div>
@@ -1578,7 +1584,7 @@ function getNowFormatDate() {
 					<div class="span12">
 						<div class="PositionR">
 						<form id="searchForm" method="get" action="https://www.bing.com/search"  style="padding:0px;" >
-									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-50px;"> 
+									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-60px;"> 
       						    </form>
 					<!-- 	<input type="text" id="search" name="search" placeholder="Search.."> -->
 								
@@ -1887,7 +1893,7 @@ function getNowFormatDate() {
 								</div>
 
 
-							
+			<!-- 				
 								<div id="registerform" class="modal hide fade" tabindex="-1"
 									role="dialog" aria-labelledby="myModalLabel1"
 									aria-hidden="true" data-backdrop="static">
@@ -1896,7 +1902,7 @@ function getNowFormatDate() {
 										<img src="../MetroStyleFiles/Close2.png" data-dismiss="modal"
 											aria-hidden="true"
 											style="float: right; height: 27px; cursor: pointer; margin-top: -15px; margin-right: 5px;" />
-												<!-- <form id="registerFormSubmit" autocomplete="on"> -->
+												<form id="registerFormSubmit" autocomplete="on">
 												    <table id="tableForm" style="margin-top:20px;">
 												    <tr>
 												        <td class="tdText"><img class='imgclass' src='../MetroStyleFiles/username2.png'/></td>
@@ -1916,7 +1922,7 @@ function getNowFormatDate() {
 												          <input class="inputClass" placeholder="请输入邮箱地址" type="email" id="email" required/>
 												        </td>
 												      </tr>
-												     <!--  <tr>
+												      <tr>
 												        <td class="tdText"><img class='imgclass' src='../MetroStyleFiles/role2.png'/></td>
 												        <td>
 												          <select id="roleSelect">
@@ -1940,7 +1946,7 @@ function getNowFormatDate() {
 															<option>Other</option>
 														</select>
 												        </td>
-												      </tr> -->
+												      </tr>
 												      <tr>
 												        <td class="tdText"><img class="imgclass" src="../MetroStyleFiles/selfIntro2.png"/></td>
 												        <td>
@@ -1950,9 +1956,9 @@ function getNowFormatDate() {
 												      
 												 </table>
 											    <button class="btnAthena EbtnLess" style="background-color:#00B287;margin-bottom: -35px;" id="registerBtn">在一起吧</button>
-										<!-- 	</form>  -->
+											</form> 
 									</div>
-								</div>
+								</div> -->
 
 
 								<div class="tab-pane" id="WorkMates">
