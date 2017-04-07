@@ -3,7 +3,7 @@
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
-<%-- <%
+ <%
 Map runMaintain = MongoDBBasic.getRunMaintainMetrics();
 List<Integer> apj=(List<Integer>)runMaintain.get("APJ");
 List<Integer> usa=(List<Integer>)runMaintain.get("USA");
@@ -15,7 +15,7 @@ Integer usa2=(Integer)immetrics.get("USA");
 Integer mexico2=(Integer)immetrics.get("MEXICO");
 Integer emea2=(Integer)immetrics.get("EMEA");
 Integer other=(Integer)immetrics.get("OTHER");
-%> --%>
+%> 
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -28,7 +28,7 @@ Integer other=(Integer)immetrics.get("OTHER");
 	
 
      <script>
-   <%--  FusionCharts.ready(function () {
+     FusionCharts.ready(function () {
         var estProcChart = new FusionCharts({
             type: 'errorline',
             renderAt: 'chart-container1',
@@ -178,7 +178,7 @@ Integer other=(Integer)immetrics.get("OTHER");
 	            ]
 	        }
 	    }).render();
-    }); --%>
+    }); 
     </script> 
 </head>
 <body style="margin:0px">
