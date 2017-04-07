@@ -182,6 +182,7 @@ $(function(){
     });
 
 var LastToLikeDate="",lastLikeTo="";
+var RoleObj=new Object();
 var HpLogoSrc="",copyRight="",clientThemeColor="";
 getLogo();
 
@@ -191,7 +192,7 @@ $(window).load(function() {
 
 	$(".imgSelect input").live("click",function(){
 		$(this).parent().siblings().find("input").attr("checked", false);
-	})
+	});
 	$('head').append("<style>.naviArrow.is-selected::after{content: ''; display: block;width: 0;height: 0;border-left: .9em solid transparent;border-right: .9em solid transparent;border-top: .9em solid "+clientThemeColor+";position: relative;top: 0px;left: 50%;-webkit-transform: translateX(-50%); -ms-transform: translateX(-50%);transform: translateX(-50%);}</style>");
 	$("#navSupport").on("click",function(){
 		$(this).append("<a class='naviArrow is-selected'></a>").css("border-top","10px solid "+clientThemeColor);
@@ -226,16 +227,30 @@ $(window).load(function() {
 		$("#BoardContent").hide();
 		$("#WorkMates").show();
 	});
-	//$(".mes-openbt").openmes({ext: 'php'});
-	$('input#search:focus').css('background-color',clientThemeColor);
+		//$(".mes-openbt").openmes({ext: 'php'});
+		$('input#search:focus').css('background-color',clientThemeColor);
 		var stockUrl = "http://hq.sinajs.cn/list=gb_$ixic,gb_$dji,gb_$inx,gb_hpe,gb_hpq,gb_dxc";
 		checkReg();
 		getStockData(stockUrl);
-		getMDLUserLists();
 		getCompanyInfo();
 		getRealName();
 		getAllRegisterUsers();
 		getRole();
+		$("li.Work_Mates_div_list_div2").live("swiperight",function(){
+			$(this).css("overflow","hidden");
+			$(this).removeClass("editBtn");
+			$(this).remove(".edit");
+		}); 
+		$("li.Work_Mates_div_list_div2").live("swipeleft",function(){
+			$(this).css("overflow","visible");
+			$(this).addClass("editBtn");
+			//var openid=$(this).find("span.openid").text();
+			//var name=$(this).find("span.name").text();
+			$(this).append("<div class='edit'><p onclick=''><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
+			$(this).append("<div class='edit km'><p onclick=''>***<br/>管理</p></div>");
+			$(this).siblings().removeClass("editBtn");
+			$(this).siblings().remove(".edit");
+		});
 });
 function getRole(){
 	$.ajax({
@@ -245,8 +260,13 @@ function getRole(){
 			 if(resData){
 				 for(var i=0;i<resData.length;i++){
 					 selectedType=selectedType+"<option value='"+resData[i].name+"'>"+resData[i].name+"</option>";
+					 if(resData[i].flag=="Role")
+					 {
+						  RoleObj[resData[i].id]=resData[i].name;
+					 }
 				 }
 			 }
+			 getMDLUserLists();
 		 }
 	});
 }
@@ -1152,12 +1172,16 @@ function getMDLUserLists() {
 					for (var i = 0; i < jsons.results.length; i++) {
 						var temp = jsons.results[i];
 						var selfIntro=temp.selfIntro;
-						var role=temp.role;
 						var workDay=temp.workDay;
 						var tag=temp.tag;
+						var phone=temp.phone;
 						var tagHtml="";
 						var congratulate="";
-						
+						var role="";
+						try{
+						 	role=RoleObj[temp.role];
+						}catch(e){
+						}
 						if(temp.openid==$('#uid').val()){
 							LastToLikeDate=temp.like.lastLikeDate;
 							lastLikeTo=temp.like.lastLikeTo;
@@ -1175,7 +1199,7 @@ function getMDLUserLists() {
 						if(role==null||role=='null'){
 							role="";
 						}
-						if(tag!=null&&tag!='null'){
+						/* if(tag!=null&&tag!='null'){
 							for(var j=0;j<tag.length&&j<4;j++){
 								for (var key in tag[j]) { 
 									tagHtml+='													<div class="tag">'
@@ -1183,7 +1207,12 @@ function getMDLUserLists() {
 									+'													</div>';
 								}
 							}
-						}
+						} */
+						if(phone!=null&&phone!='null'&&phone!=''){
+							 tagHtml+='													<div class="tag"><a href="tel:'+phone+'" style="color:#fff;">'
+									+'TEL:'+phone
+									+'													</a></div>';
+						 }
 						if(workDay==null||workDay=='null'||workDay==0){
 							workDay="";
 						}else{
