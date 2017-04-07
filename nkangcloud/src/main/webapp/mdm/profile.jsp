@@ -156,8 +156,6 @@ height: 15px;}
 <script src="../Jsp/JS/jSignature.min.noconflict.js"></script>
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
-<link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
-<script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <script>
 $(function(){  
     $('#return-top').hide();  
@@ -923,7 +921,7 @@ function register() {
 					$("#info_interact").css("display","none");
 					$("#info_interact2").css("display","none");
 					$("#info_imgurl").attr("src",$('#userImage').attr('src'));
-					if(jsons.results[0].tag!="未注册"){
+					/* if(jsons.results[0].tag!="未注册"){
 						for(var j=0;j<jsons.results[0].tag.length;j++){
 							var tag=jsons.results[0].tag[j];
 							for (var key in tag) { 
@@ -942,7 +940,7 @@ function register() {
 								$('#'+key).circliful();
 							}
 						}
-					}
+					} */
 					data = data.replace(/:"未注册"/g, ':"未编辑"');
 					jsons = eval('(' + data + ')');
 					$("#info_username span").html(jsons.results[0].realName+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+jsons.results[0].role+']&nbsp;</span>'+'<img onclick="showRegister()" src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
@@ -1009,7 +1007,7 @@ function showRegister(){
 			              break;  
 			          }  
 			      }
-			    if(jsons.results[0].tag!="未注册"){
+			   /*  if(jsons.results[0].tag!="未注册"){
 					for(var j=0;j<jsons.results[0].tag.length;j++){
 						var tag=jsons.results[0].tag[j];
 						for (var key in tag) { 
@@ -1030,7 +1028,7 @@ function showRegister(){
 							}
 						}
 					}
-				}
+				} */
 			    
 			    if(jsons.results[0].selfIntro !="未注册"){
 					$("#selfIntro").val(jsons.results[0].selfIntro);
@@ -1046,10 +1044,10 @@ function showRegister(){
 		//var suppovisor = $("#suppovisor").val();
 		var role = $("#roleSelect option:selected").val();
 		var group = $("#groupSelect option:selected").val();
-		var javatag = $("#javatag").val();
-		var htmltag = $("#htmltag").val();
+		/* var javatag = $("#javatag").val();
+		var htmltag = $("#htmltag").val(); 
 		var webservicetag = $("#webservicetag").val();
-		var etltag = $("#etltag").val();
+	    var etltag = $("#etltag").val(); */
 		var selfIntro = $("#selfIntro").val();
 		
 		 var emailFilter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -1066,8 +1064,7 @@ function showRegister(){
 			$.ajax({
 				url:"../regist",
 				data:{uid:uid,name:name,telephone:phone,email:email,
-					role:role,group:group,javatag:javatag,htmltag:htmltag,
-					webservicetag:webservicetag,etltag:etltag,selfIntro:selfIntro},
+					role:role,group:group,selfIntro:selfIntro},
 				type:"POST",
 				dataType:"json",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -1114,7 +1111,7 @@ function getUserInfo(username, headimgurl, openId) {
 							$("#info_username span").html(jsons.results[0].realName);
 							$("#info_interact img.zan").attr("onclick","recognizationPanelByPerson('"+jsons.results[0].realName+"')");
 							$("#info_interact2 span.zan").text(jsons.results[0].CongratulateNum);
-							if(jsons.results[0].tag!="未注册"){
+							/* if(jsons.results[0].tag!="未注册"){
 								for(var j=0;j<jsons.results[0].tag.length;j++){
 									var tag=jsons.results[0].tag[j];
 									for (var key in tag) { 
@@ -1134,7 +1131,7 @@ function getUserInfo(username, headimgurl, openId) {
 										$('#'+key).circliful();
 									}
 								}
-							}
+							} */
 							data = data.replace(/:"未注册"/g, ':"未编辑"');
 							jsons = eval('(' + data + ')');
 							$("#info_all").css('display','table');
@@ -1919,7 +1916,7 @@ function getNowFormatDate() {
 												          <input class="inputClass" placeholder="请输入邮箱地址" type="email" id="email" required/>
 												        </td>
 												      </tr>
-												      <tr>
+												     <!--  <tr>
 												        <td class="tdText"><img class='imgclass' src='../MetroStyleFiles/role2.png'/></td>
 												        <td>
 												          <select id="roleSelect">
@@ -1943,43 +1940,11 @@ function getNowFormatDate() {
 															<option>Other</option>
 														</select>
 												        </td>
-												      </tr>
+												      </tr> -->
 												      <tr>
 												        <td class="tdText"><img class="imgclass" src="../MetroStyleFiles/selfIntro2.png"/></td>
 												        <td>
 												          <input class="inputClass" type="text" placeholder="请输入个人简介" id="selfIntro" required/>
-												        </td>
-												      </tr>
-												      <tr class="sliderclass">
-												        <td style="width:50px" >Java</td>
-												        <td>
-															<input id="javatag" class="easyui-slider" style="width:220px" data-options="
-																		showTip:true
-																	"/>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td style="width:50px">H5</td>
-												        <td>
-															<input id="htmltag" class="easyui-slider" style="width:220px" data-options="
-																		showTip:true
-																	"/>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td style="width:50px">WS</td>
-												        <td>
-															<input id="webservicetag" class="easyui-slider" style="width:220px" data-options="
-																		showTip:true
-																	"/>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td style="width:50px">ETL</td>
-												        <td>
-															<input id="etltag" class="easyui-slider" style="width:220px" data-options="
-																		showTip:true
-																	"/>
 												        </td>
 												      </tr>
 												      
