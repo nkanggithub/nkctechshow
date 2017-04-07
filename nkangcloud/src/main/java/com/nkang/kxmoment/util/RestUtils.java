@@ -1758,58 +1758,22 @@ public static String regist(WeChatMDLUser user) {
 			if(user.getRegisterDate()!=null&&!"".equals(user.getRegisterDate())){
 				arr.add("registerDate="+user.getRegisterDate());
 			}
-			if(user.getRole()!=null&&!"".equals(user.getRole())){
+	/*		if(user.getRole()!=null&&!"".equals(user.getRole())){
 				arr.add("role="+user.getRole());
 			}
 			if(user.getGroupid()!=null&&!"".equals(user.getGroupid())){
 				arr.add("group="+user.getGroupid());
-			}
+			}*/
 			if(user.getSelfIntro()!=null&&!"".equals(user.getSelfIntro())){
 				arr.add("selfIntro="+user.getSelfIntro());
 			}
 			//Skill = html:45,java:50
-			ArrayList list = user.getTag();
+		//	ArrayList list = user.getTag();
 			String skill = "";
-			Map map = null;
-			if(user.getTag().size()>0){
-				for (int i = 0; i < list.size(); i++) {
-					map = (HashMap)list.get(i);
-					ArrayList<String> arrList = new ArrayList<String>();
-						
-					String java = (String)map.get("java");
-					if(java!=null&&!"".equals(java)){
-						arrList.add("java:"+java);
-					}
-					
-					String html = (String)map.get("html");
-					if(html!=null&&!"".equals(html)){
-						arrList.add("html:"+html);
-					}
-					
-					String webservice = (String)map.get("webservice");
-					if(webservice!=null&&!"".equals(webservice)){
-						arrList.add("webservice:"+webservice);
-					}
-					
-					String etl = (String)map.get("etl");
-					if(etl!=null&&!"".equals(etl)){
-						arrList.add("etl:"+etl);
-					}
-					System.err.println(arrList);
-					String skillTemp = "";
-					for(int j=0;j<arrList.size();j++){
-						if(j==0) skillTemp += "";
-						else skillTemp += ",";
-						skillTemp += arrList.get(j);
-					}
-					skill += skillTemp;
-				}
-			}
+		//	Map map = null;
+		
 			System.out.println(skill);
-			if(user.getTag().size()>0){
-				arr.add("skill="+skill);
-			}
-			
+
 			String temp="";
 			for(int i=0;i<arr.size();i++){
 				if(i==0)temp += "?";
