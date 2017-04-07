@@ -1502,7 +1502,7 @@ function getNowFormatDate() {
 	<input id="timer" type="hidden" value="" />
 	<input id="realName" type="hidden" value="" />
 	<input id="userPic" type="hidden" value="<%=wcu.getHeadimgurl() %>" />
-	<select id="hiddenSelect" style="display:none">
+	<select id="hiddenSelect" style="display:none" data-role="none">
 	</select>
 	<div class="navbar" style="width: 100%;">
 		<div class="navbar-inner">
@@ -1552,7 +1552,7 @@ function getNowFormatDate() {
 					<div class="span12">
 						<div class="PositionR">
 						<form id="searchForm" method="get" action="https://www.bing.com/search"  style="padding:0px;" >
-									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-63px;"> 
+									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-50px;"> 
       						    </form>
 					<!-- 	<input type="text" id="search" name="search" placeholder="Search.."> -->
 								
