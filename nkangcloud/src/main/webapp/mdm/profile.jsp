@@ -156,6 +156,8 @@ height: 15px;}
 <script src="../Jsp/JS/jSignature.min.noconflict.js"></script>
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
+<link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
+<script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <script>
 $(function(){  
     $('#return-top').hide();  
