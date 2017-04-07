@@ -513,14 +513,14 @@ public class MongoDBBasic {
             		DBObject o = dbcur.next();
             		DBObject dbo = new BasicDBObject();
             		dbo.put("Teamer.openid", teamer.getOpenid()); 
-            		dbo.put("Teamer.groupid", teamer.getGroupid()); 
+            	//	dbo.put("Teamer.groupid", teamer.getGroupid()); 
             		dbo.put("Teamer.realName", teamer.getRealName()); 
         			dbo.put("Teamer.email", teamer.getEmail());
         			dbo.put("Teamer.phone", teamer.getPhone());
-        			dbo.put("Teamer.role", teamer.getRole());
+        		//	dbo.put("Teamer.role", teamer.getRole());
         			dbo.put("Teamer.selfIntro", teamer.getSelfIntro());
-        			dbo.put("Teamer.suppovisor", teamer.getSuppovisor()); 
-        			dbo.put("Teamer.tag", teamer.getTag()); 
+        			//dbo.put("Teamer.suppovisor", teamer.getSuppovisor()); 
+        		//	dbo.put("Teamer.tag", teamer.getTag()); 
         			Object teamer2 = o.get("Teamer");
         			if(teamer2 == null){
             			dbo.put("Teamer.registerDate", teamer.getRegisterDate());
