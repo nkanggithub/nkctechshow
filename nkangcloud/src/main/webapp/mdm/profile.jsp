@@ -189,7 +189,22 @@ getLogo();
 var selectedType="<option value='常规沟通'>常规沟通</option>";
 
 $(window).load(function() {
-
+	$("li.Work_Mates_div_list_div2").live("swiperight",function(){
+		$(this).css("overflow","hidden");
+		$(this).removeClass("editBtn");
+		$(this).remove(".edit");
+	}); 
+	$("li.Work_Mates_div_list_div2").live("swipeleft",function(){
+		$(this).css("overflow","visible");
+		$(this).addClass("editBtn");
+		//var openid=$(this).find("span.openid").text();
+		//var name=$(this).find("span.name").text();
+		$(this).append("<div class='edit'><p onclick=''><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
+		$(this).append("<div class='edit km'><p onclick=''>***<br/>管理</p></div>");
+		$(this).siblings().removeClass("editBtn");
+		$(this).siblings().remove(".edit");
+	});
+	
 	$(".imgSelect input").live("click",function(){
 		$(this).parent().siblings().find("input").attr("checked", false);
 	});
@@ -236,21 +251,6 @@ $(window).load(function() {
 		getRealName();
 		getAllRegisterUsers();
 		getRole();
-		$("li.Work_Mates_div_list_div2").live("swiperight",function(){
-			$(this).css("overflow","hidden");
-			$(this).removeClass("editBtn");
-			$(this).remove(".edit");
-		}); 
-		$("li.Work_Mates_div_list_div2").live("swipeleft",function(){
-			$(this).css("overflow","visible");
-			$(this).addClass("editBtn");
-			//var openid=$(this).find("span.openid").text();
-			//var name=$(this).find("span.name").text();
-			$(this).append("<div class='edit'><p onclick=''><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
-			$(this).append("<div class='edit km'><p onclick=''>***<br/>管理</p></div>");
-			$(this).siblings().removeClass("editBtn");
-			$(this).siblings().remove(".edit");
-		});
 });
 function getRole(){
 	$.ajax({
