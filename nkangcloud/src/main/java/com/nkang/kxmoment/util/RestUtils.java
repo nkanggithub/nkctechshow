@@ -2037,7 +2037,7 @@ public static String regist(WeChatMDLUser user) {
     	String result ="";
     	String str="";
     	if("".equals(am.getWebUrl())||""==am.getWebUrl()){
-    			str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+"发布者 - DXC Technology:"+am.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+am.getNum()+"\",\"picurl\":"
+    			str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+"Publisher - DXC Technology:\n"+am.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+am.getNum()+"\",\"picurl\":"
     					+ "\""+img+"\"}";
     	}else
     	{
