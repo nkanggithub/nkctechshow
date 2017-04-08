@@ -336,7 +336,7 @@ public class CoreService
 						cityInfo = RestUtils.getUserCityInfoWithLatLng(lat,lng);
 						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
 						Article article = new Article();
-						article.setTitle(NearByOpptsExt.size() + " Customers NearBy HPE ");
+						article.setTitle(NearByOpptsExt.size() + " Customers NearBy DXC ");
 						article.setDescription(NearByOpptsExt.size() + " Customers " +  "Found Near By You \n" + addr);
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/MoreCustomer.jsp?UID=" + fromUserName);
@@ -370,7 +370,7 @@ public class CoreService
 						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
 
 						Article article = new Article();
-						article.setTitle(NearByOpptsExt.size() + " Competitors NearBy HPE");
+						article.setTitle(NearByOpptsExt.size() + " Competitors NearBy DXC");
 						article.setDescription(NearByOpptsExt.size() +  " Competitor " +  "Found Near By You \n" + addr);
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/index.jsp");
@@ -445,7 +445,7 @@ public class CoreService
 						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
 
 						Article article = new Article();
-						article.setTitle(NearByOpptsExt.size() + " Partners NearBy HPE");
+						article.setTitle(NearByOpptsExt.size() + " Partners NearBy DXC");
 						article.setDescription(NearByOpptsExt.size() + " Partner " +  "Found Near By You \n" + addr);
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/index.jsp");
@@ -480,7 +480,7 @@ public class CoreService
 						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), "", lat, lng);
 
 						Article article = new Article();
-						article.setTitle(NearByOpptsExt.size() + " Opportunity NearBy HPE ");
+						article.setTitle(NearByOpptsExt.size() + " Opportunity NearBy DXC ");
 						article.setDescription(NearByOpptsExt.size() + " Opportunity " +  "Found Near By You \n" + addr);
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/index.jsp");
