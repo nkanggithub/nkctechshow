@@ -411,7 +411,8 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						article.setTitle("点击查看我的订阅");
+						article.setTitle("DXC Technology | 点击查看我的订阅");
+						article.setDescription("在此您可以随心订阅您感兴趣的专业话题和自身的职业发展方向");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
@@ -423,6 +424,7 @@ public class CoreService
 					else if (eventKey.equals("opsmetric")) {//我的订阅
 						Article article = new Article();
 						article.setTitle("查看产品运维报表");
+						article.setDescription("您可查看实时更新的产品运维报表");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp");
 						articleList.add(article);
