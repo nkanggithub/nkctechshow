@@ -428,7 +428,7 @@ function getAllDatas(){
 					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">DXC Technology Coperation</h2>
 					 -->
 			
-					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您,<%=res.get("NickName") %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:36px;right:10px;" src="<%=res.get("HeadUrl") %>" alt=""/>
+					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您： <%=res.get("NickName") %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:30px;right:10px;" src="<%=res.get("HeadUrl") %>" alt=""/>
 				<input id="openid" type="hidden" value="<%=uid%>"/><input id="role" type="hidden" value="<%=res.get("role")%>"/>
 </div>		
 	<div class="TABclass">
