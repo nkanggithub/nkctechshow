@@ -400,7 +400,7 @@ public class CoreService
 						int randNum = rand.nextInt(30);
 						article.setTitle("点击扫描您附近的同事");
 						article.setDescription("您当前所在位置:" + addr);
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9Njx&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
