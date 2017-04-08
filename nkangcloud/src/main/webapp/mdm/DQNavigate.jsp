@@ -134,7 +134,7 @@ catch(Exception e){
 	
 </head> 
 <body onload="stylerevise()">
-	<a href="../DQMenu?UID=<%= uid%>"><img src=""  class="HpLogo" alt="Logo" style="width:175px;height:80px;position:absolute;left:4%;top:2%; z-index:6;"/></a>
+	<a href="../DQMenu?UID=<%= uid%>"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rPC&oid=00D90000000pkXM"  class="HpLogo" alt="Logo" style="width:175px;height:90px;position:absolute;left:4%;top:2%; z-index:6;"/></a>
 	<a><img id="data_lake_id" src="../MetroStyleFiles/lake-icon.png" onClick="Javascript:CommentMe();" class="data_lake_img"/></a>
 	<div class="metro-layout vertical">
 		<div class="header"></div>
