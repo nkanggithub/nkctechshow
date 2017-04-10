@@ -946,7 +946,7 @@ function register() {
 					$("#info_username span").html(jsons.results[0].realName+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+jsons.results[0].role+']&nbsp;</span>'+'<img onclick="showRegister()" src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
 					$("#info_all").css('display','table');
 					$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].phone);
-					$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].groupid);
+					//$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].groupid);
 					$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].email);
 					$("#info_selfIntro").text(jsons.results[0].selfIntro);
 					$('#UserInfo').modal('show');
@@ -1143,9 +1143,14 @@ function getUserInfo(username, headimgurl, openId) {
 							$("#info_all").css('display','table');
 							$("img.zan").css('display','block');
 							$("span.zan").css('display','block');
-							$("#info_username span").html(username+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+jsons.results[0].role+']</span>');
+							var role="";
+							try{
+							 	role=RoleObj[jsons.results[0].role];
+							}catch(e){
+							}
+							$("#info_username span").html(username+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+role+']</span>');
 							$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].phone);
-							$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].groupid);
+							//$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].groupid);
 							$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;<a style='color:#fff;' href='mailto:"+jsons.results[0].email+"'>"+jsons.results[0].email+"</a>");
 							$("#info_selfIntro").text(jsons.results[0].selfIntro);
 						}else{
@@ -1868,10 +1873,10 @@ function getNowFormatDate() {
 												<span></span>
 											</div>
 											<table id="info_all">
-												<tr>
+												<!-- <tr>
 													<td><img src="../MetroStyleFiles/group2.png"/></td>
 													<td><div id="info_group"></div></td>
-												</tr>
+												</tr> -->
 												<tr>
 													<td><img src="../MetroStyleFiles/telephone2.png"/></td>
 													<td><div id="info_phone"></div></td>
