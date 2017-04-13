@@ -235,7 +235,6 @@ public class PoiUtil {
 	 */
 	 
 	 public PlatforRelated platformRelated(InputStream is) throws FileNotFoundException{
-			//List<Inventory> inventoryList = new ArrayList<Inventory>();
 		 PlatforRelated platforRelated = new PlatforRelated();
 		        HSSFWorkbook hssfWorkbook;
 				try {
@@ -243,14 +242,112 @@ public class PoiUtil {
 					// 循环工作表Sheet
 					    for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
 				            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
-				           
+				            HSSFRow headRow = hssfSheet.getRow(0);
+				            String headName="";
+				            String heaName ="";
 					            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
 					                HSSFRow hssfRow = hssfSheet.getRow(rowNum);
 					                if (hssfRow == null) {
 					                    continue;
 					                }
+					                for (int cellNum = 0; cellNum <headRow.getPhysicalNumberOfCells(); cellNum++) {
+					                	headName = headRow.getCell(cellNum).getStringCellValue();
+					                	if(headName!=null && "Assigned To".equals(headName.trim())){
+					                		HSSFCell assignedTo = hssfRow.getCell(cellNum);
+					                		 if(assignedTo==null || "".equals(assignedTo+"") ){
+								                	platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
+								                	platforRelated.setRunMaintainMetricstotal(platforRelated.getRunMaintainMetricstotal()+1);
+								                	continue;
+								                }else{
+								                	platforRelated.setRunMaintainMetricstotal(platforRelated.getRunMaintainMetricstotal()+1);
+								                	for(int cellN = 0; cellN <headRow.getPhysicalNumberOfCells(); cellN++){
+								                		heaName = headRow.getCell(cellN).getStringCellValue();
+									                	if(heaName!=null && "Status".equals(heaName.trim())){
+									                		
+									                		HSSFCell status = hssfRow.getCell(cellN);
+											                if(status!=null){
+											                	if("Done".equals(status.toString().trim())){
+											                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
+											                			platforRelated.setDone_USA(platforRelated.getDone_USA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
+											                			platforRelated.setDone_MEXICO(platforRelated.getDone_MEXICO()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
+											                			platforRelated.setDone_EMEA(platforRelated.getDone_EMEA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
+											                			platforRelated.setDone_APJ(platforRelated.getDone_APJ()+1);
+																	}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
+																		continue;
+																	}else{
+																		List<String> ls = platforRelated.getOutNames();
+																		if(ls==null){
+																			ls=new ArrayList<String>();
+																		}
+																		if(!ls.contains(assignedTo.toString())){
+																			ls.add(assignedTo.toString());
+																		}
+																		platforRelated.setOutNames(ls);
+																	}
+											                	}else if(!"New".equals(status.toString().trim())&&!"Done".equals(status.toString().trim())){
+											                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInProgress_USA(platforRelated.getInProgress_USA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInProgress_MEXICO(platforRelated.getInProgress_MEXICO()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInProgress_EMEA(platforRelated.getInProgress_EMEA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInProgress_APJ(platforRelated.getInProgress_APJ()+1);
+																	}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
+																		continue;
+																	}else{
+																		List<String> ls = platforRelated.getOutNames();
+																		if(ls==null){
+																			ls=new ArrayList<String>();
+																		}
+																		if(!ls.contains(assignedTo.toString())){
+																			ls.add(assignedTo.toString());
+																		}
+																		platforRelated.setOutNames(ls);
+																	}
+											                	}else if("New".equals(status.toString().trim())){
+											                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInPlanning_USA(platforRelated.getInPlanning_USA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInPlanning_MEXICO(platforRelated.getInPlanning_MEXICO()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInPlanning_EMEA(platforRelated.getInPlanning_EMEA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
+											                			platforRelated.setInPlanning_APJ(platforRelated.getInPlanning_APJ()+1);
+																	}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
+																		continue;
+																	}else{
+																		List<String> ls = platforRelated.getOutNames();
+																		if(ls==null){
+																			ls=new ArrayList<String>();
+																		}
+																		if(!ls.contains(assignedTo.toString())){
+																			ls.add(assignedTo.toString());
+																		}
+																		platforRelated.setOutNames(ls);
+																	}
+									                	}
+								                	}
+								                	 
+															}
+										                }
+								                }
+					                	}
+					                }
 					                
-					                HSSFCell assignedTo = hssfRow.getCell(0);
+					    /*            HSSFCell assignedTo = hssfRow.getCell(0);
 					                if(assignedTo==null || "".equals(assignedTo+"") ){
 					                	platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
 					                	platforRelated.setRunMaintainMetricstotal(platforRelated.getRunMaintainMetricstotal()+1);
@@ -283,7 +380,7 @@ public class PoiUtil {
 														}
 														platforRelated.setOutNames(ls);
 													}
-							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
+							                		if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
 							                			platforRelated.setDone_USA(platforRelated.getDone_USA()+1);
 							                			continue;
 							                		}else if("Leonardo Vallin Langarica".equals(assignedTo.toString())||"Luis Vasquez-Rodriguez".equals(assignedTo.toString())||"Azucena Rivera".equals(assignedTo.toString())||"Victor Carrillo".equals(assignedTo.toString())){
@@ -295,7 +392,7 @@ public class PoiUtil {
 							                		}else {
 							                			platforRelated.setDone_APJ(platforRelated.getDone_APJ()+1);
 													}
-							                		*/
+							                		
 							                	}else if(!"New".equals(status.toString().trim())&&!"Done".equals(status.toString().trim())){
 							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInProgress_USA(platforRelated.getInProgress_USA()+1);
@@ -320,7 +417,7 @@ public class PoiUtil {
 														}
 														platforRelated.setOutNames(ls);
 													}
-							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
+							                		if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
 							                			platforRelated.setInProgress_USA(platforRelated.getInProgress_USA()+1);
 							                			continue;
 							                		}else if("Leonardo Vallin Langarica".equals(assignedTo.toString())||"Luis Vasquez-Rodriguez".equals(assignedTo.toString())||"Azucena Rivera".equals(assignedTo.toString())||"Victor Carrillo".equals(assignedTo.toString())){
@@ -331,7 +428,7 @@ public class PoiUtil {
 							                			continue;
 							                		}else {
 							                			platforRelated.setInProgress_APJ(platforRelated.getInProgress_APJ()+1);
-													}*/
+													}
 							                	}else if("New".equals(status.toString().trim())){
 							                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
 							                			platforRelated.setInPlanning_USA(platforRelated.getInPlanning_USA()+1);
@@ -356,7 +453,7 @@ public class PoiUtil {
 														}
 														platforRelated.setOutNames(ls);
 													}
-							                		/*if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
+							                		if("Jeremy Clark".equals(assignedTo.toString())||"Samson Jayaraj".equals(assignedTo.toString())||"Andrew Lewis".equals(assignedTo.toString())||"Tommy Lucas".equals(assignedTo.toString())||"Bhavesh Patel".equals(assignedTo.toString())){
 							                			platforRelated.setInPlanning_USA(platforRelated.getInPlanning_USA()+1);
 							                			continue;
 							                		}else if("Leonardo Vallin Langarica".equals(assignedTo.toString())||"Luis Vasquez-Rodriguez".equals(assignedTo.toString())||"Azucena Rivera".equals(assignedTo.toString())||"Victor Carrillo".equals(assignedTo.toString())){
@@ -367,10 +464,10 @@ public class PoiUtil {
 							                			continue;
 							                		}else {
 							                			platforRelated.setInPlanning_APJ(platforRelated.getInPlanning_APJ()+1);
-													}*/
+													}
 												}
 							                }
-					                }
+					                }*/
 					               
 					            }
 					            
