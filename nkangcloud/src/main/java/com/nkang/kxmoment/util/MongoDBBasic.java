@@ -301,91 +301,9 @@ public class MongoDBBasic {
 	}
 	
 	
-	public static ClientMeta QueryClientMeta(){
-		ClientMeta cm = new ClientMeta();
-		mongoDB = getMongoDB();
-	    try{
-			DBObject query = new BasicDBObject();
-			query.put("Active", "Y");
-			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
-			String clientCopyRight = queryresults.get("ClientCopyRight")==null?"":queryresults.get("ClientCopyRight").toString();
-			String clientLogo = queryresults.get("ClientLogo")==null?"":queryresults.get("ClientLogo").toString();
-			String clientName = queryresults.get("ClientName")==null?"":queryresults.get("ClientName").toString();
-			String clientSubName = queryresults.get("ClientSubName")==null?"":queryresults.get("ClientSubName").toString();
-			String clientThemeColor = queryresults.get("ClientThemeColor")==null?"":queryresults.get("ClientThemeColor").toString();
-			String clientStockCode =queryresults.get("ClientCode")==null?"": queryresults.get("ClientCode").toString();
-			String clientActive = queryresults.get("Active")==null?"":queryresults.get("Active").toString();
-			String metricsMapping = queryresults.get("MetricsMapping")==null?"":queryresults.get("MetricsMapping").toString();
-			
-			BasicDBList slide = (BasicDBList) queryresults.get("Slide");
-    		if(slide != null){
-    			ArrayList list=new ArrayList();
-        		Object[] tagObjects = slide.toArray();
-        		for(Object dbobj : tagObjects){
-        			if(dbobj instanceof DBObject){
-        				HashMap<String, String> temp=new HashMap<String, String>();
-        				list.add( ((DBObject)dbobj).get("src").toString());
-        			}
-        		}
-        		cm.setSlide(list);
-    		}
-			cm.setClientCopyRight(clientCopyRight);
-			cm.setClientLogo(clientLogo);
-			cm.setClientName(clientName);
-			cm.setClientSubName(clientSubName);
-			cm.setClientActive(clientActive);
-			cm.setClientStockCode(clientStockCode);
-			cm.setClientThemeColor(clientThemeColor);
-			cm.setMetricsMapping(metricsMapping);
-	    }
-		catch(Exception e){
-			log.info("QueryClientMeta--" + e.getMessage());
-		}
-	    return cm;
-	}
 	
-	public static ClientMeta QueryClientMeta(String ClientCode){
-		ClientMeta cm = new ClientMeta();
-		mongoDB = getMongoDB();
-	    try{
-			DBObject query = new BasicDBObject();
-			query.put("Active", "Y");
-			query.put("ClientCode", ClientCode);
-			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
-			String clientCopyRight = queryresults.get("ClientCopyRight")==null?"":queryresults.get("ClientCopyRight").toString();
-			String clientLogo = queryresults.get("ClientLogo")==null?"":queryresults.get("ClientLogo").toString();
-			String clientName = queryresults.get("ClientName")==null?"":queryresults.get("ClientName").toString();
-			String clientSubName = queryresults.get("ClientSubName")==null?"":queryresults.get("ClientSubName").toString();
-			String clientThemeColor = queryresults.get("ClientThemeColor")==null?"":queryresults.get("ClientThemeColor").toString();
-			String clientStockCode =queryresults.get("ClientCode")==null?"": queryresults.get("ClientCode").toString();
-			String clientActive = queryresults.get("Active")==null?"":queryresults.get("Active").toString();
-			String metricsMapping = queryresults.get("MetricsMapping")==null?"":queryresults.get("MetricsMapping").toString();
-			BasicDBList slide = (BasicDBList) queryresults.get("Slide");
-    		if(slide != null){
-    			ArrayList list=new ArrayList();
-        		Object[] tagObjects = slide.toArray();
-        		for(Object dbobj : tagObjects){
-        			if(dbobj instanceof DBObject){
-        				HashMap<String, String> temp=new HashMap<String, String>();
-        				list.add( ((DBObject)dbobj).get("src").toString());
-        			}
-        		}
-        		cm.setSlide(list);
-    		}
-			cm.setClientCopyRight(clientCopyRight);
-			cm.setClientLogo(clientLogo);
-			cm.setClientName(clientName);
-			cm.setClientSubName(clientSubName);
-			cm.setClientActive(clientActive);
-			cm.setClientStockCode(clientStockCode);
-			cm.setClientThemeColor(clientThemeColor);
-			cm.setMetricsMapping(metricsMapping);
-	    }
-		catch(Exception e){
-			log.info("QueryClientMeta--" + e.getMessage());
-		}
-	    return cm;
-	}
+	
+	
 	public static String ActivaeClientMeta(String clientCode){
 		String cm = "";
 		mongoDB = getMongoDB();
@@ -1716,6 +1634,52 @@ public class MongoDBBasic {
 			log.info("getNearByOpptFromMongoDB--" + e.getMessage());
 		}
 		return Oppts;
+	}
+	public static ArrayList<ClientMeta> QueryClientMetaList(){
+		ArrayList<ClientMeta> result=new ArrayList<ClientMeta>();
+		mongoDB = getMongoDB();
+		DBCursor queryresults;
+	    try{
+	    	BasicDBObject sort=new BasicDBObject();
+			sort.put("Active", -1);
+			queryresults = mongoDB.getCollection(ClientMeta).find().limit(500).sort(sort);
+			if (null != queryresults) {
+            	while(queryresults.hasNext()){
+            		ClientMeta cm = new ClientMeta();
+            		DBObject o = queryresults.next();
+            		String clientCopyRight = o.get("ClientCopyRight")==null?"":o.get("ClientCopyRight").toString();
+        			String clientLogo = o.get("ClientLogo")==null?"":o.get("ClientLogo").toString();
+        			String clientName = o.get("ClientName")==null?"":o.get("ClientName").toString();
+        			String clientSubName = o.get("ClientSubName")==null?"":o.get("ClientSubName").toString();
+        			String clientThemeColor = o.get("ClientThemeColor")==null?"":o.get("ClientThemeColor").toString();
+        			String clientStockCode = o.get("ClientCode")==null?"":o.get("ClientCode").toString();
+        			String clientActive =o.get("Active")==null?"": o.get("Active").toString();
+        			BasicDBList slide = (BasicDBList) o.get("Slide");
+            		if(slide != null){
+            			ArrayList<String> list=new ArrayList<String>();
+                		Object[] tagObjects = slide.toArray();
+                		for(Object dbobj : tagObjects){
+                			if(dbobj instanceof DBObject){
+                				list.add(((DBObject)dbobj).get("src").toString());
+                			}
+                		}
+                		cm.setSlide(list);
+            		}
+        			cm.setClientCopyRight(clientCopyRight);
+        			cm.setClientLogo(clientLogo);
+        			cm.setClientName(clientName);
+        			cm.setClientSubName(clientSubName);
+        			cm.setClientActive(clientActive);
+        			cm.setClientStockCode(clientStockCode);
+        			cm.setClientThemeColor(clientThemeColor);
+        			result.add(cm);
+            	}
+            }
+	    }
+		catch(Exception e){
+			log.info("QueryClientMeta--" + e.getMessage());
+		}
+	    return result;
 	}
 	public static boolean addSkimNum(){
 		boolean result=false;
