@@ -10,12 +10,19 @@ public class ClientMeta {
 	private String clientThemeColor;
 	private String clientStockCode;
 	private String clientActive;
+	private ArrayList<?> SkimNum;
 	private ArrayList<?> Slide;
 	private String metricsMapping;
 	
 	
 	public String getMetricsMapping() {
 		return metricsMapping;
+	}
+	public ArrayList<?> getSkimNum() {
+		return SkimNum;
+	}
+	public void setSkimNum(ArrayList<?> skimNum) {
+		SkimNum = skimNum;
 	}
 	public void setMetricsMapping(String metricsMapping) {
 		this.metricsMapping = metricsMapping;
