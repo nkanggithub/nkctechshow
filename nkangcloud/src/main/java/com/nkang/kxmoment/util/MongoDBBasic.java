@@ -1635,6 +1635,22 @@ public class MongoDBBasic {
 		}
 		return Oppts;
 	}
+	public static ArrayList<String> QueryLikeAreaOpenidList(String roleOrAreaId){
+		ArrayList<String> result=new ArrayList<String>();
+		mongoDB = getMongoDB();
+		DBObject query = new BasicDBObject();
+		query.put("likeLists", roleOrAreaId);
+		DBCursor queryresults = mongoDB.getCollection(ClientMeta).find(query);
+		if (null != queryresults) {
+        	while(queryresults.hasNext()){
+        		DBObject o = queryresults.next();
+        		if( o.get("OpenID")==null){
+        			result.add(o.get("OpenID").toString());
+        		}
+        	}
+		}
+		return result;
+	}
 	public static ArrayList<ClientMeta> QueryClientMetaList(){
 		ArrayList<ClientMeta> result=new ArrayList<ClientMeta>();
 		mongoDB = getMongoDB();
