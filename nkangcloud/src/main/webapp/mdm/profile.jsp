@@ -76,6 +76,7 @@ boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
+<script src="../Jsp/JS/fusioncharts.js" type="text/javascript"></script>
 <!--[if IE]>
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
@@ -215,8 +216,9 @@ $(function(){
     });
 
 var LastToLikeDate="",lastLikeTo="";
-var RoleObj=new Object();
 var HpLogoSrc="",copyRight="",clientThemeColor="";
+var RoleList=[];
+var RoleObj=new Object();
 getLogo();
 
 var selectedType="<option value='常规沟通'>常规沟通</option>";
@@ -291,11 +293,13 @@ function getRole(){
 		 type:"GET",
 		 success:function(resData){
 			 if(resData){
+				 var m=0;
 				 for(var i=0;i<resData.length;i++){
 					 selectedType=selectedType+"<option value='"+resData[i].name+"'>"+resData[i].name+"</option>";
 					 if(resData[i].flag=="Role")
 					 {
 						  RoleObj[resData[i].id]=resData[i].name;
+  						  RoleList[m++]=resData[i];
 					 }
 				 }
 			 }
@@ -1232,6 +1236,7 @@ function getMDLUserLists() {
 					data = '{"results":' + data + '}';
 					var jsons = eval('(' + data + ')');
 					var ul = "",regNumber=0;
+					var RoleNum=new Object(),noRoleNum=0;
 					//ul='<div class="Work_Mates_div_list_div2" style="border-bottom:0px;">';
 					ul='';
 					for (var i = 0; i < jsons.results.length; i++) {
@@ -1242,10 +1247,16 @@ function getMDLUserLists() {
 						var phone=temp.phone;
 						var tagHtml="";
 						var congratulate="";
-						var role="";
+						var role;
 						try{
 						 	role=RoleObj[temp.role];
+						 	if(RoleNum[temp.role]==null||RoleNum[temp.role]==undefined){
+						 		RoleNum[temp.role]=1;
+						 	}else{
+						 		RoleNum[temp.role]++;
+						 	}
 						}catch(e){
+							noRoleNum++;
 						}
 						if(temp.openid==$('#uid').val()){
 							LastToLikeDate=temp.like.lastLikeDate;
@@ -1331,6 +1342,64 @@ function getMDLUserLists() {
 					+'&nbsp;&nbsp;&nbsp;已注册人数：'+regNumber
 					+'</span><div class="clear"></div></div>'+ul; */
 					$("#Work_Mates_div").html(ul);
+					
+					
+					var data=[];
+					noRoleNum=jsons.results.length;
+					for(var i=0;i<RoleList.length;i++){
+						data[i]=new Object();
+						data[i]["value"] = (RoleNum[RoleList[i].id]==undefined?0:RoleNum[RoleList[i].id]) ;
+						data[i]["label"]=RoleList[i].name +":"+data[i]["value"]+"人";
+						noRoleNum=noRoleNum-data[i]["value"];
+					}
+					data[RoleList.length]=new Object();
+					data[RoleList.length]["value"]=noRoleNum;
+					data[RoleList.length]["label"]='未分类:'+noRoleNum+'人';
+					
+					FusionCharts.ready(function(){
+					    var revenueChart = new FusionCharts({
+					        type: 'doughnut2d',
+					        renderAt: 'chart-container',
+					        width: '350',
+					        height: '400',
+					        dataFormat: 'json',
+					        dataSource: {
+					            "chart": {
+					                "caption": "",
+					                "subCaption": "",
+					                "numberSuffix": "人",
+					                "paletteColors": "#8e0000,#8e7080,#0075c2,#1aaf5d,#f2c500,#f45b00",
+					                "bgColor": "#ffffff",
+					                "showBorder": "0",
+					                "use3DLighting": "0",
+					                "showShadow": "0",
+					                "enableSmartLabels": "0",
+					                "startingAngle": "310",
+					                "showLabels": "0",
+					                "showPercentValues": "1",
+					                "showLegend": "1",
+					                "legendShadow": "0",
+					                "legendBorderAlpha": "0",
+					                "defaultCenterLabel": "共"+jsons.results.length+"人",
+					                "centerLabel": " $label",
+					                "centerLabelBold": "1",
+					                "showTooltip": "0",
+					                "decimals": "0",
+					                "captionFontSize": "14",
+					                "subcaptionFontSize": "14",
+					                "subcaptionFontBold": "0"
+					            },
+					            "data": data,
+					            "events": { 
+					                "beforeLinkedItemOpen": function(eventObj, dataObj) { 
+					                    console.log(eventObj);
+					                    console.log(dataObj);
+					                }
+					            }
+					        }
+					    }).render();
+					});
+					
 				}
 			});
 }
@@ -1646,7 +1715,7 @@ function getNowFormatDate() {
 					<div class="span12">
 						<div class="PositionR">
 						<form id="searchForm" method="get" action="https://www.bing.com/search"  style="padding:0px;" >
-									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-60px;"> 
+									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-50px;"> 
       						    </form>
 					<!-- 	<input type="text" id="search" name="search" placeholder="Search.."> -->
 								
@@ -2025,6 +2094,9 @@ function getNowFormatDate() {
 
 
 								<div class="tab-pane" id="WorkMates">
+								
+								<div id="chart-container" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
+					
 									<ul class="Work_Mates_div2" id="Work_Mates_div"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 									</ul>
 <div id="return-top"><img class="scroll-top" src="../Jsp/PIC/upgrade.png" alt="" width="50px"></div>  
