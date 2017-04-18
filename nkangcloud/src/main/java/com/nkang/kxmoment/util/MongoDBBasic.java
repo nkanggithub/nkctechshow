@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -802,6 +803,7 @@ public class MongoDBBasic {
     			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", OpenID), doc);
             }
             ret = true;
+            addSkimNum();
 	    }
 		catch(Exception e){
 			log.info("updateUser--" + e.getMessage());
@@ -1715,53 +1717,101 @@ public class MongoDBBasic {
 		}
 		return Oppts;
 	}
-	public static ArrayList<ClientMeta> QueryClientMetaList(){
-		ArrayList<ClientMeta> result=new ArrayList<ClientMeta>();
+	public static boolean addSkimNum(){
+		boolean result=false;
 		mongoDB = getMongoDB();
-		DBCursor queryresults;
+		
+		Date d = new Date();  
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+        String dateNowStr = sdf.format(d); 
+        
+    	DBObject query = new BasicDBObject();
+		query.put("Active", "Y");
+		DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
+		BasicDBList skim = (BasicDBList) queryresults.get("SkimNum");
+		ArrayList list1=new ArrayList();
+		if(skim != null){
+    		Object[] tagObjects = skim.toArray();
+    		for(Object dbobj : tagObjects){
+    			if(dbobj instanceof DBObject){
+    				HashMap<String, Object> temp=new HashMap<String, Object>();
+    				temp.put("date", ((DBObject)dbobj).get("date").toString());
+    				if(dateNowStr.equals(((DBObject)dbobj).get("date").toString())){
+    					temp.put("num", Integer.parseInt( ((DBObject)dbobj).get("num").toString() ) +1);
+    					result=true;
+    				}else{
+    					temp.put("num", Integer.parseInt( ((DBObject)dbobj).get("num").toString() ) );
+    				}
+    				list1.add(temp);
+    			}
+    		}
+		}
+		if(!result){
+			HashMap<String, Object> temp=new HashMap<String, Object>();
+			temp.put("date", dateNowStr);
+			temp.put("num", 0);
+			list1.add(temp);
+		}
+		BasicDBObject doc = new BasicDBObject();
+		BasicDBObject update = new BasicDBObject();
+    	update.append("SkimNum",list1);
+		doc.put("$set", update);
+		WriteResult wr = mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("Active", "Y"), doc);  
+		result=true;
+		return result;
+}
+	public static ClientMeta QueryClientMeta(){
+		ClientMeta cm = new ClientMeta();
+		mongoDB = getMongoDB();
 	    try{
-	    	BasicDBObject sort=new BasicDBObject();
-			sort.put("Active", -1);
-			queryresults = mongoDB.getCollection(ClientMeta).find().limit(500).sort(sort);
-			if (null != queryresults) {
-            	while(queryresults.hasNext()){
-            		ClientMeta cm = new ClientMeta();
-            		DBObject o = queryresults.next();
-            		String clientCopyRight = o.get("ClientCopyRight")==null?"":o.get("ClientCopyRight").toString();
-        			String clientLogo = o.get("ClientLogo")==null?"":o.get("ClientLogo").toString();
-        			String clientName = o.get("ClientName")==null?"":o.get("ClientName").toString();
-        			String clientSubName = o.get("ClientSubName")==null?"":o.get("ClientSubName").toString();
-        			String clientThemeColor = o.get("ClientThemeColor")==null?"":o.get("ClientThemeColor").toString();
-        			String clientStockCode = o.get("ClientCode")==null?"":o.get("ClientCode").toString();
-        			String clientActive =o.get("Active")==null?"": o.get("Active").toString();
-        			String metricsMapping = o.get("MetricsMapping")==null?"":o.get("MetricsMapping").toString();
-        			BasicDBList slide = (BasicDBList) o.get("Slide");
-            		if(slide != null){
-            			ArrayList<String> list=new ArrayList<String>();
-                		Object[] tagObjects = slide.toArray();
-                		for(Object dbobj : tagObjects){
-                			if(dbobj instanceof DBObject){
-                				list.add(((DBObject)dbobj).get("src").toString());
-                			}
-                		}
-                		cm.setSlide(list);
-            		}
-        			cm.setClientCopyRight(clientCopyRight);
-        			cm.setClientLogo(clientLogo);
-        			cm.setClientName(clientName);
-        			cm.setClientSubName(clientSubName);
-        			cm.setClientActive(clientActive);
-        			cm.setClientStockCode(clientStockCode);
-        			cm.setClientThemeColor(clientThemeColor);
-        			cm.setMetricsMapping(metricsMapping);
-        			result.add(cm);
-            	}
-            }
+			DBObject query = new BasicDBObject();
+			query.put("Active", "Y");
+			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
+			String clientCopyRight = queryresults.get("ClientCopyRight")==null?"":queryresults.get("ClientCopyRight").toString();
+			String clientLogo = queryresults.get("ClientLogo")==null?"":queryresults.get("ClientLogo").toString();
+			String clientName = queryresults.get("ClientName")==null?"":queryresults.get("ClientName").toString();
+			String clientSubName = queryresults.get("ClientSubName")==null?"":queryresults.get("ClientSubName").toString();
+			String clientThemeColor = queryresults.get("ClientThemeColor")==null?"":queryresults.get("ClientThemeColor").toString();
+			String clientStockCode =queryresults.get("ClientCode")==null?"": queryresults.get("ClientCode").toString();
+			String clientActive = queryresults.get("Active")==null?"":queryresults.get("Active").toString();
+			BasicDBList skim = (BasicDBList) queryresults.get("SkimNum");
+			if(skim != null){
+    			ArrayList list1=new ArrayList();
+        		Object[] sObjects = skim.toArray();
+        		for(Object dbobj : sObjects){
+        			if(dbobj instanceof DBObject){
+        				HashMap<String, Object> temp=new HashMap<String, Object>();
+        				temp.put("date", ((DBObject)dbobj).get("date").toString());
+        				temp.put("num",  Integer.parseInt(((DBObject)dbobj).get("num").toString()) );
+        				list1.add(temp);
+        			}
+        		}
+        		cm.setSkimNum(list1);
+    		}
+			BasicDBList slide = (BasicDBList) queryresults.get("Slide");
+    		if(slide != null){
+    			ArrayList list=new ArrayList();
+        		Object[] tagObjects = slide.toArray();
+        		for(Object dbobj : tagObjects){
+        			if(dbobj instanceof DBObject){
+        				list.add( ((DBObject)dbobj).get("src").toString());
+        			}
+        		}
+        		cm.setSlide(list);
+    		}
+    		
+			cm.setClientCopyRight(clientCopyRight);
+			cm.setClientLogo(clientLogo);
+			cm.setClientName(clientName);
+			cm.setClientSubName(clientSubName);
+			cm.setClientActive(clientActive);
+			cm.setClientStockCode(clientStockCode);
+			cm.setClientThemeColor(clientThemeColor);
 	    }
 		catch(Exception e){
 			log.info("QueryClientMeta--" + e.getMessage());
 		}
-	    return result;
+	    return cm;
 	}
 	@SuppressWarnings("unchecked")
 	public static List<WeChatMDLUser> getWeChatUserFromMongoDB(String OpenID) {
