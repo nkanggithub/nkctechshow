@@ -73,6 +73,9 @@ boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 		<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/component.css" />
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <script type="text/javascript" src="../nkang/jquery-form.js"></script>
+
+<link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
+<script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <!--[if IE]>
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
@@ -85,7 +88,39 @@ boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 	.w3-left, .w3-right, .w3-badge {cursor:pointer}
 	.w3-badge {height:13px;width:13px;padding:0}
         #return-top{position:fixed;bottom:40px;right:10px; text-align:center; display:none;} 
-    
+.edit
+{
+	width: 60px;
+    height: 100%;
+    color: #fff;
+    font-family:微软雅黑;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    right: -60px;
+	font-size:14px;
+    background: #438CD0;
+    border-bottom: 1px solid #ccc;
+}
+.edit.km{
+	right: -120px;
+    background: orange;
+}
+.edit img {
+    width:25px;height:auto;position:absolute;top:25px;margin-left: 2px;
+}
+.edit.km p{
+	line-height:35px;
+	padding-top:20px;
+}
+.edit p
+{
+	width:50%;
+	height:100%;
+	line-height:145px;
+	margin-right:auto;
+	margin-left:auto;
+}
 input#search{
 	height:31px;
     width: 10px;
@@ -195,10 +230,10 @@ $(window).load(function() {
 	$("li.Work_Mates_div_list_div2").live("swipeleft",function(){
 		$(this).css("overflow","visible");
 		$(this).addClass("editBtn");
-		//var openid=$(this).find("span.openid").text();
-		//var name=$(this).find("span.name").text();
-		$(this).append("<div class='edit'><p onclick=''><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
-		$(this).append("<div class='edit km'><p onclick=''>***<br/>管理</p></div>");
+		var openid=$(this).find("span.openid").text();
+		var name=$(this).find("span.name").text();
+		$(this).append("<div class='edit'><p onclick='showUpdateUserPanel(\""+openid+"\",\""+name+"\")'><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
+		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>***<br/>管理</p></div>");
 		$(this).siblings().removeClass("editBtn");
 		$(this).siblings().remove(".edit");
 	});
@@ -1197,7 +1232,8 @@ function getMDLUserLists() {
 					data = '{"results":' + data + '}';
 					var jsons = eval('(' + data + ')');
 					var ul = "",regNumber=0;
-					ul='<div class="Work_Mates_div_list_div2" style="border-bottom:0px;">'
+					//ul='<div class="Work_Mates_div_list_div2" style="border-bottom:0px;">';
+					ul='';
 					for (var i = 0; i < jsons.results.length; i++) {
 						var temp = jsons.results[i];
 						var selfIntro=temp.selfIntro;
@@ -1254,7 +1290,7 @@ function getMDLUserLists() {
 							congratulate='<div style="float:right;"><img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
 								+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
 						}
-						var li='	<div class="Work_Mates_div_list_div2">'
+						var li='	<li class="Work_Mates_div_list_div2">'
 							+'                                           	 	<div class="Work_Mates_img_div2">'
 							+'                                        			 <img src="'
 							+ temp.headimgurl
@@ -1287,13 +1323,13 @@ function getMDLUserLists() {
 							+'                                        		</div>'
 							+workDay
 							+'                                                <div class="clear"></div>'
-							+'                                          </div>';
+							+'                                          </li>';
 						ul += li;
 					}
-					ul='<div class="Work_Mates_div_list_div2">'
+				/* 	ul='<div class="Work_Mates_div_list_div2">'
 					+'<span class="total_num"><img src="../MetroStyleFiles/role.png"/>总人数：'+ jsons.results.length
 					+'&nbsp;&nbsp;&nbsp;已注册人数：'+regNumber
-					+'</span><div class="clear"></div></div>'+ul;
+					+'</span><div class="clear"></div></div>'+ul; */
 					$("#Work_Mates_div").html(ul);
 				}
 			});
@@ -1989,8 +2025,8 @@ function getNowFormatDate() {
 
 
 								<div class="tab-pane" id="WorkMates">
-									<div class="Work_Mates_div2" id="Work_Mates_div">
-									</div>
+									<ul class="Work_Mates_div2" id="Work_Mates_div"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
+									</ul>
 <div id="return-top"><img class="scroll-top" src="../Jsp/PIC/upgrade.png" alt="" width="50px"></div>  
 								</div>
 							</div>
