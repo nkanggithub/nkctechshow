@@ -1659,7 +1659,7 @@ function getNowFormatDate() {
 						<a class="naviArrow is-selected" ></a>
 						<p class="naviText">微应用</p>
 							</div>
-							<div id="navSupport"   class="navi"><p class="naviText">微维护</p></div>
+							<div id="navSupport"   class="navi"><p class="naviText">微流量</p></div>
 								<div id="navMember"  class="navi"><p class="naviText">微成员</p></div>
 							</div>
 							<div class="tab-content" id="dvTabContent" style="border: 0px;margin-top:-30px">
