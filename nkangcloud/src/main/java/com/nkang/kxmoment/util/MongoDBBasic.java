@@ -1640,7 +1640,7 @@ public class MongoDBBasic {
 		mongoDB = getMongoDB();
 		DBObject query = new BasicDBObject();
 		query.put("likeLists", roleOrAreaId);
-		DBCursor queryresults = mongoDB.getCollection(ClientMeta).find(query);
+		DBCursor queryresults = mongoDB.getCollection(wechat_user).find(query);
 		if (null != queryresults) {
         	while(queryresults.hasNext()){
         		DBObject o = queryresults.next();
