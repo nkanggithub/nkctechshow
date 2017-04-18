@@ -798,7 +798,17 @@ public class MasterDataRestController {
 		}
 		return cm;
 	}
-	
+	@RequestMapping("/QueryLikeAreaOpenidList")
+	public static ArrayList<String> callQueryLikeAreaOpenidList(@RequestParam(value="roleOrAreaId", required=true) String roleOrAreaId){
+		ArrayList<String> result = new ArrayList<String>();
+		try{
+			result = MongoDBBasic.QueryLikeAreaOpenidList(roleOrAreaId);
+		}		
+		catch(Exception e){
+			result = null;
+		}
+		return result;
+	}	
 	@RequestMapping("/QueryClientMetaByClientCode")
 	public static String QueryClientMetaByClientCode(){
 		ClientMeta cm = new ClientMeta();
