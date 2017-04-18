@@ -224,22 +224,6 @@ getLogo();
 var selectedType="<option value='常规沟通'>常规沟通</option>";
 
 $(window).load(function() {
-	$("li.Work_Mates_div_list_div2").live("swiperight",function(){
-		$(this).css("overflow","hidden");
-		$(this).removeClass("editBtn");
-		$(this).remove(".edit");
-	}); 
-	$("li.Work_Mates_div_list_div2").live("swipeleft",function(){
-		$(this).css("overflow","visible");
-		$(this).addClass("editBtn");
-		var openid=$(this).find("span.openid").text();
-		var name=$(this).find("span.name").text();
-		$(this).append("<div class='edit'><p onclick='showUpdateUserPanel(\""+openid+"\",\""+name+"\")'><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
-		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>***<br/>管理</p></div>");
-		$(this).siblings().removeClass("editBtn");
-		$(this).siblings().remove(".edit");
-	});
-	
 	$(".imgSelect input").live("click",function(){
 		$(this).parent().siblings().find("input").attr("checked", false);
 	});
@@ -1322,7 +1306,10 @@ function getMDLUserLists() {
 							+ temp.openid
 							+ '\');">'
 							+ temp.nickname
-							+ '</span><span class="role">'
+							+ '</span>'
+							+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:13px;" class="like" src="../MetroStyleFiles/like.png"/>'
+							+'<span>'+temp.like.number+'</span>'
+							+'<span class="role">'
 							+role+'</span>'
 							+congratulate
 							+'</h2>'
