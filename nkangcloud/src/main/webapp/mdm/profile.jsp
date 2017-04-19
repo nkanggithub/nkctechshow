@@ -1330,6 +1330,9 @@ function getMDLUserLists() {
 						if(temp.congratulateNum==null||temp.congratulateNum=='null'||temp.congratulateNum==undefined||temp.congratulateNum==0){
 							temp.congratulateNum=0;
 						}
+						if(temp.like.number==null||temp.like.number=='null'||temp.like.number==''||temp.like.number==undefined||temp.like.number==0){
+							temp.like.number=0;
+						}
 
 						if(workDay==null||workDay=='null'||workDay==0){
 							workDay="";
