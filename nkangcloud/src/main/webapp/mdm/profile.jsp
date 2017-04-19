@@ -1779,7 +1779,7 @@ function getNowFormatDate() {
 							<div id="navSupport"   class="navi"><p class="naviText">微流量</p></div>
 								<div id="navMember"  class="navi"><p class="naviText">微成员</p></div>
 							</div>
-							<div class="tab-content" id="dvTabContent" style="border: 0px;margin-top:-30px">
+							<div class="tab-content" id="dvTabContent" style="border: 0px;margin-top:-30px;padding-right:0px;padding-left:0.1px;">
 								<div class="tab-pane" id="BoardContent">
 									<div>
 										<div class="panel-group" id="accordion">
