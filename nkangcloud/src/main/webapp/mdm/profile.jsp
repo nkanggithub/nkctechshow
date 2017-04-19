@@ -1289,22 +1289,26 @@ function getMDLUserLists() {
 							+'                                           	 	<div class="Work_Mates_img_div2">'
 							+'                                        			 <img src="'
 							+ temp.headimgurl
-							+ '" alt="userImage" class="matesUserImage" alt="no_username" onclick="getUserInfo(\''
+							+ '" alt="userImage" class="matesUserImage" alt="no_username"'
+							/* +' onclick="getUserInfo(\''
 							+ temp.nickname
 							+ '\',\''
 							+ temp.headimgurl
 							+ '\',\''
 							+ temp.openid
-							+ '\');"/> '
+							+ '\');"' */
+							+'/> '
 							+'                                         		</div>'
 							+'                                         		<div class="Work_Mates_text_div">'
-							+'                                        			 <h2><span  onclick="getUserInfo(\''
+							+'                                        			 <h2><span '
+							/* +' onclick="getUserInfo(\''
 							+ temp.nickname
 							+ '\',\''
 							+ temp.headimgurl
 							+ '\',\''
 							+ temp.openid
-							+ '\');">'
+							+ '\');"' */
+							+'>'
 							+ temp.nickname
 							+ '</span>'
 							+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:13px;" class="like" src="../MetroStyleFiles/like.png"/>'
