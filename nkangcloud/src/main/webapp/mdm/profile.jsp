@@ -1312,7 +1312,7 @@ function getMDLUserLists() {
 							+ temp.nickname
 							+ '</span>'
 							+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:13px;" class="like" src="../MetroStyleFiles/like.png"/>'
-							+'<span>'+temp.like.number+'</span>'
+							+'<span style="font-weight:normal">'+temp.like.number+'</span>'
 							+'<span class="role">'
 							+role+'</span>'
 							+congratulate
