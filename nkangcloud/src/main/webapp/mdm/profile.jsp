@@ -165,6 +165,44 @@ input#search:focus {
     -webkit-filter: drop-shadow(30px 0 #fff);
     filter: drop-shadow(20px 0);   
 }
+.edit
+{
+	width: 60px;
+    height: 100%;
+    color: #fff;
+    font-family:微软雅黑;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    right: -60px;
+	font-size:14px;
+    background: #438CD0;
+    border-bottom: 1px solid #ccc;
+}
+.edit.km{
+	right: -120px;
+    background: orange;
+}
+.edit img {
+    width:25px;height:auto;position:absolute;top:25px;margin-left: 2px;
+}
+.edit.km p{
+	line-height:35px;
+	padding-top:20px;
+}
+.edit p
+{
+	width:50%;
+	height:100%;
+	line-height:145px;
+	margin-right:auto;
+	margin-left:auto;
+}
+.editBtn
+{
+	position: relative;
+    left: -120px;
+}
 
 .imgSelect{
 height:50%;
@@ -193,7 +231,23 @@ height: 15px;}
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
 <script>
-$(function(){  
+$(function(){ 
+
+	$(".Work_Mates_div_list_div2").live("swipeleft",function(){
+		$(this).css("overflow","visible");
+		$(this).addClass("editBtn");
+		var openid=$(this).find("span.openid").text();
+		var name=$(this).find("span.name").text();
+		$(this).append("<div class='edit'><p onclick='showUpdateUserPanel(\""+openid+"\",\""+name+"\")'><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
+		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>牌号<br/>管理</p></div>");
+		$(this).siblings().removeClass("editBtn");
+		$(this).siblings().find(".edit").remove();
+	});
+	$(".Work_Mates_div_list_div2").live("swiperight",function(){
+		$(this).css("overflow","hidden");
+		$(this).removeClass("editBtn");
+		$(this).remove(".edit");
+	}); 
     $('#return-top').hide();  
     $(function(){  
         $(window).scroll(function(){  
