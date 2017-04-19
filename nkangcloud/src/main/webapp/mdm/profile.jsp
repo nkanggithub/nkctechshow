@@ -1337,8 +1337,8 @@ function getMDLUserLists() {
 							
 						}else{
 							congratulate='<div style="float:right;">'
-								+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:10px;" class="like" src="../MetroStyleFiles/like.png"/>'
-								+'<span style="font-weight:normal">'+temp.like.number+'</span>&nbsp;&nbsp;'
+								+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:14px;" class="like" src="../MetroStyleFiles/like.png"/>'
+								+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span>&nbsp;&nbsp;'
 							+'<img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
 								+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
 						}
