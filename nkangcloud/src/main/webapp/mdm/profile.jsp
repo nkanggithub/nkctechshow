@@ -1327,21 +1327,22 @@ function getMDLUserLists() {
 									+'TEL:'+phone
 									+'													</a></div>';
 						 }
+						if(temp.congratulateNum==null||temp.congratulateNum=='null'||temp.congratulateNum==undefined||temp.congratulateNum==0){
+							temp.congratulateNum=0;
+						}
+
 						if(workDay==null||workDay=='null'||workDay==0){
 							workDay="";
 						}else{
 							regNumber++;
 							workDay='<div style="float:right;margin-top:-45px;background-color:#eee;color:#333;font-size:13px;padding:3px;">'+workDay+' Days</div>';
 						}
-						if(temp.congratulateNum==null||temp.congratulateNum=='null'||temp.congratulateNum==undefined||temp.congratulateNum==0){
-							
-						}else{
-							congratulate='<div style="float:right;">'
-								+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:14px;" class="like" src="../MetroStyleFiles/like.png"/>'
-								+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span>&nbsp;&nbsp;'
-							+'<img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
-								+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
-						}
+						congratulate='<div style="float:right;">'
+							+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:14px;" class="like" src="../MetroStyleFiles/like.png"/>'
+							+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span>&nbsp;&nbsp;'
+						+'<img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
+							+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
+					
 						var li='	<li class="Work_Mates_div_list_div2">'
 							+'                                           	 	<div class="Work_Mates_img_div2">'
 							+'                                        			 <img src="'
