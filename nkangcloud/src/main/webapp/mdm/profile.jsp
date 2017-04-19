@@ -1336,7 +1336,10 @@ function getMDLUserLists() {
 						if(temp.congratulateNum==null||temp.congratulateNum=='null'||temp.congratulateNum==undefined||temp.congratulateNum==0){
 							
 						}else{
-							congratulate='<div style="float:right;"><img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
+							congratulate='<div style="float:right;">'
+								+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:10px;" class="like" src="../MetroStyleFiles/like.png"/>'
+								+'<span style="font-weight:normal">'+temp.like.number+'</span>&nbsp;&nbsp;'
+							+'<img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
 								+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
 						}
 						var li='	<li class="Work_Mates_div_list_div2">'
@@ -1365,8 +1368,6 @@ function getMDLUserLists() {
 							+'>'
 							+ temp.nickname
 							+ '</span>'
-							+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:13px;" class="like" src="../MetroStyleFiles/like.png"/>'
-							+'<span style="font-weight:normal">'+temp.like.number+'</span>'
 							+'<span class="role">'
 							+role+'</span>'
 							+congratulate
@@ -1833,7 +1834,7 @@ function getNowFormatDate() {
 							<div id="navSupport"   class="navi"><p class="naviText">微流量</p></div>
 								<div id="navMember"  class="navi"><p class="naviText">微成员</p></div>
 							</div>
-							<div class="tab-content" id="dvTabContent" style="border: 0px;margin-top:-30px;padding-right:0px;padding-left:0.1px;">
+							<div class="tab-content" id="dvTabContent" style="border: 0px;margin-top:-30px;padding-right:0px;padding-left:0.1px;overflow-x:hidden;">
 								<div class="tab-pane" id="BoardContent">
 									<div>
 										<div class="panel-group" id="accordion">
