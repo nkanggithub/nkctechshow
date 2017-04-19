@@ -25,6 +25,10 @@
     -webkit-filter: drop-shadow(30px 0 #fff);
     filter: drop-shadow(20px 0);   
 }
+canvas.jSignature {
+    border-right: 0px !important;
+    border-left: 0px !important;
+}
 </style>
 </head>
 <body style="padding:0px;margin:0px;">
