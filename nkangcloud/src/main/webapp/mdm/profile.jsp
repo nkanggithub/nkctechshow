@@ -1888,7 +1888,7 @@ function getNowFormatDate() {
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"
 						style="font-size: 15px; margin: 0px; padding: 5px 0px;">
-							Welcome <span class="username colorBlue" id="username">
+							欢迎您： <span class="username colorBlue" id="username">
 						</span>
 					</a> <span><a style="float: right;"> <img id="userImage"
 								src="<%=wcu.getHeadimgurl() %>" alt="userImage"
