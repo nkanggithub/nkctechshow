@@ -1345,9 +1345,12 @@ function getMDLUserLists() {
 							+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span>&nbsp;&nbsp;'
 						+'<img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
 							+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
-					
+						var lastUpdatedDate="暂无互动";
+						if(temp.lastUpdatedDate!=null&&temp.lastUpdatedDate!='null'){
+							lastUpdatedDate=temp.lastUpdatedDate.substring(0,10);
+						}
 						var li='	<li class="Work_Mates_div_list_div2">'
-							+'                                           	 	<div class="Work_Mates_img_div2">'
+							+'                                           	 	<div class="Work_Mates_img_div2"   style="margin-top:-10px;margin-bottom:-20px;">'
 							+'                                        			 <img src="'
 							+ temp.headimgurl
 							+ '" alt="userImage" class="matesUserImage" alt="no_username"'
@@ -1359,6 +1362,7 @@ function getMDLUserLists() {
 							+ temp.openid
 							+ '\');"' */
 							+'/> '
+							+'<p style="margin: 0 0 10px;font-size: 12px;text-align: center;color: #375FA7;margin-top: -5px;">'+lastUpdatedDate+'</p>'
 							+'                                         		</div>'
 							+'                                         		<div class="Work_Mates_text_div">'
 							+'                                        			 <h2><span '
