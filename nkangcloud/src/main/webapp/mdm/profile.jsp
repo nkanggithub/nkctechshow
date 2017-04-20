@@ -1522,11 +1522,11 @@ function getMDLUserLists() {
 							+tagHtml
 							+'<br/>'
 							+'													<span class="selfIntro">'+selfIntro+'</span>'
-							+'<div style="float:right;margin-right:5px;font-size: 13px;color: #2F78C3;"><img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:14px;margin-right:5px;" class="like" src="../MetroStyleFiles/like.png"/>'
-							+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span></div>'
 							+'												</div>'
 							+'                                        		</div>'
 							+workDay
+							+'<div style="float:right;margin-right:5px;font-size: 13px;color: #2F78C3;margin-top:-18px;"><img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:14px;margin-right:5px;" class="like" src="../MetroStyleFiles/like.png"/>'
+							+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span></div>'
 							+'                                                <div class="clear"></div>'
 							+'                                          </li>';
 						ul += li;
