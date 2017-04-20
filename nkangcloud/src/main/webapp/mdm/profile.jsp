@@ -238,8 +238,8 @@ $(function(){
 		$(this).addClass("editBtn");
 		var openid=$(this).find("span.openid").text();
 		var name=$(this).find("span.name").text();
-		$(this).append("<div class='edit'><p onclick='showUpdateUserPanel(\""+openid+"\",\""+name+"\")'><img src='../mdm/images/edit.png' slt='' />编辑</p></div>");
-		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>牌号<br/>管理</p></div>");
+		$(this).append("<div class='edit'><p onclick='toLike(\""+name+"\",\""+openid+"\")'><img src='../mdm/images/edit.png' slt='' />点赞</p></div>");
+		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>**<br/>奖章</p></div>");
 		$(this).siblings().removeClass("editBtn");
 		$(this).siblings().find(".edit").remove();
 	});
@@ -1350,6 +1350,7 @@ function getMDLUserLists() {
 							lastUpdatedDate=temp.lastUpdatedDate.substring(0,10);
 						}
 						var li='	<li class="Work_Mates_div_list_div2">'
+						    +'<span class="openid" style="display:none;">'+temp.openid+'</span><span class="name" style="display:none;">'+temp.nickname+'</span>'
 							+'                                           	 	<div class="Work_Mates_img_div2"   style="margin-top:-10px;margin-bottom:-20px;">'
 							+'                                        			 <img src="'
 							+ temp.headimgurl
