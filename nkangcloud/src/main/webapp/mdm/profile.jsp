@@ -375,7 +375,7 @@ $(function(){
 	$(".Work_Mates_div_list_div2").live("swiperight",function(){
 		$(this).css("overflow","hidden");
 		$(this).removeClass("editBtn");
-		$(this).remove(".edit");
+		$(this).find(".edit").remove();
 	}); 
     $('#return-top').hide();  
     $(function(){  
