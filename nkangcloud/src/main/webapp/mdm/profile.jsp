@@ -1392,6 +1392,7 @@ function getUserInfo(username, headimgurl, openId) {
 				}
 			});
 }
+
 function getMDLUserLists() {
 	jQuery
 			.ajax({
@@ -1424,6 +1425,14 @@ function getMDLUserLists() {
 						 	}
 						}catch(e){
 							noRoleNum++;
+						}
+						if(temp.IsRegistered=='false'){
+							continue;
+						}
+						if(temp.isActived=="true"){
+							role+='【在职】';
+						}else{
+							role+='【离职】';
 						}
 						if(temp.openid==$('#uid').val()){
 							LastToLikeDate=temp.like.lastLikeDate;
@@ -1470,8 +1479,7 @@ function getMDLUserLists() {
 							workDay='<div style="float:right;margin-top:-45px;background-color:#eee;color:#333;font-size:13px;padding:3px;">'+workDay+' Days</div>';
 						}
 						congratulate='<div style="float:right;">'
-							+'<img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:14px;" class="like" src="../MetroStyleFiles/like.png"/>'
-							+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span>&nbsp;&nbsp;'
+							+'&nbsp;&nbsp;'
 						+'<img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
 							+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
 						var lastUpdatedDate="暂无互动";
@@ -1514,6 +1522,8 @@ function getMDLUserLists() {
 							+tagHtml
 							+'<br/>'
 							+'													<span class="selfIntro">'+selfIntro+'</span>'
+							+'<div style="float:right;margin-right:5px;font-size: 13px;color: #2F78C3;"><img onclick="toLike(\''+temp.nickname+'\',\''+temp.openid+'\')" style="height:14px;margin-right:5px;" class="like" src="../MetroStyleFiles/like.png"/>'
+							+'<span style="font-size:12px;color:#07090B;font-weight:normal">'+temp.like.number+'</span></div>'
 							+'												</div>'
 							+'                                        		</div>'
 							+workDay
