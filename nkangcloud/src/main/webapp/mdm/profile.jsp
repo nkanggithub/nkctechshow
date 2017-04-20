@@ -238,7 +238,7 @@ $(function(){
 		$(this).addClass("editBtn");
 		var openid=$(this).find("span.openid").text();
 		var name=$(this).find("span.name").text();
-		$(this).append("<div class='edit'><p onclick='toLike(\""+name+"\",\""+openid+"\")'><img src='../mdm/images/edit.png' slt='' />点赞</p></div>");
+		$(this).append("<div class='edit'><p onclick='toLike(\""+name+"\",\""+openid+"\")'><img src='../mdm/images/focus.png' slt='' />点赞</p></div>");
 		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>**<br/>奖章</p></div>");
 		$(this).siblings().removeClass("editBtn");
 		$(this).siblings().find(".edit").remove();
@@ -459,9 +459,9 @@ function startDictation() {
 }
 function toLike(likeToName,ToOpenId){
 	if(ToOpenId==$('#uid').val()){
-		swal("不能Like自己哦!", "可别太自恋啦。。。", "error"); 
+		swal("不能给自己点赞哦!", "可别太自恋啦。。。", "error"); 
 	}else if(LastToLikeDate!=""&&getNowFormatDate().indexOf(LastToLikeDate.substring(0,10))==0){
-		swal("你今天已经Like了"+lastLikeTo+"!", "可不能太花心哦!", "error");
+		swal("你今天已经给"+lastLikeTo+"点赞了!", "可不能太花心哦!", "error");
 	}else{
 		$.ajax({  
 	        cache : false,  
@@ -476,7 +476,7 @@ function toLike(likeToName,ToOpenId){
 	        timeout: 2000, 
 	        success: function(data,textStatus){
 	        	if(textStatus=='success'){
-	        		swal("Congratulations！", "今天你成功Like了"+likeToName, "success"); 
+	        		swal("Congratulations！", "今天你成功给"+likeToName+"点赞了", "success"); 
 	        		$("span.like").text(parseInt($("span.like").text())+1);
 	        		getMDLUserLists();
 	        	}else{
