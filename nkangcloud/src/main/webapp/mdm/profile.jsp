@@ -1429,7 +1429,7 @@ function getMDLUserLists() {
 						if(temp.IsRegistered=='false'){
 							continue;
 						}
-						if(temp.isActived=="true"){
+						if(temp.IsActived=="true"){
 							role+='【在职】';
 						}else{
 							role+='【离职】';
