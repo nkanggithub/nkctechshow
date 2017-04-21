@@ -10,7 +10,7 @@
 </head>
 <body style="margin:0px">
 
-		<aside style="margin-top:100px;height:500px" id="default-popup" class="avgrund-popup">
+		<aside style="margin-top:50px;height:400px;position:absolute;width:80%;left:5%;top:80px;" id="default-popup" class="avgrund-popup">
 
 			<h2 id="title" style="margin-bottom:10px;"></h2>
 
@@ -18,7 +18,7 @@
 			
 			</p>
 
-			<button style="position:absolute;bottom:20px;right:20px;padding:4px 8px;" onClick="javascript:closeDialog();">Close</button>
+			<button style="position:absolute;bottom:20px;right:20px;padding:4px 8px;" onClick="javascript:closeDialog();">关闭</button>
 
 		</aside>
 
