@@ -42,6 +42,7 @@ import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
+import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
@@ -52,6 +53,7 @@ public class MongoDBBasic {
 	private static String collectionMasterDataName = "masterdata";
 	private static String access_key = "Access_Key";
 	private static String wechat_user = "Wechat_User";
+	private static String short_news = "ShortNews";
 	private static String client_pool = "ClientPool";
 	private static String Article_Message = "Article_Message";
 	private static String wechat_comments = "Wechat_Comments";
@@ -151,6 +153,44 @@ public class MongoDBBasic {
 			log.info("queryEmail--" + e.getMessage());
 		}
 		return false;
+	}
+	public static boolean createShortNews(String content){
+		mongoDB = getMongoDB(); 
+		Boolean ret = false;
+	    try{
+			Date d = new Date();  
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+	        String dateNowStr = sdf.format(d); 
+	        
+	    	DBObject insert = new BasicDBObject();
+	    	insert.put("date",dateNowStr);
+	    	insert.put("content", content);
+	    	mongoDB.getCollection(short_news).insert(insert);
+			ret = true;
+	    }
+		catch(Exception e){
+			log.info("createRoleOfAreaMap--" + e.getMessage());
+		}
+		return ret;
+	}
+	public static ArrayList<ShortNews> queryShortNews(){
+		mongoDB = getMongoDB();
+		ArrayList<ShortNews> result = new ArrayList<ShortNews>();
+		DBCursor dbcur = mongoDB.getCollection(short_news).find();
+        if (null != dbcur) {
+        	while(dbcur.hasNext()){
+        		DBObject o = dbcur.next();
+        		ShortNews temp=new ShortNews();
+        		if(o.get("date")!=null){
+        			temp.setDate(o.get("date").toString());
+        		}
+        		if(o.get("content")!=null){
+        			temp.setContent(o.get("content").toString());
+        		}
+        		result.add(temp);
+        	}
+        }
+		return result;
 	}
 	public static List<String> queryUserKM(String openid){
 		mongoDB = getMongoDB();
