@@ -177,12 +177,15 @@ public class MongoDBBasic {
 		mongoDB = getMongoDB();
 		ArrayList<ShortNews> result = new ArrayList<ShortNews>();
 		DBCursor dbcur = mongoDB.getCollection(short_news).find();
+		StringBuilder  tempStr ;  
         if (null != dbcur) {
         	while(dbcur.hasNext()){
         		DBObject o = dbcur.next();
         		ShortNews temp=new ShortNews();
         		if(o.get("date")!=null){
-        			temp.setDate(o.get("date").toString());
+        			tempStr = new StringBuilder (o.get("date").toString());  
+        			tempStr.insert(tempStr.length()-9, "<br/>");
+        			temp.setDate(tempStr.toString());
         		}
         		if(o.get("content")!=null){
         			temp.setContent(o.get("content").toString());
