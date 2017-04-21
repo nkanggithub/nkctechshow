@@ -1,4 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*,org.json.JSONObject"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%@ page import="com.nkang.kxmoment.baseobject.ShortNews"%>
+<%
+ArrayList<ShortNews> shortNews=MongoDBBasic.queryShortNews();
+
+%>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -7,9 +14,12 @@
 			 <script src="../Jsp/JS/iscroll.js"></script>
 			  <script src="../Jsp/JS/avgrund.js"></script>
 <link rel="stylesheet" href="../Jsp/CSS/about.css">
+
+<script	src="../MetroStyleFiles/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 </head>
 <body style="margin:0px">
-
+<button style="position: absolute;top: 40px;right: 20px;padding: 4px 8px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onClick="javascript:publishNews();">发布新闻</button>
 		<aside style="margin-top:50px;height:400px;position:absolute;width:80%;left:5%;top:80px;" id="default-popup" class="avgrund-popup">
 
 			<h2 id="title" style="margin-bottom:10px;"></h2>
@@ -30,18 +40,9 @@
 
 	<ul class="event_list">
 
-
-		<li><span>4月21日</span><p><span onClick="javascript:openDialog(this);">第一季度中国出口塑料制品248万吨，同比增长14.1%;出口金额为576.97亿元，同比增长21.3%。3月当月出口95万吨，同比增长23.38%;出口金额为224.01亿元，同比增长23.76%。 </span></p></li>
-
-		<li><span>4月20日</span><p><span onClick="javascript:openDialog(this);">  本周，余姚中国塑料城塑料原料市场气氛欠佳，行情普遍回落。受诸多因素制约，下游工厂采购积极性始终难以提升，终端需求尚难摆脱低迷态势，石化企业出货并不顺畅，在库存压力减增的情况下，下调报价的不在少数。受此影响，场内看空情绪抬头，贸易商对后市信心不足，跟随小幅下调报价为主。从整体来看，目前场内利好并不明显，行情好转可能还需时间配合。预计，近期市场可能尚难摆脱弱势态势。</span></p></li>
-
-		<li><span>4月19日</span><p><span onClick="javascript:openDialog(this);">据国家统计局最新统计显示，2017年一季度，中国规模以上工业增加值同比实际增长6.8%，增速比上年同期加快1.0个百分点，比上年全年加快0.8个百分点。
-3月当月，中国规模以上工业增加值同比实际增长7.6%，比1-2月份加快1.3个百分点。环比增长0.83%。
-分行业看，3月份，41个大类行业中有33个行业增加值保持同比增长。分产品看，3月份，596种产品中有430种产品同比增长。</span></p></li>
-
-		<li><span>4月18日</span><p><span onClick="javascript:openDialog(this);">文字信息43</span></p></li>
-
-		<li><span>4月17日</span><p><span onClick="javascript:openDialog(this);">文字信息42</span></p></li>
+<%for(int i=0;i<shortNews.size();i++){ %>
+		<li><span><%=shortNews.get(i).getDate() %></span><p><span onClick="javascript:openDialog(this);"><%=shortNews.get(i).getContent() %> </span></p></li>
+<%} %>
 	</ul>
 	<div class="more"><i class="pull_icon"></i><span>上拉加载...</span></div>
 	</div>
@@ -62,8 +63,38 @@ $(function(){
 		Avgrund.hide();
 
 	}
+	function publishNews() {
+		var formText="<textarea style='height: 200px;font-size:14px;line-height:25px;width: 80%;margin-left: 10px;' id='news'></textarea>";
+		swal({  
+	        title:"发布新闻",  
+	        text:formText,
+	        html:"true",
+	        showConfirmButton:true, 
+			showCancelButton: true,   
+			closeOnConfirm: false,  
+	        cancelButtonText:"关闭",
+	        confirmButtonText:"确定", 
+	        animation:"slide-from-top"  
+	      }, 
+			function(inputValue){
+	    	  if (inputValue === false){ return false; }
+	    	  $.ajax({
+	    			type : "post",
+	    			url : "../CallCreateShortNews",
+	    			data:{
+	    				content:$("#news").val()
+	    			},
+	    			cache : false,
+	    			success : function(data) {
+	    				swal("恭喜!", "发布成功", "success");
+	    			}
+	    			});
+	      });
+
+	}
 	window.openDialog=openDialog;
 	window.closeDialog=closeDialog;
+	window.publishNews=publishNews;
 });
 
 var date=16;
