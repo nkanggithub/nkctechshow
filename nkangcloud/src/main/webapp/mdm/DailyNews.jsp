@@ -4,7 +4,8 @@
 <%@ page import="com.nkang.kxmoment.baseobject.ShortNews"%>
 <%
 ArrayList<ShortNews> shortNews=MongoDBBasic.queryShortNews();
-
+int size=5;
+if(shortNews.size()<5){size=shortNews.size();}
 %>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,14 +34,14 @@ ArrayList<ShortNews> shortNews=MongoDBBasic.queryShortNews();
 		</aside>
 
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
-<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="width:60%;">
+<img src="../mdm/images/logo.png" alt="" style="width:60%;">
 </div>
 <div id="wrapper">
 <div class="box scroller">
 
 	<ul class="event_list">
 
-<%for(int i=0;i<shortNews.size();i++){ %>
+<%for(int i=0;i<size;i++){ %>
 		<li><span><%=shortNews.get(i).getDate() %></span><p><span onClick="javascript:openDialog(this);"><%=shortNews.get(i).getContent() %> </span></p></li>
 <%} %>
 	</ul>
@@ -87,6 +88,18 @@ $(function(){
 	    			cache : false,
 	    			success : function(data) {
 	    				swal("恭喜!", "发布成功", "success");
+	    				$.ajax({
+	    	    			url : "../CallCreateShortNews",
+	    					type:'post',
+	    					success:function(data){
+	    						for (var i = 0; i < data.length; i++) {
+	    							$('.scroller ul').html("<li><span>"+data[i].date+"</span><p><span onClick='javascript:openDialog(this);'>"+data[i].content+" </span></p></li>");
+	    						}
+	    					},
+	    					error:function(){
+	    						console.log('error');
+	    					}
+	    				});
 	    			}
 	    			});
 	      });
@@ -97,7 +110,7 @@ $(function(){
 	window.publishNews=publishNews;
 });
 
-var date=16;
+var size=<%=size %>;
 		var myscroll = new iScroll("wrapper",{
 			onScrollMove:function(){
 				if (this.y<(this.maxScrollY)) {
@@ -126,38 +139,23 @@ var date=16;
 		
 		function pullUpAction(){
 			setTimeout(function(){
-				/*$.ajax({
-					url:'/json/ay.json',
-					type:'get',
-					dataType:'json',
+		/* 		$.ajax({
+	    			url : "../CallCreateShortNews",
+					type:'post',
 					success:function(data){
-						for (var i = 0; i < 5; i++) {
-							$('.scroller ul').append(data);
+						for (var i = size; i < data.length; i++) {
+							$('.scroller ul').append("<li><span>"+data[i].date+"</span><p><span onClick='javascript:openDialog(this);'>"+data[i].content+" </span></p></li>");
 						}
 						myscroll.refresh();
 					},
 					error:function(){
 						console.log('error');
 					},
-				})*/
-				var mindate;
-				if(date>=5){
-					mindate=date-5;
-				}else{mindate=0;}
-				if(date>=5){	
-				for (var i = date; i > mindate; i--) {
-									
-					
-					$('.scroller ul').append("<li><span>4月"+i+"月</span><p><span  onClick='javascript:openDialog(this);'>文字信息44</span></p></li>");
-					
-				}
-				}
-				else{
-					$('.more span').text("已到底部");
-				}
-				if(date>=5){
-					date=date-5;
-				}else{date=0;}
+				}); */
+			
+				<%for(int i=size ;i<shortNews.size();i++){%>
+				$('.scroller ul').append("<li><span>"+"<%=shortNews.get(i).getDate()%>"+"</span><p><span onClick='javascript:openDialog(this);'>"+"<%=shortNews.get(i).getContent()%>"+" </span></p></li>");
+				<%}%>
 				
 				myscroll.refresh();
 			}, 1000)
