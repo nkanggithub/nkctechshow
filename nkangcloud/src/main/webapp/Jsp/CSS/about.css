@@ -65,7 +65,7 @@ h1 {
 .pull_icon{
 	width: 25px;
 	height: 25px;
-	background-image: url('../images/pull.png');
+	background-image: url('../../mdm/images/pull.png');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 25px;
@@ -84,7 +84,7 @@ h1 {
 	transform: rotate(180deg);
 }
 .loading{
-	background-image: url('../images/loading.png');
+	background-image: url('../../mdm/images/loading.png');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 25px;
