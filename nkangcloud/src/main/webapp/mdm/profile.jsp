@@ -2080,7 +2080,7 @@ function getNowFormatDate() {
 												 <img src="../MetroStyleFiles/menu-face.png" /></a>
 													<h4>测颜值</h4></td>
 												<td><a target="_self" href="http://shenan.duapp.com/mdm/DailyNews.jsp"><img src="../MetroStyleFiles/Add1.png" />
-													<h4>新闻快讯</h4></a></td>
+													<h4>更多应用</h4></a></td>
 											</tr>
 										</table>
 									</div>
