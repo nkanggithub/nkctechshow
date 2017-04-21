@@ -23,6 +23,7 @@ import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.MdmDataQualityView;
 import com.nkang.kxmoment.baseobject.OrgCountryCode;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
+import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
@@ -824,7 +825,21 @@ public class MasterDataRestController {
 		}
 		return message;
 	}
-	
+	@RequestMapping("/QueryShortNewsList")
+	public static ArrayList<ShortNews> QueryShortNewsList(){
+		ArrayList<ShortNews> cm = new ArrayList<ShortNews>();
+		try{
+			cm = MongoDBBasic.queryShortNews();
+		}		
+		catch(Exception e){
+			cm = null;
+		}
+		return cm;
+	}
+	@RequestMapping("/CallCreateShortNews")
+	public static boolean CallCreateShortNews(@RequestParam(value="content", required=true) String content){
+		return  MongoDBBasic.createShortNews(content);
+	}
 	@RequestMapping("/QueryClientMetaList")
 	public static ArrayList<ClientMeta> QueryClientMetaList(){
 		ArrayList<ClientMeta> cm = new ArrayList<ClientMeta>();
