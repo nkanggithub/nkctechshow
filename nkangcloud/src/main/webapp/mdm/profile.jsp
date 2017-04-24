@@ -826,6 +826,7 @@ function postNotification(){
 	var img=$(".imgSelect input[type='checkbox']:checked").siblings("img").attr("src");
 	var imgType="0";
 	var type=$("#notificationType option:selected").val();
+	var typeName=$("#notificationType option:selected").text();
 	if($("#hiddenPic").val()!=""){
 		img=$("#hiddenPic").val();
 	    imgType="1";
@@ -839,6 +840,7 @@ function postNotification(){
         	title:$("#notificationTitle").val(),
         	url:$("#notificationURL").val(),
         	type:type,
+        	typeName:typeName,
         	img:img,
         	imgType:imgType,
         	content:$("#content").val()
