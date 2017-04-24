@@ -3,8 +3,10 @@
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.HashMap"%>
 <%	
 String uid = request.getParameter("uid");
+HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 String num = request.getParameter("num");
 List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(uid,num);
 CongratulateHistory ch=new CongratulateHistory();
@@ -27,12 +29,12 @@ ch.setType(" Bais For Action.");*/
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="description">
 <meta content="" name="hpe">
-<title><%=ch.getFrom() %> must have done something amazing and has been recognized by <%=ch.getTo() %></title>
+<title><%=ch.getTo() %> must have done something amazing and has been recognized by <%=ch.getFrom() %></title>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style.css"/>
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
   </head>
 <body style="margin:0;">
-            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=ch.getTo() %></p><img src="<%=ch.getUserImg() %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
+            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=res.get("NickName") %></p><img src="<%=res.get("HeadUrl") %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
               <tr>
@@ -161,7 +163,7 @@ ch.setType(" Bais For Action.");*/
                 <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing: 0">
                  <tbody>
                   <tr>
-                   <td valign="top" style="padding:0in 0in 0in 0in"><p class="font-size-16" style="margin:0in;margin-bottom:.0001pt;line-height:14.0pt;margin-bottom:0!important"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;display: block;margin: 10px;margin-left: 15px;">Thanks <%=ch.getTo() %> for <%=ch.getComments() %>.
+                   <td valign="top" style="padding:0in 0in 0in 0in"><p class="font-size-16" style="margin:0in;margin-bottom:.0001pt;line-height:14.0pt;margin-bottom:0!important"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;display: block;margin: 10px;margin-left: 15px;"> <%=ch.getComments() %>
                       <o:p></o:p></span></p></td>
                   </tr>
                  </tbody>
