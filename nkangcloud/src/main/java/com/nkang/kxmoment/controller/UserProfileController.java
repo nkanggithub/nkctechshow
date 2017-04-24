@@ -206,7 +206,7 @@ public class UserProfileController {
 		conhis.setType(request.getParameter("type"));
 		conhis.setPoint(request.getParameter("points"));
 		conhis.setComments(request.getParameter("comments"));
-		conhis.setUserImg(request.getParameter("userImage"));
+	//	conhis.setUserImg(MongoDBBasic.getWeChatUserFromOpenID(openid).get("HeadUrl"));
 		conhis.setGiftImg(img);
 		conhis.setCongratulateDate(new Date().toLocaleString());
 		MongoDBBasic.updateUserCongratulateHistory(openid,conhis);
@@ -283,6 +283,14 @@ public class UserProfileController {
 		am.setVisitedNum("0");
 		am.setTime(new Date().toLocaleString());
 		MongoDBBasic.saveArticleMessage(am);
+		String content=request.getParameter("typeName")+" 又有新活动啦\n";
+		if(request.getParameter("content").length()>200){
+			content+=request.getParameter("content").substring(0,180)+"...";
+		}
+		else{
+			content+=request.getParameter("content");
+		}
+		am.setContent(content);
 		List<String> allUser=new ArrayList<String>();
 		if("communication".equals(type.trim())){
 		allUser = MongoDBBasic.getAllOpenIDByIsRegistered();
@@ -293,6 +301,7 @@ public class UserProfileController {
 			System.out.println("您选择了‘其他Area：’"+type+"。。。。");
 		}
 			for(int i=0;i<allUser.size();i++){
+				am.setTitle("【"+MongoDBBasic.getWeChatUserFromOpenID(allUser.get(i)).get("NickName")+"】- "+request.getParameter("title"));
 				RestUtils.sendNotificationToUser(openid,allUser.get(i),img,am);
 			}
 		
