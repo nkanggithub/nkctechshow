@@ -159,7 +159,7 @@ public class UserProfileController {
 	@RequestMapping("/getRecognitionInfoByOpenID")
 	public @ResponseBody List<CongratulateHistory>  getRecognitionInfoByOpenID(HttpServletRequest request,
 			HttpServletResponse response ){
-		List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(request.getParameter("openID"),"");
+		List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(request.getParameter("openID"),request.getParameter("num"));
 /*		List<CongratulateHistory> chList=new ArrayList<CongratulateHistory>();
 		CongratulateHistory ch=new CongratulateHistory();
 		ch.setFrom("Panda");
@@ -206,7 +206,7 @@ public class UserProfileController {
 		conhis.setType(request.getParameter("type"));
 		conhis.setPoint(request.getParameter("points"));
 		conhis.setComments(request.getParameter("comments"));
-	//	conhis.setUserImg(MongoDBBasic.getWeChatUserFromOpenID(openid).get("HeadUrl"));
+		conhis.setUserImg(MongoDBBasic.getWeChatUserFromOpenID(openid).get("HeadUrl"));
 		conhis.setGiftImg(img);
 		conhis.setCongratulateDate(new Date().toLocaleString());
 		MongoDBBasic.updateUserCongratulateHistory(openid,conhis);
