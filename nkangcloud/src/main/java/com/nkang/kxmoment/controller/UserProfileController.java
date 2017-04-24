@@ -268,6 +268,7 @@ public class UserProfileController {
 		String openid=request.getParameter("openId");
 		String img = request.getParameter("img");
 		String imgType = request.getParameter("imgType");
+		String type = request.getParameter("type");
 		if("1".equals(imgType)){
 			img="http://wonderfulcq.bj.bcebos.com/"+img;
 		}
@@ -282,7 +283,12 @@ public class UserProfileController {
 		am.setVisitedNum("0");
 		am.setTime(new Date().toLocaleString());
 		MongoDBBasic.saveArticleMessage(am);
-		List<String> allUser = MongoDBBasic.getAllOpenIDByIsRegistered();
+		List<String> allUser=new ArrayList<String>();
+		if("communication".equals(type.trim())){
+		allUser = MongoDBBasic.getAllOpenIDByIsRegistered();}
+		else {
+			allUser = MongoDBBasic.QueryLikeAreaOpenidList(type);
+		}
 			for(int i=0;i<allUser.size();i++){
 				RestUtils.sendNotificationToUser(openid,allUser.get(i),img,am);
 			}
