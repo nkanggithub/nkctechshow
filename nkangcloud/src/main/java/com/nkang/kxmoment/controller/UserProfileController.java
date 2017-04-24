@@ -285,9 +285,12 @@ public class UserProfileController {
 		MongoDBBasic.saveArticleMessage(am);
 		List<String> allUser=new ArrayList<String>();
 		if("communication".equals(type.trim())){
-		allUser = MongoDBBasic.getAllOpenIDByIsRegistered();}
+		allUser = MongoDBBasic.getAllOpenIDByIsRegistered();
+		System.out.println("您选择了‘常规沟通’。。。。");
+		}
 		else {
 			allUser = MongoDBBasic.QueryLikeAreaOpenidList(type);
+			System.out.println("您选择了‘其他Area：’"+type+"。。。。");
 		}
 			for(int i=0;i<allUser.size();i++){
 				RestUtils.sendNotificationToUser(openid,allUser.get(i),img,am);
