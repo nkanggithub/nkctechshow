@@ -6,7 +6,6 @@
 <%@ page import="java.util.HashMap"%>
 <%	
 String uid = request.getParameter("uid");
-HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 String num = request.getParameter("num");
 List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(uid,num);
 CongratulateHistory ch=new CongratulateHistory();
@@ -34,7 +33,7 @@ ch.setType(" Bais For Action.");*/
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
   </head>
 <body style="margin:0;">
-            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=res.get("NickName") %></p><img src="<%=res.get("HeadUrl") %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
+            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=ch.getTo() %></p><img src="<%=ch.getUserImg() %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
               <tr>
