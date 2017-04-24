@@ -404,7 +404,7 @@ var RoleList=[];
 var RoleObj=new Object();
 getLogo();
 
-var selectedType="<option value='常规沟通'>常规沟通</option>";
+var selectedType="<option value='communication'>常规沟通</option>";
 
 $(window).load(function() {
 	$(".imgSelect input").live("click",function(){
@@ -462,7 +462,7 @@ function getRole(){
 			 if(resData){
 				 var m=0;
 				 for(var i=0;i<resData.length;i++){
-					 selectedType=selectedType+"<option value='"+resData[i].name+"'>"+resData[i].name+"</option>";
+					 selectedType=selectedType+"<option value='"+resData[i].flag+"'>"+resData[i].name+"</option>";
 					 if(resData[i].flag=="Role")
 					 {
 						  RoleObj[resData[i].id]=resData[i].name;
