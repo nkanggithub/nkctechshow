@@ -1689,7 +1689,7 @@ public class MongoDBBasic {
 		if (null != queryresults) {
         	while(queryresults.hasNext()){
         		DBObject o = queryresults.next();
-        		if( o.get("OpenID")==null){
+        		if( o.get("OpenID")!=null){
         			result.add(o.get("OpenID").toString());
         		}
         	}
