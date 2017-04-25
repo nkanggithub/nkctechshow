@@ -428,7 +428,7 @@ function getAllDatas(){
 					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">DXC Technology Coperation</h2>
 					 -->
 			
-					<p style="position: absolute;right: 10px;top: 0px;font-size: 15px;">欢迎您： <%=res.get("NickName") %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:30px;right:10px;" src="<%=res.get("HeadUrl") %>" alt=""/>
+					<p style="position: absolute;right: 10px;top: 10px;font-size: 15px;">欢迎您： <%=res.get("NickName") %></p><img style="border-radius:25px;height:35px;width:35px;position:absolute;top:30px;right:10px;" src="<%=res.get("HeadUrl") %>" alt=""/>
 				<input id="openid" type="hidden" value="<%=uid%>"/><input id="role" type="hidden" value="<%=res.get("role")%>"/>
 </div>		
 	<div class="TABclass">
@@ -436,9 +436,9 @@ function getAllDatas(){
 			<ul class="nav nav-tabs" id="myTabs"
 				style="border-color: #000;" style="padding-left: 5px;">
 				<li  class="active"><a href="#roleElements" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">Career Path</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;font-size:18px;vertical-align:middle;line-height:20px;"><img src="../MetroStyleFiles/Directions.png" style="height:15px;vertical-align:top"/>职业发展</a></li>
 				<li><a href="#areaElements" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">Interested Area</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;font-size:18px;vertical-align:middle;line-height:20px;"><img src="../MetroStyleFiles/Workshop.png" style="height:15px;vertical-align:top"/>技术领域</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
