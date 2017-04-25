@@ -160,6 +160,7 @@ cursor:pointer;
 
 <script>
 var likeRoleNum=0;
+var AreaObj=new Object();
 $(function(){
 	   $(function(){  
 	      	 $(window).scroll(function(){  
@@ -328,15 +329,16 @@ function getAllDatas(){
 				var NowRoleArr=new Array();
 			    var NoLikeArr=new Array();
 				var LikeArr=new Array();
+				var recommendArr=new Array();
 				likeRoleNum=0;
 				var nowRole=$("#role").val();
-				 
 				if(KMLikeArr.length>0){
 						 for(var i=0;i<resData.length;i++){
 							 
 							 if(resData[i].flag=='Role'&&resData[i].id==nowRole)
 				 			 {
 								 NowRoleArr.push(resData[i]);
+								 recommendArr=$.merge(recommendArr, resData[i].relateLists); 
 				 			 }else{
 						 		var itemTemp=$.trim(resData[i].id);
 						 		var index=$.inArray(itemTemp,KMLikeArr);
@@ -347,6 +349,7 @@ function getAllDatas(){
 						 			if(resData[i].flag=='Role')
 					 				{
 					 					likeRoleNum++;
+										recommendArr=$.merge(recommendArr, resData[i].relateLists); 
 					 				}
 						 		}else{
 						 			NoLikeArr.push(resData[i]);
@@ -374,21 +377,26 @@ function getAllDatas(){
 						 +'	</div>'
 						 +'</li>'; 
 				 }
+				 AreaObj=new Object();
 				 for(var i=0;i<data.length;i++){
 					 if(data[i].id!=""){
 						 var priceColor="lose";
 						 var tag='';
 						 var attention='';
 						 var priceStyle='';
-						 var unit='<span class="unit"></span>';
+						 var unit='<span class="price2"></span><span class="unit"></span>';
 						 if(data[i]["like"]==true){
 							 tag='<span class="tag">已关注</span>';
 							 attention='attention';
 						 }
+					 	 var index=$.inArray(data[i].id,recommendArr);
+					 	 if(index>-1){
+					 		 unit='<span class="price2" style="font-size:13px;font-weight:blod;color:#1A7CAB;">推荐关注</span><span class="unit"></span>'
+					 	 }
 						 var tempHtml='<li class="singleQuote">'
 							 +'	<div class="firstLayer '+attention+'">'
 							 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item">'+data[i].name+'</span>'+tag+'</div>'
-							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'><span class="price2"></span>'+unit+'</div>'
+							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'>'+unit+'</div>'
 							 /*  +'		<span class="change high">+10</span>' */
 							 +'		<div class="clear"></div>'
 							 +'	</div>'
@@ -397,6 +405,7 @@ function getAllDatas(){
 						if(data[i].flag=='Role'){
 							roleHtml+=tempHtml;
 						}else{
+							AreaObj[data[i].id]=data[i].name;
 							areaHtml+=tempHtml;
 							totalNum++;
 						}
@@ -436,9 +445,9 @@ function getAllDatas(){
 			<ul class="nav nav-tabs" id="myTabs"
 				style="border-color: #000;" style="padding-left: 5px;">
 				<li  class="active"><a href="#roleElements" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;font-size:18px;vertical-align:middle;line-height:20px;"><img src="../MetroStyleFiles/Directions.png" style="height:15px;vertical-align:top;padding-right:2px;"/>职业发展</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;font-size:18px;vertical-align:middle;line-height:20px;"><img src="../MetroStyleFiles/Directions.png" style="height:20px;vertical-align:top;padding-right:5px;"/>职业发展</a></li>
 				<li><a href="#areaElements" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;font-size:18px;vertical-align:middle;line-height:20px;"><img src="../MetroStyleFiles/Workshop.png" style="height:15px;vertical-align:top;padding-right:2px;"/>技术领域</a></li>
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;font-size:18px;vertical-align:middle;line-height:20px;"><img src="../MetroStyleFiles/Workshop.png" style="height:20px;vertical-align:top;padding-right:5px;"/>技术领域</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
