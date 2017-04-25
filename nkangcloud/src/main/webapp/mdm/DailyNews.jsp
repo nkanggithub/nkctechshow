@@ -133,7 +133,7 @@ var size=<%=size %>;
 					$('.more span').text('释放加载...');
 				}else{
 					$('.pull_icon').removeClass('flip loading');
-					$('.more span').text('上拉加载...')
+					$('.more span').text('上拉加载...');
 				}
 			},
 			onScrollEnd:function(){
