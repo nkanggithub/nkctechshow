@@ -1,9 +1,19 @@
 package com.nkang.kxmoment.baseobject;
 
+import java.util.ArrayList;
+
 public class RoleOfAreaMap {
 	private String id;
 	private String flag;
 	private String name;
+	public ArrayList<String> relateLists;
+	
+	public ArrayList<String> getRelateLists() {
+		return relateLists;
+	}
+	public void setRelateLists(ArrayList<String> relateLists) {
+		this.relateLists = relateLists;
+	}
 	public String getId() {
 		return id;
 	}
