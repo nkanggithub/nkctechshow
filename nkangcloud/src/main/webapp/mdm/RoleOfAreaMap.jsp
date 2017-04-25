@@ -357,6 +357,13 @@ function getAllDatas(){
 				 			 }
 						}
 		 		}else{
+		 			 for(var i=0;i<resData.length;i++){
+						 if(resData[i].flag=='Role'&&resData[i].id==nowRole)
+			 			 {
+							 NowRoleArr.push(resData[i]);
+							 recommendArr=$.merge(recommendArr, resData[i].relateLists); 
+			 			 }
+					}
 		 			NoLikeArr=resData;
 		 		}
 				var data=$.merge(LikeArr, NoLikeArr); 
@@ -378,6 +385,13 @@ function getAllDatas(){
 						 +'</li>'; 
 				 }
 				 AreaObj=new Object();
+				 for(var i=0;i<resData.length;i++){
+					 if(resData[i].flag=='Area')
+		 			 {
+							AreaObj[resData[i].id]=resData[i].name;
+		 			 }
+				 }
+				 
 				 for(var i=0;i<data.length;i++){
 					 if(data[i].id!=""){
 						 var priceColor="lose";
@@ -398,6 +412,7 @@ function getAllDatas(){
 							 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item">'+data[i].name+'</span>'+tag+'</div>'
 							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'>'+unit+'</div>'
 							 /*  +'		<span class="change high">+10</span>' */
+							 +'		<span class="recommendArea" style="display:none;"></span>'
 							 +'		<div class="clear"></div>'
 							 +'	</div>'
 							 +'</li>'; 
@@ -405,7 +420,6 @@ function getAllDatas(){
 						if(data[i].flag=='Role'){
 							roleHtml+=tempHtml;
 						}else{
-							AreaObj[data[i].id]=data[i].name;
 							areaHtml+=tempHtml;
 							totalNum++;
 						}
