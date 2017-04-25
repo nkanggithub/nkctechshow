@@ -363,6 +363,17 @@ public class MongoDBBasic {
 				if(o.get("name")!=null){
 					temp.setName(o.get("name").toString());
 				}
+				ArrayList<String> relateLists=new ArrayList<String>();
+        		if(o.get("relateLists")!=null){
+        			BasicDBList hist = (BasicDBList) o.get("relateLists");
+            		Object[] kmObjects = hist.toArray();
+            		for(Object dbobj : kmObjects){
+            			if(dbobj instanceof String){
+            				relateLists.add((String) dbobj);
+            			}
+            		}
+        		}
+        		temp.setRelateLists(relateLists);
 				list.add(temp);
 			}
 		}
