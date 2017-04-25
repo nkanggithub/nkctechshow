@@ -5,7 +5,10 @@
 <%
 ArrayList<ShortNews> shortNews=MongoDBBasic.queryShortNews();
 int size=5;
-if(shortNews.size()<5){size=shortNews.size();}
+int realSize=shortNews.size();
+if(shortNews.size()<=5){size=shortNews.size();}
+String uid = request.getParameter("UID");
+boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 %>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,7 +23,8 @@ if(shortNews.size()<5){size=shortNews.size();}
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 </head>
 <body style="margin:0px">
-<button style="position: absolute;top: 40px;right: 20px;padding: 4px 8px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onClick="javascript:publishNews();">发布新闻</button>
+<%if(IsAuthenticated==true) { %>
+<button style="position: absolute;top: 40px;right: 20px;padding: 4px 8px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onClick="javascript:publishNews();">发布新闻</button><% } %>
 		<aside style="margin-top:50px;height:400px;position:absolute;width:80%;left:5%;top:80px;" id="default-popup" class="avgrund-popup">
 
 			<h2 id="title" style="margin-bottom:10px;"></h2>
@@ -93,10 +97,16 @@ $(function(){
 	    	    			url : "../QueryShortNewsList",
 	    					type:'post',
 	    					success:function(data){
-	    						for (var i = 0; i < data.length; i++) {
+	    						var temp=5;
+	    						if(data.length<=5){
+	    							temp=data.length;
+	    						}
+	    						for (var i = 0; i < temp; i++) {
 	    							html+="<li><span>"+data[i].date+"</span><p><span onClick='javascript:openDialog(this);'>"+data[i].content+" </span></p></li>";
 	    						
 	    						}
+	    						realSize=data.length;
+	    						size=temp;
 	    						$('.scroller ul').html(html);
 	    					},
 	    					error:function(){
@@ -113,6 +123,7 @@ $(function(){
 	window.publishNews=publishNews;
 });
 
+var realSize=<%=realSize %>;
 var size=<%=size %>;
 		var myscroll = new iScroll("wrapper",{
 			onScrollMove:function(){
@@ -126,10 +137,16 @@ var size=<%=size %>;
 				}
 			},
 			onScrollEnd:function(){
+				
 				if ($('.pull_icon').hasClass('flip')) {
+					if(size<realSize){
 					$('.pull_icon').addClass('loading');
 					$('.more span').text('加载中...');
-					pullUpAction();
+					pullUpAction();}
+					else
+						{
+						$('.more span').text('已到底部...');
+						}
 				}
 				
 			},
@@ -142,24 +159,29 @@ var size=<%=size %>;
 		
 		function pullUpAction(){
 			setTimeout(function(){
-		/* 		$.ajax({
-	    			url : "../QueryShortNewsList",
+		 		$.ajax({
+	    			url : "../QueryShortNewsList2",
 					type:'post',
+					data:{
+						startNumber:size,
+						pageSize:5
+					},
 					success:function(data){
-						for (var i = size; i < data.length; i++) {
+						for (var i = 0; i < data.length; i++) {
 							$('.scroller ul').append("<li><span>"+data[i].date+"</span><p><span onClick='javascript:openDialog(this);'>"+data[i].content+" </span></p></li>");
 						}
+						size=size+data.length;
 						myscroll.refresh();
 					},
 					error:function(){
 						console.log('error');
 					},
-				}); */
+				}); 
 			
-				<%for(int i=size ;i<shortNews.size();i++){%>
+		<%-- 		<%for(int i=size ;i<shortNews.size();i++){%>
 				$('.scroller ul').append("<li><span>"+"<%=shortNews.get(i).getDate()%>"+"</span><p><span onClick='javascript:openDialog(this);'>"+"<%=shortNews.get(i).getContent()%>"+" </span></p></li>");
 				<%}%>
-				
+				 --%>
 				myscroll.refresh();
 			}, 1000)
 		}
