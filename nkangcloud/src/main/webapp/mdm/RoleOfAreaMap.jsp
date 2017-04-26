@@ -299,7 +299,7 @@ function UpdateTag(item,flag,obj){
 								 if(context!='')context+='，';
 								 context+=AreaObj[RoleObj[item][i]];
 							 }
-							 context='推荐您关注'+context+'技术领域';
+							 context='推荐您关注【'+context+'】技术领域';
 						 }
 						 swal("关注成功 ",context, "success");
 						 getAllDatas();
