@@ -2183,6 +2183,36 @@ public static String regist(WeChatMDLUser user) {
 	       } 
 		return message;
 		}
+    public static String sendQuotationToUser(WeChatMDLUser toWeChatMDLUser,String content,String img,String title,String url){
+    	String result ="";
+    	String str="";
+    	
+    		str="{\"title\":\""+title+"\",\"description\":\""+content+"\",\"url\":\""+url+toWeChatMDLUser.getOpenid()+"\",\"picurl\":"
+					+ "\""+img+"\"}";
+    	        String json = "{\"touser\":\""+toWeChatMDLUser.getOpenid()+"\",\"msgtype\":\"news\",\"news\":" +
+
+    	                "{\"articles\":[" +str +"]}"+"}";
+
+
+    	        System.out.println(json);
+
+/*    	       String access_token = "FsEa1w7lutsnI4usB6I_yareExnJ-l7_8-RKkpF47TIU4vjBF_XA6bArxARRf-6B1irPpkFFeZvmi1LAGP9iuTVIgfd38fE39izmQ30_eL4pPftP_bH4s41FWgrryVuvRZUcAEACKF";*/
+    	        String access_token =  MongoDBBasic.getValidAccessKey();
+
+    	       String action = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token="+access_token;
+
+    	       try {
+
+    	    	 	result =  connectWeiXinInterface(action,json);
+
+    	       } catch (Exception e) {
+
+    	           e.printStackTrace();
+
+    	       }
+    	       return result;
+
+    	    }
     
 }
 
