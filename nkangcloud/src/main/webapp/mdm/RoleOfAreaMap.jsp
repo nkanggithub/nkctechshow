@@ -225,47 +225,128 @@ function showKMPanel(item){
 			+'		<div id="echarts" _echarts_instance_="ec_1487834284265" style="width: 371px; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; position: relative; background: transparent;"><div style="position: relative; overflow: hidden; width: 371px; height: 350px; cursor: default;"><canvas width="371" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 371px; height: 350px; -webkit-user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div style="position: absolute; display: none; border: 0px solid rgb(51, 51, 51); white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1); border-radius: 4px; color: rgb(255, 255, 255); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 14px; font-family: &#39;Microsoft YaHei&#39;; line-height: 21px; padding: 5px; left: 211.95px; top: 122px; background-color: rgba(50, 50, 50, 0.701961);">02-13<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#7DB5E8"></span>价格 : 9,840</div></div>'
 			+'	</div>'
 			+'				</div>'); */
-			+'<div class="title"><center>'+item+'的价格趋势分析</center></div>'
 			+'	<div class="chart-box">'
 			+'		<div id="chart-container" style="text-align: center;overflow-x: auto;"></div>'
 			+'	</div>'
-			+'<div style="text-align:center;margin-top:20px;"><span class="chartButton now">周</span><span class="chartButton">月</span></div>');
+			+'<div style="text-align:center;margin-top:20px;"></div>');
 	$('#UpdateUserKmPart').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass("bounceInDown animated");
 	 });
-	 FusionCharts.ready(function () { 
-	        var testProcChart = new FusionCharts({
-	            type: 'errorline',
-	            renderAt: 'chart-container',
-	            width: '380',
-	            height: '350',
-	            dataFormat: 'jsonurl',
-	            dataSource: '../PlasticItem/priceList?page=1&type=W&count=999&itemNo='+item
-	        }).render();
-	    });
-	$('span.chartButton').click(function(){
-		var text=$(this).text();
-		$(this).addClass("now");
-		$(this).siblings().removeClass("now");
-		var type="W";
-		if(text=="月"){
-			type="M";
-		}
-	    FusionCharts.ready(function () { 
-	        var testProcChart = new FusionCharts({
-	            type: 'errorline',
-	            renderAt: 'chart-container',
-	            width: '380',
-	            height: '350',
-	            dataFormat: 'jsonurl',
-	            dataSource: '../PlasticItem/priceList?page=1&type='+type+'&count=999&itemNo='+item
-	        }).render();
-	    });
-	});
+	//---start-----
+	FusionCharts.ready(function () {
+    var salesChart = new FusionCharts({
+        type: 'msarea',
+        renderAt: 'chart-container',
+        width: '350',
+        height: '300',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": item,
+                "subCaption": "",
+                "xAxisName": "",
+                "yAxisName": "",
+                "paletteColors": "#0075c2,#1aaf5d",
+                "bgColor": "#ffffff",
+                "showBorder": "0",
+                "showCanvasBorder": "0",
+                "plotBorderAlpha": "10",
+                "usePlotGradientColor": "0",
+                "legendBorderAlpha": "0",
+                "legendShadow": "0",
+                "plotFillAlpha": "60",
+                "showXAxisLine": "1",
+                "axisLineAlpha": "25",                
+                "showValues": "0",
+                "captionFontSize": "14",
+                "subcaptionFontSize": "14",
+                "subcaptionFontBold": "0",
+                "divlineColor": "#999999",                
+                "divLineIsDashed": "1",
+                "divLineDashLen": "1",
+                "divLineGapLen": "1",
+                "showAlternateHGridColor": "0",
+                "toolTipColor": "#ffffff",
+                "toolTipBorderThickness": "0",
+                "toolTipBgColor": "#000000",
+                "toolTipBgAlpha": "80",
+                "toolTipBorderRadius": "2",
+                "toolTipPadding": "5",
+            },
+            
+            "categories": [
+                {
+                    "category": [
+                        {
+                            "label": "活动参与"
+                        }, 
+                        {
+                            "label": "技术分享"
+                        }, 
+                        {
+                            "label": "领导评测"
+                        }, 
+                        {
+                            "label": "个人提升"
+                        }, 
+                        {
+                            "label": "知识储备"
+                        }
+                    ]
+                }
+            ],
+            
+            "dataset": [
+                {
+                    "seriesname": "职位要求",
+                    "data": [
+                        {
+                            "value": "13"
+                        }, 
+                        {
+                            "value": "14"
+                        }, 
+                        {
+                            "value": "13"
+                        }, 
+                        {
+                            "value": "15"
+                        }, 
+                        {
+                            "value": "15"
+                        } 
+                    ]
+                }, 
+                {
+                    "seriesname": "目前状态",
+                    "data": [
+                        {
+                            "value": "8"
+                        }, 
+                        {
+                            "value": "9"
+                        }, 
+                        {
+                            "value": "12"
+                        }, 
+                        {
+                            "value": "14"
+                        }, 
+                        {
+                            "value": "9"
+                        }
+                    ]
+                }
+            ]
+        }
+    })
+    .render();
+});
+	//---end------
 }
 function showCommonPanel()
 {
-	$("body").append("<div  id='data_model_div' style='z-index:9999;'  class='dataModelPanel'><img onclick='hideBouncePanel()' src='../MetroStyleFiles/EXIT1.png' style='width: 30px; height: 30px;position:absolute;top:20px;left:20px;' />	<img style='position:relative;height: 50px;float: right;top:8px;margin-right:20px;width:auto;' class='HpLogo' src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DkptH&amp;oid=00D90000000pkXM' alt='Logo' class='HpLogo'><div style='width:100%;height:4px;background:#005CA1;position:absolute;top:70px;'></div></div>");
+	$("body").append("<div  id='data_model_div' style='z-index:9999;'  class='dataModelPanel'><img onclick='hideBouncePanel()' src='../MetroStyleFiles/EXIT1.png' style='width: 30px; height: 30px;position:absolute;top:20px;left:20px;' />	<img style='position:relative;height: 50px;float: right;top:8px;margin-right:20px;width:auto;' class='HpLogo' src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM' alt='Logo' class='HpLogo'><div style='width:100%;height:4px;background:#000;position:absolute;top:70px;'></div></div>");
 	$('#data_model_div').removeClass().addClass('panelShowAnmitation').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass();
 	    }); }
@@ -415,10 +496,14 @@ function getAllDatas(){
 						 var tag='';
 						 var attention='';
 						 var priceStyle='';
+						 var onclick='';
 						 var unit='<span class="price2"></span><span class="unit"></span>';
 						 if(data[i]["like"]==true){
 							 tag='<span class="tag">已关注</span>';
 							 attention='attention';
+							 if(data[i].flag=='Role'){
+								 onclick=' onclick="ToCharPage(\"'+data[i].name+'\")" ';
+							 }
 						 }
 					 	 var index=$.inArray(data[i].id,recommendArr);
 					 	 if(index>-1){
@@ -426,7 +511,7 @@ function getAllDatas(){
 					 	 }
 						 var tempHtml='<li class="singleQuote">'
 							 +'	<div class="firstLayer '+attention+'">'
-							 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item">'+data[i].name+'</span>'+tag+'</div>'
+							 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+data[i].id+'</span><span class="item" '+onclick+'>'+data[i].name+'</span>'+tag+'</div>'
 							 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'>'+unit+'</div>'
 							 /*  +'		<span class="change high">+10</span>' */
 							 +'		<span class="recommendArea" style="display:none;"></span>'
