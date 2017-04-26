@@ -502,7 +502,7 @@ function getAllDatas(){
 							 tag='<span class="tag">已关注</span>';
 							 attention='attention';
 							 if(data[i].flag=='Role'){
-								 onclick=' onclick="ToCharPage(\"'+data[i].name+'\")" ';
+								 onclick=' onclick="ToCharPage(\''+data[i].name+'\')" ';
 							 }
 						 }
 					 	 var index=$.inArray(data[i].id,recommendArr);
