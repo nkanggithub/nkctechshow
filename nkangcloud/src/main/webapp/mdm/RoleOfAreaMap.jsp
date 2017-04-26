@@ -161,6 +161,7 @@ cursor:pointer;
 <script>
 var likeRoleNum=0;
 var AreaObj=new Object();
+var RoleObj=new Object();
 $(function(){
 	   $(function(){  
 	      	 $(window).scroll(function(){  
@@ -291,7 +292,17 @@ function UpdateTag(item,flag,obj){
 			 success:function(result){
 				 if(result==true){
 					 if(flag=='add'){
-						 swal("关注成功 ","恭喜你成功关注该项", "success");
+						 context='恭喜你成功关注该项';
+						 if(RoleObj[item]!=null&&RoleObj[item].length>0){
+							 var context='';
+							 for(var i=0;i<RoleObj[item].length;i++){
+								 if(context!='')context+='，';
+								 context+=AreaObj[RoleObj[item][i]];
+							 }
+							 context='推荐您关注'+context+'技术领域';
+						 }
+						 swal("关注成功 ",context, "success");
+						 getAllDatas();
 						 tempObj.find(".firstLayer").addClass("attention");
 						 tempObj.find(".firstLayer").find(".quoteTitle").append('<span class="tag">已关注</span>');
 						 if(item.indexOf("Role")==0){
@@ -299,6 +310,7 @@ function UpdateTag(item,flag,obj){
 						 }
 					 }else  if(flag=='del'){
 						 swal("取消成功","你取消了对该项的关注", "success");
+						 getAllDatas();
 						 tempObj.find(".firstLayer").removeClass("attention");
 						 tempObj.find(".firstLayer").find(".quoteTitle").find(".tag").remove();
 						 if(item.indexOf("Role")==0){
@@ -385,10 +397,15 @@ function getAllDatas(){
 						 +'</li>'; 
 				 }
 				 AreaObj=new Object();
+				 RoleObj=new Object();
 				 for(var i=0;i<resData.length;i++){
 					 if(resData[i].flag=='Area')
 		 			 {
 							AreaObj[resData[i].id]=resData[i].name;
+		 			 }
+					 if(resData[i].flag=='Role')
+		 			 {
+						 RoleObj[resData[i].id]=resData[i].relateLists;
 		 			 }
 				 }
 				 
