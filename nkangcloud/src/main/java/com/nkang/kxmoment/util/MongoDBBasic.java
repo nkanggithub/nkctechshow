@@ -2753,7 +2753,9 @@ public class MongoDBBasic {
 		public static List<String> getAllRegisterUsers(){
 			mongoDB = getMongoDB();
 			@SuppressWarnings("unchecked")
-			List<String> lst = mongoDB.getCollection(wechat_user).distinct("Teamer.realName");
+			DBObject query = new BasicDBObject();
+			query.put("IsAuthenticated", "true"); // live conversation
+			List<String> lst = mongoDB.getCollection(wechat_user).distinct("Teamer.realName",query);
 			return lst;
 		}
 		
