@@ -37,7 +37,7 @@ boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta charset="utf-8" />
-<title>DXC - Master Data Management</title>
+<title>Master Data Management</title>
 <!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	 -->
 
@@ -486,6 +486,7 @@ function getLogo(){
 			copyRight=jsons.clientCopyRight;
 			clientThemeColor=jsons.clientThemeColor;
 			skim(jsons.skimNum);
+			$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
 			$('img.HpLogo').attr('src',HpLogoSrc);
 			$('span.clientCopyRight').text('©'+copyRight);
 			$('span.clientSubName').text(jsons.clientSubName);
