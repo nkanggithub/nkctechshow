@@ -341,7 +341,7 @@ public class UserProfileController {
 		 	String message = "文件导入失败，请重新导入..";
 		 	Map map =new HashMap<String,List>();
 		 	PutObjectResponse putObjectResponseFromInputStream=null;
-		 	String bk = MyBosClient.client.listBuckets().getBuckets().get(1).getName();
+		 	String bk = Constants.bucketName;
 		 	for(int i=0;i<MyBosClient.client.listBuckets().getBuckets().size();i++){
 		 	System.out.println("MyBosClient.client.listBuckets("+i+")"+MyBosClient.client.listBuckets().getBuckets().get(i).getName());}
 		    try {
@@ -384,7 +384,8 @@ public class UserProfileController {
 		 	String message = "文件导入失败，请重新导入..";
 		 	Map map =new HashMap<String,List>();
 		 	PutObjectResponse putObjectResponseFromInputStream=null;
-		 	String bk = MyBosClient.client.listBuckets().getBuckets().get(1).getName();
+		 	//String bk = MyBosClient.client.listBuckets().getBuckets().get(1).getName();
+		 	String bk = Constants.bucketName;
 		 	for(int i=0;i<MyBosClient.client.listBuckets().getBuckets().size();i++){
 		 	System.out.println("MyBosClient.client.listBuckets("+i+")"+MyBosClient.client.listBuckets().getBuckets().get(i).getName());}
 		    try {

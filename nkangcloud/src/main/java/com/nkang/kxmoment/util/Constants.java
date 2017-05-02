@@ -17,6 +17,7 @@ public final class Constants {
 	public static final String wechatapihost = "api.weixin.qq.com";
 	public static final String baiduapihost = "api.map.baidu.com";
 	public static final String bucketName = "mdmdxc";
+	public static final String bosDomain = "gz.bcebos.com";
 	/**
 	 * MongoDB 集合名字
 	 */
