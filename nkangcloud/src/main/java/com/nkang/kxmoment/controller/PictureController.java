@@ -21,7 +21,7 @@ import com.nkang.kxmoment.util.FaceRecognition;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.NumberUtil;
 import com.nkang.kxmoment.util.StringUtils;
-
+import com.nkang.kxmoment.util.Constants;
 @Controller
 public class PictureController{
 	/**
