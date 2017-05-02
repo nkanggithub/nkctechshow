@@ -250,7 +250,7 @@ function uploadPic(obj){
 								var temp =  data[i];
 								div+='<div class ="DetectedPerson">'
 									+'	<div  class="myfacevalue">'
-									+ '<img src="http://wonderfulcq.bj.bcebos.com/'+$('#uid').val()+'.jpg" alt="" width="100%">'
+									+ '<img src="http://'+<%=Constants.mdmdxc %>+'.'+<%=Constants.bosDomain %>+'/'+$('#uid').val()+'.jpg" alt="" width="100%">'
 									+'	</div>'
 									+'	<div class="myfacevalueattribute">'
 									+'		<table>'
