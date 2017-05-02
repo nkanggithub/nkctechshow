@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.DBObject;
+import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.ExtendedOpportunity;
 import com.nkang.kxmoment.baseobject.FaceObj;
@@ -223,7 +224,8 @@ public class CoreService
 					else if(eventKey.equals("MYAPPS")){
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle("DXC Technology|移动应用");
+						ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
+						article.setTitle(cm.getClientName()+"|移动应用");
 						article.setDescription("移动应用");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mpP&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
@@ -411,7 +413,8 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						article.setTitle("DXC Technology | 点击查看我的订阅");
+						ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
+						article.setTitle(cm.getClientName()+"| 点击查看我的订阅");
 						article.setDescription("在此您可以随心订阅您感兴趣的专业话题和自身的职业发展方向");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
