@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.nkang.kxmoment.util.Constants"%>
 <%
 String uid = request.getParameter("UID");
 %>

@@ -198,7 +198,7 @@ public class UserProfileController {
 		String img="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/points-link-2.png";
 		System.out.println("request.getParameter('imgType')----"+request.getParameter("imgType"));
 		if("1".equals(request.getParameter("imgType"))){
-			img="http://wonderfulcq.bj.bcebos.com/"+request.getParameter("img");
+			img="http://"+Constants.bucketName+"."+Constants.bosDomain+"/"+request.getParameter("img");
 		}
 		conhis.setNum(num+"");
 		conhis.setFrom(request.getParameter("from"));
@@ -270,7 +270,7 @@ public class UserProfileController {
 		String imgType = request.getParameter("imgType");
 		String type = request.getParameter("type");
 		if("1".equals(imgType)){
-			img="http://wonderfulcq.bj.bcebos.com/"+img;
+			img="http://"+Constants.bucketName+"."+Constants.bosDomain+"/"+img;
 		}
 		int num=MongoDBBasic.getArticleMessageMaxNum()+1;
 		System.out.println("new Article num--------------"+num);
