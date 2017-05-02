@@ -2054,14 +2054,13 @@ function getNowFormatDate() {
 														<h4>天气</h4>
 												</td>
 												<td>
-												<!-- <a class="" data-toggle="modal" href="#tax_main_div"> </a> -->
-												<img   onclick="taxPanel()" 
-														src="../MetroStyleFiles/menu-tax.png" />
-														<h4>税费计算</h4>
+													<a target="_self" href="http://shenan.duapp.com/mdm/DailyNews.jsp?UID=<%=uid %>">
+														<img src="../mdm/images/Notification.png" /><h4>焦点追击</h4>
+													</a>
 												</td>
 												<td> <img onclick="stockModule()"
 														src="../MetroStyleFiles/menu-stock.png" />
-														<h4>股票</h4>
+														<h4>股票行情</h4>
 												</td>
 												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="../MetroStyleFiles/menu-technology.png" />
 													<h4>消息推送</h4></td>
