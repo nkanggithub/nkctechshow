@@ -46,6 +46,7 @@ import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
+import com.nkang.kxmoment.util.Constants;
 
 public class MongoDBBasic { 
 	private static Logger log = Logger.getLogger(MongoDBBasic.class);
@@ -3101,7 +3102,7 @@ public class MongoDBBasic {
 	public static Map getRunMaintainMetrics()
 	{
 		Map<String, List> map =new HashMap<String,List>();
-		PlatforRelated platforRelated = MongoDBBasic.getPlatforRelated("DXC");
+		PlatforRelated platforRelated = MongoDBBasic.getPlatforRelated(Constants.clientCode);
 		if(platforRelated==null){
 			return map;
 		}
@@ -3135,7 +3136,7 @@ public class MongoDBBasic {
 	public static Map getIMMetrics()
 	{
 		Map<String, Integer> map = new HashMap<String,Integer>();
-		PlatforRelated pr = MongoDBBasic.getPlatforRelated("DXC");
+		PlatforRelated pr = MongoDBBasic.getPlatforRelated(Constants.clientCode);
 		if(pr==null){
 			return map;
 		}

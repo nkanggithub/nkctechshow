@@ -815,7 +815,7 @@ public class MasterDataRestController {
 	public static String QueryClientMetaByClientCode(){
 		ClientMeta cm = new ClientMeta();
 		try{
-			cm = MongoDBBasic.QueryClientMeta("DXC");
+			cm = MongoDBBasic.QueryClientMeta(Constants.clientCode);
 		}		
 		catch(Exception e){
 			cm = null;

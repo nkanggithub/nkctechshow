@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.PlatforRelated;
+import com.nkang.kxmoment.util.Constants;
 
 public class FileOperateUtil {
 	 static List<String> Jeffrey;
@@ -118,7 +119,7 @@ public class FileOperateUtil {
     		try {
     			PlatforRelated  platforRelated  = bos.platformRelated(is);
     			if(platforRelated!=null){
-    				MongoDBBasic.updatePlatforRelated(platforRelated, "DXC");
+    				MongoDBBasic.updatePlatforRelated(platforRelated, Constants.clientCode);
     			}
     			List APJlt = new ArrayList<Integer>();
     			APJlt.add(platforRelated.getDone_APJ());
@@ -171,7 +172,7 @@ public class FileOperateUtil {
         Other = new ArrayList<String>();
         ClientMeta cm = new ClientMeta();
        
-        cm=MongoDBBasic.QueryClientMeta("DXC");
+        cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
         String str = cm.getMetricsMapping();
        /* String str="";
         try {
@@ -230,7 +231,7 @@ public class FileOperateUtil {
     		try {
     			 platforRelated  = bos.uploadReport(is);
     			 if(platforRelated!=null){
-    				 MongoDBBasic.updatePlatforRelated(platforRelated,"DXC");
+    				 MongoDBBasic.updatePlatforRelated(platforRelated,Constants.clientCode);
     			 }
     			
     			/*	

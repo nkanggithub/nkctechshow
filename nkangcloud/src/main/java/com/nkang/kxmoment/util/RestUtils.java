@@ -36,6 +36,7 @@ import com.nkang.kxmoment.baseobject.OrgCountryCode;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
+import com.nkang.kxmoment.util.Constants;
 
 public class RestUtils {
 	private static Logger log=Logger.getLogger(RestUtils.class);
