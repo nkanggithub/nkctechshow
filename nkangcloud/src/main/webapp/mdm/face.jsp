@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page import="com.nkang.kxmoment.util.Constants"%>
 <%
 String uid = request.getParameter("UID");
 %>
@@ -250,7 +249,7 @@ function uploadPic(obj){
 								var temp =  data[i];
 								div+='<div class ="DetectedPerson">'
 									+'	<div  class="myfacevalue">'
-									+ '<img src="http://'+<%=Constants.mdmdxc %>+'.'+<%=Constants.bosDomain %>+'/'+$('#uid').val()+'.jpg" alt="" width="100%">'
+									+ '<img src="http://mdmdxc.gz.bcebos.com/'+$('#uid').val()+'.jpg" alt="" width="100%">'
 									+'	</div>'
 									+'	<div class="myfacevalueattribute">'
 									+'		<table>'
