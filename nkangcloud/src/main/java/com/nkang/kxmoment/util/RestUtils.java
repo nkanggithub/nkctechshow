@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientInformation;
+import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.MdmDataQualityView;
@@ -2036,12 +2037,13 @@ public static String regist(WeChatMDLUser user) {
     public static String sendNotificationToUser(String openId,String toOpenId,String img,ArticleMessage am){
     	String result ="";
     	String str="";
+    	ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
     	if("".equals(am.getWebUrl())||""==am.getWebUrl()){
-    			str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+"Publisher - DXC Technology:\n"+am.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+am.getNum()+"\",\"picurl\":"
+    			str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+"Publisher - "+cm.getClientName()+":\n"+am.getContent()+"\",\"url\":\"http://"+Constants.baehost+"/mdm/NotificationCenter.jsp?num="+am.getNum()+"\",\"picurl\":"
     					+ "\""+img+"\"}";
     	}else
     	{
-    		str="{\"title\":\""+am.getTitle()+"\",\"description\":\"DXC Technology\",\"url\":\""+am.getWebUrl()+"\",\"picurl\":"
+    		str="{\"title\":\""+am.getTitle()+"\",\"description\":\""+cm.getClientName()+"\",\"url\":\""+am.getWebUrl()+"\",\"picurl\":"
 					+ "\""+img+"\"}";
     	}
     	        String json = "{\"touser\":\""+toOpenId+"\",\"msgtype\":\"news\",\"news\":" +
