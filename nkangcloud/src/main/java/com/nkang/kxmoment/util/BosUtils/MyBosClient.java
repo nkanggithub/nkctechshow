@@ -28,11 +28,7 @@ public class MyBosClient {
 		config.setMaxConnections(10);
 		config.setConnectionTimeoutInMillis(5000);
 		config.setSocketTimeoutInMillis(2000);
-/*		config.setProxyHost(Constants.proxyInfo);
-		int port = 8080;
-		config.setProxyPort(port);*/
-		String ENDPOINT = "http://bj.bcebos.com";  
-	    config.setEndpoint(ENDPOINT);  
+	    config.setEndpoint(Constants.bosDomain);  
 		client = new BosClient(config);
 	}
 }
