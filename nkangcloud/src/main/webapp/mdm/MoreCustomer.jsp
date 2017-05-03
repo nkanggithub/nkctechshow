@@ -17,7 +17,7 @@ int curNum = 0;
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
 	<meta charset="utf-8" />
-	<title>HPE - Customer Loaded</title>
+	<title>Customer Loaded</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="hpe" />
