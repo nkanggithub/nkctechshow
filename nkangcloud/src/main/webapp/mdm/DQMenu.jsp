@@ -2119,6 +2119,7 @@ jQuery.ajax({
 		cache : false,
 		success : function(data) {
 			var jsons = eval(data);
+			$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
 			$('img.HpLogo').attr('src',jsons.clientLogo);
 			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
 			$('span.clientSubName').text(jsons.clientSubName);
@@ -2127,5 +2128,5 @@ jQuery.ajax({
 	});
 
 	</script>
-	<div class="panel-footer"><span class="clientCopyRight">© 2016 Hewlett-Packard Enterprise Development Company, L.P.</span></div>
+	<div class="panel-footer"><span class="clientCopyRight"></span></div>
 </body></html>
