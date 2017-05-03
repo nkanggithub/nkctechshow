@@ -189,7 +189,7 @@ catch(Exception e){
 			</div>
 		</div>
 	</div>
-	<div id="footer"><span class="clientCopyRight">� 2016 Hewlett-Packard Enterprise Development Company, L.P.</span></div>
+	<div id="footer"><span class="clientCopyRight"></span></div>
 
 <script>
          jQuery.ajax({
@@ -199,8 +199,9 @@ catch(Exception e){
      		cache : false,
      		success : function(data) {
      			var jsons = eval(data);
+     			$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
      			$('img.HpLogo').attr('src',jsons.clientLogo);
-     			$('span.clientCopyRight').text('�'+jsons.clientCopyRight);
+     			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
      		}
      	});
 </script>
