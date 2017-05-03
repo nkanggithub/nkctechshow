@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>DXC - Signature</title>
+  <title>Signature</title>
   <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
@@ -123,6 +123,7 @@ var HpLogoSrc="",copyRight="",clientThemeColor="";
 			success : function(data) {
 				var jsons = eval(data);
 				clientThemeColor=jsons.clientThemeColor;
+				$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
 				$('img.HpLogo').attr('src',jsons.clientLogo);
 				$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
 				$('.clientTheme').css('background-color',jsons.clientThemeColor);
