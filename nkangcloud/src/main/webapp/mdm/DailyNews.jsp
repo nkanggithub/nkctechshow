@@ -21,6 +21,20 @@ boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 
 <script	src="../MetroStyleFiles/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
+<style>
+#footer {
+	background: #DCD9D9;
+	bottom: 0;
+	color: #757575;
+	font-size: 12px;
+	padding: 10px 1%;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: 1002;
+	left:0;
+}
+</style>
 </head>
 <body style="margin:0px">
 <%if(IsAuthenticated==true) { %>
@@ -191,4 +205,25 @@ var size=<%=size %>;
 		}
 
 	</script>
+	<!-- BEGIN FOOTER -->
+	<div id="footer">
+		<span class="clientCopyRight"><nobr></nobr></span>
+	</div>
+	<!-- END FOOTER -->
+	<script>
+         jQuery.ajax({
+     		type : "GET",
+     		url : "../QueryClientMeta",
+     		data : {},
+     		cache : false,
+     		success : function(data) {
+     			if(data){
+     			var jsons = eval(data);
+     			//$('img.HpLogo').attr('src',jsons.clientLogo);
+				$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
+     			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
+     			}
+     		}
+     	});
+ </script> 
 </body></html>
