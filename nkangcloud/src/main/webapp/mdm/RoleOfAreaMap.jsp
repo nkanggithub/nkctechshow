@@ -156,6 +156,18 @@ cursor:pointer;
 	position: relative;
     left: -60px;
 }
+#footer {
+	background: #DCD9D9;
+	bottom: 0;
+	color: #757575;
+	font-size: 12px;
+	padding: 10px 1%;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: 1002;
+	left:0;
+}
 </style>
 
 <script>
