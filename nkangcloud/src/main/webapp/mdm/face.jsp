@@ -6,7 +6,7 @@ String uid = request.getParameter("UID");
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>DXC - Face Recognition</title>
+  <title>Face Recognition</title>
   <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   
@@ -224,6 +224,11 @@ table tr td:nth-child(even) {
 				</div>
 				</form>
 				<div id="text" style="text-align: center;position: absolute;top: 370px; width: 80%;left: 10%;"></div>
+<!-- BEGIN FOOTER -->
+	<div id="footer">
+		<span class="clientCopyRight"><nobr></nobr></span>
+	</div>
+	<!-- END FOOTER -->
 <script>
 $(document).ajaxStart(function () {
 	$(".sk-circle").show();
@@ -290,6 +295,7 @@ function uploadPic(obj){
 		cache : false,
 		success : function(data) {
 			var jsons = eval(data);
+			$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
 			$('img.HpLogo').attr('src',jsons.clientLogo);
 			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
 			$('.clientTheme').css('background-color',jsons.clientThemeColor);
@@ -301,5 +307,6 @@ function uploadPic(obj){
   	
 		 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
   <script type="text/javascript" src="../Jsp/JS/gauge.min.js"></script>
+  
 </body>
 </html>
