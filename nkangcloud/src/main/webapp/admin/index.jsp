@@ -403,6 +403,8 @@ function getLogoLists() {
 							+'								应用中'
 							+'							</div>';
 						clientThemeColor=temp.clientThemeColor;
+						$(document).attr("title",temp.clientStockCode+" - "+$(document).attr("title"));//修改title值  
+						$('span.clientCopyRight').text('©'+temp.clientCopyRight);
 						HpLogoSrc=temp.clientLogo;
 					/* 	$('#logo_now').html('<img'
 								+'				src="'+temp.clientLogo+'"'
@@ -631,7 +633,7 @@ jQuery
 }
 
 </script>
-<title>DXC - Admin Console</title>
+<title>Admin Console</title>
 </head>
 <body style="padding: 0px !important; margin: 0px;">
 	<div class="navbar-inner" style="background-color: #fff !important;">
@@ -685,5 +687,11 @@ jQuery
 			</div>
 		</div>
 	</div>
+	
+<!-- BEGIN FOOTER -->
+	<div id="footer">
+		<span class="clientCopyRight"><nobr></nobr></span>
+	</div>
+	<!-- END FOOTER -->
 </body>
 </html>
