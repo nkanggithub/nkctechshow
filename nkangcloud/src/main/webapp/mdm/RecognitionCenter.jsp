@@ -226,6 +226,7 @@ ch.setType(" Bais For Action.");*/
      			if(data){
      			var jsons = eval(data);
      			//$('img.HpLogo').attr('src',jsons.clientLogo);
+				$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
      			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
      			}
      		}
