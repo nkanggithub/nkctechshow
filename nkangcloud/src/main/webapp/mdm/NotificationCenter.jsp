@@ -113,6 +113,7 @@ n.setTime("2017/2/10 16:42"); */
      		cache : false,
      		success : function(data) {
      			var jsons = eval(data);
+     			$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
      			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
      		}
      	}); 
