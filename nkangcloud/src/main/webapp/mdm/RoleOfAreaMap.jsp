@@ -12,7 +12,7 @@ HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 <!Doctype html>
 <html>
 <head>
-<title>DXC Technology| 我的订阅</title>
+<title>我的订阅</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css" />
@@ -590,5 +590,27 @@ function getAllDatas(){
 			</div>
 		</div>
 	</div>
+	<!-- BEGIN FOOTER -->
+	<div id="footer">
+		<span class="clientCopyRight"><nobr></nobr></span>
+	</div>
+	<!-- END FOOTER -->
+<script>
+         jQuery.ajax({
+     		type : "GET",
+     		url : "../QueryClientMeta",
+     		data : {},
+     		cache : false,
+     		success : function(data) {
+     			if(data){
+     			var jsons = eval(data);
+     			//$('img.HpLogo').attr('src',jsons.clientLogo);
+				$(document).attr("title",jsons.clientStockCode+" - "+$(document).attr("title"));//修改title值  
+     			$('span.clientCopyRight').text('©'+jsons.clientCopyRight);
+     			}
+     		}
+     	});
+ </script> 
+	
 </body>
 </html>
