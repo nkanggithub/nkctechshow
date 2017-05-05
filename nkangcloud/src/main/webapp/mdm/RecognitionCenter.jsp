@@ -6,6 +6,7 @@
 <%@ page import="java.util.HashMap"%>
 <%	
 String uid = request.getParameter("uid");
+MongoDBBasic.updateUser(uid);
 String num = request.getParameter("num");
 List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(uid,num);
 CongratulateHistory ch=new CongratulateHistory();

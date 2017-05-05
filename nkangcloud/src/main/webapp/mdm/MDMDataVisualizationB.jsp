@@ -3,6 +3,10 @@
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+ <%
+MongoDBBasic.addSkimNum();
+ %>
 <%
 Map map = (HashMap<String,List>)request.getAttribute("map");
 Integer apj=(Integer)map.get("APJ");

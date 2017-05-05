@@ -4,6 +4,7 @@
 <%@ page import="com.nkang.kxmoment.baseobject.GeoLocation" %>  
 <%-- <%@ page import="com.nkang.kxmoment.util.DBUtils"%> --%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.util.Constants"%>
 <%					
@@ -11,6 +12,7 @@ MdmDataQualityView mqv = new MdmDataQualityView();
 mqv= RestUtils.callGetDataQualityReport();
 String AccessKey =RestUtils.callGetValidAccessKey();
 String uid = request.getParameter("UID"); 
+MongoDBBasic.updateUser(uid);
 GeoLocation loc = RestUtils.callGetDBUserGeoInfo(uid);
 WeChatUser wcu = RestUtils.getWeChatUserInfo(AccessKey, uid);
 String curLoc = RestUtils.getUserCurLocWithLatLng(loc.getLAT() , loc.getLNG()); 

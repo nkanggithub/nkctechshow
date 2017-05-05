@@ -9,6 +9,8 @@ int realSize=shortNews.size();
 if(shortNews.size()<=5){size=shortNews.size();}
 String uid = request.getParameter("UID");
 boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
+
+MongoDBBasic.updateUser(uid);
 %>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

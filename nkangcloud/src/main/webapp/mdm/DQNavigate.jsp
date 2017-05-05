@@ -1,8 +1,10 @@
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%
 String inputVar = "";
 String uid = request.getParameter("UID");
+MongoDBBasic.updateUser(uid);
 WeChatUser wcu = new WeChatUser();
 wcu.setNickname("Vistor");
 try{

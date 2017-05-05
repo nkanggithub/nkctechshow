@@ -8,6 +8,7 @@
 <%@ page import="com.nkang.kxmoment.util.Constants"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ExtendedOpportunity"%>
 <%					
+MongoDBBasic.addSkimNum();
 String fromUserName = request.getParameter("UID"); 
 String CurType = "customer";
 int curNum = 0;

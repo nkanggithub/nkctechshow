@@ -4,6 +4,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
  <%
+MongoDBBasic.addSkimNum();
+ 
 Map runMaintain = MongoDBBasic.getRunMaintainMetrics();
 List<Integer> apj=(List<Integer>)runMaintain.get("APJ");
 List<Integer> usa=(List<Integer>)runMaintain.get("USA");

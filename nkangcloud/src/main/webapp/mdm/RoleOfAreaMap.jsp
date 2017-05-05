@@ -7,6 +7,7 @@
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
 <%	
 String uid = request.getParameter("UID");
+MongoDBBasic.updateUser(uid);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 %>
 <!Doctype html>
