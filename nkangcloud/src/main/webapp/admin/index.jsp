@@ -9,7 +9,7 @@ if(MongoDBBasic.checkUserAuth(uid, "isAdmin")||hardcodeUID.equalsIgnoreCase(uid)
 	out.print("你没有查看该页面的权限！");
 	return;
 }
-
+MongoDBBasic.updateUser(uid);
 
 %>
 <!DOCTYPE HTML>
