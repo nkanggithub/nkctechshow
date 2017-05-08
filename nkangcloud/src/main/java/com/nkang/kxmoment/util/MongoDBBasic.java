@@ -1866,7 +1866,7 @@ public class MongoDBBasic {
         				HashMap<String, String> temp=new HashMap<String, String>();
         				temp.put("realName", ((DBObject)dbobj).get("realName").toString());
         				temp.put("descName", ((DBObject)dbobj).get("descName").toString());
-        				if("1".equals(((DBObject)dbobj).get("descName").toString()))
+        				if("1".equals(((DBObject)dbobj).get("attention").toString()))
         				{
         					list.add(temp);
         				}
