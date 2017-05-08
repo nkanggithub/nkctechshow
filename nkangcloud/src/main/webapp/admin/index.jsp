@@ -96,6 +96,58 @@ MongoDBBasic.updateUser(uid);
 	position: relative;
     left: -120px;
 }
+ul li.singleQuote{
+	font-size:18px;
+	border-bottom:1px solid #ccc;
+	padding:20px;
+	color:#333;
+	width:100%;
+}
+ul li.singleQuote .firstLayer.attention{
+	color:#0761A5;
+}
+ul li.singleQuote .firstLayer .quoteTitle{
+	float:left;
+	cursor:pointer;
+}
+ul li.singleQuote .firstLayer .quoteTitle .tag2{
+	font-size:11px;
+	background-color:orange;
+	color:#fff;
+	padding:1px 5px;
+	font-weight:normol;
+	font-family:微软雅黑;
+	margin-left:8px;
+}
+ul li.singleQuote .firstLayer .quotePrice{
+	float:right;
+	color:#333;
+}
+ul li.singleQuote .firstLayer .quotePrice.high,ul li.singleQuote .firstLayer  .change.high{
+	color:red;
+}
+ul li.singleQuote .firstLayer .quotePrice.normal,ul li.singleQuote .firstLayer  .change.normal{
+	color:#333;
+}
+ul li.singleQuote .firstLayer.attention .quotePrice.high,ul li.singleQuote .firstLayer.attention  .change.high{
+	color:red;
+}
+ul li.singleQuote .firstLayer .quotePrice.low,ul li.singleQuote .firstLayer  .change.low{
+	color:green;
+}
+ul li.singleQuote .firstLayer .quotePrice.lose,ul li.singleQuote .firstLayer  .change.lose{
+	color:#bbb;
+}
+ul li.singleQuote .firstLayer  .change{
+	font-size:10px;
+	float:right;
+	margin-top:-35px;
+	position:relative;
+	clear:both;
+}
+.clear{
+	clear:both;
+}
 </style>
 <script type="text/javascript">
 $(function(){  
@@ -117,6 +169,7 @@ $(function(){
 var clientThemeColor,HpLogoSrc,LogoData;
 var RoleList,RoleObj=new Object();
 $(window).load(function() {
+	getVisitPage();
 	findRoleList();
 	getLogoLists();
 	$("li.Work_Mates_div_list_div2").live("swiperight",function(){
@@ -392,12 +445,29 @@ function getVisitPage() {
 			var ul="";
 			for (var i = 0; i < jsons.length; i++) {
 				var temp=jsons[i];
-				var li='<li>'
-					+'<h2>'+temp.descName+'</h2>'
-					+'</li>';
-				
+				 var priceColor="lose";
+				 var tag='';
+				 var attention='';
+				 var priceStyle='';
+				 var onclick='';
+				 var unit='<span class="price2"></span><span class="unit"></span>';
+				 if(temp.attention=="1"){
+					 tag='<span class="tag2">已关注</span>';
+					 attention='attention';
+				 }
+				 var li='<li class="singleQuote">'
+					 +'	<div class="firstLayer '+attention+'">'
+					 +'		<div class="quoteTitle"><span class="id" style="display:none;">'+temp.realName+'</span><span class="item2" '+onclick+'>'+temp.descName+'</span>'+tag+'</div>'
+					 +'		<div class="quotePrice '+priceColor+'" '+priceStyle+'>'+unit+'</div>'
+					 /*  +'		<span class="change high">+10</span>' */
+					 +'		<span class="recommendArea" style="display:none;"></span>'
+					 +'		<div class="clear"></div>'
+					 +'	</div>'
+					 +'</li>'; 
+					 
 				ul+=li;
 			}
+			 $("#visit_div").html(ul);
 		}
 	});
 }
@@ -696,8 +766,8 @@ jQuery
 				</div>
 				<div class="tab-pane" id="visitManage">
 					<!-- start visitManage-->
-					<div id="visit_div">
-					</div>
+					<ul id="visit_div" style="width:100%;margin-left:-15px;">
+					</ul>
 					<!-- end logoElements-->
 				</div>
 				<div class="tab-pane  active" id="WorkMates">
