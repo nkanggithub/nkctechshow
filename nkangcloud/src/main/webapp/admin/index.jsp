@@ -381,6 +381,26 @@ function hideBouncePanel()
 	$("body").find(".bouncePart").remove();
 	$("body").find("#data_model_div").remove();
 	}
+function getVisitPage() {
+	jQuery.ajax({
+		type : "GET",
+		url : "../QueryVisitPage",
+		data : {},
+		cache : false,
+		success : function(data) {
+			var jsons = data;
+			var ul="";
+			for (var i = 0; i < jsons.length; i++) {
+				var temp=jsons[i];
+				var li='<li>'
+					+'<h2>'+temp.descName+'</h2>'
+					+'</li>';
+				
+				ul+=li;
+			}
+		}
+	});
+}
 function getLogoLists() {
 	jQuery.ajax({
 				type : "GET",
