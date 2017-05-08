@@ -1814,13 +1814,49 @@ public class MongoDBBasic {
 		}
 	    return result;
 	}
+	public static boolean updateVisitPage(String realName,String flag){
+		mongoDB = getMongoDB();
+		ArrayList list=new ArrayList();
+		DBObject query = new BasicDBObject();
+		query.put("Active", "Y");
+		DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
+		BasicDBList visitPage = (BasicDBList) queryresults.get("visitPage");
+		if(visitPage != null){
+    		Object[] tagObjects = visitPage.toArray();
+    		for(Object dbobj : tagObjects){
+    			if(dbobj instanceof DBObject){
+    				HashMap<String, String> temp=new HashMap<String, String>();
+    				temp.put("realName", ((DBObject)dbobj).get("realName").toString());
+    				temp.put("descName", ((DBObject)dbobj).get("descName").toString());
+    				temp.put("attention", ((DBObject)dbobj).get("attention").toString());
+    				if(realName.equals(((DBObject)dbobj).get("realName").toString()))
+    				{
+    					if("add".equals(flag)){
+    						temp.put("attention", "1");
+    					}else{
+    						temp.put("attention", "0");
+    					}
+    				}
+    				list.add(temp);
+    			}
+    		}
+		}
+		
+		
+		
+		BasicDBObject doc = new BasicDBObject();
+		DBObject update = new BasicDBObject();
+		update.put("visitPage", list);
+		doc.put("$set", update); 
+		WriteResult wr = mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("Active","Y"), doc);  
+		return true;
+	}
 	public static ArrayList<Map> QueryVisitPageAttention(){
 		mongoDB = getMongoDB();
 		ArrayList list=new ArrayList();
 	    try{
 			DBObject query = new BasicDBObject();
 			query.put("Active", "Y");
-			query.put("visitPage.attention", "1");
 			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
 			BasicDBList visitPage = (BasicDBList) queryresults.get("visitPage");
     		if(visitPage != null){
@@ -1830,7 +1866,10 @@ public class MongoDBBasic {
         				HashMap<String, String> temp=new HashMap<String, String>();
         				temp.put("realName", ((DBObject)dbobj).get("realName").toString());
         				temp.put("descName", ((DBObject)dbobj).get("descName").toString());
-        				list.add(temp);
+        				if("1".equals(((DBObject)dbobj).get("descName").toString()))
+        				{
+        					list.add(temp);
+        				}
         			}
         		}
     		}
