@@ -661,6 +661,8 @@ jQuery
 				style="border-color: #000;">
 				<li  class="active"><a href="#WorkMates" data-toggle="tab"
 					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">人员管理</a></li>
+				<li><a href="#visitManage" data-toggle="tab"
+					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">到访管理</a></li>
 				<li><a href="#logoElements" data-toggle="tab"
 					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">LOGO管理</a></li>
 			</ul>
@@ -669,6 +671,12 @@ jQuery
 				<div class="tab-pane" id="logoElements">
 					<!-- start logoElements-->
 					<div class="Work_Mates_div2" id="Logo_div">
+					</div>
+					<!-- end logoElements-->
+				</div>
+				<div class="tab-pane" id="visitManage">
+					<!-- start visitManage-->
+					<div id="visit_div">
 					</div>
 					<!-- end logoElements-->
 				</div>
