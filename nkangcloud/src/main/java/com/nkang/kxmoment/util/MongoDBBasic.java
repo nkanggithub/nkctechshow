@@ -234,7 +234,7 @@ public class MongoDBBasic {
 			ret = true;
 	    }
 		catch(Exception e){
-			log.info("removeUser--" + e.getMessage());
+			log.info("remove--" + e.getMessage());
 		}
 		return ret;
 		
