@@ -932,7 +932,17 @@ public class MasterDataRestController {
 		}
 		return ret;
 	}
-	
+	@RequestMapping("/updateVisitPage")
+	public static boolean updateVisitPage(@RequestParam(value="realName", required=true) String realName,@RequestParam(value="flag", required=true) String flag){
+		boolean ret = false;
+		try{
+			ret =  MongoDBBasic.updateVisitPage(realName,flag);
+		}		
+		catch(Exception e){
+			ret = false;
+		}
+		return ret;
+	}
 	@RequestMapping("/CallGetUserWithSignature")
 	public static String CallGetUserWithSignature(@RequestParam(value="openid", required=false) String openid){
 		String ret = "{";
