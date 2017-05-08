@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
+import org.bson.types.ObjectId;
 
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBList;
@@ -229,7 +230,7 @@ public class MongoDBBasic {
 		Boolean ret = false;
 	    try{
 			DBObject removeQuery = new BasicDBObject();
-			removeQuery.put("_id", id);
+			removeQuery.put("_id", new ObjectId(id));
 			mongoDB.getCollection(short_news).remove(removeQuery);
 			ret = true;
 	    }
