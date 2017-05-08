@@ -1,6 +1,8 @@
 package com.nkang.kxmoment.baseobject;
 
 public class ShortNews {
+	public String mongoID;
+	
 	public String date;
 	public String content;
 	public String getDate() {
@@ -14,5 +16,11 @@ public class ShortNews {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getMongoID() {
+		return mongoID;
+	}
+	public void setMongoID(String mongoID) {
+		this.mongoID = mongoID;
 	}
 }
