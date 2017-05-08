@@ -501,12 +501,64 @@ public class PoiUtil {
 					hssfWorkbook = new HSSFWorkbook(is);
 					    for (int numSheet = 0; numSheet < 1; numSheet++) {
 				            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
+				            HSSFRow headRow = hssfSheet.getRow(0);
+				            String headName="";
+				            String heaName ="";
 					            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
 					                HSSFRow hssfRow = hssfSheet.getRow(rowNum);
 					                if (hssfRow == null) {
 					                    continue;
 					                }
-					                
+					                for (int cellNum = 0; cellNum <headRow.getPhysicalNumberOfCells(); cellNum++) {
+					                	headName = headRow.getCell(cellNum).getStringCellValue();
+					                	if(headName!=null && "Incident Assignee Email Name (RESTRICTED)".equals(headName.trim())){
+					                		HSSFCell assignedTo = hssfRow.getCell(cellNum);
+					                		 if(assignedTo==null || "".equals(assignedTo+"") ){
+					                			 platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
+								                	platforRelated.setIMMetricstotal(platforRelated.getIMMetricstotal()+1);
+								                	continue;
+								                }else{
+								                	for(int cellN = 0; cellN <headRow.getPhysicalNumberOfCells(); cellN++){
+								                		heaName = headRow.getCell(cellN).getStringCellValue();
+									                	if(heaName!=null && "Incident Current Status Description".equals(heaName.trim())){
+									                		
+									                		HSSFCell status = hssfRow.getCell(cellN);
+											                if(status!=null){
+											                	if("Closed".equals(status.toString().trim())){
+											                		platforRelated.setIMMetricstotal(platforRelated.getIMMetricstotal()+1);
+											                		
+											                		if(FileOperateUtil.Jeffrey.contains(assignedTo.toString().trim())){
+											                			platforRelated.setClosed_USA(platforRelated.getClosed_USA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Antonio.contains(assignedTo.toString().trim())){
+											                			platforRelated.setClosed_MEXICO(platforRelated.getClosed_MEXICO()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.Nils.contains(assignedTo.toString().trim())){
+											                			platforRelated.setClosed_EMEA(platforRelated.getClosed_EMEA()+1);
+											                			continue;
+											                		}else if(FileOperateUtil.China.contains(assignedTo.toString().trim())){
+											                			platforRelated.setClosed_APJ(platforRelated.getClosed_APJ()+1);
+																	}else if(FileOperateUtil.Other.contains(assignedTo.toString().trim())){
+											                			platforRelated.setClosed_OTHER(platforRelated.getClosed_OTHER()+1);
+											                			continue;
+																	}else {
+																		List<String> ls = platforRelated.getOutNames();
+																		if(ls==null){
+																			ls=new ArrayList<String>();
+																		}
+																		if(!ls.contains(assignedTo.toString())){
+																			ls.add(assignedTo.toString());
+																		}
+																		platforRelated.setOutNames(ls);
+																	}
+											                		
+																}
+											                }
+									                	}
+											                
+								                	}
+					                		 
+					          /*      		 
 					                HSSFCell assignedTo = hssfRow.getCell(7);
 					                if(assignedTo==null || "".equals(assignedTo+"") ){
 					                	platforRelated.setUnAssinged(platforRelated.getUnAssinged()+1);
@@ -544,11 +596,11 @@ public class PoiUtil {
 													}
 							                		
 												}
-							                }
+							                }*/
+								                }
+					                	}
 					                }
-					               
 					            }
-					            
 					    }
 				} catch (IOException e) {
 					e.printStackTrace();
