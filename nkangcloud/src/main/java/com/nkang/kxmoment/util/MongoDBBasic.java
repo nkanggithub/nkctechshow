@@ -224,6 +224,22 @@ public class MongoDBBasic {
         }
 		return result;
 	}
+	
+	public static boolean deleteShortNews(String id){
+		Boolean ret = false;
+	    try{
+			DBObject removeQuery = new BasicDBObject();
+			removeQuery.put("_id", id);
+			mongoDB.getCollection(short_news).remove(removeQuery);
+			ret = true;
+	    }
+		catch(Exception e){
+			log.info("removeUser--" + e.getMessage());
+		}
+		return ret;
+		
+	}
+	
 	public static List<String> queryUserKM(String openid){
 		mongoDB = getMongoDB();
 		List<String> kmLists = new ArrayList<String>();
