@@ -907,6 +907,17 @@ public class MasterDataRestController {
 		}
 		return result;
 	}
+	@RequestMapping("/QueryVisitPageAttention")
+	public static ArrayList<Map> QueryVisitPageAttention(){
+		ArrayList<Map> result = new ArrayList<Map>();
+		try{
+			result = MongoDBBasic.QueryVisitPageAttention();
+		}		
+		catch(Exception e){
+			result = null;
+		}
+		return result;
+	}
 	@RequestMapping("/CallUpdateUserWithSignature")
 	public static boolean CallUpdateUserWithSignature(
 			@RequestParam(value="openid", required=false) String openid,
