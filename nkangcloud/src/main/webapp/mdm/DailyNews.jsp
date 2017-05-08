@@ -62,7 +62,7 @@ MongoDBBasic.updateUser(uid);
 	<ul class="event_list">
 
 <%for(int i=0;i<size;i++){ %>
-		<li><span><%=shortNews.get(i).getDate() %><br></span><button style="position:absolute;top:65px;left:70px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onclick="javascript:deleteNews('<%=shortNews.get(i).getMongoID() %>');">删除新闻</button><p><span onClick="javascript:openDialog(this);"><%=shortNews.get(i).getContent() %> </span></p></li>
+		<li><span><%=shortNews.get(i).getDate() %><br></span><%if(IsAuthenticated==true) { %><button style="position:absolute;top:65px;left:70px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onclick="javascript:deleteNews('<%=shortNews.get(i).getMongoID() %>');">删除新闻</button><% } %><p><span onClick="javascript:openDialog(this);"><%=shortNews.get(i).getContent() %> </span></p></li>
 <%} %>
 	</ul>
 	<div class="more"><i class="pull_icon"></i><span>上拉加载...</span></div>
@@ -104,7 +104,7 @@ $(function(){
 							temp=data.length;
 						}
 						for (var i = 0; i < temp; i++) {
-							html+="<li><span>"+data[i].date+"</span><p><span onClick='javascript:openDialog(this);'>"+data[i].content+" </span></p></li>";
+							html+="<li><span>"+data[i].date+"</span><button style='position:absolute;top:65px;left:70px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;' onclick=\"javascript:deleteNews(\'"+data[i].mongoID+"\');\">删除新闻</button><p><span onClick='javascript:openDialog(this);'>"+data[i].content+" </span></p></li>";
 						
 						}
 						realSize=data.length;
@@ -172,7 +172,7 @@ $(function(){
 	window.openDialog=openDialog;
 	window.closeDialog=closeDialog;
 	window.publishNews=publishNews;
-	window.deteleNews=deteleNews;
+	window.deleteNews=deleteNews;
 });
 
 var realSize=<%=realSize %>;
