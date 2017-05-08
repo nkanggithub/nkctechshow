@@ -1813,6 +1813,32 @@ public class MongoDBBasic {
 		}
 	    return result;
 	}
+	public static ArrayList<Map> QueryVisitPage(){
+		mongoDB = getMongoDB();
+		ArrayList list=new ArrayList();
+	    try{
+			DBObject query = new BasicDBObject();
+			query.put("Active", "Y");
+			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
+			BasicDBList visitPage = (BasicDBList) queryresults.get("visitPage");
+    		if(visitPage != null){
+        		Object[] tagObjects = visitPage.toArray();
+        		for(Object dbobj : tagObjects){
+        			if(dbobj instanceof DBObject){
+        				HashMap<String, String> temp=new HashMap<String, String>();
+        				temp.put("realName", ((DBObject)dbobj).get("realName").toString());
+        				temp.put("descName", ((DBObject)dbobj).get("descName").toString());
+        				temp.put("attention", ((DBObject)dbobj).get("attention").toString());
+        				list.add(temp);
+        			}
+        		}
+    		}
+	    }
+		catch(Exception e){
+			log.info("QueryVisitPage--" + e.getMessage());
+		}
+	    return list;
+	}
 	public static ClientMeta QueryClientMeta(String ClientCode){
 		ClientMeta cm = new ClientMeta();
 		mongoDB = getMongoDB();
