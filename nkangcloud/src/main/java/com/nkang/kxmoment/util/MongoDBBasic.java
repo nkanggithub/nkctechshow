@@ -193,6 +193,7 @@ public class MongoDBBasic {
         		if(o.get("content")!=null){
         			temp.setContent(o.get("content").toString());
         		}
+        		temp.setMongoID(o.get("_id").toString());
         		result.add(temp);
         	}
         }
@@ -217,6 +218,7 @@ public class MongoDBBasic {
         		if(o.get("content")!=null){
         			temp.setContent(o.get("content").toString());
         		}
+        		temp.setMongoID(o.get("_id").toString());
         		result.add(temp);
         	}
         }
