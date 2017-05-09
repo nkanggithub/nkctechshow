@@ -484,7 +484,7 @@ var i=$(this).index();
 		                    {
 		                        "seriesname": "<%=visitedPageList.get(i).get("descName").toString()%>",
 		                        "data": [
-		                                 <%  for(int j=0;j<visitedList.get(i).size();i++){ 
+		                                 <%  for(int j=0;j<visitedList.get(i).size();j++){ 
 			                            	 if(i==visitedList.get(i).size()-1){%>
 			                            	 {
 			                                     "value": "<%=visitedList.get(i).get(i)%>",
@@ -550,36 +550,7 @@ var i=$(this).index();
 		 }); 
 		
 	 });
-	 
 
-
-	$(".singleQI").live("click",function(){
-		var status=$(this).children("p").text();
-		if("0"==status){
-			var params=$(this).children("span").text();
-			  FusionCharts.ready(function () {
-			        var estProcChart = new FusionCharts({
-			            type: 'errorline',
-			            renderAt: 'chart-container',
-			            width: '380',
-			            height: '350',
-			            dataFormat: 'jsonurl',
-			            dataSource: '../PlasticItem/priceList?itemNo='+params
-			        }).render();
-			        
-			    });
-		$("#chart-container").show();
-		$(this).siblings().hide();
-		$(this).children("p").text("1");
-		$(this).children("img").attr("src","../Jsp/JS/pizzaChart/img/leftArrow.png");
-		}
-		else if("1"==status){
-			$("#chart-container").hide();
-			$(this).siblings().show();
-			$(this).children("p").text("0");
-			$(this).children("img").attr("src","../Jsp/JS/pizzaChart/img/rightArrow.png");
-		}
-	});
 	$("#read").on("click",function(){
 		$("#visitedDetail").show();
 		$("#read").addClass("active");
