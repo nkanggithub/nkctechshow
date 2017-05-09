@@ -5,6 +5,7 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%	
 
 
@@ -33,6 +34,11 @@ if (session.getAttribute("location") == null) {
 	curLoc = (String) session.getAttribute("location");
 }
 boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
+SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+Date date=new Date();
+String currentDate = format.format(date);
+HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get("NickName"));
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -2062,9 +2068,12 @@ function getNowFormatDate() {
 														<img src="../mdm/images/Notification.png" /><h4>焦点追击</h4>
 													</a>
 												</td>
-												<td> <img onclick="stockModule()"
+												<td>
+												<a target="_self" href="http://shenan.duapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"><img src="../MetroStyleFiles/menu-stock.png" />
+													<h4>股票行情</h4></a>
+													 <!-- <img onclick="stockModule()"
 														src="../MetroStyleFiles/menu-stock.png" />
-														<h4>股票行情</h4>
+														<h4>股票行情</h4> -->
 												</td>
 												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="../MetroStyleFiles/menu-technology.png" />
 													<h4>消息推送</h4></td>

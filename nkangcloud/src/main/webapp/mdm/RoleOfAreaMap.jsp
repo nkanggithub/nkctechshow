@@ -5,10 +5,15 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%	
 String uid = request.getParameter("UID");
-MongoDBBasic.updateUser(uid);
+SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+Date date=new Date();
+String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+MongoDBBasic.updateVisited(uid,currentDate,"RoleOfAreaMap",res.get("HeadUrl"),res.get("NickName"));
+MongoDBBasic.updateUser(uid);
 %>
 <!Doctype html>
 <html>
