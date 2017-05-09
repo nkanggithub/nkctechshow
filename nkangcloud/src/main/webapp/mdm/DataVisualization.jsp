@@ -487,12 +487,12 @@ var i=$(this).index();
 		                                 <%  for(int j=0;j<visitedList.get(i).size();j++){ 
 			                            	 if(i==visitedList.get(i).size()-1){%>
 			                            	 {
-			                                     "value": "<%=visitedList.get(i).get(i)%>",
+			                                     "value": "<%=visitedList.get(i).get(j)%>",
 			                                     "errorvalue": ""
 			                                 }
 			                            	 <%}else{%>
 			                            	 {
-			                                     "value": "<%=visitedList.get(i).get(i)%>",
+			                                     "value": "<%=visitedList.get(i).get(j)%>",
 			                                     "errorvalue": ""
 			                                 },
 			                            <%}%>
