@@ -11,6 +11,7 @@ import com.nkang.kxmoment.baseobject.DashboardStatus;
 import com.nkang.kxmoment.service.DashboardService;
 
 @Controller
+@RequestMapping("/Dashboard")
 public class DashboardController {
 	
 

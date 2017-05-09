@@ -6,13 +6,13 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.mongodb.WriteResult;
 import com.nkang.kxmoment.baseobject.DashboardStatus;
 import com.nkang.kxmoment.util.MongoDBBasic;
 
@@ -34,19 +34,15 @@ public class DashboardService {
 	public static String saveStatus(DashboardStatus statusVo) {
 		String status = "fail";
 		try {
+			String statusStr = (String)statusVo.getStatus();
+			statusStr = statusStr.replaceAll("\\\"", "\"");
+			JSONArray obj = new JSONArray(statusStr);
+			statusVo.setStatus(obj);
 			DBObject dbObj = BasicDBObject.parse(statusVo.toString());
-			WriteResult reust = null;
-			if(statusVo.getType() != null && statusVo.getType().length() > 0){
-				DBObject query = new BasicDBObject();
-				query.put("type", new ObjectId(statusVo.getType()));
-				// update
-				reust = statusCollection.update(query, dbObj, true, false);
-				
-			}
-			if(reust != null && !reust.isUpdateOfExisting()){
-				// insert 
-				statusCollection.insert(dbObj);	
-			}
+			DBObject query = new BasicDBObject();
+			query.put("type", statusVo.getType());
+			// insert or update
+			statusCollection.update(query, dbObj, true, false);
 			status = "success";
 		} catch (Exception e) {
 			logger.error("Save Status fail.", e);
