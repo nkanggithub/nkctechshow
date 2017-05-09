@@ -577,8 +577,11 @@ function getVisitPage() {
 					 +'		<div class="clear"></div>'
 					 +'	</div>'
 					 +'</li>'; 
-					 
-				ul+=li;
+				if(tag==''){
+					ul+=li;
+				}else{
+					ul=li+ul;
+				}
 			}
 			 $("#visit_div").html(ul);
 		}
