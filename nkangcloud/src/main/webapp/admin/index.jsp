@@ -275,6 +275,47 @@ function syncUser(){
 		}
 	});
 }
+function UpdateTag(item,flag,obj){
+	var tempObj=$(obj).parent().parent(".singleQuote");
+	$(".singleQuote").removeClass("editBtn");
+	$(".singleQuote").find(".edit").remove();
+	/* if(likeRoleNum>=2&&item.indexOf("Role")==0&&flag=='add'){
+		 swal("操作失败", "最多只能关注两个职位", "error");
+	}else{ */
+		$.ajax({
+			 url:'../updateVisitPage',
+			 type:"POST",
+			 data : {
+				 realName : item,
+				 flag : flag
+			 },
+			 success:function(result){
+				 if(result==true){
+					 if(flag=='add'){
+						 context='恭喜你成功关注该项';
+						 if(RoleObj[item]!=null&&RoleObj[item].length>0){
+							 var context='';
+							 for(var i=0;i<RoleObj[item].length;i++){
+								 if(context!='')context+='，';
+								 context+=AreaObj[RoleObj[item][i]];
+							 }
+							 context='推荐您关注【'+context+'】技术领域';
+						 }
+						 swal("关注成功 ",context, "success");
+						 tempObj.find(".firstLayer").addClass("attention");
+						 tempObj.find(".firstLayer").find(".quoteTitle").append('<span class="tag2">已关注</span>');
+					 }else  if(flag=='del'){
+						 swal("取消成功","你取消了对该项的关注", "success");
+						 tempObj.find(".firstLayer").removeClass("attention");
+						 tempObj.find(".firstLayer").find(".quoteTitle").find(".tag2").remove();
+					 }
+				 }else{
+					 swal("操作失败", "请刷新页面后重试", "error");
+				 }
+			 }
+		});	
+	/* } */
+}
 function findRoleList(){
 	$.ajax({
 		 url:'../roleOfAreaMap/findList',
