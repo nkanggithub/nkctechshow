@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <title>Dashboard Status</title>
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <style type="text/css">
