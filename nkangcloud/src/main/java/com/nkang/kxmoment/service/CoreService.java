@@ -429,7 +429,7 @@ public class CoreService
 						article.setTitle("查看产品运维报表");
 						article.setDescription("您可查看实时更新的产品运维报表");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp");
+						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
