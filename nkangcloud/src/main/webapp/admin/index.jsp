@@ -212,6 +212,7 @@ $(function(){
     });
 var clientThemeColor,HpLogoSrc,LogoData;
 var RoleList,RoleObj=new Object();
+var likePageNum=0;
 $(window).load(function() {
 	getVisitPage();
 	findRoleList();
@@ -279,9 +280,9 @@ function UpdateTag(item,flag,obj){
 	var tempObj=$(obj).parent().parent(".singleQuote");
 	$(".singleQuote").removeClass("editBtn");
 	$(".singleQuote").find(".edit").remove();
-	/* if(likeRoleNum>=2&&item.indexOf("Role")==0&&flag=='add'){
-		 swal("操作失败", "最多只能关注两个职位", "error");
-	}else{ */
+    if(likePageNum>=4&&flag=='add'){
+		 swal("操作失败", "最多只能关注四个页面", "error");
+	}else{ 
 		$.ajax({
 			 url:'../updateVisitPage',
 			 type:"POST",
@@ -302,10 +303,12 @@ function UpdateTag(item,flag,obj){
 							 context='推荐您关注【'+context+'】技术领域';
 						 }
 						 swal("关注成功 ",context, "success");
+						 likePageNum++;
 						 tempObj.find(".firstLayer").addClass("attention");
 						 tempObj.find(".firstLayer").find(".quoteTitle").append('<span class="tag2">已关注</span>');
 					 }else  if(flag=='del'){
 						 swal("取消成功","你取消了对该项的关注", "success");
+						 likePageNum--;
 						 tempObj.find(".firstLayer").removeClass("attention");
 						 tempObj.find(".firstLayer").find(".quoteTitle").find(".tag2").remove();
 					 }
@@ -314,7 +317,7 @@ function UpdateTag(item,flag,obj){
 				 }
 			 }
 		});	
-	/* } */
+	 } 
 }
 function findRoleList(){
 	$.ajax({
@@ -551,6 +554,7 @@ function getVisitPage() {
 		success : function(data) {
 			var jsons = data;
 			var ul="";
+			likePageNum=0;
 			for (var i = 0; i < jsons.length; i++) {
 				var temp=jsons[i];
 				 var priceColor="lose";
@@ -562,6 +566,7 @@ function getVisitPage() {
 				 if(temp.attention=="1"){
 					 tag='<span class="tag2">已关注</span>';
 					 attention='attention';
+					 likePageNum++;
 				 }
 				 var li='<li class="singleQuote">'
 					 +'	<div class="firstLayer '+attention+'">'
