@@ -96,6 +96,50 @@ MongoDBBasic.updateUser(uid);
 	position: relative;
     left: -120px;
 }
+
+.singleQuote .edit
+{
+	width: 60px;
+    height: 100%;
+    color: #fff;
+    font-family:微软雅黑;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    right: -45px;
+	font-size:14px;
+    background: orange;
+    border-bottom: 1px solid #ccc;
+}
+.singleQuote .edit img {
+    width:25px;height:auto;position:absolute;top:8px;margin-left: 2px;
+}
+.singleQuote .edit p
+{
+	width:50%;
+	height:100%;
+	line-height:90px;
+	margin-right:auto;
+	margin-left:auto;
+	font-weight:bold;
+}
+.singleQuote .edit.no{
+background: #999;
+}
+.singleQuote .picClose
+{
+cursor:pointer;
+}
+.singleQuote  .edit.no p
+{
+	line-height:25px;
+	padding-top:5px;
+}
+.singleQuote.editBtn
+{
+	position: relative;
+    left: -60px;
+}
 ul li.singleQuote{
 	font-size:18px;
 	border-bottom:1px solid #ccc;
@@ -186,6 +230,29 @@ $(window).load(function() {
 		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>***<br/>管理</p></div>");
 		$(this).siblings().removeClass("editBtn");
 		$(this).siblings().remove(".edit");
+	});
+	$(".singleQuote").live("swiperight",function(){
+		$(this).css("overflow","hidden");
+		$(this).removeClass("editBtn");
+		$(this).find(".edit").remove();
+	}); 
+	$(".singleQuote").live("swipeleft",function(){
+		$(this).siblings().removeClass("editBtn");
+		$(this).siblings().find(".edit").remove();
+		
+		
+		var priceNum=$(this).find('span.price').length;
+		if(priceNum==0){
+			$(this).css("overflow","visible");
+			$(this).addClass("editBtn");
+			var tagNum=$(this).find('span.tag2').length;
+			var item=$(this).find('span.id').text();
+			if(tagNum==0){
+				$(this).append('<div class="edit"><p onclick="UpdateTag(\''+item+'\',\'add\',this)"><img src="../mdm/images/focus.png" />关注</p></div>');
+			}else{
+				$(this).append('<div class="edit no"><p onclick="UpdateTag(\''+item+'\',\'del\',this)">取消<br/>关注</p></div>');
+			}
+		}
 	});
 	$("#syncUser").click(function(){
 		syncUser();
