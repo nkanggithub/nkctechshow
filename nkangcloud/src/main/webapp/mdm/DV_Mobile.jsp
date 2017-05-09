@@ -20,7 +20,7 @@ SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");
 Date date=new Date();
 String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-MongoDBBasic.updateVisited(uid,currentDate,"MDMDataVisualization",res.get("HeadUrl"),res.get("NickName"));
+MongoDBBasic.updateVisited(uid,currentDate,"DV_Mobile",res.get("HeadUrl"),res.get("NickName"));
 
 %> 
 <!DOCTYPE html>
