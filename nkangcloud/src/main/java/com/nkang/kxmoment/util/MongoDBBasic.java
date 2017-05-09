@@ -3,6 +3,7 @@ package com.nkang.kxmoment.util;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,6 +46,7 @@ import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
+import com.nkang.kxmoment.baseobject.Visited;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.Constants;
@@ -63,6 +65,7 @@ public class MongoDBBasic {
 	private static String collectionBill = "SaleBill";
 	private static String Metrics = "Metrics";
 	private static String role_area = "RoleOfAreaMap";
+	private static String collectionVisited = "Visited";
 	
 	
 	public static DB getMongoDB(){
@@ -3276,5 +3279,110 @@ public class MongoDBBasic {
 		return map;
 	}
 	
+	public static List<Integer> getTotalVisitedNumByPage(List<String> dates,String page)
+	{
+		/*for(int a=0;a<dates.size();a++){
+			System.out.println("dates list-------:"+dates.get(a));
+		}*/
+		int num=0;
+		List<Integer> numList=new ArrayList<Integer>();
+		List<Visited> data=new ArrayList<Visited>();
+		for(int i=0;i<dates.size();i++){
+			data=MongoDBBasic.getVisitedDetail(dates.get(i),page);
+		//	System.out.println("data.size():"+data.size());
+			for(int j=0;j<data.size();j++){
+				
+			//	System.out.println("j index-----"+j+"num:---"+data.get(j).getVisitedNum()+"/page:---"+data.get(j).getPageName());
+				num+=data.get(j).getVisitedNum();
+			}
+		//	System.out.println("num  ====:"+num);
+			numList.add(num);
+			num=0;
+		}
+		return numList;
+	}
+	public static List<Visited> getVisitedDetail(String date,String pageName){
+		List<Visited> vitlist = new ArrayList<Visited>();
+		if(mongoDB==null){
+			mongoDB = getMongoDB();
+		}
+		DBObject query = new BasicDBObject();
+		query.put("date", date);
+		query.put("pageName", pageName);
+		DBCursor visiteds = mongoDB.getCollection(collectionVisited).find(query);
+		if (null != visiteds) {
+		while(visiteds.hasNext()) {
+			Visited vit = new Visited();
+		       DBObject obj = visiteds.next();
+		       vit.setDate(date);
+			   vit.setOpenid(obj.get("openid")+"");
+			   vit.setVisitedNum(Integer.parseInt(obj.get("visitedNum")+""));
+			   vit.setPageName(obj.get("pageName")+"");
+				vit.setImgUrl(obj.get("imgUrl")+"");
+				vit.setNickName(obj.get("nickName")+"");
+			   vitlist.add(vit);
+		    }}else{
+		    	Visited vit = new Visited();
+			       vit.setDate(date);
+				   vit.setOpenid("");
+				   vit.setVisitedNum(0);
+				   vit.setPageName(pageName);
+					vit.setImgUrl("");
+					vit.setNickName("");
+				   vitlist.add(vit);
+		    }
+		return vitlist;
+	}
+	public static List<String> getLastestDate(int day){
+		SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date=new Date();
+		List<String> finalVisiteds =new ArrayList<String>();
+		String currentDate = format.format(date);
+		finalVisiteds.add(currentDate);
+		for(int i=-1;i>day-1;i--){
+			finalVisiteds.add(beforNumDay(date,i));
+		}
+		return finalVisiteds;
+	}
+	 public static String beforNumDay(Date date, int day) {
+	        Calendar c = Calendar.getInstance();
+	        c.setTime(date);
+	        c.add(Calendar.DAY_OF_YEAR, day);
+	        return new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+	    }
+		public static String updateVisited(String openid,String date,String pageName,String imgUrl,String nickName){
+			if(mongoDB==null){
+				mongoDB = getMongoDB();
+			}
+			String ret="ok";
+			try{
+				DBObject query = new BasicDBObject();
+				query.put("openid", openid);
+				query.put("date", date);
+				query.put("pageName", pageName);
+				query.put("imgUrl", imgUrl);
+				query.put("nickName", nickName);
+				DBObject visited = mongoDB.getCollection(collectionVisited).findOne(query);
+				if(visited!=null){
+					//String num = visited.get("visitedNum")+"";
+					BasicDBObject doc = new BasicDBObject();
+					BasicDBObject update = new BasicDBObject();
+					//update.put("visitedNum", Integer.parseInt(num)+1);
+					update.append("visitedNum",1);
+					doc.put("$inc", update);
+					//doc.put("$set", update);  
+					mongoDB.getCollection(collectionVisited).update(query, doc);
+				}else{
+					query.put("visitedNum", 1);
+					mongoDB.getCollection(collectionVisited).insert(query);
+				}
+				
+			}catch (Exception e){
+				ret=e.getMessage();
+			}
+			
+			return ret;
+		}
+		
 }
 					
