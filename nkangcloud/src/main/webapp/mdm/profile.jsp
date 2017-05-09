@@ -2070,7 +2070,7 @@ function getNowFormatDate() {
 												</td>
 												<td>
 												<a target="_self" href="http://shenan.duapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"><img src="../MetroStyleFiles/menu-stock.png" />
-													<h4>股票行情</h4></a>
+													<h4>来访足迹</h4></a>
 													 <!-- <img onclick="stockModule()"
 														src="../MetroStyleFiles/menu-stock.png" />
 														<h4>股票行情</h4> -->
