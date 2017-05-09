@@ -25,6 +25,7 @@ import com.nkang.kxmoment.baseobject.OrgCountryCode;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
+import com.nkang.kxmoment.baseobject.Visited;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.Constants;
@@ -1010,4 +1011,19 @@ public class MasterDataRestController {
 		return ret;
 		
 	}*/
+	
+	@RequestMapping("/getVisitedDetail")
+	public @ResponseBody List<Visited> getVisitedByDate(@RequestParam(value="dateIndex")String dateIndex,@RequestParam(value="pageName")String pageName){
+		String pn="";
+		ArrayList<Map> visitedPageList=MongoDBBasic.QueryVisitPage();
+		for(int i=0;i<visitedPageList.size();i++){
+			if(visitedPageList.get(i).get("descName").toString().equals(pageName)){
+				pn=visitedPageList.get(i).get("realName").toString().trim();
+			}
+		}
+		int index=Integer.parseInt(dateIndex);
+		String date=MongoDBBasic.getLastestDate(-6).get(index);
+		return MongoDBBasic.getVisitedDetail(date,pn); 
+	}
+
 }
