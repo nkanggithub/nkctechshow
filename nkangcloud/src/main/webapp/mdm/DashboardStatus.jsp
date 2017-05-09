@@ -47,17 +47,99 @@ $(function(){
 		 url:'../Dashboard/findAllStatusList',
 		 type:"GET",
 		 success:function(resData){
-			 var a=1;
+			for(var i=0;i<resData.length;i++){
+				var temp=resData[i];
+				var myArrayList=temp.status.myArrayList;
+				var updateAt=temp.updateAt;
+				if(temp.type=="DB")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>Database Status - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table='<table cellpadding="0" cellspacing="1">';
+					table+='<tr>'
+						+'			<th>Database</th>'
+						+'			<th>Environment</th>'
+						+'			<th>Status</th>'
+						+'		</tr>';
+					for(var j=0;j<myArrayList.length;j++)
+					{
+						table+='<tr>'
+							+'			<td>'+myArrayList[j].map.database_name+'</td>'
+							+'			<td>'+myArrayList[j].map.environment+'</td>'
+							+'			<td>'+myArrayList[j].map.status+'</td>'
+							+'		</tr>';
+					}
+					table+='</table>';
+					div+=table;
+					div+='</div>';
+					$('body').append(div);
+				}else if(temp.type=="MSG")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>Outbound JMS Messages - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table='<table cellpadding="0" cellspacing="1">';
+					table+='<tr>'
+						+'			<th>Pending</th>'
+						+'			<th>Completed</th>'
+						+'			<th>Ignored</th>'
+						+'		</tr>';
+					var Pending=0,Completed=0,Ignored=0;
+					for(var j=0;j<myArrayList.length;j++)
+					{
+						if(!(myArrayList[j].map.ignored  instanceof Object)){
+							Ignored+=parseInt(myArrayList[j].map.ignored);
+						}
+						if(!(myArrayList[j].map.pending  instanceof Object)){
+							Pending+=parseInt(myArrayList[j].map.pending);
+						}
+						if(!(myArrayList[j].map.completed  instanceof Object)){
+							Completed+=parseInt(myArrayList[j].map.completed);
+						}
+					}
+					table+='<tr>'
+						+'			<td>'+Pending+'</td>'
+						+'			<td>'+Completed+'</td>'
+						+'			<td>'+Ignored+'</td>'
+						+'		</tr>';
+					table+='</table>';
+					div+=table;
+					div+='</div>';
+					$('body').append(div);
+				}
+				
+			}
 		 }
 	});
 });
+//时间转换 
+function   formatDate(now)   {
+    var   now= new Date(now);     
+    var   year=now.getFullYear();     
+    var   month=now.getMonth()+1;     
+    var   date=now.getDate();     
+    var   hour=now.getHours();
+    var   minute=now.getMinutes();     
+    var   second=now.getSeconds();
+    return   year+"-"+fixZero(month,2)+"-"+fixZero(date,2)+"&nbsp;&nbsp;"+fixZero(hour,2)+":"+fixZero(minute,2)+":"+fixZero(second,2); 
+}  
+//时间如果为单位数补0 
+function fixZero(num,length){     
+    var str=""+num;
+    var len=str.length;     var s="";
+    for(var i=length;i-->len;){         
+        s+="0";
+    }
+    return s+str;
+}
 </script>
 </head>
 <body style="margin:0px">
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
 <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="width:60%;"></div>
 
-
+<!-- 
 <div class="statusDiv">
 	<h1>Database Status - PRO</h1>
 	<h5>last updated: 05/09/2017 @ 15:42:26 </h5>
@@ -83,7 +165,7 @@ $(function(){
 			<td>Up</td>
 		</tr>
 	</tbody></table>
-</div>
+</div> -->
 
 
 </body>
