@@ -36,17 +36,19 @@
 }
 .statusDiv table tr th, .statusDiv table tr:nth-child(odd) td {
     background-color: #E5F6F2;
-    line-height: 25px;
 }
 .statusDiv table tr:nth-child(even) td {
     background-color: #fff;
-    line-height: 25px;
 }
 .statusDiv table tr td {
 	font-size:12px;
+	 line-height: 15px;
+	 padding:5px 0px;
 }
 .statusDiv table tr th {
 	font-size:13px;
+	 line-height: 15px;
+	 padding:5px 0px;
 }
 </style>
 <script type="text/javascript">
