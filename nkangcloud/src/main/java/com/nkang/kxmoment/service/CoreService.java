@@ -42,6 +42,7 @@ public class CoreService
 		String respXml = null;
 		String respContent = "unknown request type.";
 		String AccessKey = MongoDBBasic.getValidAccessKey();
+		ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
 		try {
 			Element requestObject 	= 	MessageUtil.parseXml(request);
 			String fromUserName 	= 	requestObject.element("FromUserName").getText();
@@ -224,7 +225,7 @@ public class CoreService
 					else if(eventKey.equals("MYAPPS")){
 						articleList.clear();
 						Article article = new Article();
-						ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
+						
 						article.setTitle(cm.getClientName()+"|移动应用");
 						article.setDescription("移动应用");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mpP&oid=00D90000000pkXM");
@@ -413,7 +414,6 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
 						article.setTitle(cm.getClientName()+"| 点击查看我的订阅");
 						article.setDescription("在此您可以随心订阅您感兴趣的专业话题和自身的职业发展方向");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
@@ -427,6 +427,7 @@ public class CoreService
 					else if (eventKey.equals("opsmetric")) {//我的订阅
 						
 						articleList.clear();
+						Article article = new Article();
 						article.setTitle(cm.getClientName()+"|查看产品运维报表");
 						article.setDescription("您可查看实时更新的产品运维报表");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
@@ -436,8 +437,8 @@ public class CoreService
 						Article article1 = new Article();
 						article1.setTitle("IM统计情况");
 						article1.setDescription("IM统计情况");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLNZ&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
+						article1.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLNZ&oid=00D90000000pkXM");
+						article1.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
 						articleList.add(article1);
 						
 						Article article2 = new Article();
