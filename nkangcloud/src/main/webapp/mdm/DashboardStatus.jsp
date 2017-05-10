@@ -18,7 +18,7 @@
     line-height: 40px;
     margin: 0px;
     padding-left: 8px;
-    font-size:17px;
+    font-size:15px;
 }
 .statusDiv h5 {
     float: right;
@@ -134,11 +134,13 @@ $(function(){
 						+'		</tr>';
 					for(var j=0;j<myArrayList.length;j++)
 					{
-						/* table+='<tr>'
-							+'			<td>'+myArrayList[j].map.database_name+'</td>'
-							+'			<td>'+myArrayList[j].map.environment+'</td>'
+						 table+='<tr>'
+							+'			<td>'+myArrayList[j].map.loadingTable+'</td>'
+							+'			<td>'+myArrayList[j].map.description+'</td>'
+							+'			<td>'+myArrayList[j].map.startTime+'</td>'
+							+'			<td>'+myArrayList[j].map.elapsedTime+'</td>'
 							+'			<td>'+myArrayList[j].map.status+'</td>'
-							+'		</tr>'; */
+							+'		</tr>'; 
 					}
 					if(myArrayList.length==0){
 						table+='<tr>'
@@ -192,12 +194,72 @@ $(function(){
 					div+=table;
 					div+='</div>';
 					$('#JBOSS').html(div);
+				}else if(temp.type=="STRulesHPE")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>HPE Sales Territory Rules Engine - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table=formatEngineTable(myArrayList);
+					div+=table;
+					div+='</div>';
+					$('#STRulesHPE').html(div);
+				}else if(temp.type=="STRulesHPI")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>HPI Sales Territory Rules Engine - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table=formatEngineTable(myArrayList);
+					div+=table;
+					div+='</div>';
+					$('#STRulesHPI').html(div);
+				}else if(temp.type=="FrcstSTRulesHPE")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>HPE Forecast Sales Territory Rules Engine - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table=formatEngineTable(myArrayList);
+					div+=table;
+					div+='</div>';
+					$('#FrcstSTRulesHPE').html(div);
+				}else if(temp.type=="FrcstSTRulesHPI")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>HPI Forecast Sales Territory Rules Engine - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table=formatEngineTable(myArrayList);
+					div+=table;
+					div+='</div>';
+					$('#FrcstSTRulesHPI').html(div);
 				}
 				
 			}
 		 }
 	});
 });
+function   formatEngineTable(myArrayList)   {
+	var table='<table cellpadding="0" cellspacing="1">';
+					table+='<tr>'
+						+'			<th>Total Backlog</th>'
+						+'			<th>Queued for Processing</th>'
+						+'			<th>Last Processed Rule Date (UTC)</th>'
+						+'			<th>Processed in Last 24hr</th>'
+						+'			<th>Processed Yesterday</th>'
+						+'			<th>Processed 2 Days Ago</th>'
+						+'		</tr>';
+					for(var j=0;j<myArrayList.length;j++)
+					{
+						table+='<tr>'
+							+'			<td>'+myArrayList[j].map.total+'</td>'
+							+'			<td>'+myArrayList[j].map.queued+'</td>'
+							+'			<td>'+myArrayList[j].map.lastprocesed+'</td>'
+							+'			<td>'+myArrayList[j].map.processedin24HRS+'</td>'
+							+'			<td>'+myArrayList[j].map.processedyest+'</td>'
+							+'			<td>'+myArrayList[j].map.processed3+'</td>'
+							+'		</tr>';
+					}
+					table+='</table>';
+	return table;
+}
 function   formatUrl(url)   {
 	var start=url.indexOf('://');
 	var end=url.indexOf('.');
@@ -229,9 +291,13 @@ function fixZero(num,length){
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
 <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="height:60px;"></div>
 <div id="DB"></div>
+<div id="JBOSS"></div>
 <div id="MSG"></div>
 <div id="JOB"></div>
-<div id="JBOSS"></div>
+<div id="FrcstSTRulesHPE"></div>
+<div id="FrcstSTRulesHPI"></div>
+<div id="STRulesHPE"></div>
+<div id="STRulesHPI"></div>
 <!-- 
 <div class="statusDiv">
 	<h1>Database Status - PRO</h1>
