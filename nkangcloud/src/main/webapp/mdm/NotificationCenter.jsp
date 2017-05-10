@@ -4,12 +4,10 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
-<%@ page import="com.nkang.kxmoment.baseobject.GeoLocation"%>
-<%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
-<%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
+
 <%@ page import="java.text.SimpleDateFormat"%>
 <%	
- String uid = request.getParameter("uid");
+
 MongoDBBasic.updateUser(uid);
 String num = request.getParameter("num");
 List<ArticleMessage> nList=MongoDBBasic.getArticleMessageByNum(num);   
@@ -21,14 +19,10 @@ n.setTime("2017/2/10 16:42"); */
 	n=nList.get(0); 
 }
 
-
 SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 Date date=new Date();
 String currentDate = format.format(date);
-HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-MongoDBBasic.updateVisited(uid,currentDate,"NotificationCenter",res.get("HeadUrl"),res.get("NickName"));
-MongoDBBasic.updateUser(uid);
- 
+MongoDBBasic.updateVisited("12345",currentDate,"NotificationCenter","","访问者");
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
