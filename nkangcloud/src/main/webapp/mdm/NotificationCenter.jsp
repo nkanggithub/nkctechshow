@@ -7,7 +7,7 @@
 
 <%@ page import="java.text.SimpleDateFormat"%>
 <%	
-
+String uid = request.getParameter("uid");
 MongoDBBasic.updateUser(uid);
 String num = request.getParameter("num");
 List<ArticleMessage> nList=MongoDBBasic.getArticleMessageByNum(num);   
