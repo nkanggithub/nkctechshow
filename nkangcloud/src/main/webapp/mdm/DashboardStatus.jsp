@@ -15,9 +15,10 @@
 .statusDiv h1 {
     background-color: #767676;
     color: #fff;
-    line-height: 70px;
+    line-height: 40px;
     margin: 0px;
     padding-left: 8px;
+    font-size:17px;
 }
 .statusDiv h5 {
     float: right;
@@ -40,6 +41,12 @@
 .statusDiv table tr:nth-child(even) td {
     background-color: #fff;
     line-height: 25px;
+}
+.statusDiv table tr td {
+	font-size:12px;
+}
+.statusDiv table tr th {
+	font-size:13px;
 }
 </style>
 <script type="text/javascript">
@@ -74,7 +81,7 @@ $(function(){
 					table+='</table>';
 					div+=table;
 					div+='</div>';
-					$('body').append(div);
+					$('#DB').html(div);
 				}else if(temp.type=="MSG")
 				{
 					var div='<div class="statusDiv">';
@@ -107,13 +114,73 @@ $(function(){
 					table+='</table>';
 					div+=table;
 					div+='</div>';
-					$('body').append(div);
+					$('#MSG').html(div);
+				}else if(temp.type=="JOB")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>Job Status - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table='<table cellpadding="0" cellspacing="1">';
+					table+='<tr>'
+						+'			<th>Loading Table</th>'
+						+'			<th>Description</th>'
+						+'			<th>Start Time</th>'
+						+'			<th>Elapsed Time</th>'
+						+'			<th>Status</th>'
+						+'		</tr>';
+					for(var j=0;j<myArrayList.length;j++)
+					{
+						/* table+='<tr>'
+							+'			<td>'+myArrayList[j].map.database_name+'</td>'
+							+'			<td>'+myArrayList[j].map.environment+'</td>'
+							+'			<td>'+myArrayList[j].map.status+'</td>'
+							+'		</tr>'; */
+					}
+					if(myArrayList.length==0){
+						table+='<tr>'
+							+'			<td colspan="5">no jobs running</td>'
+							+'		</tr>';
+					}
+					table+='</table>';
+					div+=table;
+					div+='</div>';
+					$('#JOB').html(div);
+				}else if(temp.type=="JBOSS")
+				{
+					var div='<div class="statusDiv">';
+					div+='<h1>Server Status - PRO</h1>';
+					div+='<h5>last updated: '+formatDate(updateAt)+'</h5>';
+					var table='<table cellpadding="0" cellspacing="1">';
+					table+='<tr>'
+						+'			<th>Server</th>'
+						+'			<th>Type</th>'
+						+'			<th>Use</th>'
+						+'			<th>Status</th>'
+						+'		</tr>';
+					for(var j=0;j<myArrayList.length;j++)
+					{
+						 table+='<tr>'
+							+'			<td>'+formatUrl(myArrayList[j].map.url)+'</td>'
+							+'			<td>'+myArrayList[j].map.type+'</td>'
+							+'			<td>'+myArrayList[j].map.description+'</td>'
+							+'			<td>'+myArrayList[j].map.status+'</td>'
+							+'		</tr>'; 
+					}
+					table+='</table>';
+					div+=table;
+					div+='</div>';
+					$('#JBOSS').html(div);
 				}
 				
 			}
 		 }
 	});
 });
+function   formatUrl(url)   {
+	var start=url.indexOf('://');
+	var end=url.indexOf('.');
+	return url.substring(start+3, end);
+}
 //时间转换 
 function   formatDate(now)   {
     var   now= new Date(now);     
@@ -139,7 +206,10 @@ function fixZero(num,length){
 <body style="margin:0px">
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
 <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="height:60px;"></div>
-
+<div id="DB"></div>
+<div id="MSG"></div>
+<div id="JOB"></div>
+<div id="JBOSS"></div>
 <!-- 
 <div class="statusDiv">
 	<h1>Database Status - PRO</h1>
