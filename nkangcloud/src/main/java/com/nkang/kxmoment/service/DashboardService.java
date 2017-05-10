@@ -48,10 +48,10 @@ public class DashboardService {
 			status = "success";
 			if(statusStr.toUpperCase().indexOf("DOWN")!=-1){
 				List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
-				String content="Server Down, Please check the Server!";
-				String title="Server or DB Down!";
+				String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
+				String title=" 生产环境服务器出现异常，请立即采取措施！！！";
 				for(int i=0;i<allUser.size();i++){
-					 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=428411870,2259267624&fm=23&gp=0.jpg","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
+					 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
 				 } 
 			}
 		} catch (Exception e) {
