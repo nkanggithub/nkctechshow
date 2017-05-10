@@ -425,15 +425,34 @@ public class CoreService
 						
 					}
 					else if (eventKey.equals("opsmetric")) {//我的订阅
-						Article article = new Article();
-						article.setTitle("查看产品运维报表");
+						
+						articleList.clear();
+						article.setTitle(cm.getClientName()+"|查看产品运维报表");
 						article.setDescription("您可查看实时更新的产品运维报表");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
 						articleList.add(article);
+						
+						Article article1 = new Article();
+						article1.setTitle("IM统计情况");
+						article1.setDescription("IM统计情况");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
+						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
+						articleList.add(article1);
+						
+						Article article2 = new Article();
+						article2.setTitle("生产环境智能监控");
+						article2.setDescription("生产环境智能监控");
+						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
+						article2.setUrl("http://shenan.duapp.com/mdm/DashboardStatus.jsp");
+						articleList.add(article2);
+						
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
+						
+						
 					}
 					else if (eventKey.equals("nbpartner")) {// Partner
 						String CurType = "partner";
