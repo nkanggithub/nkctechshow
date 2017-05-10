@@ -436,14 +436,14 @@ public class CoreService
 						Article article1 = new Article();
 						article1.setTitle("IM统计情况");
 						article1.setDescription("IM统计情况");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLNZ&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
 						articleList.add(article1);
 						
 						Article article2 = new Article();
 						article2.setTitle("生产环境智能监控");
 						article2.setDescription("生产环境智能监控");
-						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
+						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
 						article2.setUrl("http://shenan.duapp.com/mdm/DashboardStatus.jsp");
 						articleList.add(article2);
 						
