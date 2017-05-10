@@ -72,10 +72,14 @@ $(function(){
 						+'		</tr>';
 					for(var j=0;j<myArrayList.length;j++)
 					{
+						var style='';
+						if(myArrayList[j].map.status.toLowerCase()=='Down'.toLowerCase()){
+							style=' style="background-color:red;color:#fff;" ';
+						}
 						table+='<tr>'
-							+'			<td>'+myArrayList[j].map.database_name+'</td>'
-							+'			<td>'+myArrayList[j].map.environment+'</td>'
-							+'			<td>'+myArrayList[j].map.status+'</td>'
+							+'			<td'+style+'>'+myArrayList[j].map.database_name+'</td>'
+							+'			<td'+style+'>'+myArrayList[j].map.environment+'</td>'
+							+'			<td'+style+'>'+myArrayList[j].map.status+'</td>'
 							+'		</tr>';
 					}
 					table+='</table>';
