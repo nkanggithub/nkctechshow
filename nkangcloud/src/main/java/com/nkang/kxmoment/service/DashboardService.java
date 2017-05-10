@@ -14,7 +14,9 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.nkang.kxmoment.baseobject.DashboardStatus;
+import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.util.MongoDBBasic;
+import com.nkang.kxmoment.util.RestUtils;
 
 /**
  * Dashboard Service 
@@ -44,6 +46,14 @@ public class DashboardService {
 			// insert or update
 			statusCollection.update(query, dbObj, true, false);
 			status = "success";
+			if(statusStr.toUpperCase().indexOf("DOWN")!=-1){
+				List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
+				String content="Server Down, Please check the Server!";
+				String title="Server or DB Down!";
+				for(int i=0;i<allUser.size();i++){
+					 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=428411870,2259267624&fm=23&gp=0.jpg","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
+				 } 
+			}
 		} catch (Exception e) {
 			logger.error("Save Status fail.", e);
 			status = "fail";
