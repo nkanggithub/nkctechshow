@@ -61,7 +61,7 @@ MongoDBBasic.updateUser(uid);
 	 padding:5px 0px;
 }
 .statusDiv table tr th {
-	font-size:13px;
+	font-size:12px;
 	 line-height: 15px;
 	 padding:5px 0px;
 }
