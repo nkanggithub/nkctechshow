@@ -163,11 +163,29 @@ $(function(){
 						+'		</tr>';
 					for(var j=0;j<myArrayList.length;j++)
 					{
+						if(myArrayList[j].map.description=='Cleanse'){
+							if(myArrayList[j].map.status=='405'){
+								myArrayList[j].map.status='Up';
+							}else{
+								myArrayList[j].map.status='Down';
+							}
+						}
+						else{
+							if(myArrayList[j].map.status=='200'){
+								myArrayList[j].map.status='Up';
+							}else{
+								myArrayList[j].map.status='Down';
+							}
+						}
+						var style='';
+						if(myArrayList[j].map.status=='Down'){
+							style=' style="background-color:red;color:#fff;" ';
+						}
 						 table+='<tr>'
-							+'			<td>'+formatUrl(myArrayList[j].map.url)+'</td>'
-							+'			<td>'+myArrayList[j].map.type+'</td>'
-							+'			<td>'+myArrayList[j].map.description+'</td>'
-							+'			<td>'+myArrayList[j].map.status+'</td>'
+							+'			<td'+style+'>'+formatUrl(myArrayList[j].map.url)+'</td>'
+							+'			<td'+style+'>'+myArrayList[j].map.type+'</td>'
+							+'			<td'+style+'>'+myArrayList[j].map.description+'</td>'
+							+'			<td'+style+'>'+myArrayList[j].map.status+'</td>'
 							+'		</tr>'; 
 					}
 					table+='</table>';
