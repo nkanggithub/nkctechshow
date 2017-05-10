@@ -1,13 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="utf-8"%>
+<%@ page import="java.util.*,org.json.JSONObject"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
+<%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%	
 String uid = request.getParameter("UID");
 SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 Date date=new Date();
 String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-MongoDBBasic.updateVisited(uid,currentDate,"DashboardStatus",res.get("HeadUrl"),res.get("NickName"));
+MongoDBBasic.updateVisited(uid,currentDate,"RoleOfAreaMap",res.get("HeadUrl"),res.get("NickName"));
+MongoDBBasic.updateUser(uid);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
