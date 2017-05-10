@@ -12,7 +12,7 @@ SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");
 Date date=new Date();
 String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-MongoDBBasic.updateVisited(uid,currentDate,"RoleOfAreaMap",res.get("HeadUrl"),res.get("NickName"));
+MongoDBBasic.updateVisited(uid,currentDate,"DashboardStatus",res.get("HeadUrl"),res.get("NickName"));
 MongoDBBasic.updateUser(uid);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
