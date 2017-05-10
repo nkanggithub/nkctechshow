@@ -71,44 +71,6 @@ public class CoreService
 					textMessage.setContent(respContent);
 					respXml = MessageUtil.textMessageToXml(textMessage);
 				}
-				else if ("SJOB".equals(textContent)) {
-					Calendar date = Calendar.getInstance();
-				    //date.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-				    date.set(Calendar.HOUR, 0);
-				    date.set(Calendar.MINUTE, 5);
-				    date.set(Calendar.SECOND, 0);
-				    date.set(Calendar.MILLISECOND, 0);
-				    // Schedule to run every Sunday in midnight
-				    //timer.schedule(new CronJob(),date.getTime(),1000 * 60 * 60 * 24 * 7);
-				    timer.schedule(new CronJob(), 0 , 5 * 60 * 1000);
-				    log.info("-----Job Started and running----" + timer.toString());
-				    respContent = "started " + timer.toString();
-					textMessage.setContent(respContent);
-					respXml = MessageUtil.textMessageToXml(textMessage);
-				}
-				else if ("TJOB".equals(textContent)) {
-					timer.purge();
-					timer.cancel();
-					log.info("-----Job Stoped and Cancel----" + timer.toString());
-					respContent = "stoped" + timer.toString();
-					textMessage.setContent(respContent);
-					respXml = MessageUtil.textMessageToXml(textMessage);
-				}else if ("MSJOB".equals(textContent)) {
-					Calendar date = Calendar.getInstance();
-					    //date.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-					    date.set(Calendar.HOUR, 0);
-					    date.set(Calendar.MINUTE, 5);
-					    date.set(Calendar.SECOND, 0);
-					    date.set(Calendar.MILLISECOND, 0);
-					}
-					else if ("MTJOB".equals(textContent)) {
-						timer.purge();
-						timer.cancel();
-						log.info("-----CronJobForMangoDB Stoped and Cancel----" + timer.toString());
-						respContent = "stoped" + timer.toString();
-						textMessage.setContent(respContent);
-						respXml = MessageUtil.textMessageToXml(textMessage);
-					}
 				else {
 					List<String> allUser = MongoDBBasic.getAllOpenIDByIsActivewithIsRegistered();
 	                for(int i=0;i<allUser.size();i++){
@@ -125,30 +87,7 @@ public class CoreService
 	                respXml = MessageUtil.textMessageToXml(textMessage);
 				}
 			}
-			else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
-				String mediaId = requestObject.element("MediaId").getText();
-				String picurl = requestObject.element("PicUrl").getText();
-				MongoDBBasic.updateUserWithFaceUrl(fromUserName,picurl);
-				if(StringUtils.isEmpty(picurl)){
-					picurl = "http://"+Constants.baehost+"/MetroStyleFiles/menu-face.png";
-				}
 
-				List<String> allUser = MongoDBBasic.getAllOpenIDByIsActivewithIsRegistered();
-		    	for(int i=0;i<allUser.size();i++){
-		    		if(fromUserName.equals(allUser.get(i))){
-		    			allUser.remove(i);
-		    		}
-		    	}
-		    	log.info("mediaId-----------------:"+mediaId);
-		        
-		    	for(int i=0;i<allUser.size();i++){
-		    		RestUtils.sendImgMessageToUserOnlyByCustomInterface(allUser.get(i),mediaId);
-		    	}
-				
-				textMessage.setContent("image sent");
-				respXml = MessageUtil.textMessageToXml(textMessage);
-			}
-			
 			else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) {
 				respContent = "LINK";
 				textMessage.setContent(respContent);
@@ -304,29 +243,67 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 					}
-					else if(eventKey.equals("MYFACE")){
-						String picurl = MongoDBBasic.getUserWithFaceUrl(fromUserName);
-						if(StringUtils.isEmpty(picurl)){
-							picurl = "http://"+Constants.baehost+"/MetroStyleFiles/menu-face.png";
-						}
+					else if (eventKey.equals("nbcolleague")) {
+						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
+						String lat = geol.getLAT();
+						String lng = geol.getLNG();
+						String addr = geol.getFAddr();
+						Article article = new Article();
+						Random rand = new Random();
+						int randNum = rand.nextInt(30);
+						article.setTitle("点击扫描您附近的同事");
+						article.setDescription("您当前所在位置:" + addr);
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
+						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
+						articleList.add(article);
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
+					}else if (eventKey.equals("mysubscription")) {//我的订阅
+						Article article = new Article();
+						Random rand = new Random();
+						int randNum = rand.nextInt(30);
+						article.setTitle(cm.getClientName()+"| 点击查看我的订阅");
+						article.setDescription("在此您可以随心订阅您感兴趣的专业话题和自身的职业发展方向");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
+						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
+						articleList.add(article);
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
+					}
+					else if (eventKey.equals("opsmetric")) {//我的订阅
+						
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle("看我颜值如何爆表-发个照片到这个公众号");
-						article.setDescription("看我颜值如何爆表");
-						article.setPicUrl(picurl);
-						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
+						article.setTitle(cm.getClientName()+"|查看产品运维报表");
+						article.setDescription("您可查看实时更新的产品运维报表");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
+						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						
+						Article article1 = new Article();
+						article1.setTitle("IM统计情况");
+						article1.setDescription("IM统计情况");
+						article1.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLNZ&oid=00D90000000pkXM");
+						article1.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
+						articleList.add(article1);
+						
 						Article article2 = new Article();
-						article2.setTitle("测我颜值");
-						article2.setDescription("测我颜值");
-						article2.setPicUrl("http://"+Constants.baehost+"/MetroStyleFiles/menu-face.png");
-						article2.setUrl("http://"+Constants.baehost+"/mdm/face.jsp?UID=" + fromUserName);
+						article2.setTitle("生产环境智能监控");
+						article2.setDescription("生产环境智能监控");
+						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
+						article2.setUrl("http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=" + fromUserName);
 						articleList.add(article2);
 						
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
+						
+						
 					}
 					else if (eventKey.equals("nbcust")) {// Customer
 						String CurType = "customer";
@@ -393,68 +370,7 @@ public class CoreService
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
-					} else if (eventKey.equals("nbcolleague")) {
-						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
-						String lat = geol.getLAT();
-						String lng = geol.getLNG();
-						String addr = geol.getFAddr();
-						Article article = new Article();
-						Random rand = new Random();
-						int randNum = rand.nextInt(30);
-						article.setTitle("点击扫描您附近的同事");
-						article.setDescription("您当前所在位置:" + addr);
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
-						articleList.add(article);
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
-						
-					}else if (eventKey.equals("mysubscription")) {//我的订阅
-						Article article = new Article();
-						Random rand = new Random();
-						int randNum = rand.nextInt(30);
-						article.setTitle(cm.getClientName()+"| 点击查看我的订阅");
-						article.setDescription("在此您可以随心订阅您感兴趣的专业话题和自身的职业发展方向");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
-						articleList.add(article);
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
-						
-					}
-					else if (eventKey.equals("opsmetric")) {//我的订阅
-						
-						articleList.clear();
-						Article article = new Article();
-						article.setTitle(cm.getClientName()+"|查看产品运维报表");
-						article.setDescription("您可查看实时更新的产品运维报表");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
-						articleList.add(article);
-						
-						Article article1 = new Article();
-						article1.setTitle("IM统计情况");
-						article1.setDescription("IM统计情况");
-						article1.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLNZ&oid=00D90000000pkXM");
-						article1.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
-						articleList.add(article1);
-						
-						Article article2 = new Article();
-						article2.setTitle("生产环境智能监控");
-						article2.setDescription("生产环境智能监控");
-						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
-						article2.setUrl("http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=" + fromUserName);
-						articleList.add(article2);
-						
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
-						
-						
-						
-					}
+					} 
 					else if (eventKey.equals("nbpartner")) {// Partner
 						String CurType = "partner";
 						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
