@@ -188,7 +188,7 @@ public class UserProfileController {
 	
 	@RequestMapping("/userCongratulate")
 	public @ResponseBody String updateUserCongratulateHistory(HttpServletRequest request,
-			HttpServletResponse response ){
+			HttpServletResponse response ) throws JSONException{
 		//String openid=request.getParameter("openID");
 
 		String openid=MongoDBBasic.getRegisterUserByrealName(request.getParameter("to"));
@@ -219,15 +219,21 @@ public class UserProfileController {
 		openIDs.add("oqPI_xHQJ7iVbPzkluyE6qDPE6OM");
 		openIDs.add(openid);
 		openIDs.add(fromOpenid);*/
+		  int realReceiver=0;
 		if("true".equals(request.getParameter("isAll"))){
-			for(int i=0;i<openIDs.size();i++){
-				RestUtils.sendRecognitionToUser(openid,openIDs.get(i),conhis);
-			}
+	           String status="";
+	        for(int i=0;i<openIDs.size();i++){
+	           status=RestUtils.sendRecognitionToUser(openid,openIDs.get(i),conhis);
+	          if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
+	       	   realReceiver++;
+	          }
+	        }
 		}else{
 			RestUtils.sendRecognitionToUser(openid,openid, conhis);
 			RestUtils.sendRecognitionToUser(openid,fromOpenid, conhis);
+			realReceiver=2;
 		}
-		return openIDs.size()+"";
+		return realReceiver+"";
 	} 
 	@RequestMapping("/getCompanyInfo")
 	public @ResponseBody List<String> getCompanyInfo(HttpServletRequest request,
@@ -263,7 +269,7 @@ public class UserProfileController {
 	
 	@RequestMapping("/addNotification")
 	public @ResponseBody String addNotification(HttpServletRequest request,
-			HttpServletResponse response ){
+			HttpServletResponse response ) throws JSONException{
 		ArticleMessage am=new ArticleMessage();
 		String openid=request.getParameter("openId");
 		String img = request.getParameter("img");
@@ -300,12 +306,17 @@ public class UserProfileController {
 			allUser = MongoDBBasic.QueryLikeAreaOpenidList(type);
 			System.out.println("您选择了‘其他Area：’"+type+"。。。。");
 		}
+		  int realReceiver=0;
+          String status="";
 			for(int i=0;i<allUser.size();i++){
 				am.setTitle("【"+MongoDBBasic.getWeChatUserFromOpenID(allUser.get(i)).get("NickName")+"】- "+request.getParameter("title"));
-				RestUtils.sendNotificationToUser(openid,allUser.get(i),img,am);
+				status=RestUtils.sendNotificationToUser(openid,allUser.get(i),img,am);
+				 if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
+              	   realReceiver++;
+                 }
 			}
 		
-		return allUser.size()+"";
+		return realReceiver+"";
 	} 
 		
 	
@@ -324,6 +335,14 @@ public class UserProfileController {
 		MongoDBBasic.updateNotification("oqPI_xHLkY6wSAJEmjnQPPazePE8",note);
 		
 		return "ok";
+	} 
+	@RequestMapping("/sendNotificationToPanda")
+	public @ResponseBody String sendNotificationToPanda(HttpServletRequest request,
+			HttpServletResponse response ){
+		List<String> user=new ArrayList<String>();
+		user.add("oqPI_xDdGid-HlbeVKZjpoO5zoKw");
+		String result=RestUtils.sendTextMessageToUser("this is a test",user);
+		return result;
 	} 
 	
 	@RequestMapping(value = "/uploadPicture", produces = "text/html;charset=UTF-8")
