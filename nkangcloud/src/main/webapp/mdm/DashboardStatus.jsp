@@ -182,6 +182,7 @@ $(function(){
 						+'		</tr>';
 					for(var j=0;j<myArrayList.length;j++)
 					{
+						var status=myArrayList[j].map.status;
 						if(myArrayList[j].map.description=='Cleanse'){
 							if(myArrayList[j].map.status=='405'){
 								myArrayList[j].map.status='Up';
@@ -204,7 +205,7 @@ $(function(){
 							+'			<td'+style+'>'+formatUrl(myArrayList[j].map.url)+'</td>'
 							+'			<td'+style+'>'+myArrayList[j].map.type+'</td>'
 							+'			<td'+style+'>'+myArrayList[j].map.description+'</td>'
-							+'			<td'+style+'>'+myArrayList[j].map.status+'</td>'
+							+'			<td'+style+'>'+myArrayList[j].map.status+'['+status+']</td>'
 							+'		</tr>'; 
 					}
 					table+='</table>';
