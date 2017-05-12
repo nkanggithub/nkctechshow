@@ -37,6 +37,9 @@ public class DashboardService {
 	public static String saveStatus(DashboardStatus statusVo) {
 		String status = "fail";
 		try {
+			if(statusVo==null||statusVo.equals("")){
+				return status;
+			}
 			String statusStr = (String)statusVo.getStatus();
 			statusStr = statusStr.replaceAll("\\\"", "\"");
 			JSONArray obj = new JSONArray(statusStr);
