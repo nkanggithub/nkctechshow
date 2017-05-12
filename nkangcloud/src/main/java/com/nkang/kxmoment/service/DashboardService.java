@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -46,7 +47,18 @@ public class DashboardService {
 			// insert or update
 			statusCollection.update(query, dbObj, true, false);
 			status = "success";
+			int isDown=0;
 			if(statusStr.toUpperCase().indexOf("DOWN")!=-1){
+				isDown++;
+			}
+			String codeAll="{'map':{'status':";	
+			String code200="{'map':{'status':'200'";
+			String code405="{'map':{'status':'405'";		
+			int tatol=subCounter(statusStr, codeAll);
+			int status200=subCounter(statusStr, code200);
+			int status405=subCounter(statusStr, code405);
+			int ret=tatol-status200-status405;
+			if(ret>0 || isDown>0){
 				List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
 				String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
 				String title=" 生产环境服务器出现异常，请立即采取措施！！！";
@@ -54,6 +66,7 @@ public class DashboardService {
 					 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
 				 } 
 			}
+			
 		} catch (Exception e) {
 			logger.error("Save Status fail.", e);
 			status = "fail";
@@ -61,6 +74,19 @@ public class DashboardService {
 		return status;
 	}
 	
+	//util
+	
+	public static int subCounter(String str1, String str2) {
+		 
+        int counter = 0;
+        for (int i = 0; i <= str1.length() - str2.length(); i++) {
+            if (str1.substring(i, i + str2.length()).equalsIgnoreCase(str2)) {
+                counter++;
+            }
+        }
+         return counter;
+    }
+
 	
 	/**
 	 * Get KM list
