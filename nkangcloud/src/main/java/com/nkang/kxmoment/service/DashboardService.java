@@ -54,9 +54,9 @@ public class DashboardService {
 			if(statusStr.toUpperCase().indexOf("DOWN")!=-1){
 				isDown++;
 			}
-			String codeAll="{'map':{'status':";	
-			String code200="{'map':{'status':'200'";
-			String code405="{'map':{'status':'405'";		
+			String codeAll="{\"map\":{\"status\":";	
+			String code200="{\"map\":{\"status\":\"200\"";
+			String code405="{\"map\":{\"status\":\"405\"";		
 			int tatol=subCounter(statusStr, codeAll);
 			int status200=subCounter(statusStr, code200);
 			int status405=subCounter(statusStr, code405);
