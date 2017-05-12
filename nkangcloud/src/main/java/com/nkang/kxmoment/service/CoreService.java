@@ -79,11 +79,15 @@ public class CoreService
 	                     }
 	                }
 	                    
-	                 for(int i=0;i<allUser.size();i++){
-	                    RestUtils.sendTextMessageToUserOnlyByCustomInterface(textContent,allUser.get(i),fromUserName);
-	                }
-
-	                textMessage.setContent(allUser.size() + " recevied");
+	                int realReceiver=0;
+                    String status="";
+                 for(int i=0;i<allUser.size();i++){
+                    status=RestUtils.sendTextMessageToUserOnlyByCustomInterface(textContent,allUser.get(i),fromUserName);
+                   if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
+                	   realReceiver++;
+                   }
+                 }
+	                textMessage.setContent(realReceiver + " recevied");
 	                respXml = MessageUtil.textMessageToXml(textMessage);
 				}
 			}
