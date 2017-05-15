@@ -2918,6 +2918,13 @@ public class MongoDBBasic {
 			return dbuser;
 		}
 		
+		public static List<String> getAllOpenID(){
+			mongoDB = getMongoDB();
+			@SuppressWarnings("unchecked")
+			List<String> dbuser = mongoDB.getCollection(wechat_user).distinct("OpenID");
+			return dbuser;
+		}
+		
 		/*
 		 * chang-zheng to update user CongratulateHistory
 		 */
