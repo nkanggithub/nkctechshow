@@ -522,7 +522,31 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
-	
+	public static int updateUserPoint(String OpenID,int point){
+		mongoDB = getMongoDB();
+		int pointSum=point;
+	    try{
+	    	DBObject result = mongoDB.getCollection(wechat_user).findOne(new BasicDBObject().append("OpenID", OpenID));
+    		if(result.get("Point.num")!=null){
+    			pointSum=Integer.parseInt(result.get("Point.num").toString())+point;
+    		}
+    		DBObject dbo = new BasicDBObject();
+    		dbo.put("Point.num", pointSum); 
+    		Date d = new Date();  
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+	        String dateNowStr = sdf.format(d);  
+
+    		dbo.put("Point.date", dateNowStr); 
+    		
+			BasicDBObject doc = new BasicDBObject();  
+			doc.put("$set", dbo);  
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", OpenID),doc);
+	    }
+		catch(Exception e){
+			log.info("registerUser--" + e.getMessage());
+		}
+		return pointSum;
+	}
 	public static boolean registerUser(Teamer teamer){
 		mongoDB = getMongoDB();
 		java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime()); 
