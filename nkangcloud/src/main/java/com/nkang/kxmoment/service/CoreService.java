@@ -49,6 +49,7 @@ public class CoreService
 			String toUserName 		= 	requestObject.element("ToUserName").getText();
 			String msgType 			= 	requestObject.element("MsgType").getText();
 			
+
 			
 			TextMessage textMessage = new TextMessage();
 			textMessage.setToUserName(fromUserName);
@@ -56,6 +57,13 @@ public class CoreService
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 
+			TextMessage textMessage1 = new TextMessage();
+			String fromUserName1 = "oqPI_xHLkY6wSAJEmjnQPPazePE8";
+			textMessage1.setToUserName(fromUserName1);
+			textMessage1.setFromUserName(toUserName);
+			textMessage1.setCreateTime(new Date().getTime());
+			textMessage1.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+			
 			NewsMessage newsMessage = new NewsMessage();
 			newsMessage.setToUserName(fromUserName);
 			newsMessage.setFromUserName(toUserName);
@@ -69,6 +77,16 @@ public class CoreService
 				if ("cm".equals(textContent)) {
 					respContent = RestUtils.createMenu(AccessKey);
 					textMessage.setContent(respContent);
+					respXml = MessageUtil.textMessageToXml(textMessage);
+				}
+				else if ("cmx".equals(textContent)) {
+					String respContent1 = "text from .....";
+					textMessage1.setContent(respContent1);
+					respXml = MessageUtil.textMessageToXml(textMessage1);
+				}
+				else if ("cmxx".equals(textContent)) {
+					String respContent1 = "text from .....";
+					textMessage.setContent(respContent1);
 					respXml = MessageUtil.textMessageToXml(textMessage);
 				}
 				else {
