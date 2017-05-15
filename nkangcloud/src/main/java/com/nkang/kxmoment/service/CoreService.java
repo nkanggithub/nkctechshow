@@ -282,6 +282,16 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 						
+					}else if (eventKey.equals("myPoints")) {//使劲戳我
+
+				        java.util.Random random=new java.util.Random();// 定义随机类
+				        int randomNum=random.nextInt(5);// 返回[0,10)集合中的整数，注意不包括10
+				        
+						int pointSum=MongoDBBasic.updateUserPoint(fromUserName, randomNum);
+						String respContent1 = "本次点击你获得了"+randomNum+"个point，你现在总共拥有"+pointSum+"个point。【温馨提示：大家要常来这里点点按钮逛一逛才能收到我们的高价值信息哦。】";
+						textMessage.setContent(respContent1);
+						respXml = MessageUtil.textMessageToXml(textMessage);
+
 					}else if (eventKey.equals("mysubscription")) {//我的订阅
 						Article article = new Article();
 						Random rand = new Random();
