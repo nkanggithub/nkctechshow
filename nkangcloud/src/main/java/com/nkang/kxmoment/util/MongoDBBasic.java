@@ -528,9 +528,14 @@ public class MongoDBBasic {
 		String date="";
 	    try{
 	    	DBObject result = mongoDB.getCollection(wechat_user).findOne(new BasicDBObject().append("OpenID", OpenID));
-    		if(result.get("Point.date")!=null){
-    			date=result.get("Point.date").toString();
-    		}
+    		Object likeobj = result.get("Point");
+			DBObject like= new BasicDBObject();
+			like= (DBObject)likeobj;
+			if(like != null){
+				if(like.get("date")!=null){
+					date=result.get("date").toString();
+	    		}
+			}
     		Date d = new Date();  
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
 	        String dateNowStr = sdf.format(d);  
@@ -550,9 +555,14 @@ public class MongoDBBasic {
 		int pointSum=point;
 	    try{
 	    	DBObject result = mongoDB.getCollection(wechat_user).findOne(new BasicDBObject().append("OpenID", OpenID));
-    		if(result.get("Point.num")!=null){
-    			pointSum=Integer.parseInt(result.get("Point.num").toString())+point;
-    		}
+    		Object likeobj = result.get("Point");
+			DBObject like= new BasicDBObject();
+			like= (DBObject)likeobj;
+			if(like != null){
+				if(like.get("num")!=null){
+	    			pointSum=Integer.parseInt(result.get("num").toString())+point;
+	    		}
+			}
     		if(point!=0){
 	    		DBObject dbo = new BasicDBObject();
 	    		dbo.put("Point.num", pointSum); 
