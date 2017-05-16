@@ -78,16 +78,20 @@ public class CoreService
 					respContent = RestUtils.createMenu(AccessKey);
 					textMessage.setContent(respContent);
 					respXml = MessageUtil.textMessageToXml(textMessage);
+					
 				}
-				else if ("cmx".equals(textContent)) {
-					String respContent1 = "text from .....";
-					textMessage1.setContent(respContent1);
-					respXml = MessageUtil.textMessageToXml(textMessage1);
-				}
-				else if ("cmxx".equals(textContent)) {
-					String respContent1 = "text from .....";
-					textMessage.setContent(respContent1);
-					respXml = MessageUtil.textMessageToXml(textMessage);
+				else if (textContent.contains("trigger:")) {
+					String content= textContent.split(":")[1];
+					int realReceiver=0;
+                    String status="";
+                    List<String> toUser=MongoDBBasic.getAllOpenID();
+                    status=RestUtils.sendTextMessageToUser(content, toUser);
+                   if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
+                	   realReceiver=toUser.size();
+                   }
+                 
+	                textMessage.setContent(realReceiver + " recevied");
+	                respXml = MessageUtil.textMessageToXml(textMessage);
 				}
 				else {
 					List<String> allUser = MongoDBBasic.getAllOpenIDByIsActivewithIsRegistered();
