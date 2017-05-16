@@ -7,7 +7,9 @@ List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
 %>
 <!DOCTYPE html>
 <html lang="en" class="csstransforms csstransforms3d csstransitions">
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<head>
+<title>图文统计</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <style>
 *{
 margin:0;}
