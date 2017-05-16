@@ -285,6 +285,7 @@ public class UserProfileController {
 		am.setTitle(request.getParameter("title"));
 		am.setContent(request.getParameter("content"));
 		am.setWebUrl(request.getParameter("url"));
+		am.setPicture(img);
 		am.setAuthor(openid);
 		am.setVisitedNum("0");
 		am.setTime(new Date().toLocaleString());
