@@ -529,7 +529,7 @@ public class MongoDBBasic {
 	    try{
 	    	DBObject result = mongoDB.getCollection(wechat_user).findOne(new BasicDBObject().append("OpenID", OpenID));
     		if(result.get("Point.date")!=null){
-    			date=result.get("Point.num").toString();
+    			date=result.get("Point.date").toString();
     		}
     		Date d = new Date();  
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
