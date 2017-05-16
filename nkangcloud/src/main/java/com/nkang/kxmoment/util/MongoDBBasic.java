@@ -533,7 +533,7 @@ public class MongoDBBasic {
 			like= (DBObject)likeobj;
 			if(like != null){
 				if(like.get("date")!=null){
-					date=result.get("date").toString();
+					date=like.get("date").toString();
 	    		}
 			}
     		Date d = new Date();  
@@ -560,7 +560,7 @@ public class MongoDBBasic {
 			like= (DBObject)likeobj;
 			if(like != null){
 				if(like.get("num")!=null){
-	    			pointSum=Integer.parseInt(result.get("num").toString())+point;
+	    			pointSum=Integer.parseInt(like.get("num").toString())+point;
 	    		}
 			}
     		if(point!=0){
