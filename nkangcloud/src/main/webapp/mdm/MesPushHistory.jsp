@@ -95,6 +95,8 @@ margin-top:10px;
     -webkit-line-clamp: 2;
     line-height: 1.3;
 }
+a{ text-decoration:none;
+}
 </style>
 </head>
 <body>
@@ -103,6 +105,7 @@ margin-top:10px;
 <div class="navi"><p>图文消息</p><p>XXXX</p></div>
 <div id="mesPushPanel">
 <% for(int i=0;i<ams.size();i++){ %>
+<a href="http://shenan.duapp.com/mdm/NotificationCenter.jsp?num=<%=ams.get(i).getNum()%>">
 <div class="singleMes">
 <div class="mesImg">
 <%if(ams.get(i).getPicture()!=null&&ams.get(i).getPicture()!=""){ %>
@@ -114,9 +117,8 @@ margin-top:10px;
 <h2 class="mesTitle"><%=ams.get(i).getTitle() %></h2>
 <p class="mesIntro"><%=ams.get(i).getContent() %></p>
 </div>
-</div>
+</div></a>
 <%} %>
-</div>
 </div>
 </body>
 </html>
