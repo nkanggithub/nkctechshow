@@ -3040,9 +3040,14 @@ public class MongoDBBasic {
 			ArticleMessage am = null;
 			DBCursor queryresults;
 			try{
+				if("".equals(num)){
+					BasicDBObject sort=new BasicDBObject();
+					sort.put("_id", -1);
+					queryresults= mongoDB.getCollection(Article_Message).find().sort(sort);
+				}else{
 					DBObject query = new BasicDBObject();
 					query.put("num", num);
-					queryresults = mongoDB.getCollection(Article_Message).find(query).limit(1);
+					queryresults = mongoDB.getCollection(Article_Message).find(query).limit(1);}
 				if (null != queryresults) {
 	            	while(queryresults.hasNext()){
 					DBObject o = queryresults.next();
@@ -3052,7 +3057,9 @@ public class MongoDBBasic {
 					am.setTime(o.get("time") == null ? "" : o.get("time").toString());
 					am.setTitle(o.get("title") == null ? "" : o.get("title").toString());
 					am.setVisitedNum(o.get("visitedNum") == null ? "" : o.get("visitedNum").toString());
+					am.setPicture(o.get("picture") == null ? "" : o.get("picture").toString());
 					amList.add(am);
+					System.out.println("am.getPicture()---------"+am.getPicture());
 	            	}
 				}
 			}catch(Exception e){
