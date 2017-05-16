@@ -522,6 +522,29 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+	public static boolean checkUserPoint(String OpenID){
+		mongoDB = getMongoDB();
+		boolean ret=false;
+		String date="";
+	    try{
+	    	DBObject result = mongoDB.getCollection(wechat_user).findOne(new BasicDBObject().append("OpenID", OpenID));
+    		if(result.get("Point.date")!=null){
+    			date=result.get("Point.num").toString();
+    		}
+    		Date d = new Date();  
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+	        String dateNowStr = sdf.format(d);  
+	        if(dateNowStr.equals(date)){
+	        	ret=false;
+	        }else{
+	        	ret=true;
+	        }
+	    }
+		catch(Exception e){
+			log.info("registerUser--" + e.getMessage());
+		}
+		return ret;
+	}
 	public static int updateUserPoint(String OpenID,int point){
 		mongoDB = getMongoDB();
 		int pointSum=point;
@@ -530,18 +553,20 @@ public class MongoDBBasic {
     		if(result.get("Point.num")!=null){
     			pointSum=Integer.parseInt(result.get("Point.num").toString())+point;
     		}
-    		DBObject dbo = new BasicDBObject();
-    		dbo.put("Point.num", pointSum); 
-    		Date d = new Date();  
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
-	        String dateNowStr = sdf.format(d);  
-
-    		dbo.put("Point.date", dateNowStr); 
-    		
-			BasicDBObject doc = new BasicDBObject();  
-			doc.put("$set", dbo);  
-			WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", OpenID),doc);
-	    }
+    		if(point!=0){
+	    		DBObject dbo = new BasicDBObject();
+	    		dbo.put("Point.num", pointSum); 
+	    		Date d = new Date();  
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+		        String dateNowStr = sdf.format(d);  
+	
+	    		dbo.put("Point.date", dateNowStr); 
+	    		
+				BasicDBObject doc = new BasicDBObject();  
+				doc.put("$set", dbo);  
+				WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", OpenID),doc);
+	    	}
+    	}
 		catch(Exception e){
 			log.info("registerUser--" + e.getMessage());
 		}
