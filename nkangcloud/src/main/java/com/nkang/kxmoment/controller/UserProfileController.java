@@ -233,7 +233,7 @@ public class UserProfileController {
 			RestUtils.sendRecognitionToUser(openid,fromOpenid, conhis);
 			realReceiver=2;
 		}
-		return realReceiver+"";
+		return realReceiver+" of "+openIDs.size()+"";
 	} 
 	@RequestMapping("/getCompanyInfo")
 	public @ResponseBody List<String> getCompanyInfo(HttpServletRequest request,
@@ -316,7 +316,7 @@ public class UserProfileController {
                  }
 			}
 		
-		return realReceiver+"";
+		return realReceiver+" of "+allUser.size()+"";
 	} 
 		
 	
