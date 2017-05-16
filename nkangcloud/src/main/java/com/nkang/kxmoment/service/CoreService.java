@@ -287,17 +287,47 @@ public class CoreService
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 						
 					}else if (eventKey.equals("myPoints")) {//使劲戳我
-						String respContent1 = "【温馨提示：大家要常来这里点点按钮逛一逛才能收到我们的高价值信息哦。】";
+						HashMap<String, String> user = MongoDBBasic.getWeChatUserFromOpenID(fromUserName);
+						String respContent1 = "";
+						Date d = new Date();  
+				        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+				        String dateNowStr = sdf.format(d);  
 						if(MongoDBBasic.checkUserPoint(fromUserName)){
 					        java.util.Random random=new java.util.Random();// 定义随机类
 					        int randomNum=random.nextInt(5)+1;// 返回[0,10)集合中的整数，注意不包括10
 					        
 							int pointSum=MongoDBBasic.updateUserPoint(fromUserName, randomNum);
-							respContent1 = "本次点击你获得了"+randomNum+"个point，你现在总共拥有"+pointSum+"个point。【温馨提示：大家要常来这里点点按钮逛一逛才能收到我们的高价值信息哦。】";
+							respContent1 = "* * * * * * * * * * * * * * * * *\n"
+								+"* 欢迎您："+user.get("NickName")+"\n"
+								+"* 今日积分："+randomNum+"\n"
+								+"* 当前积分："+pointSum+"\n"
+								+"*\n"
+								+"*             =^_^=\n"
+								+"* 好感动，您今天又来了\n"
+								+"* 今日积分已入账，记得\n"
+								+"* 每天都来看我哦！\n";
+								
 						}else{
 							int pointSum=MongoDBBasic.updateUserPoint(fromUserName, 0);
-							respContent1 = "每天只有一次点击获得point的机会呢，今天你的机会已经用过啦，明天记得准时来报道哦！你现在总共拥有"+pointSum+"个point。【温馨提示：大家要常来这里点点按钮逛一逛才能收到我们的高价值信息哦。】";
+							respContent1 = "* * * * * * * * * * * * * * * * *\n"
+									+"* 欢迎您："+user.get("NickName")+"\n"
+									+"* 当前积分："+pointSum+"\n"
+									+"* 时间："+dateNowStr+"\n"
+									+"*\n"
+									+"*             =^_^=\n"
+									+"* 好感动，您今天又来了\n"
+									+"* 但每天只有一次获取积\n"
+									+"* 分的机会哦！！\n";
 						}
+						respContent1=respContent1
+								+"* * * * * * * * * * * * * * * * *\n"
+								+"* 【温馨提示： 希望您能\n"
+								+"*  天天这里点一点逛一\n"
+								+"*  逛，这样才能收到我们\n"
+								+"*  高价值的消息推送，以\n"
+								+"*  便于我们为您提供更\n"
+								+"*  好的服务】\n"
+								+"* * * * * * * * * * * * * * * * *";
 						textMessage.setContent(respContent1);
 						respXml = MessageUtil.textMessageToXml(textMessage);
 
