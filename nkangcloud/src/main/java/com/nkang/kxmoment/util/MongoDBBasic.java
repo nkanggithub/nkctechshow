@@ -229,6 +229,33 @@ public class MongoDBBasic {
 		return result;
 	}
 	
+	public static ArrayList<ArticleMessage> queryArticleMessage(int startNumber,int pageSize){
+		mongoDB = getMongoDB();
+		ArrayList<ArticleMessage> result = new ArrayList<ArticleMessage>();
+		BasicDBObject sort=new BasicDBObject();
+		sort.put("_id", -1);
+		DBCursor dbcur = mongoDB.getCollection(Article_Message).find().sort(sort).skip(startNumber).limit(pageSize);
+        if (null != dbcur) {
+        	while(dbcur.hasNext()){
+        		DBObject o = dbcur.next();
+        		ArticleMessage temp=new ArticleMessage();
+        		if(o.get("time")!=null){
+        			temp.setTime(o.get("time").toString());
+        		}
+        		if(o.get("content")!=null){
+        			temp.setContent(o.get("content").toString());
+        		}
+        		if(o.get("title")!=null){
+        			temp.setTitle(o.get("title").toString());
+        		}
+        		if(o.get("picture")!=null){
+        			temp.setTitle(o.get("picture").toString());
+        		}
+        		result.add(temp);
+        	}
+        }
+		return result;
+	}
 	public static boolean deleteShortNews(String id){
 		Boolean ret = false;
 	    try{
