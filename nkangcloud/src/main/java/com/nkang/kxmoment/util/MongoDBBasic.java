@@ -245,6 +245,9 @@ public class MongoDBBasic {
         		if(o.get("content")!=null){
         			temp.setContent(o.get("content").toString());
         		}
+        		if(o.get("num")!=null){
+        			temp.setNum(o.get("num").toString());
+        		}
         		if(o.get("title")!=null){
         			temp.setTitle(o.get("title").toString());
         		}
