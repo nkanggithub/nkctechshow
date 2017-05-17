@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.DBObject;
+import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.ExtendedOpportunity;
@@ -480,7 +481,7 @@ public class CoreService
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 					}
 					else if (eventKey.equals("nboppt")) {// Partner
-						String CurType = "";
+						/*String CurType = "";
 						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
 						String lat = geol.getLAT();
 						String lng = geol.getLNG();
@@ -507,6 +508,29 @@ public class CoreService
 							articlevar.setDescription("NearBy Opportunity");
 							articlevar.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2gP&oid=00D90000000pkXM");
 							articlevar.setUrl("http://"+Constants.baehost+"/index.jsp");
+							articleList.add(articlevar);
+						}
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);*/
+						Article article = new Article();
+						article.setTitle("更多精彩尽在往期回顾 ");
+						article.setDescription("更多精彩尽在往期回顾 ");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
+						article.setUrl("http://shenan.duapp.com/mdm/MesPushHistory.jsp");
+						articleList.add(article);
+						List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
+						for(int i = 0; i < 3 ;  i++){
+							Article articlevar = new Article();
+							articlevar.setTitle(ams.get(i).getTitle()+"\n"+ams.get(i).getTime());
+							articlevar.setDescription("");
+							if(ams.get(i).getPicture()!=null&&ams.get(i).getPicture()!=""){
+							articlevar.setPicUrl(ams.get(i).getPicture());
+							}
+							else{
+								articlevar.setPicUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg");
+							}
+							articlevar.setUrl("http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+ams.get(i).getNum());
 							articleList.add(articlevar);
 						}
 						newsMessage.setArticleCount(articleList.size());
