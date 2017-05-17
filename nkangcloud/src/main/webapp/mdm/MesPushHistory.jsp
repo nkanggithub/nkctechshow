@@ -117,7 +117,7 @@ a{ text-decoration:none;
 	<div id="wrapper" style="top:290px;">
 		<div class="scroller">
 <div id="mesPushPanel">
-<% for(int i=0;i<ams.size();i++){ %>
+<% for(int i=0;i<size;i++){ %>
 <a href="http://shenan.duapp.com/mdm/NotificationCenter.jsp?num=<%=ams.get(i).getNum()%>">
 <div class="singleMes">
 <div class="mesImg">
@@ -190,7 +190,7 @@ a{ text-decoration:none;
 								else{
 									img="<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg' />";
 								}
-								$('#mesPushPanel').append("<div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div>");
+								$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 							}
 							size=size+data.length;
 							myscroll.refresh();
