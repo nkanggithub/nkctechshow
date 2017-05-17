@@ -142,7 +142,7 @@ $(function(){
 	    			},
 	    			cache : false,
 	    			success : function(data) {
-	    				swal("恭喜!", "发布成功", "success");
+	    				swal("恭喜!", data +"个人已收到您的推送", "success");
 	    				var html="";
 	    				$.ajax({
 	    	    			url : "../QueryShortNewsList",
