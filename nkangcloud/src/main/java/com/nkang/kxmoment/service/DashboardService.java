@@ -57,10 +57,14 @@ public class DashboardService {
 			String codeAll="{\"map\":{\"status\":";	
 			String code200="{\"map\":{\"status\":\"200\"";
 			String code405="{\"map\":{\"status\":\"405\",\"description\":\"Cleanse\"";		
-			int tatol=subCounter(statusStr, codeAll);
-			int status200=subCounter(statusStr, code200);
-			int status405=subCounter(statusStr, code405);
+			List<DashboardStatus> StrList = findAllStatusList();
+			String str = StrList.toString();
+			
+			int tatol=subCounter(str, codeAll);
+			int status200=subCounter(str, code200);
+			int status405=subCounter(str, code405);
 			int ret=tatol-status200-status405;
+			logger.info("tatol:"+tatol+",status200:"+status200+",status405"+status405);
 			if(ret>0 || isDown>0){
 				List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
 				String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
