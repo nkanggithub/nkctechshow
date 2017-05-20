@@ -14,7 +14,7 @@ import javax.net.ssl.X509TrustManager;
 
 public class HttpsTest {
 
-    public static void main(String[] args) {
+    public static void mmmmmm(String[] args) {
         new HttpsTest().doMain();
         log("DONE");
     }
