@@ -89,7 +89,7 @@ public class DashboardService {
 					}
 				}
 				//sending sms
-				RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
+				//RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 			}
 			
 			
