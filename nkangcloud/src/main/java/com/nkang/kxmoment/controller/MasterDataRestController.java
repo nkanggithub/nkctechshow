@@ -25,6 +25,7 @@ import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.MdmDataQualityView;
 import com.nkang.kxmoment.baseobject.OrgCountryCode;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
+import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.Visited;
@@ -980,6 +981,33 @@ public class MasterDataRestController {
 			ret = e.getMessage();
 		}
 		return ret;
+	}
+	
+	@RequestMapping("/visitedDetailByTime")
+	public static Map<String,List> visitedDetailByTime(@RequestParam(value="t", required=true) String type,@RequestParam(value="dt", required=false) String dateTime){
+		Map<String, List> result=new HashMap<String,List>();
+		
+		if("w".equals(type)){
+			List<QuoteVisit> temp=new ArrayList<QuoteVisit>();
+			List<QuoteVisit> finnal=new ArrayList<QuoteVisit>();
+			int currentDate=Integer.parseInt(RestUtils.getWeekOfDate(new Date()));
+			int index=currentDate*(-1)+1;
+			System.out.println("dateIndex----"+index);
+			for(int i=index;i>-1;i++){
+				temp.addAll(MongoDBBasic.getVisitedDetailByWeek(RestUtils.getFreeDate(i)));
+			}
+			MongoDBBasic.combVisitedDetail(temp, finnal);
+			String time=RestUtils.getFreeDate(index)+"~"+RestUtils.getFreeDate(0);
+			result.put(time, finnal);
+			return result;
+		}
+		else if("m".equals(dateTime))
+		{
+			List<QuoteVisit> qvs=MongoDBBasic.getVisitedDetailByMonth(dateTime);
+			result.put(dateTime,qvs);
+		}
+		return result;
+		
 	}
 	
 	@RequestMapping("/CallGetUserWithESignature")
