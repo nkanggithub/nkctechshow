@@ -1005,8 +1005,9 @@ public class MasterDataRestController {
 			result.put(time, finnal);
 			return result;
 		}
-		else if("m".equals(dateTime))
+		else if("m".equals(type))
 		{
+			System.out.println("dateTime----"+dateTime);
 			List<QuoteVisit> qvs=MongoDBBasic.getVisitedDetailByMonth(dateTime);
 			result.put(dateTime,qvs);
 		}
