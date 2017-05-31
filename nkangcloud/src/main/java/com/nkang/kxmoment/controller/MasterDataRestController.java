@@ -992,10 +992,14 @@ public class MasterDataRestController {
 			List<QuoteVisit> finnal=new ArrayList<QuoteVisit>();
 			int currentDate=Integer.parseInt(RestUtils.getWeekOfDate(new Date()));
 			int index=currentDate*(-1)+1;
-			System.out.println("dateIndex----"+index);
-			for(int i=index;i>-1;i++){
+			System.out.println("dateIndex~~~"+index);
+			for(int i=index;i<=0;i++){
+				System.out.println("implement index processing...."+RestUtils.getFreeDate(i));
 				temp.addAll(MongoDBBasic.getVisitedDetailByWeek(RestUtils.getFreeDate(i)));
-			}
+				for(int j=0;j<temp.size();j++){
+					System.out.println("detail["+RestUtils.getFreeDate(i)+"]~~~"+temp.get(j).getName()+"=="+temp.get(j).getTotalVisited());
+				}
+			}			
 			MongoDBBasic.combVisitedDetail(temp, finnal);
 			String time=RestUtils.getFreeDate(index)+"~"+RestUtils.getFreeDate(0);
 			result.put(time, finnal);
