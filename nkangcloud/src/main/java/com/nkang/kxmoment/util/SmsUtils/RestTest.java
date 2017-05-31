@@ -10,7 +10,7 @@ import java.io.IOException;
 import com.nkang.kxmoment.util.SmsUtils.client.AbsRestClient;
 import com.nkang.kxmoment.util.SmsUtils.client.JsonReqClient;
 import com.nkang.kxmoment.util.SmsUtils.client.XmlReqClient;
-
+import com.nkang.kxmoment.util.Constants;
 
 public class RestTest {
 	private String accountSid;
@@ -161,16 +161,11 @@ public class RestTest {
 //		System.out.println(obj.getInt("client"));
 		
 		
-		boolean json=true;
-		String accountSid="14eadded462ca929904c1feb33df1f6c";
-		String token="7d58ea1793e834cf5d8149317d593220";
-		String appId="288ad144cc904515bd107c214854c757";
-		String templateId="51466";
-		String to="15123930817";
+		String templateId="62080";
+		String to="15123944895";
 		String para="";
-		testTemplateSMS(json, accountSid,token,appId, templateId,to,para);
+		testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 		
-
 		System.out.println("...完成！");
 		
 		/*

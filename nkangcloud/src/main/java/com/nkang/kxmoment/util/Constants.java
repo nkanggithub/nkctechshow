@@ -19,7 +19,14 @@ public final class Constants {
 	public static final String baiduapihost = "api.map.baidu.com";
 	public static final String bucketName = "mdmdxc";
 	public static final String bosDomain = "gz.bcebos.com";
+	
+	public static final String ucpass_accountSid = "14eadded462ca929904c1feb33df1f6c";
+	public static final String ucpass_token = "7d58ea1793e834cf5d8149317d593220";
+	public static final String ucpass_appId = "288ad144cc904515bd107c214854c757";
+	
+	
 	/**
+	 * 
 	 * MongoDB 集合名字
 	 */
 	public final class MONGO_CLN_NAMES{
