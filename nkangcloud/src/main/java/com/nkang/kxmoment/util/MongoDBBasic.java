@@ -402,15 +402,20 @@ public class MongoDBBasic {
 		List<QuoteVisit> quoteVisit = new ArrayList<QuoteVisit>();
 		DBCursor queryresults = mongoDB.getCollection(collectionVisited).find(
 				query);
+		System.out.println("implement mongo query....");
 		if (null != queryresults) {
+			while(queryresults.hasNext()){
 			DBObject o = queryresults.next();
 			QuoteVisit qv;
 			if (o.get("nickName") != null) {
 				qv = new QuoteVisit();
 				qv.setName(o.get("nickName").toString());
+				System.out.println("realName==="+o.get("nickName").toString());
 				qv.setTotalVisited(o.get("visitedNum").toString());
+				System.out.println("realvisited==="+o.get("visitedNum").toString());
 				quoteVisit.add(qv);
 			}
+		}
 		}
 		List<QuoteVisit> quoteVisitCount = new ArrayList<QuoteVisit>();
 		combVisitedDetail(quoteVisit,quoteVisitCount);
@@ -443,14 +448,18 @@ public class MongoDBBasic {
 		DBCursor queryresults = mongoDB.getCollection(collectionVisited).find(
 				query);
 		if (null != queryresults) {
+			while(queryresults.hasNext()){
 			DBObject o = queryresults.next();
 			QuoteVisit qv;
 			if (o.get("nickName") != null) {
 				qv = new QuoteVisit();
 				qv.setName(o.get("nickName").toString());
+				System.out.println("realName==="+o.get("nickName").toString());
 				qv.setTotalVisited(o.get("visitedNum").toString());
+				System.out.println("realvisited==="+o.get("visitedNum").toString());
 				quoteVisit.add(qv);
 			}
+		}
 		}
 		List<QuoteVisit> quoteVisitCount = new ArrayList<QuoteVisit>();
 		combVisitedDetail(quoteVisit,quoteVisitCount);
