@@ -18,7 +18,8 @@ import com.nkang.kxmoment.baseobject.DashboardStatus;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
-
+import com.nkang.kxmoment.util.SmsUtils.RestTest;
+import com.nkang.kxmoment.util.Constants;
 /**
  * Dashboard Service 
  * @author xue-ke.du
@@ -71,8 +72,16 @@ public class DashboardService {
 				String title=" 生产环境服务器出现异常，请立即采取措施！！！";
 				for(int i=0;i<allUser.size();i++){
 					 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
-				 } 
+				}
+				
+				//sending sms
+				String templateId="62080";
+				String to="15123944895";
+				String para="";
+				RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 			}
+			
+			
 			
 		} catch (Exception e) {
 			logger.error("Save Status fail.", e);
