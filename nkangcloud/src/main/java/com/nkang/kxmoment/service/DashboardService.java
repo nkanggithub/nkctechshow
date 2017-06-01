@@ -68,32 +68,32 @@ public class DashboardService {
 			int ret=tatol-status200-status405;
 			logger.info("tatol:"+tatol+",status200:"+status200+",status405"+status405);
 			if(ret>0 || isDown>0){
-				if(ret>0 || isDown>0){
-					Date dt = new Date();
-					if( dt.getTime() - lastsendtimestamp.getTime() > 1000*60*4){
-						List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
-						String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
-						String title=" 生产环境服务器出现异常，请立即采取措施！！！";
-						for(int i=0;i<allUser.size();i++){
-							 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
-						}
+				Date dt = new Date();
+				if( dt.getTime() - lastsendtimestamp.getTime() > 1000*60*4){
+					lastsendtimestamp = dt;
+					List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
+					String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
+					String title=" 生产环境服务器出现异常，请立即采取措施！！！";
+					for(int i=0;i<allUser.size();i++){
+						 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
+					}
 
-						String templateId="62080";
-						String para="";
-						String to="";
-						List<String> telList = new ArrayList<String>();
-						telList.add("15123944895");//Ning
-						telList.add("13668046589");//Shok
-						telList.add("15310898146");//Port
-						telList.add("13661744205");//Garden
-						for(String T : telList){
-							to = T;
-							if(to!=null && !"".equals(to)){
-								RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
-							}
+					String templateId="62080";
+					String para="";
+					String to="";
+					List<String> telList = new ArrayList<String>();
+					telList.add("15123944895");//Ning
+					telList.add("13668046589");//Shok
+					telList.add("15310898146");//Port
+					telList.add("13661744205");//Garden
+					for(String T : telList){
+						to = T;
+						if(to!=null && !"".equals(to)){
+							RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 						}
 					}
-				} 
+				}
+			
 				/*
 				List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
 				String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
