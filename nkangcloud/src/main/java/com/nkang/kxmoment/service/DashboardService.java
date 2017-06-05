@@ -78,12 +78,11 @@ public class DashboardService {
 						 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
 					}
 
-					String templateId="62080";
+					String templateId="62068";
 					String para="";
 					String to="";
 					List<String> telList = new ArrayList<String>();
 					telList.add("15123944895");//Ning
-					
 					telList.add("13668046589");//Shok
 					telList.add("15310898146");//Port
 					telList.add("13661744205");//Garden
