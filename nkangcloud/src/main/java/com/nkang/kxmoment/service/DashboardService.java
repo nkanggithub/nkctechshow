@@ -83,9 +83,10 @@ public class DashboardService {
 					String to="";
 					List<String> telList = new ArrayList<String>();
 					telList.add("15123944895");//Ning
-					//telList.add("13668046589");//Shok
-					//telList.add("15310898146");//Port
-					//telList.add("13661744205");//Garden
+					
+					telList.add("13668046589");//Shok
+					telList.add("15310898146");//Port
+					telList.add("13661744205");//Garden
 					for(String T : telList){
 						to = T;
 						if(to!=null && !"".equals(to)){
