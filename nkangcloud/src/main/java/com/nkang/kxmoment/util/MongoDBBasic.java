@@ -1137,6 +1137,7 @@ public class MongoDBBasic {
 			update.put("IsAuthenticated", user.getIsAuthenticated());
 			update.put("IsRegistered", user.getIsRegistered());
 			update.put("isAdmin", user.getIsAdmin());
+			update.put("isSmsTeam", user.getIsSmsTeam());
 			update.put("Teamer.registerDate", user.getRegisterDate());
 			update.put("Teamer.realName", user.getRealName());
 			update.put("Teamer.email", user.getEmail());
@@ -2602,6 +2603,10 @@ public class MongoDBBasic {
 						}
 						if (o.get("isAdmin") != null) {
 							weChatMDLUser.setIsAdmin(o.get("isAdmin")
+									.toString());
+						}
+						if (o.get("isSmsTeam") != null) {
+							weChatMDLUser.setIsSmsTeam(o.get("isSmsTeam")
 									.toString());
 						}
 						if (!StringUtils.isEmpty(OpenID)) {
