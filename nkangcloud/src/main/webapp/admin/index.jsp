@@ -369,6 +369,7 @@ function showUpdateUserPanel(openid,name){
 				var IsAuthenticated=data[0].IsAuthenticated==null?'false':data[0].IsAuthenticated;
 				var IsActived=data[0].isActive==null?'false':data[0].isActive;
 				var isAdmin=data[0].isAdmin==null?'false':data[0].isAdmin;
+				var isSmsTeam=data[0].isSmsTeam==null?'false':data[0].isSmsTeam;
 				var registerDate=data[0].registerDate==null?'':data[0].registerDate.replace(/\//g,"-");
 				var realName=data[0].realName==null?'':data[0].realName;
 				var phone=data[0].phone==null?'':data[0].phone;
@@ -433,6 +434,12 @@ function showUpdateUserPanel(openid,name){
 			            +'												        <td>后台管理:</td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isAdmin" value="true"  '+(isAdmin=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAdmin" '+(isAdmin!="true"?'checked="checked"':'')+' value="false"/>否'
+			            +'												        </td>'
+			            +'												    </tr> '
+			            +'												    <tr>'
+			            +'												        <td>信息推送:</td>'
+			            +'												        <td  align="left" class="tdText">'
+			            +'												        	<input type="radio" name="isSmsTeam" value="true"  '+(isSmsTeam=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isSmsTeam" '+(isSmsTeam!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
 			            +'												    </tr> '
 			            +'												    <tr>'
