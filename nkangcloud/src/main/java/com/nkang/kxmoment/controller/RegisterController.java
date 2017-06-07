@@ -71,6 +71,7 @@ public class RegisterController {
 		String isActived = request.getParameter("isActived");
 		String isAuthenticated = request.getParameter("isAuthenticated");
 		String isRegistered = request.getParameter("isRegistered");
+		String isSmsTeam = request.getParameter("isSmsTeam");
 		String isAdmin = request.getParameter("isAdmin");
 		String registerDate = request.getParameter("registerDate");
 		String role = request.getParameter("role");
@@ -80,6 +81,7 @@ public class RegisterController {
 		WeChatMDLUser user = new WeChatMDLUser();
 		user.setOpenid(URLEncoder.encode(openId, "UTF-8"));
 		user.setIsAdmin(isAdmin);
+		user.setIsSmsTeam(isSmsTeam);
 		user.setIsActive(isActived);
 		user.setIsAuthenticated(isAuthenticated);
 		user.setIsRegistered(isRegistered);
