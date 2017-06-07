@@ -19,10 +19,17 @@ public class WeChatMDLUser extends WeChatUser {
 	public String isAdmin;
 	public String IsAuthenticated;
 	public String IsRegistered;
+	public String IsSmsTeam;
 	public ArrayList tag;
 	public HashMap like;
 
 	public double distance;
+	public String getIsSmsTeam() {
+		return IsSmsTeam;
+	}
+	public void setIsSmsTeam(String isSmsTeam) {
+		IsSmsTeam = isSmsTeam;
+	}
 	public String getIsAdmin() {
 		return isAdmin;
 	}
