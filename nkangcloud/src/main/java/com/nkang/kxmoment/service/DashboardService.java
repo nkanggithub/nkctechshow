@@ -2,25 +2,26 @@ package com.nkang.kxmoment.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.DashboardStatus;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
+import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
 import com.nkang.kxmoment.util.SmsUtils.RestTest;
-import com.nkang.kxmoment.util.Constants;
 /**
  * Dashboard Service 
  * @author xue-ke.du
@@ -78,20 +79,33 @@ public class DashboardService {
 						 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
 					}
 
-					String templateId="62068";
-					String para="";
-					String to="";
-					List<String> telList = new ArrayList<String>();
-					telList.add("15123944895");//Ning
-					telList.add("13668046589");//Shok
-					telList.add("15310898146");//Port
-					telList.add("13661744205");//Garden
-					for(String T : telList){
-						to = T;
-						if(to!=null && !"".equals(to)){
-							RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
+					ClientMeta cm=MongoDBBasic.QueryClientMeta();
+					String respContent = "服务器异常短讯已下发的人员名单：";
+					if(cm.getSmsSwitch()!=null&&"true".equals(cm.getSmsSwitch())){
+						String templateId="62068";
+						String para="";
+						String to="";
+						String userName="";
+						ArrayList<HashMap> telList = MongoDBBasic.QuerySmsUser();
+						/*List<String> telList = new ArrayList<String>();
+						telList.add("15123944895");//Ning
+						telList.add("13668046589");//Shok
+						telList.add("15310898146");//Port
+						telList.add("13661744205");//Garden*/
+						
+						for(HashMap T : telList){
+							to = (String) T.get("phone");
+							userName = (String) T.get("realName");
+							respContent+=(userName+" ");
+							if(to!=null && !"".equals(to)){
+								RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
+							}
 						}
 					}
+
+					List<String> toUser=new ArrayList<String>();
+					toUser.add("oqPI_xACjXB7pVPGi5KH9Nzqonj4");
+					RestUtils.sendTextMessageToUser(respContent,toUser);
 				}
 			
 				/*
