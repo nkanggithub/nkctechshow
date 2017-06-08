@@ -49,6 +49,7 @@ public class CoreServlet extends HttpServlet {
 		String signature = request.getParameter("signature");
 		String timestamp = request.getParameter("timestamp");
 		String nonce = request.getParameter("nonce");
+		log.info("---------hahah----------+"request.toString());
 		if (SignUtil.checkSignature(signature, timestamp, nonce)) {
 			String respXML=CoreService.processRequest(request);
 			out.print(respXML);
