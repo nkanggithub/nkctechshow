@@ -20,9 +20,9 @@ public final class Constants {
 	public static final String bucketName = "mdmdxc";
 	public static final String bosDomain = "gz.bcebos.com";
 	
-	public static final String ucpass_accountSid = "14eadded462ca929904c1feb33df1f6c";
-	public static final String ucpass_token = "7d58ea1793e834cf5d8149317d593220";
-	public static final String ucpass_appId = "288ad144cc904515bd107c214854c757";
+	public static final String ucpass_accountSid = "e332d0755b9060b20ecb53a244ec7015";
+	public static final String ucpass_token = "6dc9593907118f61208d1c1531337bc0";
+	public static final String ucpass_appId = "17595c2226d34f7aa327a5ded8ed4012";
 	
 	
 	/**
