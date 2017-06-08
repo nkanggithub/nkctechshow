@@ -2412,6 +2412,8 @@ public class MongoDBBasic {
 					: queryresults.get("ClientCode").toString();
 			String clientActive = queryresults.get("Active") == null ? ""
 					: queryresults.get("Active").toString();
+			String SmsSwitch = queryresults.get("SmsSwitch") == null ? ""
+					: queryresults.get("SmsSwitch").toString();
 			BasicDBList skim = (BasicDBList) queryresults.get("SkimNum");
 			if (skim != null) {
 				ArrayList list1 = new ArrayList();
@@ -2447,6 +2449,7 @@ public class MongoDBBasic {
 			cm.setClientActive(clientActive);
 			cm.setClientStockCode(clientStockCode);
 			cm.setClientThemeColor(clientThemeColor);
+			cm.setSmsSwitch(SmsSwitch);
 		} catch (Exception e) {
 			log.info("QueryClientMeta--" + e.getMessage());
 		}
