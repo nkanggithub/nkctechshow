@@ -437,7 +437,7 @@ function showUpdateUserPanel(openid,name){
 			            +'												        </td>'
 			            +'												    </tr> '
 			            +'												    <tr>'
-			            +'												        <td>信息推送:</td>'
+			            +'												        <td>短讯组:</td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isSmsTeam" value="true"  '+(isSmsTeam=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isSmsTeam" '+(isSmsTeam!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
