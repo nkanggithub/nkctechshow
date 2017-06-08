@@ -2640,7 +2640,10 @@ public class MongoDBBasic {
 			while (queryresults.hasNext()) {
 				DBObject o = queryresults.next();
 				HashMap<String,String> temp =new HashMap<String,String>();
-				
+
+				if (o.get("OpenID") != null) {
+					temp.put("OpenID",o.get("OpenID").toString());
+				}
 				Object teamer = o.get("Teamer");
 				DBObject teamobj = new BasicDBObject();
 				teamobj = (DBObject) teamer;
