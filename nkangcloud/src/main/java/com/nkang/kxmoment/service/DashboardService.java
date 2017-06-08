@@ -81,7 +81,6 @@ public class DashboardService {
 
 					ClientMeta cm=MongoDBBasic.QueryClientMeta();
 					String respContent = "服务器异常短讯已发送至：";
-					List<String> toUser=new ArrayList<String>();
 					logger.info("SmsSwitch:"+cm.getSmsSwitch());
 					if(cm.getSmsSwitch()!=null&&"true".equals(cm.getSmsSwitch())){
 						String templateId="62068";
@@ -100,17 +99,16 @@ public class DashboardService {
 						for(HashMap T : telList){
 							to = T.get("phone").toString();
 							userName = T.get("realName").toString();
+							List<String> toUser=new ArrayList<String>();
 							toUser.add(T.get("OpenID").toString());
+							RestUtils.sendTextMessageToUser(respContent,toUser);
 							respContent+=(userName+" ");
 							if(to!=null && !"".equals(to)){
 								RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 							}
 						}
 					}
-					
-
 					logger.info("sendTextMessageToUser");
-					RestUtils.sendTextMessageToUser(respContent,toUser);
 				}
 			
 				/*
