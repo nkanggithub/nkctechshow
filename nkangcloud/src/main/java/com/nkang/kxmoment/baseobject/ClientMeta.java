@@ -13,8 +13,15 @@ public class ClientMeta {
 	private ArrayList<?> SkimNum;
 	private ArrayList<?> Slide;
 	private String metricsMapping;
+	private String SmsSwitch;
 	
 	
+	public String getSmsSwitch() {
+		return SmsSwitch;
+	}
+	public void setSmsSwitch(String smsSwitch) {
+		SmsSwitch = smsSwitch;
+	}
 	public String getMetricsMapping() {
 		return metricsMapping;
 	}

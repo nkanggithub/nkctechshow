@@ -807,6 +807,7 @@ public class MongoDBBasic {
 			update.put("ClientThemeColor", cm.getClientThemeColor());
 			update.put("ClientName", cm.getClientName());
 			update.put("Slide", cm.getSlide());
+			update.put("SmsSwitch", cm.getSmsSwitch());
 			update.put("MetricsMapping", cm.getMetricsMapping());
 
 			doc.put("$set", update);
@@ -2152,6 +2153,8 @@ public class MongoDBBasic {
 							: o.get("ClientCode").toString();
 					String clientActive = o.get("Active") == null ? "" : o.get(
 							"Active").toString();
+					String SmsSwitch = o.get("SmsSwitch") == null ? "false" : o.get(
+							"SmsSwitch").toString();
 					BasicDBList slide = (BasicDBList) o.get("Slide");
 					if (slide != null) {
 						ArrayList<String> list = new ArrayList<String>();
@@ -2171,6 +2174,7 @@ public class MongoDBBasic {
 					cm.setClientActive(clientActive);
 					cm.setClientStockCode(clientStockCode);
 					cm.setClientThemeColor(clientThemeColor);
+					cm.setSmsSwitch(SmsSwitch);
 					result.add(cm);
 				}
 			}

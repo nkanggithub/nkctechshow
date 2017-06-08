@@ -289,6 +289,7 @@ public class MasterDataRestController {
 									@RequestParam(value="Slide1", required=false) String Slide1,
 									@RequestParam(value="Slide2", required=false) String Slide2,
 									@RequestParam(value="Slide3", required=false) String Slide3,
+									@RequestParam(value="SmsSwitch", required=false) String SmsSwitch,
 									@RequestParam(value="MetricsMapping", required=false) String metricsMapping
 									)
 	{
@@ -300,6 +301,7 @@ public class MasterDataRestController {
 		cm.setClientSubName(ClientSubName);
 		cm.setClientCopyRight(ClientCopyRight);
 		cm.setClientThemeColor(ClientThemeColor);
+		cm.setSmsSwitch(SmsSwitch);
 		cm.setMetricsMapping(metricsMapping);
 		ArrayList<HashMap<String, String>> slideList=new ArrayList<HashMap<String, String>>();
 		HashMap<String, String> a=new HashMap<String, String>();
