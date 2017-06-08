@@ -94,8 +94,8 @@ public class DashboardService {
 						telList.add("13661744205");//Garden*/
 						
 						for(HashMap T : telList){
-							to = (String) T.get("phone");
-							userName = (String) T.get("realName");
+							to = T.get("phone").toString();
+							userName = T.get("realName").toString();
 							respContent+=(userName+" ");
 							if(to!=null && !"".equals(to)){
 								RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
