@@ -80,13 +80,17 @@ public class DashboardService {
 					}
 
 					ClientMeta cm=MongoDBBasic.QueryClientMeta();
-					String respContent = "服务器异常短讯已下发的人员名单：";
+					String respContent = "服务器异常短讯已发送至：";
+					List<String> toUser=new ArrayList<String>();
+					logger.info("SmsSwitch:"+cm.getSmsSwitch());
 					if(cm.getSmsSwitch()!=null&&"true".equals(cm.getSmsSwitch())){
 						String templateId="62068";
 						String para="";
 						String to="";
 						String userName="";
 						ArrayList<HashMap> telList = MongoDBBasic.QuerySmsUser();
+
+						logger.info("telListSize:"+telList.size());
 						/*List<String> telList = new ArrayList<String>();
 						telList.add("15123944895");//Ning
 						telList.add("13668046589");//Shok
@@ -96,15 +100,16 @@ public class DashboardService {
 						for(HashMap T : telList){
 							to = T.get("phone").toString();
 							userName = T.get("realName").toString();
+							toUser.add(T.get("OpenID").toString());
 							respContent+=(userName+" ");
 							if(to!=null && !"".equals(to)){
 								RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 							}
 						}
 					}
+					
 
-					List<String> toUser=new ArrayList<String>();
-					toUser.add("oqPI_xACjXB7pVPGi5KH9Nzqonj4");
+					logger.info("sendTextMessageToUser");
 					RestUtils.sendTextMessageToUser(respContent,toUser);
 				}
 			
