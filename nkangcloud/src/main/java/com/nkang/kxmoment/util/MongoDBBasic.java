@@ -1154,7 +1154,7 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
-
+	
 	public static boolean updateUserWithFaceUrl(String openid, String picurl) {
 		mongoDB = getMongoDB();
 		boolean ret = false;
@@ -2125,7 +2125,7 @@ public class MongoDBBasic {
 		}
 		return result;
 	}
-
+	
 	public static ArrayList<ClientMeta> QueryClientMetaList() {
 		ArrayList<ClientMeta> result = new ArrayList<ClientMeta>();
 		mongoDB = getMongoDB();
@@ -2626,6 +2626,37 @@ public class MongoDBBasic {
 			log.info("getWeChatUserFromMongoDB--" + e.getMessage());
 		}
 		return ret;
+	}
+	public static ArrayList<HashMap> QuerySmsUser() {
+		ArrayList<HashMap> result = new ArrayList<HashMap>();
+		mongoDB = getMongoDB();
+		DBObject query = new BasicDBObject();
+		query.put("isSmsTeam", "true");
+		DBCursor queryresults = mongoDB.getCollection(wechat_user).find(query);
+		if (null != queryresults) {
+			while (queryresults.hasNext()) {
+				DBObject o = queryresults.next();
+				HashMap<String,String> temp =new HashMap<String,String>();
+				
+				Object teamer = o.get("Teamer");
+				DBObject teamobj = new BasicDBObject();
+				teamobj = (DBObject) teamer;
+				if (teamobj != null) {
+					if (teamobj.get("phone") != null) {
+						temp.put("phone",teamobj.get("phone")
+								.toString());
+					}
+					if (teamobj.get("realName") != null) {
+						temp.put("realName",teamobj.get(
+								"realName").toString());
+					}
+				}
+				if(temp!=null&&temp.get("phone")!=null){
+					result.add(temp);
+				}
+			}
+		}
+		return result;
 	}
 
 	// Bit Add Start
