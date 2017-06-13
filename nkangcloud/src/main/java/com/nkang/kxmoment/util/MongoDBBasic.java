@@ -808,7 +808,7 @@ public class MongoDBBasic {
 			update.put("ClientName", cm.getClientName());
 			update.put("Slide", cm.getSlide());
 			update.put("SmsSwitch", cm.getSmsSwitch());
-			update.put("MetricsMapping", cm.getMetricsMapping());
+			//update.put("MetricsMapping", cm.getMetricsMapping());
 
 			doc.put("$set", update);
 			WriteResult wr = mongoDB.getCollection(ClientMeta).update(
