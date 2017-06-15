@@ -60,6 +60,7 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/profile.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/icomoon/iconMoon.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-responsive.css"/>
+<link rel="stylesheet" type="text/css" href="../nkang/css_athena/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-default.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/CSS/sonhlab-base.css"/>
@@ -1225,7 +1226,13 @@ function showRegister(){
 				if (jsons.results.length > 0) {
 					if(jsons.results[0].realName !="未注册"){
 						realName=jsons.results[0].realName;
+						 $(".registerArea").show();
+						 $("#codePanel").hide();
+					}else
+					{
+						 $(".registerArea").show();
 					}
+					
 					if(jsons.results[0].phone !="未注册"){
 						phone=jsons.results[0].phone;
 					}
@@ -1235,26 +1242,13 @@ function showRegister(){
 					 if(jsons.results[0].selfIntro !="未注册"){
 							selfIntro=jsons.results[0].selfIntro;
 					    }
+					
 				}
-				var formText="<p style='width:40%;float:left;height:40px;line-height:40px;'>真实姓名：</p><input id='realname' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+realName+"' />"
-				+"<p style='width:40%;float:left;height:40px;line-height:40px;'>电话号码：</p><input id='phone' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+phone+"' />"
-				+"<p style='width:40%;float:left;height:40px;line-height:40px;'>邮箱地址：</p><input id='email' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+email+"' />"
-				+"<p style='width:40%;float:left;height:40px;line-height:40px;'>个人简介：</p><input id='selfIntro' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='"+selfIntro+"' />";
-				swal({  
-			        title:"编辑个人信息",  
-			        text:formText,
-			        html:"true",
-			        showConfirmButton:true, 
-					showCancelButton: true,   
-					closeOnConfirm: false,  
-			        cancelButtonText:"关闭",
-			        confirmButtonText:"确定", 
-			        animation:"slide-from-top"  
-			      }, 
-					function(inputValue){
-			    	  if (inputValue === false){ return false; }
-			    	  updateInfo();
-			      });
+				
+				$("#realname").val(realName);
+				$("#phone").val(phone);
+				$("#email").val(email);
+				$("#selfIntro").val(selfIntro);
 			} 
 
 	/* 			$("#roleSelect option[value='"+jsons.results[0].role+"']").attr("selected",true);
@@ -1282,11 +1276,53 @@ function showRegister(){
 			}
 	});
 }
+function MathRand() 
+{ 
+var Num=""; 
+for(var i=0;i<6;i++) 
+{ 
+Num+=Math.floor(Math.random()*10); 
+} 
+return Num;
+} 
+var code="";
+function sendValidateCode(phone){
+	var phone = $("#phone").val();
+	 var phoneFilter = /^1[0-9]{10}/;
+	if(""==phone||!phoneFilter.test(phone)){
+		 swal("send fail!", "Pls input your correct phone information.", "error");
+		 return;
+	}else{
+	code=MathRand();
+	$.ajax({
+        cache: false,
+        type: "POST",
+        url:"../sendValidateCode",
+        data:{
+        	phone:phone,
+        	code:code	
+        },
+        async: true,
+        error: function(request) {
+            alert("Connection error");
+        },
+        success: function(data) {
+        	if(data=="OK"){
+        	swal("恭喜!", "已收到您的请求，请耐心等候", "success");
+        	}
+        }
+    });}
+	}
+function returnRegisterBack()
+{
+	$(".registerArea").hide();
+	}
 	 function updateInfo(){
 		var uid = $("#uid").val();
 		var name = $("#realname").val();
 		var phone = $("#phone").val();
 		var email = $("#email").val();
+		var validateCode = $("#validateCode").val();
 		//var suppovisor = $("#suppovisor").val();
 		//var role = $("#roleSelect option:selected").val();
 		//var group = $("#groupSelect option:selected").val();
@@ -1306,6 +1342,8 @@ function showRegister(){
 			 swal("Registered fail!", "Pls input your correct E-mail information.", "error");
 		 }else if (selfIntro==''){
 			 swal("Registered fail!", "Pls input your correct self-introduction information.", "error");
+		 }else if(validateCode==""||validateCode!=code){
+			 swal("Registered fail!", "Pls input your correct validate .", "error");
 		 }else{
 			$.ajax({
 				url:"../regist",
@@ -1320,6 +1358,7 @@ function showRegister(){
 						$('#registerform').modal('hide');
 						swal("Registered successfully!", "Congratulations!", "success"); 
 						$("#realName").val(name);
+						returnRegisterBack();
 					} else {
 						swal("Registered fail!", "Pls input your correct information.", "error");
 					}
@@ -1867,6 +1906,34 @@ function getNowFormatDate() {
 </script>
 </head>
 <body style="margin: 0px !important;width:100%  !important; padding: 0px !important;">
+  <div class="registerArea">
+    <div class="register_title"><i class="fa fa-angle-left fa-lg return" onclick="returnRegisterBack()"></i>会员注册</div>
+<div id="fillPanel">
+<div class="singleInput">
+<p class="icon">  <i class="fa fa-user fa-lg" style="font-size:23px;"></i></p>
+<p class="inputArea"><input id="realname" type="text" placeholder="请输入你的姓名" /></p>
+</div>
+<div class="singleInput">
+<p class="icon">  <i class="fa fa-mobile fa-lg" style="margin-left:3px;"></i></p>
+<p class="inputArea">  <input id="phone" type="text" placeholder="请输入你的手机号" /></p>
+</div>
+<div class="singleInput">
+<p class="icon">  <i class="fa fa-envelope-o fa-lg" style="font-size:21px;"></i></p>
+<p class="inputArea"><input id="email" type="text" placeholder="请输入你的邮箱地址"/> </p>
+</div>
+<div class="singleInput">
+<p class="icon">  <i class="fa fa-pencil fa-lg" style="font-size:21px;"></i></p>
+<p class="inputArea"><input id="selfIntro" type="text" placeholder="请输入你的个人简介"/> </p>
+</div>
+<div class="singleInput" id="codePanel">
+<p class="icon">  <i class="fa fa-check fa-lg" style="font-size:21px;"></i></p>
+<p class="inputArea"><input id="validateCode" type="text" placeholder="请输入你的验证码"/> </p>
+<p class="sendCode" onclick="sendValidateCode()">发送验证码</p>
+</div>
+</div>
+<div class="register_btn" onclick="updateInfo()">提交</div>
+  </div>
+
 <div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:black;"></div>
  <div class="sk-circle">
       <div class="sk-circle1 sk-child"></div>
@@ -1936,7 +2003,7 @@ function getNowFormatDate() {
 					<div class="span12">
 						<div class="PositionR">
 						<form id="searchForm" method="get" action="https://www.bing.com/search"  style="padding:0px;" >
-									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-50px;"> 
+									<input type="text" id="search"  name="q" placeholder="Search.." style="margin-top:-64px;"> 
       						    </form>
 					<!-- 	<input type="text" id="search" name="search" placeholder="Search.."> -->
 								
