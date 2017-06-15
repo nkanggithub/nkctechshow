@@ -71,18 +71,12 @@ public class DashboardService {
 			Date dt = new Date();
 			if(ret>0 || isDown>0){
 				if( dt.getTime() - lastsendtimestamp.getTime() > 1000*60*4){
-					lastsendtimestamp = dt;
-					List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
-					String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
-					String title=" 生产环境服务器出现异常，请立即采取措施！！！";
-					for(int i=0;i<allUser.size();i++){
-						 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
-					}
-
+					
 					ClientMeta cm=MongoDBBasic.QueryClientMeta();
 					String respContent = "服务器异常短讯已发送至：";
 					logger.info("SmsSwitch:"+cm.getSmsSwitch());
 					if(cm.getSmsSwitch()!=null&&"true".equals(cm.getSmsSwitch())){
+						
 						String templateId="62068";
 						String para="";
 						String to="";
@@ -110,6 +104,15 @@ public class DashboardService {
 							toUser.add(T.get("OpenID").toString());
 							RestUtils.sendTextMessageToUser(respContent,toUser);
 						}
+						//微信
+						lastsendtimestamp = dt;
+						List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
+						String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
+						String title=" 生产环境服务器出现异常，请立即采取措施！！！";
+						for(int i=0;i<allUser.size();i++){
+							 RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
+						}
+
 					}
 					logger.info("sendTextMessageToUser");
 				}
