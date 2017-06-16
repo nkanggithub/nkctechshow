@@ -1346,7 +1346,28 @@ function returnRegisterBack()
 		 }else if(display!="none"){
 			 if(validateCode==""||validateCode!=code){
 				 swal("Registered fail!", "Pls input your correct validate code.", "error");
-			 }
+			 }else
+				 {
+				 $.ajax({
+						url:"../regist",
+						data:{uid:uid,name:name,telephone:phone,email:email,selfIntro:selfIntro},
+						type:"POST",
+						dataType:"json",
+						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						cache:false,
+						async:false,
+						success:function(result) {
+							if(result){
+								$('#registerform').modal('hide');
+								swal("Registered successfully!", "Congratulations!", "success"); 
+								$("#realName").val(name);
+								returnRegisterBack();
+							} else {
+								swal("Registered fail!", "Pls input your correct information.", "error");
+							}
+						}
+					});
+				 }
 		 }else{
 			$.ajax({
 				url:"../regist",
