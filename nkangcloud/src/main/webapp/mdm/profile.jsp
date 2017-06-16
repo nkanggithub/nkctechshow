@@ -1318,6 +1318,7 @@ function returnRegisterBack()
 	$(".registerArea").hide();
 	}
 	 function updateInfo(){
+		 var display =$('#codePanel').css('display');
 		var uid = $("#uid").val();
 		var name = $("#realname").val();
 		var phone = $("#phone").val();
@@ -1342,8 +1343,10 @@ function returnRegisterBack()
 			 swal("Registered fail!", "Pls input your correct E-mail information.", "error");
 		 }else if (selfIntro==''){
 			 swal("Registered fail!", "Pls input your correct self-introduction information.", "error");
-		 }else if(validateCode==""||validateCode!=code){
-			 swal("Registered fail!", "Pls input your correct validate .", "error");
+		 }else if(display!="none"){
+			 if(validateCode==""||validateCode!=code){
+				 swal("Registered fail!", "Pls input your correct validate code.", "error");
+			 }
 		 }else{
 			$.ajax({
 				url:"../regist",
