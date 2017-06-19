@@ -130,7 +130,7 @@ public class MongoDBBasic {
 			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
 			DBObject dbo = new BasicDBObject();
 			dbo.put("WeChatAccessKey.AKey",key);
-			dbo.put("WeChatAccessKey.ExpiresIn",expiresIn);
+			dbo.put("WeChatAccessKey.ExpiresIn",Integer.valueOf(expiresIn));
 			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
 			dbo.put("WeChatAccessKey.LastUpdated", DateUtil.timestamp2Str(cursqlTS));
 			dbo.put("WeChatAccessKey.ID","1");
