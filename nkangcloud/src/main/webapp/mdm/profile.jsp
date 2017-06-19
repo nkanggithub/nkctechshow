@@ -1336,16 +1336,16 @@ function returnRegisterBack()
 		 var emailFilter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		 var phoneFilter = /^1[0-9]{10}/;
 		 if (name.replace(/(^ *)|( *$)/g,'')==''){
-			 swal("Registered fail!", "Pls input your correct name information.", "error");
+			 swal("注册失败!", "请输入正确的姓名信息！", "error");
 		 }else if (!phoneFilter.test(phone)){
-			 swal("Registered fail!", "Pls input your correct phone information.", "error");
+			 swal("注册失败!", "请输入正确的电话信息！", "error");
 		 }else if (!emailFilter.test(email)){
-			 swal("Registered fail!", "Pls input your correct E-mail information.", "error");
+			 swal("注册失败!", "请输入正确的邮箱信息！", "error");
 		 }else if (selfIntro==''){
-			 swal("Registered fail!", "Pls input your correct self-introduction information.", "error");
+			 swal("注册失败!", "请输入您的个人介绍信息！", "error");
 		 }else if(display!="none"){
 			 if(validateCode==""||validateCode!=code){
-				 swal("Registered fail!", "Pls input your correct validate code.", "error");
+				 swal("注册失败!", "请输入验证码或验证码不正确！", "error");
 			 }else
 				 {
 				 $.ajax({
@@ -1359,11 +1359,11 @@ function returnRegisterBack()
 						success:function(result) {
 							if(result){
 								$('#registerform').modal('hide');
-								swal("Registered successfully!", "Congratulations!", "success"); 
+								swal("注册成功!", "恭喜!", "success"); 
 								$("#realName").val(name);
 								returnRegisterBack();
 							} else {
-								swal("Registered fail!", "Pls input your correct information.", "error");
+								swal("注册失败", "请输入正确的信息！", "error");
 							}
 						}
 					});
@@ -1941,6 +1941,11 @@ function getNowFormatDate() {
 <p class="icon">  <i class="fa fa-mobile fa-lg" style="margin-left:3px;"></i></p>
 <p class="inputArea">  <input id="phone" type="text" placeholder="请输入你的手机号" /></p>
 </div>
+<div class="singleInput" id="codePanel">
+<p class="icon">  <i class="fa fa-check fa-lg" style="font-size:21px;"></i></p>
+<p class="inputArea"><input id="validateCode" type="text" placeholder="请输入你的验证码"/> </p>
+<p class="sendCode" onclick="sendValidateCode()">发送验证码</p>
+</div>
 <div class="singleInput">
 <p class="icon">  <i class="fa fa-envelope-o fa-lg" style="font-size:21px;"></i></p>
 <p class="inputArea"><input id="email" type="text" placeholder="请输入你的邮箱地址"/> </p>
@@ -1948,11 +1953,6 @@ function getNowFormatDate() {
 <div class="singleInput">
 <p class="icon">  <i class="fa fa-pencil fa-lg" style="font-size:21px;"></i></p>
 <p class="inputArea"><input id="selfIntro" type="text" placeholder="请输入你的个人简介"/> </p>
-</div>
-<div class="singleInput" id="codePanel">
-<p class="icon">  <i class="fa fa-check fa-lg" style="font-size:21px;"></i></p>
-<p class="inputArea"><input id="validateCode" type="text" placeholder="请输入你的验证码"/> </p>
-<p class="sendCode" onclick="sendValidateCode()">发送验证码</p>
 </div>
 </div>
 <div class="register_btn" onclick="updateInfo()">提交</div>
