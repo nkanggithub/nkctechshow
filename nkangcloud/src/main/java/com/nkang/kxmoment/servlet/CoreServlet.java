@@ -33,7 +33,6 @@ public class CoreServlet extends HttpServlet {
 		String timestamp = request.getParameter("timestamp");
 		String nonce = request.getParameter("nonce");
 		String echostr = request.getParameter("echostr");
-		log.info("---------hahah doGet----------+" + request.toString());
 		if (SignUtil.checkSignature(signature, timestamp, nonce)) {
 			out.print(echostr);
 		}
@@ -50,7 +49,6 @@ public class CoreServlet extends HttpServlet {
 		String signature = request.getParameter("signature");
 		String timestamp = request.getParameter("timestamp");
 		String nonce = request.getParameter("nonce");
-		log.info("---------hahah doPost----------+" + request.toString());
 		if (SignUtil.checkSignature(signature, timestamp, nonce)) {
 			String respXML=CoreService.processRequest(request);
 			out.print(respXML);
