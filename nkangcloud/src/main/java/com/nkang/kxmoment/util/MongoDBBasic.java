@@ -127,8 +127,19 @@ public class MongoDBBasic {
 	public static void updateAccessKey(String key, String expiresIn) {
 		try {
 			mongoDB = getMongoDB();
-			DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
-			if (null != dbcur) {
+			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
+			DBObject dbo = new BasicDBObject();
+			dbo.put("WeChatAccessKey.AKey",key);
+			dbo.put("WeChatAccessKey.ExpiresIn",expiresIn);
+			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+			dbo.put("WeChatAccessKey.LastUpdated",cursqlTS);
+			dbo.put("WeChatAccessKey.ID","1");
+			
+			BasicDBObject doc = new BasicDBObject();
+			doc.put("$set", dbo);
+			mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode","DXC"), doc);
+			log.info("updateAccessKey end");
+			/*if (null != dbcur) {
 				while (dbcur.hasNext()) {
 					DBObject DBObj = dbcur.next();
 					Object obj = DBObj.get("WeChatAccessKey");
@@ -137,19 +148,9 @@ public class MongoDBBasic {
 					}
 //					DBObject o = new BasicDBObject();
 //					o = (DBObject) obj;
-					DBObject dbo = new BasicDBObject();
-					dbo.put("WeChatAccessKey.AKey",key);
-					dbo.put("WeChatAccessKey.ExpiresIn",expiresIn);
-					java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
-					dbo.put("WeChatAccessKey.LastUpdated",cursqlTS);
-					dbo.put("WeChatAccessKey.ID","1");
-					
-					BasicDBObject doc = new BasicDBObject();
-					doc.put("$set", dbo);
-					mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode","DXC"), doc);
-					log.info("updateAccessKey end");
+				
 				}
-			}
+			}*/
 		} catch (Exception e) {
 			log.info("updateAccessKey--" + e.getMessage());
 		}
