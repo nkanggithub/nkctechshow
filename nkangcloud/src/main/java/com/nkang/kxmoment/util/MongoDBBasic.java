@@ -61,10 +61,8 @@ public class MongoDBBasic {
 	private static String short_news = "ShortNews";
 	private static String client_pool = "ClientPool";
 	private static String Article_Message = "Article_Message";
-	private static String wechat_comments = "Wechat_Comments";
 	private static String ClientMeta = "Client_Meta";
 	private static String collectionBill = "SaleBill";
-	private static String Metrics = "Metrics";
 	private static String role_area = "RoleOfAreaMap";
 	private static String collectionVisited = "Visited";
 
@@ -1084,10 +1082,6 @@ public class MongoDBBasic {
 				String faddr = RestUtils.getUserCurLocWithLatLng(Lat, Lng);
 				BasicDBObject doc = new BasicDBObject();
 				DBObject update = new BasicDBObject();
-				// update.put("OpenID", wcu.getOpenid());
-				// update.put("HeadUrl", wcu.getHeadimgurl());
-				// update.put("NickName", wcu.getNickname());
-				// update.put("Created", DateUtil.timestamp2Str(cursqlTS));
 				update.put("FormatAddress", faddr);
 				update.put("CurLAT", Lat);
 				update.put("CurLNG", Lng);
@@ -1098,10 +1092,9 @@ public class MongoDBBasic {
 				innerInsert.put("visitDate", DateUtil.timestamp2Str(cursqlTS));
 				innerInsert.put("FAddr", faddr);
 				arrayHistdbo.add(innerInsert);
-				update.put("VisitHistory", arrayHistdbo);
+				/*update.put("VisitHistory", arrayHistdbo);*/
 				doc.put("$set", update);
-				WriteResult wr = mongoDB.getCollection(wechat_user).update(
-						new BasicDBObject().append("OpenID", OpenID), doc);
+				WriteResult wr = mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID", OpenID), doc);
 			}
 			ret = true;
 			addSkimNum();
