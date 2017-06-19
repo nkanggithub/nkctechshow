@@ -1290,7 +1290,7 @@ function sendValidateCode(phone){
 	var phone = $("#phone").val();
 	 var phoneFilter = /^1[0-9]{10}/;
 	if(""==phone||!phoneFilter.test(phone)){
-		 swal("send fail!", "Pls input your correct phone information.", "error");
+		 swal("发送失败!", "请输入正确的号码信息", "error");
 		 return;
 	}else{
 	code=MathRand();
@@ -1380,18 +1380,20 @@ function returnRegisterBack()
 				success:function(result) {
 					if(result){
 						$('#registerform').modal('hide');
-						swal("Registered successfully!", "Congratulations!", "success"); 
+						swal("注册成功!", "恭喜!", "success"); 
 						$("#realName").val(name);
 						returnRegisterBack();
 					} else {
-						swal("Registered fail!", "Pls input your correct information.", "error");
+						swal("注册失败!", "请输入正确的个人信息", "error");
 					}
 				}
 			});
 		}
 	};
 	
-
+function getReminderForMore(){
+	swal("Opps!","更多应用正在开发中~","error");
+}
 
 function getUserInfo(username, headimgurl, openId) {
 			$("#info_interact").css("display","block");
@@ -2184,8 +2186,9 @@ function getNowFormatDate() {
 												 <a href="face.jsp?UID=<%=uid%>">
 												 <img src="../MetroStyleFiles/menu-face.png" /></a>
 													<h4>测颜值</h4></td>
-												<td><a target="_self" href="http://shenan.duapp.com/mdm/MesPushHistory.jsp"><img src="../MetroStyleFiles/Add1.png" />
-													<h4>更多应用</h4></a></td>
+												<td onclick="getReminderForMore()">
+												<img src="../MetroStyleFiles/Add1.png" />
+													<h4>更多应用</h4></td>
 											</tr>
 										</table>
 									</div>
