@@ -48,6 +48,7 @@ import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.Visited;
+import com.nkang.kxmoment.baseobject.WeChatAccessKey;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.Constants;
@@ -102,7 +103,7 @@ public class MongoDBBasic {
 		}
 		return AccessKey;
 	}
-
+/*
 	public static void updateAccessKey(String key, String expiresIn) {
 		try {
 			mongoDB = getMongoDB();
@@ -119,7 +120,38 @@ public class MongoDBBasic {
 			log.info("updateAccessKey--" + e.getMessage());
 		}
 	}
-
+*/
+	public static void updateAccessKey(String key, String expiresIn) {
+		try {
+			mongoDB = getMongoDB();
+			DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
+			if (null != dbcur) {
+				while (dbcur.hasNext()) {
+					DBObject DBObj = dbcur.next();
+					Object obj = DBObj.get("WeChatAccessKey");
+					if (obj == null) {
+						obj = DBObj;
+					}
+					DBObject o = new BasicDBObject();
+					o = (DBObject) obj;
+					DBObject dbo = new BasicDBObject();
+					dbo.put("WeChatAccessKey.AKey",key);
+					dbo.put("WeChatAccessKey.ExpiresIn",expiresIn);
+					java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+					dbo.put("WeChatAccessKey.LastUpdated",cursqlTS);
+					dbo.put("WeChatAccessKey.ID","1");
+					
+					BasicDBObject doc = new BasicDBObject();
+					doc.put("$set", dbo);
+					mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode","DXC"), doc);
+				}
+			}
+		} catch (Exception e) {
+			log.info("updateAccessKey--" + e.getMessage());
+		}
+	}
+	
+	/*
 	public static String QueryAccessKey() {
 		String validKey = null;
 		mongoDB = getMongoDB();
@@ -151,7 +183,51 @@ public class MongoDBBasic {
 		}
 		return validKey;
 	}
+*/
+	public static String QueryAccessKey() {
+		String validKey = null;
+		mongoDB = getMongoDB();
+		java.sql.Timestamp sqlTS = null;
+		java.sql.Timestamp cursqlTS = new java.sql.Timestamp(
+				new java.util.Date().getTime());
+		WeChatAccessKey wcak = new WeChatAccessKey();
+		try {
+			DBObject query = new BasicDBObject();
+			DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
+			if (null != dbcur) {
+				
+				while (dbcur.hasNext()) {
+					DBObject DBObj = dbcur.next();
+					Object obj = DBObj.get("WeChatAccessKey");
+					if (obj == null) {
+						return null;
+					}
+					DBObject o = new BasicDBObject();
+					o = (DBObject) obj;
+					wcak.setAKey((String) o.get("AKey"));
+					wcak.setExpiresIn((Integer) o.get("ExpiresIn"));
+					wcak.setLastUpdated((String) o.get("LastUpdated"));
+				}
 
+			validKey = wcak.getAKey();
+			String timehere = wcak.getLastUpdated();
+			sqlTS = DateUtil.str2Timestamp(timehere);
+			int diff = (int) ((cursqlTS.getTime() - sqlTS.getTime()) / 1000);
+			if ((7200 - diff) > 0) {
+			} else {
+				log.info(diff
+						+ " is close to 7200. and is to re-generate the key");
+				validKey = null;
+			}
+			}
+
+		} catch (Exception e) {
+			log.info("QueryAccessKey--" + e.getMessage());
+		}
+		return validKey;
+	}
+	
+	
 	public static boolean checkUserAuth(String OpenID, String RoleName) {
 		mongoDB = getMongoDB();
 		try {
