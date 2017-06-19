@@ -98,9 +98,12 @@ public class MongoDBBasic {
 
 	public static String getValidAccessKey() {
 		String AccessKey = QueryAccessKey();
+		log.info("getValidAccessKey ------>"+AccessKey);
 		if (AccessKey == null) {
 			AccessKey = RestUtils.getAccessKey();
+			log.info("RestUtils.getAccessKey ------>"+AccessKey);
 		}
+		
 		return AccessKey;
 	}
 /*
@@ -132,8 +135,8 @@ public class MongoDBBasic {
 					if (obj == null) {
 						obj = DBObj;
 					}
-					DBObject o = new BasicDBObject();
-					o = (DBObject) obj;
+//					DBObject o = new BasicDBObject();
+//					o = (DBObject) obj;
 					DBObject dbo = new BasicDBObject();
 					dbo.put("WeChatAccessKey.AKey",key);
 					dbo.put("WeChatAccessKey.ExpiresIn",expiresIn);
@@ -144,6 +147,7 @@ public class MongoDBBasic {
 					BasicDBObject doc = new BasicDBObject();
 					doc.put("$set", dbo);
 					mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode","DXC"), doc);
+					log.info("updateAccessKey end");
 				}
 			}
 		} catch (Exception e) {
@@ -192,7 +196,6 @@ public class MongoDBBasic {
 				new java.util.Date().getTime());
 		WeChatAccessKey wcak = new WeChatAccessKey();
 		try {
-			DBObject query = new BasicDBObject();
 			DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
 			if (null != dbcur) {
 				
@@ -224,6 +227,7 @@ public class MongoDBBasic {
 		} catch (Exception e) {
 			log.info("QueryAccessKey--" + e.getMessage());
 		}
+		log.info("QueryAccessKey--> "+validKey);
 		return validKey;
 	}
 	
