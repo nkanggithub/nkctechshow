@@ -1363,25 +1363,6 @@ public class MongoDBBasic {
 		return loc;
 	}
 
-	public static boolean InsertCommentsFromVisitor(String OpenID,
-			String comments) {
-		mongoDB = getMongoDB();
-		boolean ret = false;
-		java.sql.Timestamp cursqlTS = new java.sql.Timestamp(
-				new java.util.Date().getTime());
-		try {
-			DBObject insert = new BasicDBObject();
-			insert.put("OpenID", OpenID);
-			insert.put("CreatedDate", DateUtil.timestamp2Str(cursqlTS));
-			insert.put("Comments", comments);
-			DBCollection result = mongoDB.getCollection(wechat_comments);
-			result.insert(insert);
-			ret = true;
-		} catch (Exception e) {
-			log.info("InsertCommentsFromVisitor--" + e.getMessage());
-		}
-		return ret;
-	}
 
 	@SuppressWarnings("unchecked")
 	public static List<String> getFilterSegmentArea(String state) {

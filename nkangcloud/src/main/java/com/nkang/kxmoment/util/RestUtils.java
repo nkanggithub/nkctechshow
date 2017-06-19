@@ -1288,35 +1288,6 @@ public class RestUtils {
 		return listOfSegmentArea;
 	}
 	
-	public static String callInsertCommentsFromVisitor(String OpenID, String InputValue){
-		String url = "http://"+Constants.baehost+"/insertCommentsFromVisitor?OpenID="+OpenID+"&comments="+InputValue;
-		String message = "false";
-		try {
-	           URL urlGet = new URL(url);
-	           HttpURLConnection http = (HttpURLConnection) urlGet.openConnection();
-	           http.setRequestMethod("GET"); //must be get request
-	           http.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-	           http.setDoOutput(true);
-	           http.setDoInput(true);
-	           if(localInd == "Y"){
-		           System.setProperty("http.proxyHost", Constants.proxyInfo);  
-		           System.setProperty("http.proxyPort", "8080");  
-	           }  
-	           System.setProperty("sun.net.client.defaultConnectTimeout", "30000");
-	           System.setProperty("sun.net.client.defaultReadTimeout", "30000"); 
-	           http.connect();
-	           InputStream is = http.getInputStream();
-	           int size = is.available();
-	           byte[] jsonBytes = new byte[size];
-	           is.read(jsonBytes);
-	           is.close();
-
-	       } catch (Exception e) {
-	    	   log.info("error callInsertCommentsFromVisitor ---------" + e.getMessage());
-	    	   message =  "failed with " + e.getMessage();
-	       }
-		return message;
-	}
 	
 	public static String callgetFilterRegionFromMongo(String state){
 		String url = "http://"+Constants.baehost+"/getFilterRegionFromMongo?state="+state;
