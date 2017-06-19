@@ -124,7 +124,7 @@ catch(Exception e){
 							return false;   
 						}
 						else{
-							<% RestUtils.callInsertCommentsFromVisitor(uid, inputVar);%>
+							<%-- <% RestUtils.callInsertCommentsFromVisitor(uid, inputVar);%> --%>
 						}
 						swal("Thank You!", "We will contact you soon", "success"); 
 					}
