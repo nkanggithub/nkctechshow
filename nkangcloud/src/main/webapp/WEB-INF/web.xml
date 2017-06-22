@@ -29,7 +29,24 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    
+ 
+   <!--  <servlet>
+        <servlet-name>oauthServlet</servlet-name>
+        <servlet-class>com.nkang.kxmoment.util.OAuthUitl.OAuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>oauthServlet</servlet-name>
+        <url-pattern>/mdm/</url-pattern>
+    </servlet-mapping> -->
+ <filter> 
+			  <filter-name>filter</filter-name> 
+			  <filter-class>com.nkang.kxmoment.util.OAuthUitl.OAuthServlet</filter-class> 
+ </filter> 
+  <filter-mapping> 
+  <filter-name>filter</filter-name> 
+  
+  <url-pattern>*.jsp</url-pattern> 
+ </filter-mapping>  
 	<!-- <servlet>
 		<description>spring mvc servlet</description>
 		<servlet-name>springMvc</servlet-name>
@@ -52,5 +69,6 @@
 <!--     <session-config>
 		<session-timeout>15</session-timeout>
 	</session-config> -->
+
 
 </web-app>  
