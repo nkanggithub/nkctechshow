@@ -83,7 +83,7 @@ public class DashboardService {
 						String userName="";
 						ArrayList<HashMap> telList = MongoDBBasic.QuerySmsUser();
 
-						logger.info("telListSize:"+telList.size());
+						//logger.info("telListSize:"+telList.size());
 						/*List<String> telList = new ArrayList<String>();
 						telList.add("15123944895");//Ning
 						telList.add("13668046589");//Shok
@@ -114,7 +114,7 @@ public class DashboardService {
 						}
 
 					}
-					logger.info("sendTextMessageToUser");
+				//	logger.info("sendTextMessageToUser");
 				}
 			
 				/*
@@ -146,7 +146,7 @@ public class DashboardService {
 			
 			
 		} catch (Exception e) {
-			logger.error("Save Status fail.", e);
+			//logger.error("Save Status fail.", e);
 			status = "fail";
 		}
 		return status;
