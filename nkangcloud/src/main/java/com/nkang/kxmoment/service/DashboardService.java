@@ -67,7 +67,7 @@ public class DashboardService {
 			int status200=subCounter(str, code200);
 			int status405=subCounter(str, code405);
 			int ret=tatol-status200-status405;
-			logger.info("tatol:"+tatol+",status200:"+status200+",status405"+status405);
+			//logger.info("tatol:"+tatol+",status200:"+status200+",status405"+status405);
 			Date dt = new Date();
 			if(ret>0 || isDown>0){
 				if( dt.getTime() - lastsendtimestamp.getTime() > 1000*60*4){
