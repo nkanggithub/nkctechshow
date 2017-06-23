@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="utf-8"%>
-<%@ page import="java.util.*,org.json.JSONObject"%>
+<%@ page language="java"   pageEncoding="utf-8"%>
+<%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
@@ -7,13 +7,24 @@
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%	
-String uid = request.getParameter("UID");
-SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
-Date date=new Date();
-String currentDate = format.format(date);
-HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-MongoDBBasic.updateVisited(uid,currentDate,"DashboardStatus",res.get("HeadUrl"),res.get("NickName"));
-MongoDBBasic.updateUser(uid);
+
+//获取由OAuthServlet中传入的参数
+SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
+String state=(String)request.getAttribute("state");
+String name = "";
+String headImgUrl ="";
+if(null != user) {
+	//String uid = request.getParameter("UID");
+	String uid = user.getOpenId();
+	name = user.getNickname();
+	headImgUrl = user.getHeadImgUrl();
+	/* SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+	Date date=new Date();
+	String currentDate = format.format(date);
+	MongoDBBasic.updateVisited(uid,currentDate,"DashboardStatus",headImgUrl,name);
+	MongoDBBasic.updateUser(uid); */
+}
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -307,7 +318,21 @@ function fixZero(num,length){
 </head>
 <body style="margin:0px">
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
-<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="height:60px;"></div>
+<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="height:60px;">
+<div style="width:100%;text-align:right;margin-top:-80px;">
+<ul class="nav pull-right top-menu" style="list-style: none;">
+					<li class="dropdown"><a href="#" class="dropdown-toggle ui-link" data-toggle="dropdown" style="padding:5px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;display: block;color:#777;font-weight:700;">
+					欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span>
+					</a> <span><a style="float: right;" class="ui-link"> <img id="userImage" src="<%=headImgUrl %>" alt="userImage" class="userImage" style="
+    border-radius: 25px;
+    height: 35px;
+    width: 35px;">
+						</a></span></li>
+				</ul>
+</div>
+</div>
 <div id="DB"></div>
 <div id="JBOSS"></div>
 <div id="MSG"></div>
