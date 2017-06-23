@@ -96,6 +96,9 @@ public class CoreService
                    textMessage.setContent(realReceiver + " recevied");
 	                respXml = MessageUtil.textMessageToXml(textMessage);
 	                
+				} else if (textContent.contains("articleUpload")) {
+	                textMessage.setContent("http://shenan.duapp.com/mdm/uploadArticle.jsp");
+	                respXml = MessageUtil.textMessageToXml(textMessage);
 				}
                    else if (textContent.contains("articleSend")) {
                 	   String articleID=MongoDBBasic.getArticleID();
