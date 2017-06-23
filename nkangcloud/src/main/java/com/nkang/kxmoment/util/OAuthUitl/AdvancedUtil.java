@@ -19,7 +19,7 @@ public class AdvancedUtil {
      * @return WeixinAouth2Token
      */
     public static WeixinOauth2Token getOauth2AccessToken(String appId, String appSecret, String code) {
-    	log.info("into getOauth2AccessToken....");
+    	//log.info("into getOauth2AccessToken....");
         WeixinOauth2Token wat = null;
         // 拼接请求地址
         String requestUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
@@ -27,9 +27,9 @@ public class AdvancedUtil {
         requestUrl = requestUrl.replace("SECRET", appSecret);
         requestUrl = requestUrl.replace("CODE", code);
         // 获取网页授权凭证
-        log.info("into CommonUtil.httpsRequest..");
+        //log.info("into CommonUtil.httpsRequest..");
         JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "GET", null);
-        log.info("into CommonUtil.httpsRequest.  end");
+       // log.info("into CommonUtil.httpsRequest.  end");
         if (null != jsonObject) {
             try {
                 wat = new WeixinOauth2Token();
