@@ -77,6 +77,9 @@ public class CoreService
 
 			if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
 				String textContent = requestObject.element("Content").getText().trim();
+
+                String status="";
+				int realReceiver=0;
 				if ("cm".equals(textContent)) {
 					respContent = RestUtils.createMenu(AccessKey);
 					textMessage.setContent(respContent);
@@ -85,14 +88,27 @@ public class CoreService
 				}
 				else if (textContent.contains("trigger:")) {
 					String content= textContent.split(":")[1];
-					int realReceiver=0;
-                    String status="";
                     List<String> toUser=MongoDBBasic.getAllOpenID();
                     status=RestUtils.sendTextMessageToUser(content, toUser);
                    if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
                 	   realReceiver=toUser.size();
                    }
-                 
+                   textMessage.setContent(realReceiver + " recevied");
+	                respXml = MessageUtil.textMessageToXml(textMessage);
+	                
+				}
+                   else if (textContent.contains("articleSend")) {
+                	   String articleID=MongoDBBasic.getArticleID();
+                	   System.out.println("articleID-----------"+articleID);
+                       List<String> articletoUser=MongoDBBasic.getAllOpenID();
+//                	   List<String> articletoUser=new ArrayList<String>();
+//                	   articletoUser.add("oqPI_xDdGid-HlbeVKZjpoO5zoKw");
+//                	   articletoUser.add("oqPI_xEjbhsIuu4DcfxED6IqDQ5o");
+                       status=RestUtils.sendMass(articletoUser, articleID);
+                      if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
+                   	   realReceiver=articletoUser.size();
+                      }
+                   
 	                textMessage.setContent(realReceiver + " recevied");
 	                respXml = MessageUtil.textMessageToXml(textMessage);
 				}
@@ -104,8 +120,6 @@ public class CoreService
 	                     }
 	                }
 	                    
-	                int realReceiver=0;
-                    String status="";
                  for(int i=0;i<allUser.size();i++){
                     status=RestUtils.sendTextMessageToUserOnlyByCustomInterface(textContent,allUser.get(i),fromUserName);
                    if(RestUtils.getValueFromJson(status,"errcode").equals("0")){

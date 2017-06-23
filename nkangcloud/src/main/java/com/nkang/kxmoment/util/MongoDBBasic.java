@@ -4117,5 +4117,43 @@ public class MongoDBBasic {
 
 		return ret;
 	}
+	
+	public static boolean InsertArtcleID(String artcleID) {
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+		try {
+			DBObject insert = new BasicDBObject();
+			insert.put("articleID", artcleID);
+			mongoDB.getCollection(ClientMeta).insert(insert);
+			ret = true;
+		} catch (Exception e) {
+			log.info("createArticleID--" + e.getMessage());
+		}
+		return ret;
+	}
+	public static String getArticleID() {
+		String articleID="";
+		mongoDB = getMongoDB();
+		
+		try {
+			DBObject query = new BasicDBObject();
+			query.put("_id",  new ObjectId("594ca210b73ebeeeb4d783b9"));
+			DBCursor queryresults = mongoDB.getCollection(ClientMeta).find(query).limit(1);;
+			if (null != queryresults) {
+
+				while (queryresults.hasNext()) {
+					DBObject DBObj = queryresults.next();
+					articleID = DBObj.get("articleID") == null ? ""
+							: DBObj.get("articleID").toString();
+
+				}
+			}
+
+		} catch (Exception e) {
+			log.info("getArticleID--" + e.getMessage());
+		}
+		return articleID;
+	}
+
 
 }
