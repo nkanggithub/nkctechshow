@@ -876,7 +876,8 @@ public class MasterDataRestController {
 	@RequestMapping("/CallCreateShortNews")
 	public @ResponseBody String CallCreateShortNews(@RequestParam(value="content", required=true) String reqContent) throws JSONException{
 		MongoDBBasic.createShortNews(reqContent);
-		String url="http://"+Constants.baehost+"/mdm/DailyNewsToShare.jsp?UID=";
+	//	String url="http://"+Constants.baehost+"/mdm/DailyNewsToShare.jsp?UID=";
+		String url="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FDailyNews.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect&UID=";
 		String title="";
 		String content="";
 		if(reqContent.length()>100){
