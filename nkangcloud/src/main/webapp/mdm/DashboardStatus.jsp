@@ -1,7 +1,7 @@
 <%@ page language="java"   pageEncoding="utf-8"%>
 <%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="com.nkang.kxmoment.util.RestUtils"%>
+<%@ page import="java.util.*,com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
@@ -18,11 +18,11 @@ if(null != user) {
 	String uid = user.getOpenId();
 	name = user.getNickname();
 	headImgUrl = user.getHeadImgUrl();
-	/* SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+    SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 	Date date=new Date();
 	String currentDate = format.format(date);
 	MongoDBBasic.updateVisited(uid,currentDate,"DashboardStatus",headImgUrl,name);
-	MongoDBBasic.updateUser(uid); */
+	/* MongoDBBasic.updateUser(uid);  */
 }
 
 %>
