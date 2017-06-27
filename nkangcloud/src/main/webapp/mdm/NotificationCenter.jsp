@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ArticleMessage"%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
@@ -7,8 +8,23 @@
 
 <%@ page import="java.text.SimpleDateFormat"%>
 <%	
-String uid = request.getParameter("uid");
-MongoDBBasic.updateUser(uid);
+//获取由OAuthServlet中传入的参数
+SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
+String state=(String)request.getAttribute("state");
+String name = "";
+String headImgUrl ="";
+if(null != user) {
+	//String uid = request.getParameter("UID");
+	String uid = user.getOpenId();
+	name = user.getNickname();
+	headImgUrl = user.getHeadImgUrl();
+  SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+	Date date=new Date();
+	String currentDate = format.format(date);
+	MongoDBBasic.updateVisited(uid,currentDate,"NotificationCenter",headImgUrl,name);
+	 MongoDBBasic.updateUser(uid);  
+}
+
 String num = request.getParameter("num");
 List<ArticleMessage> nList=MongoDBBasic.getArticleMessageByNum(num);   
 ArticleMessage n=new ArticleMessage();
@@ -18,11 +34,6 @@ n.setTime("2017/2/10 16:42"); */
    if(!nList.isEmpty()){
 	n=nList.get(0); 
 }
-
-SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
-Date date=new Date();
-String currentDate = format.format(date);
-MongoDBBasic.updateVisited("12345",currentDate,"NotificationCenter","","访问者");
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
