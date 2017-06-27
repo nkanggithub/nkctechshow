@@ -109,9 +109,11 @@
             <scope>provided</scope>
         </dependency>
 		
-		
-		
-		
+		<dependency>
+	    	<groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.7</version>
+		</dependency>
 		<dependency>
                <artifactId>solr-solrj</artifactId>
                <groupId>org.apache.solr</groupId>
