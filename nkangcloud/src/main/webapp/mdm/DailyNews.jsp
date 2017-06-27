@@ -1,16 +1,53 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ShortNews"%>
 <%
+//获取由OAuthServlet中传入的参数
+SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
+String state=(String)request.getAttribute("state");
+String name = "";
+String headImgUrl ="";
+String uid="";
+String openid="";
+if(null != user) {
+	openid=user.getOpenId();
+	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(user.getOpenId());
+	if(res!=null){
+		if(res.get("HeadUrl")!=null){
+			uid = user.getOpenId();
+			headImgUrl=res.get("HeadUrl");
+		}else{
+			headImgUrl = user.getHeadImgUrl(); 
+		}
+		if(res.get("NickName")!=null){
+			uid = user.getOpenId();
+			name=res.get("NickName");
+		}else{
+			name = user.getNickname();
+			headImgUrl = user.getHeadImgUrl(); 
+			uid="oij7nt5GgpKftiaoMSKD68MTLXpc";
+		}
+	}else{
+		name = user.getNickname();
+		headImgUrl = user.getHeadImgUrl(); 
+		uid="oij7nt5GgpKftiaoMSKD68MTLXpc";
+	}
+}
+
+
+
+
 ArrayList<ShortNews> shortNews=MongoDBBasic.queryShortNews();
 int size=5;
 int realSize=shortNews.size();
 if(shortNews.size()<=5){size=shortNews.size();}
-String uid = request.getParameter("UID");
-boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
-
-MongoDBBasic.updateUser(uid);
+boolean IsAuthenticated=false;
+if(uid.equals(openid)){
+	IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
+	MongoDBBasic.updateUser(openid);
+}
 %>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,7 +77,11 @@ MongoDBBasic.updateUser(uid);
 </head>
 <body style="margin:0px">
 <%if(IsAuthenticated==true) { %>
-<button style="position: absolute;top: 40px;right: 20px;padding: 4px 8px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onClick="javascript:publishNews();">发布新闻</button><% } %>
+
+<img onClick="javascript:publishNews();" style='width:100px;cursor:pointer;position: fixed;bottom: 50px;z-index: 1002;' src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EURiX&oid=00D90000000pkXM'>
+
+<!-- <button style="position: absolute;top: 40px;right: 20px;padding: 4px 8px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onClick="javascript:publishNews();">发布新闻</button>
+ --><% } %>
 		<aside style="margin-top:50px;height:400px;position:absolute;width:80%;left:5%;top:80px;" id="default-popup" class="avgrund-popup">
 
 			<h2 id="title" style="margin-bottom:10px;"></h2>
@@ -55,6 +96,19 @@ MongoDBBasic.updateUser(uid);
 
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
 <img src="../mdm/images/logo.png" alt="" style="width:60%;">
+<div style="width:100%;text-align:right;margin-top:-80px;">
+<ul class="nav pull-right top-menu" style="list-style: none;">
+					<li class="dropdown"><a href="#" class="dropdown-toggle ui-link" data-toggle="dropdown" style="padding:3px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;display: block;color:#777;font-weight:700;">
+					欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span>
+					</a> <span><a style="float: right;" class="ui-link"> <img id="userImage" src="<%=headImgUrl %>" alt="userImage" class="userImage" style="
+    border-radius: 25px;
+    height: 35px;
+    width: 35px;">
+						</a></span></li>
+				</ul>
+</div>
 </div>
 <div id="wrapper">
 <div class="box scroller">
