@@ -1,4 +1,7 @@
 ﻿﻿<%@ page language="java" pageEncoding="UTF-8"%>
+<%
+String uid = request.getParameter("UID");
+%>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
@@ -188,6 +191,7 @@ function uploadNews(){
 	var title=$("#title").val();
 	var content=$("#content").val();
 	var mediaID=$("#hiddenMediaID").val();
+	var articleID="";
 	$.ajax({
         cache: false,
         type: "POST",
@@ -202,9 +206,26 @@ function uploadNews(){
             alert("Connection error");
         },
         success: function(data) {
-        	swal("恭喜！", "成功上传图文消息", "success");
+        	if(data){
+        		$.ajax({
+        	        cache: false,
+        	        type: "POST",
+        	        url:"../fileUpload/sendMass",
+        	        data:{
+        	        	articleID:data
+        	        },
+        	        async: true,
+        	        error: function(request) {
+        	            alert("Connection error");
+        	        },
+        	        success: function(newData) {
+        	        	swal("恭喜！", newData+"个人已收到您的通知", "success");
+        	        }
+        	    });
+        	}
         }
     });
+
 }
 function uploadPic(obj){
 		if($(obj).val()!='') {
@@ -235,8 +256,7 @@ function uploadPic(obj){
       <div class="sk-circle11 sk-child"></div>
       <div class="sk-circle12 sk-child"></div>
     </div>
-    <div  id='data_model_div' style='z-index:999;'  class='dataModelPanel'>
-<img style='position:absolute;top:8px;left:20px;z-index:100;' class='HpLogo' src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM' alt='Logo' class='HpLogo'><div style='width:100%;height: 74px;background: white;position:absolute;border-bottom: 4px solid black;'></div></div>
+<div id="data_model_div" style="z-index:999;" class=""><a href="http://shenan.duapp.com/mdm/profile.jsp?UID=<%=uid%>"><i class="icon" style="position:absolute;top:20px;left:20px;z-index:100;"><img class="exit" src="../MetroStyleFiles/EXIT1.png" style="width: 30px; height: 30px; "></i></a>	<img style="position:absolute;top:8px;right:20px;z-index:100;" class="HpLogo" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="Logo"><div style="width:100%;height: 74px;background: white;position:absolute;border-bottom: 4px solid #000000;"></div></div>
 <div id='sendR'>
 <div class='rcommon' style='height:45px'>
 <p class='bsLabel'>图文标题</p>
