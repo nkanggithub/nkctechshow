@@ -2287,12 +2287,7 @@ public class RestUtils {
 				+ MongoDBBasic.getRegisterUserByOpenID(openId).get(0)
 				+ ":"
 				+ note.getContent()
-				+ "\",\"url\":\"http://"
-				+ Constants.baehost
-				+ "/mdm/NotificationCenter.jsp?num="
-				+ note.getNum()
-				+ "&uid="
-				+ openId
+				+ "\",\"url\":\"http://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+note.getNum()+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
 				+ "\",\"picurl\":"
 				+ "\"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlTWX&oid=00D90000000pkXM\"}";
 		String json = "{\"touser\":\"" + toOpenId
@@ -2333,9 +2328,7 @@ public class RestUtils {
 		if ("".equals(am.getWebUrl()) || "" == am.getWebUrl()) {
 			str = "{\"title\":\"" + am.getTitle() + "\",\"description\":\""
 					+ "Publisher - " + cm.getClientName() + ":\n"
-					+ am.getContent() + "\",\"url\":\"http://"
-					+ Constants.baehost + "/mdm/NotificationCenter.jsp?num="
-					+ am.getNum() + "\",\"picurl\":" + "\"" + img + "\"}";
+					+ am.getContent() + "\",\"url\":\"http://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+am.getNum()+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect\",\"picurl\":" + "\"" + img + "\"}";
 		} else {
 			str = "{\"title\":\"" + am.getTitle() + "\",\"description\":\""
 					+ cm.getClientName() + "\",\"url\":\"" + am.getWebUrl()
