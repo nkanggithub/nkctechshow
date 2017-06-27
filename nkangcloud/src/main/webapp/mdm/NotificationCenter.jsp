@@ -52,8 +52,8 @@ n.setTime("2017/2/10 16:42"); */
 					<li class="dropdown"><a href="#" class="dropdown-toggle ui-link" data-toggle="dropdown" style="padding:5px;
     text-decoration: none;
     text-shadow: 0 1px 0 #fff;display: block;color:#777;font-weight:700;">
-					欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"></span>
-					</a> <span><a style="float: right;" class="ui-link"> <img id="userImage" src="" alt="userImage" class="userImage" style="
+					欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span>
+					</a> <span><a style="float: right;" class="ui-link"> <img id="userImage" src="<%=headImgUrl %>" alt="userImage" class="userImage" style="
     border-radius: 25px;
     height: 35px;
     width: 35px;">
