@@ -18,6 +18,7 @@ import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
+import org.json.JSONException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -282,13 +283,23 @@ public class FileUploadController {
             	articleID= resultJSON.get("media_id").toString();  
             }
         }
-		return MongoDBBasic.InsertArtcleID(articleID)+"";
+//        MongoDBBasic.InsertArtcleID(articleID);
+		return articleID;
         
 	}
 	@RequestMapping(value = "/sendMass", produces = "text/html;charset=UTF-8")
-	public @ResponseBody String sendMass(HttpServletRequest request,HttpServletResponse response) {
-		List<String> userList = null;
-		String artcleID=request.getParameter("artcleID");
-		return RestUtils.sendMass(userList,artcleID);
+	public @ResponseBody String sendMass(HttpServletRequest request,HttpServletResponse response) throws JSONException {
+		List<String> userList = MongoDBBasic.getAllOpenID();
+//		userList.add("oqPI_xEjbhsIuu4DcfxED6IqDQ5o");
+//		userList.add("oqPI_xACjXB7pVPGi5KH9Nzqonj4");
+		int realReceiver=0;
+		String articleID=request.getParameter("articleID");
+		System.out.println("articleID:----"+articleID);
+		String status=RestUtils.sendMass(userList, articleID);
+		System.out.println("status:----"+status);
+         if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
+      	   realReceiver=userList.size();
+         }
+		return realReceiver+"";
 	}
 }
