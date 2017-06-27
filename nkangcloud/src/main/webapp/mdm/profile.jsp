@@ -1,7 +1,7 @@
 ﻿﻿<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%@ page import="com.nkang.kxmoment.baseobject.GeoLocation"%>
-<%@ page import="com.nkang.kxmoment.util.RestUtils"%>
+<%@ page import="com.nkang.kxmoment.util.*"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
@@ -2157,7 +2157,7 @@ function getNowFormatDate() {
 														<h4>天气</h4>
 												</td>
 												<td>
-													<a target="_self" href="http://shenan.duapp.com/mdm/DailyNews.jsp?UID=<%=uid %>">
+													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">
 														<img src="../mdm/images/Notification.png" /><h4>焦点追击</h4>
 													</a>
 												</td>
