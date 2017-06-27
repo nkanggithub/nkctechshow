@@ -47,18 +47,19 @@ n.setTime("2017/2/10 16:42"); */
 
 </head>
 <body style="margin:0;">
-<div style="width:100%;text-align:right;margin-bottom:-80px;">
+<div style="width:100%;text-align:right;right:0px;position: absolute;margin-top:-10px;"><b>
 <ul class="nav pull-right top-menu" style="list-style: none;">
 					<li class="dropdown"><a href="#" class="dropdown-toggle ui-link" data-toggle="dropdown" style="padding:5px;
     text-decoration: none;
     text-shadow: 0 1px 0 #fff;display: block;color:#777;font-weight:700;">
-					欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span>
-					</a> <span><a style="float: right;" class="ui-link"> <img id="userImage" src="<%=headImgUrl %>" alt="userImage" class="userImage" style="
+					欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"></span>
+					</a> <span><a style="float: right;" class="ui-link"> <img id="userImage" src="" alt="userImage" class="userImage" style="
     border-radius: 25px;
     height: 35px;
     width: 35px;">
 						</a></span></li>
 				</ul>
+				</b></div>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
               <tr>
@@ -69,7 +70,6 @@ n.setTime("2017/2/10 16:42"); */
                    <td valign="top" style="width:60%"><p class="MsoNormal" style="/* line-height:14.0pt */"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><b><img id="_x0000_i1025" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" style="
     width: 140%;
 ">
-				</div>
 </b>
                       <o:p></o:p></span></p></td>
                   </tr>
