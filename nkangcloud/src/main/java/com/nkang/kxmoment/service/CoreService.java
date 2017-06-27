@@ -387,7 +387,7 @@ public class CoreService
 						article2.setDescription("生产环境智能监控");
 						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
 						//article2.setUrl("http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=" + fromUserName);
-						article2.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FDashboardStatus.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+						article2.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FDashboardStatus.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
 						articleList.add(article2);
 						
 						newsMessage.setArticleCount(articleList.size());
