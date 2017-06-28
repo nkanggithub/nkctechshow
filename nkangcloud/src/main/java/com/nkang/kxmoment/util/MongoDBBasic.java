@@ -16,7 +16,6 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
-
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -29,8 +28,6 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSInputFile;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.BillOfSell;
 import com.nkang.kxmoment.baseobject.ClientInformation;
@@ -4045,6 +4042,12 @@ public class MongoDBBasic {
 				vit.setDate(date);
 				vit.setOpenid(obj.get("openid") + "");
 				vit.setVisitedNum(Integer.parseInt(obj.get("visitedNum") + ""));
+				if(obj.get("sharedNum")!=null){
+					vit.setSharedNum(Integer.parseInt(obj.get("sharedNum") + ""));
+				}
+				else {
+					vit.setSharedNum(0);
+				}
 				vit.setPageName(obj.get("pageName") + "");
 				vit.setImgUrl(obj.get("imgUrl") + "");
 				vit.setNickName(obj.get("nickName") + "");
@@ -4117,17 +4120,66 @@ public class MongoDBBasic {
 
 		return ret;
 	}
-	
-	public static boolean InsertArtcleID(String artcleID) {
-		mongoDB = getMongoDB();
-		Boolean ret = false;
+	public static String updateShared(String openid, String date,
+			String pageName, String imgUrl, String nickName) {
+		if (mongoDB == null) {
+			mongoDB = getMongoDB();
+		}
+		String ret = "ok";
 		try {
-			DBObject insert = new BasicDBObject();
-			insert.put("articleID", artcleID);
-			mongoDB.getCollection(ClientMeta).insert(insert);
-			ret = true;
+			DBObject query = new BasicDBObject();
+			query.put("openid", openid);
+			query.put("date", date);
+			query.put("pageName", pageName);
+			query.put("imgUrl", imgUrl);
+			query.put("nickName", nickName);
+			DBObject visited = mongoDB.getCollection(collectionVisited)
+					.findOne(query);
+			if (visited != null) {
+				BasicDBObject doc = new BasicDBObject();
+				BasicDBObject update = new BasicDBObject();
+				update.append("sharedNum", 1);
+				doc.put("$inc", update);
+				mongoDB.getCollection(collectionVisited).update(query, doc);
+			} else {
+				query.put("sharedNum", 1);
+				mongoDB.getCollection(collectionVisited).insert(query);
+			}
+
 		} catch (Exception e) {
-			log.info("createArticleID--" + e.getMessage());
+			ret = e.getMessage();
+		}
+
+		return ret;
+	}
+	public static String InsertArtcleID(String articleID) {
+		mongoDB = getMongoDB();
+		String ret = "false";
+		try {
+			DBObject query = new BasicDBObject();
+			query.put("_id", new ObjectId("594ca210b73ebeeeb4d783b9"));
+			DBObject articles = mongoDB.getCollection(ClientMeta)
+					.findOne(query);
+			if (articles != null) {
+				System.out.println("articleID is not null...");
+				// String num = visited.get("visitedNum")+"";
+				BasicDBObject doc = new BasicDBObject();
+				DBObject update = new BasicDBObject();
+				update.put("articleID", articleID);
+				doc.put("$set", update);
+				WriteResult wr = mongoDB.getCollection(ClientMeta).update(
+						new BasicDBObject().append("_id",
+								"594ca210b73ebeeeb4d783b9"), doc);
+			} else {
+				DBObject insert = new BasicDBObject();
+				insert.put("articleID", articleID);
+				insert.put("updateTime", articleID);
+				mongoDB.getCollection(ClientMeta).insert(insert);
+			}
+			
+			ret = true+":"+articleID;
+		} catch (Exception e) {
+			log.info("createOrUpdateArticleID--" + e.getMessage());
 		}
 		return ret;
 	}
