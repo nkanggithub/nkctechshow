@@ -2157,7 +2157,7 @@ function getNowFormatDate() {
 														<h4>天气</h4>
 												</td>
 												<td>
-													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">
+													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp&response_type=code&scope=snsapi_userinfo&state=<%=uid %>#wechat_redirect">
 														<img src="../mdm/images/Notification.png" /><h4>焦点追击</h4>
 													</a>
 												</td>

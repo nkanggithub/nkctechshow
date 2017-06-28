@@ -3,10 +3,11 @@
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ShortNews"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%
 //获取由OAuthServlet中传入的参数
 SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
-String state=(String)request.getAttribute("state");
+String originalUid=(String)request.getAttribute("state");
 String name = "";
 String headImgUrl ="";
 String uid="";
@@ -34,6 +35,18 @@ if(null != user) {
 		headImgUrl = user.getHeadImgUrl(); 
 		uid="oij7nt5GgpKftiaoMSKD68MTLXpc";
 	}
+	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+	Date date=new Date();
+	String currentDate = format.format(date);
+	if(openid.equals(originalUid)){
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DailyNews",user.getHeadImgUrl(),name);
+	}
+	else
+	{
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DailyNews",user.getHeadImgUrl(),name);
+		HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
+		MongoDBBasic.updateShared(originalUid,currentDate,"DailyNews",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
+		}
 }
 
 
