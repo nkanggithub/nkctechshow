@@ -58,18 +58,20 @@ public class DashboardService {
 				isDown++;
 			}
 			String codeAll="{\"map\":{\"status\":";	
-			String code200="{\"map\":{\"status\":\"200\"";
-			String code405="{\"map\":{\"status\":\"405\",\"description\":\"Cleanse\"";		
+			String code404="{\"map\":{\"status\":\"404\"";
+			//String code200="{\"map\":{\"status\":\"200\"";
+			//String code405="{\"map\":{\"status\":\"405\",\"description\":\"Cleanse\"";		
 			List<DashboardStatus> StrList = findAllStatusList();
 			String str = StrList.toString();
 			
-			int tatol=subCounter(str, codeAll);
-			int status200=subCounter(str, code200);
-			int status405=subCounter(str, code405);
-			int ret=tatol-status200-status405;
+			//int tatol=subCounter(str, codeAll);
+			int status404=subCounter(str, code404);
+			//int status200=subCounter(str, code200);
+			//int status405=subCounter(str, code405);
+			//int ret=tatol-status200-status405;
 			//logger.info("tatol:"+tatol+",status200:"+status200+",status405"+status405);
 			Date dt = new Date();
-			if(ret>0 || isDown>0){
+			if(status404>0 || isDown>0){
 				if( dt.getTime() - lastsendtimestamp.getTime() > 1000*60*4){
 					
 					ClientMeta cm=MongoDBBasic.QueryClientMeta();
