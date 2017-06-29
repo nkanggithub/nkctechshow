@@ -112,7 +112,7 @@ public class DashboardService {
 						String content="产品运维团队，请立即查看该服务器异常并及时沟通。";
 						String title=" 生产环境服务器出现异常，请立即采取措施！！！";
 						for(int i=0;i<allUser.size();i++){
-							String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FDashboardStatus.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect&UID=";
+							String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FDashboardStatus.jsp&response_type=code&scope=snsapi_userinfo&state="+allUser.get(i).getOpenid()+"#wechat_redirect&UID=";
 								RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
 							// RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
 						}

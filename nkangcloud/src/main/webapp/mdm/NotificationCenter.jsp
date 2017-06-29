@@ -10,7 +10,7 @@
 <%	
 //获取由OAuthServlet中传入的参数
 SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
-String state=(String)request.getAttribute("state");
+String originalUid=(String)request.getAttribute("state");
 String name = "";
 String headImgUrl ="";
 if(null != user) {
@@ -18,11 +18,18 @@ if(null != user) {
 	String uid = user.getOpenId();
 	name = user.getNickname();
 	headImgUrl = user.getHeadImgUrl();
-  SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 	Date date=new Date();
 	String currentDate = format.format(date);
-	MongoDBBasic.updateVisited(uid,currentDate,"NotificationCenter",headImgUrl,name);
-	 MongoDBBasic.updateUser(uid);  
+	if(uid.equals(originalUid)){
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
+	}
+	else
+	{
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
+		HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
+		MongoDBBasic.updateShared(originalUid,currentDate,"DashboardStatus",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
+		}
 }
 
 String num = request.getParameter("num");
