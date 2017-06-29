@@ -33,8 +33,8 @@ import com.nkang.kxmoment.util.RestUtils;
 
 @Controller
 @RequestMapping("/fileUpload")
-public class fileUploadController {
-	private static Logger log=Logger.getLogger(fileUploadController.class);
+public class FilesUploadController {
+	private static Logger log=Logger.getLogger(FilesUploadController.class);
 	@RequestMapping(value = "/uploadPlatforRelated", produces = "text/html;charset=UTF-8")
 	public ModelAndView readXlsOfPlatforRelated(HttpServletRequest request,HttpServletResponse response){
 		
