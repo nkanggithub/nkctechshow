@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jQuery+HTML5微信大转盘抽奖代码 - 站长素材</title>
+<title>每日抽奖</title>
 
 <link href="../Jsp/CSS/Lucky.css" rel="stylesheet" type="text/css">
 
@@ -207,9 +207,9 @@ function drawRouletteWheel() {
 		</div>
 	</div>
 <div style="text-align:center;">
-<h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:10px;">可用抽奖次数：1</h3>	
-	<img style="height:70px;width:70px;" src="http://wx.qlogo.cn/mmopen/3ial0wgAS7u1sBkjFnq8CKfTlENtrYZvREwEhPMmu5FvHbDrYITooGLlmXszwNTVppJTc1ZCeyibZAqpviasUOmYqg4cfLr7lX8/0" alt="">
-<h2  style="color:#fff;width:100%;margin:8px 0px;">青青~笑</h2>	
+<h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:5px;margin-top:-5px;">可用抽奖次数：1</h3>	
+	<img style="height:50px;width:50px;" src="http://wx.qlogo.cn/mmopen/3ial0wgAS7u1sBkjFnq8CKfTlENtrYZvREwEhPMmu5FvHbDrYITooGLlmXszwNTVppJTc1ZCeyibZAqpviasUOmYqg4cfLr7lX8/0" alt="">
+<h2  style="color:#fff;width:100%;margin:5px 0px;">青青~笑</h2>	
 <h2  style="color:yellow;width:100%;">当前金币总数：1234</h2>	
 </div>
 </body>
