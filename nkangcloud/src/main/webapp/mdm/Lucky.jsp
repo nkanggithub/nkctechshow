@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
-<%@ page import="java.util.*"%>
+<%@ page import="java.util.*,java.text.SimpleDateFormat"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%
 //获取由OAuthServlet中传入的参数
@@ -10,7 +10,8 @@ String name = "";
 String headImgUrl ="";
 String uid="";
 String openid="";
-int point=0;
+int pointSum=0;
+int LuckyNum=0;
 if(null != user) {
 	openid=user.getOpenId();
 	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(user.getOpenId());
@@ -34,6 +35,17 @@ if(null != user) {
 		headImgUrl = user.getHeadImgUrl(); 
 		uid="oij7nt5GgpKftiaoMSKD68MTLXpc";
 	}
+}
+
+if(openid.equals(uid)){
+	String respContent1 = "";
+	Date d = new Date();  
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+    String dateNowStr = sdf.format(d);  
+    pointSum=MongoDBBasic.updateUserPoint(openid, 0);
+    if(MongoDBBasic.checkUserPoint(openid)){
+    	LuckyNum=1;
+    }
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
