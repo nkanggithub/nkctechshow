@@ -197,7 +197,7 @@ function drawRouletteWheel() {
 </script>
 </head>
 <body style="background:#000;overflow-x:hidden;">
-	<h1 style="color:#fff;width:100%;text-align:center;margin:25px 0px;">每日抽奖</h1>
+	<h1 style="color:#fff;width:100%;text-align:center;margin:10px 0px;">每日抽奖</h1>
     <img src="../Jsp/PIC/1.png" id="shan-img" style="display:none;" />
     <img src="../Jsp/PIC/2.png" id="sorry-img" style="display:none;" />
 	<div class="banner">
@@ -207,9 +207,9 @@ function drawRouletteWheel() {
 		</div>
 	</div>
 <div style="text-align:center;">
-<h3  style="color:#fff;width:100%;text-align:center;font-size:16px;margin-bottom:10px;">可用抽奖次数：1</h3>	
+<h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:10px;">可用抽奖次数：1</h3>	
 	<img style="height:70px;width:70px;" src="http://wx.qlogo.cn/mmopen/3ial0wgAS7u1sBkjFnq8CKfTlENtrYZvREwEhPMmu5FvHbDrYITooGLlmXszwNTVppJTc1ZCeyibZAqpviasUOmYqg4cfLr7lX8/0" alt="">
-<h2  style="color:#fff;width:100%;margin:10px 0px;">青青~笑</h2>	
+<h2  style="color:#fff;width:100%;margin:8px 0px;">青青~笑</h2>	
 <h2  style="color:yellow;width:100%;">当前金币总数：1234</h2>	
 </div>
 </body>
