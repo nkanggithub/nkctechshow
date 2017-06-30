@@ -535,7 +535,7 @@ public class CoreService
 						article.setTitle("更多精彩尽在往期回顾 ");
 						article.setDescription("更多精彩尽在往期回顾 ");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EDHHL&oid=00D90000000pkXM");
-						article.setUrl("http://shenan.duapp.com/mdm/MesPushHistory.jsp");
+						article.setUrl("http://shenan.duapp.com/mdm/MesPushHistory.jsp?UID="+fromUserName);
 						articleList.add(article);
 						List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
 						for(int i = 0; i < 3 ;  i++){
