@@ -259,7 +259,7 @@ function drawRouletteWheel() {
 <h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:5px;margin-top:-5px;">可用抽奖次数：1</h3>	
 	<img style="height:50px;width:50px;" src="<%=headImgUrl %>" alt="">
 <h2  style="color:#fff;width:100%;margin:5px 0px;"><%=name %></h2>	
-<h2  style="color:yellow;width:100%;">当前金币总数：<%=point %></h2>	
+<h2  style="color:yellow;width:100%;">当前金币总数：<%=pointSum %></h2>	
 </div>
 </body>
 </html>
