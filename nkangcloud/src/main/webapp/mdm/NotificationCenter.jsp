@@ -22,13 +22,13 @@ if(null != user) {
 	Date date=new Date();
 	String currentDate = format.format(date);
 	if(uid.equals(originalUid)){
-		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"NotificationCenter",user.getHeadImgUrl(),name);
 	}
 	else
 	{
-		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"NotificationCenter",user.getHeadImgUrl(),name);
 		HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
-		MongoDBBasic.updateShared(originalUid,currentDate,"DashboardStatus",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
+		MongoDBBasic.updateShared(originalUid,currentDate,"NotificationCenter",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
 		}
 }
 
