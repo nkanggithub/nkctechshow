@@ -1,4 +1,41 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%
+//获取由OAuthServlet中传入的参数
+SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
+String state=(String)request.getAttribute("state");
+String name = "";
+String headImgUrl ="";
+String uid="";
+String openid="";
+int point=0;
+if(null != user) {
+	openid=user.getOpenId();
+	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(user.getOpenId());
+	if(res!=null){
+		if(res.get("HeadUrl")!=null){
+			uid = user.getOpenId();
+			headImgUrl=res.get("HeadUrl");
+		}else{
+			headImgUrl = user.getHeadImgUrl(); 
+		}
+		if(res.get("NickName")!=null){
+			uid = user.getOpenId();
+			name=res.get("NickName");
+		}else{
+			name = user.getNickname();
+			headImgUrl = user.getHeadImgUrl(); 
+			uid="oij7nt5GgpKftiaoMSKD68MTLXpc";
+		}
+	}else{
+		name = user.getNickname();
+		headImgUrl = user.getHeadImgUrl(); 
+		uid="oij7nt5GgpKftiaoMSKD68MTLXpc";
+	}
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -208,9 +245,9 @@ function drawRouletteWheel() {
 	</div>
 <div style="text-align:center;">
 <h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:5px;margin-top:-5px;">可用抽奖次数：1</h3>	
-	<img style="height:50px;width:50px;" src="http://wx.qlogo.cn/mmopen/3ial0wgAS7u1sBkjFnq8CKfTlENtrYZvREwEhPMmu5FvHbDrYITooGLlmXszwNTVppJTc1ZCeyibZAqpviasUOmYqg4cfLr7lX8/0" alt="">
-<h2  style="color:#fff;width:100%;margin:5px 0px;">青青~笑</h2>	
-<h2  style="color:yellow;width:100%;">当前金币总数：1234</h2>	
+	<img style="height:50px;width:50px;" src="<%=headImgUrl %>" alt="">
+<h2  style="color:#fff;width:100%;margin:5px 0px;"><%=name %></h2>	
+<h2  style="color:yellow;width:100%;">当前金币总数：<%=point %></h2>	
 </div>
 </body>
 </html>
