@@ -200,7 +200,16 @@ $(function(){
 					for(var j=0;j<myArrayList.length;j++)
 					{
 						var status=myArrayList[j].map.status;
+						
+						var fdStart = strCode.indexOf("CNT PROCESS PRO");
+						 
 						if(myArrayList[j].map.description=='Cleanse'){
+							if(myArrayList[j].map.status=='405'){
+								myArrayList[j].map.status='Up';
+							}else{
+								myArrayList[j].map.status='Down';
+							}
+						}else if(fdStart==0){
 							if(myArrayList[j].map.status=='405'){
 								myArrayList[j].map.status='Up';
 							}else{
