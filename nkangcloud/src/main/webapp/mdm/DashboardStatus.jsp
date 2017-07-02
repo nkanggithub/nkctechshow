@@ -201,7 +201,7 @@ $(function(){
 					{
 						var status=myArrayList[j].map.status;
 						
-						var fdStart = strCode.indexOf("CNT PROCESS PRO");
+						var fdStart = myArrayList[j].map.description.indexOf("CNT PROCESS PRO");
 						 
 						if(myArrayList[j].map.description=='Cleanse'){
 							if(myArrayList[j].map.status=='405'){
