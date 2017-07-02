@@ -25,9 +25,13 @@ if(null != user) {
 	}
 	else
 	{
+		try{
 		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
 		HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
 		MongoDBBasic.updateShared(originalUid,currentDate,"DashboardStatus",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
+		}catch(Exception e){
+			
+		}
 	}
 }
 
