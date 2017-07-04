@@ -1,6 +1,7 @@
 package com.nkang.kxmoment.baseobject;
 
 import java.util.List;
+import java.util.Map;
 
 public class ArticleMessage {
 	public String num;
@@ -11,6 +12,13 @@ public class ArticleMessage {
 	public String picture;
 	public List<String> visited;
 	public String visitedNum;
+	public List<Map> signUp;
+	public List<Map> getSignUp() {
+		return signUp;
+	}
+	public void setSignUp(List<Map> signUp) {
+		this.signUp = signUp;
+	}
 	public String getVisitedNum() {
 		return visitedNum;
 	}
