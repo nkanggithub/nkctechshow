@@ -104,7 +104,29 @@ $(document).ready(function(){
 			animateTo:angles+1800,
 			duration:8000,
 			callback:function (){
-				alert(txt);
+				if($("#LuckyNum").text()=='0'){
+					alert("你已经没有抽奖机会了,明天再来吧!");
+				}else{
+					if(txt=='谢谢参与'){
+						alert("很遗憾，明天再来吧！");
+					}else{
+						alert("恭喜您，抽中了"+txt+"!");
+						jQuery.ajax({
+				     		type : "POST",
+				     		url : "../updateUserPoint",
+				     		data : {
+				     			fromUserName:<%=uid %>,
+				     			randomNum:parseInt(txt.substr(0,1))
+				     		},
+				     		cache : false,
+				     		success : function(data) {
+				     			$("#pointSum").text(data);
+				     		}
+				     	}); 
+						//$("#pointSum").text(parseInt($("#pointSum").text())+parseInt(txt.substr(0,1)));
+					}
+					$("#LuckyNum").text(0);
+				}
 				turnplate.bRotate = !turnplate.bRotate;
 			}
 		});
@@ -256,10 +278,10 @@ function drawRouletteWheel() {
 		</div>
 	</div>
 <div style="text-align:center;">
-<h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:5px;margin-top:-5px;">可用抽奖次数：1</h3>	
+<h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:5px;margin-top:-5px;">可用抽奖次数：<span id="LuckyNum"><%=LuckyNum %></span></h3>	
 	<img style="height:50px;width:50px;" src="<%=headImgUrl %>" alt="">
 <h2  style="color:#fff;width:100%;margin:5px 0px;"><%=name %></h2>	
-<h2  style="color:yellow;width:100%;">当前金币总数：<%=pointSum %></h2>	
+<h2  style="color:yellow;width:100%;">当前金币总数：<span id="pointSum"><%=pointSum %></span></h2>	
 </div>
 </body>
 </html>
