@@ -2240,21 +2240,17 @@ public class MongoDBBasic {
 			if (mongoDB == null) {
 				mongoDB = getMongoDB();
 			}
-			DBObject query = new BasicDBObject();
-			query.put("num", num);
-			DBObject queryresult = mongoDB.getCollection(Article_Message).findOne(query);
+			DBObject queryresult = mongoDB.getCollection(Article_Message).findOne(new BasicDBObject().append("num", num));
 			ArrayList<Map> list = new ArrayList<Map>();
-			if (queryresult == null) {
+			if (queryresult != null) {
 				if(queryresult.get("signUp")!=null){
 					BasicDBList signUpList = (BasicDBList) queryresult.get("signUp");
 					Object[] signUpObjects = signUpList.toArray();
 					for (Object dbobj : signUpObjects) {
 						if (dbobj instanceof DBObject) {
 							HashMap<String,String> temp = new HashMap<String,String>();
-							temp.put("name",((DBObject) dbobj).get("name")
-									.toString());
-							temp.put("phone",((DBObject) dbobj).get("phone")
-									.toString());
+							temp.put("name",((DBObject) dbobj).get("name").toString());
+							temp.put("phone",((DBObject) dbobj).get("phone").toString());
 							list.add(temp);
 						}
 					}
