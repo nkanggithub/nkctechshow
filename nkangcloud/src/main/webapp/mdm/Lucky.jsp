@@ -278,10 +278,12 @@ function drawRouletteWheel() {
 		</div>
 	</div>
 <div style="text-align:center;">
-<h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:5px;margin-top:-5px;">可用抽奖次数：<span id="LuckyNum"><%=LuckyNum %></span></h3>	
+<h3  style="color:#fff;width:100%;text-align:center;font-size:15px;margin-bottom:5px;margin-top:-5px;">可用抽奖次数：<span id="LuckyNum"><%=LuckyNum %></span></h3>
+<% if(name==null){ %>	
 	<img style="height:50px;width:50px;" src="<%=headImgUrl %>" alt="">
 <h2  style="color:#fff;width:100%;margin:5px 0px;"><%=name %></h2>	
 <h2  style="color:yellow;width:100%;">当前金币总数：<span id="pointSum"><%=pointSum %></span></h2>	
+<%} %>
 </div>
 </body>
 </html>
