@@ -2254,7 +2254,9 @@ public class MongoDBBasic {
 							HashMap<String,String> temp = new HashMap<String,String>();
 							temp.put("name",((DBObject) dbobj).get("name").toString());
 							temp.put("phone",((DBObject) dbobj).get("phone").toString());
-							list.add(temp);
+							if(!phone.equals(temp.get("phone"))){
+								list.add(temp);
+							}
 						}
 					}
 				}
