@@ -963,6 +963,16 @@ public class MasterDataRestController {
 		}
 		return ret;
 	}
+	@RequestMapping("/updateUserPoint")
+	public static int updateUserPoint(@RequestParam(value="fromUserName", required=true) String fromUserName,@RequestParam(value="randomNum", required=true) int randomNum){
+		int ret = 0;
+		try{
+			ret =  MongoDBBasic.updateUserPoint(fromUserName, randomNum);
+		}		
+		catch(Exception e){
+		}
+		return ret;
+	}
 	@RequestMapping("/updateVisitPage")
 	public static boolean updateVisitPage(@RequestParam(value="realName", required=true) String realName,@RequestParam(value="flag", required=true) String flag){
 		boolean ret = false;
