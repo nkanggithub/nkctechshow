@@ -67,6 +67,11 @@ n.setTime("2017/2/10 16:42"); */
 						</a></span></li>
 				</ul>
 				</b></div>
+				
+				<%if(n.getTitle().indexOf("Inventory Closed")>0){%>
+				<img style="width: 70px;cursor:pointer;position: fixed;bottom: 50px;right: 0px;z-index: 1002;" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUjnM&oid=00D90000000pkXM">
+				<%} %>
+				
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
               <tr>
