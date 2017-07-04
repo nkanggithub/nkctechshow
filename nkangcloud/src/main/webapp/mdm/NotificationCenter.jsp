@@ -183,6 +183,7 @@ n.setTime("2017/2/10 16:42"); */
 				closeOnConfirm: false,  
 		        confirmButtonText:"提交",  
 		        cancelButtonText:"取消",
+		        confirmButtonColor: "#000",
 		        animation:"slide-from-top"  
 		      }, 
 				function(inputValue){
