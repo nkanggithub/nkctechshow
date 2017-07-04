@@ -952,6 +952,17 @@ public class MasterDataRestController {
 		}
 		return ret;
 	}
+	@RequestMapping("/saveArticleMessageSignUp")
+	public static boolean saveArticleMessageSignUp(@RequestParam(value="num", required=true) String num,@RequestParam(value="name", required=true) String name,@RequestParam(value="phone", required=true) String phone){
+		boolean ret = false;
+		try{
+			ret =  MongoDBBasic.saveArticleMessageSignUp(num,name,phone);
+		}		
+		catch(Exception e){
+			ret = false;
+		}
+		return ret;
+	}
 	@RequestMapping("/updateVisitPage")
 	public static boolean updateVisitPage(@RequestParam(value="realName", required=true) String realName,@RequestParam(value="flag", required=true) String flag){
 		boolean ret = false;
