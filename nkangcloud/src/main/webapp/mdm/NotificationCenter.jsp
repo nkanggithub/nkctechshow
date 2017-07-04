@@ -151,13 +151,13 @@ n.setTime("2017/2/10 16:42"); */
 		<span class="clientCopyRight"><nobr></nobr></span>
 	</div>
 	<script>
-	
+	var code="";
 	$(function(){
 		$("#signUp").click(function(){
-			var formText="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='newItem' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value=''/>"
-		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>电话：</p><input id='newPrice' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='' />"
-		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'></p><input id='newInventory' style='margin-top:0px;width:50%;height:35px;display:block;float:left;background-color:#8CD4F5;color:#fff;' type='button' value='获取验证码'/>"
-		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>验证码：</p><input id='newSoldOutOfPay' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text'/>";
+			var formText="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='name' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value=''/>"
+		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>电话：</p><input id='phone' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='' />"
+		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'></p><input id='sendCode' onclick='sendValidateCode()' style='margin-top:0px;width:50%;height:35px;display:block;float:left;background-color:#8CD4F5;color:#fff;' type='button' value='获取验证码'/>"
+		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>验证码：</p><input id='code' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text'/>";
 			swal({  
 		        title:"我要报名",  
 		        text:formText,
@@ -171,13 +171,70 @@ n.setTime("2017/2/10 16:42"); */
 		      }, 
 				function(inputValue){
 		    	  if (inputValue === false){ return false; }
-		    	  swal("恭喜!", "报名成功！", "success");
-		    	
+		    	  if(code!=$("#code").val()){
+		    		  alert("你输入的验证码不正确！");
+		    		  return false;
+		    	  }
+		    	  $.ajax({
+		  	        cache: false,
+		  	        type: "POST",
+		  	        url:"../saveArticleMessageSignUp",
+		  	        data:{
+		  	        	phone:$("#phone").val(),
+		  	        	name:$("#name").val(),
+		  	        	num:<%=num %> 
+		  	        },
+		  	        async: true,
+		  	        error: function(request) {
+		  	            alert("Connection error");
+		  	        },
+		  	        success: function(data) {
+		  	        	if(data){
+		  		    	  swal("恭喜!", "报名成功！", "success");
+		  	        	}
+		  	        }
+		  	    });
 		      }
 		     );
 		});
 	});
-	
+	function MathRand() 
+	{ 
+		var Num=""; 
+		for(var i=0;i<6;i++) 
+		{ 
+		Num+=Math.floor(Math.random()*10); 
+		} 
+		return Num;
+	} 
+	function sendValidateCode(){
+		var phone = $("#phone").val();
+		var phoneFilter = /^1[0-9]{10}/;
+		if(""==phone||!phoneFilter.test(phone)){
+			 alert("发送失败!请输入正确的号码信息");
+			 return;
+		}else{
+		code=MathRand();
+		$.ajax({
+	        cache: false,
+	        type: "POST",
+	        url:"../sendValidateCode",
+	        data:{
+	        	phone:phone,
+	        	code:code	
+	        },
+	        async: true,
+	        error: function(request) {
+	            alert("Connection error");
+	        },
+	        success: function(data) {
+	        	if(data=="OK"){
+	        	alert("验证码已发送至"+phone+",请耐心等候");
+	        	$("#phone").attr("disable","true");
+	        	}
+	        }
+	    });}
+		}
 	
           jQuery.ajax({
      		type : "GET",
