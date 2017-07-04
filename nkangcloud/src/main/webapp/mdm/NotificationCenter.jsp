@@ -12,12 +12,28 @@
 SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
 String originalUid=(String)request.getAttribute("state");
 String name = "";
+String phone = "";
 String headImgUrl ="";
+boolean isFollow=false;
 if(null != user) {
 	//String uid = request.getParameter("UID");
 	String uid = user.getOpenId();
 	name = user.getNickname();
 	headImgUrl = user.getHeadImgUrl();
+	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+	if(res!=null){
+		isFollow=true;
+		if(res.get("HeadUrl")!=null){
+			headImgUrl=res.get("HeadUrl");
+		}
+		if(res.get("NickName")!=null){
+			name=res.get("NickName");
+		}
+		if(res.get("phone")!=null){
+			phone=res.get("phone");
+		}
+	}
+	
 	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 	Date date=new Date();
 	String currentDate = format.format(date);
@@ -154,7 +170,7 @@ n.setTime("2017/2/10 16:42"); */
 	var code="";
 	$(function(){
 		$("#signUp").click(function(){
-			var formText="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='name' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value=''/>"
+			var formText="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='name' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='<%=name %>'/>"
 		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>电话：</p><input id='phone' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='' />"
 		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'></p><input id='sendCode' onclick='sendValidateCode()' style='margin-top:0px;width:50%;height:35px;display:block;float:left;background-color:#8CD4F5;color:#fff;' type='button' value='获取验证码'/>"
 		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>验证码：</p><input id='code' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text'/>";
@@ -231,6 +247,7 @@ n.setTime("2017/2/10 16:42"); */
 	        	if(data=="OK"){
 	        	alert("验证码已发送至"+phone+",请耐心等候");
 	        	$("#phone").attr("disable","true");
+	        	$("#phone").css("background-color","#ccc");
 	        	}
 	        }
 	    });}
