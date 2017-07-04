@@ -51,7 +51,8 @@ n.setTime("2017/2/10 16:42"); */
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style.css"/>
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
-
+<script	src="../MetroStyleFiles/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 </head>
 <body style="margin:0;">
 <div style="width:100%;text-align:right;right:0px;position: absolute;margin-top:-10px;"><b>
@@ -150,6 +151,34 @@ n.setTime("2017/2/10 16:42"); */
 		<span class="clientCopyRight"><nobr></nobr></span>
 	</div>
 	<script>
+	
+	$(function(){
+		$("#signUp").click(function(){
+			var formText="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='newItem' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value=''/>"
+		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>电话：</p><input id='newPrice' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='' />"
+		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'></p><input id='newInventory' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='button' value='获取验证码'/>"
+		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>验证码：</p><input id='newSoldOutOfPay' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text'/>";
+			swal({  
+		        title:"我要报名",  
+		        text:formText,
+		        html:"true",
+		        showConfirmButton:"true", 
+				showCancelButton: true,   
+				closeOnConfirm: false,  
+		        confirmButtonText:"提交",  
+		        cancelButtonText:"取消",
+		        animation:"slide-from-top"  
+		      }, 
+				function(inputValue){
+		    	  if (inputValue === false){ return false; }
+		    	  swal("恭喜!", "报名成功！", "success");
+		    	
+		      }
+		     );
+		});
+	});
+	
+	
           jQuery.ajax({
      		type : "GET",
      		url : "../QueryClientMeta",
