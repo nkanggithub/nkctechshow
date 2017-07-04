@@ -307,7 +307,20 @@ public class CoreService
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 						
 					}else if (eventKey.equals("myPoints")) {//使劲戳我
-						HashMap<String, String> user = MongoDBBasic.getWeChatUserFromOpenID(fromUserName);
+						Article article = new Article();
+						Random rand = new Random();
+						int randNum = rand.nextInt(30);
+						article.setTitle("点击开启你的幸运旅程-每日抽奖");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
+						//article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
+						article.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FLucky.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+						articleList.add(article);
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
+						
+						/*HashMap<String, String> user = MongoDBBasic.getWeChatUserFromOpenID(fromUserName);
 						String respContent1 = "";
 						Date d = new Date();  
 				        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
@@ -349,7 +362,7 @@ public class CoreService
 								+"*  好的服务】\n"
 								+"* * * * * * * * * * * * * * * * *";
 						textMessage.setContent(respContent1);
-						respXml = MessageUtil.textMessageToXml(textMessage);
+						respXml = MessageUtil.textMessageToXml(textMessage);*/
 
 					}else if (eventKey.equals("mysubscription")) {//我的订阅
 						Article article = new Article();
