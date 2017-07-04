@@ -17,6 +17,15 @@ if(null != user) {
 	String uid = user.getOpenId();
 	name = user.getNickname();
 	headImgUrl = user.getHeadImgUrl();
+	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+	if(res!=null){
+		if(res.get("HeadUrl")!=null){
+			headImgUrl=res.get("HeadUrl");
+		}
+		if(res.get("NickName")!=null){
+			name=res.get("NickName");
+		}
+	}
 	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 	Date date=new Date();
 	String currentDate = format.format(date);
