@@ -85,7 +85,7 @@ n.setTime("2017/2/10 16:42"); */
 				</ul>
 				</b></div>
 				
-				<%if(n.getTitle().indexOf("Inventory Closed")>0){%>
+				<%if(n.getTitle().indexOf("(IC)")>0){%>
 				<img id="signUp" style="width: 70px;cursor:pointer;position: fixed;bottom: 50px;right: 0px;z-index: 1002;" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUmgT&oid=00D90000000pkXM">
 				<%} %>
 				
