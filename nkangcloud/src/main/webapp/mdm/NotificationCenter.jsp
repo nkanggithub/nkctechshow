@@ -246,8 +246,8 @@ n.setTime("2017/2/10 16:42"); */
 	        success: function(data) {
 	        	if(data=="OK"){
 	        	alert("验证码已发送至"+phone+",请耐心等候");
-	        	$("#phone").attr("disable","true");
-	        	$("#phone").css("background-color","#ccc");
+	        	$("#sendCode").attr("disable","true");
+	        	$("#sendCode").css("background-color","#ccc");
 	        	}
 	        }
 	    });}
