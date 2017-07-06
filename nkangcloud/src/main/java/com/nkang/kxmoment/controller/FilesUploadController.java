@@ -275,7 +275,8 @@ public class FilesUploadController {
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
 		String mediaID=request.getParameter("mediaID");
-		String articleID=RestUtils.uploadNews(mediaID,title,content);   
+		String url=request.getParameter("url");
+		String articleID=RestUtils.uploadNews(mediaID,title,content,url);   
 		articleID=articleID.substring(7, articleID.length());   
         JSONObject resultJSON=JSONObject.parseObject(articleID);
         if(resultJSON!=null){  
@@ -290,7 +291,8 @@ public class FilesUploadController {
 	@RequestMapping(value = "/sendMass", produces = "text/html;charset=UTF-8")
 	public @ResponseBody String sendMass(HttpServletRequest request,HttpServletResponse response) throws JSONException {
 		List<String> userList = MongoDBBasic.getAllOpenID();
-//		userList.add("oqPI_xEjbhsIuu4DcfxED6IqDQ5o");
+//		List<String> userList=ArrayList<String>();
+//		userList.add("oqPI_xDdGid-HlbeVKZjpoO5zoKw");
 //		userList.add("oqPI_xACjXB7pVPGi5KH9Nzqonj4");
 		int realReceiver=0;
 		String articleID=request.getParameter("articleID");
