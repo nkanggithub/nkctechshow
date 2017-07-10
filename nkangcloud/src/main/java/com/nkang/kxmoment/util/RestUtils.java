@@ -2364,7 +2364,7 @@ public class RestUtils {
 		if ("".equals(am.getWebUrl()) || "" == am.getWebUrl()) {
 			str = "{\"title\":\"" + am.getTitle() + "\",\"description\":\""
 					+ "Publisher - " + cm.getClientName() + ":\n"
-					+ am.getContent() + "\",\"url\":\"http://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+am.getNum()+"&response_type=code&scope=snsapi_userinfo&state="+toOpenId+"wechat_redirect\",\"picurl\":" + "\"" + img + "\"}";
+					+ am.getContent() + "\",\"url\":\"http://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+am.getNum()+"&response_type=code&scope=snsapi_userinfo&state="+toOpenId+"#wechat_redirect\",\"picurl\":" + "\"" + img + "\"}";
 		} else {
 			str = "{\"title\":\"" + am.getTitle() + "\",\"description\":\""
 					+ cm.getClientName() + "\",\"url\":\"" + am.getWebUrl()
