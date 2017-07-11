@@ -18,10 +18,7 @@
 <script type="text/javascript">
 var string1='jsapi_ticket=<%=ticket%>'
 	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://shenan.duapp.com/mdm/test.jsp';
-	
-	
 var signature=$.sha1(string1);
-
 wx.config({
         debug: false,
         appId: '<%=Constants.APP_ID%>'+'',
@@ -38,7 +35,7 @@ wx.config({
           ]
     });
  wx.ready(function () {
-	 wx.checkJsApi({
+	/*  wx.checkJsApi({
             jsApiList: [
                 'getLocation',
                 'onMenuShareTimeline',
@@ -47,13 +44,11 @@ wx.config({
             success: function (res) {
                 alert(JSON.stringify(res));
             }
-     });
-	 
-	 var url = window.location.href;
+     }); */
+	 var url ="http://shenan.duapp.com/mdm/test.jsp";
      var shareTitle="分享的标题";
      var shareDesc="分享的描述";
      var shareImgUrl="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUmgT&oid=00D90000000pkXM";
-	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
          title: shareTitle, // 分享标题
          desc: shareDesc, // 分享描述
