@@ -129,7 +129,7 @@ public class MongoDBBasic {
 			if (queryresult != null) {
 				Object accessKey = queryresult.get("WeChatAccessKey");
 				DBObject AccessKeyObj = new BasicDBObject();
-				AccessKeyObj = (DBObject) AccessKeyObj;
+				AccessKeyObj = (DBObject) accessKey;
 				if (AccessKeyObj != null) {
 					if (AccessKeyObj.get("LastUpdated") != null) {
 						long nowDate=new java.util.Date().getTime();
@@ -173,7 +173,7 @@ public class MongoDBBasic {
 			if (queryresult != null) {
 				Object accessKey = queryresult.get("WeChatTicket");
 				DBObject AccessKeyObj = new BasicDBObject();
-				AccessKeyObj = (DBObject) AccessKeyObj;
+				AccessKeyObj = (DBObject) accessKey;
 				if (AccessKeyObj != null) {
 					if (AccessKeyObj.get("LastUpdated") != null) {
 						long nowDate=new java.util.Date().getTime();
