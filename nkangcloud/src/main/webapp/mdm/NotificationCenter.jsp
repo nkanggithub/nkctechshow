@@ -77,6 +77,9 @@ String ticket=RestUtils.getTicket();
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script type="text/javascript">
 var url = window.location.href;
+if(url.indexOf('#')!=-1){
+	url=url.substr(0,(url.indexOf('#')-1));
+}
 var string1='jsapi_ticket=<%=ticket%>'
 	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url='+url;
 var signature=$.sha1(string1);
