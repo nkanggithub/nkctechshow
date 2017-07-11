@@ -17,6 +17,7 @@
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script type="text/javascript">
 var url = window.location.href;
+url=url.substr(0,(url.indexOf('#')-1));
 var string1='jsapi_ticket=<%=ticket%>'
 	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url='+url;
 var signature=$.sha1(string1);
@@ -46,6 +47,7 @@ wx.config({
                 alert(JSON.stringify(res));
             }
      }); */
+     url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2Ftest.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      var shareTitle="分享的标题";
      var shareDesc="分享的描述";
      var shareImgUrl="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUmgT&oid=00D90000000pkXM";
