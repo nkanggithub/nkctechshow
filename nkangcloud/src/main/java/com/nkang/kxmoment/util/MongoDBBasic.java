@@ -156,7 +156,8 @@ public class MongoDBBasic {
 			DBObject dbo = new BasicDBObject();
 			dbo.put("WeChatAccessKey.AKey",key);
 			dbo.put("WeChatAccessKey.ExpiresIn",Integer.valueOf(expiresIn));
-			dbo.put("WeChatAccessKey.LastUpdated",new java.util.Date().getTime());
+			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+			dbo.put("WeChatAccessKey.LastUpdated", DateUtil.timestamp2Str(cursqlTS));
 			BasicDBObject doc = new BasicDBObject();
 			doc.put("$set", dbo);
 			mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode","DXC"), doc);
