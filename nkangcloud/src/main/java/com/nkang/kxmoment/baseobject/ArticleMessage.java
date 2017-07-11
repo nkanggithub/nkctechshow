@@ -12,11 +12,11 @@ public class ArticleMessage {
 	public String picture;
 	public List<String> visited;
 	public String visitedNum;
-	public List<Map> signUp;
-	public List<Map> getSignUp() {
+	public List<Teamer> signUp;
+	public List<Teamer> getSignUp() {
 		return signUp;
 	}
-	public void setSignUp(List<Map> signUp) {
+	public void setSignUp(List<Teamer> signUp) {
 		this.signUp = signUp;
 	}
 	public String getVisitedNum() {
