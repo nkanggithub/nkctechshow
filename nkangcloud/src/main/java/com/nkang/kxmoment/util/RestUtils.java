@@ -53,7 +53,7 @@ public class RestUtils {
 		String accessToken = MongoDBBasic.getAccessKey();
 		if(accessToken!=null){
 			return accessToken;
-		}
+		}else{
 		String url = "https://" + Constants.wechatapihost
 				+ "/cgi-bin/token?grant_type=client_credential&appid="
 				+ Constants.APP_ID + "&secret=" + Constants.APPSECRET;
@@ -89,12 +89,13 @@ public class RestUtils {
 			e.printStackTrace();
 		}
 		return accessToken;
+		}
 	}
 	public static String getTicket() {
 		String ticket = MongoDBBasic.getTicket();
 		if(ticket!=null){
 			return ticket;
-		}
+		}else{
 		String url = "https://" + Constants.wechatapihost
 				+ "/cgi-bin/ticket/getticket?access_token="+getAccessKey()
 				+ "&type=jsapi";
@@ -129,6 +130,7 @@ public class RestUtils {
 			e.printStackTrace();
 		}
 		return ticket;
+		}
 	}
 
 	public static List<String> getWeChatUserListID(String akey) {
