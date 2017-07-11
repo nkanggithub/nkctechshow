@@ -50,14 +50,11 @@ public class RestUtils {
 	private static Map<String, OrgCountryCode> OrgCountryCodeMap;
 
 	public static String getAccessKey() {
-		String accessToken = MongoDBBasic.getAccessKey();
-		if(accessToken!=null){
-			return accessToken;
-		}else{
 		String url = "https://" + Constants.wechatapihost
 				+ "/cgi-bin/token?grant_type=client_credential&appid="
 				+ Constants.APP_ID + "&secret=" + Constants.APPSECRET;
 		String expires_in = null;
+		String accessToken = null;
 		try {
 			URL urlGet = new URL(url);
 			HttpURLConnection http = (HttpURLConnection) urlGet
@@ -89,7 +86,6 @@ public class RestUtils {
 			e.printStackTrace();
 		}
 		return accessToken;
-		}
 	}
 	public static String getTicket() {
 		String ticket = MongoDBBasic.getTicket();
@@ -97,7 +93,7 @@ public class RestUtils {
 			return ticket;
 		}else{
 		String url = "https://" + Constants.wechatapihost
-				+ "/cgi-bin/ticket/getticket?access_token="+getAccessKey()
+				+ "/cgi-bin/ticket/getticket?access_token="+MongoDBBasic.QueryAccessKey()
 				+ "&type=jsapi";
 		try {
 			URL urlGet = new URL(url);
