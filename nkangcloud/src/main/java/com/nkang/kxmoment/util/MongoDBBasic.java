@@ -3730,9 +3730,9 @@ public class MongoDBBasic {
 							"picture").toString());
 					BasicDBList signUp = (BasicDBList) o.get("signUp");
 					Teamer s;
+					List<Teamer> signUpMaps=new ArrayList<Teamer>();
 					if (signUp != null) {
 						System.out.println("signUpList is not null-------------------");
-						List<Teamer> signUpMaps=new ArrayList<Teamer>();
 						Object[] su = signUp.toArray();
 						for (Object dbobj : su) {
 							if (dbobj instanceof DBObject) {
@@ -3742,8 +3742,8 @@ public class MongoDBBasic {
 								 signUpMaps.add(s);
 							}
 						}
-						am.setSignUp(signUpMaps);
 					}
+					am.setSignUp(signUpMaps);
 					amList.add(am);
 					System.out.println("am.getPicture()---------"
 							+ am.getPicture());
@@ -3758,10 +3758,12 @@ public class MongoDBBasic {
 	public static boolean isSignUpByName(String name,List<Teamer> signUps)
 	{
 		boolean isSignUp=false;
+		if(signUps.size()!=0){
 		for(Teamer s:signUps){
 			if(s.getRealName().equals(name)){
 				isSignUp=true;
 			}
+		}
 		}
 		return isSignUp;
 	}

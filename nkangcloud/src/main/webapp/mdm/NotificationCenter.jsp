@@ -59,10 +59,7 @@ n.setTime("2017/2/10 16:42"); */
 	n=nList.get(0); 
 }
 List<Teamer> signUps=n.getSignUp();
-boolean isSignUp=false;
-if(!signUps.isEmpty()){
-	System.out.println("signUps is not empty..........");
-isSignUp=MongoDBBasic.isSignUpByName(name, signUps);}
+boolean isSignUp=MongoDBBasic.isSignUpByName(name, signUps);
 String ticket=RestUtils.getTicket();
 %>
 <!DOCTYPE HTML>
