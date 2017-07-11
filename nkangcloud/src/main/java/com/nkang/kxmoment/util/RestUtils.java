@@ -50,10 +50,13 @@ public class RestUtils {
 	private static Map<String, OrgCountryCode> OrgCountryCodeMap;
 
 	public static String getAccessKey() {
+		String accessToken = MongoDBBasic.getAccessKey();
+		if(accessToken!=null){
+			return accessToken;
+		}
 		String url = "https://" + Constants.wechatapihost
 				+ "/cgi-bin/token?grant_type=client_credential&appid="
 				+ Constants.APP_ID + "&secret=" + Constants.APPSECRET;
-		String accessToken = null;
 		String expires_in = null;
 		try {
 			URL urlGet = new URL(url);
@@ -88,10 +91,13 @@ public class RestUtils {
 		return accessToken;
 	}
 	public static String getTicket() {
+		String ticket = MongoDBBasic.getTicket();
+		if(ticket!=null){
+			return ticket;
+		}
 		String url = "https://" + Constants.wechatapihost
 				+ "/cgi-bin/ticket/getticket?access_token="+getAccessKey()
 				+ "&type=jsapi";
-		String ticket = null;
 		try {
 			URL urlGet = new URL(url);
 			HttpURLConnection http = (HttpURLConnection) urlGet
