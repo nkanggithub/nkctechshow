@@ -15,23 +15,15 @@
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <script type="text/javascript" src="../Jsp/JS/jquery.sha1.js"></script>
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-
-</head>
-<body>
-测试分享功能
-<span id="a"></span><br/>
-<span id="b"></span>
 <script type="text/javascript">
 var string1='jsapi_ticket=<%=ticket%>'
 	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://shenan.duapp.com/mdm/test.jsp';
 	
 	
-	$("#a").html(string1);
 var signature=$.sha1(string1);
-	$("#b").html(signature);
 
 wx.config({
-        debug: true,
+        debug: false,
         appId: '<%=Constants.APP_ID%>'+'',
         timestamp: 1414587457,
         nonceStr: 'Wm3WZYTPz0wzccnW'+'',
@@ -103,21 +95,10 @@ wx.config({
          alert("errorMSG:"+res);
      });
  });
- 
- /* // 分享到朋友圈
- WeixinJSBridge.on('menu:share:timeline', function (argv) {
-     WeixinJSBridge.invoke('shareTimeline', {
-         "img_url": "http://bcs.duapp.com/api100/image/logo/newyear.jpg",
-         "img_width": "160",
-         "img_height": "160",
-         "link": "http://api100.duapp.com/card/",
-         "desc":  "Best wishes for a wonderful new year.",
-         "title": "新年贺卡"
-     }, function (res) {
-         _report('timeline', res.err_msg);
-     });
- });
-}, false) */
 </script>
+</head>
+<body>
+测试分享功能
+
 </body>
 </html>
