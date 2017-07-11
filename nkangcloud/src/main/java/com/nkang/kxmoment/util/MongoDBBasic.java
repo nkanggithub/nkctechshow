@@ -134,7 +134,7 @@ public class MongoDBBasic {
 					if (AccessKeyObj.get("LastUpdated") != null) {
 						long nowDate=new java.util.Date().getTime();
 						long startDate=Long.parseLong(AccessKeyObj.get("LastUpdated").toString());
-						if(nowDate-startDate<7100){
+						if(nowDate-startDate<(7100*1000)){
 							AccessKey=AccessKeyObj.get("AKey").toString();
 						}else{
 							AccessKey=null;
@@ -178,7 +178,7 @@ public class MongoDBBasic {
 					if (AccessKeyObj.get("LastUpdated") != null) {
 						long nowDate=new java.util.Date().getTime();
 						long startDate=Long.parseLong(AccessKeyObj.get("LastUpdated").toString());
-						if(nowDate-startDate<7100){
+						if(nowDate-startDate<(7100*1000)){
 							Ticket=AccessKeyObj.get("Ticket").toString();
 						}else{
 							Ticket=null;
