@@ -16,8 +16,9 @@
 <script type="text/javascript" src="../Jsp/JS/jquery.sha1.js"></script>
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script type="text/javascript">
+var url = window.location.href;
 var string1='jsapi_ticket=<%=ticket%>'
-	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://shenan.duapp.com/mdm/test.jsp';
+	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url='+url;
 var signature=$.sha1(string1);
 wx.config({
         debug: false,
@@ -45,10 +46,10 @@ wx.config({
                 alert(JSON.stringify(res));
             }
      }); */
-	 var url ="http://shenan.duapp.com/mdm/test.jsp";
      var shareTitle="分享的标题";
      var shareDesc="分享的描述";
      var shareImgUrl="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUmgT&oid=00D90000000pkXM";
+	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
          title: shareTitle, // 分享标题
          desc: shareDesc, // 分享描述
