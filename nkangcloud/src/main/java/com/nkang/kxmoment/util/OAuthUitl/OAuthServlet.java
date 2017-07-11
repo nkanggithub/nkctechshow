@@ -96,7 +96,7 @@ public class OAuthServlet implements Filter  {
 	                 value+=req.getParameter(paramName);
         		 }
         	 }  
-        	 uri=java.net.URLDecoder.decode(uri+value, "utf-8");
+        	 uri=java.net.URLDecoder.encode(uri+value, "utf-8");
         	 log.info("uri:"+uri);
         	((HttpServletResponse) response).sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com"+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
         }
