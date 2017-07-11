@@ -15,30 +15,34 @@
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <script type="text/javascript" src="../Jsp/JS/jquery.sha1.js"></script>
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+</head>
+<body>
+测试分享功能
+<span id="a"></span><br/>
+<span id="b"></span>
 <script type="text/javascript">
-var string1="noncestr=abc"
-	+"&"
-	+"jsapi_ticket=<%=ticket%>"
-	+"&"
-	+"timestamp=1414587457"
-	+"&"
-	+"url=http://shenan.duapp.com/mdm/test.jsp";
+var string1='jsapi_ticket=<%=ticket%>'
+	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://shenan.duapp.com/mdm/test.jsp';
 	
+	
+	$("#a").html(string1);
 var signature=$.sha1(string1);
+	$("#b").html(signature);
 
 wx.config({
-        debug: false,
-        appId: '<%=Constants.APP_ID%>',
+        debug: true,
+        appId: '<%=Constants.APP_ID%>'+'',
         timestamp: 1414587457,
-        nonceStr: 'abc',
-        signature: signature,
+        nonceStr: 'Wm3WZYTPz0wzccnW'+'',
+        signature: signature+'',
         jsApiList: [
             // 所有要调用的 API 都要加到这个列表中
             'checkJsApi',
-            'openLocation',
-            'getLocation',
             'onMenuShareTimeline',
-            'onMenuShareAppMessage'
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo'
           ]
     });
  wx.ready(function () {
@@ -54,12 +58,13 @@ wx.config({
      });
 	 
 	 var url = window.location.href;
-     var shareTitle="明日医疗资讯";
+     var shareTitle="分享的标题";
+     var shareDesc="分享的描述";
      var shareImgUrl="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUmgT&oid=00D90000000pkXM";
 	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
-         title: "明日医疗资讯", // 分享标题
-         desc: shareTitle, // 分享描述
+         title: shareTitle, // 分享标题
+         desc: shareDesc, // 分享描述
          link: url, // 分享链接
          imgUrl: shareImgUrl, // 分享图标
          type: '', // 分享类型,music、video或link，不填默认为link
@@ -78,7 +83,7 @@ wx.config({
      });
      //------------"分享到朋友圈"
      wx.onMenuShareTimeline({
-         title: '明日医疗资讯', // 分享标题
+         title: shareTitle, // 分享标题
          link:url, // 分享链接
          imgUrl: shareImgUrl, // 分享图标
          success: function () { 
@@ -92,6 +97,10 @@ wx.config({
          fail: function (res) {
              alert(JSON.stringify(res));
          }
+     });
+     wx.error(function(res){
+         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+         alert("errorMSG:"+res);
      });
  });
  
@@ -110,8 +119,5 @@ wx.config({
  });
 }, false) */
 </script>
-</head>
-<body>
-测试分享功能
 </body>
 </html>
