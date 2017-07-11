@@ -1,11 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ArticleMessage"%>
+<%@ page import="com.nkang.kxmoment.baseobject.Teamer"%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
-
+<%@ page import="java.util.*,com.nkang.kxmoment.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%	
 //获取由OAuthServlet中传入的参数
@@ -57,6 +58,12 @@ n.setTime("2017/2/10 16:42"); */
    if(!nList.isEmpty()){
 	n=nList.get(0); 
 }
+List<Teamer> signUps=n.getSignUp();
+boolean isSignUp=false;
+if(!signUps.isEmpty()){
+	System.out.println("signUps is not empty..........");
+isSignUp=MongoDBBasic.isSignUpByName(name, signUps);}
+String ticket=RestUtils.getTicket();
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -69,6 +76,85 @@ n.setTime("2017/2/10 16:42"); */
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <script	src="../MetroStyleFiles/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
+<script type="text/javascript" src="../Jsp/JS/jquery.sha1.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript">
+var url = window.location.href;
+var string1='jsapi_ticket=<%=ticket%>'
+	+'&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url='+url;
+var signature=$.sha1(string1);
+wx.config({
+        debug: false,
+        appId: '<%=Constants.APP_ID%>'+'',
+        timestamp: 1414587457,
+        nonceStr: 'Wm3WZYTPz0wzccnW'+'',
+        signature: signature+'',
+        jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo'
+          ]
+    });
+ wx.ready(function () {
+	/*  wx.checkJsApi({
+            jsApiList: [
+                'getLocation',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ],
+            success: function (res) {
+                alert(JSON.stringify(res));
+            }
+     }); */
+     var shareTitle="<%=n.getTitle()%>";
+     var shareDesc="<%= n.getContent().substring(0,20) %>";
+     var shareImgUrl="<%=n.getPicture()%>";
+	//----------“分享给朋友”
+     wx.onMenuShareAppMessage({
+         title: shareTitle, // 分享标题
+         desc: shareDesc, // 分享描述
+         link: url, // 分享链接
+         imgUrl: shareImgUrl, // 分享图标
+         type: '', // 分享类型,music、video或link，不填默认为link
+         dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+         success: function () { 
+             // 用户确认分享后执行的回调函数、
+            // alert("用户成功分享了该网页");
+         },
+         cancel: function () { 
+             // 用户取消分享后执行的回调函数
+           //  alert("用户取消了分享");
+         },
+         fail: function (res) {
+          //   alert(JSON.stringify(res));
+         }
+     });
+     //------------"分享到朋友圈"
+     wx.onMenuShareTimeline({
+         title: shareTitle, // 分享标题
+         link:url, // 分享链接
+         imgUrl: shareImgUrl, // 分享图标
+         success: function () { 
+             // 用户确认分享后执行的回调函数
+          //   alert("用户成功分享了该网页");
+         },
+         cancel: function () { 
+             // 用户取消分享后执行的回调函数
+         //    alert("用户取消了分享");
+         },
+         fail: function (res) {
+          //   alert(JSON.stringify(res));
+         }
+     });
+     wx.error(function(res){
+         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+         alert("errorMSG:"+res);
+     });
+ });
+</script>
 </head>
 <body style="margin:0;">
 <div style="width:100%;text-align:right;right:0px;position: absolute;margin-top:-10px;"><b>
@@ -167,52 +253,80 @@ n.setTime("2017/2/10 16:42"); */
 		<span class="clientCopyRight"><nobr></nobr></span>
 	</div>
 	<script>
+	var isSignUp=<%=isSignUp%>;
 	var code="";
 	$(function(){
 		$("#signUp").click(function(){
-			var formText="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='name' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='<%=name %>'/>"
-		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>电话：</p><input id='phone' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='<%=phone %>' />"
-		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'></p><input id='sendCode' onclick='sendValidateCode()' style='margin-top:0px;width:50%;height:35px;display:block;float:left;background-color:#000;color:#fff;' type='button' value='获取验证码'/>"
-		    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>验证码：</p><input id='code' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text'/>";
-			swal({  
-		        title:"我要报名",  
-		        text:formText,
+			
+			if(isSignUp){
+				var alreadySign="<div style='height:200px;overflow:scroll'>";
+				<%for(Teamer s:signUps){%>
+				alreadySign+="<p style='width:50%;float:left;height:40px;line-height:40px;text-align: center;'>"+"<%=s.getRealName()%>"+"</p><p style='width:30%;float:left;height:40px;line-height:40px;text-align: center;'>"+"<%=s.getPhone()%>"+"</p>";
+			<%}%>
+			alreadySign+="</div>";
+			title="报名列表";
+		    swal({  
+		        title:"报名列表",  
+		        text:alreadySign,
 		        html:"true",
-		        showConfirmButton:"true", 
+		        showConfirmButton:false, 
 				showCancelButton: true,   
-				closeOnConfirm: false,  
-		        confirmButtonText:"提交",  
-		        cancelButtonText:"取消",
+				closeOnConfirm: false,   
+		        cancelButtonText:"关闭",
 		        confirmButtonColor: "#000",
 		        animation:"slide-from-top"  
 		      }, 
 				function(inputValue){
 		    	  if (inputValue === false){ return false; }
-		    	  if(code!=$("#code").val()){
-		    		  alert("你输入的验证码不正确！");
-		    		  return false;
-		    	  }
-		    	  $.ajax({
-		  	        cache: false,
-		  	        type: "POST",
-		  	        url:"../saveArticleMessageSignUp",
-		  	        data:{
-		  	        	phone:$("#phone").val(),
-		  	        	name:$("#name").val(),
-		  	        	num:<%=num %> 
-		  	        },
-		  	        async: true,
-		  	        error: function(request) {
-		  	            alert("Connection error");
-		  	        },
-		  	        success: function(data) {
-		  	        	if(data){
-		  		    	  swal("恭喜!", "报名成功！", "success");
-		  	        	}
-		  	        }
-		  	    });
 		      }
 		     );
+			}
+			else{
+				var noSignUp="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='name' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='<%=name %>'/>"
+				    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>电话：</p><input id='phone' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='<%=phone %>' />"
+				    +"<p style='width:30%;float:left;height:40px;line-height:40px;'></p><input id='sendCode' onclick='sendValidateCode()' style='margin-top:0px;width:50%;height:35px;display:block;float:left;background-color:#000;color:#fff;' type='button' value='获取验证码'/>"
+				    +"<p style='width:30%;float:left;height:40px;line-height:40px;'>验证码：</p><input id='code' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text'/>";
+			    swal({  
+			        title:"我要报名",  
+			        text:noSignUp,
+			        html:"true",
+			        showConfirmButton:"true", 
+					showCancelButton: true,   
+					closeOnConfirm: false,  
+			        confirmButtonText:"提交",  
+			        cancelButtonText:"取消",
+			        confirmButtonColor: "#000",
+			        animation:"slide-from-top"  
+			      }, 
+					function(inputValue){
+			    	  if (inputValue === false){ return false; }
+			    	  if(code!=$("#code").val()){
+			    		  alert("你输入的验证码不正确！");
+			    		  return false;
+			    	  }
+			    	  $.ajax({
+			  	        cache: false,
+			  	        type: "POST",
+			  	        url:"../saveArticleMessageSignUp",
+			  	        data:{
+			  	        	phone:$("#phone").val(),
+			  	        	name:$("#name").val(),
+			  	        	num:<%=num %> 
+			  	        },
+			  	        async: true,
+			  	        error: function(request) {
+			  	            alert("Connection error");
+			  	        },
+			  	        success: function(data) {
+			  	        	if(data){
+			  		    	  swal("恭喜!", "报名成功！", "success");
+			  	        	}
+			  	        }
+			  	    });
+			      }
+			     );
+			}
+
 		});
 	});
 	function MathRand() 

@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
+
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -3727,6 +3728,22 @@ public class MongoDBBasic {
 							"visitedNum").toString());
 					am.setPicture(o.get("picture") == null ? "" : o.get(
 							"picture").toString());
+					BasicDBList signUp = (BasicDBList) o.get("signUp");
+					Teamer s;
+					if (signUp != null) {
+						System.out.println("signUpList is not null-------------------");
+						List<Teamer> signUpMaps=new ArrayList<Teamer>();
+						Object[] su = signUp.toArray();
+						for (Object dbobj : su) {
+							if (dbobj instanceof DBObject) {
+								 s=new Teamer();
+								 s.setRealName(((DBObject) dbobj).get("name").toString());
+								 s.setPhone(((DBObject) dbobj).get("phone").toString());
+								 signUpMaps.add(s);
+							}
+						}
+						am.setSignUp(signUpMaps);
+					}
 					amList.add(am);
 					System.out.println("am.getPicture()---------"
 							+ am.getPicture());
@@ -3738,6 +3755,16 @@ public class MongoDBBasic {
 		return amList;
 	}
 
+	public static boolean isSignUpByName(String name,List<Teamer> signUps)
+	{
+		boolean isSignUp=false;
+		for(Teamer s:signUps){
+			if(s.getRealName().equals(name)){
+				isSignUp=true;
+			}
+		}
+		return isSignUp;
+	}
 	/*
 	 * chang-zheng to update user getNotification
 	 */
