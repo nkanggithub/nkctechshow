@@ -1,5 +1,7 @@
 package com.nkang.kxmoment.util.OAuthUitl;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -72,12 +74,31 @@ public class OAuthServlet implements Filter  {
                 }
             }
             log.info("end doFilter.......");
+            chain.doFilter(request, response);
+        }else{
+        	HttpServletRequest req=(HttpServletRequest) request;
+        	 String uri= req.getRequestURI(); //uri就是获取到的连接地址!
+        	 Enumeration  enum1=req.getParameterNames();
+        	 String value="";
+        	 while(enum1.hasMoreElements()){    
+        		 if("".equals(value)){
+        			 value+="?";
+        		 }else{
+        			 value+="&";
+        		 }
+                 String  paramName=(String)enum1.nextElement();          
+                 value+=paramName;
+                 value+="=";
+                 value+=req.getParameter(paramName);
+        	 }  
+        	 uri=java.net.URLDecoder.decode(uri+value, "utf-8");
+        	 log.info("uri:"+uri);
+        	((HttpServletResponse) response).sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com"+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
         }
        
        
         // 跳转到index.jsp
 //        request.getRequestDispatcher("index.jsp").forward(request, response);
-        chain.doFilter(request, response);
 		
 	}
 	@Override
