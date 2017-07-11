@@ -49,9 +49,13 @@ public class OAuthServlet implements Filter  {
         // 用户同意授权后，能获取到code
         String code = request.getParameter("code");
         String state = request.getParameter("state");
+    	HttpServletRequest req=(HttpServletRequest) request;
+        String uri= req.getRequestURI(); //uri就是获取到的连接地址!
+        
         //String accessToken=null;
         request.setAttribute("code", code);
-        if(code!=null&&code!=""){
+        request.setAttribute("uri", uri);
+        if(code!=null&&code!=""&&uri.equals(request.getAttribute("uri"))){
         	 // 用户同意授权
             if (!"authdeny".equals(code)) {
             	//log.info("Start call weixinOauth2Token .......");
@@ -76,20 +80,21 @@ public class OAuthServlet implements Filter  {
             log.info("end doFilter.......");
             chain.doFilter(request, response);
         }else{
-        	HttpServletRequest req=(HttpServletRequest) request;
-        	 String uri= req.getRequestURI(); //uri就是获取到的连接地址!
+        	
         	 Enumeration  enum1=req.getParameterNames();
         	 String value="";
         	 while(enum1.hasMoreElements()){    
-        		 if("".equals(value)){
-        			 value+="?";
-        		 }else{
-        			 value+="&";
+        		 String  paramName=(String)enum1.nextElement();    
+        		 if(!"from".equals(paramName)&&!"isappinstalled".equals(paramName)){
+	        		 if("".equals(value)){
+	        			 value+="?";
+	        		 }else{
+	        			 value+="&";
+	        		 }
+	                 value+=paramName;
+	                 value+="=";
+	                 value+=req.getParameter(paramName);
         		 }
-                 String  paramName=(String)enum1.nextElement();          
-                 value+=paramName;
-                 value+="=";
-                 value+=req.getParameter(paramName);
         	 }  
         	 uri=java.net.URLDecoder.decode(uri+value, "utf-8");
         	 log.info("uri:"+uri);
