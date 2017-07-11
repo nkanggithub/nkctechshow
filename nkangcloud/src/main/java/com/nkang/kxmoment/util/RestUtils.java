@@ -121,6 +121,9 @@ public class RestUtils {
 			String message = new String(jsonBytes, "UTF-8");
 			JSONObject demoJson = new JSONObject(message);
 			ticket = demoJson.getString("ticket");
+			String expires_in = demoJson.getString("expires_in");
+			// DBUtils.updateAccessKey(accessToken, expires_in);
+			MongoDBBasic.updateTicket(ticket, expires_in);
 			is.close();
 		} catch (Exception e) {
 			e.printStackTrace();
