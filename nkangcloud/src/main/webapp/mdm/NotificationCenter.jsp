@@ -110,7 +110,7 @@ wx.config({
             }
      }); */
      var shareTitle="<%=n.getTitle()%>";
-     var shareDesc="<%= n.getContent().substring(0,20) %>";
+     var shareDesc="<%= n.getContent().substring(0,40) %>";
      var shareImgUrl="<%=n.getPicture()%>";
 	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
