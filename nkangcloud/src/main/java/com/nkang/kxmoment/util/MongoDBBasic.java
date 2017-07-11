@@ -121,34 +121,6 @@ public class MongoDBBasic {
 		}
 	}
 */
-	public static String getAccessKey() {
-		String AccessKey=null;
-		try {
-			mongoDB = getMongoDB();
-			DBObject queryresult = mongoDB.getCollection(ClientMeta).findOne(new BasicDBObject().append("ClientCode", "DXC"));
-			if (queryresult != null) {
-				Object accessKey = queryresult.get("WeChatAccessKey");
-				DBObject AccessKeyObj = new BasicDBObject();
-				AccessKeyObj = (DBObject) accessKey;
-				if (AccessKeyObj != null) {
-					if (AccessKeyObj.get("LastUpdated") != null) {
-						long nowDate=new java.util.Date().getTime();
-						long startDate=DateUtil.str2Timestamp(AccessKeyObj.get("LastUpdated").toString()).getTime();
-						if(nowDate-startDate<(7100*1000)){
-							AccessKey=AccessKeyObj.get("AKey").toString();
-						}else{
-							AccessKey=null;
-						}
-					}
-				}
-			}
-			
-			log.info("getAccessKey end");
-		} catch (Exception e) {
-			log.info("getAccessKey--" + e.getMessage());
-		}
-		return AccessKey;
-	}
 	public static void updateAccessKey(String key, String expiresIn) {
 		try {
 			mongoDB = getMongoDB();
@@ -172,25 +144,24 @@ public class MongoDBBasic {
 			mongoDB = getMongoDB();
 			DBObject queryresult = mongoDB.getCollection(ClientMeta).findOne(new BasicDBObject().append("ClientCode", "DXC"));
 			if (queryresult != null) {
-				Object accessKey = queryresult.get("WeChatTicket");
-				DBObject AccessKeyObj = new BasicDBObject();
-				AccessKeyObj = (DBObject) accessKey;
-				if (AccessKeyObj != null) {
-					if (AccessKeyObj.get("LastUpdated") != null) {
+				Object WeChatTicket = queryresult.get("WeChatTicket");
+				DBObject o = new BasicDBObject();
+				o = (DBObject) WeChatTicket;
+				if (o != null) {
+					if (o.get("LastUpdated") != null) {
 						long nowDate=new java.util.Date().getTime();
-						long startDate=Long.parseLong(AccessKeyObj.get("LastUpdated").toString());
+						long startDate=Long.parseLong(o.get("LastUpdated").toString());
 						if(nowDate-startDate<(7100*1000)){
-							Ticket=AccessKeyObj.get("Ticket").toString();
+							Ticket=o.get("Ticket").toString();
 						}else{
 							Ticket=null;
 						}
 					}
 				}
 			}
-			
-			log.info("getAccessKey end");
+			log.info("getTicket end");
 		} catch (Exception e) {
-			log.info("getAccessKey--" + e.getMessage());
+			log.info("getTicket--" + e.getMessage());
 		}
 		return Ticket;
 	}
