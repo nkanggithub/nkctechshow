@@ -63,6 +63,11 @@ n.setTime("2017/2/10 16:42"); */
 List<Teamer> signUps=n.getSignUp();
 boolean isSignUp=MongoDBBasic.isSignUpByName(name, signUps);
 String ticket=RestUtils.getTicket();
+String pic="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUmgT&oid=00D90000000pkXM";
+if(isSignUp){
+pic="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVAXR&oid=00D90000000pkXM";
+}
+
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -174,7 +179,7 @@ wx.config({
 				</b></div>
 				
 				<%if(n.getTitle().indexOf("(IC)")>0){%>
-				<img id="signUp" style="width: 70px;cursor:pointer;position: fixed;bottom: 50px;right: 0px;z-index: 1002;" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EUmgT&oid=00D90000000pkXM">
+				<img id="signUp" style="width: 70px;cursor:pointer;position: fixed;bottom: 50px;right: 0px;z-index: 1002;" src="<%=pic%>">
 				<%} %>
 				
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
@@ -322,6 +327,8 @@ wx.config({
 			  	        success: function(data) {
 			  	        	if(data){
 			  		    	  swal("恭喜!", "报名成功！", "success");
+			  				$("#signUp").attr("src","https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVAXR&oid=00D90000000pkXM");
+			  				isSignUp=true;
 			  	        	}
 			  	        }
 			  	    });
