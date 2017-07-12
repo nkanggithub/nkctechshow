@@ -44,9 +44,11 @@ if(null != user) {
 	else
 	{
 		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"NotificationCenter",user.getHeadImgUrl(),name);
+		if(!"STATE".equals(originalUid)){
 		HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
 		MongoDBBasic.updateShared(originalUid,currentDate,"NotificationCenter",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
 		}
+	}
 }
 
 String num = request.getParameter("num");
@@ -110,7 +112,7 @@ wx.config({
             }
      }); */
      var shareTitle="<%=n.getTitle()%>";
-     var shareDesc="<%= n.getContent().substring(0,40) %>";
+     var shareDesc="<%= n.getContent().substring(0,50) %>";
      var shareImgUrl="<%=n.getPicture()%>";
 	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
