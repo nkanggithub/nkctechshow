@@ -108,19 +108,8 @@ $(document).ready(function(){
 					alert("你已经没有抽奖机会了,明天再来吧!");
 				}else{
 					if(txt=='谢谢参与'){
-						alert("很遗憾，明天再来吧！");
-						jQuery.ajax({
-				     		type : "POST",
-				     		url : "../updateUserPoint",
-				     		data : {
-				     			fromUserName:'<%=uid %>',
-				     			randomNum:0
-				     		},
-				     		cache : false,
-				     		success : function(data) {
-				     			$("#pointSum").text(data);
-				     		}
-				     	}); 
+						alert("运气怎么这么不好呀？再送你一次机会吧！");
+						$("#LuckyNum").text(1);
 					}else{
 						alert("恭喜您，抽中了"+txt+"!");
 						jQuery.ajax({
@@ -136,8 +125,8 @@ $(document).ready(function(){
 				     		}
 				     	}); 
 						//$("#pointSum").text(parseInt($("#pointSum").text())+parseInt(txt.substr(0,1)));
+						$("#LuckyNum").text(0);
 					}
-					$("#LuckyNum").text(0);
 				}
 				turnplate.bRotate = !turnplate.bRotate;
 			}
