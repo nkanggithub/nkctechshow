@@ -109,6 +109,18 @@ $(document).ready(function(){
 				}else{
 					if(txt=='谢谢参与'){
 						alert("很遗憾，明天再来吧！");
+						jQuery.ajax({
+				     		type : "POST",
+				     		url : "../updateUserPoint",
+				     		data : {
+				     			fromUserName:'<%=uid %>',
+				     			randomNum:0
+				     		},
+				     		cache : false,
+				     		success : function(data) {
+				     			$("#pointSum").text(data);
+				     		}
+				     	}); 
 					}else{
 						alert("恭喜您，抽中了"+txt+"!");
 						jQuery.ajax({
