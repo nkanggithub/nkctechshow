@@ -44,7 +44,6 @@ import com.nkang.kxmoment.baseobject.OrganizationSearch4Solr;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.CommenJsonUtil;
 import com.nkang.kxmoment.util.Constants;
-import com.nkang.kxmoment.util.CsvFileWriter;
 import com.nkang.kxmoment.util.FaceRecognition;
 import com.nkang.kxmoment.util.GoogleLocationUtils;
 import com.nkang.kxmoment.util.MongoDBBasic;
