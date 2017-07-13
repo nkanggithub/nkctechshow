@@ -360,14 +360,14 @@ height: 15px;}
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
 <script>
-$(document).ajaxStart(function () {
+/* $(document).ajaxStart(function () {
 	$(".sk-circle").show();
 	$("#shadow").show();
     }).ajaxStop(function () {
     	$(".sk-circle").hide();
     	$("#shadow").hide();
     });
-  
+   */
 $(function(){ 
 
 	$(".Work_Mates_div_list_div2").live("swipeleft",function(){
@@ -1762,7 +1762,7 @@ function getWeather() {
 			});
 }
 
-function stockModule(){
+/* function stockModule(){
 	showCommonPanel();
 
 	$("body").append("	<div class='TAB2class bouncePart' id='allstockcodes'>"
@@ -1781,7 +1781,7 @@ function stockModule(){
 	$('#allstockcodes').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass("bounceInDown animated");
 	    });
-}
+} */
 
 function getStockData(url){
 	getNewData(url);
@@ -1836,8 +1836,8 @@ function getNewData(url){
    });
 }
 
-	var allAddStockCodes = new Array();
-function addStock() {
+//	var allAddStockCodes = new Array();
+/* function addStock() {
 	//$('#allstockcodes').css("display", "none");
 	$('#stock').hide();
 	$("#addStock").css("display","block");
@@ -1903,7 +1903,7 @@ function addStock() {
 		}
 	});
 }
-   
+    */
 function getNowFormatDate() {
 	var date = new Date();
 	var seperator1 = "-";
@@ -1961,7 +1961,7 @@ function getNowFormatDate() {
   </div>
 
 <div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:black;"></div>
- <div class="sk-circle">
+ <div class="sk-circle" style="display:none;">
       <div class="sk-circle1 sk-child"></div>
       <div class="sk-circle2 sk-child"></div>
       <div class="sk-circle3 sk-child"></div>

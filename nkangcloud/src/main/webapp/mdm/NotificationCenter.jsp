@@ -267,26 +267,44 @@ wx.config({
 			
 			if(isSignUp){
 				var alreadySign="<div style='height:200px;overflow:scroll'>";
-				<%for(Teamer s:signUps){%>
-				alreadySign+="<p style='width:50%;float:left;height:40px;line-height:40px;text-align: center;'>"+"<%=s.getRealName()%>"+"</p><p style='width:30%;float:left;height:40px;line-height:40px;text-align: center;'>"+"<%=s.getPhone()%>"+"</p>";
-			<%}%>
-			alreadySign+="</div>";
-			title="报名列表";
-		    swal({  
-		        title:"报名列表",  
-		        text:alreadySign,
-		        html:"true",
-		        showConfirmButton:false, 
-				showCancelButton: true,   
-				closeOnConfirm: false,   
-		        cancelButtonText:"关闭",
-		        confirmButtonColor: "#000",
-		        animation:"slide-from-top"  
-		      }, 
-				function(inputValue){
-		    	  if (inputValue === false){ return false; }
-		      }
-		     );
+			 	  $.ajax({
+			  	        cache: false,
+			  	        type: "POST",
+			  	        url:"../userProfile/getSignUpList",
+			  	        data:{
+			  	        	num:<%=num %> 
+			  	        },
+			  	        async: true,
+			  	        error: function(request) {
+			  	            alert("Connection error");
+			  	        },
+			  	        success: function(data) {
+			  	        	if(data){
+			  	        		for(var i=0;i<data.length;i++){
+			  	        		alreadySign+="<p style='width:50%;float:left;height:40px;line-height:40px;text-align: center;'>"+data[i].realName+"</p><p style='width:30%;float:left;height:40px;line-height:40px;text-align: center;'>"+data[i].phone+"</p>";
+			  	        		}
+			  	  			alreadySign+="</div>";
+			  				title="报名列表";
+			  			    swal({  
+			  			        title:"报名列表",  
+			  			        text:alreadySign,
+			  			        html:"true",
+			  			        showConfirmButton:false, 
+			  					showCancelButton: true,   
+			  					closeOnConfirm: false,   
+			  			        cancelButtonText:"关闭",
+			  			        confirmButtonColor: "#000",
+			  			        animation:"slide-from-top"  
+			  			      }, 
+			  					function(inputValue){
+			  			    	  if (inputValue === false){ return false; }
+			  			      }
+			  			     );
+			  	        		}
+			  	        }
+			  	    });
+				
+
 			}
 			else{
 				var noSignUp="<p style='width:30%;float:left;height:40px;line-height:40px;'>姓名：</p><input id='name' style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='<%=name %>'/>"

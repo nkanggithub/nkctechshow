@@ -28,6 +28,7 @@ import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.Notification;
+import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
@@ -266,7 +267,17 @@ public class UserProfileController {
 		return str;
 		
 	} 
-	
+	@RequestMapping("/getSignUpList")
+	public @ResponseBody List<Teamer> getSignUpList(HttpServletRequest request,
+			HttpServletResponse response ){
+		List<ArticleMessage> nList=MongoDBBasic.getArticleMessageByNum(request.getParameter("num"));   
+		ArticleMessage n=new ArticleMessage();
+		   if(!nList.isEmpty()){
+			n=nList.get(0); 
+		}
+		List<Teamer> signUps=n.getSignUp();
+		return signUps;
+	} 
 	@RequestMapping("/addNotification")
 	public @ResponseBody String addNotification(HttpServletRequest request,
 			HttpServletResponse response ) throws JSONException{
