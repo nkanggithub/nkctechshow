@@ -78,7 +78,7 @@ public class DashboardService {
 		        Pattern pat = Pattern.compile(regEx);
 		        Matcher mat = pat.matcher(str);
 		        while(mat.find()){
-		        	servers=servers+"|"+mat.group(2);
+		        	servers+="【"+mat.group(2)+"】 ";
 		        	//downList.add(mat.group(2));
 		        	//System.out.println(mat.group(2));
 		        }
