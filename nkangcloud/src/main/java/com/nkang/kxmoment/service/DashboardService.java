@@ -73,11 +73,12 @@ public class DashboardService {
 			//logger.info("tatol:"+tatol+",status200:"+status200+",status405"+status405);
 			//List<String> downList = new ArrayList<String>();
 			String servers="";
-			 String regEx = "\\{\"map\":\\{\"status\":\"404\"(.*?),\"url\":\"(.*?)\"\\}";
+			 //String regEx = "\\{\"map\":\\{\"status\":\"404\"(.*?),\"url\":\"(.*?)\"\\}";
+			 String regEx = "\\{\"map\":\\{\"status\":\"404\"(.*?),\"url\":\"http://(.*?).houston.(.*?)\"\\}";
 		        Pattern pat = Pattern.compile(regEx);
 		        Matcher mat = pat.matcher(str);
 		        while(mat.find()){
-		        	servers=servers+"/"+mat.group(2);
+		        	servers=servers+"|"+mat.group(2);
 		        	//downList.add(mat.group(2));
 		        	//System.out.println(mat.group(2));
 		        }
