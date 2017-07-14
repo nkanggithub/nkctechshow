@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
@@ -63,15 +65,25 @@ public class DashboardService {
 			//String code405="{\"map\":{\"status\":\"405\",\"description\":\"Cleanse\"";		
 			List<DashboardStatus> StrList = findAllStatusList();
 			String str = StrList.toString();
-			
 			//int tatol=subCounter(str, codeAll);
-			int status404=subCounter(str, code404);
+			////int status404=subCounter(str, code404);
 			//int status200=subCounter(str, code200);
 			//int status405=subCounter(str, code405);
 			//int ret=tatol-status200-status405;
 			//logger.info("tatol:"+tatol+",status200:"+status200+",status405"+status405);
+			//List<String> downList = new ArrayList<String>();
+			String servers="";
+			 String regEx = "\\{\"map\":\\{\"status\":\"404\"(.*?),\"url\":\"(.*?)\"\\}";
+		        Pattern pat = Pattern.compile(regEx);
+		        Matcher mat = pat.matcher(str);
+		        while(mat.find()){
+		        	servers=servers+"/"+mat.group(2);
+		        	//downList.add(mat.group(2));
+		        	//System.out.println(mat.group(2));
+		        }
+			
 			Date dt = new Date();
-			if(status404>0 || isDown>0){
+			if(servers.length()>0 || isDown>0){
 				if( dt.getTime() - lastsendtimestamp.getTime() > 1000*60*4){
 					
 					ClientMeta cm=MongoDBBasic.QueryClientMeta();
@@ -109,7 +121,9 @@ public class DashboardService {
 						//微信
 						lastsendtimestamp = dt;
 						List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
-						String content="MDM Operation Team, Please immediately take actions to check and recover production environment. Please make sure the communication has been sent out timely";
+						
+						
+						String content="MDM Operation Team, Please immediately take actions to check and recover production environment. Please make sure the communication has been sent out timely! "+"servers:"+servers;
 						String title=" MDM Production Environment is abnormal. Please urgently take actions!!!";
 						for(int i=0;i<allUser.size();i++){
 							String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FDashboardStatus.jsp&response_type=code&scope=snsapi_userinfo&state="+allUser.get(i).getOpenid()+"#wechat_redirect&UID=";
