@@ -60,7 +60,7 @@ public class DashboardService {
 				isDown++;
 			}
 			//String codeAll="{\"map\":{\"status\":";	
-			String code404="{\"map\":{\"status\":\"404\"";
+			//String code404="{\"map\":{\"status\":\"404\"";
 			//String code200="{\"map\":{\"status\":\"200\"";
 			//String code405="{\"map\":{\"status\":\"405\",\"description\":\"Cleanse\"";		
 			List<DashboardStatus> StrList = findAllStatusList();
