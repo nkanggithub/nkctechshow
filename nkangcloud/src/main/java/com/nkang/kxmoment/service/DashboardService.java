@@ -77,8 +77,11 @@ public class DashboardService {
 			 String regEx = "\\{\"map\":\\{\"status\":\"404\"(.*?),\"url\":\"http://(.*?).houston.(.*?)\"\\}";
 		        Pattern pat = Pattern.compile(regEx);
 		        Matcher mat = pat.matcher(str);
+		        String serverslistStr = "";
 		        while(mat.find()){
-		        	servers+="【"+mat.group(2)+"】 ";
+		        	if(!servers.contains(mat.group(2))){
+		        		servers+="【"+mat.group(2)+"】 ";
+		        	}
 		        	//downList.add(mat.group(2));
 		        	//System.out.println(mat.group(2));
 		        }
