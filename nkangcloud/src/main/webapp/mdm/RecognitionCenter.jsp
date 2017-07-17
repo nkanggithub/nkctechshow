@@ -3,6 +3,7 @@
 <%@ page import="com.nkang.kxmoment.baseobject.CongratulateHistory"%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
 <%@ page import="java.util.*,com.nkang.kxmoment.util.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%
 	String ticket=RestUtils.getTicket();
 //获取由OAuthServlet中传入的参数
@@ -33,6 +34,21 @@ if(null != user) {
 		}
 
 		MongoDBBasic.updateUser(uid);
+		
+		SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date=new Date();
+		String currentDate = format.format(date);
+		if(uid.equals(originalUid)){
+			MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"RecognitionCenter",user.getHeadImgUrl(),name);
+		}
+		else
+		{
+			MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"RecognitionCenter",user.getHeadImgUrl(),name);
+			if(!"STATE".equals(originalUid)){
+			HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
+			MongoDBBasic.updateShared(originalUid,currentDate,"RecognitionCenter",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
+			}
+		}
 		
 	}
 }
