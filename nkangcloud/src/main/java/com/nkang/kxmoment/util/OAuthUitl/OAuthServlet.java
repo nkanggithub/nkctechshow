@@ -53,6 +53,9 @@ public class OAuthServlet implements Filter  {
         String state = request.getParameter("state");
     	HttpServletRequest req=(HttpServletRequest) request;
         String uri= req.getRequestURI(); //uri就是获取到的连接地址!
+        if(!uri.endsWith("DashboardStatus.jsp")&&!uri.endsWith("NotificationCenter.jsp")&&!uri.endsWith("RecognitionCenter.jsp")&&!uri.endsWith("Lucky.jsp")&&!uri.endsWith("DailyNews.jsp")){
+            chain.doFilter(request, response);
+        }
         //String accessToken=null;
         request.setAttribute("code", code);
         if(code!=null&&code!=""&&!"authdeny".equals(code)){
