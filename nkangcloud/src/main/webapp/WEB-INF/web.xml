@@ -47,6 +47,7 @@
   
   <url-pattern>/mdm/DQDashBoard.jsp</url-pattern> 
   <url-pattern>/mdm/NotificationCenter.jsp</url-pattern> 
+  <url-pattern>/mdm/NotificationCenter.jsp</url-pattern> 
   <url-pattern>/mdm/Lucky.jsp</url-pattern> 
   <url-pattern>/mdm/DailyNews.jsp</url-pattern> 
  </filter-mapping>  
