@@ -146,7 +146,7 @@ wx.config({
 </script>
   </head>
 <body style="margin:0;">
-            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=name %></p><img src="<%=headImgUrl %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
+            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 5px;">欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span></p><img src="<%=headImgUrl %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 25px;"></div>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
               <tr>
