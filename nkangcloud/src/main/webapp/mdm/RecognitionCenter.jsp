@@ -42,6 +42,7 @@ List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(uid2,nu
 CongratulateHistory ch=new CongratulateHistory();
 if(!chList.isEmpty()){
 	ch=chList.get(0);
+	System.out.println("picture:-----"+ch.getGiftImg());
 }
 /*
 CongratulateHistory ch=new CongratulateHistory();
@@ -232,7 +233,7 @@ wx.config({
              </tbody>
             </table>
             <p style="margin: 20px;line-height:14.0pt;"><strong><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Congratulations, <%=ch.getTo() %>!</span></strong><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">
-              <o:p></o:p></span></p><p style="margin: 20px;line-height:14.0pt;"><span style="font-size:13px;font-family:&quot;Arial&quot;,sans-serif;color:black"><%=ch.getFrom() %> recognized you in the Manager-to-Employee FY17 Program for the value M2E: <%=ch.getType() %>.
+              <o:p></o:p></span></p><p style="margin: 20px;line-height:14.0pt;"><span style="font-size:13px;font-family:&quot;Arial&quot;,sans-serif;color:black"><%=ch.getFrom() %> recognized you because of: <%=ch.getType() %>.
               <o:p></o:p></span></p>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;display:table;border-spacing: 0;">
              <tbody>
@@ -293,7 +294,7 @@ wx.config({
                 </table></td>
               </tr>
              </tbody>
-            </table><p style="margin: 10px;margin-bottom: 20px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Thank you for putting DXC values into action! Please click the green box above to read the full message. A copy of this recognition was sent to your manager.
+            </table><p style="margin: 10px;margin-bottom: 20px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Thank you for putting DXC values into action! A copy of this recognition was sent to your manager.
               <o:p></o:p></span></p>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;display:table;border-spacing: 0">
              <tbody>
@@ -325,6 +326,7 @@ wx.config({
    
    </div>
   
+<img style="position:relative;top:10px;" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9lok&oid=00D90000000pkXM" alt="" width="100%" /> 
 
 	<div id="footer">
 		<span class="clientCopyRight"><nobr></nobr></span>
