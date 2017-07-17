@@ -1,16 +1,44 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
 <%@ page import="com.nkang.kxmoment.baseobject.CongratulateHistory"%>
 <%@ page import="com.nkang.kxmoment.util.RestUtils"%>
-<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.*,com.nkang.kxmoment.util.*"%>
 <%
 	String ticket=RestUtils.getTicket();
-String uid = request.getParameter("uid");
-MongoDBBasic.updateUser(uid);
+//获取由OAuthServlet中传入的参数
+SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
+String originalUid=(String)request.getAttribute("state");
+String name = "";
+String phone = "";
+String headImgUrl ="";
+boolean isFollow=false;
+String uid2 = request.getParameter("uid");
+String uid ="";
+if(null != user) {
+	//String uid = request.getParameter("UID");
+	uid = user.getOpenId();
+	name = user.getNickname();
+	headImgUrl = user.getHeadImgUrl();
+	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+	if(res!=null){
+		isFollow=true;
+		if(res.get("HeadUrl")!=null){
+			headImgUrl=res.get("HeadUrl");
+		}
+		if(res.get("NickName")!=null){
+			name=res.get("NickName");
+		}
+		if(res.get("phone")!=null){
+			phone=res.get("phone");
+		}
+
+		MongoDBBasic.updateUser(uid);
+		
+	}
+}
+
 String num = request.getParameter("num");
-List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(uid,num);
+List<CongratulateHistory> chList=MongoDBBasic.getRecognitionInfoByOpenID(uid2,num);
 CongratulateHistory ch=new CongratulateHistory();
 if(!chList.isEmpty()){
 	ch=chList.get(0);
@@ -118,7 +146,7 @@ wx.config({
 </script>
   </head>
 <body style="margin:0;">
-            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=ch.getTo() %></p><img src="<%=ch.getUserImg() %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
+            <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 20px;"><%=name %></p><img src="<%=headImgUrl %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 45px;"></div>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
               <tr>
