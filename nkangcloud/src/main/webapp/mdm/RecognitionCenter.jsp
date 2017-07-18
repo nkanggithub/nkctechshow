@@ -160,9 +160,24 @@ wx.config({
          alert("errorMSG:"+res);
      });
  });
+ $(function(){ 
+	// var giftImg=$("#giftImg").attr("src");
+	 $("#giftImg").on("click",function(){
+		 var shadowHeight=$("#zoomOutPic").css("height");
+		 var giftHeight=$("#giftImg").css("height");
+		 var top=(shadowHeight-giftHeight)/2;
+		 $("#giftImg").css("top",top);
+		 $("#zoomOutPic").show();
+	 })
+	  $("#zoomOutPic").on("click",function(){
+		 $("#zoomOutPic").hide();
+	 })
+ });
+ 
 </script>
   </head>
 <body style="margin:0;">
+<div id="zoomOutPic" style="width:100%;display:none;height: 100%;background: rgba(0,0,0,0.8);position: fixed;top:0px;left:0px;z-index: 1000;"><div style="width: 80%;height: auto;position:absolute;left: 10%;"><img src="<%=ch.getGiftImg() %>" width="100%" height="100%" alt=""></div></div>
             <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 5px;">欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span></p><img src="<%=headImgUrl %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 25px;"></div>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;border-spacing:0;display:table;">
              <tbody>
@@ -238,7 +253,7 @@ wx.config({
                    <td valign="top" style="padding:0in 0in 0in 0in"><p class="MsoNormal" style="line-height:14.0pt;text-align:center;position:relative;">
                    <img src="../Jsp/PIC/gift.png" alt="" style="position: absolute;left: 3%;top: 0px;width: 40px;">
                    <span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black;   display: block;margin-left: 30px;">
-                   <b><span style="text-decoration:none"><img border="0" id="_x0000_i1027" src="<%=ch.getGiftImg() %>" style="
+                   <b><span style="text-decoration:none"><img id="giftImg" border="0" id="_x0000_i1027" src="<%=ch.getGiftImg() %>" style="
     width: 50%;
 "></span></b>
                       <o:p></o:p></span></p></td>
@@ -249,7 +264,7 @@ wx.config({
              </tbody>
             </table>
             <p style="margin: 20px;line-height:14.0pt;"><strong><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Congratulations, <%=ch.getTo() %>!</span></strong><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">
-              <o:p></o:p></span></p><p style="margin: 20px;line-height:14.0pt;"><span style="font-size:13px;font-family:&quot;Arial&quot;,sans-serif;color:black"><%=ch.getFrom() %> recognized you because of: <%=ch.getType() %>.
+              <o:p></o:p></span></p><p style="margin: 20px;line-height:14.0pt;"><span style="font-size:13px;font-family:&quot;Arial&quot;,sans-serif;color:black"><%=ch.getFrom() %> recognized you because of: <b><%=ch.getType() %></b>.
               <o:p></o:p></span></p>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;display:table;border-spacing: 0;">
              <tbody>
