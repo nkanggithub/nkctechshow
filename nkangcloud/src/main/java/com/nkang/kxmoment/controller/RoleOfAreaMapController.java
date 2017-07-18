@@ -20,6 +20,20 @@ import com.nkang.kxmoment.util.RestUtils;
 @RestController
 @RequestMapping("/roleOfAreaMap")
 public class RoleOfAreaMapController {
+	@RequestMapping(value = "/delAllAreaOrRole")
+	public static boolean delAllAreaOrRole(@RequestParam(value="openid", required=true) String openid,
+			@RequestParam(value="flag", required=true) String flag) {
+		boolean res=false;
+		res=MongoDBBasic.delAllAreaOrRole(openid,flag);
+		return res;
+	}
+	@RequestMapping(value = "/followAllAreaOrRole")
+	public static boolean followAllAreaOrRole(@RequestParam(value="openid", required=true) String openid,
+			@RequestParam(value="flag", required=true) String flag) {
+		boolean res=false;
+		res=MongoDBBasic.followAllAreaOrRole(openid,flag);
+		return res;
+	}
 	@RequestMapping(value = "/saveUserKM")
 	public static boolean saveUserKM(@RequestParam(value="openid", required=true) String openid,
 			@RequestParam(value="kmItem", required=true) String kmItem,
