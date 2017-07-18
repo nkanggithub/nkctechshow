@@ -33,6 +33,7 @@ MongoDBBasic.updateUser(uid);
 <script type="text/javascript" src="../Jsp/JS/fusioncharts.js"></script>
 <script type="text/javascript" src="../Jsp/JS/fusioncharts.powercharts.js"></script>
 <script type="text/javascript" src="../Jsp/JS/fusioncharts.theme.fint.js"></script>
+<link rel="stylesheet" type="text/css" href="../nkang/demo.css">
 <style>
 body{
 	padding:0px;
