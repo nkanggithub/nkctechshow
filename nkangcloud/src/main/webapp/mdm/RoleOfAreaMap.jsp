@@ -385,6 +385,8 @@ function followAllAreaOrRole(){
 		 success:function(result){
 			 if(result==true){
 				 swal("关注成功 ","你对所有技术领域", "success");
+				 $('ul#areaList li.singleQuote div.firstLayer.attention div.quoteTitle span.tag').remove();
+				 $('ul#areaList li.singleQuote div.firstLayer.attention div.quoteTitle').append('<span class="tag">已关注</span>');
 			 }
 		 }
 	});
@@ -400,6 +402,7 @@ function delAllAreaOrRole(){
 		 success:function(result){
 			 if(result==true){
 				 swal("取消成功 ","你取消了所有关注", "success");
+				 $('ul#areaList li.singleQuote div.firstLayer.attention div.quoteTitle span.tag').remove();
 			 }
 		 }
 	});
@@ -617,7 +620,7 @@ function getAllDatas(){
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
 				<div class="tab-pane" id="areaElements">
-				<div  style='cursor:pointer;position: fixed;bottom: 150px;z-index: 1002;'>
+				<div  style='cursor:pointer;position: fixed;bottom: 70px;z-index: 1002;left:5px;'>
 					<img onClick="javascript:followAllAreaOrRole();" style='height:30px;margin-bottom:5px;'  src='images/follow.png'><br/>
 					<img onClick="javascript:delAllAreaOrRole();" style='height:30px;' src='images/follow2.png'>
 				</div>
