@@ -48,6 +48,7 @@
   <url-pattern>*.jsp</url-pattern> 
 -->
   <url-pattern>/mdm/DashboardStatus.jsp</url-pattern> 
+  <url-pattern>/mdm/MesPushHistory.jsp</url-pattern> 
   <url-pattern>/mdm/RecognitionCenter.jsp</url-pattern> 
   <url-pattern>/mdm/NotificationCenter.jsp</url-pattern> 
   <url-pattern>/mdm/Lucky.jsp</url-pattern> 
