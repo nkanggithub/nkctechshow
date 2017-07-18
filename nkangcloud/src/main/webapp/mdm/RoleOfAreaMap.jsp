@@ -374,6 +374,36 @@ function hideBouncePanel()
 	$("body").find(".bouncePart").remove();
 	$("body").find("#data_model_div").remove();
 }
+function followAllAreaOrRole(){
+	$.ajax({
+		 url:'../roleOfAreaMap/followAllAreaOrRole',
+		 type:"POST",
+		 data : {
+			 openid : $("#openid").val(),
+			 flag : 'Area'
+		 },
+		 success:function(result){
+			 if(result==true){
+				 swal("关注成功 ","你对所有技术领域", "success");
+			 }
+		 }
+	});
+}
+function delAllAreaOrRole(){
+	$.ajax({
+		 url:'../roleOfAreaMap/delAllAreaOrRole',
+		 type:"POST",
+		 data : {
+			 openid : $("#openid").val(),
+			 flag : 'Area'
+		 },
+		 success:function(result){
+			 if(result==true){
+				 swal("取消成功 ","你取消了所有关注", "success");
+			 }
+		 }
+	});
+}
 function UpdateTag(item,flag,obj){
 	var tempObj=$(obj).parent().parent(".singleQuote");
 	$(".singleQuote").removeClass("editBtn");
@@ -587,6 +617,10 @@ function getAllDatas(){
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
 				<div class="tab-pane" id="areaElements">
+				<div  style='cursor:pointer;position: fixed;bottom: 150px;z-index: 1002;'>
+					<img onClick="javascript:followAllAreaOrRole();" style='height:30px;margin-bottom:5px;'  src='images/follow.png'><br/>
+					<img onClick="javascript:delAllAreaOrRole();" style='height:30px;' src='images/follow2.png'>
+				</div>
 				<!-- start logoElements-->
 					<div  style="position: absolute; top: 125px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
 						<ul id="areaList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
