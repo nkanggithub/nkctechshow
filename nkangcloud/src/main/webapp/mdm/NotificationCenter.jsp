@@ -59,6 +59,7 @@ n.setTitle("Notification!");
 n.setTime("2017/2/10 16:42"); */
    if(!nList.isEmpty()){
 	n=nList.get(0); 
+	System.out.println("getPicture()-----:"+n.getPicture());
 }
 List<Teamer> signUps=n.getSignUp();
 boolean isSignUp=MongoDBBasic.isSignUpByName(name, signUps);
@@ -216,7 +217,7 @@ wx.config({
                 <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;/* border-collapse:collapse; */padding-bottom:0!important;">
                  <tbody>
                   <tr>
-                   <td valign="top"><p class="MsoNormal" style="margin-top:0px;"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><img id="_x0000_i1026" src="https://myrecognition.int.hpe.com/hpenterprise/images/designtheme/hp2/1/m2e-hero.jpg" style="
+                   <td valign="top"><p class="MsoNormal" style="margin-top:0px;"><span style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><img id="_x0000_i1026" src="<%=n.getPicture() %>" style="
     width: 100%;
 ">
                       <o:p></o:p></span></p></td>
@@ -253,7 +254,7 @@ wx.config({
               </tr>
              </tbody>
             </table>
-<p style="margin: 10px;margin-left:30px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;"><%=n.getContent().replaceAll("\n", "<br/>") %><o:p></o:p></span></p>
+<p style="margin: 10px;margin-left:20px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;"><%=n.getContent().replaceAll("\n", "<br/>") %><o:p></o:p></span></p>
 <img style="position:relative;top:20px;" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9lok&oid=00D90000000pkXM" alt="" width="100%" /> 
 
 	<div id="footer">
