@@ -422,6 +422,82 @@ public class MongoDBBasic {
 		}
 		return kmLists;
 	}
+	public static boolean followAllAreaOrRole(String openid,String flag) {
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+		try {
+			ArrayList<RoleOfAreaMap> list=MongoDBBasic.QueryRoleOfAreaMap(flag);
+			HashSet<String> kmSets = new HashSet<String>();
+			DBCursor dbcur = mongoDB.getCollection(wechat_user).find(
+					new BasicDBObject().append("OpenID", openid));
+			if (null != dbcur) {
+				while (dbcur.hasNext()) {
+					DBObject o = dbcur.next();
+					if (o.get("likeLists") != null) {
+						BasicDBList hist = (BasicDBList) o.get("likeLists");
+						Object[] kmObjects = hist.toArray();
+						for (Object dbobj : kmObjects) {
+							if (dbobj instanceof String) {
+								if (!((String) dbobj).startsWith(flag)){
+									kmSets.add((String) dbobj);
+								}
+							}
+						}
+					}
+				}
+			}
+			for(RoleOfAreaMap temp:list){
+				kmSets.add(temp.getId());
+			}
+			BasicDBObject doc = new BasicDBObject();
+			DBObject update = new BasicDBObject();
+			update.put("likeLists", kmSets);
+			doc.put("$set", update);
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(
+					new BasicDBObject().append("OpenID", openid), doc);
+			ret = true;
+
+		} catch (Exception e) {
+			log.info("followAllAreaOrRole--" + e.getMessage());
+		}
+		return ret;
+	}
+	public static boolean delAllAreaOrRole(String openid,String flag) {
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+		try {
+			HashSet<String> kmSets = new HashSet<String>();
+			DBCursor dbcur = mongoDB.getCollection(wechat_user).find(
+					new BasicDBObject().append("OpenID", openid));
+			if (null != dbcur) {
+				while (dbcur.hasNext()) {
+					DBObject o = dbcur.next();
+					if (o.get("likeLists") != null) {
+						BasicDBList hist = (BasicDBList) o.get("likeLists");
+						Object[] kmObjects = hist.toArray();
+						for (Object dbobj : kmObjects) {
+							if (dbobj instanceof String) {
+								if (!((String) dbobj).startsWith(flag)){
+									kmSets.add((String) dbobj);
+								}
+							}
+						}
+					}
+				}
+			}
+			BasicDBObject doc = new BasicDBObject();
+			DBObject update = new BasicDBObject();
+			update.put("likeLists", kmSets);
+			doc.put("$set", update);
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(
+					new BasicDBObject().append("OpenID", openid), doc);
+			ret = true;
+
+		} catch (Exception e) {
+			log.info("delAllAreaOrRole--" + e.getMessage());
+		}
+		return ret;
+	}
 	public static boolean saveUserKM(String openid, String kmItem, String flag) {
 		kmItem = kmItem.trim();
 		mongoDB = getMongoDB();
