@@ -384,7 +384,7 @@ function followAllAreaOrRole(){
 		 },
 		 success:function(result){
 			 if(result==true){
-				 swal("关注成功 ","你对所有技术领域", "success");
+				 swal("关注成功 ","您已关注所有技术领域", "success");
 				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle span.tag').remove();
 				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle').append('<span class="tag">已关注</span>');
 				 $('ul#areaList li.singleQuote').css('color','#0761A5');
@@ -402,7 +402,7 @@ function delAllAreaOrRole(){
 		 },
 		 success:function(result){
 			 if(result==true){
-				 swal("取消成功 ","你取消了所有关注", "success");
+				 swal("取消成功 ","您取消了所有的关注，是我们哪里做得不好吗？欢迎批评指正", "success");
 				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle span.tag').remove();
 				 $('ul#areaList li.singleQuote').css('color','#000');
 				 $('ul#areaList li.singleQuote.attention').css('color','#000');
