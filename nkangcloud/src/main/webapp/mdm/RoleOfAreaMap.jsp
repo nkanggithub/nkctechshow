@@ -405,6 +405,7 @@ function delAllAreaOrRole(){
 				 swal("取消成功 ","你取消了所有关注", "success");
 				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle span.tag').remove();
 				 $('ul#areaList li.singleQuote').css('color','#000');
+				 $('ul#areaList li.singleQuote.attention').css('color','#000');
 			 }
 		 }
 	});
