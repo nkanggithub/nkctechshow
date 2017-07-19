@@ -623,8 +623,8 @@ function getAllDatas(){
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
 				<div class="tab-pane" id="areaElements">
-				<div  style='cursor:pointer;position: fixed;bottom: 70px;z-index: 1002;left:5px;'>
-					<img onClick="javascript:followAllAreaOrRole();" style='height:35px;margin-bottom:5px;'  src='images/follow.png'><br/>
+				<div  style='cursor:pointer;position: fixed;bottom: 100px;z-index: 1002;right:5px;'>
+					<img onClick="javascript:followAllAreaOrRole();" style='height:35px;margin-bottom:15px;'  src='images/follow.png'><br/>
 					<img onClick="javascript:delAllAreaOrRole();" style='height:35px;' src='images/follow2.png'>
 				</div>
 				<!-- start logoElements-->
