@@ -385,8 +385,9 @@ function followAllAreaOrRole(){
 		 success:function(result){
 			 if(result==true){
 				 swal("关注成功 ","你对所有技术领域", "success");
-				 $('ul#areaList li.singleQuote div.firstLayer.attention div.quoteTitle span.tag').remove();
-				 $('ul#areaList li.singleQuote div.firstLayer.attention div.quoteTitle').append('<span class="tag">已关注</span>');
+				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle span.tag').remove();
+				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle').append('<span class="tag">已关注</span>');
+				 $('ul#areaList li.singleQuote').css('color','#0761A5');
 			 }
 		 }
 	});
@@ -402,7 +403,8 @@ function delAllAreaOrRole(){
 		 success:function(result){
 			 if(result==true){
 				 swal("取消成功 ","你取消了所有关注", "success");
-				 $('ul#areaList li.singleQuote div.firstLayer.attention div.quoteTitle span.tag').remove();
+				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle span.tag').remove();
+				 $('ul#areaList li.singleQuote').css('color','#000');
 			 }
 		 }
 	});
@@ -626,7 +628,7 @@ function getAllDatas(){
 				</div>
 				<!-- start logoElements-->
 					<div  style="position: absolute; top: 125px;overflow:hidden" data-role="page" style="padding-top:15px" data-theme="c">
-						<ul id="areaList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
+						<ul id="areaList" data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px;margin-bottom:50px;">
 						</ul>
 					</div>
 					<!-- end logoElements-->
@@ -638,7 +640,7 @@ function getAllDatas(){
 						</ul>
 					</div>-->
 					<div style="width:100%;overflow:hidden">
-					<ul id="roleList"  style="margin: 0px;padding: 0px; margin-top: -20px;">
+					<ul id="roleList"  style="margin: 0px;padding: 0px; margin-top: -20px;margin-bottom:30px;">
 						</ul>
 					<!-- end logoElements-->
 					</div>
