@@ -384,7 +384,7 @@ function followAllAreaOrRole(){
 		 },
 		 success:function(result){
 			 if(result==true){
-				 swal("关注成功 ","您已关注所有技术领域", "success");
+				 swal("关注成功 ","哇太棒了，您关注了我们所有的内容。我们会竭诚为您提供最好的分享服务。", "success");
 				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle span.tag').remove();
 				 $('ul#areaList li.singleQuote div.firstLayer div.quoteTitle').append('<span class="tag">已关注</span>');
 				 $('ul#areaList li.singleQuote').css('color','#0761A5');
