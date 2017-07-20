@@ -443,7 +443,7 @@ public class UserProfileController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
-		                	message=uid+"1.jpg";
+		                	message=uid+".jpg";
 		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, is);
 		                	
 		                    if(is!=null){
@@ -457,8 +457,8 @@ public class UserProfileController {
 		        e.printStackTrace();
 		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
 		    
-		    }
-		    ImageUtil.compressImg("http://mdmdxc.gz.bcebos.com/"+uid+"1.jpg", "http://mdmdxc.gz.bcebos.com/"+uid+".jpg");
+		    }/*
+		    ImageUtil.compressImg("http://mdmdxc.gz.bcebos.com/"+uid+"1.jpg", "http://mdmdxc.gz.bcebos.com/"+uid+".jpg");*/
 		    return message;
 
 	}
