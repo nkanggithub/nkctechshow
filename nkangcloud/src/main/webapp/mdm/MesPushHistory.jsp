@@ -211,6 +211,12 @@ border-bottom: 1px solid #f2f2f2;
     width: 80px;
     height: 60px;
 }
+.mesImg video
+{
+    display: block;
+    width: 80px;
+    height: 60px;
+}
 .mesContent{
 overflow:hidden;
 }
@@ -236,16 +242,23 @@ margin-top:10px;
 }
 a{ text-decoration:none;
 }
+#articleMes{
+font-weight:bolder;
+}
 </style>
 </head>
 <body>
- <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 5px;">欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span></p><img src="<%=headImgUrl %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 25px;"></div>
+<div id="zoomOutPic" style="width:100%;display:none;height: 100%;background: rgba(0,0,0,0.8);position: fixed;top:0px;left:0px;z-index: 1000;"><div id="videoContainer" style="width: 80%;height: auto;position:absolute;left: 10%;"><video src=""  width="320" height="240" controls="controls">
+Your browser does not support the video tag.
+</video></div></div>
+  
+ <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 5px;">欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"></span></p><img src="" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 25px;"></div>
 <div style="padding-left: 10px;height: 60px;padding-top: 10px;">
 <img src="../mdm/images/logo.png" alt="" style="width:60%;">
 </div>
 <div class="topPic"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" />
 <div class="topPic_title">科技生活，从大数据开始</div></div>
-<div class="navi"><p><b>图文消息</b></p><p>视频消息</p></div>
+<div class="navi"><p id="articleMes">图文消息</p><p id="videoMes">视频消息</p></div>
 	<div id="wrapper" style="top:290px;">
 		<div class="scroller">
 <div id="mesPushPanel">
@@ -269,7 +282,47 @@ a{ text-decoration:none;
 <div class="more"><i class="pull_icon"></i><span>上拉加载...</span></div>
 		</div>
 	</div>
+	<div id="videoPanel" style="display:none"><div class="singleMes">
+<div class="mesImg">
+
+<video src="https://vd1.bdstatic.com/mda-hgfj8u1i53casain/hd/mda-hgfj8u1i53casain.mp4?playlist=%5B%22hd%22%2C%22sc%22%5D&auth_key=1500525134-0-0-56741c30421a05b9a5f4554878283661&bcevod_channel=searchbox_feed"  width="320" height="240"  >
+Your browser does not support the video tag.
+</video>
+</div>
+<div class="mesContent">
+<h2 class="mesTitle">这小孩回家说补课费</h2>
+<p class="mesIntro">没想到闰土一开口就18000，看的我笑趴了！</p>
+</div>
+</div>
+	</div>
 	<script type="text/javascript">
+	$(function(){
+		$("#videoMes").on("click",function(){
+			$("#articleMes").css("font-weight","normal");
+			$(this).css("font-weight","bolder");
+			$("#wrapper").css("display","none");
+			$("#videoPanel").css("display","block");
+		});
+		$("#articleMes").on("click",function(){
+			$("#videoMes").css("font-weight","normal");
+			$(this).css("font-weight","bolder");
+			$("#videoPanel").css("display","none");
+			$("#wrapper").css("display","block");
+		})
+		$(".mesImg video").on("click",function(){
+			$("#videoContainer video").attr("src","");
+			var src=$(this).attr("src");
+			if(!$("#videoContainer video").attr("src")){
+
+				$("#videoContainer video").attr("src",src);
+			}
+		 $("#zoomOutPic").show();
+	 })
+	  $("#zoomOutPic").on("click",function(){
+		  $("#videoContainer video").attr("src","");
+		 $("#zoomOutPic").hide();
+	 })
+	});
 
 	var realSize=<%=realSize %>;
 	var size=<%=size %>;
