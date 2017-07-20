@@ -263,7 +263,7 @@ font-weight:bolder;
 Your browser does not support the video tag.
 </video></div></div>
   
- <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 5px;">欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"></span></p><img src="" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 25px;"></div>
+ <div style="position: absolute;top: 0px;right: 0px;"><p style="margin-right: 10px;margin-top: 5px;">欢迎您：<span class="username colorBlue" id="username" style="color:#2489ce;"><%=name %></span></p><img src="<%=headImgUrl %>" alt="" style="border-radius: 25px;height: 35px;width: 35px;position: absolute;right: 8px;top: 25px;"></div>
 <div style="padding-left: 10px;height: 60px;padding-top: 10px;">
 <img src="../mdm/images/logo.png" alt="" style="width:60%;">
 </div>
