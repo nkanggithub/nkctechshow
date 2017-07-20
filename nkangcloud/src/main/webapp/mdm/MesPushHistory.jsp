@@ -63,6 +63,10 @@ int realSize2=vms.size();
 System.out.println("realSize2:===="+realSize2);
 if(vms.size()<=5){size2=vms.size();}
 System.out.println("Size2:===="+size2);
+for(int c=0;c<vms.size();c++)
+{
+	System.out.println("isRepeint:++"+vms.get(c).getIsReprint());
+	}
 %>
 <!DOCTYPE html>
 <html lang="en" class="csstransforms csstransforms3d csstransitions">
@@ -289,8 +293,8 @@ Your browser does not support the video tag.
 	<% if(size2!=0){for(int i=0;i<size2;i++){ %>
 	<div class="singleMes">
 <div class="mesImg">
-<%if(vms.get(i).getIsReprint()=="true"){ %>
-<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" />
+<%if(vms.get(i).getIsReprint().equals("1")){ %>
+<a href="<%=vms.get(i).getWebUrl() %>"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" /></a>
 <% }else{%>
 <video src="<%=vms.get(i).getWebUrl() %>"  width="320" height="240"  >
 Your browser does not support the video tag.
@@ -309,30 +313,32 @@ Your browser does not support the video tag.
 	</div>
 
 	<script type="text/javascript">
+
+	var realSize=<%=realSize %>;
+	var size=<%=size %>;
+	var flag=false;
 	$(function(){
-		var realSize=<%=realSize %>;
-		var size=<%=size %>;
-		var size2=<%=size2 %>;
-		var flag=false;
 		$("#videoMes").on("click",function(){
 			flag=true;
 			realSize=<%=realSize2 %>;
+			size=<%=size2 %>;
 			$("#articleMes").css("font-weight","normal");
 			$(this).css("font-weight","bolder");
-			$("#wrapper").css("display","none");
+			$("#mesPushPanel").css("display","none");
 			$("#videoPanel").css("display","block");
 			var img="";
 	 		$.ajax({
     			url : "../QueryVideoMessage",
 				type:'post',
 				data:{
-					startNumber:size2,
-					pageSize:5
+					startNumber:0,
+					pageSize:<%=realSize2%>
 				},
 				success:function(data){
 					for (var i = 0; i < data.length; i++) {
-						if(data[i].isReprint=="true"){
-							img="<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'/>";
+						console.log("isReprint++"+data[i].isReprint);
+						if(data[i].isReprint=="1"){
+							img="<a href='"+data[i].webUrl+"'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'/></a>";
 						}
 						else{
 							img="<video src='"+data[i].webUrl+"' width='320' height='240'>";
@@ -352,10 +358,11 @@ Your browser does not support the video tag.
 		$("#articleMes").on("click",function(){
 			flag=false;
 			realSize=<%=realSize %>;
+			size=<%=size%>
 			$("#videoMes").css("font-weight","normal");
 			$(this).css("font-weight","bolder");
 			$("#videoPanel").css("display","none");
-			$("#wrapper").css("display","block");
+			$("#mesPushPanel").css("display","block");
 		})
 		$(".mesImg video").on("click",function(){
 			
@@ -414,13 +421,13 @@ Your browser does not support the video tag.
 			    			url : "../QueryVideoMessage",
 							type:'post',
 							data:{
-								startNumber:size2,
+								startNumber:<%=size2%>,
 								pageSize:5
 							},
 							success:function(data){
 								for (var i = 0; i < data.length; i++) {
-									if(data[i].isReprint=="true"){
-										img="<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'/>";
+									if(data[i].isReprint=="1"){
+										img="<a href='"+data[i].webUrl+"'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'/></a>";
 									}
 									else{
 										img="<video src='"+data[i].webUrl+"' width='320' height='240'>";
@@ -445,7 +452,7 @@ Your browser does not support the video tag.
 		    			url : "../QueryArticleMessage",
 						type:'post',
 						data:{
-							startNumber:size,
+							startNumber:<%=size%>,
 							pageSize:5
 						},
 						success:function(data){

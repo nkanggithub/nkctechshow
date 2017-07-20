@@ -241,6 +241,7 @@ $(document).ajaxStart(function () {
 function uploadPic(obj){
 	if($(obj).val()!='') {
 		  $("#submit_form").ajaxSubmit(function(message) {
+			  console.log("message is:"+message);
 			  swal("恭喜！", "您的图片已上传成功!", "success"); 
 			  	$.ajax({  
 			        cache : false,  
@@ -250,6 +251,7 @@ function uploadPic(obj){
 					data : {openid:$('#uid').val()},
 			        timeout: 2000, 
 			        success: function(data){
+			        	console.log("data length:"+data.length);
 						$("#text").html("");
 						var div="";
 						if (data.length > 0) {

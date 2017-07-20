@@ -29,7 +29,9 @@ import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.Teamer;
+import com.nkang.kxmoment.baseobject.VideoMessage;
 import com.nkang.kxmoment.baseobject.WeChatUser;
+import com.nkang.kxmoment.util.ImageUtil;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
 import com.nkang.kxmoment.util.ToolUtils;
@@ -331,6 +333,21 @@ public class UserProfileController {
 		return realReceiver+" of "+allUser.size()+"";
 	} 
 		
+	@RequestMapping("/addVideo")
+	public @ResponseBody String addVideo(HttpServletRequest request,
+			HttpServletResponse response ) throws JSONException{
+		VideoMessage vm=new VideoMessage();
+		int num=MongoDBBasic.getVideoMessageMaxNum()+1;
+		System.out.println("new Article num--------------"+num);
+		vm.setNum(num+"");
+		vm.setIsReprint(request.getParameter("isReprint"));
+		vm.setTitle(request.getParameter("title"));
+		vm.setContent(request.getParameter("content"));
+		vm.setWebUrl(request.getParameter("url"));
+		vm.setTime(new Date().toLocaleString());
+		MongoDBBasic.saveVideoMessage(vm);
+		return "success";
+	} 
 	
 	/*chang-zheng
 	 * 
@@ -402,7 +419,7 @@ public class UserProfileController {
 	}
 	@RequestMapping(value = "/uploadSelfie", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String uploadSelfie(HttpServletRequest request,HttpServletResponse response,@RequestParam(value = "openId") String uid){
+	public String uploadSelfie(HttpServletRequest request,HttpServletResponse response,@RequestParam(value = "openId") String uid) throws Exception{
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		System.out.println("uid=="+uid);
 	    factory.setSizeThreshold(1024 * 1024);
@@ -426,7 +443,7 @@ public class UserProfileController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
-		                	message=uid+".jpg";
+		                	message=uid+"1.jpg";
 		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, is);
 		                	
 		                    if(is!=null){
@@ -441,6 +458,7 @@ public class UserProfileController {
 		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
 		    
 		    }
+		    ImageUtil.compressImg("http://mdmdxc.gz.bcebos.com/"+uid+"1.jpg", "http://mdmdxc.gz.bcebos.com/"+uid+".jpg");
 		    return message;
 
 	}

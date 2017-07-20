@@ -28,6 +28,7 @@ import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
+import com.nkang.kxmoment.baseobject.VideoMessage;
 import com.nkang.kxmoment.baseobject.Visited;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
@@ -866,6 +867,23 @@ public class MasterDataRestController {
 			am = null;
 		}
 		return am;
+	}
+	@RequestMapping("/QueryVideoMessage")
+	public static ArrayList<VideoMessage> QueryVideoMessage(@RequestParam(value="startNumber", required=false) int startNumber,@RequestParam(value="pageSize", required=false) int pageSize){
+		ArrayList<VideoMessage> vm = new ArrayList<VideoMessage>();
+		if(startNumber<1){
+			startNumber=0;
+		}
+		if(pageSize<1){
+			pageSize=5;
+		}
+		try{
+			vm = MongoDBBasic.queryVideoMessage(startNumber,pageSize);
+		}		
+		catch(Exception e){
+			vm = null;
+		}
+		return vm;
 	}
 	@RequestMapping("/deleteShortNews")
 	public static boolean deleteShortNewsbyID(@RequestParam(value="id", required=true) String id){

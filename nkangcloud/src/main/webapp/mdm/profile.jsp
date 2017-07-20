@@ -2186,9 +2186,12 @@ function getNowFormatDate() {
 												 <a href="http://shenan.duapp.com/mdm/face.jsp?UID=<%=uid%>" target="_blank">
 												 <img src="../MetroStyleFiles/menu-face.png" /></a>
 													<h4>测颜值</h4></td>
-												<td onclick="getReminderForMore()">
+												<!-- <td onclick="getReminderForMore()">
 												<img src="../MetroStyleFiles/Add1.png" />
-													<h4>更多应用</h4></td>
+													<h4>更多应用</h4></td> -->
+													<td>
+												<img src="http://shenan.duapp.com/mdm/uploadVideo.jsp" />
+													<h4>上传视频</h4></td> 
 											</tr>
 										</table>
 									</div>

@@ -45,6 +45,7 @@ import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
+import com.nkang.kxmoment.baseobject.VideoMessage;
 import com.nkang.kxmoment.baseobject.Visited;
 import com.nkang.kxmoment.baseobject.WeChatAccessKey;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
@@ -60,6 +61,7 @@ public class MongoDBBasic {
 	private static String short_news = "ShortNews";
 	private static String client_pool = "ClientPool";
 	private static String Article_Message = "Article_Message";
+	private static String Video_Message = "Video_Message";
 	private static String ClientMeta = "Client_Meta";
 	private static String collectionBill = "SaleBill";
 	private static String role_area = "RoleOfAreaMap";
@@ -376,6 +378,41 @@ public class MongoDBBasic {
 				}
 				if (o.get("picture") != null) {
 					temp.setTitle(o.get("picture").toString());
+				}
+				result.add(temp);
+			}
+		}
+		return result;
+	}
+	public static ArrayList<VideoMessage> queryVideoMessage(
+			int startNumber, int pageSize) {
+		mongoDB = getMongoDB();
+		ArrayList<VideoMessage> result = new ArrayList<VideoMessage>();
+		BasicDBObject sort = new BasicDBObject();
+		sort.put("_id", -1);
+		DBCursor dbcur = mongoDB.getCollection(Video_Message).find()
+				.sort(sort).skip(startNumber).limit(pageSize);
+		if (null != dbcur) {
+			while (dbcur.hasNext()) {
+				DBObject o = dbcur.next();
+				VideoMessage temp = new VideoMessage();
+				if (o.get("time") != null) {
+					temp.setTime(o.get("time").toString());
+				}
+				if (o.get("content") != null) {
+					temp.setContent(o.get("content").toString());
+				}
+				if (o.get("num") != null) {
+					temp.setNum(o.get("num").toString());
+				}
+				if (o.get("title") != null) {
+					temp.setTitle(o.get("title").toString());
+				}
+				if (o.get("isReprint") != null) {
+					temp.setTitle(o.get("isReprint").toString());
+				}
+				if (o.get("webUrl") != null) {
+					temp.setTitle(o.get("webUrl").toString());
 				}
 				result.add(temp);
 			}
@@ -3770,7 +3807,47 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
-
+	public static List<VideoMessage> getVideoMessageByNum(String num) {
+		mongoDB = getMongoDB();
+		List<VideoMessage> vmList = new ArrayList<VideoMessage>();
+		VideoMessage vm = null;
+		DBCursor queryresults;
+		try {
+			if ("".equals(num)) {
+				BasicDBObject sort = new BasicDBObject();
+				sort.put("_id", -1);
+				queryresults = mongoDB.getCollection(Video_Message).find()
+						.sort(sort);
+			} else {
+				DBObject query = new BasicDBObject();
+				query.put("num", num);
+				queryresults = mongoDB.getCollection(Video_Message)
+						.find(query).limit(1);
+			}
+			if (null != queryresults) {
+				while (queryresults.hasNext()) {
+					DBObject o = queryresults.next();
+					vm = new VideoMessage();
+					vm.setNum(o.get("num") == null ? "" : o.get("num")
+							.toString());
+					vm.setIsReprint(o.get("isReprint") == null ? "" : o.get("isReprint")
+							.toString());
+					vm.setContent(o.get("content") == null ? "" : o.get(
+							"content").toString());
+					vm.setTime(o.get("time") == null ? "" : o.get("time")
+							.toString());
+					vm.setTitle(o.get("title") == null ? "" : o.get("title")
+							.toString());
+					vm.setWebUrl(o.get("webUrl") == null ? "" : o.get("webUrl")
+							.toString());
+					vmList.add(vm);
+				}
+			}
+		} catch (Exception e) {
+			log.info("getVideoMessageByNum--" + e.getMessage());
+		}
+		return vmList;
+	}
 	public static List<ArticleMessage> getArticleMessageByNum(String num) {
 		mongoDB = getMongoDB();
 		List<ArticleMessage> amList = new ArrayList<ArticleMessage>();
@@ -3997,6 +4074,106 @@ public class MongoDBBasic {
 		} else {
 			return 0;
 		}
+	}
+	public static int getVideoMessageMaxNum() {
+		DBCursor cor = mongoDB.getCollection(Video_Message).find();
+		String maxNum = "";
+		if (cor != null) {
+			while (cor.hasNext()) {
+				DBObject objam = cor.next();
+				maxNum = objam.get("num") == null ? "" : objam.get("num")
+						.toString();
+				System.out.println("maxNum----------------" + maxNum);
+			}
+		}
+		if (!"".equals(maxNum)) {
+			return Integer.parseInt(maxNum);
+		} else {
+			return 0;
+		}
+	}
+	public static String saveVideoMessage(VideoMessage videoMessage) {
+		mongoDB = getMongoDB();
+		DBObject query = new BasicDBObject();
+		String ret = "VideoMessage fail";
+		if (videoMessage != null) {
+			if (mongoDB == null) {
+				mongoDB = getMongoDB();
+			}
+			query.put("num", videoMessage.getNum());
+			DBObject queryresult = mongoDB.getCollection(Video_Message)
+					.findOne(query);
+
+			DBObject insertQuery = new BasicDBObject();
+
+			WriteResult writeResult;
+			if (queryresult == null) {
+
+				System.out.println("add new Article--------------");
+				insertQuery.put("num", videoMessage.getNum());
+				insertQuery.put("title", videoMessage.getTitle());
+				insertQuery.put("isReprint", videoMessage.getIsReprint());
+				insertQuery.put("content", videoMessage.getContent());
+				insertQuery.put("time", videoMessage.getTime());
+				insertQuery.put("webUrl", videoMessage.getWebUrl());
+				writeResult = mongoDB.getCollection(Video_Message).insert(
+						insertQuery);
+				ret = "insert videoMessage ok  -->" + writeResult;
+			} else {
+				System.out.println("update old Article--------------");
+				if (videoMessage.getNum() == null
+						&& queryresult.get("num") != null) {
+					insertQuery.put("num", queryresult.get("num").toString());
+				} else {
+					insertQuery.put("num", videoMessage.getNum());
+				}
+
+				if (videoMessage.getTitle() == null
+						&& queryresult.get("title") != null) {
+					insertQuery.put("title", queryresult.get("title")
+							.toString());
+				} else {
+					insertQuery.put("title", videoMessage.getTitle());
+				}
+
+				if (videoMessage.getIsReprint() == null
+						&& queryresult.get("isReprint") != null) {
+					insertQuery.put("isReprint", queryresult.get("isReprint").toString());
+				} else {
+					insertQuery.put("sReprint", videoMessage.getIsReprint());
+				}
+
+				if (videoMessage.getContent() == null
+						&& queryresult.get("content") != null) {
+					insertQuery.put("content", queryresult.get("content")
+							.toString());
+				} else {
+					insertQuery.put("content", videoMessage.getContent());
+				}
+
+				if (videoMessage.getTime() == null
+						&& queryresult.get("time") != null) {
+					insertQuery.put("time", queryresult.get("time").toString());
+				} else {
+					insertQuery.put("time", videoMessage.getTime());
+				}
+				if (videoMessage.getWebUrl() == null
+						&& queryresult.get("webUrl") != null) {
+					insertQuery.put("webUrl", queryresult.get("webUrl")
+							.toString());
+				} else {
+					insertQuery.put("webUrl", videoMessage.getWebUrl());
+				}
+
+				BasicDBObject doc = new BasicDBObject();
+				doc.put("$set", insertQuery);
+				writeResult = mongoDB.getCollection(Video_Message).update(
+						new BasicDBObject().append("num",
+								videoMessage.getNum()), doc);
+				ret = "update Article_Message ok  -->" + writeResult;
+			}
+		}
+		return ret;
 	}
 	public static String saveArticleMessage(ArticleMessage articleMessage) {
 		mongoDB = getMongoDB();
