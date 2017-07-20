@@ -2190,7 +2190,8 @@ function getNowFormatDate() {
 												<img src="../MetroStyleFiles/Add1.png" />
 													<h4>更多应用</h4></td> -->
 													<td>
-												<img src="http://shenan.duapp.com/mdm/uploadVideo.jsp" />
+													 <a href="http://shenan.duapp.com/mdm/uploadVideo.jsp" target="_blank">
+												 <img src="../MetroStyleFiles/Add1.png" /></a>
 													<h4>上传视频</h4></td> 
 											</tr>
 										</table>
