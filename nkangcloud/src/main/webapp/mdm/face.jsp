@@ -15,7 +15,8 @@ MongoDBBasic.updateUser(uid);
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/profile.css"/>
-
+<link rel="stylesheet" type="text/css" href="../nkang/css_athena/style.css"/>
+<link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-responsive.css"/>
 		<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/component.css" />
   <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>

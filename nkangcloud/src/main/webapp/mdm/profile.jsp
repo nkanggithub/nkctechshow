@@ -360,14 +360,14 @@ height: 15px;}
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
 <script>
-/* $(document).ajaxStart(function () {
+ $(document).ajaxStart(function () {
 	$(".sk-circle").show();
 	$("#shadow").show();
     }).ajaxStop(function () {
     	$(".sk-circle").hide();
     	$("#shadow").hide();
     });
-   */
+   
 $(function(){ 
 
 	$(".Work_Mates_div_list_div2").live("swipeleft",function(){
@@ -2183,7 +2183,7 @@ function getNowFormatDate() {
 														<h4>电子签名</h4>
 												</td>
 												<td>
-												 <a href="face.jsp?UID=<%=uid%>">
+												 <a href="http://shenan.duapp.com/mdm/face.jsp?UID=<%=uid%>" target="_blank">
 												 <img src="../MetroStyleFiles/menu-face.png" /></a>
 													<h4>测颜值</h4></td>
 												<td onclick="getReminderForMore()">
