@@ -3,6 +3,7 @@
 <%@ page import="com.nkang.kxmoment.util.*"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ArticleMessage"%>
+<%@ page import="com.nkang.kxmoment.baseobject.VideoMessage"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
 String ticket=RestUtils.getTicket();
@@ -54,8 +55,14 @@ if(null != user) {
 List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
 String uid2=request.getParameter("UID");
 int size=5;
+int size2=5;
 int realSize=ams.size();
 if(ams.size()<=5){size=ams.size();}
+List<VideoMessage> vms=MongoDBBasic.getVideoMessageByNum("");
+int realSize2=vms.size();
+System.out.println("realSize2:===="+realSize2);
+if(vms.size()<=5){size2=vms.size();}
+System.out.println("Size2:===="+size2);
 %>
 <!DOCTYPE html>
 <html lang="en" class="csstransforms csstransforms3d csstransitions">
@@ -262,9 +269,8 @@ Your browser does not support the video tag.
 	<div id="wrapper" style="top:290px;">
 		<div class="scroller">
 <div id="mesPushPanel">
-<% for(int i=0;i<size;i++){ %>
-<%-- <a href="http://shenan.duapp.com/mdm/NotificationCenter.jsp?num=<%=ams.get(i).getNum()%>">
- --%><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FNotificationCenter.jsp?num=<%=ams.get(i).getNum()%>&response_type=code&scope=snsapi_userinfo&state=<%=uid2 %>#wechat_redirect">
+<% if(size!=0){for(int i=0;i<size;i++){ %>
+<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FNotificationCenter.jsp?num=<%=ams.get(i).getNum()%>&response_type=code&scope=snsapi_userinfo&state=<%=uid2 %>#wechat_redirect">
 <div class="singleMes">
 <div class="mesImg">
 <%if(ams.get(i).getPicture()!=null&&ams.get(i).getPicture()!=""){ %>
@@ -277,39 +283,82 @@ Your browser does not support the video tag.
 <p class="mesIntro"><%=ams.get(i).getContent() %></p>
 </div>
 </div></a>
-<%} %>
+<%}} %>
 </div>
+	<div id="videoPanel" style="display:none">
+	<% if(size2!=0){for(int i=0;i<size2;i++){ %>
+	<div class="singleMes">
+<div class="mesImg">
+<%if(vms.get(i).getIsReprint()=="true"){ %>
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" />
+<% }else{%>
+<video src="<%=vms.get(i).getWebUrl() %>"  width="320" height="240"  >
+Your browser does not support the video tag.
+</video><%}%>
+
+</div>
+<div class="mesContent">
+<h2 class="mesTitle"><%=vms.get(i).getTitle() %></h2>
+<p class="mesIntro"><%=vms.get(i).getContent() %></p>
+</div>
+</div>
+<%}} %>
+	</div>
 <div class="more"><i class="pull_icon"></i><span>上拉加载...</span></div>
 		</div>
 	</div>
-	<div id="videoPanel" style="display:none"><div class="singleMes">
-<div class="mesImg">
 
-<video src="https://vd1.bdstatic.com/mda-hgfj8u1i53casain/hd/mda-hgfj8u1i53casain.mp4?playlist=%5B%22hd%22%2C%22sc%22%5D&auth_key=1500525134-0-0-56741c30421a05b9a5f4554878283661&bcevod_channel=searchbox_feed"  width="320" height="240"  >
-Your browser does not support the video tag.
-</video>
-</div>
-<div class="mesContent">
-<h2 class="mesTitle">这小孩回家说补课费</h2>
-<p class="mesIntro">没想到闰土一开口就18000，看的我笑趴了！</p>
-</div>
-</div>
-	</div>
 	<script type="text/javascript">
 	$(function(){
+		var realSize=<%=realSize %>;
+		var size=<%=size %>;
+		var size2=<%=size2 %>;
+		var flag=false;
 		$("#videoMes").on("click",function(){
+			flag=true;
+			realSize=<%=realSize2 %>;
 			$("#articleMes").css("font-weight","normal");
 			$(this).css("font-weight","bolder");
 			$("#wrapper").css("display","none");
 			$("#videoPanel").css("display","block");
+			var img="";
+	 		$.ajax({
+    			url : "../QueryVideoMessage",
+				type:'post',
+				data:{
+					startNumber:size2,
+					pageSize:5
+				},
+				success:function(data){
+					for (var i = 0; i < data.length; i++) {
+						if(data[i].isReprint=="true"){
+							img="<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'/>";
+						}
+						else{
+							img="<video src='"+data[i].webUrl+"' width='320' height='240'>";
+						}
+//						$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+						$('#mesPushPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+					}
+					size=size+data.length;
+					myscroll.refresh();
+				},
+				error:function(){
+					console.log('error');
+				},
+			}); 
 		});
+		
 		$("#articleMes").on("click",function(){
+			flag=false;
+			realSize=<%=realSize %>;
 			$("#videoMes").css("font-weight","normal");
 			$(this).css("font-weight","bolder");
 			$("#videoPanel").css("display","none");
 			$("#wrapper").css("display","block");
 		})
 		$(".mesImg video").on("click",function(){
+			
 			$("#videoContainer video").attr("src","");
 			var src=$(this).attr("src");
 			if(!$("#videoContainer video").attr("src")){
@@ -324,8 +373,7 @@ Your browser does not support the video tag.
 	 })
 	});
 
-	var realSize=<%=realSize %>;
-	var size=<%=size %>;
+
 			var myscroll = new iScroll("wrapper",{
 				onScrollMove:function(){
 					if (this.y<(this.maxScrollY)) {
@@ -360,6 +408,38 @@ Your browser does not support the video tag.
 			
 			function pullUpAction(){
 				var img="";
+				if(flag){
+					setTimeout(function(){
+				 		$.ajax({
+			    			url : "../QueryVideoMessage",
+							type:'post',
+							data:{
+								startNumber:size2,
+								pageSize:5
+							},
+							success:function(data){
+								for (var i = 0; i < data.length; i++) {
+									if(data[i].isReprint=="true"){
+										img="<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'/>";
+									}
+									else{
+										img="<video src='"+data[i].webUrl+"' width='320' height='240'>";
+									}
+//									$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+									$('#mesPushPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+								}
+								size2=size2+data.length;
+								myscroll.refresh();
+							},
+							error:function(){
+								console.log('error');
+							},
+						}); 
+					
+						myscroll.refresh();
+					}, 1000)
+				}else{
+				
 				setTimeout(function(){
 			 		$.ajax({
 		    			url : "../QueryArticleMessage",
@@ -389,6 +469,7 @@ Your browser does not support the video tag.
 				
 					myscroll.refresh();
 				}, 1000)
+				}
 			}
 			if ($('.scroller').height()<$('#wrapper').height()) {
 				$('.more').hide();
