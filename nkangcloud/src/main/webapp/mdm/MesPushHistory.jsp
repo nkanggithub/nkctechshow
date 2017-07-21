@@ -430,7 +430,7 @@ Your browser does not support the video tag.
 										img="<a href='"+data[i].webUrl+"'><img src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM'/></a>";
 									}
 									else{
-										img="<video src='"+data[i].webUrl+"' width='320' height='240'>";
+										img="<video src='"+data[i].webUrl+"' width='320' height='240'><img src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM'/></video>";
 									}
 //									$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 									$('#mesPushPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
