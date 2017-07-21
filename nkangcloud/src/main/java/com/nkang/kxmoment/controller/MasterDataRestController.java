@@ -274,8 +274,8 @@ public class MasterDataRestController {
 	
 			String content=mes.getContent();
 			String title=mes.getTitle();
+			String uri=mes.getWebUrl();
 			for(int i=0;i<allUser.size();i++){
-				String uri=mes.getWebUrl();
 					RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
 			}
 			MongoDBBasic.updateVideoMessageByNum(num);
@@ -287,9 +287,13 @@ public class MasterDataRestController {
 	
 			String content=mes.getContent();
 			String title=mes.getTitle();
+			String picture="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg";
+			if(mes.getPicture()!=null&&mes.getPicture()!=""){
+				picture=mes.getPicture();
+			}
+			String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FNotificationCenter.jsp?num="+num+"&response_type=code&scope=snsapi_userinfo&state=oqPI_xACjXB7pVPGi5KH9Nzqonj4#wechat_redirect";
 			for(int i=0;i<allUser.size();i++){
-				String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FNotificationCenter.jsp?num="+num+"&response_type=code&scope=snsapi_userinfo&state=oqPI_xACjXB7pVPGi5KH9Nzqonj4#wechat_redirect";
-				RestUtils.sendQuotationToUser(allUser.get(i),content,mes.getPicture(),"【"+allUser.get(i).getNickname()+"】"+title,uri);
+			RestUtils.sendQuotationToUser(allUser.get(i),content,picture,"【"+allUser.get(i).getNickname()+"】"+title,uri);
 			}
 			MongoDBBasic.updateArticleMessageByNum(num);
 		}
