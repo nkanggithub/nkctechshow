@@ -265,20 +265,34 @@ public class MasterDataRestController {
 		return AK;
 	}
 	@RequestMapping("/getForwardMessage")
-	public boolean getForwardMessage(@RequestParam(value="num", required=false) String num){
-		List<VideoMessage>  list=MongoDBBasic.getVideoMessageByNum(num);
-		VideoMessage mes=list.get(0);
-		//微信
-		List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
-
-		String content=mes.getContent();
-		String title=mes.getTitle();
-		for(int i=0;i<allUser.size();i++){
-			String uri=mes.getWebUrl();
-				RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
+	public boolean getForwardMessage(@RequestParam(value="num", required=false) String num,@RequestParam(value="type", required=false) String type){
+		if("video".equals(type)){
+			List<VideoMessage>  list=MongoDBBasic.getVideoMessageByNum(num);
+			VideoMessage mes=list.get(0);
+			//微信
+			List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
+	
+			String content=mes.getContent();
+			String title=mes.getTitle();
+			for(int i=0;i<allUser.size();i++){
+				String uri=mes.getWebUrl();
+					RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
+			}
+			MongoDBBasic.updateVideoMessageByNum(num);
+		}else{
+			List<ArticleMessage>  list=MongoDBBasic.getArticleMessageByNum(num);
+			ArticleMessage mes=list.get(0);
+			//微信
+			List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
+	
+			String content=mes.getContent();
+			String title=mes.getTitle();
+			for(int i=0;i<allUser.size();i++){
+				String uri=mes.getWebUrl();
+					RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
+			}
+			MongoDBBasic.updateArticleMessageByNum(num);
 		}
-		
-		MongoDBBasic.updateVideoMessageByNum(num);
 		return true;
 	}
 
