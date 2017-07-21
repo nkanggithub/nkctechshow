@@ -409,10 +409,10 @@ public class MongoDBBasic {
 					temp.setTitle(o.get("title").toString());
 				}
 				if (o.get("isReprint") != null) {
-					temp.setTitle(o.get("isReprint").toString());
+					temp.setIsReprint(o.get("isReprint").toString());
 				}
 				if (o.get("webUrl") != null) {
-					temp.setTitle(o.get("webUrl").toString());
+					temp.setWebUrl(o.get("webUrl").toString());
 				}
 				result.add(temp);
 			}
