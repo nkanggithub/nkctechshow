@@ -12,7 +12,14 @@ public class ArticleMessage {
 	public String picture;
 	public List<String> visited;
 	public String visitedNum;
+	public String isForward;
 	public List<Teamer> signUp;
+	public String getIsForward() {
+		return isForward;
+	}
+	public void setIsForward(String isForward) {
+		this.isForward = isForward;
+	}
 	public List<Teamer> getSignUp() {
 		return signUp;
 	}
