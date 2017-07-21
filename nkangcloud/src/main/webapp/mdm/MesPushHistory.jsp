@@ -157,6 +157,18 @@ wx.config({
          alert("errorMSG:"+res);
      });
  });
+ function forward(num){
+	 $.ajax({
+			url : "../getForwardMessage",
+			type:'post',
+			data:{
+				num :num
+			},
+			success:function(data){
+				alert("发送成功！");
+			}
+	 });
+ }
  </script>
 <style>
 *{
@@ -302,7 +314,7 @@ Your browser does not support the video tag.
 
 </div>
 <div class="mesContent">
-<h2 class="mesTitle"><img src='images/forward.png' style='height:20px;vertical-align:bottom;padding-bottom:3px;'/><%=vms.get(i).getTitle() %></h2>
+<h2 class="mesTitle"><img src='images/forward.png' onclick="javascript:forward('<%=vms.get(i).getNum() %>');" style='height:20px;vertical-align:bottom;padding-bottom:3px;'/><%=vms.get(i).getTitle() %></h2>
 <p class="mesIntro"><%=vms.get(i).getContent() %></p>
 </div>
 </div>
@@ -482,7 +494,6 @@ Your browser does not support the video tag.
 				$('.more').hide();
 				myscroll.destroy();
 			}
-
 		</script>
 </body>
 </html>
