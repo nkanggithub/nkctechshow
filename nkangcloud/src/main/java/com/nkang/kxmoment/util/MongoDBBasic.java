@@ -411,6 +411,9 @@ public class MongoDBBasic {
 				if (o.get("isReprint") != null) {
 					temp.setIsReprint(o.get("isReprint").toString());
 				}
+				if (o.get("isForward") != null) {
+					temp.setIsForward(o.get("isForward").toString());
+				}
 				if (o.get("webUrl") != null) {
 					temp.setWebUrl(o.get("webUrl").toString());
 				}
@@ -3807,6 +3810,23 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+	public static boolean updateVideoMessageByNum(String num) {
+		boolean ret=false;
+		try {
+			mongoDB = getMongoDB();
+			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
+			DBObject dbo = new BasicDBObject();
+			dbo.put("isForward","1");
+			BasicDBObject doc = new BasicDBObject();
+			doc.put("$set", dbo);
+			mongoDB.getCollection(Video_Message).update(new BasicDBObject().append("num",num), doc);
+			ret=true;
+			log.info("updateVideoMessageByNum end");
+		} catch (Exception e) {
+			log.info("updateVideoMessageByNum--" + e.getMessage());
+		}
+		return ret;
+	}
 	public static List<VideoMessage> getVideoMessageByNum(String num) {
 		mongoDB = getMongoDB();
 		List<VideoMessage> vmList = new ArrayList<VideoMessage>();
@@ -3839,6 +3859,8 @@ public class MongoDBBasic {
 					vm.setTitle(o.get("title") == null ? "" : o.get("title")
 							.toString());
 					vm.setWebUrl(o.get("webUrl") == null ? "" : o.get("webUrl")
+							.toString());
+					vm.setIsForward(o.get("isForward") == null ? "" : o.get("isForward")
 							.toString());
 					vmList.add(vm);
 				}
@@ -4113,6 +4135,7 @@ public class MongoDBBasic {
 				insertQuery.put("num", videoMessage.getNum());
 				insertQuery.put("title", videoMessage.getTitle());
 				insertQuery.put("isReprint", videoMessage.getIsReprint());
+				insertQuery.put("isForward", "0");
 				insertQuery.put("content", videoMessage.getContent());
 				insertQuery.put("time", videoMessage.getTime());
 				insertQuery.put("webUrl", videoMessage.getWebUrl());
