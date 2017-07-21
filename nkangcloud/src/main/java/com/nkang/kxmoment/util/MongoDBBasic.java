@@ -377,7 +377,10 @@ public class MongoDBBasic {
 					temp.setTitle(o.get("title").toString());
 				}
 				if (o.get("picture") != null) {
-					temp.setTitle(o.get("picture").toString());
+					temp.setPicture(o.get("picture").toString());
+				}
+				if (o.get("isForward") != null) {
+					temp.setIsForward(o.get("isForward").toString());
 				}
 				result.add(temp);
 			}
@@ -3870,6 +3873,23 @@ public class MongoDBBasic {
 		}
 		return vmList;
 	}
+	public static boolean updateArticleMessageByNum(String num) {
+		boolean ret=false;
+		try {
+			mongoDB = getMongoDB();
+			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
+			DBObject dbo = new BasicDBObject();
+			dbo.put("isForward","1");
+			BasicDBObject doc = new BasicDBObject();
+			doc.put("$set", dbo);
+			mongoDB.getCollection(Article_Message).update(new BasicDBObject().append("num",num), doc);
+			ret=true;
+			log.info("updateArticleMessageByNum end");
+		} catch (Exception e) {
+			log.info("updateArticleMessageByNum--" + e.getMessage());
+		}
+		return ret;
+	}
 	public static List<ArticleMessage> getArticleMessageByNum(String num) {
 		mongoDB = getMongoDB();
 		List<ArticleMessage> amList = new ArrayList<ArticleMessage>();
@@ -3903,6 +3923,8 @@ public class MongoDBBasic {
 							"visitedNum").toString());
 					am.setPicture(o.get("picture") == null ? "" : o.get(
 							"picture").toString());
+					am.setIsForward(o.get("isForward") == null ? "" : o.get(
+							"isForward").toString());
 					BasicDBList signUp = (BasicDBList) o.get("signUp");
 					Teamer s;
 					List<Teamer> signUpMaps=new ArrayList<Teamer>();
@@ -4220,6 +4242,7 @@ public class MongoDBBasic {
 				insertQuery.put("title", articleMessage.getTitle());
 				insertQuery.put("type", articleMessage.getType());
 				insertQuery.put("content", articleMessage.getContent());
+				insertQuery.put("isForward", "0");
 				insertQuery.put("time", articleMessage.getTime());
 				insertQuery.put("picture", articleMessage.getPicture());
 				insertQuery.put("webUrl", articleMessage.getWebUrl());
