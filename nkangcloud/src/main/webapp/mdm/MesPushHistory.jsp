@@ -157,12 +157,14 @@ wx.config({
          alert("errorMSG:"+res);
      });
  });
- function forward(num){
+ function forward(num,type){
+		alert("正在发送中，请耐心等待！");
 	 $.ajax({
 			url : "../getForwardMessage",
 			type:'post',
 			data:{
-				num :num
+				num :num,
+				type:type
 			},
 			success:function(data){
 				alert("发送成功！");
@@ -295,7 +297,7 @@ Your browser does not support the video tag.
 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" />
 <%} %></div>
 <div class="mesContent">
-<h2 class="mesTitle"><%=ams.get(i).getTitle() %></h2>
+<h2 class="mesTitle"><img src='images/forward.png' onclick="javascript:forward('<%=vms.get(i).getNum() %>','mes');" style='height:20px;vertical-align:bottom;padding-bottom:3px;'/><%=ams.get(i).getTitle() %></h2>
 <p class="mesIntro"><%=ams.get(i).getContent() %></p>
 </div>
 </div></a>
@@ -314,7 +316,7 @@ Your browser does not support the video tag.
 
 </div>
 <div class="mesContent">
-<h2 class="mesTitle"><img src='images/forward.png' onclick="javascript:forward('<%=vms.get(i).getNum() %>');" style='height:20px;vertical-align:bottom;padding-bottom:3px;'/><%=vms.get(i).getTitle() %></h2>
+<h2 class="mesTitle"><img src='images/forward.png' onclick="javascript:forward('<%=vms.get(i).getNum() %>','video');" style='height:20px;vertical-align:bottom;padding-bottom:3px;'/><%=vms.get(i).getTitle() %></h2>
 <p class="mesIntro"><%=vms.get(i).getContent() %></p>
 </div>
 </div>
