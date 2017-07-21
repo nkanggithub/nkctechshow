@@ -288,8 +288,8 @@ public class MasterDataRestController {
 			String content=mes.getContent();
 			String title=mes.getTitle();
 			for(int i=0;i<allUser.size();i++){
-				String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FNotificationCenter.jsp?num="+mes.getNum()+"&response_type=code&scope=snsapi_userinfo&state=oqPI_xACjXB7pVPGi5KH9Nzqonj4#wechat_redirect";
-					RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
+				String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FNotificationCenter.jsp?num="+num+"&response_type=code&scope=snsapi_userinfo&state=oqPI_xACjXB7pVPGi5KH9Nzqonj4#wechat_redirect";
+				RestUtils.sendQuotationToUser(allUser.get(i),content,mes.getPicture(),"【"+allUser.get(i).getNickname()+"】"+title,uri);
 			}
 			MongoDBBasic.updateArticleMessageByNum(num);
 		}
