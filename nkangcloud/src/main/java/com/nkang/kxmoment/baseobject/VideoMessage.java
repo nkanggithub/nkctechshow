@@ -8,8 +8,15 @@ public class VideoMessage {
 	public String title;
 	public String isReprint;
 	public String content;
+	public String isForward;
 	public String time;
 	public String webUrl;
+	public String getIsForward() {
+		return isForward;
+	}
+	public void setIsForward(String isForward) {
+		this.isForward = isForward;
+	}
 	public String getWebUrl() {
 		return webUrl;
 	}
