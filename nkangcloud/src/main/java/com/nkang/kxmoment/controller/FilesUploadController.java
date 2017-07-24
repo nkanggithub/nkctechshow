@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONObject;
 import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.util.FileOperateUtil;
+import com.nkang.kxmoment.util.ImageUtil;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
 
@@ -60,7 +61,8 @@ public class FilesUploadController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
-		                	map=FileOperateUtil.OperateOnPlatforRelated(is);
+		                	InputStream newIs=ImageUtil.aftercompressed(is);
+		                	map=FileOperateUtil.OperateOnPlatforRelated(newIs);
 		                	 message=message+map.get("APJ").toString()+"<br>";
 		                	 message=message+map.get("USA").toString()+"<br>";
 		                	 message=message+map.get("MEXICO").toString()+"<br>";
@@ -135,8 +137,9 @@ public class FilesUploadController {
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		            		PlatforRelated  platforRelated=new PlatforRelated();
 		                	InputStream is = item.getInputStream();
+		                	InputStream newIs=ImageUtil.aftercompressed(is);
 		                	//map=FileOperateUtil.OperateOnReport(is);
-		                	platforRelated=FileOperateUtil.OperateOnReport(is);
+		                	platforRelated=FileOperateUtil.OperateOnReport(newIs);
 		                	map.put("APJ", platforRelated.getClosed_APJ());
 		         			map.put("USA", platforRelated.getClosed_USA());
 		         			map.put("MEXICO", platforRelated.getClosed_MEXICO());

@@ -1,9 +1,12 @@
 package com.nkang.kxmoment.util;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
@@ -82,4 +85,21 @@ public class ImageUtil {
         deleteFile(fileName);
 		return false;
     }
+    public static InputStream aftercompressed(InputStream inputStream) throws IOException{
+        BufferedImage image = ImageIO.read(inputStream);
+        ByteArrayOutputStream compressed = new ByteArrayOutputStream();
+        ImageOutputStream outputStream = ImageIO.createImageOutputStream(compressed);
+        ImageWriter jpgWriter = ImageIO.getImageWritersByFormatName("jpg").next();
+        ImageWriteParam jpgWriteParam = jpgWriter.getDefaultWriteParam();
+        jpgWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+        jpgWriteParam.setCompressionQuality(0.3f);
+        jpgWriter.setOutput(outputStream);
+        jpgWriter.write(null, new IIOImage(image, null, null), jpgWriteParam);
+        jpgWriter.dispose();
+        byte[] jpegData = compressed.toByteArray();
+       System.out.println("After-----" + jpegData.length);
+        InputStream ret = new ByteArrayInputStream(jpegData);
+        return ret;
+     }
+
 }

@@ -375,7 +375,7 @@ Your browser does not support the video tag.
 							isForward="";
 						}
 //						$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
-						$('#mesPushPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+						$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 					}
 					size=size+data.length;
 					myscroll.refresh();
@@ -468,7 +468,7 @@ Your browser does not support the video tag.
 							isForward="";
 						}
 //									$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
-									$('#mesPushPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+									$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 								}
 								size2=size2+data.length;
 								myscroll.refresh();

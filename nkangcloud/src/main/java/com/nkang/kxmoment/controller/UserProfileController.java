@@ -399,8 +399,9 @@ public class UserProfileController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
+		                	InputStream newIs=ImageUtil.aftercompressed(is);
 		                	message=item.getName();
-		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, is);
+		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, newIs);
 		                	
 		                    if(is!=null){
 		                    	is.close();
@@ -443,8 +444,9 @@ public class UserProfileController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
+		                	InputStream newIs=ImageUtil.aftercompressed(is);
 		                	message=uid+".jpg";
-		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, is);
+		                	putObjectResponseFromInputStream = MyBosClient.client.putObject(bk, message, newIs);
 		                	
 		                    if(is!=null){
 		                    	is.close();
@@ -457,8 +459,8 @@ public class UserProfileController {
 		        e.printStackTrace();
 		        message = "fail--"+e.toString()+"  fileList-size="+ fileList.size() +" message="+ message+" item.isFormField() ="+fileList.get(0).isFormField()+" && item.getSize()="+ fileList.get(0).getSize();
 		    
-		    }/*
-		    ImageUtil.compressImg("http://mdmdxc.gz.bcebos.com/"+uid+"1.jpg", "http://mdmdxc.gz.bcebos.com/"+uid+".jpg");*/
+		    }
+//		    ImageUtil.compressImg("http://mdmdxc.gz.bcebos.com/"+uid+"1.jpg", "http://mdmdxc.gz.bcebos.com/"+uid+".jpg");
 		    return message;
 
 	}
