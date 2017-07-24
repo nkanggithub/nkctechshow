@@ -276,7 +276,10 @@ public class MasterDataRestController {
 			String title=mes.getTitle();
 			String uri=mes.getWebUrl();
 			for(int i=0;i<allUser.size();i++){
+			//	if(allUser.get(i).getOpenid().equals("oqPI_xACjXB7pVPGi5KH9Nzqonj4")){
+					log.info("getForwardMessage==========video================send to "+allUser.get(i).getOpenid());
 					RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
+			//	}
 			}
 			MongoDBBasic.updateVideoMessageByNum(num);
 		}else{
@@ -286,6 +289,10 @@ public class MasterDataRestController {
 			List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
 	
 			String content=mes.getContent();
+			content=content.replaceAll("(\r\n|\r|\n|\n\r|<br/>|<br />|<br>|<b>|</b>|\")", "");
+			if(content.length()>200){
+				content=content.substring(0,180);
+			}
 			String title=mes.getTitle();
 			String picture="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg";
 			if(mes.getPicture()!=null&&mes.getPicture()!=""){
@@ -293,7 +300,12 @@ public class MasterDataRestController {
 			}
 			String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FNotificationCenter.jsp?num="+num+"&response_type=code&scope=snsapi_userinfo&state=oqPI_xACjXB7pVPGi5KH9Nzqonj4#wechat_redirect";
 			for(int i=0;i<allUser.size();i++){
-			RestUtils.sendQuotationToUser(allUser.get(i),content,picture,"【"+allUser.get(i).getNickname()+"】"+title,uri);
+				//if(allUser.get(i).getOpenid().equals("oqPI_xACjXB7pVPGi5KH9Nzqonj4")){
+					log.info("getForwardMessage==========mes================send to "+allUser.get(i).getOpenid());
+					log.info("=========picture:"+picture);
+					log.info("=========uri:"+uri);
+					RestUtils.sendQuotationToUser(allUser.get(i),content,picture,"【"+allUser.get(i).getNickname()+"】"+title,uri);
+				//}
 			}
 			MongoDBBasic.updateArticleMessageByNum(num);
 		}
