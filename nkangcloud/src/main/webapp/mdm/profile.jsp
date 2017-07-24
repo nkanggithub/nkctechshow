@@ -360,14 +360,14 @@ height: 15px;}
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
 <script>
- $(document).ajaxStart(function () {
+/*  $(document).ajaxStart(function () {
 	$(".sk-circle").show();
 	$("#shadow").show();
     }).ajaxStop(function () {
     	$(".sk-circle").hide();
     	$("#shadow").hide();
     });
-   
+    */
 $(function(){ 
 
 	$(".Work_Mates_div_list_div2").live("swipeleft",function(){
