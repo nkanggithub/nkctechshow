@@ -461,6 +461,7 @@ $(window).load(function() {
 		getRealName();
 		getAllRegisterUsers();
 		getRole();
+		isRegister();
 });
 function getRole(){
 	$.ajax({
@@ -1142,6 +1143,31 @@ function hideRecognitionCenter()
 {
 	$("body").find("#recognitionCenter").remove();
 	}
+
+function isRegister()
+{
+	$.ajax({
+		type : "GET",
+		url : "../userProfile/getMDLUserLists",
+		data : {
+			UID : $('#uid').val()
+		},
+		cache : false,
+		success : function(data) {
+			if(data){
+				data = data.replace(/:null/g, ':"未注册"');
+				data = '{"results":' + data + '}';
+				var jsons = eval('(' + data + ')');
+				if (jsons.results.length > 0) {
+					if(jsons.results[0].realName =="未注册"){
+						 $(".registerArea").show();
+					}
+					
+				}
+				}
+		}
+	});
+}
 function register() {
 	jQuery
 	.ajax({

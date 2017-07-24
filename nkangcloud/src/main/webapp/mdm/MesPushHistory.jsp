@@ -311,7 +311,7 @@ if(ams.get(i).getPicture()!=null&&ams.get(i).getPicture()!=""){ %>
 <%}} %>
 </div>
 	<div id="videoPanel" style="display:none">
-	<% if(size2!=0){for(int i=0;i<size2;i++){ %>
+<%-- 	<% if(size2!=0){for(int i=0;i<size2;i++){ %>
 	<div class="singleMes">
 <div class="mesImg">
 <%if(vms.get(i).getIsReprint().equals("1")){ %>
@@ -333,7 +333,7 @@ Your browser does not support the video tag.
 <p class="mesIntro"><%=vms.get(i).getContent() %></p>
 </div>
 </div>
-<%}} %>
+<%}} %> --%>
 	</div>
 <div class="more"><i class="pull_icon"></i><span>上拉加载...</span></div>
 		</div>
