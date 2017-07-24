@@ -1985,7 +1985,7 @@ function getNowFormatDate() {
 </div>
 <div class="register_btn" onclick="updateInfo()">提交</div>
   </div>
-
+<!-- 
 <div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:black;"></div>
  <div class="sk-circle" style="display:none;">
       <div class="sk-circle1 sk-child"></div>
@@ -2000,7 +2000,7 @@ function getNowFormatDate() {
       <div class="sk-circle10 sk-child"></div>
       <div class="sk-circle11 sk-child"></div>
       <div class="sk-circle12 sk-child"></div>
-    </div>
+    </div> -->
 	<input id="uid" type="hidden" value="<%=uid%>" />
 	<input id="timer" type="hidden" value="" />
 	<input id="realName" type="hidden" value="" />
