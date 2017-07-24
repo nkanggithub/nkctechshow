@@ -156,24 +156,23 @@ public class CoreService
 				String eventType = requestObject.element("Event").getText();
 				if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
 					WeChatUser wcu = RestUtils.getWeChatUserInfo(AccessKey, fromUserName);
-					//DBUtils.createUser(wcu);
 					Boolean ret =  false;
 					if(wcu.getOpenid() != "" || wcu.getOpenid() != null){
 						ret = MongoDBBasic.createUser(wcu);
 					}
 					articleList.clear();
 					Article article = new Article();
-					article.setTitle("移动应用");
+					article.setTitle("【"+cm.getClientName()+"】欢迎您的到来，为了更好的为您提供服务，烦请注册。感谢一路有您");
 					article.setDescription("移动应用");
-					article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9m1P&oid=00D90000000pkXM");
-					article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
+					article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVjCT&oid=00D90000000pkXM");
+					article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 					articleList.add(article);
 
 					Article article4 = new Article();
-					article4.setTitle("Data Visualization");
-					article4.setDescription("Master Data Visualization");
-					article4.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009urNv&oid=00D90000000pkXM");
-					article4.setUrl("http://"+Constants.baehost+"/DQMenu?UID=" + fromUserName);
+					article4.setTitle("在此注册");
+					article4.setDescription("在此注册");
+					article4.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVjDC&oid=00D90000000pkXM");
+					article4.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 					articleList.add(article4);
 					newsMessage.setArticleCount(articleList.size());
 					newsMessage.setArticles(articleList);
