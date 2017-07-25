@@ -61,8 +61,7 @@ public class FilesUploadController {
 		            	//String filename="";
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		                	InputStream is = item.getInputStream();
-		                	InputStream newIs=ImageUtil.aftercompressed(is);
-		                	map=FileOperateUtil.OperateOnPlatforRelated(newIs);
+		                	map=FileOperateUtil.OperateOnPlatforRelated(is);
 		                	 message=message+map.get("APJ").toString()+"<br>";
 		                	 message=message+map.get("USA").toString()+"<br>";
 		                	 message=message+map.get("MEXICO").toString()+"<br>";
@@ -137,9 +136,8 @@ public class FilesUploadController {
 		            	   if(!item.isFormField() && item.getSize() > 0){
 		            		PlatforRelated  platforRelated=new PlatforRelated();
 		                	InputStream is = item.getInputStream();
-		                	InputStream newIs=ImageUtil.aftercompressed(is);
 		                	//map=FileOperateUtil.OperateOnReport(is);
-		                	platforRelated=FileOperateUtil.OperateOnReport(newIs);
+		                	platforRelated=FileOperateUtil.OperateOnReport(is);
 		                	map.put("APJ", platforRelated.getClosed_APJ());
 		         			map.put("USA", platforRelated.getClosed_USA());
 		         			map.put("MEXICO", platforRelated.getClosed_MEXICO());
