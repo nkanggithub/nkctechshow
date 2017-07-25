@@ -275,7 +275,7 @@ public class MasterDataRestController {
 			String content=mes.getContent();
 			String title=mes.getTitle();
 			String uri=mes.getWebUrl();
-			content+="\n更多消息请点击微信公众号菜单：\n   发现附近-->往期回顾-->视频消息";
+			content+="\n【更多消息请点击微信公众号菜单：\n      发现附近-->往期回顾-->视频消息】";
 			for(int i=0;i<allUser.size();i++){
 			//	if(allUser.get(i).getOpenid().equals("oqPI_xACjXB7pVPGi5KH9Nzqonj4")){
 					log.info("getForwardMessage==========video================send to "+allUser.get(i).getOpenid());
@@ -294,7 +294,7 @@ public class MasterDataRestController {
 			if(content.length()>200){
 				content=content.substring(0,180);
 			}
-			content+="\n更多消息请点击微信公众号菜单：\n   发现附近-->往期回顾-->图文消息";
+			content+="\n【更多消息请点击微信公众号菜单：\n      发现附近-->往期回顾-->图文消息】";
 			String title=mes.getTitle();
 			String picture="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg";
 			if(mes.getPicture()!=null&&mes.getPicture()!=""){
