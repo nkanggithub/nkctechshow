@@ -553,7 +553,7 @@ function checkReg() {
 			data = '{"results":' + data + '}';
 			var jsons = eval('(' + data + ')');
 			if (jsons.results.length > 0) {
-				if(jsons.results[0].role=="未注册"){
+				if(jsons.results[0].phone=="未注册"){
 					swal("你还未注册哦", "未注册用户很多功能不能使用,建议点击头像立即注册！", "error");
 				}
 			}
@@ -1159,7 +1159,7 @@ function isRegister()
 				data = '{"results":' + data + '}';
 				var jsons = eval('(' + data + ')');
 				if (jsons.results.length > 0) {
-					if(jsons.results[0].realName =="未注册"){
+					if(jsons.results[0].phone =="未注册"){
 						 $(".registerArea").show();
 					}
 					
@@ -1359,16 +1359,11 @@ function returnRegisterBack()
 	    var etltag = $("#etltag").val(); */
 		var selfIntro = $("#selfIntro").val();
 		
-		 var emailFilter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		 var phoneFilter = /^1[0-9]{10}/;
 		 if (name.replace(/(^ *)|( *$)/g,'')==''){
 			 swal("注册失败!", "请输入正确的姓名信息！", "error");
 		 }else if (!phoneFilter.test(phone)){
 			 swal("注册失败!", "请输入正确的电话信息！", "error");
-		 }else if (!emailFilter.test(email)){
-			 swal("注册失败!", "请输入正确的邮箱信息！", "error");
-		 }else if (selfIntro==''){
-			 swal("注册失败!", "请输入您的个人介绍信息！", "error");
 		 }else if(display!="none"){
 			 if(validateCode==""||validateCode!=code){
 				 swal("注册失败!", "请输入验证码或验证码不正确！", "error");
@@ -1983,7 +1978,8 @@ function getNowFormatDate() {
 <p class="inputArea"><input id="selfIntro" type="text" placeholder="请输入你的个人简介"/> </p>
 </div>
 </div>
-<div class="register_btn" onclick="updateInfo()">提交</div>
+<div class="register_btn" onclick="updateInfo()"><img src="../mdm/images/finger-up.png" style="margin-top: 10px;width: 30px;height: 30px;"><span style="display: block;
+">提交</span></div>
   </div>
 <!-- 
 <div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:black;"></div>
