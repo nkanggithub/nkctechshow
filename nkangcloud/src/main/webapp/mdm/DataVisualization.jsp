@@ -28,7 +28,9 @@ MongoDBBasic.addSkimNum();
     <link href="../Jsp/JS/pizzaChart/css/app.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
 <link href="../Jsp/JS/pizzaChart/css/pizza.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
 <script src="../Jsp/JS/pizzaChart/js/custom.modernizr.js"></script>
+<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <script type="text/javascript" src="../nkang/jquery-1.8.0.js"></script>
+<script	src="../MetroStyleFiles/sweetalert.min.js"></script>
 <style>
 p{
 margin-bottom:0px;
@@ -507,6 +509,7 @@ var i=$(this).index();
 		  
 	$("#chart-container2").show();
 	$("#chart-container2 circle").css("cursor","pointer");
+
 	 $(document).on("click","#chart-container2 circle",function(){
 		 console.log("....."+$(this).index());
 		 var index=$(this).index();
@@ -536,7 +539,7 @@ var i=$(this).index();
 					if(data[i].visitedNum!=0&&imgUrl!="null")
 					{	
 						if(data[i].sharedNum!=0){
-							sharedNum="("+data[i].sharedNum+")";
+							sharedNum="<span onclick='getDetailedShare(\""+data[i].openid+"\",\""+data[i].date+"\",\""+data[i].pageName+"\",\""+data[i].nickName+"\")'>("+data[i].sharedNum+")</span>";
 						}
 						html+="<div class='singleV'><img src='"+data[i].imgUrl+"' /><p class='VNickName'>"+data[i].nickName+"</p><p class='visitedNum'>"+data[i].visitedNum+sharedNum+"</p></div>";
 					};
@@ -562,6 +565,45 @@ var i=$(this).index();
 
 	  
 	  });
-
+	function getDetailedShare(openid,date,pageName,nickName){
+		$.ajax({
+			type : "post",
+			async: false,
+			url : "../getSharedDetail",
+			data:{
+				openid:openid,
+				date:date,
+				pageName:pageName,
+				nickName:nickName
+			},
+			cache : false,
+			success : function(data) {
+				if(data){
+					var sharedList="<div style='height:200px;overflow:scroll'>";
+					for(var i=0;i<data.length;i++){
+	  	        		sharedList+="<p style='width:100%;float:left;height:40px;line-height:40px;text-align: center;'>"+data[i]+"</p>";
+	  	        		}
+					sharedList+="</div>";
+	  	  		 swal({  
+	  			        title:"分享列表",  
+	  			        text:sharedList,
+	  			        html:"true",
+	  			        showConfirmButton:false, 
+	  					showCancelButton: true,   
+	  					closeOnConfirm: false,   
+	  			        cancelButtonText:"关闭",
+	  			        confirmButtonColor: "#000",
+	  			        animation:"slide-from-top"  
+	  			      }, 
+	  					function(inputValue){
+	  			    	  if (inputValue === false){ return false; }
+	  			      }
+	  			     );
+				}
+			
+			}
+		});
+	}
+		
   </script>
 </body></html>

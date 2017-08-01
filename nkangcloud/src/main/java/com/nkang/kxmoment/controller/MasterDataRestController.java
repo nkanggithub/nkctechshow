@@ -1164,6 +1164,11 @@ public class MasterDataRestController {
 		String date=MongoDBBasic.getLastestDate(-6).get(index);
 		return MongoDBBasic.getVisitedDetail(date,pn); 
 	}
+	@RequestMapping("/getSharedDetail")
+	public @ResponseBody List<String> getSharedDetail(@RequestParam(value="openid")String openid,@RequestParam(value="date")String date,
+			@RequestParam(value="pageName")String pageName,@RequestParam(value="nickName")String nickName){
+		return MongoDBBasic.getSharedDetail(openid,date,pageName,nickName); 
+	}
 	@RequestMapping("/sendValidateCode")
 	public String sendValidateCode(@RequestParam(value="phone")String phone,@RequestParam(value="code")String code){
 		

@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 
+import com.fasterxml.jackson.core.sym.Name;
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -3929,7 +3930,6 @@ public class MongoDBBasic {
 					Teamer s;
 					List<Teamer> signUpMaps=new ArrayList<Teamer>();
 					if (signUp != null) {
-						System.out.println("signUpList is not null-------------------");
 						Object[] su = signUp.toArray();
 						for (Object dbobj : su) {
 							if (dbobj instanceof DBObject) {
@@ -3942,8 +3942,6 @@ public class MongoDBBasic {
 					}
 					am.setSignUp(signUpMaps);
 					amList.add(am);
-					System.out.println("am.getPicture()---------"
-							+ am.getPicture());
 				}
 			}
 		} catch (Exception e) {
@@ -4519,28 +4517,63 @@ public class MongoDBBasic {
 		return ret;
 	}
 	public static String updateShared(String openid, String date,
-			String pageName, String imgUrl, String nickName) {
+			String pageName, String imgUrl, String nickName,String imgUrl2, String nickName2) {
 		if (mongoDB == null) {
 			mongoDB = getMongoDB();
 		}
 		String ret = "ok";
+		HashSet<String> sharedList = new HashSet<String>();
+		boolean isExisted=false;
 		try {
 			DBObject query = new BasicDBObject();
 			query.put("openid", openid);
 			query.put("date", date);
 			query.put("pageName", pageName);
-			query.put("imgUrl", imgUrl);
-			query.put("nickName", nickName);
+			query.put("nickName", nickName2);
 			DBObject visited = mongoDB.getCollection(collectionVisited)
 					.findOne(query);
 			if (visited != null) {
-				BasicDBObject doc = new BasicDBObject();
-				BasicDBObject update = new BasicDBObject();
-				update.append("sharedNum", 1);
-				doc.put("$inc", update);
-				mongoDB.getCollection(collectionVisited).update(query, doc);
+				if(visited.get("sharedList") != null){
+					BasicDBList hist = (BasicDBList) visited.get("sharedList");
+					Object[] slObjects = hist.toArray();
+					for (Object dbobj : slObjects) {
+						if (dbobj instanceof String) {
+							if(!nickName.equals((String) dbobj)){
+								sharedList.add((String) dbobj);
+							}else {
+								isExisted=true;
+							}
+						}
+					}
+					System.out.println("isExisted-----"+isExisted);
+					if(!isExisted){
+						BasicDBObject doc = new BasicDBObject();
+						BasicDBObject update1 = new BasicDBObject();
+						BasicDBObject update2 = new BasicDBObject();
+						update1.append("sharedNum", 1);
+						doc.put("$inc", update1);
+						sharedList.add(nickName);
+						update2.put("sharedList", sharedList);
+						doc.put("$set", update2);
+						mongoDB.getCollection(collectionVisited).update(query, doc);
+						}
+				}else{
+					System.out.println("sharedList is null-----");
+					BasicDBObject doc = new BasicDBObject();
+					BasicDBObject update = new BasicDBObject();
+					update.put("sharedNum", 1);
+					sharedList.add(nickName);
+					update.put("sharedList", sharedList);
+					doc.put("$set", update);
+					mongoDB.getCollection(collectionVisited).update(query, doc);
+				}
+				
 			} else {
+				query.put("imgUrl", imgUrl2);
+				System.out.println("visited is null-----");
 				query.put("sharedNum", 1);
+				sharedList.add(nickName);
+				query.put("sharedList", sharedList);
 				mongoDB.getCollection(collectionVisited).insert(query);
 			}
 
@@ -4549,6 +4582,42 @@ public class MongoDBBasic {
 		}
 
 		return ret;
+	}
+	public static List<String> getSharedDetail(String openid, String date,
+			String pageName,String nickName) {
+		if (mongoDB == null) {
+			mongoDB = getMongoDB();
+		}
+		String ret = "ok";
+		List<String> sharedList = new ArrayList<String>();
+		boolean isExisted=false;
+		try {
+			DBObject query = new BasicDBObject();
+			query.put("openid", openid);
+			query.put("date", date);
+			query.put("pageName", pageName);
+			query.put("nickName", nickName);
+			DBObject visited = mongoDB.getCollection(collectionVisited)
+					.findOne(query);
+			if (visited != null) {
+				if(visited.get("sharedList") != null){
+					BasicDBList hist = (BasicDBList) visited.get("sharedList");
+					Object[] slObjects = hist.toArray();
+					for (Object dbobj : slObjects) {
+						if (dbobj instanceof String) {
+							if(!nickName.equals((String) dbobj)){
+								sharedList.add((String) dbobj);
+						}
+					}
+					System.out.println("isExisted-----"+isExisted);
+				}
+			}
+			}
+		} catch (Exception e) {
+			ret = e.getMessage();
+		}
+
+		return sharedList;
 	}
 	public static String InsertArtcleID(String articleID) {
 		mongoDB = getMongoDB();
