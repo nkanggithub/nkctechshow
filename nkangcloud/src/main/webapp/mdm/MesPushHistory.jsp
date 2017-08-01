@@ -69,7 +69,6 @@ for(int c=0;c<vms.size();c++)
 	System.out.println("isRepeint:++"+vms.get(c).getIsReprint());
 	}
 
-boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 %>
 <!DOCTYPE html>
 <html lang="en" class="csstransforms csstransforms3d csstransitions">
