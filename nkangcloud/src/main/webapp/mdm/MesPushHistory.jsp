@@ -52,6 +52,7 @@ if(null != user) {
 		
 	}
 }
+boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
 String uid2=request.getParameter("UID");
 int size=5;
@@ -67,6 +68,8 @@ for(int c=0;c<vms.size();c++)
 {
 	System.out.println("isRepeint:++"+vms.get(c).getIsReprint());
 	}
+
+boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 %>
 <!DOCTYPE html>
 <html lang="en" class="csstransforms csstransforms3d csstransitions">
@@ -298,13 +301,17 @@ if(ams.get(i).getPicture()!=null&&ams.get(i).getPicture()!=""){ %>
 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" />
 <%} %></div>
 <div class="mesContent">
-<h2 class="mesTitle"><img
+<h2 class="mesTitle">
+<%if(IsAuthenticated==true){ %>
+<img
  <% if("0".equals(ams.get(i).isForward)){ %>
  src='images/forward.png'
  <%}else{ %>
  src='images/forward2.png'
  <%} %>
-  onclick="javascript:forward('<%=ams.get(i).getNum() %>','mes');return false;" style='height:20px;vertical-align:bottom;padding-bottom:3px;'/><%=ams.get(i).getTitle() %></h2>
+  onclick="javascript:forward('<%=ams.get(i).getNum() %>','mes');return false;" style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>
+ <%} %>
+  <%=ams.get(i).getTitle() %></h2>
 <p class="mesIntro"><%=ams.get(i).getContent() %></p>
 </div>
 </div></a>
@@ -375,7 +382,11 @@ Your browser does not support the video tag.
 							isForward="";
 						}
 //						$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
-						$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+						<%if(IsAuthenticated==true){ %>
+							$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+						<%}else{%>
+						$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+						<%}%>
 					}
 					size=size+data.length;
 					myscroll.refresh();
@@ -468,7 +479,12 @@ Your browser does not support the video tag.
 							isForward="";
 						}
 //									$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+									<%if(IsAuthenticated==true){ %>
+									
 									$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+									<%}else{%>
+									$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+									<%}%>
 								}
 								size2=size2+data.length;
 								myscroll.refresh();
@@ -503,7 +519,13 @@ Your browser does not support the video tag.
 							isForward="";
 						}
 //								$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+								<%if(IsAuthenticated==true){ %>
 								$('#mesPushPanel').append("<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FNotificationCenter.jsp?num="+data[i].num+"&response_type=code&scope=snsapi_userinfo&state=<%=uid%>#wechat_redirect'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"mes\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+								
+								<%}else{%>
+								
+								$('#mesPushPanel').append("<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FNotificationCenter.jsp?num="+data[i].num+"&response_type=code&scope=snsapi_userinfo&state=<%=uid%>#wechat_redirect'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
+								<%}%>
 							}
 							size=size+data.length;
 							myscroll.refresh();
