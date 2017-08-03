@@ -9,43 +9,46 @@
 <%	
 //获取由OAuthServlet中传入的参数
 SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
-String originalUid=request.getParameter("UID");
-if(request.getParameter("UID")==null&&request.getParameter("UID")==""){
-	originalUid=(String)request.getAttribute("state"); 
-}
+String originalUid=(String)request.getAttribute("state");
 String name = "";
 String headImgUrl ="";
 if(null != user) {
-	//String uid = request.getParameter("UID");
-	String uid = user.getOpenId();
-	name = user.getNickname();
-	headImgUrl = user.getHeadImgUrl();
-	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-	if(res!=null){
-		if(res.get("HeadUrl")!=null){
-			headImgUrl=res.get("HeadUrl");
-		}
-		if(res.get("NickName")!=null){
-			name=res.get("NickName");
-		}
-	}
-	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
-	Date date=new Date();
-	String currentDate = format.format(date);
-	if(uid.equals(originalUid)){
-		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
-	}
-	else
-	{
-		try{
-		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
-		HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
-		MongoDBBasic.updateShared(originalUid,currentDate,"DashboardStatus",user.getHeadImgUrl(),name,resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
-		}catch(Exception e){
+			//String uid = request.getParameter("UID");
+			String uid = user.getOpenId();
+			name = user.getNickname();
+			headImgUrl = user.getHeadImgUrl();
+			HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+			if(res!=null){
+				if(res.get("HeadUrl")!=null){
+					headImgUrl=res.get("HeadUrl");
+				}
+				if(res.get("NickName")!=null){
+					name=res.get("NickName");
+				}
+			}
+			SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+			Date date=new Date();
+			String currentDate = format.format(date);
 			
-		}
-	}
-}
+			
+				if(uid.equals(originalUid)){
+					MongoDBBasic.updateVisited(uid,currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
+				}
+				else
+				{
+					MongoDBBasic.updateVisited(uid,currentDate,"DashboardStatus",user.getHeadImgUrl(),name);
+					/* if(!"STATE".equals(originalUid)){
+						HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
+						MongoDBBasic.updateShared(originalUid,currentDate,"DashboardStatus",resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
+					} */
+				}
+			/* 
+			try{
+			}catch(Exception e){
+			
+			} */
+		
+} 
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
