@@ -303,14 +303,14 @@ public class UserProfileController {
 		am.setVisitedNum("0");
 		am.setTime(new Date().toLocaleString());
 		MongoDBBasic.saveArticleMessage(am);
-		String content=request.getParameter("typeName")+" 又有新活动啦\n";
+/*		String content=request.getParameter("typeName")+" 又有新活动啦\n";
 		if(request.getParameter("content").length()>200){
 			content+=request.getParameter("content").substring(0,180)+"...";
 		}
 		else{
 			content+=request.getParameter("content");
-		}
-		am.setContent(content);
+		}*/
+		am.setContent("");
 		List<String> allUser=new ArrayList<String>();
 		if("communication".equals(type.trim())){
 		allUser = MongoDBBasic.getAllOpenIDByIsRegistered();

@@ -59,8 +59,8 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/profile.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/icomoon/iconMoon.css"/>
-<link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-responsive.css"/>
-<link rel="stylesheet" type="text/css" href="../nkang/css_athena/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-responsive.css"/><!-- 
+<link rel="stylesheet" type="text/css" href="../nkang/css_athena/font-awesome.css"> -->
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-default.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/CSS/sonhlab-base.css"/>
@@ -74,6 +74,8 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <script type="text/javascript">var $113 = $;</script>
 <script type="text/javascript" src="../nkang/easyui/jquery.easyui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles//CSS/animation-effects.css"/>
+	<link href="../nkang/editor/froala_editor.min.css" rel="stylesheet" type="text/css">
+	<link href="../nkang/editor/font-awesome.min.css" rel="stylesheet" type="text/css"> 
 <link rel="stylesheet" type="text/css" href="../Jsp/CSS/common.css">
 <script type="text/javascript" src="../Jsp/JS/slides.js"></script>
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css"/>
@@ -83,7 +85,6 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <script type="text/javascript" src="../nkang/jquery-form.js"></script>
 
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
-<script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <script src="../Jsp/JS/fusioncharts.js" type="text/javascript"></script>
 <!--[if IE]>
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
@@ -415,9 +416,7 @@ getLogo();
 var selectedType="<option value='communication'>常规沟通</option>";
 
 $(window).load(function() {
-	$(".imgSelect input").live("click",function(){
-		$(this).parent().siblings().find("input").attr("checked", false);
-	});
+	
 	$('head').append("<style>.naviArrow.is-selected::after{content: ''; display: block;width: 0;height: 0;border-left: .9em solid transparent;border-right: .9em solid transparent;border-top: .9em solid "+clientThemeColor+";position: relative;top: 0px;left: 50%;-webkit-transform: translateX(-50%); -ms-transform: translateX(-50%);transform: translateX(-50%);}</style>");
 	$("#navSupport").on("click",function(){
 		$(this).append("<a class='naviArrow is-selected'></a>").css("border-top","10px solid "+clientThemeColor);
@@ -835,7 +834,9 @@ function postRecognition(){
 
 }
 function postNotification(){
-	var img=$(".imgSelect input[type='checkbox']:checked").siblings("img").attr("src");
+	var content=$(".froala-element.not-msie.f-basic").children("p").html();
+	console.log("content:-----"+content);
+ 	var img=$(".imgSelect input[type='checkbox']:checked").siblings("img").attr("src");
 	var imgType="0";
 	var type=$("#notificationType option:selected").val();
 	var typeName=$("#notificationType option:selected").text();
@@ -843,7 +844,8 @@ function postNotification(){
 		img=$("#hiddenPic").val();
 	    imgType="1";
 	}
-	$.ajax({
+	 
+ 	$.ajax({
         cache: false,
         type: "POST",
         url:"../userProfile/addNotification",
@@ -855,7 +857,7 @@ function postNotification(){
         	typeName:typeName,
         	img:img,
         	imgType:imgType,
-        	content:$("#content").val()
+        	content:content
         	
         },
         async: true,
@@ -1050,10 +1052,15 @@ function mesSend(){
 			+"  <div class='rcommon' style='height:160px;margin-bottom: 8px;'><div class='imgSelect'><input type='checkbox' class='imgCB' checked='true'><img src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rG0&oid=00D90000000pkXM'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602305452&di=14b5b01aade695d780cf3dbf89cd7392&imgtype=0&src=http%3A%2F%2Fimg01.taopic.com%2F160907%2F318765-160ZFQ52837.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602293964&di=5b70b7f2c1dbf9aae98dba9143897e2d&imgtype=0&src=http%3A%2F%2Fimg01.taopic.com%2F160816%2F240437-160Q60A3119.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602432167&di=7e223d3ad19485014fb9a57c875c00f3&imgtype=0&src=http%3A%2F%2Fwww.taopic.com%2Fuploads%2Fallimg%2F110914%2F34250-11091410324328.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602512392&di=173870f13b3a95bfe9b71c9a2ab75b3c&imgtype=0&src=http%3A%2F%2Fwww.yc9y.com%2Fupfiles%2Farticle%2Fimage%2F20160802%2F20160802095320_22922.png'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602549485&di=af00ddd5cc0391d1616e8b4864502288&imgtype=0&src=http%3A%2F%2Fpic.qjimage.com%2Ftongro_rf004%2Fhigh%2Ftis067a1608.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg'></div><div class='imgSelect'><input type='checkbox' class='imgCB'><img src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=428411870,2259267624&fm=23&gp=0.jpg'></div></div>"
 			+"  <div id='commonPush' style='margin-top: 10px;'><div class='rcommon'><p class='bsLabel'>图文类型</p><select class='bsBtn' style='border:1px solid black' id='notificationType'>"+selectedType+"</select></div>"
 			+"	<div class='rcommon'><p class='bsLabel'>网页链接</p><input id='notificationURL' type='text' style='width:75%;height:35px;border:1px solid black' placeholder='不想输入网络链接？那直接填内容吧'  class='input-xlarge bsBtn'></div>"
-			+"	<div class='rcommon'><textarea id='content' style='height:180px;width:95%;line-height:20px;border:1px solid black' placeholder='请输入内容' class='input-xlarge bsBtn'></textarea></div>"
-			+"	<div class='rcommon' ><button style='margin-top:20px;width:95%;background:black;text-shadow:none;color:white!important;' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div></div>"
+			+"	<div class='rcommon'><div id='content' style='height:200px;width:95%;line-height:20px;' placeholder='请输入内容' class='input-xlarge bsBtn'></div></div>"
+			+"	<div class='rcommon' ><button style='margin-top:150px;width:95%;background:black;text-shadow:none;color:white!important;' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div></div>"
 			+"	</div>"
 			+"<div id='footer'><span class='clientCopyRight'><nobr>"+copyRight+"</nobr></span></div>");
+
+    $('#content').editable({inlineMode: false});
+    $(".imgSelect input").on("click",function(){
+		$(this).parent().siblings().find("input").attr("checked", false);
+	});
 	$('#sendR').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass("bounceInDown animated");
 	    });
@@ -2541,5 +2548,12 @@ function getNowFormatDate() {
 	</div>
 	<!-- END FOOTER -->
 		 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
+		 
+  <script src="../nkang/editor/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../nkang/editor/froala_editor.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/colors.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/font_family.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/font_size.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/block_styles.min.js"></script>
 </body>
 </html>

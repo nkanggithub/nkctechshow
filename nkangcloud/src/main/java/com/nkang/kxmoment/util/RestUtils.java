@@ -2370,8 +2370,7 @@ public class RestUtils {
 		ClientMeta cm = MongoDBBasic.QueryClientMeta(Constants.clientCode);
 		if ("".equals(am.getWebUrl()) || "" == am.getWebUrl()) {
 			str = "{\"title\":\"" + am.getTitle() + "\",\"description\":\""
-					+ "Publisher - " + cm.getClientName() + ":\n"
-					+ am.getContent() + "\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+am.getNum()+"&response_type=code&scope=snsapi_userinfo&state="+toOpenId+"#wechat_redirect\",\"picurl\":" + "\"" + img + "\"}";
+					+ "Publisher - " + cm.getClientName() + "\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+am.getNum()+"&response_type=code&scope=snsapi_userinfo&state="+toOpenId+"#wechat_redirect\",\"picurl\":" + "\"" + img + "\"}";
 		} else {
 			str = "{\"title\":\"" + am.getTitle() + "\",\"description\":\""
 					+ cm.getClientName() + "\",\"url\":\"" + am.getWebUrl()
