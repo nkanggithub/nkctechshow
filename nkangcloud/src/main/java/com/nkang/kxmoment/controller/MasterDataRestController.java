@@ -279,7 +279,7 @@ public class MasterDataRestController {
 			for(int i=0;i<allUser.size();i++){
 			//	if(allUser.get(i).getOpenid().equals("oqPI_xACjXB7pVPGi5KH9Nzqonj4")){
 					log.info("getForwardMessage==========video================send to "+allUser.get(i).getOpenid());
-					RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
+					RestUtils.sendQuotationToUser(allUser.get(i).getOpenid(),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVbgB&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,uri);
 			//	}
 			}
 			MongoDBBasic.updateVideoMessageByNum(num);
@@ -307,7 +307,7 @@ public class MasterDataRestController {
 					log.info("getForwardMessage==========mes================send to "+allUser.get(i).getOpenid());
 					log.info("=========picture:"+picture);
 					log.info("=========uri:"+uri);
-					RestUtils.sendQuotationToUser(allUser.get(i),content,picture,"【"+allUser.get(i).getNickname()+"】"+title,uri);
+					RestUtils.sendQuotationToUser(allUser.get(i).getOpenid(),content,picture,"【"+allUser.get(i).getNickname()+"】"+title,uri);
 				//}
 			}
 			MongoDBBasic.updateArticleMessageByNum(num);
@@ -964,7 +964,7 @@ public class MasterDataRestController {
         String status="";
 		 for(int i=0;i<allUser.size();i++){
 			 url="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FDailyNews.jsp&response_type=code&scope=snsapi_userinfo&state="+allUser.get(i).getOpenid()+"#wechat_redirect&UID=";
-			 status= RestUtils.sendQuotationToUser(allUser.get(i),content,"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=428411870,2259267624&fm=23&gp=0.jpg","【"+allUser.get(i).getNickname()+"】"+title,url);
+			 status= RestUtils.sendQuotationToUser(allUser.get(i).getOpenid(),content,"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=428411870,2259267624&fm=23&gp=0.jpg","【"+allUser.get(i).getNickname()+"】"+title,url);
 			 if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
           	   realReceiver++;
              }

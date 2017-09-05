@@ -2538,15 +2538,15 @@ public class RestUtils {
 		return message;
 	}
 
-	public static String sendQuotationToUser(WeChatMDLUser toWeChatMDLUser,
+	public static String sendQuotationToUser(String openID,
 			String content, String img, String title, String url) {
 		String result = "";
 		String str = "";
 
 		str = "{\"title\":\"" + title + "\",\"description\":\"" + content
-				+ "\",\"url\":\"" + url + toWeChatMDLUser.getOpenid()
+				+ "\",\"url\":\"" + url + openID
 				+ "\",\"picurl\":" + "\"" + img + "\"}";
-		String json = "{\"touser\":\"" + toWeChatMDLUser.getOpenid()
+		String json = "{\"touser\":\"" + openID
 				+ "\",\"msgtype\":\"news\",\"news\":" +
 
 				"{\"articles\":[" + str + "]}" + "}";
