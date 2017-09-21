@@ -97,7 +97,7 @@ public class CoreService
 	                respXml = MessageUtil.textMessageToXml(textMessage);
 	                
 				} else if (textContent.contains("articleUpload")) {
-	                textMessage.setContent("http://shenan.duapp.com/mdm/uploadArticle.jsp");
+	                textMessage.setContent("http://"+Constants.baehost+"/mdm/uploadArticle.jsp");
 	                respXml = MessageUtil.textMessageToXml(textMessage);
 				}
                    else if (textContent.contains("articleSend")) {
@@ -398,7 +398,6 @@ public class CoreService
 						article2.setTitle("生产环境智能监控");
 						article2.setDescription("生产环境智能监控");
 						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
-						//article2.setUrl("http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=" + fromUserName);
 						article2.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FDashboardStatus.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
 						articleList.add(article2);
 						
@@ -515,7 +514,7 @@ public class CoreService
 						article.setTitle("更多精彩尽在往期回顾 ");
 						article.setDescription("更多精彩尽在往期回顾 ");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EDHHL&oid=00D90000000pkXM");
-						article.setUrl("http://shenan.duapp.com/mdm/MesPushHistory.jsp?UID="+fromUserName);
+						article.setUrl("http://"+Constants.baehost+"/mdm/MesPushHistory.jsp?UID="+fromUserName);
 						articleList.add(article);
 						List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
 						for(int i = 0; i < 3 ;  i++){
