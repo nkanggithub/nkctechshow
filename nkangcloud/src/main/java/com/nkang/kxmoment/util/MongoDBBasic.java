@@ -73,8 +73,7 @@ public class MongoDBBasic {
 			return mongoDB;
 		}
 		MongoClientCollection mongoClientCollection = new MongoClientCollection();
-		ResourceBundle resourceBundle = ResourceBundle
-				.getBundle("database_info");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("database_info");
 		String databaseName = resourceBundle.getString("databaseName");
 		String hostm = resourceBundle.getString("hostm");
 		String portm = resourceBundle.getString("portm");
@@ -85,10 +84,8 @@ public class MongoDBBasic {
 		MongoClient mongoClient = new MongoClient(
 				new ServerAddress(serverName),
 				// createMongoCRCredential / createScramSha1Credential
-				Arrays.asList(MongoCredential.createMongoCRCredential(usrname,
-						databaseName, passwrd.toCharArray())),
-				new MongoClientOptions.Builder().cursorFinalizerEnabled(false)
-						.build());
+				Arrays.asList(MongoCredential.createMongoCRCredential(usrname, databaseName, passwrd.toCharArray())),
+				new MongoClientOptions.Builder().cursorFinalizerEnabled(false).build());
 		mongoClientCollection.setMongoClient(mongoClient);
 
 		mongoDB = mongoClient.getDB(databaseName);
