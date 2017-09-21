@@ -383,7 +383,6 @@ Your browser does not support the video tag.
 						if("0"==data[i].isForward){
 							isForward="";
 						}
-//						$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 						<%if(IsAuthenticated==true){ %>
 							$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 						<%}else{%>
@@ -480,7 +479,6 @@ Your browser does not support the video tag.
 						if("0"==data[i].isForward){
 							isForward="";
 						}
-//									$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 									<%if(IsAuthenticated==true){ %>
 									
 									$('#videoPanel').append("<a href='"+data[i].webUrl+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"video\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
@@ -520,7 +518,6 @@ Your browser does not support the video tag.
 						if("0"==data[i].isForward){
 							isForward="";
 						}
-//								$('#mesPushPanel').append("<a href='http://shenan.duapp.com/mdm/NotificationCenter.jsp?num="+data[i].num+"'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 								<%if(IsAuthenticated==true){ %>
 								$('#mesPushPanel').append("<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FNotificationCenter.jsp?num="+data[i].num+"&response_type=code&scope=snsapi_userinfo&state=<%=uid%>#wechat_redirect'><div class='singleMes'><div class='mesImg'>"+img+"</div><div class='mesContent'><h2 class='mesTitle'><img src='images/forward"+isForward+".png' onclick='javascript:forward(\""+data[i].num+"\",\"mes\");return false;'  style='height:20px;vertical-align:bottom;padding-bottom:3px;'/>"+data[i].title+"</h2><p class='mesIntro'>"+data[i].content+"</p></div></div></a>");
 								

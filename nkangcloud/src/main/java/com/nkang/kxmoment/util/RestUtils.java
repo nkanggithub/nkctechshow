@@ -1150,8 +1150,6 @@ public class RestUtils {
 		Map<String, MdmDataQualityView> map = null;
 		if (localInd == "Y") {
 			try {
-				// String url =
-				// "http://shenan.duapp.com/getDataQualityReportByParameter?stateProvince="+s+"&"+"nonlatinCity="+c+"&cityRegion="+cr;
 				String url = "http://" + Constants.baehost
 						+ "/getDataQualityReportByParameterV2?";
 				if (stateProvince != ""
@@ -1164,8 +1162,6 @@ public class RestUtils {
 					url = url + "&nonlatinCity=" + city;
 				}
 
-				// String url =
-				// "http://shenan.duapp.com/getDataQualityReportByParameter?stateProvince="+s+"&"+"nonlatinCity="+c+"&cityRegion="+cr;
 				URL urlGet = new URL(url);
 				HttpURLConnection http = (HttpURLConnection) urlGet
 						.openConnection();
@@ -1237,8 +1233,7 @@ public class RestUtils {
 
 		if (localInd == "Y") {
 			try {
-				// String url =
-				// "http://shenan.duapp.com/getDataQualityReportByParameter?stateProvince="+s+"&"+"nonlatinCity="+c+"&cityRegion="+cr;
+
 				String url = "http://" + Constants.baehost
 						+ "/getDataQualityReportByParameter?";
 				if (stateProvince != ""
@@ -1255,8 +1250,6 @@ public class RestUtils {
 					url = url + "&cityRegion=" + cityRegion;
 				}
 
-				// String url =
-				// "http://shenan.duapp.com/getDataQualityReportByParameter?stateProvince="+s+"&"+"nonlatinCity="+c+"&cityRegion="+cr;
 				URL urlGet = new URL(url);
 				HttpURLConnection http = (HttpURLConnection) urlGet
 						.openConnection();

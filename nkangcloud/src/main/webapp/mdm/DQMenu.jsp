@@ -805,8 +805,6 @@ MongoDBBasic.addSkimNum();
 				);
 		}
 		function OrganizationInformation(){
-			/*swal("200M", document.getElementById("totalOPSI").innerHTML+" Organizations", "success");*/
-			//window.location.href="http://shenan.duapp.com/mdm/DQNavigate.jsp?UID="+document.getElementById("uid").innerHTML;
 			window.location.href="mdm/DQNavigate.jsp?UID="+document.getElementById("uid").innerHTML;
 		}
 		function showDetailsForClient(paraStr,ws){

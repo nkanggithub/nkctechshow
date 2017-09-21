@@ -124,7 +124,6 @@ public class DashboardService {
 						}
 						//微信
 						lastsendtimestamp = dt;
-//						List<WeChatMDLUser> allUser = MongoDBBasic.getWeChatUserFromMongoDB("");
 						 ArrayList<HashMap> smsUsers=MongoDBBasic.QuerySmsUser();
 						
 						String content="MDM Operation Team, Please immediately take actions to check and recover production environment. Please make sure the communication has been sent out timely! "+"Servers in exception as below:\n"+servers;
@@ -132,7 +131,6 @@ public class DashboardService {
 						for(int i=0;i<smsUsers.size();i++){
 							String uri="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19c8fd43a7b6525d&redirect_uri=http%3A%2F%2Fshenan.duapp.com%2Fmdm%2FDashboardStatus.jsp?UID="+smsUsers.get(i).get("OpenID").toString()+"&response_type=code&scope=snsapi_userinfo&state="+smsUsers.get(i).get("OpenID").toString()+"#wechat_redirect&UID=";
 								RestUtils.sendQuotationToUser(smsUsers.get(i).get("OpenID").toString(),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+smsUsers.get(i).get("realName").toString()+"】"+title,uri);
-							// RestUtils.sendQuotationToUser(allUser.get(i),content,"https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBM2m&oid=00D90000000pkXM","【"+allUser.get(i).getNickname()+"】"+title,"http://shenan.duapp.com/mdm/DashboardStatus.jsp?UID=");
 						}
 
 					}
