@@ -481,9 +481,6 @@ public class RestUtils {
 	}
 
 	public static String createMenu(String access_token) {
-		// String menu =
-		// "{\"button\":[{\"name\":\"Near By\",\"sub_button\":[{\"type\":\"click\",\"name\":\"Opportunity\",\"key\":\"nboppt\"},{\"type\":\"click\",\"name\":\"Customer\",\"key\":\"nbcust\"},{\"type\":\"click\",\"name\":\"Competitor\",\"key\":\"nbcompe\"},{\"type\":\"click\",\"name\":\"Partner\",\"key\":\"nbpartner\"}]},{\"name\":\"MDG\",\"sub_button\":[{\"type\":\"click\",\"name\":\"Data Lake\",\"key\":\"MDLAKE\"},{\"type\":\"click\",\"name\":\"Customer Care\",\"key\":\"05_SIGN\"}]}]}";
-		//String menu = "{\"button\":[{\"name\":\"发现附近\",\"sub_button\":[{\"type\":\"click\",\"name\":\"附近同事\",\"key\":\"nbcolleague\"},{\"type\":\"click\",\"name\":\"往期回顾\",\"key\":\"nboppt\"},{\"type\":\"click\",\"name\":\"我的竞争\",\"key\":\"nbcompe\"},{\"type\":\"click\",\"name\":\"我的伙伴\",\"key\":\"nbpartner\"}]},{\"name\":\"数据可视\",\"sub_button\":[{\"type\":\"click\",\"name\":\"数据湖\",\"key\":\"MDLAKE\"},{\"type\":\"click\",\"name\":\"产品运维\",\"key\":\"opsmetric\"}]},{\"name\":\"应用入口\",\"sub_button\":[{\"type\":\"click\",\"name\":\"我的应用\",\"key\":\"MYAPPS\"},{\"type\":\"click\",\"name\":\"我的荣誉\",\"key\":\"MYRECOG\"},{\"type\":\"click\",\"name\":\"我的订阅\",\"key\":\"mysubscription\"},{\"type\":\"click\",\"name\":\"每日抽奖\",\"key\":\"myPoints\"}]}]}";
 		String menu = "{\"button\":[{\"name\":\"发现附近\",\"sub_button\":[{\"type\":\"click\",\"name\":\"附近同学\",\"key\":\"nbcolleague\"},{\"type\":\"click\",\"name\":\"往期回顾\",\"key\":\"nboppt\"}]},{\"name\":\"乐数\",\"sub_button\":[{\"type\":\"click\",\"name\":\"数据湖\",\"key\":\"MDLAKE\"},{\"type\":\"click\",\"name\":\"产品运维\",\"key\":\"opsmetric\"}]},{\"name\":\"应用入口\",\"sub_button\":[{\"type\":\"click\",\"name\":\"我的应用\",\"key\":\"MYAPPS\"},{\"type\":\"click\",\"name\":\"我的荣誉\",\"key\":\"MYRECOG\"},{\"type\":\"click\",\"name\":\"我的订阅\",\"key\":\"mysubscription\"},{\"type\":\"view\",\"name\":\"每日抽奖\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FLucky.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect\"}]}]}";
 		
 		String action = "https://" + Constants.wechatapihost
@@ -2170,22 +2167,7 @@ public class RestUtils {
 
 	}
 
-	/*
-	 * 
-	 * chang-zheng get CountryCody json file
-	 * 
-	 * public static OrgCountryCode ReadCountryCodeByCountryCode(String
-	 * readPath,String countryCode) { OrgCountryCode orgCountryCode = new
-	 * OrgCountryCode(); if(OrgCountryCodeMap!=null){ orgCountryCode =
-	 * OrgCountryCodeMap.get(countryCode); } else{ OrgCountryCodeMap =
-	 * ReadCountryCode(readPath); orgCountryCode =
-	 * OrgCountryCodeMap.get(countryCode); } return orgCountryCode; }
-	 */
 
-	/*
-	 * 
-	 * chang-zheng get CountryCody json file by name
-	 */
 	public static OrgCountryCode ReadOrgCountryCodeByName(String readPath,
 			String countryName) {
 		OrgCountryCode orgCountryCode = new OrgCountryCode();
