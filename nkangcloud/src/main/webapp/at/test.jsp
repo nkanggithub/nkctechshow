@@ -39,7 +39,7 @@
 
         <div class="fr">
             <div id="i-header-info" class="header-rc i-head-login">
-                <a class="user i-head-login" href="baidu.com"></a>
+                <a class="user i-head-login" href="http://nkctech.duapp.com/mdm/profile.jsp?UID=oI3krwR_gGNsz38r1bdB1_SkcoNw"></a>
             </div>
         </div>
     </div>
@@ -333,7 +333,103 @@
             </ul>
         </div>
     </div>
-	
+	<div class="item">
+        <p class="item_name">建筑工程2</p>
+        <ul class="sub_item">
+            <li paper-id="53327">建筑工程</li>
+            <li paper-id="53328">建筑工程</li>
+            <li paper-id="53329">建筑工程</li>
+            <li paper-id="53330">建筑工程</li>
+            <li paper-id="53331">建筑工程</li>
+            <li paper-id="53332">建筑工程</li>
+        </ul>
+        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+            <ul class="kb_item" title="建筑工程" >
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">77</span>
+                    <span class="class-price">750</span>
+                    <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">74</span>
+                    <span class="class-price">600</span>
+                    <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
+                </li>
+            </ul>
+            <ul class="kb_item" title="建筑工程" >
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">91</span>
+                    <span class="class-price">800</span>
+                    <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">89</span>
+                    <span class="class-price">650</span>
+                    <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
+                </li>
+            </ul>
+			           <ul class="kb_item" title="建筑工程" >
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">82</span>
+                    <span class="class-price">850</span>
+                    <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">80</span>
+                    <span class="class-price">700</span>
+                    <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
+                </li>
+            </ul>
+			           <ul class="kb_item" title="建筑工程" >
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">76</span>
+                    <span class="class-price">750</span>
+                    <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">74</span>
+                    <span class="class-price">600</span>
+                    <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
+                </li>
+            </ul>
+			           <ul class="kb_item" title="建筑工程" >
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">108</span>
+                    <span class="class-price">800</span>
+                    <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">102</span>
+                    <span class="class-price">650</span>
+                    <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
+                </li>
+            </ul>
+			           <ul class="kb_item" title="建筑工程" >
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">128</span>
+                    <span class="class-price">850</span>
+                    <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">126</span>
+                    <span class="class-price">700</span>
+                    <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div><div class="head">
     <img src="http://leshu.bj.bcebos.com/standard/leshuslide1.JPG" />
 </div>
