@@ -143,7 +143,7 @@ public class MongoDBBasic {
 		String Ticket=null;
 		try {
 			mongoDB = getMongoDB();
-			DBObject queryresult = mongoDB.getCollection(ClientMeta).findOne(new BasicDBObject().append("ClientCode", "DXC"));
+			DBObject queryresult = mongoDB.getCollection(ClientMeta).findOne(new BasicDBObject().append("ClientCode", Constants.clientCode));
 			if (queryresult != null) {
 				Object WeChatTicket = queryresult.get("WeChatTicket");
 				DBObject o = new BasicDBObject();
@@ -176,7 +176,7 @@ public class MongoDBBasic {
 			dbo.put("WeChatTicket.LastUpdated",new java.util.Date().getTime());
 			BasicDBObject doc = new BasicDBObject();
 			doc.put("$set", dbo);
-			mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode","DXC"), doc);
+			mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode",Constants.clientCode), doc);
 			log.info("updateTicket end");
 		} catch (Exception e) {
 			log.info("updateTicket--" + e.getMessage());
