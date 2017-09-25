@@ -14,7 +14,7 @@ public final class Constants {
 	public static final String convertString = "<%=value%>";
 	public static final String proxyInfo = "web-proxy.austin.hpecorp.net";
 	public static final String baehost = "nkctech.duapp.com";
-	public static final String clientCode = "NKC";
+	public static final String clientCode = "LES";
 	public static final String wechatapihost = "api.weixin.qq.com";
 	public static final String baiduapihost = "api.map.baidu.com";
 	public static final String bucketName = "nkctech";
