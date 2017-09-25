@@ -39,47 +39,45 @@
 
         <div class="fr">
             <div id="i-header-info" class="header-rc i-head-login">
-                <a class="user i-head-login"><i></i></a>
+                <a class="user i-head-login" href="baidu.com"></a>
             </div>
         </div>
     </div>
 </div>
 <div id="content_data" style="display: none">
 <div class="item">
-        <p class="item_name">珠算</p>
+        <p class="item_name">少儿珠算</p>
         <ul class="sub_item">
-            <li paper-id="53305">临床执业</li>
-            <li paper-id="53306">临床助理</li>
-            <li paper-id="53307">中医执业</li>
-            <li paper-id="53308">中医助理</li>
-            <li paper-id="53309">中西医执业</li>
-            <li paper-id="53311">中西医助理</li>
-            <li paper-id="53312">口腔执业</li>
-			<li paper-id="53313">口腔助理</li>
+            <li paper-id="53305">少儿珠算</li>
+            <li paper-id="53306">少儿珠算</li>
+            <li paper-id="53307">少儿珠算</li>
+            <li paper-id="53308">少儿珠算</li>
+            <li paper-id="53309">少儿珠算</li>
+            <li paper-id="53311">少儿珠算</li>
         </ul>
         <div class="kb" title="我的课表安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/
 ">
             <ul class="kb_item" title="小朋友" >
                 <li>
-                    <span class="class-name">珠算</span>
+                    <span class="class-name">少儿珠算</span>
                     <span class="class-time">490</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47026_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">心算</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">437</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47027_1.html</span>
                 </li>
 				<li>
-                    <span class="class-name">书法</span>
+                    <span class="class-name">少儿书法</span>
                     <span class="class-time">384</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47052_1.html</span>
                 </li>
 				<li>
-                    <span class="class-name">识字</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">357</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47030_1.html</span>
@@ -108,65 +106,59 @@
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">心算</p>
+        <p class="item_name">少儿心算</p>
         <ul class="sub_item">
-            <li paper-id="53336">西药一</li>
-            <li paper-id="53337">西药二</li>
-            <li paper-id="53338">西药综</li>
-            <li paper-id="53333">中药一</li>
-            <li paper-id="53334">中药二</li>
-            <li paper-id="53335">中药综</li>
-            <li paper-id="53339">药事管理法规</li>
+            <li paper-id="53336">少儿心算</li>
+            <li paper-id="53337">少儿心算</li>
+            <li paper-id="53338">少儿心算</li>
+            <li paper-id="53333">少儿心算</li>
+            <li paper-id="53334">少儿心算</li>
+            <li paper-id="53335">少儿心算</li>
+            <li paper-id="53339">少儿心算</li>
         </ul>
-        <div class="kb" title="执业药师选课中心" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/zhiyeyaoshi/
+        <div class="kb" title="我的课程安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/zhiyeyaoshi/
 ">
-            <ul class="kb_item" title="执业西药师课程" >
+            <ul class="kb_item" title="小朋友" >
                 <li>
-                    <span class="class-name">全科VIP协议通关班</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">146</span>
                     <span class="class-price">1680</span>
                     <span class="class-src">http://m.koolearn.com/product/47149_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">146</span>
                     <span class="class-price">1480</span>
                     <span class="class-src">http://m.koolearn.com/product/47150_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科夯实基础班</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">73</span>
                     <span class="class-price">1200</span>
                     <span class="class-src">http://m.koolearn.com/product/47151_1.html</span>
                 </li>
-				<li>
-                    <span class="class-name">考前冲刺特训班</span>
-                    <span class="class-time">40</span>
-                    <span class="class-price">900</span>
-                    <span class="class-src">http://m.koolearn.com/product/47152_1.html</span>
-                </li>
             </ul>
-            <ul class="kb_item" title="执业中药师课程" >
+            <ul class="kb_item" title="大朋友" >
                 <li>
-                    <span class="class-name">全科VIP协议通关班</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">167</span>
                     <span class="class-price">1680</span>
                     <span class="class-src">http://m.koolearn.com/product/47145_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">167</span>
                     <span class="class-price">1480</span>
                     <span class="class-src">http://m.koolearn.com/product/47146_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科夯实基础班</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">99</span>
                     <span class="class-price">1200</span>
                     <span class="class-src">http://m.koolearn.com/product/47147_1.html</span>
                 </li>
 				<li>
-                    <span class="class-name">考前冲刺特训班</span>
+                    <span class="class-name">少儿心算</span>
                     <span class="class-time">38</span>
                     <span class="class-price">900</span>
                     <span class="class-src">http://m.koolearn.com/product/47148_1.html</span>
@@ -175,68 +167,68 @@
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">建筑工程</p>
+        <p class="item_name">少儿机器人</p>
         <ul class="sub_item">
-            <li paper-id="53318">护士资格</li>
-            <li paper-id="53322">初级护师</li>
-            <li paper-id="53326">主管护师</li>
+            <li paper-id="53318">少儿机器人</li>
+            <li paper-id="53322">少儿机器人</li>
+            <li paper-id="53326">少儿机器人</li>
         </ul>
-        <div class="kb" title="护理职称选课中心" more="http://m.koolearn.com/171-0-10-0-0-0/">
-            <ul class="kb_item" title="护士资格课程" >
+        <div class="kb" title="少儿机器人" more="http://m.koolearn.com/171-0-10-0-0-0/">
+            <ul class="kb_item" title="少儿机器人" >
                 <li>
-                    <span class="class-name">全程通关旗舰协议班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">105</span>
                     <span class="class-price">1100</span>
                     <span class="class-src">http://m.koolearn.com/product/45760_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">108</span>
                     <span class="class-price">550</span>
                     <span class="class-src">http://m.koolearn.com/product/45762_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">精讲精炼班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">83</span>
                     <span class="class-price">350</span>
                     <span class="class-src">http://m.koolearn.com/product/45765_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="初级护师课程" >
+            <ul class="kb_item" title="少儿机器人" >
                 <li>
-                    <span class="class-name">全程通关旗舰协议班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">126</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45766_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">126</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45768_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">精讲精炼班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">87</span>
                     <span class="class-price">400</span>
                     <span class="class-src">http://m.koolearn.com/product/45771_1.html</span>
                 </li>
             </ul>
-			<ul class="kb_item" title="主管护师课程" >
+			<ul class="kb_item" title="少儿机器人" >
                 <li>
-                    <span class="class-name">全程通关旗舰协议班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">280</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45781_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">280</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45782_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">精讲精炼班</span>
+                    <span class="class-name">少儿机器人</span>
                     <span class="class-time">184</span>
                     <span class="class-price">450</span>
                     <span class="class-src">http://m.koolearn.com/product/45783_1.html</span>
@@ -245,95 +237,95 @@
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">心算</p>
+        <p class="item_name">建筑工程</p>
         <ul class="sub_item">
-            <li paper-id="53327">初级药士</li>
-            <li paper-id="53328">初级药师</li>
-            <li paper-id="53329">主管药师</li>
-            <li paper-id="53330">初级中药士</li>
-            <li paper-id="53331">初级中药师</li>
-            <li paper-id="53332">主管中药师</li>
+            <li paper-id="53327">建筑工程</li>
+            <li paper-id="53328">建筑工程</li>
+            <li paper-id="53329">建筑工程</li>
+            <li paper-id="53330">建筑工程</li>
+            <li paper-id="53331">建筑工程</li>
+            <li paper-id="53332">建筑工程</li>
         </ul>
-        <div class="kb" title="药学职称选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
-            <ul class="kb_item" title="初级药士课程" >
+        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">全科全程通关VIP协议班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">77</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="初级药师课程" >
+            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">全科全程通关VIP协议班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">91</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">89</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="主管药师课程" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">全程通关VIP协议班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">80</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="初级中药士课程" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">全程通关VIP协议班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">76</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="初级中药师课程" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">全程通关VIP协议班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">108</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">102</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="主管中药师课程" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">全程通关VIP协议班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">128</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">全科全程通关班</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">126</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
@@ -341,67 +333,7 @@
             </ul>
         </div>
     </div>
-	<div class="item">
-        <p class="item_name">心算</p>
-        <ul class="sub_item">
-            <li paper-id="53550">内科主治</li>
-            <li paper-id="53549">外科主治</li>
-        </ul>
-        <div class="kb" title="主治医师选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
-            <ul class="kb_item" title="内科主治医师课程" >
-                <li>
-                    <span class="class-name">高频考题解析班(套餐)</span>
-                    <span class="class-time">19</span>
-                    <span class="class-price">400</span>
-                    <span class="class-src">http://m.koolearn.com/product/46578_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">单科-基础知识</span>
-                    <span class="class-time">4</span>
-                    <span class="class-price">100</span>
-                    <span class="class-src">http://m.koolearn.com/product/46577_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">单科-相关/专业知识</span>
-                    <span class="class-time">12</span>
-                    <span class="class-price">200</span>
-                    <span class="class-src">http://m.koolearn.com/product/46575_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">单科-专业实践能力</span>
-                    <span class="class-time">3</span>
-                    <span class="class-price">100</span>
-                    <span class="class-src">http://m.koolearn.com/product/46574_1.html</span>
-                </li>
-            </ul>
-            <ul class="kb_item" title="外科主治医师课程" >
-                  <li>
-                    <span class="class-name">高频考题解析班(套餐)</span>
-                    <span class="class-time">16</span>
-                    <span class="class-price">400</span>
-                    <span class="class-src">http://m.koolearn.com/product/46584_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">单科-基础知识</span>
-                    <span class="class-time">7</span>
-                    <span class="class-price">100</span>
-                    <span class="class-src">http://m.koolearn.com/product/46582_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">单科-相关/专业知识</span>
-                    <span class="class-time">5</span>
-                    <span class="class-price">200</span>
-                    <span class="class-src">http://m.koolearn.com/product/46581_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">单科-专业实践能力</span>
-                    <span class="class-time">4</span>
-                    <span class="class-price">100</span>
-                    <span class="class-src">http://m.koolearn.com/product/46579_1.html</span>
-                </li>
-            </ul>
-        </div>
-    </div>
+	
 </div><div class="head">
     <img src="http://leshu.bj.bcebos.com/standard/leshuslide1.JPG" />
 </div>
