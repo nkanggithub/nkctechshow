@@ -32,7 +32,7 @@
 <div class="i-base-wrap">
     <div id="ji-header" class="i-header">
         <div class="fl">
-            <a class="logo" target="_blank"></a>
+            <img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" height="51" width="100">
         </div>
         <div class="i-divider"></div>
         <a class="i_name fl" href="#">乐数珠心算</a>
