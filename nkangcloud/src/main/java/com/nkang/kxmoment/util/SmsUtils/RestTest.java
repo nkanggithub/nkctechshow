@@ -153,7 +153,7 @@ public class RestTest {
 	 * @throws IOException 
 	 * @method main
 	 */
-	public static void main(String[] args){
+	public static void mmm(String[] args){
 	
 		System.out.println("开始测试...");
 //		String jsonStr="{\"client\":\"1\"}";
