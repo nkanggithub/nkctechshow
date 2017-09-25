@@ -10,8 +10,9 @@ Date date=new Date();
 String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 MongoDBBasic.updateVisited(uid,currentDate,"index",res.get("HeadUrl"),res.get("NickName"));
-String hardcodeUID = "oqPI_xLq1YEJOczHi4DS2-1U0zqc";
-if(MongoDBBasic.checkUserAuth(uid, "isAdmin")||hardcodeUID.equalsIgnoreCase(uid)){
+String hardcodeUID = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
+String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
+if(MongoDBBasic.checkUserAuth(uid, "isAdmin")||hardcodeUID.equalsIgnoreCase(uid)||hardcodeUID2.equalsIgnoreCase(uid)){
 }else{
 	out.print("你没有查看该页面的权限！");
 	return;
