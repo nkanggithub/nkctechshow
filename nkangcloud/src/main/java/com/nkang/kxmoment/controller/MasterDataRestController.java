@@ -1173,7 +1173,7 @@ public class MasterDataRestController {
 	@RequestMapping("/sendValidateCode")
 	public String sendValidateCode(@RequestParam(value="phone")String phone,@RequestParam(value="code")String code){
 		
-		RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, "71716",phone,code);
+		RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, "154680",phone,code);
 		return "OK";
 	}
 

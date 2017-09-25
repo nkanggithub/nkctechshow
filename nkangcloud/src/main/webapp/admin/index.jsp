@@ -25,7 +25,7 @@ MongoDBBasic.updateUser(uid);
 <head>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
-<meta content="" name="dxc" />
+<meta content="" name="乐数" />
 
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap-responsive.min.css" />

@@ -125,7 +125,6 @@ public class MongoDBBasic {
 	public static void updateAccessKey(String key, String expiresIn) {
 		try {
 			mongoDB = getMongoDB();
-			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
 			DBObject dbo = new BasicDBObject();
 			dbo.put("WeChatAccessKey.AKey",key);
 			dbo.put("WeChatAccessKey.ExpiresIn",Integer.valueOf(expiresIn));
@@ -160,7 +159,7 @@ public class MongoDBBasic {
 					}
 				}
 			}
-			log.info("getTicket end");
+			log.info("getTicket end---" + Ticket);
 		} catch (Exception e) {
 			log.info("getTicket--" + e.getMessage());
 		}
@@ -169,7 +168,6 @@ public class MongoDBBasic {
 	public static void updateTicket(String ticket, String expiresIn) {
 		try {
 			mongoDB = getMongoDB();
-			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
 			DBObject dbo = new BasicDBObject();
 			dbo.put("WeChatTicket.Ticket",ticket);
 			dbo.put("WeChatTicket.ExpiresIn",Integer.valueOf(expiresIn));
@@ -3815,7 +3813,6 @@ public class MongoDBBasic {
 		boolean ret=false;
 		try {
 			mongoDB = getMongoDB();
-			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
 			DBObject dbo = new BasicDBObject();
 			dbo.put("isForward","1");
 			BasicDBObject doc = new BasicDBObject();
@@ -3875,7 +3872,6 @@ public class MongoDBBasic {
 		boolean ret=false;
 		try {
 			mongoDB = getMongoDB();
-			//DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
 			DBObject dbo = new BasicDBObject();
 			dbo.put("isForward","1");
 			BasicDBObject doc = new BasicDBObject();
