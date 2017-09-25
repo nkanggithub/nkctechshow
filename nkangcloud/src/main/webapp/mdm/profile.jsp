@@ -45,14 +45,9 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <head>
 <meta charset="utf-8" />
 <title>我的主页</title>
-<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	 -->
-
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="hpe" />
-
-
 
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap-responsive.min.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/font-awesome/css/font-awesome.css"/>
@@ -1279,29 +1274,6 @@ function showRegister(){
 				$("#email").val(email);
 				$("#selfIntro").val(selfIntro);
 			} 
-
-	/* 			$("#roleSelect option[value='"+jsons.results[0].role+"']").attr("selected",true);
-			    var count=$("#roleSelect option").length;
-			    for(var i=0;i<count;i++)  
-			       {           if($("#roleSelect").get(0).options[i].text == jsons.results[0].role)  
-			          {  
-			              $("#roleSelect").get(0).options[i].selected = true;  
-			            
-			              break;  
-			          }  
-			      }
-			    count=$("#groupSelect option").length;
-			    for(var i=0;i<count;i++)  
-			       {           if($("#groupSelect").get(0).options[i].text == jsons.results[0].groupid)  
-			          {  
-			              $("#groupSelect").get(0).options[i].selected = true;  
-			            
-			              break;  
-			          }  
-			      } */
-
-			    
-			   
 			}
 	});
 }
@@ -1786,26 +1758,6 @@ function getWeather() {
 			});
 }
 
-/* function stockModule(){
-	showCommonPanel();
-
-	$("body").append("	<div class='TAB2class bouncePart' id='allstockcodes'>"
-			+"<div id='stockListHeader' class='modal-header' style='text-align: center;'>"
-			+"<img src='../MetroStyleFiles/Add1.png'"
-			+"style='float: right; height: 20px; cursor: pointer; margin-top: 10px;' onclick='addStock()'/>"
-			+"<h3><b>股票行情</b></h3>"
-			+"</div>"
-			+"<table width='100%' id='stock' style='margin-bottom: -20px;'>"
-			+"</table>"
-			+"<div id='addStock' style='display:none;margin: 5px;' >"
-			+"<div id='stockTableForm' >"
-			+"<span>请输入股票代码：</span><input type='text' placeholder='股票代码' id='stockcodeKey'  required style='width:100px;'/><input id='addStockBtn' type='button' value='添加' style='margin: 5px;' />"
-			+"</div></div>"
-			+"</div><div id='footer'><span  class='clientCopyRight'><nobr>'"+copyRight+"</nobr></span></div>");
-	$('#allstockcodes').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-	      $(this).removeClass("bounceInDown animated");
-	    });
-} */
 
 function getStockData(url){
 	getNewData(url);
@@ -1860,74 +1812,6 @@ function getNewData(url){
    });
 }
 
-//	var allAddStockCodes = new Array();
-/* function addStock() {
-	//$('#allstockcodes').css("display", "none");
-	$('#stock').hide();
-	$("#addStock").css("display","block");
-	$("#stockTableForm").css("display","block");
-	$('#stockcodeKey').val("");
-	$.ajax({
-		url : "../getCodes",
-		dataType : "json",
-		success : function(data) {
-			var jsonData = new Array();
-			jsonData = data;
-			if(jsonData!=null || jsonData.length>0){
-				for(var x=0;x<jsonData.length;x++){
-					jsonData[x] = jsonData[x].substring(2,jsonData.length);
-				}
-			}
-			$("#stockcodeKey").autocomplete({
-				source:jsonData,
-				autoFocus: true,
-				delay: 200,
-				max:10,
-				minLength:3,
-				response: function( event, ui ) {
-			    },
-				select: function( event, ui ) {
-					var stockCode = ui.item.label;
-					
-					$("#addStockBtn").click(function(){
-						self.clearInterval($("#timer").val());
-						$('#stockListHeader').css("display","block");
-						$('#stock').css("display","block");
-						$('#addStock').css("display","none");
-						var url = "http://hq.sinajs.cn/list=gb_$ixic,gb_$dji,gb_$inx,gb_hpe,gb_hpq,gb_dxc";
-						
-					    if(stockCode!=null || stockCode!="undefined"){
-					    	if(allAddStockCodes.length==0){
-					    		if(stockCode.indexOf("6")==0){
-									   allAddStockCodes.push("s_sh"+stockCode);
-								   }else if(stockCode.indexOf("0")==0 || stockCode.indexOf("3")==0){
-									   allAddStockCodes.push("s_sz"+stockCode);
-								   }
-					    	} else{
-					    		if($.inArray(stockCode, allAddStockCodes)==-1){
-					    			if(stockCode.indexOf("6")==0){
-										   allAddStockCodes.push("s_sh"+stockCode);
-									  }else if(stockCode.indexOf("0")==0 || stockCode.indexOf("3")==0){
-										   allAddStockCodes.push("s_sz"+stockCode);
-									  }
-					    		}
-					    	}
-					   }
-					   var temp = "";
-					   for(var i=0;i<allAddStockCodes.length;i++){
-						   temp +=",";
-						   temp +=allAddStockCodes[i];
-					   }
-					   url += temp;
-					   getStockData(url);
-					   stockCode="";
-					});
-			    }
-			});
-		}
-	});
-}
-    */
 function getNowFormatDate() {
 	var date = new Date();
 	var seperator1 = "-";
@@ -1984,22 +1868,7 @@ function getNowFormatDate() {
 <div class="register_btn" onclick="updateInfo()"><img src="../mdm/images/finger-up.png" style="margin-top: 10px;width: 30px;height: 30px;"><span style="display: block;
 ">提交</span></div>
   </div>
-<!-- 
-<div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:black;"></div>
- <div class="sk-circle" style="display:none;">
-      <div class="sk-circle1 sk-child"></div>
-      <div class="sk-circle2 sk-child"></div>
-      <div class="sk-circle3 sk-child"></div>
-      <div class="sk-circle4 sk-child"></div>
-      <div class="sk-circle5 sk-child"></div>
-      <div class="sk-circle6 sk-child"></div>
-      <div class="sk-circle7 sk-child"></div>
-      <div class="sk-circle8 sk-child"></div>
-      <div class="sk-circle9 sk-child"></div>
-      <div class="sk-circle10 sk-child"></div>
-      <div class="sk-circle11 sk-child"></div>
-      <div class="sk-circle12 sk-child"></div>
-    </div> -->
+
 	<input id="uid" type="hidden" value="<%=uid%>" />
 	<input id="timer" type="hidden" value="" />
 	<input id="realName" type="hidden" value="" />
@@ -2165,13 +2034,7 @@ function getNowFormatDate() {
 										</div>
 										 -->
 									</div>
-									<!-- end -->
-									<!-- 
-               		   <div id="weather_div_loading">
-               		   <img alt="内容加载中,请稍后..." src="../MetroStyleFiles/loading.gif" height="55" width="55">
-               		   		<b>内容加载中,请稍后...</b>
-               		   </div> style="display:none"
-               		    -->
+
 									<div id="weather_div">
 										<table class="Socialization_menu">
 											<tr>
@@ -2222,23 +2085,7 @@ function getNowFormatDate() {
 										</table>
 									</div>
 								</div>
-							<!-- 	<div id="weather_main_div" class="modal hide fade" tabindex="-1"
-									role="dialog" aria-labelledby="weather_main_div"
-									aria-hidden="true" data-backdrop="static">
-									<div class="modal-header" style="text-align: center;">
-										<h3>
-											<b>天气</b>
-										</h3>
-										<img src="../MetroStyleFiles/Close.png" data-dismiss="modal"
-											aria-hidden="true"
-											style="float: right; height: 25px; cursor: pointer; margin-top: -40px;" />
-									</div>
-									<div class="modal-body readmoreHpop"
-										style="white-space: pre-line; padding: 0px 10px;">
-										<table width="100%" id="weather" style="margin-top:0px;margin-bottom: -20px;background-color:#fff;">
-										</table>
-									</div>
-								</div> -->
+
 								<div id="tax_main_div" class="modal hide fade" tabindex="-1"
 									role="dialog" aria-labelledby="weather_main_div"
 									aria-hidden="true" data-backdrop="static">
@@ -2283,42 +2130,7 @@ function getNowFormatDate() {
 										</table>
 									</div>
 								</div>
-								<!-- <div id="stock_main_div" class="modal hide fade" tabindex="-1"
-									role="dialog" aria-labelledby="stock_main_div"
-									aria-hidden="true" data-backdrop="static">
-									<div id="stockListHeader" class="modal-header" style="text-align: center;">
-										<img src="../MetroStyleFiles/Add1.png" 
-											style="float: left; height: 25px; cursor: pointer; margin-top: 0px;" onclick="addStock()"/>
-										<h3>
-											<b>股票行情</b>
-										</h3>
-										<img id="stockClose" src="../MetroStyleFiles/Close.png" data-dismiss="modal"
-											aria-hidden="true"
-											style="float: right; height: 25px; cursor: pointer; margin-top: -40px;" />
-											
-									</div>
-									<div id="stockListBody" class="modal-body readmoreHpop"
-										style="white-space: pre-line; padding: 0px 10px;">
-										<table width="100%" id="stock" style="margin-bottom: -20px;">
-											
-										</table>
-									</div>
-									<div id="addStock" class="modal hide fade" tabindex="-1"
-									role="dialog" aria-labelledby="myModalLabel1"
-									aria-hidden="true" data-backdrop="static">
-									<div class="modal-body readmoreHpop"
-										style="white-space: pre-line; padding: 0px; ">
-												    <table id="stockTableForm">
-												    <tr>
-												        <td>
-												        	<span>请输入股票代码：</span><input type="text" placeholder="股票代码" id="stockcodeKey"  required style="width:100px;"/><input id="addStockBtn" type="button" value="添加" />
-												        </td>
-												      </tr>
-												 </table>
-									</div>
-									
-								</div>
-								</div> -->
+
 								<div id="UserInfo" class="modal hide fade" tabindex="-1"
 									role="dialog" aria-labelledby="myModalLabel1"
 									aria-hidden="true" data-backdrop="static">
@@ -2369,76 +2181,6 @@ function getNowFormatDate() {
 										</div>
 									</div>
 								</div>
-
-
-			<!-- 				
-								<div id="registerform" class="modal hide fade" tabindex="-1"
-									role="dialog" aria-labelledby="myModalLabel1"
-									aria-hidden="true" data-backdrop="static">
-									<div class="modal-body readmoreHpop"
-										style="white-space: pre-line; padding: 0px;">
-										<img src="../MetroStyleFiles/Close2.png" data-dismiss="modal"
-											aria-hidden="true"
-											style="float: right; height: 27px; cursor: pointer; margin-top: -15px; margin-right: 5px;" />
-												<form id="registerFormSubmit" autocomplete="on">
-												    <table id="tableForm" style="margin-top:20px;">
-												    <tr>
-												        <td class="tdText"><img class='imgclass' src='../MetroStyleFiles/username2.png'/></td>
-												        <td class="tdInput">
-												          <input type="text" placeholder="请输入真实姓名" id="realname"  pattern="^[\u4E00-\u9FA0\s]+$|^[a-zA-Z\s]+$" required/>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td class="tdText"><img class='imgclass' src='../MetroStyleFiles/telephone2.png'/></td>
-												        <td class="tdInput">
-												          <input type="text" placeholder="请输入电话号码" id="phone" pattern="^1[34578]\d{9}$" required/>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td class="tdText"><img class='imgclass' src='../MetroStyleFiles/email2.png'/></td>
-												        <td>
-												          <input class="inputClass" placeholder="请输入邮箱地址" type="email" id="email" required/>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td class="tdText"><img class='imgclass' src='../MetroStyleFiles/role2.png'/></td>
-												        <td>
-												          <select id="roleSelect">
-															<option selected="selected">Individual Contributor</option> 
-															<option>Team Lead</option>
-															<option>Technical Lead</option>
-															<option>Bussiness Analysis</option>
-															<option>Other</option>
-														</select>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td class="tdText"><img class="imgclass" src="../MetroStyleFiles/group2.png"/></td>
-												        <td>
-												         <select id='groupSelect'>
-															<option selected="selected">Chen, Hua-Quan</option>
-															<option>Kang, Ning</option>
-															<option>Zeng, Qiang</option>
-															<option>Li, Jian-Jun</option>
-															<option>Wu, Sha</option>
-															<option>Other</option>
-														</select>
-												        </td>
-												      </tr>
-												      <tr>
-												        <td class="tdText"><img class="imgclass" src="../MetroStyleFiles/selfIntro2.png"/></td>
-												        <td>
-												          <input class="inputClass" type="text" placeholder="请输入个人简介" id="selfIntro" required/>
-												        </td>
-												      </tr>
-												      
-												 </table>
-											    <button class="btnAthena EbtnLess" style="background-color:#00B287;margin-bottom: -35px;" id="registerBtn">在一起吧</button>
-											</form> 
-									</div>
-								</div> -->
-
-
 								<div class="tab-pane" id="WorkMates">
 								
 								<div id="chart-container" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
@@ -2450,11 +2192,6 @@ function getNowFormatDate() {
 							</div>
 						</div>
 					</div>
-
-
-
-
-
 				</div>
 			</div>
 		</div>
@@ -2475,25 +2212,6 @@ function getNowFormatDate() {
 				aria-hidden="true">OK</button>
 		</div>
 	</div>
-	<!--
-	<div id="DivMyConfirm" class="modal hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-		<div class="modal-header">
-			<h3>Confirm Message</h3>
-		</div>
-		<div class="modal-body">
-			<div class="span5 ml0" id="myConfirmMessage"></div>
-		</div>
-		<div class="modal-footer">
-			<button class="btnAthena EbtnLess" data-dismiss="modal"
-				aria-hidden="true">Cancel</button>
-			<button class="btnAthena EbtnLess" id="registerBtn">Submit</button>
-		</div>
-	</div>
- Modal PAGE End-->
-
-
-				
 		
 		<!-- START MESSAGE STATION -->
 	<div id="mes-station">
