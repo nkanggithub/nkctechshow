@@ -44,7 +44,7 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Master Data Management</title>
+<title>我的主页</title>
 <!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	 -->
 
