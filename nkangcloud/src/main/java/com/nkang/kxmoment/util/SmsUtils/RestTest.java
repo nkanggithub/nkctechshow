@@ -153,7 +153,7 @@ public class RestTest {
 	 * @throws IOException 
 	 * @method main
 	 */
-	public static void mmm(String[] args){
+	public static void main(String[] args){
 	
 		System.out.println("开始测试...");
 //		String jsonStr="{\"client\":\"1\"}";
@@ -161,7 +161,7 @@ public class RestTest {
 //		System.out.println(obj.getInt("client"));
 		
 		
-		String templateId="62080";
+		String templateId="154680";
 		String to="15123944895";
 		String para="";
 		testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);

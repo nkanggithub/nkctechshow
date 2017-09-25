@@ -22,7 +22,7 @@ public final class Constants {
 	
 	public static final String ucpass_accountSid = "e332d0755b9060b20ecb53a244ec7015";
 	public static final String ucpass_token = "6dc9593907118f61208d1c1531337bc0";
-	public static final String ucpass_appId = "17595c2226d34f7aa327a5ded8ed4012";
+	public static final String ucpass_appId = "d9944779258e42ad8683b2ac2c4e92da";
 	
 	
 	/**
