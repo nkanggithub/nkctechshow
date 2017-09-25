@@ -2,12 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- 公共的js，css -->
-        <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit"/>
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <!-- 开发标准页面时引用此文件，提供了基本的js及css -->
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link rel="stylesheet" href="global-wap.css">
     <script src="global-wap.js"></script>
     <script type="text/javascript">
@@ -19,10 +17,9 @@
           }
       });
     </script>
-    <!-- 公共部分结束 -->
-    <title>医考在线模拟考场_医师资格|执业药师|护理|药学|主治医师在线模拟测评-新东方在线</title>
-    <meta name="keywords" content="医考在线模拟考场,医师资格测评,执业药师测评,护理职称测评,药学职称测评" />
-    <meta name="description" content="新东方在线医学推出手机版医考在线模拟考场，为广大医学考生提供执业医师资格测评、执业药师测评、护士资格测评、护理职称测评、药学职称测评，以及主治医师测评，精品习题手机随刷随练，助考生医考通关。" />
+    <title>乐数珠心算移动端自测</title>
+    <meta name="keywords" content="乐数珠心算移动端自测" />
+    <meta name="description" content="乐数珠心算移动端自测" />
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="wap-resize.js"></script>
     <script type="text/javascript" src="lodash.js"></script>
@@ -38,7 +35,7 @@
             <a class="logo" target="_blank"></a>
         </div>
         <div class="i-divider"></div>
-        <a class="i_name fl" href="#">医学</a>
+        <a class="i_name fl" href="#">乐数珠心算</a>
 
         <div class="fr">
             <div id="i-header-info" class="header-rc i-head-login">
@@ -49,7 +46,7 @@
 </div>
 <div id="content_data" style="display: none">
 <div class="item">
-        <p class="item_name">医师资格</p>
+        <p class="item_name">珠算</p>
         <ul class="sub_item">
             <li paper-id="53305">临床执业</li>
             <li paper-id="53306">临床助理</li>
@@ -60,112 +57,58 @@
             <li paper-id="53312">口腔执业</li>
 			<li paper-id="53313">口腔助理</li>
         </ul>
-        <div class="kb" title="医师资格选课中心" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/
+        <div class="kb" title="我的课表安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/
 ">
-            <ul class="kb_item" title="笔试-VIP旗舰协议班" >
+            <ul class="kb_item" title="小朋友" >
                 <li>
-                    <span class="class-name">临床执业医师</span>
+                    <span class="class-name">珠算</span>
                     <span class="class-time">490</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47026_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">临床助理医师</span>
+                    <span class="class-name">心算</span>
                     <span class="class-time">437</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47027_1.html</span>
                 </li>
 				<li>
-                    <span class="class-name">中医执业医师</span>
+                    <span class="class-name">书法</span>
                     <span class="class-time">384</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47052_1.html</span>
                 </li>
 				<li>
-                    <span class="class-name">中医助理医师</span>
+                    <span class="class-name">识字</span>
                     <span class="class-time">357</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47030_1.html</span>
                 </li>
-				<li>
-                    <span class="class-name">中西医执业医师</span>
-                    <span class="class-time">403</span>
-                    <span class="class-price">1980</span>
-                    <span class="class-src">http://m.koolearn.com/product/47028_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">中西医助理医师</span>
-                    <span class="class-time">370</span>
-                    <span class="class-price">1980</span>
-                    <span class="class-src">http://m.koolearn.com/product/47031_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">口腔执业医师</span>
-                    <span class="class-time">112</span>
-                    <span class="class-price">980</span>
-                    <span class="class-src">http://m.koolearn.com/product/47036_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">口腔助理医师</span>
-                    <span class="class-time">97</span>
-                    <span class="class-price">980</span>
-                    <span class="class-src">http://m.koolearn.com/product/47045_1.html</span>
-                </li>
             </ul>
-            <ul class="kb_item" title="实践技能-特训通关班" >
+            <ul class="kb_item" title="大朋友" >
                 <li>
-                    <span class="class-name">临床执业医师</span>
+                    <span class="class-name">建筑工程师</span>
                     <span class="class-time">26</span>
                     <span class="class-price">360</span>
                     <span class="class-src">http://www.koolearn.com/product/47097_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">临床助理医师</span>
+                    <span class="class-name">建筑工程师</span>
                     <span class="class-time">25</span>
                     <span class="class-price">360</span>
                     <span class="class-src">http://m.koolearn.com/product/47098_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">中医执业医师</span>
+                    <span class="class-name">建筑工程师</span>
                     <span class="class-time">34</span>
                     <span class="class-price">360</span>
                     <span class="class-src">http://m.koolearn.com/product/47094_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">中医助理医师</span>
-                    <span class="class-time">34</span>
-                    <span class="class-price">360</span>
-                    <span class="class-src">http://m.koolearn.com/product/47096_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">中西医执业医师</span>
-                    <span class="class-time">34</span>
-                    <span class="class-price">360</span>
-                    <span class="class-src">http://m.koolearn.com/product/47093_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">中西医助理医师</span>
-                    <span class="class-time">34</span>
-                    <span class="class-price">360</span>
-                    <span class="class-src">http://m.koolearn.com/product/47093_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">口腔执业医师</span>
-                    <span class="class-time">20</span>
-                    <span class="class-price">300</span>
-                    <span class="class-src">http://m.koolearn.com/product/47099_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">口腔助理助理</span>
-                    <span class="class-time">20</span>
-                    <span class="class-price">300</span>
-                    <span class="class-src">http://m.koolearn.com/product/47100_1.html</span>
                 </li>
             </ul>
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">执业药师</p>
+        <p class="item_name">心算</p>
         <ul class="sub_item">
             <li paper-id="53336">西药一</li>
             <li paper-id="53337">西药二</li>
@@ -232,7 +175,7 @@
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">护理职称</p>
+        <p class="item_name">建筑工程</p>
         <ul class="sub_item">
             <li paper-id="53318">护士资格</li>
             <li paper-id="53322">初级护师</li>
@@ -302,7 +245,7 @@
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">药学职称</p>
+        <p class="item_name">心算</p>
         <ul class="sub_item">
             <li paper-id="53327">初级药士</li>
             <li paper-id="53328">初级药师</li>
@@ -399,7 +342,7 @@
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">主治医师</p>
+        <p class="item_name">心算</p>
         <ul class="sub_item">
             <li paper-id="53550">内科主治</li>
             <li paper-id="53549">外科主治</li>
@@ -460,7 +403,7 @@
         </div>
     </div>
 </div><div class="head">
-    <img src="head.jpg" />
+    <img src="http://leshu.bj.bcebos.com/standard/leshuslide1.JPG" />
 </div>
 <div class="content" id="app" v-cloak>
     <div class="content-nav">
@@ -504,18 +447,18 @@
     </div>
 </div>
 <div class="m-footer">
-    <h1>新东方在线</h1>
+    <h1>乐数在线</h1>
     <div class="tit2">
         <img src="h2.png" height="25" width="560">
     </div>
     <div class="main">
-        <p class="intr">新东方在线（新东方网  839896.OC）是新东方教育科技集团(NYSE:EDU)旗下专业的在线教育公司，新东方在线网（koolearn.com）是国内首批专业在线教育网站之一。</p>
+        <p class="intr">乐数珠心算成立于2014年（原名尔智尔慧珠心算）， 是重庆市方圆职业培训学校旗下幼儿培训品牌，乐数师资是由小学特级教师、全国教育系统劳动模范、全国十杰中小学中青年教师提名奖获得者、全国优秀珠心算教练师何克亮老师亲自授教和培训。乐数珠心算不仅传承了古老珠心算的优秀教学理念，而且拥有简单易懂属于自己独特的教学方法。实践证明，学过珠心算的儿童的计算速度比不学的儿童快3---5倍，被誉为开发儿童智力发展的“金钥匙”从而达到“一科学习，多科受益”的效果。乐数珠心算致力于幼儿珠心算的培训及幼儿综合素质的培养，致力于中华优秀非物质文化遗产的推广，向全世界展现中华文化魅力。</p>
         <div class="logo">
             <div class="lg">
-                <a href="http://m.koolearn.com/"><img src="logo1.png" height="81" width="158"></a>
+                <a href="http://m.koolearn.com/"><img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" height="81" width="158"></a>
             </div>
             <div class="lg">
-                <img src="logo2.png" height="68" width="140">
+                <img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" height="68" width="140">
             </div>
         </div>
     </div>
