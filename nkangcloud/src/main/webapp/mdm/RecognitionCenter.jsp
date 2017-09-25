@@ -360,7 +360,7 @@ wx.config({
    
    </div>
   
-<img style="position:relative;top:10px;" src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9lok&oid=00D90000000pkXM" alt="" width="100%" /> 
+<img style="position:relative;top:10px;" src="http://leshu.bj.bcebos.com/standard/leshuQRCode.JPG" alt="" width="100%" /> 
 
 	<div id="footer">
 		<span class="clientCopyRight"><nobr></nobr></span>
