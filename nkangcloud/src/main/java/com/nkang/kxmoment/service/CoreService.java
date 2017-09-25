@@ -222,7 +222,8 @@ public class CoreService
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article2);
 						String hardcodeUID = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
-						if(hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
+						String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
+						if(hardcodeUID2.equalsIgnoreCase(fromUserName)||hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
 							Article article3 = new Article();
 							article3.setTitle("微管理");
 							article3.setDescription("Administration");
@@ -370,7 +371,8 @@ public class CoreService
 						article.setTitle(cm.getClientName()+"| 点击查看我的订阅");
 						article.setDescription("在此您可以随心订阅您感兴趣的专业话题和自身的职业发展方向");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
+//						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
+						article.setUrl("http://"+Constants.baehost+"/at/test.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
@@ -517,7 +519,11 @@ public class CoreService
 						article.setUrl("http://"+Constants.baehost+"/mdm/MesPushHistory.jsp?UID="+fromUserName);
 						articleList.add(article);
 						List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
-						for(int i = 0; i < 3 ;  i++){
+						int size=3;
+						if(ams.size()<3){
+							size=ams.size();
+						}
+						for(int i = 0; i < size ;  i++){
 							Article articlevar = new Article();
 							articlevar.setTitle(ams.get(i).getTitle()+"\n"+ams.get(i).getTime());
 							articlevar.setDescription("");
