@@ -51,9 +51,7 @@ public class CoreService
 			String fromUserName 	= 	requestObject.element("FromUserName").getText();
 			String toUserName 		= 	requestObject.element("ToUserName").getText();
 			String msgType 			= 	requestObject.element("MsgType").getText();
-			
 
-			
 			TextMessage textMessage = new TextMessage();
 			textMessage.setToUserName(fromUserName);
 			textMessage.setFromUserName(toUserName);
@@ -85,35 +83,6 @@ public class CoreService
 					textMessage.setContent(respContent);
 					respXml = MessageUtil.textMessageToXml(textMessage);
 					
-				}
-				else if (textContent.contains("trigger:")) {
-					String content= textContent.split(":")[1];
-                    List<String> toUser=MongoDBBasic.getAllOpenID();
-                    status=RestUtils.sendTextMessageToUser(content, toUser);
-                   if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
-                	   realReceiver=toUser.size();
-                   }
-                   textMessage.setContent(realReceiver + " recevied");
-	                respXml = MessageUtil.textMessageToXml(textMessage);
-	                
-				} else if (textContent.contains("articleUpload")) {
-	                textMessage.setContent("http://"+Constants.baehost+"/mdm/uploadArticle.jsp");
-	                respXml = MessageUtil.textMessageToXml(textMessage);
-				}
-                   else if (textContent.contains("articleSend")) {
-                	   String articleID=MongoDBBasic.getArticleID();
-                	   System.out.println("articleID-----------"+articleID);
-                       List<String> articletoUser=MongoDBBasic.getAllOpenID();
-//                	   List<String> articletoUser=new ArrayList<String>();
-//                	   articletoUser.add("oqPI_xDdGid-HlbeVKZjpoO5zoKw");
-//                	   articletoUser.add("oqPI_xEjbhsIuu4DcfxED6IqDQ5o");
-                       status=RestUtils.sendMass(articletoUser, articleID);
-                      if(RestUtils.getValueFromJson(status,"errcode").equals("0")){
-                   	   realReceiver=articletoUser.size();
-                      }
-                   
-	                textMessage.setContent(realReceiver + " recevied");
-	                respXml = MessageUtil.textMessageToXml(textMessage);
 				}
 				else {
 					List<String> allUser = MongoDBBasic.getAllOpenIDByIsActivewithIsRegistered();
@@ -406,114 +375,11 @@ public class CoreService
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
-						
-						
-						
-					}
-					else if (eventKey.equals("nbcust")) {// Customer
-						String CurType = "customer";
-						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
-						String lat = geol.getLAT();
-						String lng = geol.getLNG();
-						String addr = geol.getFAddr();
-						List<ExtendedOpportunity> NearByOpptsExt =  new ArrayList<ExtendedOpportunity>();
-						List<String> cityInfo = new ArrayList<String>();
-						cityInfo = RestUtils.getUserCityInfoWithLatLng(lat,lng);
-						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
-						Article article = new Article();
-						article.setTitle(NearByOpptsExt.size() + " Customers NearBy DXC ");
-						article.setDescription(NearByOpptsExt.size() + " Customers " +  "Found Near By You \n" + addr);
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/MoreCustomer.jsp?UID=" + fromUserName);
-						articleList.add(article);
-						int opptCount = 7;
-						if(NearByOpptsExt.size() < opptCount ){
-							opptCount = NearByOpptsExt.size();
-						}
-						for(int i = 0; i < opptCount ;  i++){
-							Article articlevar = new Article();
-							articlevar.setTitle(NearByOpptsExt.get(i).getOpptName() + "\n" + NearByOpptsExt.get(i).getSegmentArea() + "\n" + NearByOpptsExt.get(i).getDistance() + " KM");
-							articlevar.setDescription("NearBy Opportunity");
-							articlevar.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2gP&oid=00D90000000pkXM");
-							articlevar.setUrl("http://"+Constants.baehost+"/mdm/MoreCustomer.jsp?UID=" + fromUserName);
-							articleList.add(articlevar);
-						}
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
-						
-					} else if (eventKey.equals("nbcompe")) {// Competitor
-						String CurType = "competitor";
-						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
-						String lat = geol.getLAT();
-						String lng = geol.getLNG();
-						String addr = geol.getFAddr();
 
-						List<ExtendedOpportunity> NearByOpptsExt =  new ArrayList<ExtendedOpportunity>();
-						List<String> cityInfo = new ArrayList<String>();
-						cityInfo = RestUtils.getUserCityInfoWithLatLng(lat,lng);
-						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
-
-						Article article = new Article();
-						article.setTitle(NearByOpptsExt.size() + " Competitors NearBy DXC");
-						article.setDescription(NearByOpptsExt.size() +  " Competitor " +  "Found Near By You \n" + addr);
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/index.jsp");
-						articleList.add(article);
-						int opptCount = 7;
-						if(NearByOpptsExt.size() < opptCount ){
-							opptCount = NearByOpptsExt.size();
-						}
-						for(int i = 0; i < opptCount ;  i++){
-							Article articlevar = new Article();
-							articlevar.setTitle(NearByOpptsExt.get(i).getOpptName() + "\n" + NearByOpptsExt.get(i).getSegmentArea() + "\n" + NearByOpptsExt.get(i).getDistance() + " KM");
-							articlevar.setDescription("NearBy Opportunity");
-							articlevar.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2gP&oid=00D90000000pkXM");
-							articlevar.setUrl("http://"+Constants.baehost+"/index.jsp");
-							articleList.add(articlevar);
-						}
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
-					} 
-					else if (eventKey.equals("nbpartner")) {// Partner
-						String CurType = "partner";
-						GeoLocation geol = MongoDBBasic.getDBUserGeoInfo(fromUserName);
-						String lat = geol.getLAT();
-						String lng = geol.getLNG();
-						String addr = geol.getFAddr();
-
-						List<ExtendedOpportunity> NearByOpptsExt =  new ArrayList<ExtendedOpportunity>();
-						List<String> cityInfo = new ArrayList<String>();
-						cityInfo = RestUtils.getUserCityInfoWithLatLng(lat,lng);
-						NearByOpptsExt = MongoDBBasic.getNearByOpptFromMongoDB(cityInfo.get(0), cityInfo.get(1), cityInfo.get(2), CurType, lat, lng);
-
-						Article article = new Article();
-						article.setTitle(NearByOpptsExt.size() + " Partners NearBy DXC");
-						article.setDescription(NearByOpptsExt.size() + " Partner " +  "Found Near By You \n" + addr);
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2eJ&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/index.jsp");
-						articleList.add(article);
-						int opptCount = 7;
-						if(NearByOpptsExt.size() < opptCount ){
-							opptCount = NearByOpptsExt.size();
-						}
-						for(int i = 0; i < opptCount ;  i++){
-							Article articlevar = new Article();
-							articlevar.setTitle(NearByOpptsExt.get(i).getOpptName() + "\n" + NearByOpptsExt.get(i).getSegmentArea() + "\n" + NearByOpptsExt.get(i).getDistance() + " KM");
-							articlevar.setDescription("NearBy Opportunity");
-							articlevar.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=01590000009v2gP&oid=00D90000000pkXM");
-							articlevar.setUrl("http://"+Constants.baehost+"/index.jsp");
-							articleList.add(articlevar);
-						}
-						
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
 					}
 					else if (eventKey.equals("nboppt")) {// Partner
 						Article article = new Article();
-						article.setTitle("更多精彩尽在往期回顾 ");
+						article.setTitle(cm.getClientName()+"| 更多精彩尽在往期回顾 ");
 						article.setDescription("更多精彩尽在往期回顾 ");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EDHHL&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/MesPushHistory.jsp?UID="+fromUserName);
