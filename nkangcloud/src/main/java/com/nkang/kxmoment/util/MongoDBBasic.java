@@ -133,7 +133,7 @@ public class MongoDBBasic {
 			dbo.put("WeChatAccessKey.LastUpdated", DateUtil.timestamp2Str(cursqlTS));
 			BasicDBObject doc = new BasicDBObject();
 			doc.put("$set", dbo);
-			mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode","DXC"), doc);
+			mongoDB.getCollection(ClientMeta).update(new BasicDBObject().append("ClientCode",Constants.clientCode), doc);
 			log.info("updateAccessKey end");
 		} catch (Exception e) {
 			log.info("updateAccessKey--" + e.getMessage());
@@ -224,7 +224,7 @@ public class MongoDBBasic {
 				new java.util.Date().getTime());
 		WeChatAccessKey wcak = new WeChatAccessKey();
 		try {
-			DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", "DXC"));
+			DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(new BasicDBObject().append("ClientCode", Constants.clientCode));
 			if (null != dbcur) {
 				
 				while (dbcur.hasNext()) {
