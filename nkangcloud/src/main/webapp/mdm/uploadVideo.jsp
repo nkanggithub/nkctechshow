@@ -6,7 +6,7 @@ String uid = request.getParameter("UID");
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Master Data Management</title>
+<title>上传视频</title>
 <!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	 -->
 
