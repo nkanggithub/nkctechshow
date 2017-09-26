@@ -381,7 +381,7 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle(cm.getClientName()+"| 更多精彩尽在往期回顾 ");
 						article.setDescription("更多精彩尽在往期回顾 ");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EDHHL&oid=00D90000000pkXM");
+						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuslide4.JPG");
 						article.setUrl("http://"+Constants.baehost+"/mdm/MesPushHistory.jsp?UID="+fromUserName);
 						articleList.add(article);
 						List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
