@@ -179,7 +179,7 @@ public class CoreService
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
-						article2.setTitle("微应用");
+						article2.setTitle("乐数应用");
 						article2.setDescription("My Personal Applications");
 						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/weiapp.png");
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
@@ -188,7 +188,7 @@ public class CoreService
 						String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
 						if(hardcodeUID2.equalsIgnoreCase(fromUserName)||hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
 							Article article3 = new Article();
-							article3.setTitle("微管理");
+							article3.setTitle("乐数管理");
 							article3.setDescription("Administration");
 							article3.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
@@ -331,8 +331,8 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						article.setTitle(cm.getClientName()+"| 点击查看我的订阅");
-						article.setDescription("在此您可以随心订阅您感兴趣的专业话题和自身的职业发展方向");
+						article.setTitle(cm.getClientName()+"| 点击查看我的课程订阅");
+						article.setDescription("乐数在线考试练习系统");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
 //						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
 						article.setUrl("http://"+Constants.baehost+"/at/test.jsp?UID=" + fromUserName+"&num="+randNum);
