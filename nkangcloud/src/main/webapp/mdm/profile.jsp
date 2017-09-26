@@ -2046,7 +2046,7 @@ function getNowFormatDate() {
 												</td>
 												<td>
 													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp?UID=<%=uid %>&response_type=code&scope=snsapi_userinfo&state=<%=uid %>#wechat_redirect">
-														<img src="../mdm/images/Notification.png" /><h4>焦点追击</h4>
+														<img src="http://leshu.bj.bcebos.com/icon/Notification.png" /><h4>焦点追击</h4>
 													</a>
 												</td>
 												<td>
