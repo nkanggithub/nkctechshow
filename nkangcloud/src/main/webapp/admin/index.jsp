@@ -867,7 +867,7 @@ jQuery
 		<div class="container-fluid">
 			<!-- <a style="float: left; padding-top: 10px;" id="logo_now"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display: inline !important; height: 30px; float: none; padding: 0px; vertical-align: bottom;"><span class="clientSubName" style="font-size: 12px; padding-left: 7px; color: #333;">MDM China</span>				<h1 style="color: #333; font-size: 18px;" class="clientName">DXC Technology Coperation</h1></a>
 			 -->
-			 <a style="float: left; padding-top: 10px;" id="logo_now"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">				</a>
+			 <a style="float: left; padding-top: 10px;" id="logo_now"><img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">				</a>
 			 <div class="clear"></div>
 			<ul class="nav pull-right top-menu" style="margin-top: -70px;display:none;">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -917,7 +917,7 @@ jQuery
 						<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 						</ul>
 					</div>
-					<div id="return-top" style="display: block;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="50px"></div>
+					<div id="return-top" style="display: block;"><img class="scroll-top"  src="http://leshu.bj.bcebos.com/icon/upgrade.png"  alt="" width="50px"></div>
 				</div>
 			</div>
 		</div>

@@ -2187,7 +2187,7 @@ function getNowFormatDate() {
 					
 									<ul class="Work_Mates_div2" id="Work_Mates_div"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 									</ul>
-<div id="return-top"><img class="scroll-top" src="../Jsp/PIC/upgrade.png" alt="" width="50px"></div>  
+<div id="return-top"><img class="scroll-top" src="http://leshu.bj.bcebos.com/icon/upgrade.png" alt="" width="50px"></div>  
 								</div>
 							</div>
 						</div>
