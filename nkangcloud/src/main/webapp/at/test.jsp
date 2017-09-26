@@ -441,7 +441,7 @@
         <div class="content-nav__lesson" v-for="(data,index) in contentData" :class="tabIndex===index?'bg':''">
             <ul class="testList fc">
                 <li class="test" v-for="(list,i) in data.testList">
-                    <a target="_blank" :href="'http://kaoshi.koolearn.com/wca/gt/'+data.testListId[i]">
+                    <a target="_blank" href="detailed/detailedPage.jsp">
                         <h4>{{list}}</h4>
                         <span>我要测评</span>
                     </a>
