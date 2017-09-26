@@ -365,7 +365,7 @@ function showKMPanel(item){
 }
 function showCommonPanel()
 {
-	$("body").append("<div  id='data_model_div' style='z-index:9999;'  class='dataModelPanel'><img onclick='hideBouncePanel()' src='../MetroStyleFiles/EXIT1.png' style='width: 30px; height: 30px;position:absolute;top:20px;left:20px;' />	<img style='position:relative;height: 50px;float: right;top:8px;margin-right:20px;width:auto;' class='HpLogo' src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM' alt='Logo' class='HpLogo'><div style='width:100%;height:4px;background:#000;position:absolute;top:70px;'></div></div>");
+	$("body").append("<div  id='data_model_div' style='z-index:9999;'  class='dataModelPanel'><img onclick='hideBouncePanel()' src='http://leshu.bj.bcebos.com/icon/EXIT1.png' style='width: 30px; height: 30px;position:absolute;top:20px;left:20px;' />	<img style='position:relative;height: 50px;float: right;top:8px;margin-right:20px;width:auto;' class='HpLogo' src='https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM' alt='Logo' class='HpLogo'><div style='width:100%;height:4px;background:#000;position:absolute;top:70px;'></div></div>");
 	$('#data_model_div').removeClass().addClass('panelShowAnmitation').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass();
 	    }); }

@@ -37,7 +37,7 @@ canvas.jSignature {
 </head>
 <body style="padding:0px;margin:0px;">
 <a href="profile.jsp?UID=<%=session.getAttribute("UID")%>">
-	<i class="icon" style="position:absolute;top:20px;left:20px;"><img class="exit"  src="../MetroStyleFiles//EXIT1.png" style="width: 30px; height: 30px;" /></i>
+	<i class="icon" style="position:absolute;top:20px;left:20px;"><img class="exit"  src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px;" /></i>
 </a>	
 <img style="position:absolute;top:8px;right:20px;" src="" alt="Logo" class="HpLogo">
 <div style="width:100%;height:4px;position:absolute;top:70px;" class="clientTheme"></div>

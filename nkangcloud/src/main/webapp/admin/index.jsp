@@ -279,7 +279,7 @@ function syncUser(){
 		cache : false,
 		success : function(data) {
 			swal("同步成功！", data, "success"); 
-			$("#syncUser").attr("src","../MetroStyleFiles/sync.png");
+			$("#syncUser").attr("src","http://leshu.bj.bcebos.com/icon/sync.png");
 			getMDLUserLists();
 		}
 	});
@@ -557,7 +557,7 @@ function showLogoPanel(index){
 }
 function showCommonPanel()
 {
-	$("body").append("<div  id='data_model_div' style='z-index:999;position:fixed;'  class='dataModelPanel'><img onclick='hideBouncePanel()' src='../MetroStyleFiles/EXIT1.png' style='width: 30px; height: 30px;position:absolute;top:20px;left:20px;' />	<img style='position:absolute;top:8px;right:20px;' class='HpLogo' src='"+HpLogoSrc+"' alt='Logo' class='HpLogo'><div style='width:100%;height:4px;background:"+clientThemeColor+";position:absolute;top:70px;'></div></div>");
+	$("body").append("<div  id='data_model_div' style='z-index:999;position:fixed;'  class='dataModelPanel'><img onclick='hideBouncePanel()' src='http://leshu.bj.bcebos.com/icon/EXIT1.png' style='width: 30px; height: 30px;position:absolute;top:20px;left:20px;' />	<img style='position:absolute;top:8px;right:20px;' class='HpLogo' src='"+HpLogoSrc+"' alt='Logo' class='HpLogo'><div style='width:100%;height:4px;background:"+clientThemeColor+";position:absolute;top:70px;'></div></div>");
 	$('#data_model_div').removeClass().addClass('panelShowAnmitation').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass();
 	    }); }
@@ -908,8 +908,8 @@ jQuery
 					<!-- end logoElements-->
 				</div>
 				<div class="tab-pane  active" id="WorkMates">
-				<img id="refreshUser"  src="../MetroStyleFiles/refresh2.png" style="height:25px;float:right;margin-top:8px;margin-left:15px;"/>
-					<img id="syncUser"  src="../MetroStyleFiles/sync.png" style="height:30px;float:right;margin-top:7px;"/>
+				<img id="refreshUser"  src="http://leshu.bj.bcebos.com/icon/refresh2.png" style="height:25px;float:right;margin-top:8px;margin-left:15px;"/>
+					<img id="syncUser"  src="http://leshu.bj.bcebos.com/icon/sync.png" style="height:30px;float:right;margin-top:7px;"/>
 					<div id="chart-container" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
 					
 					
