@@ -46,6 +46,7 @@ public class CoreService
 		String respContent = "unknown request type.";
 		String AccessKey = MongoDBBasic.getValidAccessKey();
 		ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
+		String navPic = "http://leshu.bj.bcebos.com/standard/navigation.png";
 		try {
 			Element requestObject 	= 	MessageUtil.parseXml(request);
 			String fromUserName 	= 	requestObject.element("FromUserName").getText();
@@ -376,6 +377,56 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 
+					}
+					else if (eventKey.equals("sitenavigator")){
+						articleList.clear();
+						Article article = new Article();
+						article.setTitle("乐数为您导航");
+						article.setDescription("乐数为您导航");
+						article.setPicUrl(navPic);
+						article.setUrl("http://m.amap.com/search/view/keywords=%E5%8D%97%E5%9D%AA%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA2%E5%8F%B7%E5%86%99%E5%AD%97%E6%A5%BC11-6%20"); //http://map.baidu.com/mobile
+						articleList.add(article);
+						
+						Article articlenav1 = new Article();
+						articlenav1.setTitle("南坪校区[TEL:023-62387134]"); //九龙坡区铁路村198号
+						articlenav1.setDescription("南坪校区[TEL:023-62387134]");
+						articlenav1.setPicUrl(navPic);
+						articlenav1.setUrl("http://m.amap.com/search/view/keywords=%E5%8D%97%E5%9D%AA%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA2%E5%8F%B7%E5%86%99%E5%AD%97%E6%A5%BC11-6%20");
+						articleList.add(articlenav1);
+						
+						Article articlenav2 = new Article();
+						articlenav2.setTitle("江北观音桥校区[TEL:023-67616306]"); //港城工业园区C区
+						articlenav2.setDescription("江北校区[TEL:023-67616306]");
+						articlenav2.setPicUrl(navPic);
+						articlenav2.setUrl("http://m.amap.com/search/view/keywords=%E8%A7%82%E9%9F%B3%E6%A1%A5%E4%B8%AD%E4%BF%A1%E5%A4%A7%E5%8E%A625-10");
+						articleList.add(articlenav2);
+						
+						Article articlenav4 = new Article();
+						articlenav4.setTitle("李家沱校区[TEL:023-67505761]"); //重庆沙坪坝区土主镇西部物流园区中石油仓储中心
+						articlenav4.setDescription("李家沱校区[TEL:023-67505761]");
+						articlenav4.setPicUrl(navPic);
+						articlenav4.setUrl("http://m.amap.com/search/view/keywords=%E6%9D%8E%E5%AE%B6%E6%B2%B1%E9%83%BD%E5%92%8C%E5%B9%BF%E5%9C%BAA%E6%A0%8B30-5");
+						articleList.add(articlenav4);
+						
+						Article articlenav3 = new Article();
+						articlenav3.setTitle("杨家坪校区[TEL:13372680273]");
+						articlenav3.setDescription("杨家坪校区[TEL:13372680273]");
+						articlenav3.setPicUrl(navPic);
+						articlenav3.setUrl("http://m.amap.com/search/view/keywords=%E6%9D%A8%E5%AE%B6%E5%9D%AA%E6%AD%A5%E8%A1%8C%E8%A1%97%E9%87%91%E5%B7%9E%E5%A4%A7%E5%8E%A616%E6%A5%BC");
+						articleList.add(articlenav3);
+												
+						Article articlenav6 = new Article();
+						articlenav6.setTitle("江北区青少年宫[TEL:13372680273]");
+						articlenav6.setDescription("石子山公园内");
+						articlenav6.setPicUrl(navPic);
+						articlenav6.setUrl("http://m.amap.com/search/mapview/keywords=%E7%9F%B3%E5%AD%90%E5%B1%B1%E4%BD%93%E8%82%B2%E5%85%AC%E5%9B%AD%E7%AF%AE%E7%90%83%E5%9C%BA&city=500105&poiid=B0FFH0QH92");
+						articleList.add(articlenav6);
+						
+						
+						newsMessage.setArticleCount(articleList.size());
+						newsMessage.setArticles(articleList);
+						respXml = MessageUtil.newsMessageToXml(newsMessage);
+						
 					}
 					else if (eventKey.equals("nboppt")) {// Partner
 						Article article = new Article();
