@@ -35,7 +35,7 @@
             <img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" height="51" width="100">
         </div>
         <div class="i-divider"></div>
-        <a class="i_name fl" href="#">乐数珠心算</a>
+        <a class="i_name fl" href="#">乐在其中  心中有数</a>
 
         <div class="fr">
             <div id="i-header-info" class="header-rc i-head-login">
