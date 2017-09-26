@@ -260,7 +260,7 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						article.setTitle("点击扫描您附近的同事");
+						article.setTitle("点击扫描您附近的同学");
 						article.setDescription("您当前所在位置:" + addr);
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
@@ -423,8 +423,8 @@ public class CoreService
 					}
 					else if (eventKey.equals("nboppt")) {// Partner
 						Article article = new Article();
-						article.setTitle(cm.getClientName()+"| 更多精彩尽在往期回顾 ");
-						article.setDescription("更多精彩尽在往期回顾 ");
+						article.setTitle(cm.getClientName()+"| 更多精彩尽乐数动态 ");
+						article.setDescription("更多精彩尽乐数动态 ");
 						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuslide4.JPG");
 						article.setUrl("http://"+Constants.baehost+"/mdm/MesPushHistory.jsp?UID="+fromUserName);
 						articleList.add(article);
