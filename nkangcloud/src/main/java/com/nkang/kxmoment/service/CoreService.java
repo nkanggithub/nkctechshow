@@ -175,13 +175,13 @@ public class CoreService
 						
 						article.setTitle(cm.getClientName()+"|移动应用");
 						article.setDescription("移动应用");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mpP&oid=00D90000000pkXM");
+						article.setPicUrl("http://leshu.bj.bcebos.com/icon/myapplication.jpg");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
 						article2.setTitle("微应用");
 						article2.setDescription("My Personal Applications");
-						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7K&oid=00D90000000pkXM");
+						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/weiapp.png");
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article2);
 						String hardcodeUID = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
@@ -190,7 +190,7 @@ public class CoreService
 							Article article3 = new Article();
 							article3.setTitle("微管理");
 							article3.setDescription("Administration");
-							article3.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7e&oid=00D90000000pkXM");
+							article3.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
 							articleList.add(article3);
 						}
