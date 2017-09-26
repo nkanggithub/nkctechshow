@@ -25,7 +25,7 @@
     <script type="text/javascript" src="lodash.js"></script>
     <script type="text/javascript" src="vue.js"></script>
     <script>
-        document.domain = 'koolearn.com';
+        document.domain = 'nkctech.duapp.com';
     </script>
 </head>
 <body>
@@ -507,8 +507,8 @@
                 //右侧登录菜单相关配置
                 loginInfoUrl: '//i.koolearn.com/logininfo',
                 login: {
-                    loginUrl: "//login.koolearn.com/sso/m/toLogin.do",  //登录地址
-                    quitUrl: "//login.koolearn.com/sso/logout.do",  //退出地址
+                    loginUrl: "//login.koolearn1.com/sso/m/toLogin.do",  //登录地址
+                    quitUrl: "//login.koolearn1.com/sso/logout.do",  //退出地址
                     userCenter: "javascript:;",  //个人中心
                     myCourse: "//study.koolearn.com?wp_f=w_menu",  //我的课程
                     myOrder: "//order.m.koolearn.com/m/user_order/index?wp_f=w_menu",  //我的订单
