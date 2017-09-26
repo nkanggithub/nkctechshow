@@ -346,25 +346,32 @@ public class CoreService
 						
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle(cm.getClientName()+"|查看产品运维报表");
+						article.setTitle(cm.getClientName()+"|乐数风采");
 						article.setDescription("您可查看实时更新的产品运维报表");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
+						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
+						article.setUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
 						articleList.add(article);
 						
 						Article article1 = new Article();
-						article1.setTitle("IM统计情况");
+						article1.setTitle("学员风采");
 						article1.setDescription("IM统计情况");
 						article1.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLNZ&oid=00D90000000pkXM");
-						article1.setUrl("http://"+Constants.baehost+"/mdm/DV_Mobile.jsp?UID=" + fromUserName);
+						article1.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
 						articleList.add(article1);
 						
 						Article article2 = new Article();
-						article2.setTitle("生产环境智能监控");
+						article2.setTitle("师资风采");
 						article2.setDescription("生产环境智能监控");
 						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
-						article2.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FDashboardStatus.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
+						article2.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
 						articleList.add(article2);
+						
+						Article article3 = new Article();
+						article3.setTitle("家园共育");
+						article3.setDescription("家园共育");
+						article3.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
+						article3.setUrl("http://mp.weixin.qq.com/s/EwgxfqfuzIuQgPss7jdNtQ");
+						articleList.add(article3);
 						
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
