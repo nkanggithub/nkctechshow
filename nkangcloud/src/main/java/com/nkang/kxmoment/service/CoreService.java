@@ -59,13 +59,6 @@ public class CoreService
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 
-			TextMessage textMessage1 = new TextMessage();
-			String fromUserName1 = "oqPI_xHLkY6wSAJEmjnQPPazePE8";
-			textMessage1.setToUserName(fromUserName1);
-			textMessage1.setFromUserName(toUserName);
-			textMessage1.setCreateTime(new Date().getTime());
-			textMessage1.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-			
 			NewsMessage newsMessage = new NewsMessage();
 			newsMessage.setToUserName(fromUserName);
 			newsMessage.setFromUserName(toUserName);
