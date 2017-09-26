@@ -2064,12 +2064,12 @@ function getNowFormatDate() {
 												<td> <!-- onclick="signaturePanel()"  -->
 												 <a href="Signature.jsp?UID=<%=uid%>">
 												<img 
-														src="../MetroStyleFiles/menu-pen.png" /></a>
+														src="http://leshu.bj.bcebos.com/icon/menu-pen.png" /></a>
 														<h4>电子签名</h4>
 												</td>
 												<td>
 												 <a href="http://nkctech.duapp.com/mdm/face.jsp?UID=<%=uid%>" target="_blank">
-												 <img src="../MetroStyleFiles/menu-face.png" /></a>
+												 <img src="http://leshu.bj.bcebos.com/icon/menu-face.png" /></a>
 													<h4>测颜值</h4></td>
 												<!-- <td onclick="getReminderForMore()">
 												<img src="../MetroStyleFiles/Add1.png" />
