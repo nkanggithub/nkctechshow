@@ -247,7 +247,7 @@
             <li paper-id="53332">造价员</li>
 
         </ul>
-        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+        <div class="kb" title="建筑工程选课中心" more="baidu.com">
             <ul class="kb_item" title="施工员" >
                 <li>
                     <span class="class-name">施工员</span>
@@ -435,7 +435,8 @@
 
                 </li>
             </ul>
-            <h3>{{data.kbName}}<a :href="data.kbMore" target="_blank">更多</a></h3>
+            <h3>{{data.kbName}}<a :href="baidu.com" target="_blank">更多</a></h3>
+            <!--  <h3>{{data.kbName}}<a :href="data.kbMore" target="_blank">更多</a></h3>-->
             <table v-for="kbIt in data.kbItem">
                 <colgroup>
                     <col width="40%">
@@ -454,7 +455,8 @@
                         <td>{{classItem.className}}</td>
                         <td>{{classItem.classTime}}</td>
                         <td>￥{{classItem.classPrice}}</td>
-                        <td><a class="buy" :href="classItem.classSrc">购买</a></td>
+                        <td><a class="buy" :href="baidu.com">购买</a></td>
+                        <!-- <td><a class="buy" :href="classItem.classSrc">购买</a></td> -->
                     </tr>
                 </tbody>
             </table>
@@ -487,7 +489,7 @@
     })
 </script>
 <script src="header.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     (function(){
         seajs.use(['project/zt/2016/0530kyldywap/js/common/header/header'], function(init){
             init({
@@ -506,7 +508,7 @@
             });
         });
     })()
-</script>
+</script> -->
 <script type="text/javascript" src="tongji_wap.js"></script>
 <script type="text/javascript" src="GTM.js"></script>
 </body>
