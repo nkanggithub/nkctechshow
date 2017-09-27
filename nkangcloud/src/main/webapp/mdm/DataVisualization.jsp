@@ -412,7 +412,7 @@ background-color: white;
 </head>
 <body>
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
-<img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="" style="width:60%;">
+<img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">
 </div>
 
 
