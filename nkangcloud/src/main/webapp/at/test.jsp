@@ -1,4 +1,4 @@
-﻿﻿<%@ page language="java" pageEncoding="UTF-8"%>
+﻿﻿﻿<%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,8 @@
             <li paper-id="53309">少儿珠算</li>
             <li paper-id="53311">少儿珠算</li>
         </ul>
-        <div class="kb" title="我的课表安排" more="baidu.com">
+        <div class="kb" title="我的课表安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/
+">
             <ul class="kb_item" title="小朋友" >
                 <li>
                     <span class="class-name">少儿珠算</span>
@@ -115,7 +116,8 @@
             <li paper-id="53335">少儿心算</li>
             <li paper-id="53339">少儿心算</li>
         </ul>
-        <div class="kb" title="我的课程安排" more="baidu.com">
+        <div class="kb" title="我的课程安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/zhiyeyaoshi/
+">
             <ul class="kb_item" title="小朋友" >
                 <li>
                     <span class="class-name">少儿心算</span>
@@ -171,7 +173,7 @@
             <li paper-id="53322">少儿机器人</li>
             <li paper-id="53326">少儿机器人</li>
         </ul>
-        <div class="kb" title="少儿机器人" more="baidu.com">
+        <div class="kb" title="少儿机器人" more="http://m.koolearn.com/171-0-10-0-0-0/">
             <ul class="kb_item" title="少儿机器人" >
                 <li>
                     <span class="class-name">少儿机器人</span>
@@ -237,94 +239,93 @@
 	<div class="item">
         <p class="item_name">建筑工程</p>
         <ul class="sub_item">
-            <li paper-id="53327">施工员</li>
-            <li paper-id="53328">安全员</li>
-            <li paper-id="53329">材料员</li>
-            <li paper-id="53330">质检员</li>
-            <li paper-id="53331">资料员</li>
-            <li paper-id="53332">造价员</li>
-
+            <li paper-id="53327">建筑工程</li>
+            <li paper-id="53328">建筑工程</li>
+            <li paper-id="53329">建筑工程</li>
+            <li paper-id="53330">建筑工程</li>
+            <li paper-id="53331">建筑工程</li>
+            <li paper-id="53332">建筑工程</li>
         </ul>
-        <div class="kb" title="建筑工程选课中心" more="baidu.com">
-            <ul class="kb_item" title="施工员" >
+        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">施工员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">77</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">施工员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="安全员" >
+            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">安全员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">91</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">安全员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">89</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="材料员" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">材料员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">材料员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">80</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="质检员" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">质检员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">76</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">质检员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="资料员" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">资料员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">108</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">资料员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">102</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="造价员" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">造价员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">128</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">造价员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">126</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
@@ -334,83 +335,97 @@
     </div>
 	<div class="item">
         <p class="item_name">建筑工程2</p>
-        <ul class="sub_item">            
-            <li paper-id="53327">测量员</li>
-            <li paper-id="53328">预算员</li>
-            <li paper-id="53329">劳务员</li>
-            <li paper-id="53330">试验员</li>
-            <li paper-id="53331">机械管理员</li>
-            
+        <ul class="sub_item">
+            <li paper-id="53327">建筑工程</li>
+            <li paper-id="53328">建筑工程</li>
+            <li paper-id="53329">建筑工程</li>
+            <li paper-id="53330">建筑工程</li>
+            <li paper-id="53331">建筑工程</li>
+            <li paper-id="53332">建筑工程</li>
         </ul>
-        <div class="kb" title="建筑工程选课中心" more="baidu.com">
-            <ul class="kb_item" title="测量员" >
+        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">测量员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">77</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">测量员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="预算员" >
+            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">预算员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">91</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">预算员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">89</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="劳务员" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">劳务员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">劳务员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">80</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="试验员" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">试验员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">76</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">试验员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
                 </li>
             </ul>
-			<ul class="kb_item" title="机械管理员" >
+			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">机械管理员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">108</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">机械管理员</span>
+                    <span class="class-name">建筑工程</span>
                     <span class="class-time">102</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
+                </li>
+            </ul>
+			           <ul class="kb_item" title="建筑工程" >
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">128</span>
+                    <span class="class-price">850</span>
+                    <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">建筑工程</span>
+                    <span class="class-time">126</span>
+                    <span class="class-price">700</span>
+                    <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
                 </li>
             </ul>
         </div>
@@ -433,8 +448,7 @@
 
                 </li>
             </ul>
-            <h3>{{data.kbName}}<a :href="baidu.com" target="_blank">更多</a></h3>
-            <!--  <h3>{{data.kbName}}<a :href="data.kbMore" target="_blank">更多</a></h3>-->
+            <h3>{{data.kbName}}<a :href="data.kbMore" target="_blank">更多</a></h3>
             <table v-for="kbIt in data.kbItem">
                 <colgroup>
                     <col width="40%">
@@ -453,8 +467,7 @@
                         <td>{{classItem.className}}</td>
                         <td>{{classItem.classTime}}</td>
                         <td>￥{{classItem.classPrice}}</td>
-                        <td><a class="buy" :href="baidu.com">购买</a></td>
-                        <!-- <td><a class="buy" :href="classItem.classSrc">购买</a></td> -->
+                        <td><a class="buy" :href="classItem.classSrc">购买</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -487,7 +500,7 @@
     })
 </script>
 <script src="header.js"></script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     (function(){
         seajs.use(['project/zt/2016/0530kyldywap/js/common/header/header'], function(init){
             init({
@@ -506,7 +519,7 @@
             });
         });
     })()
-</script> -->
+</script>
 <script type="text/javascript" src="tongji_wap.js"></script>
 <script type="text/javascript" src="GTM.js"></script>
 </body>
