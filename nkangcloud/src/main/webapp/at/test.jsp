@@ -199,30 +199,36 @@
             <ul class="kb_item" title="类别" >
                 <li>
                     <span class="class-name">施工员</span>
-                    <span class="class-time">77</span>
+                    <span class="class-time">基础知识、岗位实务</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
                     <span class="class-name">安全员</span>
-                    <span class="class-time">74</span>
-                    <span class="class-price">600</span>
+                    <span class="class-time">基础知识、岗位实务</span>
+                    <span class="class-price">1000</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">材料员</span>
-                    <span class="class-time">91</span>
-                    <span class="class-price">800</span>
+                    <span class="class-name">资料员</span>
+                    <span class="class-time">实战</span>
+                    <span class="class-price">3200</span>
+                    <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">资料员</span>
+                    <span class="class-time">精品班</span>
+                    <span class="class-price">4600</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
                     <span class="class-name">质检员</span>
-                    <span class="class-time">89</span>
-                    <span class="class-price">650</span>
+                    <span class="class-time">基础知识、岗位实务</span>
+                    <span class="class-price">1000</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">资料员</span>
+                    <span class="class-name">材料员</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
@@ -230,7 +236,7 @@
                 <li>
                     <span class="class-name">标准员</span>
                     <span class="class-time">80</span>
-                    <span class="class-price">700</span>
+                    <span class="class-price">980</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
@@ -251,8 +257,26 @@
             <ul class="kb_item" title="类别" >
                 <li>
                     <span class="class-name">造价员</span>
-                    <span class="class-time">77</span>
-                    <span class="class-price">750</span>
+                    <span class="class-time">实战班</span>
+                    <span class="class-price">4200</span>
+                    <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">造价员</span>
+                    <span class="class-time">精品班</span>
+                    <span class="class-price">4800</span>
+                    <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">造价员</span>
+                    <span class="class-time">综合班</span>
+                    <span class="class-price">5200</span>
+                    <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">造价员</span>
+                    <span class="class-time">全能班</span>
+                    <span class="class-price">5800</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
@@ -269,20 +293,68 @@
                 </li>
                 <li>
                     <span class="class-name">预算员</span>
-                    <span class="class-time">89</span>
-                    <span class="class-price">650</span>
+                    <span class="class-time">取证班</span>
+                    <span class="class-price">1000</span>
+                    <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">预算员</span>
+                    <span class="class-time">实战班</span>
+                    <span class="class-price">4200</span>
+                    <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">预算员</span>
+                    <span class="class-time">精品班</span>
+                    <span class="class-price">4800</span>
+                    <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">预算员</span>
+                    <span class="class-time">综合班</span>
+                    <span class="class-price">5200</span>
+                    <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">预算员</span>
+                    <span class="class-time">全能班</span>
+                    <span class="class-price">5800</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
                 <li>
                     <span class="class-name">测量员</span>
-                    <span class="class-time">82</span>
-                    <span class="class-price">850</span>
+                    <span class="class-time">取证班</span>
+                    <span class="class-price">1000</span>
+                    <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">测量员</span>
+                    <span class="class-time">实战班</span>
+                    <span class="class-price">3600</span>
+                    <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">测量员</span>
+                    <span class="class-time">精品班</span>
+                    <span class="class-price">4200</span>
+                    <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">测量员</span>
+                    <span class="class-time">综合班</span>
+                    <span class="class-price">4600</span>
+                    <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
+                </li>
+                                <li>
+                    <span class="class-name">测量员</span>
+                    <span class="class-time">全能班</span>
+                    <span class="class-price">5200</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
                     <span class="class-name">机械管理员</span>
                     <span class="class-time">80</span>
-                    <span class="class-price">700</span>
+                    <span class="class-price">80</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
