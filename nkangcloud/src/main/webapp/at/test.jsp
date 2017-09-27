@@ -55,8 +55,7 @@
             <li paper-id="53309">少儿珠算</li>
             <li paper-id="53311">少儿珠算</li>
         </ul>
-        <div class="kb" title="我的课表安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/
-">
+        <div class="kb" title="我的课表安排" more="baidu.com">
             <ul class="kb_item" title="小朋友" >
                 <li>
                     <span class="class-name">少儿珠算</span>
@@ -116,8 +115,7 @@
             <li paper-id="53335">少儿心算</li>
             <li paper-id="53339">少儿心算</li>
         </ul>
-        <div class="kb" title="我的课程安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/zhiyeyaoshi/
-">
+        <div class="kb" title="我的课程安排" more="baidu.com">
             <ul class="kb_item" title="小朋友" >
                 <li>
                     <span class="class-name">少儿心算</span>
@@ -173,7 +171,7 @@
             <li paper-id="53322">少儿机器人</li>
             <li paper-id="53326">少儿机器人</li>
         </ul>
-        <div class="kb" title="少儿机器人" more="http://m.koolearn.com/171-0-10-0-0-0/">
+        <div class="kb" title="少儿机器人" more="baidu.com">
             <ul class="kb_item" title="少儿机器人" >
                 <li>
                     <span class="class-name">少儿机器人</span>
@@ -344,7 +342,7 @@
             <li paper-id="53331">机械管理员</li>
             
         </ul>
-        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+        <div class="kb" title="建筑工程选课中心" more="baidu.com">
             <ul class="kb_item" title="测量员" >
                 <li>
                     <span class="class-name">测量员</span>
