@@ -239,93 +239,94 @@
 	<div class="item">
         <p class="item_name">建筑工程</p>
         <ul class="sub_item">
-            <li paper-id="53327">建筑工程</li>
-            <li paper-id="53328">建筑工程</li>
-            <li paper-id="53329">建筑工程</li>
-            <li paper-id="53330">建筑工程</li>
-            <li paper-id="53331">建筑工程</li>
-            <li paper-id="53332">建筑工程</li>
+            <li paper-id="53327">施工员</li>
+            <li paper-id="53328">安全员</li>
+            <li paper-id="53329">材料员</li>
+            <li paper-id="53330">质检员</li>
+            <li paper-id="53331">资料员</li>
+            <li paper-id="53332">造价员</li>
+
         </ul>
         <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
-            <ul class="kb_item" title="建筑工程" >
+            <ul class="kb_item" title="施工员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">施工员</span>
                     <span class="class-time">77</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">施工员</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="建筑工程" >
+            <ul class="kb_item" title="安全员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">安全员</span>
                     <span class="class-time">91</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">安全员</span>
                     <span class="class-time">89</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
+			           <ul class="kb_item" title="材料员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">材料员</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">材料员</span>
                     <span class="class-time">80</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
+			           <ul class="kb_item" title="质检员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">质检员</span>
                     <span class="class-time">76</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">质检员</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
+			           <ul class="kb_item" title="资料员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">资料员</span>
                     <span class="class-time">108</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">资料员</span>
                     <span class="class-time">102</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
+			           <ul class="kb_item" title="造价员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">造价员</span>
                     <span class="class-time">128</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">造价员</span>
                     <span class="class-time">126</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
@@ -335,97 +336,83 @@
     </div>
 	<div class="item">
         <p class="item_name">建筑工程2</p>
-        <ul class="sub_item">
-            <li paper-id="53327">建筑工程</li>
-            <li paper-id="53328">建筑工程</li>
-            <li paper-id="53329">建筑工程</li>
-            <li paper-id="53330">建筑工程</li>
-            <li paper-id="53331">建筑工程</li>
-            <li paper-id="53332">建筑工程</li>
+        <ul class="sub_item">            
+            <li paper-id="53332">测量员</li>
+            <li paper-id="53332">预算员</li>
+            <li paper-id="53332">劳务员</li>
+            <li paper-id="53332">试验员</li>
+            <li paper-id="53332">机械管理员</li>
+            
         </ul>
         <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
-            <ul class="kb_item" title="建筑工程" >
+            <ul class="kb_item" title="测量员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">测量员</span>
                     <span class="class-time">77</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">测量员</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="建筑工程" >
+            <ul class="kb_item" title="预算员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">预算员</span>
                     <span class="class-time">91</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">预算员</span>
                     <span class="class-time">89</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
+			           <ul class="kb_item" title="劳务员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">劳务员</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">劳务员</span>
                     <span class="class-time">80</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
+			           <ul class="kb_item" title="试验员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">试验员</span>
                     <span class="class-time">76</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">试验员</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
+			           <ul class="kb_item" title="机械管理员" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">机械管理员</span>
                     <span class="class-time">108</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">机械管理员</span>
                     <span class="class-time">102</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
-                </li>
-            </ul>
-			           <ul class="kb_item" title="建筑工程" >
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">128</span>
-                    <span class="class-price">850</span>
-                    <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">126</span>
-                    <span class="class-price">700</span>
-                    <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
                 </li>
             </ul>
         </div>
