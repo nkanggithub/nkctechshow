@@ -32,7 +32,7 @@
 <div class="i-base-wrap">
     <div id="ji-header" class="i-header">
         <div class="fl">
-            <img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" height="51" width="100">
+            <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" height="51" width="100">
         </div>
         <div class="i-divider"></div>
         <a class="i_name fl" href="#">乐在其中  心中有数</a>
@@ -48,59 +48,43 @@
 <div class="item">
         <p class="item_name">少儿珠算</p>
         <ul class="sub_item">
-            <li paper-id="53305">少儿珠算</li>
-            <li paper-id="53306">少儿珠算</li>
-            <li paper-id="53307">少儿珠算</li>
-            <li paper-id="53308">少儿珠算</li>
-            <li paper-id="53309">少儿珠算</li>
-            <li paper-id="53311">少儿珠算</li>
+            <li paper-id="53305">启蒙班</li>
+            <li paper-id="53306">初级班</li>
+            <li paper-id="53307">中级班</li>
+            <li paper-id="53308">提高班</li>
+            <li paper-id="53309">精英班</li>
         </ul>
-        <div class="kb" title="我的课表安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/
-">
-            <ul class="kb_item" title="小朋友" >
+        <div class="kb" title="我的课表安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/">
+            <ul class="kb_item" title="级别" >
                 <li>
-                    <span class="class-name">少儿珠算</span>
+                    <span class="class-name">启蒙班</span>
                     <span class="class-time">490</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47026_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">少儿心算</span>
+                    <span class="class-name">初级班</span>
                     <span class="class-time">437</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47027_1.html</span>
                 </li>
 				<li>
-                    <span class="class-name">少儿书法</span>
+                    <span class="class-name">中级班</span>
                     <span class="class-time">384</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47052_1.html</span>
                 </li>
 				<li>
-                    <span class="class-name">少儿机器人</span>
+                    <span class="class-name">提高班</span>
                     <span class="class-time">357</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47030_1.html</span>
                 </li>
-            </ul>
-            <ul class="kb_item" title="大朋友" >
                 <li>
-                    <span class="class-name">建筑工程师</span>
-                    <span class="class-time">26</span>
-                    <span class="class-price">360</span>
-                    <span class="class-src">http://www.koolearn.com/product/47097_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程师</span>
-                    <span class="class-time">25</span>
-                    <span class="class-price">360</span>
-                    <span class="class-src">http://m.koolearn.com/product/47098_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程师</span>
-                    <span class="class-time">34</span>
-                    <span class="class-price">360</span>
-                    <span class="class-src">http://m.koolearn.com/product/47094_1.html</span>
+                    <span class="class-name">精英班</span>
+                    <span class="class-time">357</span>
+                    <span class="class-price">1980</span>
+                    <span class="class-src">http://m.koolearn.com/product/47030_1.html</span>
                 </li>
             </ul>
         </div>
@@ -108,112 +92,77 @@
 	<div class="item">
         <p class="item_name">少儿心算</p>
         <ul class="sub_item">
-            <li paper-id="53336">少儿心算</li>
-            <li paper-id="53337">少儿心算</li>
-            <li paper-id="53338">少儿心算</li>
-            <li paper-id="53333">少儿心算</li>
-            <li paper-id="53334">少儿心算</li>
-            <li paper-id="53335">少儿心算</li>
-            <li paper-id="53339">少儿心算</li>
+            <li paper-id="53336">启蒙班</li>
+            <li paper-id="53337">初级班</li>
+            <li paper-id="53338">中级班</li>
+            <li paper-id="53333">提高班</li>
+            <li paper-id="53334">精英班</li>
         </ul>
         <div class="kb" title="我的课程安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/zhiyeyaoshi/
 ">
-            <ul class="kb_item" title="小朋友" >
+            <ul class="kb_item" title="级别" >
                 <li>
-                    <span class="class-name">少儿心算</span>
+                    <span class="class-name">启蒙班</span>
                     <span class="class-time">146</span>
                     <span class="class-price">1680</span>
                     <span class="class-src">http://m.koolearn.com/product/47149_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">少儿心算</span>
+                    <span class="class-name">初级班</span>
                     <span class="class-time">146</span>
                     <span class="class-price">1480</span>
                     <span class="class-src">http://m.koolearn.com/product/47150_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">少儿心算</span>
+                    <span class="class-name">中级班</span>
+                    <span class="class-time">73</span>
+                    <span class="class-price">1200</span>
+                    <span class="class-src">http://m.koolearn.com/product/47151_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">提高班</span>
+                    <span class="class-time">73</span>
+                    <span class="class-price">1200</span>
+                    <span class="class-src">http://m.koolearn.com/product/47151_1.html</span>
+                </li>
+                <li>
+                    <span class="class-name">精英班</span>
                     <span class="class-time">73</span>
                     <span class="class-price">1200</span>
                     <span class="class-src">http://m.koolearn.com/product/47151_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="大朋友" >
-                <li>
-                    <span class="class-name">少儿心算</span>
-                    <span class="class-time">167</span>
-                    <span class="class-price">1680</span>
-                    <span class="class-src">http://m.koolearn.com/product/47145_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">少儿心算</span>
-                    <span class="class-time">167</span>
-                    <span class="class-price">1480</span>
-                    <span class="class-src">http://m.koolearn.com/product/47146_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">少儿心算</span>
-                    <span class="class-time">99</span>
-                    <span class="class-price">1200</span>
-                    <span class="class-src">http://m.koolearn.com/product/47147_1.html</span>
-                </li>
-				<li>
-                    <span class="class-name">少儿心算</span>
-                    <span class="class-time">38</span>
-                    <span class="class-price">900</span>
-                    <span class="class-src">http://m.koolearn.com/product/47148_1.html</span>
-                </li>
-            </ul>
         </div>
     </div>
 	<div class="item">
-        <p class="item_name">少儿机器人</p>
+        <p class="item_name">丫丫拼音</p>
         <ul class="sub_item">
-            <li paper-id="53318">少儿机器人</li>
-            <li paper-id="53322">少儿机器人</li>
-            <li paper-id="53326">少儿机器人</li>
+            <li paper-id="53318">丫丫拼音</li>
+            <li paper-id="53322">丫丫拼音</li>
+            <li paper-id="53326">丫丫拼音</li>
         </ul>
-        <div class="kb" title="少儿机器人" more="http://m.koolearn.com/171-0-10-0-0-0/">
-            <ul class="kb_item" title="少儿机器人" >
+        <div class="kb" title="分类" more="http://m.koolearn.com/171-0-10-0-0-0/">
+            <ul class="kb_item" title="丫丫拼音" >
                 <li>
-                    <span class="class-name">少儿机器人</span>
+                    <span class="class-name">丫丫拼音</span>
                     <span class="class-time">105</span>
                     <span class="class-price">1100</span>
                     <span class="class-src">http://m.koolearn.com/product/45760_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">少儿机器人</span>
+                    <span class="class-name">丫丫拼音</span>
                     <span class="class-time">108</span>
                     <span class="class-price">550</span>
                     <span class="class-src">http://m.koolearn.com/product/45762_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">少儿机器人</span>
+                    <span class="class-name">丫丫拼音</span>
                     <span class="class-time">83</span>
                     <span class="class-price">350</span>
                     <span class="class-src">http://m.koolearn.com/product/45765_1.html</span>
                 </li>
             </ul>
-            <ul class="kb_item" title="少儿机器人" >
-                <li>
-                    <span class="class-name">少儿机器人</span>
-                    <span class="class-time">126</span>
-                    <span class="class-price">750</span>
-                    <span class="class-src">http://m.koolearn.com/product/45766_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">少儿机器人</span>
-                    <span class="class-time">126</span>
-                    <span class="class-price">600</span>
-                    <span class="class-src">http://m.koolearn.com/product/45768_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">少儿机器人</span>
-                    <span class="class-time">87</span>
-                    <span class="class-price">400</span>
-                    <span class="class-src">http://m.koolearn.com/product/45771_1.html</span>
-                </li>
-            </ul>
+
 			<ul class="kb_item" title="少儿机器人" >
                 <li>
                     <span class="class-name">少儿机器人</span>
@@ -239,197 +188,109 @@
 	<div class="item">
         <p class="item_name">建筑工程</p>
         <ul class="sub_item">
-            <li paper-id="53327">建筑工程</li>
-            <li paper-id="53328">建筑工程</li>
-            <li paper-id="53329">建筑工程</li>
-            <li paper-id="53330">建筑工程</li>
-            <li paper-id="53331">建筑工程</li>
-            <li paper-id="53332">建筑工程</li>
+            <li paper-id="53327">施工员</li>
+            <li paper-id="53328">安全员</li>
+            <li paper-id="53329">材料员</li>
+            <li paper-id="53330">质检员</li>
+            <li paper-id="53331">资料员</li>
+            <li paper-id="53332">标准员</li>
         </ul>
         <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
-            <ul class="kb_item" title="建筑工程" >
+            <ul class="kb_item" title="类别" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">施工员</span>
                     <span class="class-time">77</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">安全员</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
-            </ul>
-            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">材料员</span>
                     <span class="class-time">91</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">质检员</span>
                     <span class="class-time">89</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
-            </ul>
-			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">资料员</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">标准员</span>
                     <span class="class-time">80</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">76</span>
-                    <span class="class-price">750</span>
-                    <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">74</span>
-                    <span class="class-price">600</span>
-                    <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
-                </li>
-            </ul>
-			           <ul class="kb_item" title="建筑工程" >
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">108</span>
-                    <span class="class-price">800</span>
-                    <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">102</span>
-                    <span class="class-price">650</span>
-                    <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
-                </li>
-            </ul>
-			           <ul class="kb_item" title="建筑工程" >
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">128</span>
-                    <span class="class-price">850</span>
-                    <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">126</span>
-                    <span class="class-price">700</span>
-                    <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
-                </li>
-            </ul>
         </div>
     </div>
-	<div class="item">
-        <p class="item_name">建筑工程2</p>
+    
+    <div class="item">
+        <p class="item_name">建筑工程</p>
         <ul class="sub_item">
-            <li paper-id="53327">建筑工程</li>
-            <li paper-id="53328">建筑工程</li>
-            <li paper-id="53329">建筑工程</li>
-            <li paper-id="53330">建筑工程</li>
-            <li paper-id="53331">建筑工程</li>
-            <li paper-id="53332">建筑工程</li>
+            <li paper-id="53327">造价员</li>
+            <li paper-id="53328">试验员</li>
+            <li paper-id="53329">劳务员</li>
+            <li paper-id="53330">预算员</li>
+            <li paper-id="53331">测量员</li>
+            <li paper-id="53332">机械管理员</li>
         </ul>
         <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
-            <ul class="kb_item" title="建筑工程" >
+            <ul class="kb_item" title="类别" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">造价员</span>
                     <span class="class-time">77</span>
                     <span class="class-price">750</span>
                     <span class="class-src">http://m.koolearn.com/product/45846_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">试验员</span>
                     <span class="class-time">74</span>
                     <span class="class-price">600</span>
                     <span class="class-src">http://m.koolearn.com/product/45849_1.html</span>
                 </li>
-            </ul>
-            <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">劳务员</span>
                     <span class="class-time">91</span>
                     <span class="class-price">800</span>
                     <span class="class-src">http://m.koolearn.com/product/45831_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">预算员</span>
                     <span class="class-time">89</span>
                     <span class="class-price">650</span>
                     <span class="class-src">http://m.koolearn.com/product/45835_1.html</span>
                 </li>
-            </ul>
-			           <ul class="kb_item" title="建筑工程" >
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">测量员</span>
                     <span class="class-time">82</span>
                     <span class="class-price">850</span>
                     <span class="class-src">http://m.koolearn.com/product/45855_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">建筑工程</span>
+                    <span class="class-name">机械管理员</span>
                     <span class="class-time">80</span>
                     <span class="class-price">700</span>
                     <span class="class-src">http://m.koolearn.com/product/45858_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="建筑工程" >
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">76</span>
-                    <span class="class-price">750</span>
-                    <span class="class-src">http://m.koolearn.com/product/45879_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">74</span>
-                    <span class="class-price">600</span>
-                    <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
-                </li>
-            </ul>
-			           <ul class="kb_item" title="建筑工程" >
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">108</span>
-                    <span class="class-price">800</span>
-                    <span class="class-src">http://m.koolearn.com/product/45886_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">102</span>
-                    <span class="class-price">650</span>
-                    <span class="class-src">http://m.koolearn.com/product/45887_1.html</span>
-                </li>
-            </ul>
-			           <ul class="kb_item" title="建筑工程" >
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">128</span>
-                    <span class="class-price">850</span>
-                    <span class="class-src">http://m.koolearn.com/product/45892_1.html</span>
-                </li>
-                <li>
-                    <span class="class-name">建筑工程</span>
-                    <span class="class-time">126</span>
-                    <span class="class-price">700</span>
-                    <span class="class-src">http://m.koolearn.com/product/45893_1.html</span>
-                </li>
-            </ul>
         </div>
     </div>
+    
+    
+	
 </div><div class="head">
     <img src="http://leshu.bj.bcebos.com/standard/leshuslide1.JPG" />
 </div>
@@ -483,10 +344,10 @@
         <p class="intr">乐数珠心算成立于2014年（原名尔智尔慧珠心算）， 是重庆市方圆职业培训学校旗下幼儿培训品牌，乐数师资是由小学特级教师、全国教育系统劳动模范、全国十杰中小学中青年教师提名奖获得者、全国优秀珠心算教练师何克亮老师亲自授教和培训。乐数珠心算不仅传承了古老珠心算的优秀教学理念，而且拥有简单易懂属于自己独特的教学方法。实践证明，学过珠心算的儿童的计算速度比不学的儿童快3---5倍，被誉为开发儿童智力发展的“金钥匙”从而达到“一科学习，多科受益”的效果。乐数珠心算致力于幼儿珠心算的培训及幼儿综合素质的培养，致力于中华优秀非物质文化遗产的推广，向全世界展现中华文化魅力。</p>
         <div class="logo">
             <div class="lg">
-                <a href="http://m.koolearn.com/"><img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" height="81" width="158"></a>
+                <a href="http://m.koolearn.com/"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" height="81" width="158"></a>
             </div>
             <div class="lg">
-                <img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" height="68" width="140">
+                <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" height="68" width="140">
             </div>
         </div>
     </div>

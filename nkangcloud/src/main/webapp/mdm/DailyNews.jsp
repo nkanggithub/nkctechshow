@@ -111,7 +111,7 @@ if(uid.equals(openid)){
 		</aside>
 
 <div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
-<img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">
+<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">
 <div style="width:100%;text-align:right;margin-top:-60px;">
 <ul class="nav pull-right top-menu" style="list-style: none;">
 					<li class="dropdown"><a href="#" class="dropdown-toggle ui-link" data-toggle="dropdown" style="padding:3px;
