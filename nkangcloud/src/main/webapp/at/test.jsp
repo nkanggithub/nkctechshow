@@ -337,11 +337,11 @@
 	<div class="item">
         <p class="item_name">建筑工程2</p>
         <ul class="sub_item">            
-            <li paper-id="53332">测量员</li>
-            <li paper-id="53332">预算员</li>
-            <li paper-id="53332">劳务员</li>
-            <li paper-id="53332">试验员</li>
-            <li paper-id="53332">机械管理员</li>
+            <li paper-id="53327">测量员</li>
+            <li paper-id="53328">预算员</li>
+            <li paper-id="53329">劳务员</li>
+            <li paper-id="53330">试验员</li>
+            <li paper-id="53331">机械管理员</li>
             
         </ul>
         <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
@@ -401,7 +401,7 @@
                     <span class="class-src">http://m.koolearn.com/product/45880_1.html</span>
                 </li>
             </ul>
-			           <ul class="kb_item" title="机械管理员" >
+			<ul class="kb_item" title="机械管理员" >
                 <li>
                     <span class="class-name">机械管理员</span>
                     <span class="class-time">108</span>
