@@ -32,9 +32,9 @@
 <div class="i-base-wrap">
     <div id="ji-header" class="i-header">
         <div class="fl">
-            <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" height="51" width="100">
+            <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8wW&oid=00D90000000pkXM" height="51" width="100">
         </div>
-        <div class="i-divider"></div>
+
         <a class="i_name fl" href="#">乐在其中  心中有数</a>
 
         <div class="fr">
@@ -54,7 +54,7 @@
             <li paper-id="53308">提高班</li>
             <li paper-id="53309">精英班</li>
         </ul>
-        <div class="kb" title="我的课表安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/yishi/">
+        <div class="kb" title="我的课表安排" more="">
             <ul class="kb_item" title="级别" >
                 <li>
                     <span class="class-name">启蒙班</span>
@@ -98,8 +98,7 @@
             <li paper-id="53333">提高班</li>
             <li paper-id="53334">精英班</li>
         </ul>
-        <div class="kb" title="我的课程安排" more="http://un.koolearn.com/alliance/clickword?userid=ff80808138fed9e801390002fcd60001&kid=ff80808153735ddb015373bc3cc2057b&url=http://m.koolearn.com/ke/zhiyeyaoshi/
-">
+        <div class="kb" title="我的课程安排" more="">
             <ul class="kb_item" title="级别" >
                 <li>
                     <span class="class-name">启蒙班</span>
@@ -141,7 +140,7 @@
             <li paper-id="53322">丫丫拼音</li>
             <li paper-id="53326">丫丫拼音</li>
         </ul>
-        <div class="kb" title="分类" more="http://m.koolearn.com/171-0-10-0-0-0/">
+        <div class="kb" title="分类" more="">
             <ul class="kb_item" title="丫丫拼音" >
                 <li>
                     <span class="class-name">丫丫拼音</span>
@@ -195,7 +194,7 @@
             <li paper-id="53331">资料员</li>
             <li paper-id="53332">标准员</li>
         </ul>
-        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+        <div class="kb" title="建筑工程选课中心" more="">
             <ul class="kb_item" title="类别" >
                 <li>
                     <span class="class-name">施工员</span>
@@ -253,7 +252,7 @@
             <li paper-id="53331">测量员</li>
             <li paper-id="53332">机械管理员</li>
         </ul>
-        <div class="kb" title="建筑工程选课中心" more="http://m.koolearn.com/124-0-10-0-0-0/">
+        <div class="kb" title="建筑工程选课中心" more="">
             <ul class="kb_item" title="类别" >
                 <li>
                     <span class="class-name">造价员</span>
@@ -400,7 +399,8 @@
                         <td>{{classItem.className}}</td>
                         <td>{{classItem.classTime}}</td>
                         <td>￥{{classItem.classPrice}}</td>
-                        <td><a class="buy" :href="classItem.classSrc">购买</a></td>
+                        <td><a class="buy" href="#">购买</a></td>
+                        <!-- <td><a class="buy" :href="classItem.classSrc">购买</a></td> -->
                     </tr>
                 </tbody>
             </table>
@@ -416,7 +416,7 @@
         <p class="intr">乐数珠心算成立于2014年（原名尔智尔慧珠心算）， 是重庆市方圆职业培训学校旗下幼儿培训品牌，乐数师资是由小学特级教师、全国教育系统劳动模范、全国十杰中小学中青年教师提名奖获得者、全国优秀珠心算教练师何克亮老师亲自授教和培训。乐数珠心算不仅传承了古老珠心算的优秀教学理念，而且拥有简单易懂属于自己独特的教学方法。实践证明，学过珠心算的儿童的计算速度比不学的儿童快3---5倍，被誉为开发儿童智力发展的“金钥匙”从而达到“一科学习，多科受益”的效果。乐数珠心算致力于幼儿珠心算的培训及幼儿综合素质的培养，致力于中华优秀非物质文化遗产的推广，向全世界展现中华文化魅力。</p>
         <div class="logo">
             <div class="lg">
-                <a href="http://m.koolearn.com/"><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" height="81" width="158"></a>
+                <a href=""><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" height="81" width="158"></a>
             </div>
             <div class="lg">
                 <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8rq&oid=00D90000000pkXM" height="68" width="140">
@@ -433,7 +433,7 @@
     })
 </script>
 <script src="header.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     (function(){
         seajs.use(['project/zt/2016/0530kyldywap/js/common/header/header'], function(init){
             init({
@@ -452,7 +452,7 @@
             });
         });
     })()
-</script>
+</script> -->
 <script type="text/javascript" src="tongji_wap.js"></script>
 <script type="text/javascript" src="GTM.js"></script>
 </body>
