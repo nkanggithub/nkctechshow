@@ -22,7 +22,7 @@
                 <div class="sign" style="height:100%">
                   <h2></h2>
                   
-                  <div id="register" style="width:60%;margin-left:20%">
+                  <div id="register" style="width:60%;margin-left:18%">
                     <p></p>
                     <h2><img src="sign_txt.gif" alt="体验英语免费试听课程 开启孩子的英语旅程！"></h2>
                     <form id="Form1" name="Form1" method="post">
