@@ -1,4 +1,31 @@
 ﻿﻿﻿<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*,org.json.JSONObject"%>
+<%@ page import="com.nkang.kxmoment.baseobject.GeoLocation"%>
+<%@ page import="com.nkang.kxmoment.util.*"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
+<%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%
+String AccessKey = RestUtils.callGetValidAccessKey();
+String uid = request.getParameter("UID");
+MongoDBBasic.updateUser(uid);
+String name = "";
+String phone = "";
+String headImgUrl ="";
+HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+if(res!=null){
+	if(res.get("HeadUrl")!=null){
+		headImgUrl=res.get("HeadUrl");
+	}
+	if(res.get("NickName")!=null){
+		name=res.get("NickName");
+	}
+	if(res.get("phone")!=null){
+		phone=res.get("phone");
+	}
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +65,11 @@
         <a class="i_name fl" href="#">乐在其中  心中有数</a>
 
         <div class="fr">
-            <div id="i-header-info" class="header-rc i-head-login">
-                <a class="user i-head-login" href="http://nkctech.duapp.com/mdm/profile.jsp?UID=oI3krwR_gGNsz38r1bdB1_SkcoNw"></a>
-            </div>
+<!--             <div id="i-header-info" class="header-rc i-head-login"> -->
+            <div >
+                <span class="username colorBlue" id="username" style="color:#2489ce;">欢迎您：<%=name %></span><br />
+                <a style="float: right;" class="user i-head-login" href="http://nkctech.duapp.com/mdm/profile.jsp?UID=<%= uid%>"> <img id="userImage" src="<%=headImgUrl %>" alt="userImage" class="userImage" style="border-radius: 25px; height: 35px; width: 35px;"></a></span>
+            </div>	
         </div>
     </div>
 </div>
