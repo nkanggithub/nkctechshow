@@ -154,16 +154,16 @@ public class CoreService
 					if(eventKey.equals("MDLAKE")){ // Data Lake
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle("我的主数据");
-						article.setDescription("我的主数据");
+						article.setTitle("欢迎参与乐数试听课程");
+						article.setDescription("欢迎参与乐数试听课程");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlU1k&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
+						article.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
 						articleList.add(article);
 						Article article4 = new Article();
-						article4.setTitle("主数据可视化");
-						article4.setDescription("Master Data Visualization");
+						article4.setTitle("预约试听");
+						article4.setDescription("预约试听");
 						article4.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlU1k&oid=00D90000000pkXM");
-						article4.setUrl("http://"+Constants.baehost+"/DQMenu?UID=" + fromUserName);
+						article4.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
 						articleList.add(article4);
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
