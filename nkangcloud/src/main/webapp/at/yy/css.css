@@ -161,7 +161,7 @@ input.radio{ border:none;}
 			}
 .sign_blank h2,.sign_blank p { width:100%}
 
-.sign{ height:400px; padding-left:22px; background:#f9ca3b url(sign_bg.gif); padding-top:12px; padding-bottom:8px; text-align:left; color:#464646; position:relative}
+.sign{ height:400px; padding-left:22px; background:#20b672 url(sign_bg.gif); padding-top:12px; padding-bottom:8px; text-align:left; color:#464646; position:relative}
 .sign h2{ margin-bottom:13px;font-family:"disney_english_2_dembdregular"}
 .sign_arrow{ background:url(../images/sign_arrow.png) no-repeat; width:22px; height:22px; position:absolute; top:20px; right:25px; display:block}
 
@@ -292,7 +292,7 @@ position:absolute; padding-left:285px; width:643px; height:240px; position: abso
 .tb_bl{ background:url(/images/mask-bl.gif) no-repeat; width:2px; height:2px; overflow:hidden}
 .tb_br{ background:url(/images/mask-br.gif) no-repeat; width:2px; height:2px; overflow:hidden}
 
-.tb_top{ background:#f9ca3b}
+.tb_top{ background:#20b672}
 .tb_tl{ background:url(/images/mask-tl.gif) no-repeat; width:2px; height:2px; overflow:hidden}
 .tb_tr{ background:url(/images/mask-tr.gif) no-repeat; width:2px; height:2px; overflow:hidden}
 
