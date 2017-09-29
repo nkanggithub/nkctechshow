@@ -156,13 +156,13 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle("欢迎参与乐数试听课程");
 						article.setDescription("欢迎参与乐数试听课程");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlU1k&oid=00D90000000pkXM");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EGE0T&oid=00D90000000pkXM");
 						article.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
 						articleList.add(article);
 						Article article4 = new Article();
 						article4.setTitle("预约试听");
 						article4.setDescription("预约试听");
-						article4.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DlU1k&oid=00D90000000pkXM");
+						article4.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EGE0i&oid=00D90000000pkXM");
 						article4.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
 						articleList.add(article4);
 						newsMessage.setArticleCount(articleList.size());
