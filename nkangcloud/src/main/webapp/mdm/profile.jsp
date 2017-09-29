@@ -1048,7 +1048,7 @@ function mesSend(){
 			+"  <div id='commonPush' style='margin-top: 10px;'><div class='rcommon'><p class='bsLabel'>图文类型</p><select class='bsBtn' style='border:1px solid black' id='notificationType'>"+selectedType+"</select></div>"
 			+"	<div class='rcommon'><p class='bsLabel'>网页链接</p><input id='notificationURL' type='text' style='width:75%;height:35px;border:1px solid black' placeholder='不想输入网络链接？那直接填内容吧'  class='input-xlarge bsBtn'></div>"
 			+"	<div class='rcommon'><div id='content' style='height:200px;width:95%;line-height:20px;' placeholder='请输入内容' class='input-xlarge bsBtn'></div></div>"
-			+"	<div class='rcommon' ><button style='margin-top:150px;width:95%;background:black;text-shadow:none;color:white!important;' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div></div>"
+			+"	<div class='rcommon' ><button style='margin-top:150px;width:95%;background:#20b672;text-shadow:none;color:white!important;' onclick='postNotification()' name='doublebutton-0' class='btn'>提交</button></div></div>"
 			+"	</div>"
 			+"<div id='footer'><span class='clientCopyRight'><nobr>"+copyRight+"</nobr></span></div>");
 
@@ -1080,7 +1080,7 @@ function recognizationPanel(){
 				+"	<div class='rcommon'><p class='bsLabel'>类型</p><select class='bsBtn'  style='border:1px solid black;' id='type'><option>Bais For Action</option><option>Innovators at Heart</option><option>Partnership First</option></select></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>Points</p><input id='points' type='text' style='height:35px;border:1px solid black;' placeholder='请输入points' class='input-xlarge bsBtn'></div>"
 				+"	<div class='rcommon'><textarea id='comments' style='height:130px;width:95%;line-height:20px;border:1px solid black;' placeholder='请输入感言' class='input-xlarge bsBtn'></textarea></div>"
-				+"	<div class='rcommon' style='margin-top:100px'><button onclick='postRecognition()' style='height:35px;width:95%;background:black;text-shadow:none;color:white!important;' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -25px;text-align:left;width:30%;' ></div></div>"
+				+"	<div class='rcommon' style='margin-top:100px'><button onclick='postRecognition()' style='height:35px;width:95%;background:#20b672;text-shadow:none;color:white!important;' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -25px;text-align:left;width:30%;' ></div></div>"
 				+"	</div>"
 				+"	</div>"
 				+"  <div class='tab-pane' id='bElements'>"
@@ -1115,7 +1115,7 @@ function recognizationPanelByPerson(personName){
 				+"	<div class='rcommon'><p class='bsLabel'>类型</p><select class='bsBtn'  style='border:1px solid black;' id='type'><option>Bais For Action</option><option>Innovators at Heart</option><option>Partnership First</option></select></div>"
 				+"	<div class='rcommon'><p class='bsLabel'>Points</p><input id='points' type='text' style='height:35px;border:1px solid black;' placeholder='请输入points' class='input-xlarge bsBtn'></div>"
 				+"	<div class='rcommon'><textarea id='comments' style='height:130px;width:95%;line-height:20px;border:1px solid black;' placeholder='请输入感言' class='input-xlarge bsBtn'></textarea></div>"
-				+"	<div class='rcommon' style='margin-top:100px'><button onclick='postRecognition()' style='height:35px;width:95%;background:black;text-shadow:none;color:white!important;' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -25px;text-align:left;width:30%;' ></div></div>"
+				+"	<div class='rcommon' style='margin-top:100px'><button onclick='postRecognition()' style='height:35px;width:95%;background:#20b672;text-shadow:none;color:white!important;' name='doublebutton-0' class='btn'>提交</button><div style='position: relative;top: -25px;text-align:left;width:30%;' ></div></div>"
 				+"	</div>"
 				+"	</div>"
 				+"  <div class='tab-pane' id='bElements'>"

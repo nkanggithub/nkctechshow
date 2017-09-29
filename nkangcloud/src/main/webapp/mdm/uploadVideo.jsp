@@ -262,7 +262,7 @@ function uploadPic(obj){
 </head>
 <body style="margin: 0px !important;width:100%  !important; padding: 0px !important;">
   
-<div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:black;"></div>
+<div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:#20b672;"></div>
  <div class="sk-circle">
       <div class="sk-circle1 sk-child"></div>
       <div class="sk-circle2 sk-child"></div>
@@ -289,7 +289,7 @@ function uploadPic(obj){
 </div>
 <div class="rcommon"><textarea id="content" style="height:180px;width:95%;line-height:20px;border:1px solid black" placeholder="请输入内容" class="input-xlarge bsBtn"></textarea></div>
 <div class='rcommon' >
-<button style='margin-top:20px;width:95%;background:black;text-shadow:none;color:white!important;' onclick='uploadNews()' name='doublebutton-0' class='btn'>提交</button>
+<button style='margin-top:20px;width:95%;background:#20b672;text-shadow:none;color:white!important;' onclick='uploadNews()' name='doublebutton-0' class='btn'>提交</button>
 </div>
 </div>
 <div id='footer'><span class='clientCopyRight'><nobr></nobr></span></div>
