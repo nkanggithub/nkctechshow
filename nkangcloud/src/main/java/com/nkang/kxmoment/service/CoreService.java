@@ -156,13 +156,13 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle("欢迎参与乐数试听课程");
 						article.setDescription("欢迎参与乐数试听课程");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EGE0T&oid=00D90000000pkXM");
+						article.setPicUrl("http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg");
 						article.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
 						articleList.add(article);
 						Article article4 = new Article();
 						article4.setTitle("预约试听");
 						article4.setDescription("预约试听");
-						article4.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EGE0i&oid=00D90000000pkXM");
+						article4.setPicUrl("http://leshu.bj.bcebos.com/icon/ReservationICON.png");
 						article4.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
 						articleList.add(article4);
 						newsMessage.setArticleCount(articleList.size());
@@ -355,21 +355,21 @@ public class CoreService
 						Article article1 = new Article();
 						article1.setTitle("学员风采");
 						article1.setDescription("IM统计情况");
-						article1.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLNZ&oid=00D90000000pkXM");
+						article1.setPicUrl("http://leshu.bj.bcebos.com/icon/student.png");
 						article1.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
 						articleList.add(article1);
 						
 						Article article2 = new Article();
 						article2.setTitle("师资风采");
 						article2.setDescription("生产环境智能监控");
-						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
+						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/Teacher.png");
 						article2.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
 						articleList.add(article2);
 						
 						Article article3 = new Article();
 						article3.setTitle("家园共育");
 						article3.setDescription("家园共育");
-						article3.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EBLMl&oid=00D90000000pkXM");
+						article3.setPicUrl("http://leshu.bj.bcebos.com/icon/parenteacher.png");
 						article3.setUrl("http://mp.weixin.qq.com/s/EwgxfqfuzIuQgPss7jdNtQ");
 						articleList.add(article3);
 						
