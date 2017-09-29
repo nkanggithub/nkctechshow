@@ -603,7 +603,7 @@ function getAllDatas(){
 </div>
 <div id="return-top" style="display: none;"><img class="scroll-top"  src="../Jsp/PIC/upgrade.png"  alt="" width="50px"></div>
 <div style="padding:10px;padding-top:5px;border-bottom:2px solid #000;position:relative;padding-bottom:5px;margin-bottom:5px;"> 
-					<img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&oid=00D90000000pkXM" alt="Logo" class="HpLogo" style="display:inline !important;height:55px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
+					<img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo" class="HpLogo" style="display:inline !important;height:55px !important;width:auto !important;float:none;padding:0px;vertical-align:bottom;padding-bottom:10px;">
 					<!-- <span class="clientSubName" style="font-size:12px;padding-left:7px;color:#333;">MDM China</span>
 					<h2 style="color:#333;font-size:18px;padding:0px;padding-left:5px;font-weight:bold;margin-top:5px;font-family:HP Simplified, Arial, Sans-Serif !important;" class="clientName">DXC Technology Coperation</h2>
 					 -->
