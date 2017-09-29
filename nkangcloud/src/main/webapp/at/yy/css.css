@@ -167,15 +167,15 @@ input.radio{ border:none;}
 
 
 
-.input_bg0{width:220px; height:34px; margin-bottom:6px; position:relative}
-.input_bg1{ background:url(../images/input_06.gif) no-repeat; width:93px; height:22px; margin-bottom:7px; margin-right:8px;}
+.input_bg0{margin-top: 10px;width:220px; height:34px; margin-bottom:6px; position:relative}
+.input_bg1{ background:url(../images/input_06.gif) no-repeat; width:93px; height:22px; margin-bottom:15px; margin-right:25px;    margin-top: 5px;}
 .input_bg2{ background:url(../images/input_02.gif) no-repeat; width:219px; height:22px;}
 .input_bg3{ background:url(../images/input_05.gif) no-repeat; width:94px; height:22px;}
 .input_bg4{ background:url(../images/input_09.gif) no-repeat; width:321px; height:22px;}
 input.sq{ color:#666; background:white; border:none;  width:220px; height:30px; line-height:22px; padding-left:4px; font-size:12px;}
 .label{ font-size:12px; letter-spacing:0 ; margin-bottom:8px; display:block; color:#464646}
 .sign select{ background:none; border:none;  width:194px; height:22px; padding-top:3px; line-height:22px;font-size:12px;}
-.input_bg1 select{width:93px; height:22px;}
+.input_bg1 select{width:110px; height:35px;background:white;}
 option{ background:#fff}
 label{ font-size:12px;}
 .hover01{ background:url(../images/ico_01.gif) left 13px no-repeat; padding-left:24px; display:block; font-size:12px; line-height:15px; padding-right:15px; letter-spacing:1px; padding-top:10px; padding-bottom:0px;  cursor:pointer}
