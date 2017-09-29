@@ -78,7 +78,8 @@
 .i-base-wrap {
 	max-width: 750px;
 	margin: 0 auto;
-	overflow: hidden
+	overflow: hidden;
+	margin-top:-20px;
 }
 
 .i-nav-open .i-left-nav {
@@ -336,7 +337,8 @@
 }
 
 .i-header .fr {
-	float: right
+	float: right;
+	margin-right:5px;
 }
 
 .i-header .over {
