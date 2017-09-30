@@ -142,14 +142,20 @@
             500);
             return false;
         });
+		
+		$('#submitInadvance').click(function() {
+            $('.final').click();
+        });
+		
         superContainer.find('.final').click(function() {
-            if ($(this).parents('.slide-container').find('li span.selected').length === 0) {
+            /* if ($(this).parents('.slide-container').find('li span.selected').length === 0) {
                 notice.fadeIn(300);
                 return false;
-            }
+            } */
 			var answerIndex="";
 			 
 			 slidesList.each(function(index,domEle) {
+				 $(domEle).css("display","none");
 				 answerIndex="";
 				 $(domEle).children(".answers").find("li span.selected").each(function(indexTemp,ss){
 					 answerIndex+=$(ss).text()+"|";

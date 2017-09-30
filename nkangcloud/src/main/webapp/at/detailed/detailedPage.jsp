@@ -62,6 +62,13 @@ List<Quiz> mcquizs=MongoDBBasic.getQuizsByType("MultipleChoice");
     height: 50px;
     background: #2f3a4a;
 ">
+<span id="submitInadvance" style="
+    position: absolute;
+    top: 15px;
+    right: 100px;
+    color: white;
+    font-family: &quot;Microsoft yahei&quot;,sans-serif;
+">提前交卷</span>
 <span style="
     position: absolute;
     top: 15px;
