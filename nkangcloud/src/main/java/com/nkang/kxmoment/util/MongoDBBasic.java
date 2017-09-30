@@ -42,6 +42,7 @@ import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.PlatforRelated;
+import com.nkang.kxmoment.baseobject.Quiz;
 import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.ShortNews;
@@ -62,6 +63,8 @@ public class MongoDBBasic {
 	private static String short_news = "ShortNews";
 	private static String client_pool = "ClientPool";
 	private static String Article_Message = "Article_Message";
+	private static String APPOINTMENT = "Appointment";
+	private static String Quiz_Pool = "QuizPool";
 	private static String Video_Message = "Video_Message";
 	private static String ClientMeta = "Client_Meta";
 	private static String collectionBill = "SaleBill";
@@ -1258,6 +1261,49 @@ public class MongoDBBasic {
 			}
 		}
 		return platforRelated;
+	}
+	public static List<Quiz> getQuizsByType(String type) {
+		List<Quiz> quizs=new ArrayList<Quiz>();
+		mongoDB = getMongoDB();
+
+		DBCursor dbcur = mongoDB.getCollection(Quiz_Pool).find(
+				new BasicDBObject().append("Type", type));
+		Quiz q;
+		if (null != dbcur) {
+			while (dbcur.hasNext()) {
+				DBObject o = dbcur.next();
+				q=new Quiz();
+				q.setQuestion(o.get("Question").toString());
+				if(o.get("CaseStudy")!=null){
+				q.setCaseStudy(o.get("CaseStudy").toString());}
+				q.setCategory(o.get("Category").toString());
+				q.setCorrectAnswers(o.get("CorrectAnswers").toString());
+				q.setScore(o.get("Score").toString());
+				q.setType(type);
+				DBObject answerObj=(DBObject)o.get("Answers");
+				List<String> answers=new ArrayList<String>();
+				if("TrueOrFalse".equals(o.get("Type").toString())){
+					answers.add(answerObj.get("A").toString());
+					answers.add(answerObj.get("B").toString());
+				}
+				if("SingleChoice".equals(o.get("Type").toString())){
+					answers.add(answerObj.get("A").toString());
+					answers.add(answerObj.get("B").toString());
+					answers.add(answerObj.get("C").toString());
+					answers.add(answerObj.get("D").toString());
+				}
+				if("MultipleChoice".equals(o.get("Type").toString())){
+					answers.add(answerObj.get("A").toString());
+					answers.add(answerObj.get("B").toString());
+					answers.add(answerObj.get("C").toString());
+					answers.add(answerObj.get("D").toString());
+					answers.add(answerObj.get("D").toString());
+				}
+				q.setAnswers(answers);
+				quizs.add(q);
+			}
+		}
+		return quizs;
 	}
 
 	public static boolean updateUser(String OpenID) {

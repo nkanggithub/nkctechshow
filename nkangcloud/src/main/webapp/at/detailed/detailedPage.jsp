@@ -1,5 +1,13 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%@ page import="com.nkang.kxmoment.baseobject.Quiz"%>
+<%@ page import="java.util.*"%>
+<%
+//List<Quiz> tfquizs=MongoDBBasic.getQuizsByType("TrueOrFalse");
+List<Quiz> scquizs=MongoDBBasic.getQuizsByType("SingleChoice");
+//List<Quiz> mcquizs=MongoDBBasic.getQuizsByType("MultipleChoice");
+%>
 <!DOCTYPE html>
 <html>
     <head> 
@@ -67,7 +75,15 @@
         <script type="text/javascript" src="jquery.js"></script>
         <script src="quiz.js"></script>
         <script>
-            var init = {'questions': [{'question': '工程项目质量安全责任第一责任人是？', 'answers': ['企业负责人', '专职安全生产管理人员', '项目经理', '项目技术负责人'], 'correctAnswer': 1}, {'question': '梁纵向受力钢筋的常用直径为?', 'answers': ['12～25mm', '12～20mm', '10～25mm', '10～20mm'], 'correctAnswer': 3}, {'question': '利用标准专砌墙，一砖半墙的墙厚为（）mm?', 'answers': ['120', '240', '360', '370'], 'correctAnswer': 3}, {'question': '力偶对物体的作用效应是？', 'answers': ['使物体水平方向移动', '使物体任意方向移动，又使物体转动', '只有转动效应', '使物体竖直方向移动'], 'correctAnswer': 2}, {'question': '不属于钢结构连接方式的是？', 'answers': ['射钉连接', '焊接连接', '铆钉连接', '螺栓连接'], 'correctAnswer': 2}, {'question': '构件抵抗变形的能力是？', 'answers': ['刚度', '稳定性', '强度', '抗剪力'], 'correctAnswer': 2}, {'question': '下列不属于楼梯详图内容的是？', 'answers': ['楼梯平面图', '楼梯平台详图', '楼梯节点详图', '楼梯剖面图'], 'correctAnswer': 2}, {'question': '下列不属于设计总说明内容的是？', 'answers': ['施工图设计依据', '室内外的用料和施工要求说明', '建筑面积', '结构施工图'], 'correctAnswer': 2}]};
+            var init = {'questions': 
+            	[
+            	   	 <% for(int i=0;i<scquizs.size();i++){%>
+            	 <% if(i!=scquizs.size()-1){%>
+            	 {'question': '<%=scquizs.get(i).getQuestion() %>', 'answers': ['<%=scquizs.get(i).getAnswers().get(0)%>', '<%=scquizs.get(i).getAnswers().get(1)%>', '<%=scquizs.get(i).getAnswers().get(2)%>', '<%=scquizs.get(i).getAnswers().get(3)%>'], 'correctAnswer': <%=Integer.parseInt(scquizs.get(i).getCorrectAnswers()) %>}, 
+            	 <%}else{%>
+            	 {'question': '<%=scquizs.get(i).getQuestion() %>', 'answers': ['<%=scquizs.get(i).getAnswers().get(0)%>', '<%=scquizs.get(i).getAnswers().get(1)%>', '<%=scquizs.get(i).getAnswers().get(2)%>', '<%=scquizs.get(i).getAnswers().get(3)%>'], 'correctAnswer': <%=Integer.parseInt(scquizs.get(i).getCorrectAnswers()) %>}
+            	 <%}%>
+            	 <%}%>]};
 
             $(function() {
                 $('#quiz_area').jquizzy({
