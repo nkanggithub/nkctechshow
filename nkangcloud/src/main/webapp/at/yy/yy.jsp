@@ -20,13 +20,45 @@
 <script type="text/javascript">
 $(function(){
 	$("#complete").click(function(){
+		var isValided=1;
 		var name=$("#user_name").val();
+		if(name=='*孩子姓名'){
+			alert("请输入孩纸姓名");
+			isValided=0;
+			return false;
+		}
 		var tel=$("#user_mobile").val();
+		if(tel=='*手机号码'){
+			alert("请输入手机号码");
+			isValided=0;
+			return false;
+		}
 		var addr=$("#user_email").val();
+		if(addr=='*家庭住址'){
+			alert("请输入家庭住址");
+			isValided=0;
+			return false;
+		}
 		var age=$("#user_age option:selected").val();
+		if(age=='*孩子的年龄'){
+			alert("请选择孩子的年龄");
+			isValided=0;
+			return false;
+		}
 		var sex=$("#user_sex option:selected").val();
+		if(sex=='*孩子的性别'){
+			alert("请选择孩子的性别");
+			isValided=0;
+			return false;
+		}
 		var school=$("#user_xq option:selected").val();
+		if(school=='*选择校区'){
+			alert("请选择校区");
+			isValided=0;
+			return false;
+		}
 		var subject=$("#user_km option:selected").val();
+		if(isValided==1){
 		$.ajax({
 			type : "post",
 			url : "../../addNewAppointment",
@@ -43,10 +75,10 @@ $(function(){
 			success : function(data) {
 			if(data=='ok'){
 				alert("预约成功");
-				$(".btn_submit").css({"background-position":"bottom center","cursor":"pointer"});
 			}
 			}
 		})
+	}
 	})
 
 	});
@@ -132,11 +164,11 @@ $(function(){
 											<!--user_birth_month-->
 											<option value="0" selected="selected">*选择校区</option>
 
-											<option value="26">观音桥校区</option>
+											<option value="观音桥">观音桥校区</option>
 
-											<option value="25">李家沱校区</option>
+											<option value="李家沱">李家沱校区</option>
 
-											<option value="24">南坪校区</option>
+											<option value="南坪">南坪校区</option>
 
 										</select>
 									</div></td>

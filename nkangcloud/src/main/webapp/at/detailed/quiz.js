@@ -5,7 +5,7 @@
             startImg: 'images/start.gif',
             endText: '已结束!',
             shortURL: null,
-            sendResultsURL: null,
+            sendResultsURL: "test",
             resultComments: {
                 perfect: '你是爱因斯坦么?',
                 excellent: '非常优秀!',
@@ -22,7 +22,7 @@
             return;
         }
         var superContainer = $(this),
-        answers = [],
+        answers = [],scores=[],totalScore=0,
         exitFob = '<div class="results-container slide-container"><div class="question-number">' + config.endText + '</div><div class="result-keeper"></div></div><div class="notice">请选择一个选项！</div><div class="progress-keeper" ><div class="progress"></div></div>',
         contentFob = '',
         questionsIteratorIndex,
@@ -45,6 +45,7 @@
             }
             contentFob += '</div></div>';
             answers.push(config.questions[questionsIteratorIndex].correctAnswer);
+			scores.push(config.questions[questionsIteratorIndex].score);
         }
         superContainer.html(contentFob + exitFob);
         var progress = superContainer.find('.progress'),
@@ -60,6 +61,7 @@
             for (i = 0; i < answers.length; i++) {
                 if (answers[i] == userAnswers[i]) {
                     flag = true;
+					totalScore+=parseInt(scores[i]);
                 } else {
                     flag = false;
                 }
@@ -145,14 +147,28 @@
                 notice.fadeIn(300);
                 return false;
             }
-            superContainer.find('li span.selected').each(function(index) {
-                userAnswers.push($(this).parents('.answers').children('li').index($(this).parents('.answers').find('li span.selected')) + 1);
+			var answerIndex="";
+			 
+			 slidesList.each(function(index,domEle) {
+				 answerIndex="";
+				 $(domEle).children(".answers").find("li span.selected").each(function(indexTemp,ss){
+					 answerIndex+=$(ss).text()+"|";
+				 });
+				 
+				answerIndex=answerIndex.substring(0,answerIndex.length-1);
+                userAnswers.push(answerIndex+"");
+				
+				var obj=$(domEle).children(".answers").find("li span.selected");
+				console.log(index+obj);
             });
             if (config.sendResultsURL !== null) {
                 var collate = [];
-                for (r = 0; r < userAnswers.length; r++) {
-                    collate.push('{"questionNumber":"' + parseInt(r + 1, 10) + '", "userAnswer":"' + userAnswers[r] + '"}');
-                }
+				var userAns="";
+                for (r = 0; r < config.questions.length; r++) {
+                  collate.push('{"questionNumber":"' + r+1 + '", "userAnswer":"' + userAnswers[r] + '"}');		
+				  }
+
+				
                 $.ajax({
                     type: 'POST',
                     url: config.sendResultsURL,
@@ -195,7 +211,7 @@
             }
             score = roundReloaded(trueCount / questionLength * 100, 2);
             
-            resultSet = '<h2 class="qTitle">' + judgeSkills(score) + '<br/> 您的分数： ' + score + '</h2>' + shareButton + '<div class="jquizzy-clear"></div>' + resultSet + '<div class="jquizzy-clear"></div>';
+            resultSet = '<h2 class="qTitle">' + judgeSkills(score) + '<br/> 您的分数： ' + totalScore + '</h2>' + shareButton + '<div class="jquizzy-clear"></div>' + resultSet + '<div class="jquizzy-clear"></div>';
             superContainer.find('.result-keeper').html(resultSet).show(500);
             superContainer.find('.resultsview-qhover').hide();
             superContainer.find('.result-row').hover(function() {
