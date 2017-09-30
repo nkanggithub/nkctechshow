@@ -26,10 +26,14 @@
         exitFob = '<div class="results-container slide-container"><div class="question-number">' + config.endText + '</div><div class="result-keeper"></div></div><div class="notice">请选择一个选项！</div><div class="progress-keeper" ><div class="progress"></div></div>',
         contentFob = '',
         questionsIteratorIndex,
+        caseStudy='',
         answersIteratorIndex;
         superContainer.addClass('main-quiz-holder');
         for (questionsIteratorIndex = 0; questionsIteratorIndex < config.questions.length; questionsIteratorIndex++) {
-            contentFob += '<div class="slide-container"><div class="question-number">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div><div class="question">' + config.questions[questionsIteratorIndex].question + '</div><ul class="answers">';
+        	if(config.questions[questionsIteratorIndex].caseStudy!="null"){
+        		caseStudy='<div class="question">' + config.questions[questionsIteratorIndex].caseStudy + '</div>';
+        	}
+            contentFob += '<div class="slide-container"><div class="question-number">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div>'+caseStudy+'<div class="question">' + config.questions[questionsIteratorIndex].question + '</div><ul class="answers">';
             for (answersIteratorIndex = 0; answersIteratorIndex < config.questions[questionsIteratorIndex].answers.length; answersIteratorIndex++) {
                 contentFob += '<li><span class="type" style="display:none">'+config.questions[questionsIteratorIndex].type+'</span><span class="num">'+(answersIteratorIndex+1)+'</span><span class="content">' + config.questions[questionsIteratorIndex].answers[answersIteratorIndex] + '</span></li>';
             }
@@ -61,7 +65,7 @@
             for (i = 0; i < answers.length; i++) {
                 if (answers[i] == userAnswers[i]) {
                     flag = true;
-					totalScore+=parseInt(scores[i]);
+					totalScore+=parseFloat(scores[i]);
                 } else {
                     flag = false;
                 }
@@ -144,6 +148,7 @@
         });
 		
 		$('#submitInadvance').click(function() {
+			totalScore=0;
             $('.final').click();
         });
 		
