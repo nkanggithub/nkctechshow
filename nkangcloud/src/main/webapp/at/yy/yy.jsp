@@ -17,6 +17,40 @@
 
 <link rel="stylesheet" type="text/css" href="css.css" />
 </head>
+<script type="text/javascript">
+$(function(){
+	$("#complete").click(function(){
+		var name=$("#user_name").val();
+		var tel=$("#user_mobile").val();
+		var addr=$("#user_email").val();
+		var age=$("#user_age option:selected").val();
+		var sex=$("#user_sex option:selected").val();
+		var school=$("#user_xq option:selected").val();
+		var subject=$("#user_km option:selected").val();
+		$.ajax({
+			type : "post",
+			url : "../../addNewAppointment",
+			data:{
+				name:name,
+				tel:tel,
+				addr:addr,
+				age:age,
+				sex:sex,
+				school:school,
+				subject:subject
+			},
+			cache : false,
+			success : function(data) {
+			if(data=='ok'){
+				alert("预约成功");
+				$(".btn_submit").css({"background-position":"bottom center","cursor":"pointer"});
+			}
+			}
+		})
+	})
+
+	});
+</script>
 <body style="height: 96%">
 	<div class="content-asset" style="height: 100%">
 	<center><img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8wW&amp;oid=00D90000000pkXM" height="51" width="100"></center>
@@ -28,7 +62,7 @@
 				<h2>
 					<img src="sign_txt.gif" alt="体验英语免费试听课程 开启孩子的英语旅程！">
 				</h2>
-				<form id="Form1" name="Form1" method="post">
+				<!-- <form id="Form1" name="Form1" method="post"> -->
 					<div class="input_bg0">
 						<input name="user_name" value="*孩子姓名" type="text" id="user_name"
 							class="sq">
@@ -115,8 +149,8 @@
 						</tbody>
 					</table>
 					<div id="errorTxt"></div>
-					<a href="javascript:;" class="btn_submit" id="sign_submit"></a>
-				</form>
+					<a href="javascript:;" class="btn_submit" id="complete"></a>
+				<!-- </form> -->
 				<script type="text/javascript" src="initAjax.js"></script>
 			</div>
 

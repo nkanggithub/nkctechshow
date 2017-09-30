@@ -25,16 +25,7 @@ function change1(v){
   if(id != 0 && id != ""&&id != null){
 	 $("#user_km").html("");
 	 $("#kemu").show();
-	 $("#user_km").append("<option value='0'>选择科目</option>");
-	 $.get("find_km.asp",{id:id},function(data){
-		  //alert(data);
-		  var i = data.split(';');
-		 // alert(i.length);
-		  for(j=0; j < i.length - 1; j++){
-			  var val = i[j].split(',');
-			  $("#user_km").append("<option value='"+val[0]+"'>"+val[1]+"</option>");
-		  }
-	 });
+	 $("#user_km").append("<option value='0'>选择科目</option><option value='数学'>数学</option><option value='语文'>语文</option><option value='英语'>英语</option>");
 	 
 	 
   }else{

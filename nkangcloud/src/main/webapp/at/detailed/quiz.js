@@ -31,7 +31,7 @@
         for (questionsIteratorIndex = 0; questionsIteratorIndex < config.questions.length; questionsIteratorIndex++) {
             contentFob += '<div class="slide-container"><div class="question-number">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div><div class="question">' + config.questions[questionsIteratorIndex].question + '</div><ul class="answers">';
             for (answersIteratorIndex = 0; answersIteratorIndex < config.questions[questionsIteratorIndex].answers.length; answersIteratorIndex++) {
-                contentFob += '<li><span class="num">'+(answersIteratorIndex+1)+'</span><span class="content">' + config.questions[questionsIteratorIndex].answers[answersIteratorIndex] + '</span></li>';
+                contentFob += '<li><span class="type" style="display:none">'+config.questions[questionsIteratorIndex].type+'</span><span class="num">'+(answersIteratorIndex+1)+'</span><span class="content">' + config.questions[questionsIteratorIndex].answers[answersIteratorIndex] + '</span></li>';
             }
             contentFob += '</ul><div class="nav-container">';
             if (questionsIteratorIndex !== 0) {
@@ -85,13 +85,24 @@
         notice.hide();
         slidesList.hide().first().fadeIn(500);
         superContainer.find('span.num').click(function() {
-            var thisLi = $(this);
+			var type=$(this).siblings(".type").text();
+			var thisLi = $(this);
+			if(type=='SingleChoice'||type=='TrueOrFalse'){
             if (thisLi.hasClass('selected')) {
                 thisLi.removeClass('selected');
             } else {
                 thisLi.parents('.answers').children('li').children('span').removeClass('selected');
                 thisLi.addClass('selected');
             }
+			}
+			if(type=="MultipleChoice"){
+				if (thisLi.hasClass('selected')) {
+                thisLi.removeClass('selected');
+            }
+			else{
+				thisLi.addClass('selected');
+			}
+			}
         });
         superContainer.find('.nav-start').click(function() {
             $(this).parents('.slide-container').fadeOut(500,

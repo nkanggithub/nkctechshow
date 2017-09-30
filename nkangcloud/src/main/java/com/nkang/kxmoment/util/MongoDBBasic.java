@@ -30,6 +30,7 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
+import com.nkang.kxmoment.baseobject.Appointment;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.BillOfSell;
 import com.nkang.kxmoment.baseobject.ClientInformation;
@@ -1265,9 +1266,14 @@ public class MongoDBBasic {
 	public static List<Quiz> getQuizsByType(String type) {
 		List<Quiz> quizs=new ArrayList<Quiz>();
 		mongoDB = getMongoDB();
-
-		DBCursor dbcur = mongoDB.getCollection(Quiz_Pool).find(
+		DBCursor dbcur;
+		if(type==""){
+			dbcur = mongoDB.getCollection(Quiz_Pool).find();
+		}
+		else{
+		 dbcur = mongoDB.getCollection(Quiz_Pool).find(
 				new BasicDBObject().append("Type", type));
+		}
 		Quiz q;
 		if (null != dbcur) {
 			while (dbcur.hasNext()) {
@@ -1275,8 +1281,11 @@ public class MongoDBBasic {
 				q=new Quiz();
 				q.setQuestion(o.get("Question").toString());
 				if(o.get("CaseStudy")!=null){
-				q.setCaseStudy(o.get("CaseStudy").toString());}
+				q.setCaseStudy(getCaseStudyByID(o.get("CaseStudy").toString()));
+				}
+				if(o.get("Category")!=null){
 				q.setCategory(o.get("Category").toString());
+				}
 				q.setCorrectAnswers(o.get("CorrectAnswers").toString());
 				q.setScore(o.get("Score").toString());
 				q.setType(type);
@@ -1304,6 +1313,21 @@ public class MongoDBBasic {
 			}
 		}
 		return quizs;
+	}
+
+	public static String getCaseStudyByID(String ID) {
+		mongoDB = getMongoDB();
+
+		DBCursor dbcur = mongoDB.getCollection(Quiz_Pool).find(
+				new BasicDBObject().append("ID", ID));
+		String caseStudy="";
+		if (null != dbcur) {
+			while (dbcur.hasNext()) {
+				DBObject o = dbcur.next();
+				caseStudy=o.get("CaseStudy").toString();
+			}
+		}
+		return caseStudy;
 	}
 
 	public static boolean updateUser(String OpenID) {
@@ -4520,6 +4544,51 @@ public class MongoDBBasic {
 		return new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 	}
 
+
+	public static String addNewAppointment(Appointment app) {
+		if (mongoDB == null) {
+			mongoDB = getMongoDB();
+		}
+		String ret = "ok";
+		try {
+			DBObject query = new BasicDBObject();
+			query.put("childName", app.getName());
+			query.put("tel", app.getTel());
+			query.put("address", app.getAddr());
+			query.put("age", app.getAge());
+			query.put("sex", app.getSex());
+			query.put("school", app.getSchool());
+			query.put("subject", app.getSubject());
+			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+			query.put("date", DateUtil.timestamp2Str(cursqlTS));
+			DBObject apppoint = mongoDB.getCollection(APPOINTMENT)
+					.findOne(query);
+			if (apppoint != null) {
+				// String num = visited.get("visitedNum")+"";
+				BasicDBObject doc = new BasicDBObject();
+				BasicDBObject update = new BasicDBObject();
+				// update.put("visitedNum", Integer.parseInt(num)+1);
+				update.append("childName", app.getName());
+				update.append("tel", app.getTel());
+				update.append("address", app.getAddr());
+				update.append("age", app.getAge());
+				update.append("sex", app.getSex());
+				update.append("school", app.getSchool());
+				update.append("subject", app.getSubject());
+				update.append("date", DateUtil.timestamp2Str(cursqlTS));
+				doc.put("$inc", update);
+				// doc.put("$set", update);
+				mongoDB.getCollection(APPOINTMENT).update(query, doc);
+			} else {
+				mongoDB.getCollection(APPOINTMENT).insert(query);
+			}
+
+		} catch (Exception e) {
+			ret = e.getMessage();
+		}
+
+		return ret;
+	}
 	public static String updateVisited(String openid, String date,
 			String pageName, String imgUrl, String nickName) {
 		if (mongoDB == null) {

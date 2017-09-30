@@ -4,9 +4,10 @@
 <%@ page import="com.nkang.kxmoment.baseobject.Quiz"%>
 <%@ page import="java.util.*"%>
 <%
-//List<Quiz> tfquizs=MongoDBBasic.getQuizsByType("TrueOrFalse");
+List<Quiz> tfquizs=MongoDBBasic.getQuizsByType("TrueOrFalse");
 List<Quiz> scquizs=MongoDBBasic.getQuizsByType("SingleChoice");
-//List<Quiz> mcquizs=MongoDBBasic.getQuizsByType("MultipleChoice");
+List<Quiz> mcquizs=MongoDBBasic.getQuizsByType("MultipleChoice");
+/* List<Quiz> mcquizs=MongoDBBasic.getQuizsByType(""); */
 %>
 <!DOCTYPE html>
 <html>
@@ -77,13 +78,37 @@ List<Quiz> scquizs=MongoDBBasic.getQuizsByType("SingleChoice");
         <script>
             var init = {'questions': 
             	[
-            	   	 <% for(int i=0;i<scquizs.size();i++){%>
-            	 <% if(i!=scquizs.size()-1){%>
-            	 {'question': '<%=scquizs.get(i).getQuestion() %>', 'answers': ['<%=scquizs.get(i).getAnswers().get(0)%>', '<%=scquizs.get(i).getAnswers().get(1)%>', '<%=scquizs.get(i).getAnswers().get(2)%>', '<%=scquizs.get(i).getAnswers().get(3)%>'], 'correctAnswer': <%=Integer.parseInt(scquizs.get(i).getCorrectAnswers()) %>}, 
+        	   	 <% for(int i=0;i<tfquizs.size();i++){%>
+            	 <% if(i!=tfquizs.size()-1){%>
+            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': <%=Integer.parseInt(tfquizs.get(i).getCorrectAnswers()) %>,'type':'<%=tfquizs.get(i).getType() %>'}, 
             	 <%}else{%>
-            	 {'question': '<%=scquizs.get(i).getQuestion() %>', 'answers': ['<%=scquizs.get(i).getAnswers().get(0)%>', '<%=scquizs.get(i).getAnswers().get(1)%>', '<%=scquizs.get(i).getAnswers().get(2)%>', '<%=scquizs.get(i).getAnswers().get(3)%>'], 'correctAnswer': <%=Integer.parseInt(scquizs.get(i).getCorrectAnswers()) %>}
+            	 <%if(scquizs.size()==0&&mcquizs.size()==0){%>
+            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': <%=Integer.parseInt(tfquizs.get(i).getCorrectAnswers()) %>,'type':'<%=tfquizs.get(i).getType() %>'}
+            	 <%}else{%>
+            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': <%=Integer.parseInt(tfquizs.get(i).getCorrectAnswers()) %>,'type':'<%=tfquizs.get(i).getType() %>'},
             	 <%}%>
-            	 <%}%>]};
+            	 <%}%>
+            	 <%}%>           	 
+            	   	 <% for(int j=0;j<scquizs.size();j++){%>
+            	 <% if(j!=scquizs.size()-1){%>
+            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': <%=Integer.parseInt(scquizs.get(j).getCorrectAnswers()) %>,'type':'<%=scquizs.get(j).getType() %>'}, 
+            	 <%}else{%>
+            	 <%if(mcquizs.size()==0){%>
+            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': <%=Integer.parseInt(scquizs.get(j).getCorrectAnswers()) %>,'type':'<%=scquizs.get(j).getType() %>'}
+            	 <%}else{%>
+            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': <%=Integer.parseInt(scquizs.get(j).getCorrectAnswers()) %>,'type':'<%=scquizs.get(j).getType() %>'},
+            	 <%}%>
+            	 <%}%>
+            	 <%}%>
+            	 
+        	   	 <% for(int q=0;q<mcquizs.size();q++){%>
+            	 <% if(q!=mcquizs.size()-1){%>
+            	 {'question': '<%=mcquizs.get(q).getQuestion() %>', 'answers': ['<%=mcquizs.get(q).getAnswers().get(0)%>', '<%=mcquizs.get(q).getAnswers().get(1)%>', '<%=mcquizs.get(q).getAnswers().get(2)%>', '<%=mcquizs.get(q).getAnswers().get(3)%>','<%=mcquizs.get(q).getAnswers().get(4)%>'], 'correctAnswer': '<%=mcquizs.get(q).getCorrectAnswers() %>','type':'<%=mcquizs.get(q).getType() %>'}, 
+            	 <%}else{%>
+            	 {'question': '<%=mcquizs.get(q).getQuestion() %>', 'answers': ['<%=mcquizs.get(q).getAnswers().get(0)%>', '<%=mcquizs.get(q).getAnswers().get(1)%>', '<%=mcquizs.get(q).getAnswers().get(2)%>', '<%=mcquizs.get(q).getAnswers().get(3)%>','<%=mcquizs.get(q).getAnswers().get(4)%>'], 'correctAnswer': '<%=mcquizs.get(q).getCorrectAnswers() %>','type':'<%=mcquizs.get(q).getType() %>'}
+            	 <%}%>
+            	 <%}%>            	 
+            	 ]};
 
             $(function() {
                 $('#quiz_area').jquizzy({
