@@ -12,6 +12,13 @@ public class Quiz {
 	public String caseStudy;
 	public List<String> answers;
 	public String checkPoint;
+	public String img;
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public String getType() {
 		return type;
 	}

@@ -27,13 +27,17 @@
         contentFob = '',
         questionsIteratorIndex,
         caseStudy='',
+        img='',
         answersIteratorIndex;
         superContainer.addClass('main-quiz-holder');
         for (questionsIteratorIndex = 0; questionsIteratorIndex < config.questions.length; questionsIteratorIndex++) {
         	if(config.questions[questionsIteratorIndex].caseStudy!="null"){
         		caseStudy='<div class="question">' + config.questions[questionsIteratorIndex].caseStudy + '</div>';
         	}
-            contentFob += '<div class="slide-container"><div class="question-number">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div>'+caseStudy+'<div class="question">' + config.questions[questionsIteratorIndex].question + '</div><ul class="answers">';
+        	if(config.questions[questionsIteratorIndex].img!="null"){
+        		img='<div style="width: 100%;"><img src="'+config.questions[questionsIteratorIndex].img+'" alt="" style="width: 100%;" /></div>';
+        	}
+            contentFob += '<div class="slide-container"><div class="question-number">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div>'+caseStudy+'<div class="question">' + config.questions[questionsIteratorIndex].question + '</div>'+img+'<ul class="answers">';
             for (answersIteratorIndex = 0; answersIteratorIndex < config.questions[questionsIteratorIndex].answers.length; answersIteratorIndex++) {
                 contentFob += '<li><span class="type" style="display:none">'+config.questions[questionsIteratorIndex].type+'</span><span class="num">'+(answersIteratorIndex+1)+'</span><span class="content">' + config.questions[questionsIteratorIndex].answers[answersIteratorIndex] + '</span></li>';
             }

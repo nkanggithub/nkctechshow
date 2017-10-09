@@ -1281,10 +1281,17 @@ public class MongoDBBasic {
 				q=new Quiz();
 				q.setQuestion(o.get("Question").toString());
 				if(o.get("CaseStudy")!=null){
-				q.setCaseStudy(getCaseStudyByID(o.get("CaseStudy").toString()));
+				q.setCaseStudy(getCaseStudyAttrByID(o.get("CaseStudy").toString(),"CaseStudy"));
+				if(getCaseStudyAttrByID(o.get("CaseStudy").toString(),"ImgBG")!="")
+				{
+					q.setImg(getCaseStudyAttrByID(o.get("CaseStudy").toString(),"ImgBG"));
+				}
 				}
 				if(o.get("Category")!=null){
 				q.setCategory(o.get("Category").toString());
+				}
+				if(o.get("ImgBG")!=null){
+					q.setImg(o.get("ImgBG").toString());
 				}
 				q.setCorrectAnswers(o.get("CorrectAnswers").toString());
 				q.setScore(o.get("Score").toString());
@@ -1315,19 +1322,22 @@ public class MongoDBBasic {
 		return quizs;
 	}
 
-	public static String getCaseStudyByID(String ID) {
+	public static String getCaseStudyAttrByID(String ID,String attr) {
 		mongoDB = getMongoDB();
 
 		DBCursor dbcur = mongoDB.getCollection(Quiz_Pool).find(
 				new BasicDBObject().append("ID", ID));
-		String caseStudy="";
+		String val="";
 		if (null != dbcur) {
 			while (dbcur.hasNext()) {
 				DBObject o = dbcur.next();
-				caseStudy=o.get("CaseStudy").toString();
+				if(o.get(attr)!=null){
+					val=o.get(attr).toString();
+				}
+				
 			}
 		}
-		return caseStudy;
+		return val;
 	}
 
 	public static boolean updateUser(String OpenID) {

@@ -87,32 +87,32 @@ List<Quiz> mcquizs=MongoDBBasic.getQuizsByType("MultipleChoice");
             	[
         	   	 <% for(int i=0;i<tfquizs.size();i++){%>
             	 <% if(i!=tfquizs.size()-1){%>
-            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': '<%=tfquizs.get(i).getCorrectAnswers() %>','type':'<%=tfquizs.get(i).getType() %>','score':'<%=tfquizs.get(i).getScore() %>','caseStudy':'<%=tfquizs.get(i).getCaseStudy() %>'}, 
+            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': '<%=tfquizs.get(i).getCorrectAnswers() %>','img':'<%=tfquizs.get(i).getImg() %>','type':'<%=tfquizs.get(i).getType() %>','score':'<%=tfquizs.get(i).getScore() %>','caseStudy':'<%=tfquizs.get(i).getCaseStudy() %>'}, 
             	 <%}else{%>
             	 <%if(scquizs.size()==0&&mcquizs.size()==0){%>
-            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': '<%=tfquizs.get(i).getCorrectAnswers() %>','type':'<%=tfquizs.get(i).getType() %>','score':'<%=tfquizs.get(i).getScore() %>','caseStudy':'<%=tfquizs.get(i).getCaseStudy() %>'}
+            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': '<%=tfquizs.get(i).getCorrectAnswers() %>','img':'<%=tfquizs.get(i).getImg() %>','type':'<%=tfquizs.get(i).getType() %>','score':'<%=tfquizs.get(i).getScore() %>','caseStudy':'<%=tfquizs.get(i).getCaseStudy() %>'}
             	 <%}else{%>
-            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': '<%=tfquizs.get(i).getCorrectAnswers() %>','type':'<%=tfquizs.get(i).getType() %>','score':'<%=tfquizs.get(i).getScore() %>','caseStudy':'<%=tfquizs.get(i).getCaseStudy() %>'},
+            	 {'question': '<%=tfquizs.get(i).getQuestion() %>', 'answers': ['<%=tfquizs.get(i).getAnswers().get(0)%>', '<%=tfquizs.get(i).getAnswers().get(1)%>'], 'correctAnswer': '<%=tfquizs.get(i).getCorrectAnswers() %>','img':'<%=tfquizs.get(i).getImg() %>','type':'<%=tfquizs.get(i).getType() %>','score':'<%=tfquizs.get(i).getScore() %>','caseStudy':'<%=tfquizs.get(i).getCaseStudy() %>'},
             	 <%}%>
             	 <%}%>
             	 <%}%>           	 
             	   	 <% for(int j=0;j<scquizs.size();j++){%>
             	 <% if(j!=scquizs.size()-1){%>
-            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': '<%=scquizs.get(j).getCorrectAnswers() %>','type':'<%=scquizs.get(j).getType() %>','score':'<%=scquizs.get(j).getScore() %>','caseStudy':'<%=scquizs.get(j).getCaseStudy() %>'}, 
+            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': '<%=scquizs.get(j).getCorrectAnswers() %>','img':'<%=scquizs.get(j).getImg() %>','type':'<%=scquizs.get(j).getType() %>','score':'<%=scquizs.get(j).getScore() %>','caseStudy':'<%=scquizs.get(j).getCaseStudy() %>'}, 
             	 <%}else{%>
             	 <%if(mcquizs.size()==0){%>
-            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': '<%=scquizs.get(j).getCorrectAnswers() %>','type':'<%=scquizs.get(j).getType() %>','score':'<%=scquizs.get(j).getScore() %>','caseStudy':'<%=scquizs.get(j).getCaseStudy() %>'}
+            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': '<%=scquizs.get(j).getCorrectAnswers() %>','img':'<%=scquizs.get(j).getImg() %>','type':'<%=scquizs.get(j).getType() %>','score':'<%=scquizs.get(j).getScore() %>','caseStudy':'<%=scquizs.get(j).getCaseStudy() %>'}
             	 <%}else{%>
-            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': '<%=scquizs.get(j).getCorrectAnswers() %>','type':'<%=scquizs.get(j).getType() %>','score':'<%=scquizs.get(j).getScore() %>','caseStudy':'<%=scquizs.get(j).getCaseStudy() %>'},
+            	 {'question': '<%=scquizs.get(j).getQuestion() %>', 'answers': ['<%=scquizs.get(j).getAnswers().get(0)%>', '<%=scquizs.get(j).getAnswers().get(1)%>', '<%=scquizs.get(j).getAnswers().get(2)%>', '<%=scquizs.get(j).getAnswers().get(3)%>'], 'correctAnswer': '<%=scquizs.get(j).getCorrectAnswers() %>','img':'<%=scquizs.get(j).getImg() %>','type':'<%=scquizs.get(j).getType() %>','score':'<%=scquizs.get(j).getScore() %>','caseStudy':'<%=scquizs.get(j).getCaseStudy() %>'},
             	 <%}%>
             	 <%}%>
             	 <%}%>
             	 
         	   	 <% for(int q=0;q<mcquizs.size();q++){%>
             	 <% if(q!=mcquizs.size()-1){%>
-            	 {'question': '<%=mcquizs.get(q).getQuestion() %>', 'answers': ['<%=mcquizs.get(q).getAnswers().get(0)%>', '<%=mcquizs.get(q).getAnswers().get(1)%>', '<%=mcquizs.get(q).getAnswers().get(2)%>', '<%=mcquizs.get(q).getAnswers().get(3)%>','<%=mcquizs.get(q).getAnswers().get(4)%>'], 'correctAnswer': '<%=mcquizs.get(q).getCorrectAnswers() %>','type':'<%=mcquizs.get(q).getType() %>','score':'<%=mcquizs.get(q).getScore() %>','caseStudy':'<%=mcquizs.get(q).getCaseStudy() %>'}, 
+            	 {'question': '<%=mcquizs.get(q).getQuestion() %>', 'answers': ['<%=mcquizs.get(q).getAnswers().get(0)%>', '<%=mcquizs.get(q).getAnswers().get(1)%>', '<%=mcquizs.get(q).getAnswers().get(2)%>', '<%=mcquizs.get(q).getAnswers().get(3)%>','<%=mcquizs.get(q).getAnswers().get(4)%>'], 'correctAnswer': '<%=mcquizs.get(q).getCorrectAnswers() %>','img':'<%=mcquizs.get(q).getImg() %>','type':'<%=mcquizs.get(q).getType() %>','score':'<%=mcquizs.get(q).getScore() %>','caseStudy':'<%=mcquizs.get(q).getCaseStudy() %>'}, 
             	 <%}else{%>
-            	 {'question': '<%=mcquizs.get(q).getQuestion() %>', 'answers': ['<%=mcquizs.get(q).getAnswers().get(0)%>', '<%=mcquizs.get(q).getAnswers().get(1)%>', '<%=mcquizs.get(q).getAnswers().get(2)%>', '<%=mcquizs.get(q).getAnswers().get(3)%>','<%=mcquizs.get(q).getAnswers().get(4)%>'], 'correctAnswer': '<%=mcquizs.get(q).getCorrectAnswers() %>','type':'<%=mcquizs.get(q).getType() %>','score':'<%=mcquizs.get(q).getScore() %>','caseStudy':'<%=mcquizs.get(q).getCaseStudy() %>'}
+            	 {'question': '<%=mcquizs.get(q).getQuestion() %>', 'answers': ['<%=mcquizs.get(q).getAnswers().get(0)%>', '<%=mcquizs.get(q).getAnswers().get(1)%>', '<%=mcquizs.get(q).getAnswers().get(2)%>', '<%=mcquizs.get(q).getAnswers().get(3)%>','<%=mcquizs.get(q).getAnswers().get(4)%>'], 'correctAnswer': '<%=mcquizs.get(q).getCorrectAnswers() %>','img':'<%=mcquizs.get(q).getImg() %>','type':'<%=mcquizs.get(q).getType() %>','score':'<%=mcquizs.get(q).getScore() %>','caseStudy':'<%=mcquizs.get(q).getCaseStudy() %>'}
             	 <%}%>
             	 <%}%>            	 
             	 ]};
