@@ -1282,8 +1282,10 @@ public class MongoDBBasic {
 				q.setQuestion(o.get("Question").toString());
 				if(o.get("CaseStudy")!=null){
 				q.setCaseStudy(getCaseStudyAttrByID(o.get("CaseStudy").toString(),"CaseStudy"));
+				System.out.println("caseStudy..."+getCaseStudyAttrByID(o.get("CaseStudy").toString(),"CaseStudy"));
 				if(getCaseStudyAttrByID(o.get("CaseStudy").toString(),"ImgBG")!="")
 				{
+					System.out.println("img..."+getCaseStudyAttrByID(o.get("CaseStudy").toString(),"ImgBG"));
 					q.setImg(getCaseStudyAttrByID(o.get("CaseStudy").toString(),"ImgBG"));
 				}
 				}
