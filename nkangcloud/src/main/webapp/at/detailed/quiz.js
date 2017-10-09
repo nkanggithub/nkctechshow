@@ -54,6 +54,8 @@
             contentFob += '</div></div>';
             answers.push(config.questions[questionsIteratorIndex].correctAnswer);
 			scores.push(config.questions[questionsIteratorIndex].score);
+			caseStudy="";
+			img="";
         }
         superContainer.html(contentFob + exitFob);
         var progress = superContainer.find('.progress'),
