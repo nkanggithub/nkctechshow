@@ -179,7 +179,7 @@ public class CoreService
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
-						article2.setTitle("乐数应用");
+						article2.setTitle("乐数微应用");
 						article2.setDescription("My Personal Applications");
 						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/weiapp.png");
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
@@ -188,7 +188,7 @@ public class CoreService
 						String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
 						if(hardcodeUID2.equalsIgnoreCase(fromUserName)||hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
 							Article article3 = new Article();
-							article3.setTitle("乐数管理");
+							article3.setTitle("乐数微管理");
 							article3.setDescription("Administration");
 							article3.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
@@ -281,51 +281,6 @@ public class CoreService
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
-						
-						
-						/*HashMap<String, String> user = MongoDBBasic.getWeChatUserFromOpenID(fromUserName);
-						String respContent1 = "";
-						Date d = new Date();  
-				        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
-				        String dateNowStr = sdf.format(d);  
-						if(MongoDBBasic.checkUserPoint(fromUserName)){
-					        java.util.Random random=new java.util.Random();// 定义随机类
-					        int randomNum=random.nextInt(5)+1;// 返回[0,10)集合中的整数，注意不包括10
-					        
-							int pointSum=MongoDBBasic.updateUserPoint(fromUserName, randomNum);
-							respContent1 = "* * * * * * * * * * * * * * * * *\n"
-								+"* 欢迎您："+user.get("NickName")+"\n"
-								+"* 今日积分："+randomNum+"\n"
-								+"* 当前积分："+pointSum+"\n"
-								+"*\n"
-								+"*             =^_^=\n"
-								+"* 好感动，您今天又来了\n"
-								+"* 今日积分已入账，记得\n"
-								+"* 每天都来看我哦！\n";
-								
-						}else{
-							int pointSum=MongoDBBasic.updateUserPoint(fromUserName, 0);
-							respContent1 = "* * * * * * * * * * * * * * * * *\n"
-									+"* 欢迎您："+user.get("NickName")+"\n"
-									+"* 当前积分："+pointSum+"\n"
-									+"* 时间："+dateNowStr+"\n"
-									+"*\n"
-									+"*             =^_^=\n"
-									+"* 好感动，您今天又来了\n"
-									+"* 但每天只有一次获取积\n"
-									+"* 分的机会哦！！\n";
-						}
-						respContent1=respContent1
-								+"* * * * * * * * * * * * * * * * *\n"
-								+"* 【温馨提示： 希望您能\n"
-								+"*  天天这里点一点逛一\n"
-								+"*  逛，这样才能收到我们\n"
-								+"*  高价值的消息推送，以\n"
-								+"*  便于我们为您提供更\n"
-								+"*  好的服务】\n"
-								+"* * * * * * * * * * * * * * * * *";
-						textMessage.setContent(respContent1);
-						respXml = MessageUtil.textMessageToXml(textMessage);*/
 
 					}else if (eventKey.equals("mysubscription")) {//我的订阅
 						Article article = new Article();
