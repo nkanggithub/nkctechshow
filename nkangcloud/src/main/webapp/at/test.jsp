@@ -86,13 +86,13 @@ if(res!=null){
         <div class="kb" title="我的课表安排" more="">
             <ul class="kb_item" title="级别" >
                 <li>
-                    <span class="class-name">启蒙班</span>
+                    <a target="_blank" href="../mdm/ListenNumber.jsp"><span class="class-name">启蒙班</span></a>
                     <span class="class-time">490</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47026_1.html</span>
                 </li>
                 <li>
-                    <span class="class-name">初级班</span>
+                    <a target="_blank" href="../mdm/ShowNumber.jsp"><span class="class-name">初级班</span></a>
                     <span class="class-time">437</span>
                     <span class="class-price">1980</span>
                     <span class="class-src">http://m.koolearn.com/product/47027_1.html</span>
