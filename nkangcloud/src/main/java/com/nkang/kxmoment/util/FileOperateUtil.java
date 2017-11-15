@@ -112,57 +112,7 @@ public class FileOperateUtil {
     } 
     
     
-    @SuppressWarnings({ "unchecked", "rawtypes", "unchecked" })
-	public static Map<String, List> OperateOnPlatforRelated(InputStream is){
-    	Map map = new HashMap<String, List>();
-    	PoiUtil bos = new PoiUtil();
-    		try {
-    			PlatforRelated  platforRelated  = bos.platformRelated(is);
-    			if(platforRelated!=null){
-    				MongoDBBasic.updatePlatforRelated(platforRelated, Constants.clientCode);
-    			}
-    			List APJlt = new ArrayList<Integer>();
-    			APJlt.add(platforRelated.getDone_APJ());
-    			APJlt.add(platforRelated.getInProgress_APJ());
-    			APJlt.add(platforRelated.getInPlanning_APJ());
-    			List USAlt = new ArrayList<Integer>();
-    			USAlt.add(platforRelated.getDone_USA());
-    			USAlt.add(platforRelated.getInProgress_USA());
-    			USAlt.add(platforRelated.getInPlanning_USA());
-    			
-    			List MEXICOlt = new ArrayList<Integer>();
-    			MEXICOlt.add(platforRelated.getDone_MEXICO());
-    			MEXICOlt.add(platforRelated.getInProgress_MEXICO());
-    			MEXICOlt.add(platforRelated.getInPlanning_MEXICO());
-    			
-    			List EMEAlt = new ArrayList<Integer>();
-    			EMEAlt.add(platforRelated.getDone_EMEA());
-    			EMEAlt.add(platforRelated.getInProgress_EMEA());
-    			EMEAlt.add(platforRelated.getInPlanning_EMEA());
-    			
-    			List outOfMapping = platforRelated.getOutNames();
-    			
-    			map.put("APJ", APJlt);
-    			map.put("USA", USAlt);
-    			map.put("MEXICO", MEXICOlt);
-    			map.put("EMEA", EMEAlt);
-    			map.put("OutOfMapping", outOfMapping);
-    		} catch (IOException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    			//System.out.println(e.getMessage());
-    		}finally{
-    			if(is != null){
-    				try {
-    					is.close();
-    				} catch (IOException e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				}
-    			}
-    		}
-    	return map;
-    }
+    
     
     public static void readMetricsMapping() {
         Jeffrey = new ArrayList<String>();
@@ -210,51 +160,5 @@ public class FileOperateUtil {
 			
 		}
  }
- 
-	/*  public static String readAGM(InputStream is){
-    	PoiUtil bos = new PoiUtil();
-    	String message="";
-    	try {
-    		bos.readAGM(is);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return message;
-    	
-    }
-    */
-    public static PlatforRelated OperateOnReport(InputStream is){
-    	PoiUtil bos = new PoiUtil();
-    	//Map<String,Integer> map = new HashMap<String,Integer>();
-    	PlatforRelated  platforRelated=new PlatforRelated();
-    		try {
-    			 platforRelated  = bos.uploadReport(is);
-    			 if(platforRelated!=null){
-    				 MongoDBBasic.updatePlatforRelated(platforRelated,Constants.clientCode);
-    			 }
-    			
-    			/*	
-     			map.put("APJ", platforRelated.getClosed_APJ());
-     			map.put("USA", platforRelated.getClosed_USA());
-     			map.put("MEXICO", platforRelated.getClosed_MEXICO());
-     			map.put("EMEA", platforRelated.getClosed_EMEA());
-     			map.put("OTHER", platforRelated.getClosed_OTHER());*/
-    		} catch (IOException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    			//System.out.println(e.getMessage());
-    		}finally{
-    			if(is != null){
-    				try {
-    					is.close();
-    				} catch (IOException e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				}
-    			}
-    		}
-    //	return "APJ : "+ platforRelated.getClosed_APJ()+"<br>"+"USA : "+ platforRelated.getClosed_USA()+"<br>"+"MEXICO : "+ platforRelated.getClosed_MEXICO()+"<br>"+"EMEA : "+ platforRelated.getClosed_EMEA()+"<br>"+"Other : "+ platforRelated.getClosed_OTHER();
-			return platforRelated;
-    }
+
 }
