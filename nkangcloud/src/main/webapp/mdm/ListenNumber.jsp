@@ -40,52 +40,63 @@ font-size: 50px;
     text-align: center;
 	font-family: shuxieti;
 }
-
+.centerBtn{
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    margin-top:200px;
+    }
+.middleBtn{
+    width: 120px;
+    height: 40px;
+    font-size: 18px;}
 </style>
-<section class="white intro">
+
+            <input type="button" class="btn btn-primary centerBtn start" value="开始练习">
+<section id="answerPanel" class="white intro" style="display:none">
 
 <div class="sa">
             <div id="ShowNumberPanel" class="numPanel">听数</div>
             <div>
 
-                <input id="txtNumber1" type="text" class=" niput ">
+                <input id="txtNumber1" type="text" class=" niput " disabled />
 
-                <input id="txtNumber2" type="text" class=" niput ">
+                <input id="txtNumber2" type="text" class=" niput " disabled />
 
-                <input id="txtNumber3" type="text" class=" niput ">
+                <input id="txtNumber3" type="text" class=" niput " disabled />
 
-                <input id="txtNumber4" type="text" class=" niput ">
+                <input id="txtNumber4" type="text" class=" niput " disabled />
 
             </div>
             <div>
 
-                <input id="txtNumber5" type="text" class=" niput ">
+                <input id="txtNumber5" type="text" class=" niput " disabled />
 
-                <input id="txtNumber6" type="text" class="niput ">
+                <input id="txtNumber6" type="text" class="niput " disabled />
 
-                <input id="txtNumber7" type="text" class=" niput ">
+                <input id="txtNumber7" type="text" class=" niput " disabled />
 
-                <input id="txtNumber8" type="text" class="niput  ">
-
-
-            </div>
-			<div>
-
-                <input id="txtNumber9" type="text" class=" niput ">
-
-                <input id="txtNumber10" type="text" class="niput ">
+                <input id="txtNumber8" type="text" class="niput  " disabled />
 
 
             </div>
 			<div>
 
-                <input style="width:310px" placeholder="请输入以上数字总和" id="total" type="text" class="niput ">
+                <input id="txtNumber9" type="text" class=" niput " disabled />
+
+                <input id="txtNumber10" type="text" class="niput " disabled />
+
+
+            </div>
+			<div>
+
+                <input style="width:310px" placeholder="请输入以上数字总和" id="total" type="text" class="niput " disabled />
 
 
             </div>
 			<div style="text-align: center; margin: 15px;">
-            <input id="start" type="button" class="btn btn-primary" value="开始练习">
-            <input id="showAnswer" type="button" class="btn btn-success" value="显示答案" onclick="showAnswer()">
+            <input type="button" class="btn btn-primary start middleBtn" value="开始练习">
+            <input id="showAnswer" type="button" class="btn btn-success middleBtn" value="显示答案" onclick="showAnswer()">
       
         </div>
         </div>
@@ -109,6 +120,11 @@ font-size: 50px;
 	console.log(text);
 	return text;	
 	}
+ function endVoice() {
+ $(".centerBtn").remove();
+ $("#answerPanel").show();
+ showAnswer();
+};
 	function showAnswer(){
 	var array=text.split(",");
 	$("#txtNumber1").val(array[1]);

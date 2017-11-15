@@ -28,7 +28,7 @@ blog: http://www.tuterm.com
 
 			if (options.speech) {
 				//点击链接播报
-				var _speech = $("#start");
+				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
 				$("#txtNumber1").val("");
 				$("#txtNumber2").val("");
@@ -43,7 +43,7 @@ blog: http://www.tuterm.com
 				$("#total").val("");
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd=4';				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
-						var iframe = "<video controls='' autoplay='' name='media'><source id='voice' src='' type='audio/mp3'></video>";
+						var iframe = "<video controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></video>";
 						_this.append(iframe);
 						$("#voice").attr("src",src);
 					})();
