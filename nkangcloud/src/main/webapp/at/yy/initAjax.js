@@ -25,7 +25,7 @@ function change1(v){
   if(id != 0 && id != ""&&id != null){
 	 $("#user_km").html("");
 	 $("#kemu").show();
-	 $("#user_km").append("<option value='0'>选择科目</option><option value='数学'>数学</option><option value='语文'>语文</option><option value='英语'>英语</option>");
+	 $("#user_km").append("<option value='0'>选择科目</option><option value='珠心算'>珠心算</option><option value='趣味数学'>趣味数学</option><option value='趣味识字'>趣味识字</option><option value='YY拼音'>YY拼音</option>");
 	 
 	 
   }else{
