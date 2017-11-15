@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.nkang.kxmoment.baseobject.ClientMeta;
-import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.util.Constants;
 
 public class FileOperateUtil {

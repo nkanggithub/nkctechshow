@@ -39,7 +39,6 @@ import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.MdmDataQualityView;
 import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
-import com.nkang.kxmoment.baseobject.PlatforRelated;
 import com.nkang.kxmoment.baseobject.Quiz;
 import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.ShortNews;
@@ -953,113 +952,7 @@ public class MongoDBBasic {
 		return ret;
 	}
 
-	/*
-	 * chang-zheng
-	 */
-	public static boolean updatePlatforRelated(PlatforRelated platforRelated,
-			String ClientStockCode) {
-		mongoDB = getMongoDB();
-		// java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new
-		// java.util.Date().getTime());
-		Boolean ret = false;
-		try {
-			DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(
-					new BasicDBObject().append("ClientCode", ClientStockCode));
-			if (null != dbcur) {
-				while (dbcur.hasNext()) {
-					DBObject DBObj = dbcur.next();
-					Object obj = DBObj.get("PlatforRelated");
-					if (obj == null) {
-						obj = DBObj;
-					}
-					DBObject o = new BasicDBObject();
-					o = (DBObject) obj;
-					DBObject dbo = new BasicDBObject();
-					dbo.put("PlatforRelated.Closed_APJ", platforRelated
-							.getClosed_APJ() == 0 ? o.get("Closed_APJ")
-							: platforRelated.getClosed_APJ());
-					dbo.put("PlatforRelated.Closed_EMEA", platforRelated
-							.getClosed_EMEA() == 0 ? o.get("Closed_EMEA")
-							: platforRelated.getClosed_EMEA());
-					dbo.put("PlatforRelated.Closed_MEXICO", platforRelated
-							.getClosed_MEXICO() == 0 ? o.get("Closed_MEXICO")
-							: platforRelated.getClosed_MEXICO());
-					dbo.put("PlatforRelated.Closed_OTHER", platforRelated
-							.getClosed_OTHER() == 0 ? o.get("Closed_OTHER")
-							: platforRelated.getClosed_OTHER());
-					dbo.put("PlatforRelated.Closed_USA", platforRelated
-							.getClosed_USA() == 0 ? o.get("Closed_USA")
-							: platforRelated.getClosed_USA());
-
-					dbo.put("PlatforRelated.Done_APJ", platforRelated
-							.getDone_APJ() == 0 ? o.get("Done_APJ")
-							: platforRelated.getDone_APJ());
-					dbo.put("PlatforRelated.Done_EMEA", platforRelated
-							.getDone_EMEA() == 0 ? o.get("Done_EMEA")
-							: platforRelated.getDone_EMEA());
-					dbo.put("PlatforRelated.Done_MEXICO", platforRelated
-							.getDone_MEXICO() == 0 ? o.get("Done_MEXICO")
-							: platforRelated.getDone_MEXICO());
-					dbo.put("PlatforRelated.Done_USA", platforRelated
-							.getDone_USA() == 0 ? o.get("Done_USA")
-							: platforRelated.getDone_USA());
-
-					dbo.put("PlatforRelated.InPlanning_APJ", platforRelated
-							.getInPlanning_APJ() == 0 ? o.get("InPlanning_APJ")
-							: platforRelated.getInPlanning_APJ());
-					dbo.put("PlatforRelated.InPlanning_EMEA",
-							platforRelated.getInPlanning_EMEA() == 0 ? o
-									.get("InPlanning_EMEA") : platforRelated
-									.getInPlanning_EMEA());
-					dbo.put("PlatforRelated.InPlanning_MEXICO",
-							platforRelated.getInPlanning_MEXICO() == 0 ? o
-									.get("InPlanning_MEXICO") : platforRelated
-									.getInPlanning_MEXICO());
-					dbo.put("PlatforRelated.InPlanning_USA", platforRelated
-							.getInPlanning_USA() == 0 ? o.get("InPlanning_USA")
-							: platforRelated.getInPlanning_USA());
-
-					dbo.put("PlatforRelated.InProgress_APJ", platforRelated
-							.getInProgress_APJ() == 0 ? o.get("InProgress_APJ")
-							: platforRelated.getInProgress_APJ());
-					dbo.put("PlatforRelated.InProgress_EMEA",
-							platforRelated.getInProgress_EMEA() == 0 ? o
-									.get("InProgress_EMEA") : platforRelated
-									.getInProgress_EMEA());
-					dbo.put("PlatforRelated.InProgress_MEXICO",
-							platforRelated.getInProgress_MEXICO() == 0 ? o
-									.get("InProgress_MEXICO") : platforRelated
-									.getInProgress_MEXICO());
-					dbo.put("PlatforRelated.InProgress_USA", platforRelated
-							.getInProgress_USA() == 0 ? o.get("InProgress_USA")
-							: platforRelated.getInProgress_USA());
-
-					dbo.put("PlatforRelated.IMMetricstotal", platforRelated
-							.getIMMetricstotal() == 0 ? o.get("IMMetricstotal")
-							: platforRelated.getIMMetricstotal());
-					dbo.put("PlatforRelated.RunMaintainMetricstotal",
-							platforRelated.getRunMaintainMetricstotal() == 0 ? o
-									.get("RunMaintainMetricstotal")
-									: platforRelated
-											.getRunMaintainMetricstotal());
-					dbo.put("PlatforRelated.UnAssinged", platforRelated
-							.getUnAssinged() == 0 ? o.get("UnAssinged")
-							: platforRelated.getUnAssinged());
-
-					BasicDBObject doc = new BasicDBObject();
-					doc.put("$set", dbo);
-					WriteResult wr = mongoDB.getCollection(ClientMeta).update(
-							new BasicDBObject().append("ClientCode",
-									ClientStockCode), doc);
-					ret = true;
-				}
-			}
-		} catch (Exception e) {
-			log.info("registerUser--" + e.getMessage());
-		}
-		return ret;
-	}
-
+	
 	public static boolean delNullUser() {
 		Boolean ret = false;
 		mongoDB = getMongoDB();
@@ -1113,61 +1006,7 @@ public class MongoDBBasic {
 		return result;
 	}
 
-	public static PlatforRelated getPlatforRelated(String clientStockCode) {
-		mongoDB = getMongoDB();
-		PlatforRelated platforRelated = new PlatforRelated();
-
-		DBCursor dbcur = mongoDB.getCollection(ClientMeta).find(
-				new BasicDBObject().append("ClientCode", clientStockCode));
-		if (null != dbcur) {
-			while (dbcur.hasNext()) {
-				DBObject DBObj = dbcur.next();
-				Object obj = DBObj.get("PlatforRelated");
-				if (obj == null) {
-					return null;
-				}
-				DBObject o = new BasicDBObject();
-				o = (DBObject) obj;
-				platforRelated.setClosed_APJ((Integer) o.get("Closed_APJ"));
-				platforRelated.setClosed_EMEA((Integer) o.get("Closed_EMEA"));
-				platforRelated.setClosed_MEXICO((Integer) o
-						.get("Closed_MEXICO"));
-				platforRelated.setClosed_OTHER((Integer) o.get("Closed_OTHER"));
-				platforRelated.setClosed_USA((Integer) o.get("Closed_USA"));
-
-				platforRelated.setDone_APJ((Integer) o.get("Done_APJ"));
-				platforRelated.setDone_EMEA((Integer) o.get("Done_EMEA"));
-				platforRelated.setDone_MEXICO((Integer) o.get("Done_MEXICO"));
-				platforRelated.setDone_USA((Integer) o.get("Done_USA"));
-
-				platforRelated.setIMMetricstotal((Integer) o
-						.get("IMMetricstotal"));
-				platforRelated.setInPlanning_APJ((Integer) o
-						.get("InPlanning_APJ"));
-				platforRelated.setInPlanning_EMEA((Integer) o
-						.get("InPlanning_EMEA"));
-				platforRelated.setInPlanning_MEXICO((Integer) o
-						.get("InPlanning_MEXICO"));
-				platforRelated.setInPlanning_USA((Integer) o
-						.get("InPlanning_USA"));
-
-				platforRelated.setInProgress_APJ((Integer) o
-						.get("InProgress_APJ"));
-				platforRelated.setInProgress_EMEA((Integer) o
-						.get("InProgress_EMEA"));
-				platforRelated.setInProgress_MEXICO((Integer) o
-						.get("InProgress_MEXICO"));
-				platforRelated.setInProgress_USA((Integer) o
-						.get("InProgress_USA"));
-
-				platforRelated.setRunMaintainMetricstotal((Integer) o
-						.get("RunMaintainMetricstotal"));
-				platforRelated.setUnAssinged((Integer) o.get("UnAssinged"));
-
-			}
-		}
-		return platforRelated;
-	}
+	
 	public static List<Quiz> getQuizsByType(String type) {
 		List<Quiz> quizs=new ArrayList<Quiz>();
 		mongoDB = getMongoDB();
@@ -3703,56 +3542,7 @@ public class MongoDBBasic {
 		return dbuser;
 	}
 
-	public static Map getRunMaintainMetrics() {
-		Map<String, List> map = new HashMap<String, List>();
-		PlatforRelated platforRelated = MongoDBBasic
-				.getPlatforRelated(Constants.clientCode);
-		if (platforRelated == null) {
-			return map;
-		}
-
-		List<Integer> APJlt = new ArrayList<Integer>();
-		APJlt.add(platforRelated.getDone_APJ());
-		APJlt.add(platforRelated.getInProgress_APJ());
-		APJlt.add(platforRelated.getInPlanning_APJ());
-
-		List<Integer> USAlt = new ArrayList<Integer>();
-		USAlt.add(platforRelated.getDone_USA());
-		USAlt.add(platforRelated.getInProgress_USA());
-		USAlt.add(platforRelated.getInPlanning_USA());
-
-		List<Integer> MEXICOlt = new ArrayList<Integer>();
-		MEXICOlt.add(platforRelated.getDone_MEXICO());
-		MEXICOlt.add(platforRelated.getInProgress_MEXICO());
-		MEXICOlt.add(platforRelated.getInPlanning_MEXICO());
-
-		List<Integer> EMEAlt = new ArrayList<Integer>();
-		EMEAlt.add(platforRelated.getDone_EMEA());
-		EMEAlt.add(platforRelated.getInProgress_EMEA());
-		EMEAlt.add(platforRelated.getInPlanning_EMEA());
-
-		map.put("APJ", APJlt);
-		map.put("USA", USAlt);
-		map.put("MEXICO", MEXICOlt);
-		map.put("EMEA", EMEAlt);
-		return map;
-	}
-
-	public static Map getIMMetrics() {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		PlatforRelated pr = MongoDBBasic
-				.getPlatforRelated(Constants.clientCode);
-		if (pr == null) {
-			return map;
-		}
-
-		map.put("APJ", pr.getClosed_APJ());
-		map.put("USA", pr.getClosed_USA());
-		map.put("MEXICO", pr.getClosed_MEXICO());
-		map.put("EMEA", pr.getClosed_EMEA());
-		map.put("OTHER", pr.getClosed_OTHER());
-		return map;
-	}
+	
 
 	public static List<Integer> getTotalVisitedNumByPage(List<String> dates,
 			String page) {
