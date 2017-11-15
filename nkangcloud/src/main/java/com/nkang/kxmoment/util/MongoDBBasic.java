@@ -54,6 +54,7 @@ import com.nkang.kxmoment.baseobject.WeChatAccessKey;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.Constants;
+import com.nkang.kxmoment.util.SmsUtils.RestTest;
 
 public class MongoDBBasic {
 	private static Logger log = Logger.getLogger(MongoDBBasic.class);
@@ -4591,6 +4592,12 @@ public class MongoDBBasic {
 				doc.put("$inc", update);
 				// doc.put("$set", update);
 				mongoDB.getCollection(APPOINTMENT).update(query, doc);
+				
+				//send message to leshu admin to get client engaged
+				String templateId="231590";
+				String para="nkc";
+				String to="15123944895";
+				RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 			} else {
 				mongoDB.getCollection(APPOINTMENT).insert(query);
 			}
