@@ -1,0 +1,52 @@
+* { margin: 0; outline: 0; padding: 0; font-size: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block}
+a { text-decoration: none;}
+html { height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body { margin: 0; padding: 0; width: 100%; height: 100%; min-height: 100%; font-family:"\5FAE\8F6F\96C5\9ED1","\5b8b\4f53", Arial, Helvetica, sans-serif; font-size: 62.5%; line-height: 1.231; -webkit-touch-callout: none; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; position: relative; }
+img { -ms-interpolation-mode: bicubic; vertical-align: middle; border: 0 none;max-width: 100%;height: auto;width: auto\9; /* ie8 */}
+img:not([src*="/"]) { display: none; }
+table { border-collapse: collapse; border-spacing: 0; width: 100%; }
+th, td, caption { vertical-align: middle; }
+textarea { resize: none; border: 0; padding: 8px 0; border-radius: 0;}
+ul,li { list-style: none; margin:0; padding:0; }
+h1,h2,h3,h4,h5,h6 {margin:0; padding:0; font-weight:normal;}
+.clr:after {content:""; display:block; height:0; clear:both; visibility:hidden;}
+.clr {*zoom:1;}
+.telphone {display:block; position:fixed; right:2%; bottom:15%; z-index:100; cursor:pointer;}
+.telphone img {width:44px; height:44px;}
+
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6,footer { -webkit-text-size-adjust: none;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+
+/*音乐图标*/
+#audio_btn{position: fixed;right: 10px;top: 10px;z-index: 200;display: none;width: 30px;height: 30px;background-image: url(/../../../images/modt/audio.png);background-repeat: no-repeat;background-size: 30px 60px;background-position: 0px 0px;}
+#audio_btn.off{background-position: 0px -30px;}
+
+/*快捷菜单*/
+.plug-phone { width:36px;height:36px;position: absolute;z-index: 900;left: -100px; top: 0px;}
+.plug-menu { width: 36px; height: 36px; border-radius: 36px; position: absolute; z-index: 999; -moz-box-shadow: 0 0 0 2px #FFF, 0 2px 5px 4px rgba(0,0,0,0.25); -webkit-box-shadow: 0 0 0 2px #FFF, 0 2px 5px 4px rgba(0,0,0,0.25); box-shadow: 0 0 0 2px #FFF, 0 2px 5px 4px rgba(0,0,0,0.25);background-color:#666 }
+.plug-menu span { display: block; width: 28px; height: 28px; background: url(/../../../images/mod/custom/xiangyu/link/icon-main.png) no-repeat; background-size: 28px 28px; text-indent: -999px; position: absolute; top: 50%; left: 50%; margin-top: -14px; margin-left: -14px; overflow: hidden; }
+.plug-btn { width: 32px; height: 32px; border-radius: 32px; -moz-box-shadow: 0 0 0 2px #FFF, 0 2px 5px 3px rgba(0,0,0,0.25); -webkit-box-shadow: 0 0 0 2px #FFF, 0 2px 5px 3px rgba(0,0,0,0.25); box-shadow: 0 0 0 2px #FFF, 0 2px 5px 3px rgba(0,0,0,0.25); background: #333; position: absolute; bottom: 0; right: 0px; margin-bottom: 2px; margin-left: 2px; z-index: 998; }
+.plug-btn span { display: block; width: 24px; height: 24px; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -12px; overflow: hidden; background-repeat: no-repeat; background-size: 24px 24px; }
+.plug-btn span img{display:block;width:20px;height:20px;margin:0 auto;margin-top:2px;}
+
+.plug-btn { -webkit-transition: -webkit-transform 200ms; }
+.plug-menu span { -webkit-transition: -webkit-transform 200ms; }
+.plug-menu span.open { -webkit-animation-name: open; -webkit-transform: rotate(135deg); }
+.plug-menu span.close { -webkit-animation-name: close; -webkit-transform: rotate(0deg); }
+.plug-btn1.open { -webkit-transform: translate(0, -100px) rotate(720deg); }
+.plug-btn1.close { -webkit-transform: translate(0, 0) rotate(0deg); }
+.plug-btn2.open { -webkit-transform: translate(-47px, -81px) rotate(720deg); }
+.plug-btn2.close { -webkit-transform: translate(0, 0) rotate(0deg); }
+.plug-btn3.open { -webkit-transform: translate(-81px, -45px) rotate(720deg); }
+.plug-btn3.close { -webkit-transform: translate(0, 0) rotate(0deg); }
+.plug-btn4.open { -webkit-transform: translate(-100px, 0) rotate(720deg); }
+.plug-btn4.close { -webkit-transform: translate(0, 0) rotate(0deg); }
+
+.plug-btn5.open { display: block; width: 310px; height: 310px; border-radius: 310px; background-color: rgba(255,255,255,0); -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; z-index: 997; left: -170px; top: -170px; overflow: hidden; }
+.plug-btn5.close { display: none; }
+.bgcolor{background:#da182f;}
+
+
+
+

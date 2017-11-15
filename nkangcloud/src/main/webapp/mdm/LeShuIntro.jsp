@@ -17,9 +17,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes"> 
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<link href="./乐数珠心算_files/reset.css" rel="stylesheet" type="text/css">
-<link href="./乐数珠心算_files/mod33.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="./乐数珠心算_files/jquery-1.10.2.min.js.download"></script>
+<link href="../Jsp/CSS/reset.css" rel="stylesheet" type="text/css">
+<link href="../Jsp/CSS/mod33.css" rel="stylesheet" type="text/css">
+<!-- <script type="text/javascript" src="./乐数珠心算_files/jquery-1.10.2.min.js.download"></script> -->
 
 </head>
 
@@ -30,31 +30,31 @@
    <div class="mod_menu">
                                                       <a href="http://mp.weixin.qq.com/s?__biz=MzIxNjA5OTEzMQ==&amp;mid=402574737&amp;idx=1&amp;sn=f63fe66e7f01b130310ebb3538131d18#rd" onclick="tongji(522995,0);" style="background-color:rgba(30, 127, 196, 0.75);color:#ffffff;">
                                         <i>
-                                            <img src="./乐数珠心算_files/19fc7f99cfe9bb301a0a5a.png" class="contentimgcl">
+                                            <img src="../mdm/images/leshu/19fc7f99cfe9bb301a0a5a.png" class="contentimgcl">
                                     </i>
                 <span>中心简介</span>
             </a>
                                                       <a href="http://mp.weixin.qq.com/s?__biz=MzIxNjA5OTEzMQ==&amp;mid=402056300&amp;idx=1&amp;sn=da59acd7e2d363e009b87638ade05293#rd" onclick="tongji(522996,0);" style="background-color:rgba(30, 127, 196, 0.75);color:;">
                                         <i>
-                                            <img src="./乐数珠心算_files/2804b4c496054f7a0d51fa.png" class="contentimgcl">
+                                            <img src="../mdm/images/leshu/2804b4c496054f7a0d51fa.png" class="contentimgcl">
                                     </i>
                 <span>课程介绍</span>
             </a>
                                                       <a href="http://mp.weixin.qq.com/s?__biz=MzIxNjA5OTEzMQ==&amp;mid=402025558&amp;idx=1&amp;sn=9876472f0bceed835ef27207b6a75164#rd" onclick="tongji(522997,0);" style="background-color:rgba(30, 127, 196, 0.75);color:;">
                                         <i>
-                                            <img src="./乐数珠心算_files/79679c52ee0a82607843df.png" class="contentimgcl">
+                                            <img src="../mdm/images/leshu/79679c52ee0a82607843df.png" class="contentimgcl">
                                     </i>
                 <span>创办者</span>
             </a>
                                                       <a href="http://mp.weixin.qq.com/s?__biz=MzIxNjA5OTEzMQ==&amp;mid=402044959&amp;idx=1&amp;sn=43ee17423c8c9b1131db2b8d1ac2a97e#rd" onclick="tongji(523000,0);" style="background-color:rgba(30, 127, 196, 0.75);color:;">
                                         <i>
-                                            <img src="./乐数珠心算_files/bf5c670aed4fc0e4bbc1f0.png" class="contentimgcl">
+                                            <img src="../mdm/images/leshu/bf5c670aed4fc0e4bbc1f0.png" class="contentimgcl">
                                     </i>
                 <span>联系我们</span>
             </a>
                                                       <a href="http://mp.weixin.qq.com/s?__biz=MzIxNjA5OTEzMQ==&amp;mid=403112306&amp;idx=1&amp;sn=291166805280fb4af1e14d77f5e838c6#rd" onclick="tongji(524311,0);" style="background-color:rgba(30, 127, 196, 0.75);color:;">
                                         <i>
-                                            <img src="./乐数珠心算_files/b119bc7a3f1e39e8b92e14.png" class="contentimgcl">
+                                            <img src="../mdm/images/leshu/b119bc7a3f1e39e8b92e14.png" class="contentimgcl">
                                     </i>
                 <span>常见问题</span>
             </a>
@@ -81,7 +81,7 @@
 	var fx_describefenxiang = "";
 	wx_share_out('乐数珠心算','',fx_describefenxiang);
 </script>	<!-- 如果微巴帐号 -->
-			<a href="http://wxe542e71449270554.dodoca.com/phone/websiteofficial?uid=164368">
+			<a href="http://nkctech.duapp.com/mdm/LeShuIntro.jsp">
 			<footer>
 				重庆乐数珠心算			</footer>
 		</a>
