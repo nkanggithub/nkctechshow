@@ -4574,8 +4574,7 @@ public class MongoDBBasic {
 			query.put("subject", app.getSubject());
 			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
 			query.put("date", DateUtil.timestamp2Str(cursqlTS));
-			DBObject apppoint = mongoDB.getCollection(APPOINTMENT)
-					.findOne(query);
+			DBObject apppoint = mongoDB.getCollection(APPOINTMENT).findOne(query);
 			if (apppoint != null) {
 				// String num = visited.get("visitedNum")+"";
 				BasicDBObject doc = new BasicDBObject();
@@ -4592,16 +4591,16 @@ public class MongoDBBasic {
 				doc.put("$inc", update);
 				// doc.put("$set", update);
 				mongoDB.getCollection(APPOINTMENT).update(query, doc);
-				
-				//send message to leshu admin to get client engaged
-				String templateId="231590";
-				String para="nkc";
-				String to="15123944895";
-				RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 			} else {
 				mongoDB.getCollection(APPOINTMENT).insert(query);
 			}
-
+			//send message to leshu admin to get client engaged
+			String templateId="231590";
+			String para="nkc";
+			String to="15123944895";
+			log.info("---before sending sms for app---");
+			RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
+			log.info("---end sending sms for app---");
 		} catch (Exception e) {
 			ret = e.getMessage();
 		}
