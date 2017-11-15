@@ -39,8 +39,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.MdmDataQualityView;
-import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
-import com.nkang.kxmoment.baseobject.OrganizationSearch4Solr;
+
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.CommenJsonUtil;
 import com.nkang.kxmoment.util.Constants;
@@ -50,7 +49,7 @@ import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
 import com.nkang.kxmoment.util.StopWatch;
 import com.nkang.kxmoment.util.StringUtils;
-import com.nkang.kxmoment.util.SolrUtils.SolrClientUtils;
+
 
 import java.util.Locale;
 

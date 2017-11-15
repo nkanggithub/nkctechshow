@@ -1,36 +1,23 @@
 package com.nkang.kxmoment.service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.mongodb.DBObject;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
-import com.nkang.kxmoment.baseobject.ExtendedOpportunity;
-import com.nkang.kxmoment.baseobject.FaceObj;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.response.Article;
 import com.nkang.kxmoment.response.NewsMessage;
 import com.nkang.kxmoment.response.TextMessage;
-import com.nkang.kxmoment.util.CommenJsonUtil;
 import com.nkang.kxmoment.util.Constants;
-import com.nkang.kxmoment.util.CronJob;
-import com.nkang.kxmoment.util.FaceRecognition;
 import com.nkang.kxmoment.util.MessageUtil;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;

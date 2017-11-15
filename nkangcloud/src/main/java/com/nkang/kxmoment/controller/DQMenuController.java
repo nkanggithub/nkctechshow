@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.MdmDataQualityView;
-import com.nkang.kxmoment.baseobject.OrgCountryCode;
-import com.nkang.kxmoment.baseobject.OrgOtherPartySiteInstance;
 import com.nkang.kxmoment.baseobject.Radar;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.MongoDBBasic;
@@ -302,66 +300,7 @@ public class DQMenuController {
 		return citys;
 	}
 	
-	@RequestMapping("/getCitydatial")
-	public @ResponseBody List<OrgOtherPartySiteInstance> getCountrycount(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "userState") String state,@RequestParam(value = "nonlatinCity") String City,@RequestParam(value = "cityRegion",required=false) String cityRegion)
-	{
-		List<OrgOtherPartySiteInstance> opsilistOfCountry = MongoDBBasic.getDataQualityReportOSfCity(state,City,cityRegion);
-		
-		return opsilistOfCountry;
-		
-	}
-	
-/*
-	@RequestMapping("/getCitydetial")
-	public @ResponseBody List<List<OrgOtherPartySiteInstance>> getCountrycountdetial(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "userState") String state,@RequestParam(value = "nonlatinCity") String City,@RequestParam(value = "cityRegion",required=false) String cityRegion)
-	{
-		List<OrgOtherPartySiteInstance> opsilistOfCountry = MongoDBBasic.getDataQualityReportOSfCity(state,City,cityRegion);
-		List<List<OrgOtherPartySiteInstance>> lilist = new ArrayList<List<OrgOtherPartySiteInstance>>();
-		List<OrgOtherPartySiteInstance> opsilistOfCompetitor = new  ArrayList<OrgOtherPartySiteInstance>();
-		List<OrgOtherPartySiteInstance> opsilistOfCustomer = new  ArrayList<OrgOtherPartySiteInstance>();
-		List<OrgOtherPartySiteInstance> opsilistOfPartner = new  ArrayList<OrgOtherPartySiteInstance>();
-		for(int i=0; i<opsilistOfCountry.size(); i++){
-			if(opsilistOfCountry.get(i).getIsCompetitor().equals("true")){
-				opsilistOfCompetitor.add(opsilistOfCountry.get(i));
-			}
-			if(opsilistOfCountry.get(i).getOnlyPresaleCustomer().equals("true")){
-				opsilistOfCustomer.add(opsilistOfCountry.get(i));
-			}
-			if(opsilistOfCountry.get(i).getIncludePartnerOrgIndicator().equals("true")){
-				opsilistOfPartner.add(opsilistOfCountry.get(i));
-			}
-		}
-		lilist.add(opsilistOfCompetitor); 
-		lilist.add(opsilistOfCustomer); 
-		lilist.add(opsilistOfPartner); 
-		return lilist;
-		
-	}*/
-	@RequestMapping("/getCitydetail")
-	public @ResponseBody List<List<OrgOtherPartySiteInstance>> getDataQualityReportbynonatinCity(HttpServletRequest request,
-			HttpServletResponse response,@RequestParam(value = "userState") String state,@RequestParam(value = "nonlatinCity") String City,@RequestParam(value = "cityRegion",required=false) String cityRegion)
-	{
-		return  MongoDBBasic.getDataQualityReportbynonatinCity(state, City, cityRegion);
-	}
-	
-	@RequestMapping("/ReadOrgCountryCodeByName")
-	public @ResponseBody List<String>  ReadOrgCountryCodeByName(@RequestParam(value = "countryName") String countryName){
-	OrgCountryCode orgcode = new OrgCountryCode();
-	List<String> countrySet=new ArrayList<String>();
-	URL xmlpath = MasterDataRestController.class.getClassLoader().getResource("sumOrgCountCountryCode.json"); 
-	String path = xmlpath.toString();
-	path=path.substring(5);  
-	System.out.println(xmlpath);
-	String url = path;
-	orgcode = RestUtils.ReadOrgCountryCodeByName(url,countryName);
-	String orgcountrycode = countryName+"<img src='http://www.geonames.org/flags/x/"+orgcode.getCountryCode().toLowerCase()+".gif' class='worldflag'/><br/>机遇:"+orgcode.getTotalCount()+"<br/>客户:"+orgcode.getCustomerCount()+"<br/>伙伴:"+orgcode.getPartnerCount()+"<br/>竞争:"+orgcode.getCompetitorCount();
-		/*	"countryCode:"+orgcode.getCountryCode()+",countryName:"+orgcode.getCountryName()+",totalCount:"+orgcode.getTotalCount()+",customerCount:"+orgcode.getCustomerCount()+",partnerCount:"+orgcode.getPartnerCount()+",competitorCount:"+orgcode.getCompetitorCount();*/
-	//" "机遇:600514<br/>客户:16856<br/>伙伴:6045<br/>竞争:119")
-	countrySet.add(orgcountrycode);
-	return countrySet;
-}
+
 	
 	@RequestMapping("/getAllDistrict")
 public @ResponseBody List<String>  getAllDistrict(HttpServletRequest request, HttpServletResponse response,@RequestParam(value = "userState") String userState){
@@ -407,13 +346,5 @@ public @ResponseBody List<Object[]> getNewChart2(HttpServletRequest request, Htt
 
 }
 
-
-@RequestMapping("/getAllCountryName")
-public @ResponseBody List<OrgOtherPartySiteInstance>  getALLCountryName(HttpServletRequest request, HttpServletResponse response){
-	List<OrgOtherPartySiteInstance> listOfCities = MongoDBBasic.getAllCountryName();
-	List<String> citys = MongoDBBasic.getAllStates(listOfCities.get(0).getCountryCode());
-	listOfCities.get(0).setAllCity(citys);
-	return listOfCities;
-}	
 	
 }
