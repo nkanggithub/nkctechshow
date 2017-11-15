@@ -883,15 +883,15 @@ jQuery
 		</div>
 	</div>
 	<div class="TABclass">
-		<div id="logo_now_color" style="border-top: 4px solid #000; padding: 5px 0px;">
+		<div id="logo_now_color" style="border-top: 4px solid #20b672; padding: 5px 0px;">
 			<ul class="nav nav-tabs" id="myTabs"
-				style="border-color: #000;">
+				style="border-color: #20b672;">
 				<li  class="active"><a href="#WorkMates" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">人员管理</a></li>
+					style="border-right-color: #20b672; border-top-color: #20b672; border-left-color: #20b672;">人员管理</a></li>
 				<li><a href="#visitManage" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">到访管理</a></li>
+					style="border-right-color: #20b672; border-top-color: #20b672; border-left-color: #20b672;">到访管理</a></li>
 				<li><a href="#logoElements" data-toggle="tab"
-					style="border-right-color: #000; border-top-color: #000; border-left-color: #000;">LOGO管理</a></li>
+					style="border-right-color: #20b672; border-top-color: #20b672; border-left-color: #20b672;">LOGO管理</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">
