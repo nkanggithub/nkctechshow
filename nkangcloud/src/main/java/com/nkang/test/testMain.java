@@ -38,7 +38,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.nkang.kxmoment.baseobject.GeoLocation;
-import com.nkang.kxmoment.baseobject.MdmDataQualityView;
+
 
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.CommenJsonUtil;

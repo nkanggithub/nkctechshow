@@ -23,7 +23,6 @@ import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.GeoLocation;
-import com.nkang.kxmoment.baseobject.MdmDataQualityView;
 import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
@@ -231,38 +230,6 @@ public class MasterDataRestController {
 	}
 	
 
-	@RequestMapping("/getDataQualityReportByParameter")
-	public static MdmDataQualityView callGetDataQualityReportByParameter(   @RequestParam(value="stateProvince", required=false) String stateProvince,
-																			@RequestParam(value="nonlatinCity", required=false) String nonlatinCity,
-																			@RequestParam(value="cityRegion", required=false) String cityRegion){
-		MdmDataQualityView mdmDataQualityView = new MdmDataQualityView();
-		try{
-			mdmDataQualityView = MongoDBBasic.getDataQualityReport(stateProvince, nonlatinCity, cityRegion);
-		}		
-		catch(Exception e){
-			mdmDataQualityView = null;
-		}
-		return mdmDataQualityView;
-	}
-	/*
-	 * author chang-zheng
-	 */
-	@RequestMapping("/getDataQualityReportByParameterV2")
-	public static Map<String, MdmDataQualityView> callGetDataQualityReportByParameter(   @RequestParam(value="stateProvince", required=false) String stateProvince,
-																			@RequestParam(value="nonlatinCity", required=false) List<String> nonlatinCity,
-																			@RequestParam(value="cityRegion", required=false) String cityRegion){
-	//	MdmDataQualityView mdmDataQualityView = new MdmDataQualityView();
-		Map<String, MdmDataQualityView> map = new HashMap<String, MdmDataQualityView>();
-		try{
-			//mdmDataQualityView = MongoDBBasic.getDataQualityReport(stateProvince, nonlatinCity, cityRegion);
-			map = MongoDBBasic.getDataQualityReport(stateProvince, nonlatinCity, cityRegion);
-		}		
-		catch(Exception e){
-			//mdmDataQualityView = null;
-			map = null;
-		}
-		return map;
-	}
 	
 
 	@RequestMapping("/getFilterSegmentAreaFromMongo")
@@ -527,36 +494,6 @@ public class MasterDataRestController {
 		return ret;
 	}
 	
-	/*
-	 * author  chang-zheng
-	 * get opsi by country
-	 */
-	@RequestMapping("/getCountrycount")
-	public @ResponseBody List<Object[]> getDataQualityDetailReport(HttpServletRequest request, HttpServletResponse response,@RequestParam(value = "country") String country
-			)
-	{
-		List<MdmDataQualityView> listOfCountry = MongoDBBasic.getDataQualityReportOSfCountry(country);
-		List<Object[]> finalString=new ArrayList<Object[]>();
-		Object[] a = new Object[2];
-		a[0]="Customer";
-		Object[] b = new Object[2];
-		b[0]="Partner";
-		Object[] c = new Object[2];
-		c[0]="Competitor";
-		Object[] d = new Object[2];
-		d[0]="Lead";
-		
-		MdmDataQualityView dqv = listOfCountry.get(0);
-		a[1]=dqv.getNumberOfCustomer();
-		b[1]=dqv.getNumberOfPartner();
-		c[1]=dqv.getNumberOfCompetitor();
-		d[1]=dqv.getNumberOfLeads();
-		finalString.add(a);
-    	finalString.add(b);
-    	finalString.add(c);
-    	finalString.add(d);
-		return finalString;
-	}
 	
 
 
