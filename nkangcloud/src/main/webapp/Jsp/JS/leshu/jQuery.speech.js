@@ -41,10 +41,11 @@ blog: http://www.tuterm.com
 				$("#txtNumber9").val("");
 				$("#txtNumber10").val("");
 				$("#total").val("");
-				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd=' + options.speed;				
+				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd=4';				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
-						var iframe = "<iframe height='0' width='0' class='speech_iframe' scrolling='no' frameborder='0' src='" + src + "' ></iframe>";
+						var iframe = "<video controls='' autoplay='' name='media'><source id='voice' src='' type='audio/mp3'></video>";
 						_this.append(iframe);
+						$("#voice").attr("src",src);
 					})();
 				});
 			} else { //自动播报

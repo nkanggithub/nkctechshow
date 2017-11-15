@@ -6,7 +6,7 @@
 <title>语音播报</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	
-  <link rel="stylesheet" type="text/css" href="../Jsp/JS/lesu/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
 </head>
 <body>
 <style type="text/css">
@@ -89,7 +89,7 @@ font-size: 50px;
         </div>
         </div>
 		</section>
-<script src="../Jsp/JS/lesu/jQuery-2.1.4.min.js"></script>
+<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 <script>
 
 var textToShow="";
@@ -186,7 +186,7 @@ var textToShow="";
             view.text("");
         }
 
-        }
+        
 	function showAnswer(){
 	textToShow=textToShow.substring(0,textToShow.length-1);
 	var array=textToShow.split(",");
@@ -205,7 +205,7 @@ var textToShow="";
 	total+=parseInt(array[i]);}
 
 	$("#total").val(total);
-	
+	textToShow="";
 	}
 </script>
 </body>

@@ -6,7 +6,7 @@
 <title>语音播报</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	
-  <link rel="stylesheet" type="text/css" href="../Jsp/JS/lesu/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
 </head>
 <body>
 <style type="text/css">
@@ -92,8 +92,8 @@ font-size: 50px;
 		</section>
 <div id="Result" >
 </div>
-<script src="../Jsp/JS/lesu/jQuery-2.1.4.min.js"></script>
-<script src="../Jsp/JS/lesu/jQuery.speech.js"></script>
+<script src="../Jsp/JS/jquery-1.8.0.js"></script>
+<script src="../Jsp/JS/leshu/jQuery.speech.js"></script>
 <script>
 
 	var text="开始,";
