@@ -3333,7 +3333,7 @@ public class MongoDBBasic {
 			}
 			//send message to leshu admin to get client engaged
 			String templateId="231590";
-			String para=": 姓名【"+app.getName() + "】 电话【"+app.getTel()+"】";
+			String para=": 姓名【"+app.getName() + "】 电话【"+app.getTel()+"】 课程【"+app.getSubject()+"】";
 			String to="15123944895";
 			RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
 		} catch (Exception e) {
