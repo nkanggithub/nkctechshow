@@ -247,9 +247,9 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						article.setTitle("点击扫描您附近的同学");
+						article.setTitle("附近和我一起学习珠心算的乐数同学");
 						article.setDescription("您当前所在位置:" + addr);
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
+						article.setPicUrl("http://leshu.bj.bcebos.com/standard/abacus.jpg");
 						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
@@ -273,7 +273,7 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						article.setTitle(cm.getClientName()+"| 点击查看我的课程订阅");
+						article.setTitle(cm.getClientName()+"| 欢迎进入自我修炼");
 						article.setDescription("乐数在线考试练习系统");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
 //						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
