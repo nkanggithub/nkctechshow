@@ -21,7 +21,7 @@ blog: http://www.tuterm.com
 		return this.each(function() {
 			var _this = $(this),
 				_iframe = _this.find(".speech_iframe"),
-				http = options.https ? "https" : "http",
+				http = options.https ? "http" : "http",
 				content = _this.text();
 			content = (!content || content === undefined || content === null) ? options.content : content;
 

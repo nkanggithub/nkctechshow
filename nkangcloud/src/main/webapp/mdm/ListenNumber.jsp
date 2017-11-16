@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>听算练习</title>
+<title>乐数-听算练习</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	
   <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" /> 	
@@ -141,7 +141,7 @@ color:white;
 	var lengthArray=new Array(10,100,1000,10000);
 	function getNum(){
 	
-	text="开始,";
+	text="乐数珠心算开始,";
 	var temp=0;
 	for(var i=0;i<numCountArray[numCount];i++){
 	temp=Math.round(Math.random()*lengthArray[length]);
