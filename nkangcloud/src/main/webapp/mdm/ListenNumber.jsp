@@ -3,10 +3,11 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>语音播报</title>
+<title>听算练习</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	
-  <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" /> 	
+  <link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 <style type="text/css">
@@ -40,63 +41,90 @@ font-size: 50px;
     text-align: center;
 	font-family: shuxieti;
 }
-.centerBtn{
-    width: 150px;
-    height: 50px;
-    font-size: 20px;
-    margin-top:200px;
-    }
+
+	#startPanel,#endPanel{
+		display:none;
+	}
 .middleBtn{
     width: 120px;
     height: 40px;
-    font-size: 18px;}
-</style>
+    font-size: 18px;
+	background:green!important;}
+.selectPanel{
+    padding: 30px 30px;
+    text-align: center;
+	margin-top:100px;
+}
+.circle{
+    display: inline-block;
+    font-size: 22px;
+    margin: 8px;
+    color: #717171;
+    border: 1px solid green;
+    border-radius: 100%;
+    text-align: center;
+    width: 130px;
+    height: 130px;
+	line-height:130px;
+}
+i{
+color:green;}
+#lengthCountPanel{display:none;}
+.default{
+background-color:green;
+color:white;
+}
+.bigger{
 
-            <input type="button" class="btn btn-primary centerBtn start" value="开始练习">
+    width: 160px;
+    height: 160px;
+	line-height:160px;
+}
+</style>
+<section id="numCountPanel">
+<div class="selectPanel">
+<div class="circle default">三笔</div>
+<div class="circle">五笔</div>
+<div class="circle">八笔</div>
+<div class="circle">十笔</div>
+</div>
+<i id="toLength" class="fa fa-long-arrow-right fa-5x"></i>
+</section>
+
+<section id="lengthCountPanel">
+<div class="selectPanel">
+<div class="circle default" >一位</div>
+<div class="circle">两位</div>
+<div class="circle">三位</div>
+<div class="circle">四位</div>
+</div>
+<i id="toStart" class="fa fa-long-arrow-right fa-5x"></i>
+</section>
+
+<section id="startPanel">
+<div class="selectPanel">
+            <div class="circle start bigger">开始练习</div>
+			</div>
+</section>
+<section id="endPanel">
+<div class="selectPanel">
+            <div class="circle end bigger">显示答案</div>
+			</div>
+			</section>
+			
 <section id="answerPanel" class="white intro" style="display:none">
 
-<div class="sa">
-            <div id="ShowNumberPanel" class="numPanel">听数</div>
-            <div>
-
-                <input id="txtNumber1" type="text" class=" niput " disabled />
-
-                <input id="txtNumber2" type="text" class=" niput " disabled />
-
-                <input id="txtNumber3" type="text" class=" niput " disabled />
-
-                <input id="txtNumber4" type="text" class=" niput " disabled />
-
-            </div>
-            <div>
-
-                <input id="txtNumber5" type="text" class=" niput " disabled />
-
-                <input id="txtNumber6" type="text" class="niput " disabled />
-
-                <input id="txtNumber7" type="text" class=" niput " disabled />
-
-                <input id="txtNumber8" type="text" class="niput  " disabled />
-
-
+<div class="selectPanel">
+            <div id="answerInput">
             </div>
 			<div>
 
-                <input id="txtNumber9" type="text" class=" niput " disabled />
-
-                <input id="txtNumber10" type="text" class="niput " disabled />
-
-
-            </div>
-			<div>
-
-                <input style="width:310px" placeholder="请输入以上数字总和" id="total" type="text" class="niput " disabled />
+                <input style="width:310px" placeholder="请输入以上数字总和" id="total" type="text" class="niput ">
 
 
             </div>
 			<div style="text-align: center; margin: 15px;">
-            <input type="button" class="btn btn-primary start middleBtn" value="开始练习">
-            <input id="showAnswer" type="button" class="btn btn-success middleBtn" value="显示答案" onclick="showAnswer()">
+            <input type="button" class="btn btn-primary start middleBtn" value="再来一次">
       
         </div>
         </div>
@@ -108,11 +136,16 @@ font-size: 50px;
 <script>
 
 	var text="开始,";
+	var tempArray=new Array();
+	var numCountArray=new Array(3,5,8,10);
+	var lengthArray=new Array(10,100,1000,10000);
 	function getNum(){
+	
 	text="开始,";
 	var temp=0;
-	for(var i=0;i<10;i++){
-	temp=Math.round(Math.random()*100);
+	for(var i=0;i<numCountArray[numCount];i++){
+	temp=Math.round(Math.random()*lengthArray[length]);
+	tempArray[i]=temp;
 	text=text+temp+",";
 	}
 	text=text+"结束";
@@ -121,22 +154,18 @@ font-size: 50px;
 	return text;	
 	}
  function endVoice() {
- $(".centerBtn").remove();
- $("#answerPanel").show();
+ 
+ $("#answerPanel").hide();
+ $("#startPanel").hide();
+ $("#answerInput").html("");
+ $("#endPanel").show();
  showAnswer();
 };
 	function showAnswer(){
 	var array=text.split(",");
-	$("#txtNumber1").val(array[1]);
-	$("#txtNumber2").val(array[2]);
-	$("#txtNumber3").val(array[3]);
-	$("#txtNumber4").val(array[4]);
-	$("#txtNumber5").val(array[5]);
-	$("#txtNumber6").val(array[6]);
-	$("#txtNumber7").val(array[7]);
-	$("#txtNumber8").val(array[8]);
-	$("#txtNumber9").val(array[9]);
-	$("#txtNumber10").val(array[10]);
+	for(var i=0;i<numCountArray[numCount];i++){
+	$("#answerInput").append("<input type='text' class='niput' value="+tempArray[i]+" disabled />")
+	}
 		var total=0;
 	for(var i=1;i<array.length-1;i++){
 	total+=parseInt(array[i]);}
@@ -147,8 +176,42 @@ font-size: 50px;
 	
 	$('#Result').speech({
 		"speech": true,
-		"speed": 9,
+		"speed": 3,
 		"bg": "./images/speech.png"
+	});
+	var numCount=0;
+	var length=0;
+	$("#numCountPanel").find(".circle").hover(function(){
+	$(this).css("background-color","green");
+	$(this).css("color","white");
+	$(this).siblings().css({"background-color":"white","color":"black"});
+	numCount=$(this).index();
+	},function(){
+		$(this).css("background-color","white");
+	$(this).css("color","black");
+	});
+	
+	$("#lengthCountPanel").find(".circle").hover(function(){
+	$(this).css("background-color","green");
+	$(this).css("color","white");
+	$(this).siblings().css({"background-color":"white","color":"black"});
+	length=$(this).index();
+	},function(){
+		$(this).css("background-color","white");
+	$(this).css("color","black");
+	});
+	
+	$("#toLength").on("click",function(){
+	$("#numCountPanel").hide();
+	$("#lengthCountPanel").show();
+	});
+	$("#toStart").on("click",function(){
+	$("#lengthCountPanel").hide();
+	$("#startPanel").show();
+	});
+		$(".end").on("click",function(){
+	$("#endPanel").hide();
+	$("#answerPanel").show();
 	});
 </script>
 </body>

@@ -3,10 +3,12 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>语音播报</title>
+<title>看算练习</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	
   <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
+  
+  <link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 <style type="text/css">
@@ -33,48 +35,91 @@ body{background-color:#fff;text-align:center;padding-top:50px;}
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 .numPanel{
-font-size: 50px;
-    color: red;
-    height: 80px;
+font-size: 45px!important;
+    color: red!important;
     text-align: center;
-	font-family: shuxieti;
+}
+
+	#startPanel,#endPanel,#processPanel{
+		display:none;
+	}
+.middleBtn{
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+	background:green!important;}
+.selectPanel{
+    padding: 30px 30px;
+    text-align: center;
+	margin-top:100px;
+}
+.circle{
+    display: inline-block;
+    font-size: 22px;
+    margin: 8px;
+    color: #717171;
+    border: 1px solid green;
+    border-radius: 100%;
+    text-align: center;
+    width: 130px;
+    height: 130px;
+	line-height:130px;
+}
+.bigger{
+
+    width: 160px;
+    height: 160px;
+	line-height:160px;
+}
+i{
+color:green;}
+#lengthCountPanel{display:none;}
+.default{
+background-color:green;
+color:white;
 }
 
 </style>
-<section class="white intro">
 
-<div class="sa">
-            <div id="ShowNumberPanel" class="numPanel">看数</div>
-            <div>
+<section id="numCountPanel">
+<div class="selectPanel">
+<div class="circle default">三笔</div>
+<div class="circle">五笔</div>
+<div class="circle">八笔</div>
+<div class="circle">十笔</div>
+</div>
+<i id="toLength" class="fa fa-long-arrow-right fa-5x"></i>
+</section>
 
-                <input id="txtNumber1" type="text" class=" niput ">
+<section id="lengthCountPanel">
+<div class="selectPanel">
+<div class="circle default" >一位</div>
+<div class="circle">两位</div>
+<div class="circle">三位</div>
+<div class="circle">四位</div>
+</div>
+<i id="toStart" class="fa fa-long-arrow-right fa-5x"></i>
+</section>
 
-                <input id="txtNumber2" type="text" class=" niput ">
+<section id="startPanel">
+<div class="selectPanel">
+            <div class="circle start bigger">开始练习</div>
+			</div>
+</section>
+<section id="processPanel">
+<div class="selectPanel">
+<div id="ShowNumberPanel" class="circle start numPanel bigger">看数</div>
+			</div>
+</section>
+<section id="endPanel">
+<div class="selectPanel">
+            <div class="circle end bigger">显示答案</div>
+			</div>
+			</section>
+<section id="answerPanel" class="white intro" style="display:none">
 
-                <input id="txtNumber3" type="text" class=" niput ">
-
-                <input id="txtNumber4" type="text" class=" niput ">
-
-            </div>
-            <div>
-
-                <input id="txtNumber5" type="text" class=" niput ">
-
-                <input id="txtNumber6" type="text" class="niput ">
-
-                <input id="txtNumber7" type="text" class=" niput ">
-
-                <input id="txtNumber8" type="text" class="niput  ">
-
-
-            </div>
-			<div>
-
-                <input id="txtNumber9" type="text" class=" niput ">
-
-                <input id="txtNumber10" type="text" class="niput ">
-
-
+<div class="selectPanel">
+            <div id="answerInput">
             </div>
 			<div>
 
@@ -83,8 +128,7 @@ font-size: 50px;
 
             </div>
 			<div style="text-align: center; margin: 15px;">
-            <input id="start" type="button" class="btn btn-primary" value="开始练习" onclick="start()">
-            <input id="showAnswer" type="button" class="btn btn-success" value="显示答案" onclick="showAnswer()">
+            <input type="button" class="btn btn-primary start middleBtn" value="再来一次">
       
         </div>
         </div>
@@ -93,12 +137,6 @@ font-size: 50px;
 <script>
 
 var textToShow="";
-        function GetRandomNum(Min, Max) {
-            var Range = Max - Min;
-            var Rand = Math.random();
-            return (Min + Math.round(Rand * Range));
-        }
-
         var numberModel = null;
         var numberLength = 0;
         var showTime = 0;
@@ -106,12 +144,13 @@ var textToShow="";
         var view = null;
         var nnto = null;
         var snto = null;
+	var numCountArray=new Array(3,5,8,10);
+	var lengthArray=new Array(10,100,1000,10000);
+	
         function start() {
+		var textToShow="";
             view = $("#ShowNumberPanel");
-            for (var i = 1; i <= 10; i++) {
-                $("#txtNumber" + i).val("");
-            }
-			$("#total").val("");
+                $(".niput").val("");
             answer = new Array();
             currentShowCount = 0;
             if (nnto != null)
@@ -120,65 +159,24 @@ var textToShow="";
                 clearTimeout(snto);
 
             view.text("准备");
-
-            numberLength = parseInt($("#NumberLength").val());
-
-
-
             snto = setTimeout("ShowNumber()", 1000);
-
-            numberModel = new Array();
-            //fisrt
-            var firstModel = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
-            var firstNumber = new Array();
-            for (var i = 0; i < 9; i++) {
-                var index = GetRandomNum(0, firstModel.length - 1);
-                firstNumber.push(firstModel[index]);
-                firstModel.splice(index, 1);
-            }
-            firstNumber.push(GetRandomNum(1, 9));
-            //model
-            for (var i = 0; i < 10; i++) {
-                numberModel[i] = new Array();
-                var model = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-                var fisrtVal = firstNumber[i];
-                numberModel[i][0] = fisrtVal;
-                for (var j = 1; j < 10; j++) {
-
-                    var index = GetRandomNum(0, model.length - 1);
-                    var val = model[index];
-                    if (fisrtVal == val) {
-                        j--;
-                        continue;
-                    }
-                    if (j == 0 && val == 0) {
-                        j--;
-                        continue;
-                    }
-                    numberModel[i][j] = val;
-                    model.splice(index, 1);
-                }
-
-                var number = parseInt(numberModel[i].slice(0, numberLength).join(''));
-                answer.push(number);
-
-            }
-
         }
         var answer = null;
         var currentShowCount = 0;
 		var num=null;
         function ShowNumber() {
 
-            if (currentShowCount >= answer.length) {
+            if (currentShowCount >= numCountArray[numCount]) {
                 view.text("结束");
+				$("#processPanel").hide();
+				$("#endPanel").show();
                 return;
             }
-			num=Math.round(Math.random()*100);
-            view.text(num);
+			num=Math.round(Math.random()*lengthArray[length]);
+            view.text(num);	
 			textToShow=textToShow+num+",";
-            nnto = setTimeout("hideNumber()", 500);
-            snto = setTimeout("ShowNumber()", 500);
+            nnto = setTimeout("hideNumber()", 1000);
+            snto = setTimeout("ShowNumber()", 1000);
             currentShowCount++;
         }
 
@@ -186,27 +184,63 @@ var textToShow="";
             view.text("");
         }
 
-        
+       
 	function showAnswer(){
-	textToShow=textToShow.substring(0,textToShow.length-1);
-	var array=textToShow.split(",");
-	$("#txtNumber1").val(array[0]);
-	$("#txtNumber2").val(array[1]);
-	$("#txtNumber3").val(array[2]);
-	$("#txtNumber4").val(array[3]);
-	$("#txtNumber5").val(array[4]);
-	$("#txtNumber6").val(array[5]);
-	$("#txtNumber7").val(array[6]);
-	$("#txtNumber8").val(array[7]);
-	$("#txtNumber9").val(array[8]);
-	$("#txtNumber10").val(array[9]);
+ $("#answerInput").html("");
+	var tempArray=textToShow.split(",");
+	for(var i=0;i<numCountArray[numCount];i++){
+	$("#answerInput").append("<input type='text' class='niput' value="+tempArray[i]+" disabled />")
+	}
 		var total=0;
-	for(var i=0;i<array.length;i++){
-	total+=parseInt(array[i]);}
+	for(var i=1;i<tempArray.length-1;i++){
+	total+=parseInt(tempArray[i]);}
 
 	$("#total").val(total);
+	
 	textToShow="";
-	}
+	} 
+	
+	var numCount=0;
+	var length=0;
+	$("#numCountPanel").find(".circle").hover(function(){
+	$(this).css("background-color","green");
+	$(this).css("color","white");
+	$(this).siblings().css({"background-color":"white","color":"black"});
+	numCount=$(this).index();
+	},function(){
+		$(this).css("background-color","white");
+	$(this).css("color","black");
+	});
+	
+	$("#lengthCountPanel").find(".circle").hover(function(){
+	$(this).css("background-color","green");
+	$(this).css("color","white");
+	$(this).siblings().css({"background-color":"white","color":"black"});
+	length=$(this).index();
+	},function(){
+		$(this).css("background-color","white");
+	$(this).css("color","black");
+	});
+	
+	$("#toLength").on("click",function(){
+	$("#numCountPanel").hide();
+	$("#lengthCountPanel").show();
+	});
+	$("#toStart").on("click",function(){
+	$("#lengthCountPanel").hide();
+	$("#startPanel").show();
+	});
+		$(".end").on("click",function(){
+	$("#endPanel").hide();
+	$("#answerPanel").show();
+	showAnswer();
+	});
+	$(".start").on("click",function(){
+	$("#answerPanel").hide();
+	$("#startPanel").hide();
+	$("#processPanel").show();
+	start();
+	});
 </script>
 </body>
 </html>
