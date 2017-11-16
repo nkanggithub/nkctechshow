@@ -3332,10 +3332,17 @@ public class MongoDBBasic {
 				mongoDB.getCollection(APPOINTMENT).insert(query);
 			}
 			//send message to leshu admin to get client engaged
+			List<String> telList = new ArrayList<String>();
 			String templateId="231590";
+			telList.add("15123944895"); //Ning
+			telList.add("18883811118"); //presendent guo
 			String para=": 姓名【"+app.getName() + "】 电话【"+app.getTel()+"】 课程【"+app.getSubject()+"】";
-			String to="15123944895";
-			RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
+			for(String to : telList){
+				if(to!=null && !"".equals(to)){
+					RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
+				}
+			}
+
 		} catch (Exception e) {
 			ret = e.getMessage();
 		}
