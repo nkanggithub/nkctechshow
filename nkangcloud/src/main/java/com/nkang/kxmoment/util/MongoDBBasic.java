@@ -40,6 +40,7 @@ import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.Quiz;
 import com.nkang.kxmoment.baseobject.QuoteVisit;
+import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.VideoMessage;
@@ -3541,6 +3542,105 @@ public class MongoDBBasic {
 		}
 		return articleID;
 	}
+	
+	
+	public static boolean followAllAreaOrRole(String openid,String flag) {
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+		try {
+			ArrayList<RoleOfAreaMap> list=MongoDBBasic.QueryRoleOfAreaMap(flag);
+			HashSet<String> kmSets = new HashSet<String>();
+			DBCursor dbcur = mongoDB.getCollection(wechat_user).find(
+					new BasicDBObject().append("OpenID", openid));
+			if (null != dbcur) {
+				while (dbcur.hasNext()) {
+					DBObject o = dbcur.next();
+					if (o.get("likeLists") != null) {
+						BasicDBList hist = (BasicDBList) o.get("likeLists");
+						Object[] kmObjects = hist.toArray();
+						for (Object dbobj : kmObjects) {
+							if (dbobj instanceof String) {
+								if (!((String) dbobj).startsWith(flag)){
+									kmSets.add((String) dbobj);
+								}
+							}
+						}
+					}
+				}
+			}
+			for(RoleOfAreaMap temp:list){
+				kmSets.add(temp.getId());
+			}
+			BasicDBObject doc = new BasicDBObject();
+			DBObject update = new BasicDBObject();
+			update.put("likeLists", kmSets);
+			doc.put("$set", update);
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(
+					new BasicDBObject().append("OpenID", openid), doc);
+			ret = true;
 
+		} catch (Exception e) {
+			log.info("followAllAreaOrRole--" + e.getMessage());
+		}
+		return ret;
+	}
+	
+	public static ArrayList<RoleOfAreaMap> QueryRoleOfAreaMap(String flag) {
+		mongoDB = getMongoDB();
+		ArrayList<RoleOfAreaMap> list = new ArrayList<RoleOfAreaMap>();
+		DBObject query = new BasicDBObject();
+		DBCursor queryresults;
+		if (flag != null && !flag.isEmpty()) {
+			query.put("flag", flag);
+			queryresults = mongoDB.getCollection(role_area).find(query);
+		} else {
+			queryresults = mongoDB.getCollection(role_area).find();
+		}
+		if (null != queryresults) {
+			while (queryresults.hasNext()) {
+				DBObject o = queryresults.next();
+				RoleOfAreaMap temp = new RoleOfAreaMap();
+				if (o.get("id") != null) {
+					temp.setId(o.get("id").toString());
+				}
+				if (o.get("flag") != null) {
+					temp.setFlag(o.get("flag").toString());
+				}
+				if (o.get("name") != null) {
+					temp.setName(o.get("name").toString());
+				}
+				ArrayList<String> relateLists = new ArrayList<String>();
+				if (o.get("relateLists") != null) {
+					BasicDBList hist = (BasicDBList) o.get("relateLists");
+					Object[] kmObjects = hist.toArray();
+					for (Object dbobj : kmObjects) {
+						if (dbobj instanceof String) {
+							relateLists.add((String) dbobj);
+						}
+					}
+				}
+				temp.setRelateLists(relateLists);
+				list.add(temp);
+			}
+		}
+		return list;
+	}
+
+	
+	public static boolean createRoleOfAreaMap(RoleOfAreaMap role) {
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+		try {
+			DBObject insert = new BasicDBObject();
+			insert.put("id", role.getId());
+			insert.put("flag", role.getFlag());
+			insert.put("name", role.getName());
+			mongoDB.getCollection(role_area).insert(insert);
+			ret = true;
+		} catch (Exception e) {
+			log.info("createRoleOfAreaMap--" + e.getMessage());
+		}
+		return ret;
+	}
 
 }
