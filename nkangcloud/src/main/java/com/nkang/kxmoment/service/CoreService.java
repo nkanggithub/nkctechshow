@@ -162,7 +162,7 @@ public class CoreService
 						
 						article.setTitle(cm.getClientName()+"|移动应用");
 						article.setDescription("移动应用");
-						article.setPicUrl("http://leshu.bj.bcebos.com/icon/myapplication.jpg");
+						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuapp.JPG");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
