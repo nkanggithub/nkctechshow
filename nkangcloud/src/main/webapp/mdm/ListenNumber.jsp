@@ -103,7 +103,7 @@ color:white;
 
 <section id="startPanel">
 <div class="selectPanel">
-            <div class="circle start bigger">开始练习</div>
+            <div class="circle start bigger">听数开始</div>
 			</div>
 </section>
 <section id="endPanel">
