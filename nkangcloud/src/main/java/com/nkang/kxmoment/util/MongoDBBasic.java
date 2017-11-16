@@ -103,24 +103,7 @@ public class MongoDBBasic {
 		
 		return AccessKey;
 	}
-/*
-	public static void updateAccessKey(String key, String expiresIn) {
-		try {
-			mongoDB = getMongoDB();
-			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(
-					new java.util.Date().getTime());
-			DBObject update = new BasicDBObject();
-			update.put("ExpiresIn", Integer.valueOf(expiresIn));
-			update.put("LastUpdated", DateUtil.timestamp2Str(cursqlTS));
-			update.put("AKey", key);
-			update.put("ID", "1");
-			mongoDB.getCollection(access_key).update(
-					new BasicDBObject().append("ID", "1"), update, true, false);
-		} catch (Exception e) {
-			log.info("updateAccessKey--" + e.getMessage());
-		}
-	}
-*/
+
 	public static void updateAccessKey(String key, String expiresIn) {
 		try {
 			mongoDB = getMongoDB();
@@ -180,39 +163,7 @@ public class MongoDBBasic {
 		}
 	}
 	
-	/*
-	public static String QueryAccessKey() {
-		String validKey = null;
-		mongoDB = getMongoDB();
-		java.sql.Timestamp sqlTS = null;
-		;
-		java.sql.Timestamp cursqlTS = new java.sql.Timestamp(
-				new java.util.Date().getTime());
-		try {
-			DBObject query = new BasicDBObject();
-			query.put("ID", "1");
-			validKey = mongoDB.getCollection(access_key).findOne(query)
-					.get("AKey").toString();
-			String timehere = mongoDB.getCollection(access_key).findOne(query)
-					.get("LastUpdated").toString();
-			sqlTS = DateUtil.str2Timestamp(timehere);
-			int diff = (int) ((cursqlTS.getTime() - sqlTS.getTime()) / 1000);
-			if ((7200 - diff) > 0) {
-				// log.info(diff +
-				// " is less than 7200. so use original valid Key as : "+
-				// validKey);
-			} else {
-				log.info(diff
-						+ " is close to 7200. and is to re-generate the key");
-				validKey = null;
-			}
 
-		} catch (Exception e) {
-			log.info("QueryAccessKey--" + e.getMessage());
-		}
-		return validKey;
-	}
-*/
 	public static String QueryAccessKey() {
 		String validKey = null;
 		mongoDB = getMongoDB();
@@ -3382,11 +3333,9 @@ public class MongoDBBasic {
 			}
 			//send message to leshu admin to get client engaged
 			String templateId="231590";
-			String para="nkc";
+			String para=": 姓名【"+app.getName() + "】 电话【"+app.getTel()+"】";
 			String to="15123944895";
-			log.info("---before sending sms for app---");
 			RestTest.testTemplateSMS(true, Constants.ucpass_accountSid,Constants.ucpass_token,Constants.ucpass_appId, templateId,to,para);
-			log.info("---end sending sms for app---");
 		} catch (Exception e) {
 			ret = e.getMessage();
 		}
