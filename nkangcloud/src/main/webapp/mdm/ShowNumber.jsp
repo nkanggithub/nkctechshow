@@ -4,11 +4,10 @@
 <head>
 <meta charset="utf-8" />
 <title>乐数-看算练习</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link rel="stylesheet" type="text/css"
-	href="../Jsp/JS/leshu/bootstrap.min.css" />
-<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
+	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
 	<center>
