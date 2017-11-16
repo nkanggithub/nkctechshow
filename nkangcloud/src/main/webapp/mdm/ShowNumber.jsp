@@ -88,7 +88,7 @@ color:white;
 <div class="circle">八笔</div>
 <div class="circle">十笔</div>
 </div>
-<i id="toLength" class="fa fa-long-arrow-right fa-5x"></i>
+<i id="toLength" class="fa fa-arrow-circle-right fa-5x"></i>
 </section>
 
 <section id="lengthCountPanel">
@@ -98,7 +98,7 @@ color:white;
 <div class="circle">三位</div>
 <div class="circle">四位</div>
 </div>
-<i id="toStart" class="fa fa-long-arrow-right fa-5x"></i>
+<i id="toStart" class="fa fa-arrow-circle-right fa-5x"></i>
 </section>
 
 <section id="startPanel">
