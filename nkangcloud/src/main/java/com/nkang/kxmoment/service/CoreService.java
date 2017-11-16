@@ -290,7 +290,7 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle(cm.getClientName()+"|乐数风采");
 						article.setDescription("您可查看实时更新的产品运维报表");
-						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
+						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshumoment.JPG");
 						article.setUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
 						articleList.add(article);
 						
