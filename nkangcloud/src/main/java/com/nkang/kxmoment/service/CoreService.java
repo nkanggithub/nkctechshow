@@ -275,7 +275,7 @@ public class CoreService
 						int randNum = rand.nextInt(30);
 						article.setTitle(cm.getClientName()+"| 欢迎进入自我修炼");
 						article.setDescription("乐数在线考试练习系统");
-						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mnn&oid=00D90000000pkXM");
+						article.setPicUrl("http://leshu.bj.bcebos.com/standard/onlinetest.png");
 //						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
 						article.setUrl("http://"+Constants.baehost+"/at/test.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
