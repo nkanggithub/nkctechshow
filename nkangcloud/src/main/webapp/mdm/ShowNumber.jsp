@@ -215,10 +215,10 @@ var textToShow="";
 	$("#answerInput").append("<input type='text' class='niput' value="+tempArray[i]+" disabled />")
 	}
 		var total=0;
-	for(var i=1;i<tempArray.length-1;i++){
+	for(var i=0;i<tempArray.length-1;i++){
 	total+=parseInt(tempArray[i]);}
 
-	$("#total").val(total);
+	$("#total").val("正确答案：" + total);
 	
 	textToShow="";
 	} 
