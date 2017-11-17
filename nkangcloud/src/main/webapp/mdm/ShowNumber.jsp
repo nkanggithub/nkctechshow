@@ -27,7 +27,7 @@ body {
 }
 
 .niput {
-	width: 150px;
+	width: 100%;
 	height: 45px;
 	margin: 5px;
 	padding: 12px 12px;
@@ -35,16 +35,12 @@ body {
 	line-height: 1.42857143;
 	color: #555;
 	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
 		ease-in-out .15s;
 	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
 		.15s;
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	border:none;
 }
 
 .numPanel {
@@ -144,7 +140,7 @@ i {
 			<div id="answerInput"></div>
 			<div>
 
-				<input style="width: 310px" placeholder="请输入以上数字总和" id="total"
+				<input placeholder="请输入以上数字总和" id="total"
 					type="text" class="niput ">
 
 
