@@ -47,6 +47,7 @@ body {
 	line-height: 1.42857143;
 	color: #555;
 	background-color: #fff;
+	text-align:center;
 	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
 		ease-in-out .15s;
 	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out

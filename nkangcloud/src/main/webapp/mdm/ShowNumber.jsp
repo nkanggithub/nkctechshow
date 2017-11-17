@@ -34,6 +34,7 @@ body {
 	font-size: 19px;
 	line-height: 1.42857143;
 	color: #555;
+	text-align:center;
 	background-color: #fff;
 	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
 		ease-in-out .15s;
