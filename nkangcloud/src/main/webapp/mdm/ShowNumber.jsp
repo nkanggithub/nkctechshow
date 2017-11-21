@@ -1,10 +1,12 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
 <title>乐数-看算练习</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+	<script src="https://static.fusioncharts.com/code/latest/fusioncharts.widgets.js"></script>
+	<script src="https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script>
 	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
 	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
@@ -50,7 +52,7 @@ body {
 	text-align: center;
 }
 
-#startPanel,#endPanel,#processPanel {
+#startPanel,#endPanel,#processPanel,#right,#wrong,#chart-container {
 	display: none;
 }
 
@@ -67,11 +69,15 @@ body {
 	margin-top: 10px;
 }
 
+.selectPanel p
+{
+	font-size: 18px;
+    color: #717171;
+}
 .circle {
 	display: inline-block;
 	font-size: 22px;
 	margin: 8px;
-	color: #717171;
 	border: 1px solid green;
 	border-radius: 100%;
 	text-align: center;
@@ -132,27 +138,38 @@ i {
 	</section>
 	<section id="endPanel">
 		<div class="selectPanel">
+		  <p>请输入以上数字总和</p>
+		  <input  id="answer" type="text" class="niput" value="" style="border-bottom: 1px solid green;width: 60%;margin-bottom: 60px;">
 			<div class="circle end bigger">显示答案</div>
 		</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 
 		<div class="selectPanel">
+		
+		<div id="right">
+		<i class="fa fa-smile-o fa-3x"></i>
+<span style="font-size: 18px;display: inline-block;height: 30px;position: relative;top: -5px;margin-left: 10px;">答案正确</span></div><div id="wrong">
+		<i class="fa fa-frown-o fa-3x" style="
+    color: #F94082;
+"></i>
+<span style="font-size: 18px;display: inline-block;height: 30px;position: relative;top: -5px;margin-left: 10px;">答案错误</span></div>
 			<div id="answerInput"></div>
 			<div>
-
-				<input placeholder="请输入以上数字总和" id="total"
-					type="text" class="niput ">
-
-
+			<input style="border-top: 1px solid black;width: 60%;" id="total" type="text" class="niput " disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
 				<input type="button" class="btn btn-primary start middleBtn"
 					value="再来一次">
+					<!-- <input type="text" id="timetext" value="00时00分00秒" readonly><br>-->
+					 
 
 			</div>
 		</div>
+		
+		
 	</section>
+				 <div id="chart-container">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script>
 
@@ -168,6 +185,8 @@ var textToShow="";
 	var lengthArray=new Array(10,100,1000,10000);
 	
         function start() {
+		timeStart();
+		$("#chart-container").hide();
 		var textToShow="";
             view = $("#ShowNumberPanel");
                 $(".niput").val("");
@@ -179,6 +198,7 @@ var textToShow="";
                 clearTimeout(snto);
 
             view.text("准备");
+			view.fadeIn(1000);
             snto = setTimeout("ShowNumber()", 1000);
         }
         var answer = null;
@@ -193,7 +213,12 @@ var textToShow="";
                 return;
             }
 			num=Math.round(Math.random()*lengthArray[length]);
+			
+            view.fadeOut(1000);
+			
             view.text(num);	
+			view.fadeIn(1000);
+
 			textToShow=textToShow+num+",";
             nnto = setTimeout("hideNumber()", 1000);
             snto = setTimeout("ShowNumber()", 1000);
@@ -201,17 +226,17 @@ var textToShow="";
         }
 
         function hideNumber() {
-            view.text("");
+            view.fadeOut(1000);
         }
 
-       
+        var total=0;
 	function showAnswer(){
  $("#answerInput").html("");
 	var tempArray=textToShow.split(",");
 	for(var i=0;i<numCountArray[numCount];i++){
-	$("#answerInput").append("<input type='text' class='niput' value="+tempArray[i]+" disabled />")
+	$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />")
 	}
-		var total=0;
+		total=0;
 	for(var i=0;i<tempArray.length-1;i++){
 	total+=parseInt(tempArray[i]);}
 
@@ -251,16 +276,119 @@ var textToShow="";
 	$("#startPanel").show();
 	});
 		$(".end").on("click",function(){
+		
+			var answer=$("#answer").val();
+			if(answer==""){
+			alert("请输入你的答案哦~！");return;}
+			else{
+			timeStop();}
+	  FusionCharts.ready(function () {
+    var cSatScoreChart = new FusionCharts({
+        type: 'angulargauge',
+        renderAt: 'chart-container',
+        width: '400',
+        height: '250',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "耗时统计",
+                "lowerLimit": "0",
+                "upperLimit": "60",
+                "lowerLimitDisplay": "Good",
+                "upperLimitDisplay": "Bad",
+                "showValue": "1",
+                "valueBelowPivot": "1",
+                "theme": "fint"
+            },
+            "colorRange": {
+                "color": [
+                    {
+                        "minValue": "0",
+                        "maxValue": "24",
+                        "code": "#6baa01"
+                    },
+                    {
+                        "minValue": "24",
+                        "maxValue": "48",
+                        "code": "#f8bd19"
+                    },
+                    {
+                        "minValue": "48",
+                        "maxValue": "60",
+                        "code": "#e44a00"
+                    }
+                ]
+            },
+            "dials": {
+                "dial": [{
+                    "value": millisecond/1000+second
+                }]
+            }
+        }
+    }).render();    
+});
+  $("#chart-container").show();
 	$("#endPanel").hide();
-	$("#answerPanel").show();
 	showAnswer();
+	if(answer==total){$("#right").show();
+	$("#wrong").hide();}
+	else{$("#wrong").show();
+	$("#right").hide();}
+
+	$("#answerPanel").show();
+
 	});
 	$(".start").on("click",function(){
+	reset();
 	$("#answerPanel").hide();
 	$("#startPanel").hide();
 	$("#processPanel").show();
 	start();
 	});
+	
+	   var hour,minute,second;//时 分 秒
+    hour=minute=second=0;//初始化
+    var millisecond=0;//毫秒
+    var int;
+    function reset()//重置
+    {
+      window.clearInterval(int);
+      millisecond=hour=minute=second=0;
+      $('#timetext').val('00时00分00秒000毫秒');
+    }
+  
+    function timeStart()//开始
+    {
+      int=setInterval(timer,50);
+    }
+  
+    function timer()//计时
+    {
+      millisecond=millisecond+50;
+      if(millisecond>=1000)
+      {
+        millisecond=0;
+        second=second+1;
+      }
+      if(second>=60)
+      {
+        second=0;
+        minute=minute+1;
+      }
+  
+      if(minute>=60)
+      {
+        minute=0;
+        hour=hour+1;
+      }
+      $('#timetext').val(hour+'时'+minute+'分'+second+'秒'+millisecond+'毫秒');
+
+    }
+  
+    function timeStop()//暂停
+    {
+      window.clearInterval(int);
+    }
 </script>
 </body>
 </html>
