@@ -133,7 +133,7 @@ i {
 	</section>
 	<section id="processPanel">
 		<div class="selectPanel">
-			<div id="ShowNumberPanel" class="circle start numPanel bigger">看数</div>
+			<div class="circle start numPanel bigger"><span id="ShowNumberPanel">看数</span></div>
 		</div>
 	</section>
 	<section id="endPanel">
