@@ -301,12 +301,12 @@ public class CoreService
 						article1.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
 						articleList.add(article1);
 						
-						Article article2 = new Article();
+/*						Article article2 = new Article();
 						article2.setTitle("师资风采");
 						article2.setDescription("生产环境智能监控");
 						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/Teacher.png");
 						article2.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
-						articleList.add(article2);
+						articleList.add(article2);*/
 						
 						Article article3 = new Article();
 						article3.setTitle("家园共育");
