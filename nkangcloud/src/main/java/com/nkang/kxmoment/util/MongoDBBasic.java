@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
@@ -30,6 +31,7 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
+import com.nkang.kxmoment.baseobject.AbacusQuizPool;
 import com.nkang.kxmoment.baseobject.Appointment;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientInformation;
@@ -64,7 +66,7 @@ public class MongoDBBasic {
 	private static String Quiz_Pool = "QuizPool";
 	private static String Video_Message = "Video_Message";
 	private static String ClientMeta = "Client_Meta";
-	private static String collectionBill = "SaleBill";
+	private static String collectionAbacusQuizPool = "AbacusQuizPool";
 	private static String role_area = "RoleOfAreaMap";
 	private static String collectionVisited = "Visited";
 
@@ -3642,5 +3644,251 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+/*
+ *  march for create AbacusQuizPool
+ */
+	public static boolean createAbacusQuizPool(AbacusQuizPool abacusQuiz) {
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+		//String[] questions = new ArrayList();
+		
+		try {
+			//String[] questions=abacusQuiz.getQuestion().split(",");
+			DBObject insert = new BasicDBObject();
+			String uuid = UUID.randomUUID().toString().trim().replaceAll("-", ""); 
+			insert.put("id", uuid);
+			//insert.put("tag", abacusQuiz.getTag());
+			
+			insert.put("category", abacusQuiz.getCategory());
+			insert.put("checkpoint", abacusQuiz.getCheckpoint());
+			insert.put("grade", abacusQuiz.getGrade());	
+			List<String> question=abacusQuiz.getQuestion();
+			int answer=0;
+			if(abacusQuiz.getAnswer()==0){
+				for(String str : question){
+					answer=answer+Integer.parseInt(str);
+				}
+				insert.put("answer", answer);
+			}
+			
+			mongoDB.getCollection(collectionAbacusQuizPool).insert(insert);
+			
+			addTagAndQuestion(abacusQuiz.getId(),abacusQuiz.getTag(),question);
+			ret = true;
+		} catch (Exception e) {
+			log.info("createAbacusQuizPool--" + e.getMessage());
+		}
+		return ret;
+	}
+	
+	public static boolean addTagAndQuestion(String id,List<String> taglist,List<String> questionlist){
 
+	boolean result = false;
+	mongoDB = getMongoDB();
+	DBObject query = new BasicDBObject();
+	query.put("id", id);
+	DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
+	BasicDBList Tags = (BasicDBList) queryresults.get("Tag");
+	BasicDBList Questions = (BasicDBList) queryresults.get("question");
+	List listtag = new ArrayList();
+	List listquestion = new ArrayList();
+	if (Tags != null) {
+		Object[] tagObjects = Tags.toArray();
+		for (Object dbobj : tagObjects) {
+			/*if (dbobj instanceof DBObject) {
+				HashMap<String, Object> temp = new HashMap<String, Object>();
+				temp.put("tag", ((DBObject) dbobj).get("tag").toString());				
+				listtag.add(temp);
+			}*/
+			listtag.add(dbobj);
+		}
+		if(taglist.size()>0){
+			for(String lt : taglist){
+				listtag.add(lt);
+			}
+		}
+	}else{
+		listtag=taglist;
+	}
+	if(Questions !=null){
+		Object[] questionObjs = Questions.toArray();
+		for (Object dbobj : questionObjs) {
+			if (dbobj instanceof DBObject) {			
+				listquestion.add(dbobj);
+			}
+		}
+		if(questionlist.size()>0){
+			for(String lt : questionlist){
+				listquestion.add(lt);
+			}
+		}
+	}else{
+		listquestion=questionlist;
+	}
+
+	BasicDBObject doc = new BasicDBObject();
+	BasicDBObject update = new BasicDBObject();
+	update.append("tag", listtag);
+	update.append("question", listquestion);
+	doc.put("$set", update);
+	WriteResult wr = mongoDB.getCollection(collectionAbacusQuizPool).update(
+			new BasicDBObject().append("id", id), doc);
+	result = true;
+	return result;
+
+	}
+	/*
+	 * find all
+	 */
+	public static List<AbacusQuizPool> findAllAbacusQuizPool(){
+		List<AbacusQuizPool> aqps=new ArrayList<AbacusQuizPool>();
+		AbacusQuizPool abacusQuizPool;
+		
+		try {
+			//DBObject query = new BasicDBObject();
+			DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find();
+			if (null != queryresults) {
+				
+				while (queryresults.hasNext()) {
+					abacusQuizPool = new AbacusQuizPool();
+					List<String> tag = new ArrayList<String>();
+					List<String> question = new ArrayList<String>();
+					DBObject o = queryresults.next();
+					abacusQuizPool.setAnswer(Integer.parseInt(o.get("answer")+""));
+					abacusQuizPool.setCategory(o.get("category")+"");
+					abacusQuizPool.setCheckpoint(o.get("checkpoint")+"");
+					abacusQuizPool.setGrade(o.get("grade")+"");
+					abacusQuizPool.setId(o.get("id")+"");
+					
+					BasicDBList tags = (BasicDBList) o.get("tag");
+					BasicDBList hist = (BasicDBList) o.get("question");
+					if (hist != null) {
+						Object[] questions = hist.toArray();
+						for (Object dbobj : questions) {
+							question.add(dbobj+"");
+						}
+					}
+					abacusQuizPool.setQuestion(question);
+					if(tags!=null){
+						Object[] tagss = tags.toArray();
+						for (Object dbobj : tagss) {
+							tag.add(dbobj+"");
+						}
+					}
+					abacusQuizPool.setTag(tag);
+					if (abacusQuizPool != null) {
+						aqps.add(abacusQuizPool);
+					}
+				}
+			}
+		} catch (Exception e) {
+			log.info("findAllAbacusQuizPool--" + e.getMessage());
+		}
+		return aqps;
+	}
+	/*
+	 * find by category
+	 */
+	public static List<AbacusQuizPool> findAbacusQuizPoolBycategory(String category){
+		List<AbacusQuizPool> aqps=new ArrayList<AbacusQuizPool>();
+		
+		try {
+			DBObject Query = new BasicDBObject();
+			Query.put("category", category);
+			DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find(Query);
+			if (null != queryresults) {
+				while (queryresults.hasNext()) {
+					AbacusQuizPool abacusQuizPool = new AbacusQuizPool();
+					List<String> tag = new ArrayList<String>();
+					List<String> question = new ArrayList<String>();
+					DBObject o = queryresults.next();
+					abacusQuizPool.setAnswer(Integer.parseInt(o.get("answer")+""));
+					abacusQuizPool.setCategory(o.get("category")+"");
+					abacusQuizPool.setCheckpoint(o.get("checkpoint")+"");
+					abacusQuizPool.setGrade(o.get("grade")+"");
+					abacusQuizPool.setId(o.get("id")+"");
+					
+					BasicDBList tags = (BasicDBList) o.get("tag");
+					BasicDBList hist = (BasicDBList) o.get("question");
+					if (hist != null) {
+						Object[] questions = hist.toArray();
+						for (Object dbobj : questions) {
+							if (dbobj instanceof String) {
+								question.add((String) dbobj);
+							}
+						}
+					}
+					abacusQuizPool.setQuestion(question);
+					if(tags!=null){
+						Object[] tagss = tags.toArray();
+						for (Object dbobj : tagss) {
+							if (dbobj instanceof String) {
+								tag.add((String) dbobj);
+							}
+						}
+					}
+					abacusQuizPool.setTag(tag);
+					if (abacusQuizPool != null) {
+						aqps.add(abacusQuizPool);
+					}
+				}
+			}
+		} catch (Exception e) {
+			log.info("findAllAbacusQuizPool--" + e.getMessage());
+		}
+		return aqps;
+	}
+	
+	/*
+	 * delete all
+	 */
+	public static boolean deleteAllAbacusQuizPool(){
+		
+		boolean result = false;
+		try{
+		mongoDB = getMongoDB();
+		DBObject removeQuery = new BasicDBObject();
+		
+		mongoDB.getCollection(collectionAbacusQuizPool).remove(removeQuery);
+		result = true;
+		}catch (Exception e) {
+			log.info("createAbacusQuizPool--" + e.getMessage());
+		}
+		return result;
+	}
+	/*
+	 * delete by category
+	 */
+	public static boolean deleteAbacusQuizPoolBycategory(String category){
+		
+		boolean result = false;
+		try{
+		mongoDB = getMongoDB();
+		DBObject removeQuery = new BasicDBObject();
+		removeQuery.put("category", category);
+		mongoDB.getCollection(collectionAbacusQuizPool).remove(removeQuery);
+		result = true;
+		}catch (Exception e) {
+			log.info("deleteAbacusQuizPoolBycategory--" + e.getMessage());
+		}
+		return result;
+	}
+		
+		/*
+		 * delete by id
+		 */
+	public static boolean deleteAbacusQuizPoolById(String id){
+			
+			boolean result = false;
+			try{
+			mongoDB = getMongoDB();
+			DBObject removeQuery = new BasicDBObject();
+			removeQuery.put("id", id);
+			mongoDB.getCollection(collectionAbacusQuizPool).remove(removeQuery);
+			result = true;
+			}catch (Exception e) {
+				log.info("deleteAbacusQuizPoolById--" + e.getMessage());
+			}
+			return result;
+	}
 }

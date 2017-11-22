@@ -30,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nkang.kxmoment.baseobject.AbacusQuizPool;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.ClientMeta;
@@ -1943,4 +1944,66 @@ public class RestUtils {
 		return result;
 
 	}
+	
+	/*
+	 * chang-zheng
+	 */
+	/*
+	public static String addAbacusQuizPool(AbacusQuizPool abacusQuizPool) {
+
+		String urlStr = "http://" + Constants.baehost + "/CallQuizController";
+		ArrayList<String> arr = new ArrayList<String>();
+			arr.add("answer="+abacusQuizPool.getAnswer()+"");
+		
+		if (abacusQuizPool.getCategory() != null && !"".equals(abacusQuizPool.getCategory())) {
+			arr.add("category=" + abacusQuizPool.getCategory());
+		}
+		if (abacusQuizPool.getCheckpoint() != null && !"".equals(abacusQuizPool.getCheckpoint())) {
+			arr.add("checkpoint=" + abacusQuizPool.getCheckpoint());
+		}
+		
+		String temp = "";
+		for (int i = 0; i < arr.size(); i++) {
+			if (i == 0)
+				temp += "?";
+			else
+				temp += "&";
+			temp += arr.get(i);
+		}
+		urlStr += temp;
+		System.out.println(urlStr);
+		String message = "error";
+		try {
+
+			URL urlGet = new URL(urlStr);
+			HttpURLConnection http = (HttpURLConnection) urlGet
+					.openConnection();
+			http.setRequestMethod("GET"); // must be get request
+			http.setRequestProperty("Content-Type",
+					"application/x-www-form-urlencoded");
+			http.setDoOutput(true);
+			http.setDoInput(true);
+			if (localInd == "Y") {
+				System.setProperty("http.proxyHost", Constants.proxyInfo);
+				System.setProperty("http.proxyPort", "8080");
+			}
+			System.setProperty("sun.net.client.defaultConnectTimeout", "30000");
+			System.setProperty("sun.net.client.defaultReadTimeout", "30000");
+			http.connect();
+			InputStream is = http.getInputStream();
+			int size = is.available();
+			byte[] jsonBytes = new byte[size];
+			is.read(jsonBytes);
+			message = new String(jsonBytes, "UTF-8");
+			System.out.println("=============" + message);
+			is.close();
+
+		} catch (Exception e) {
+			log.info("error callGetDataQualityReport ---------"
+					+ e.getMessage());
+			message = "failed with " + e.getMessage();
+		}
+		return message;
+	}
+	*/
 }
