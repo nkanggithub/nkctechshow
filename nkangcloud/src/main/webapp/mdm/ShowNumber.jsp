@@ -132,6 +132,7 @@ i {
         </div>
 		
 		<i id="toStart" class="fa fa-arrow-circle-right fa-5x"></i>
+		<p style="line-height: 40px;">选择速度</p>
       </section>
 	<section id="numCountPanel">
 		<div class="selectPanel">
@@ -141,6 +142,7 @@ i {
 			<div class="circle">十笔</div>
 		</div>
 		<i id="toLength" class="fa fa-arrow-circle-right fa-5x"></i>
+		<p style="line-height: 40px;">选择笔数</p>
 	</section>
 
 	<section id="lengthCountPanel">
@@ -151,6 +153,7 @@ i {
 			<div class="circle">四位</div>
 		</div>
 		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x"></i>
+		<p style="line-height: 40px;">选择位数</p>
 	</section>
 
 	<section id="startPanel">
@@ -166,7 +169,7 @@ i {
 	<section id="endPanel">
 		<div class="selectPanel">
 		  <p>请输入以上数字总和</p>
-		  <input  id="answer" type="text" class="niput" value="" style="border-bottom: 1px solid #22B26F;width: 60%;margin-bottom: 60px;">
+		  <input  id="answer" placeholder="请输入答案" type="text" class="niput" value="" style="border-bottom: 1px solid #22B26F;width: 60%;margin-bottom: 60px;">
 			<div class="circle end bigger">显示答案</div>
 		</div>
 	</section>
@@ -326,6 +329,7 @@ var textToShow="";
         dataSource: {
             "chart": {
                 "caption": "耗时统计",
+				"subcaption": "计算时间(秒)",
                 "lowerLimit": "0",
                 "upperLimit": "60",
                 "lowerLimitDisplay": "真棒",
@@ -355,13 +359,14 @@ var textToShow="";
             },
             "dials": {
                 "dial": [{
-                    "value": millisecond/1000+second
+                    "value": millisecond/1000+second-3
                 }]
             }
         }
     }).render();    
 });
   $("#chart-container").show();
+
 	$("#endPanel").hide();
 	showAnswer();
 	if(answer==total){$("#right").show();
