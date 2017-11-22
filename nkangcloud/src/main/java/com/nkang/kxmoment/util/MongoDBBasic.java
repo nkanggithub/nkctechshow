@@ -3673,7 +3673,7 @@ public class MongoDBBasic {
 			
 			mongoDB.getCollection(collectionAbacusQuizPool).insert(insert);
 			
-			addTagAndQuestion(abacusQuiz.getId(),abacusQuiz.getTag(),question);
+			addTagAndQuestion(uuid,abacusQuiz.getTag(),question);
 			ret = true;
 		} catch (Exception e) {
 			log.info("createAbacusQuizPool--" + e.getMessage());
@@ -3741,6 +3741,7 @@ public class MongoDBBasic {
 	 * find all
 	 */
 	public static List<AbacusQuizPool> findAllAbacusQuizPool(){
+		mongoDB = getMongoDB();
 		List<AbacusQuizPool> aqps=new ArrayList<AbacusQuizPool>();
 		AbacusQuizPool abacusQuizPool;
 		
@@ -3793,6 +3794,7 @@ public class MongoDBBasic {
 		List<AbacusQuizPool> aqps=new ArrayList<AbacusQuizPool>();
 		
 		try {
+			mongoDB = getMongoDB();
 			DBObject Query = new BasicDBObject();
 			Query.put("category", category);
 			DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find(Query);
