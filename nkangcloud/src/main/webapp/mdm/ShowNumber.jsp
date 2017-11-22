@@ -5,12 +5,28 @@
 <meta charset="utf-8" />
 <title>乐数-看算练习</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
-	<script src="https://static.fusioncharts.com/code/latest/fusioncharts.widgets.js"></script>
-	<script src="https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script>
+	<script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
+	<script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
+	<script src="../Jsp/JS/fusioncharts/fusioncharts.theme.fint.js"></script>
 	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
 	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/jquery-ui-1.11.0.css">
 
+<!-- slider -->
+<link rel="stylesheet" href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
+<!-- jquery, jqueryui --> 
+<script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script> 
+
+<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
+
+<script	src="../MetroStyleFiles/sweetalert.min.js"></script>
+<!-- slider --> 
+<script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script> 
+
+<!-- app --> 
+<script src="../Jsp/JS/speedTab/examples.js"></script> 
+<!-- app -->
+<link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
 </head>
 <body>
 	<center>
@@ -49,11 +65,11 @@ body {
 
 .numPanel {
 	font-size: 45px !important;
-	color: red !important;
+	color: #F94082 !important;
 	text-align: center;
 }
 
-#startPanel,#endPanel,#processPanel,#right,#wrong,#chart-container {
+#startPanel,#endPanel,#processPanel,#right,#wrong,#chart-container,#speedAjust {
 	display: none;
 }
 
@@ -61,7 +77,8 @@ body {
 	width: 120px;
 	height: 40px;
 	font-size: 18px;
-	background: green !important;
+	background: #22B26F!important;
+	    border-color: #22B26F;
 }
 
 .selectPanel {
@@ -79,7 +96,7 @@ body {
 	display: inline-block;
 	font-size: 22px;
 	margin: 8px;
-	border: 1px solid green;
+	border: 1px solid #22B26F;
 	border-radius: 100%;
 	text-align: center;
 	width: 130px;
@@ -94,7 +111,7 @@ body {
 }
 
 i {
-	color: green;
+	color: #22B26F;
 }
 
 #lengthCountPanel {
@@ -102,11 +119,20 @@ i {
 }
 
 .default {
-	background-color: green;
+	background-color: #22B26F;
 	color: white;
 }
 </style>
+      <section class="sub-block" id="speedAjust">
 
+        <div class="tabs-content">
+          <div class="content active" id="show-rest-slider-result">
+            <div id="show-rest-slider"></div>
+          </div>
+        </div>
+		
+		<i id="toStart" class="fa fa-arrow-circle-right fa-5x"></i>
+      </section>
 	<section id="numCountPanel">
 		<div class="selectPanel">
 			<div class="circle default">三笔</div>
@@ -124,7 +150,7 @@ i {
 			<div class="circle">三位</div>
 			<div class="circle">四位</div>
 		</div>
-		<i id="toStart" class="fa fa-arrow-circle-right fa-5x"></i>
+		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x"></i>
 	</section>
 
 	<section id="startPanel">
@@ -140,7 +166,7 @@ i {
 	<section id="endPanel">
 		<div class="selectPanel">
 		  <p>请输入以上数字总和</p>
-		  <input  id="answer" type="text" class="niput" value="" style="border-bottom: 1px solid green;width: 60%;margin-bottom: 60px;">
+		  <input  id="answer" type="text" class="niput" value="" style="border-bottom: 1px solid #22B26F;width: 60%;margin-bottom: 60px;">
 			<div class="circle end bigger">显示答案</div>
 		</div>
 	</section>
@@ -173,7 +199,7 @@ i {
 				 <div id="chart-container">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script>
-
+var speed=2;
 var textToShow="";
         var numberModel = null;
         var numberLength = 0;
@@ -199,7 +225,7 @@ var textToShow="";
                 clearTimeout(snto);
 
             view.text("准备");
-			view.fadeIn(1000);
+			view.fadeOut(1000);
             snto = setTimeout("ShowNumber()", 1000);
         }
         var answer = null;
@@ -215,19 +241,21 @@ var textToShow="";
             }
 			num=Math.round(Math.random()*lengthArray[length]);
 			
-            view.fadeOut(1000);
+			
+			view.fadeIn(speed*300);
 			
             view.text(num);	
-			view.fadeIn(1000);
 
+			view.fadeOut(speed*300);
 			textToShow=textToShow+num+",";
-            nnto = setTimeout("hideNumber()", 1000);
-            snto = setTimeout("ShowNumber()", 1000);
+            snto = setTimeout("ShowNumber()", speed*600);
             currentShowCount++;
         }
 
         function hideNumber() {
-            view.fadeOut(1000);
+		
+            view.text("");	
+            view.fadeIn(1000);
         }
 
         var total=0;
@@ -249,7 +277,7 @@ var textToShow="";
 	var numCount=0;
 	var length=0;
 	$("#numCountPanel").find(".circle").hover(function(){
-	$(this).css("background-color","green");
+	$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
 	$(this).siblings().css({"background-color":"white","color":"black"});
 	numCount=$(this).index();
@@ -259,7 +287,7 @@ var textToShow="";
 	});
 	
 	$("#lengthCountPanel").find(".circle").hover(function(){
-	$(this).css("background-color","green");
+	$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
 	$(this).siblings().css({"background-color":"white","color":"black"});
 	length=$(this).index();
@@ -272,15 +300,20 @@ var textToShow="";
 	$("#numCountPanel").hide();
 	$("#lengthCountPanel").show();
 	});
-	$("#toStart").on("click",function(){
+	
+	$("#toSpeed").on("click",function(){
 	$("#lengthCountPanel").hide();
+	$("#speedAjust").show();
+	});
+	$("#toStart").on("click",function(){
+	$("#speedAjust").hide();
 	$("#startPanel").show();
 	});
 		$(".end").on("click",function(){
 		
 			var answer=$("#answer").val();
 			if(answer==""){
-			alert("请输入你的答案哦~！");return;}
+			swal("访问失败", "请输入你的答案哦~！", "error");;return;}
 			else{
 			timeStop();}
 	  FusionCharts.ready(function () {
@@ -295,8 +328,8 @@ var textToShow="";
                 "caption": "耗时统计",
                 "lowerLimit": "0",
                 "upperLimit": "60",
-                "lowerLimitDisplay": "Good",
-                "upperLimitDisplay": "Bad",
+                "lowerLimitDisplay": "真棒",
+                "upperLimitDisplay": "加油",
                 "showValue": "1",
                 "valueBelowPivot": "1",
                 "theme": "fint"
