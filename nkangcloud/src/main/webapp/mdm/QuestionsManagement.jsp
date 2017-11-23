@@ -14,7 +14,7 @@ AbacusQuizPool aqp = (AbacusQuizPool)request.getAttribute("aq");
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
 	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+<%@ include file="tiku.jsp" %>
 </head>
 <body>
 	<center>
