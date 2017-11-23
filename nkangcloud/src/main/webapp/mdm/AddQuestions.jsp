@@ -290,5 +290,11 @@ var textToShow="";
       </tr>
     </table>
   </form>
+
+
+<c:forEach items="${requestScope.aq }"var="u">
+   ${u.id}<br/>
+  </c:forEach>
+
 </body>
 </html>

@@ -1,14 +1,18 @@
 package com.nkang.kxmoment.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +37,7 @@ public class QuizController {
 		return quizs;
 	}
 	
-	
+	//test
 	@RequestMapping("/setAbacusQuizPool")
 	public @ResponseBody List<String> AbacusQuizPool(@RequestParam(value="type")String type){
 		AbacusQuizPool aq = new AbacusQuizPool();
@@ -59,7 +63,7 @@ public class QuizController {
 	
 	@RequestMapping("/addAbacusQuizPool")
 	@ResponseBody
-	public ModelAndView addAbacusQuizPool(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+	public String addAbacusQuizPool(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
 		ModelAndView model = new ModelAndView("AddQuestions");
 		request.setCharacterEncoding("UTF-8"); 
 		String id = request.getParameter("id");
@@ -70,13 +74,13 @@ public class QuizController {
 		String grade = request.getParameter("grade");
 		String tag = request.getParameter("tag");
 		AbacusQuizPool aq = new AbacusQuizPool();
-		String[] tags = tags=tag.split("|");
+		String[] tags = tags=tag.split(",");
 		List<String> tg = new ArrayList();
 		for(String str : tags){
 			tg.add(str);
 		}
 		
-		String[] question = questions.split("|");
+		String[] question = questions.split(",");
 		List<String> que = new ArrayList();
 		for(String str : question){
 			que.add(str);
@@ -89,21 +93,47 @@ public class QuizController {
 		aq.setGrade(grade);
 		aq.setTag(tg);
 
+		
 		if(MongoDBBasic.createAbacusQuizPool(aq)){
-			
+			//request.getSession().setAttribute("test", "123");
+			//session.setAttribute("test", "123");
+			return que.toString();
 		}
-		return model;
+		
+		
+		return tg.toString();
+		
 	}
 	
 	@RequestMapping("/getAllAbacusQuizPool")
-	public @ResponseBody List<AbacusQuizPool> getAllAbacusQuizPool(){
+	@ResponseBody
+	public List<AbacusQuizPool> getAllAbacusQuizPool(){
+		
 		List<AbacusQuizPool> quizs=MongoDBBasic.findAllAbacusQuizPool();
+		//mav.addObject("aq",quizs.get(0).question.toString() );
 		return quizs;
+		
+		
 	}
 	
 	@RequestMapping("/getAbacusQuizPoolBycategory")
 	public @ResponseBody List<AbacusQuizPool> getAbacusQuizPoolBycategory(@RequestParam(value="category")String category){
 		List<AbacusQuizPool> quizs=MongoDBBasic.findAbacusQuizPoolBycategory(category);
 		return quizs;
+	}
+	
+	@RequestMapping("/getAbacusQuizPoolBycategory1")
+	public ModelAndView getAbacusQuizPoolBycategory1(@RequestParam(value="category")String category,HttpSession session){
+		List<AbacusQuizPool> quizs=MongoDBBasic.findAbacusQuizPoolBycategory(category);
+		ModelAndView mav = new ModelAndView("QuestionsManagement");
+		mav.addObject("time", new Date());
+		if(null!=quizs){
+			mav.getModel().put("aq",quizs.get(0));
+
+			session.setAttribute("list",quizs);
+		}
+		
+		
+		return mav;
 	}
 }
