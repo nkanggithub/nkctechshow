@@ -2040,12 +2040,12 @@ function getNowFormatDate() {
 											<tr>
 												<td>
 													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp?UID=<%=uid %>&response_type=code&scope=snsapi_userinfo&state=<%=uid %>#wechat_redirect">
-														<img src="http://leshu.bj.bcebos.com/icon/Notification.png" /><h4>焦点追击</h4>
+														<img src="http://leshu.bj.bcebos.com/icon/Notification.png" /><h4>乐数快讯</h4>
 													</a>
 												</td>
 												<td>
 												<a target="_self" href="http://nkctech.duapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"><img src="http://leshu.bj.bcebos.com/icon/menu-stock.png" />
-													<h4>来访足迹</h4></a>
+													<h4>乐数足迹</h4></a>
 												</td>
 												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="http://leshu.bj.bcebos.com/icon/menu-technology.png" />
 													<h4>消息推送</h4></td>
@@ -2058,15 +2058,15 @@ function getNowFormatDate() {
 											<tr>
 												<td>
 												 <a href="http://nkctech.duapp.com/mdm/Navigator.jsp" target="_blank">
-												 <img src="http://leshu.bj.bcebos.com/icon/menu-face.png" /></a>
+												 <img src="http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png" /></a>
 													<h4>自我修炼</h4></td>
 												<!-- <td onclick="getReminderForMore()">
 												<img src="../MetroStyleFiles/Add1.png" />
 													<h4>更多应用</h4></td> -->
-													<td>
+<!-- 													<td>
 													 <a href="http://nkctech.duapp.com/mdm/uploadVideo.jsp" target="_blank">
 												 <img src="../MetroStyleFiles/Add1.png" /></a>
-													<h4>上传视频</h4></td> 
+													<h4>上传视频</h4></td>  -->
 											</tr>
 										</table>
 									</div>

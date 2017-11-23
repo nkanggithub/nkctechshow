@@ -351,7 +351,7 @@ function fixZero(num,length){
 </script>
 </head>
 <body style="margin:0px">
-<div style="padding-left: 10px;height: 70px;border-bottom: 4px solid black;padding-top: 10px;">
+<div style="padding-left: 10px;height: 70px;border-bottom: 4px solid #20b672;padding-top: 10px;">
 <img src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9IMj&amp;oid=00D90000000pkXM" alt="" style="height:60px;">
 <div style="width:100%;text-align:right;margin-top:-80px;">
 <ul class="nav pull-right top-menu" style="list-style: none;">
