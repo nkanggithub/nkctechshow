@@ -119,7 +119,7 @@ wx.config({
      }); */
      var shareTitle="更多精彩分享，您可关注该公众号点击发现乐数->往期回顾。";
      var shareDesc="<%=ams.get(0).getTitle()%>";
-     var shareImgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg";
+     var shareImgUrl="http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg";
 	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
          title: shareTitle, // 分享标题
@@ -286,9 +286,9 @@ Your browser does not support the video tag.
 <div style="padding-left: 10px;height: 60px;padding-top: 10px;">
 <img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">
 </div>
-<div class="topPic"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" />
-<div class="topPic_title">科技生活，从大数据开始</div></div>
-<div class="navi"><p id="articleMes">图文消息</p><p id="videoMes">视频消息</p></div>
+<div class="topPic"><img src="http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg" />
+<div class="topPic_title">【乐数】，乐在其中，心中有数</div></div>
+<div class="navi"><p id="articleMes">乐数图文</p><p id="videoMes">乐数视频</p></div>
 	<div id="wrapper" style="top:290px;">
 		<div class="scroller">
 <div id="mesPushPanel">
@@ -300,7 +300,7 @@ Your browser does not support the video tag.
 if(ams.get(i).getPicture()!=null&&ams.get(i).getPicture()!=""){ %>
 <img src="<%=ams.get(i).getPicture() %>" />
 <% }else{%>
-<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg" />
+<img src="http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg" />
 <%} %></div>
 <div class="mesContent">
 <h2 class="mesTitle">
@@ -512,7 +512,7 @@ Your browser does not support the video tag.
 									img="<img src='"+data[i].picture+"'/>";
 								}
 								else{
-									img="<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490602667276&di=5ff160cb3a889645ffaf2ba17b4f2071&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F65%2F94%2F64B58PICiVp_1024.jpg' />";
+									img="<img src='http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg' />";
 								}
 								var isForward="2";
 						if("0"==data[i].isForward){
