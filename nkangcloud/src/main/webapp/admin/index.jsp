@@ -860,7 +860,7 @@ jQuery
 }
 
 </script>
-<title>Admin Console</title>
+<title>微管理</title>
 </head>
 <body style="padding: 0px !important; margin: 0px;">
 	<div class="navbar-inner" style="background-color: #fff !important;">
