@@ -5022,12 +5022,12 @@ ol.circles-list > li:before {
 	    border: 1px solid #20b672!important;
 	     border-bottom: none!important;
 	     font-size:13px;
-	     color:black!important;
+	     color:#20b672!important;
 
 	}
 .TAB2class ul li a:hover
 {
-	color:black!important;
+	color:#20b672!important;
 }
 .TAB2class ul 
 {
