@@ -1,4 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%
+int speed =Integer.parseInt(request.getParameter("speed")); 
+int numCount = Integer.parseInt(request.getParameter("numCount")); 
+int length = Integer.parseInt(request.getParameter("length")); 
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +58,7 @@ body {
 	padding: 12px 12px;
 	font-size: 19px;
 	line-height: 1.42857143;
-	color: #555;
+	color: black;
 	text-align:center;
 	background-color: #fff;
 	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
@@ -69,7 +75,7 @@ body {
 	text-align: center;
 }
 
-#startPanel,#endPanel,#processPanel,#right,#wrong,#chart-container,#speedAjust {
+#processPanel,#endPanel,#right,#wrong,#chart-container {
 	display: none;
 }
 
@@ -114,47 +120,12 @@ i {
 	color: #22B26F;
 }
 
-#lengthCountPanel {
-	display: none;
-}
 
 .default {
 	background-color: #22B26F;
 	color: white;
 }
 </style>
-      <section class="sub-block" id="speedAjust">
-
-        <div class="tabs-content">
-          <div class="content active" id="show-rest-slider-result">
-            <div id="show-rest-slider"></div>
-          </div>
-        </div>
-		
-		<i id="toStart" class="fa fa-arrow-circle-right fa-5x"></i>
-		<p style="line-height: 40px;">选择速度</p>
-      </section>
-	<section id="numCountPanel">
-		<div class="selectPanel">
-			<div class="circle default">三笔</div>
-			<div class="circle">五笔</div>
-			<div class="circle">八笔</div>
-			<div class="circle">十笔</div>
-		</div>
-		<i id="toLength" class="fa fa-arrow-circle-right fa-5x"></i>
-		<p style="line-height: 40px;">选择笔数</p>
-	</section>
-
-	<section id="lengthCountPanel">
-		<div class="selectPanel">
-			<div class="circle default">一位</div>
-			<div class="circle">两位</div>
-			<div class="circle">三位</div>
-			<div class="circle">四位</div>
-		</div>
-		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x"></i>
-		<p style="line-height: 40px;">选择位数</p>
-	</section>
 
 	<section id="startPanel">
 		<div class="selectPanel">
@@ -162,16 +133,10 @@ i {
 		</div>
 	</section>
 	<section id="processPanel">
-		<div class="selectPanel">
-			<div class="circle start numPanel bigger"><span id="ShowNumberPanel">看数</span></div>
+		<div id="questionInput" class="selectPanel">
 		</div>
-	</section>
-	<section id="endPanel">
-		<div class="selectPanel">
-		  <p>请输入答案</p>
-		  <input  id="answer" placeholder="请输入答案" type="text" class="niput" value="" style="border-bottom: 1px solid #22B26F;width: 60%;margin-bottom: 60px;">
+		
 			<div class="circle end bigger">显示答案</div>
-		</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 
@@ -202,116 +167,46 @@ i {
 				 <div id="chart-container">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script>
-var speed=2;
-var textToShow="";
-        var numberModel = null;
-        var numberLength = 0;
-        var showTime = 0;
-        var intervalTime = 0;
-        var view = null;
-        var nnto = null;
-        var snto = null;
+	var speed=<%= speed%>;
+	var numCount=<%= numCount%>;
+	var length=<%= length%>;
+var tempArray=new Array();
 	var numCountArray=new Array(3,5,8,10);
 	var lengthArray=new Array(10,100,1000,10000);
+	$(".start").on("click",function(){
+	reset();
+	timeStart();
+  $("#chart-container").hide();
+	getNum();
 	
-        function start() {
-		timeStart();
-		$("#chart-container").hide();
-		var textToShow="";
-            view = $("#ShowNumberPanel");
-                $(".niput").val("");
-            answer = new Array();
-            currentShowCount = 0;
-            if (nnto != null)
-                clearTimeout(nnto);
-            if (snto != null)
-                clearTimeout(snto);
-
-            view.text("准备");
-			view.fadeOut(1000);
-            snto = setTimeout("ShowNumber()", 1000);
-        }
-        var answer = null;
-        var currentShowCount = 0;
-		var num=null;
-        function ShowNumber() {
-
-            if (currentShowCount >= numCountArray[numCount]) {
-                view.text("结束");
-				$("#processPanel").hide();
-				$("#endPanel").show();
-                return;
-            }
-			num=Math.round(Math.random()*lengthArray[length]);
-			
-			
-			view.fadeIn(speed*300);
-			
-            view.text(num);	
-
-			view.fadeOut(speed*300);
-			textToShow=textToShow+num+",";
-            snto = setTimeout("ShowNumber()", speed*600);
-            currentShowCount++;
-        }
-
-        function hideNumber() {
-		
-            view.text("");	
-            view.fadeIn(1000);
-        }
+	$("#answerPanel").hide();
+	$("#startPanel").hide();
+	$("#processPanel").show();
+	});
+		function getNum(){
+	$("#questionInput").html("");
+	var temp=0;
+	for(var i=0;i<numCountArray[numCount];i++){
+	temp=Math.round(Math.random()*lengthArray[length]);
+	$("#questionInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+temp+" disabled />");
+	tempArray[i]=temp;
+	}	
+	$("#questionInput").append("<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;width: 70%;' type='text' class='niput'>");
+	}
 
         var total=0;
 	function showAnswer(){
  $("#answerInput").html("");
-	var tempArray=textToShow.split(",");
 	for(var i=0;i<numCountArray[numCount];i++){
-	$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />")
+	$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />");
 	}
 		total=0;
-	for(var i=0;i<tempArray.length-1;i++){
+	for(var i=0;i<tempArray.length;i++){
 	total+=parseInt(tempArray[i]);}
 
 	$("#total").val("正确答案：" + total);
 	
-	textToShow="";
 	} 
-	
-	var numCount=0;
-	var length=0;
-	$("#numCountPanel").find(".circle").hover(function(){
-	$(this).css("background-color","#22B26F");
-	$(this).css("color","white");
-	$(this).siblings().css({"background-color":"white","color":"black"});
-	numCount=$(this).index();
-	},function(){
-		$(this).css("background-color","white");
-	$(this).css("color","black");
-	});
-	
-	$("#lengthCountPanel").find(".circle").hover(function(){
-	$(this).css("background-color","#22B26F");
-	$(this).css("color","white");
-	$(this).siblings().css({"background-color":"white","color":"black"});
-	length=$(this).index();
-	},function(){
-		$(this).css("background-color","white");
-	$(this).css("color","black");
-	});
-	
-	$("#toLength").on("click",function(){
-	$("#numCountPanel").hide();
-	$("#lengthCountPanel").show();
-	});
-	
-	$("#toSpeed").on("click",function(){
-	$("#lengthCountPanel").hide();
-	$("#speedAjust").show();
-	});
-	$("#toStart").on("click",function(){
-	$("#speedAjust").hide();
-	$("#startPanel").show();
-	});
 		$(".end").on("click",function(){
 		
 			var answer=$("#answer").val();
@@ -328,7 +223,7 @@ var textToShow="";
         dataFormat: 'json',
         dataSource: {
             "chart": {
-                "caption": "耗时统计",
+                "caption": "计时统计",
 				"subcaption": "计算时间(秒)",
                 "lowerLimit": "0",
                 "upperLimit": "60",
@@ -359,7 +254,7 @@ var textToShow="";
             },
             "dials": {
                 "dial": [{
-                    "value": millisecond/1000+second-3
+                    "value": millisecond/1000+second-1
                 }]
             }
         }
@@ -367,24 +262,16 @@ var textToShow="";
 });
   $("#chart-container").show();
 
-	$("#endPanel").hide();
 	showAnswer();
 	if(answer==total){$("#right").show();
 	$("#wrong").hide();}
 	else{$("#wrong").show();
 	$("#right").hide();}
 
+	$("#processPanel").hide();
 	$("#answerPanel").show();
 
 	});
-	$(".start").on("click",function(){
-	reset();
-	$("#answerPanel").hide();
-	$("#startPanel").hide();
-	$("#processPanel").show();
-	start();
-	});
-	
 	   var hour,minute,second;//时 分 秒
     hour=minute=second=0;//初始化
     var millisecond=0;//毫秒

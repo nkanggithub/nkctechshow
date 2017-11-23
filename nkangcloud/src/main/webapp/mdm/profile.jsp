@@ -2039,12 +2039,6 @@ function getNowFormatDate() {
 										<table class="Socialization_menu">
 											<tr>
 												<td>
-											<!-- 	<a class="" data-toggle="modal"	href="#weather_main_div"></a> -->
-													 <img   onclick="WeatherPanel()"
-														src="http://leshu.bj.bcebos.com/icon/menu-weather.png" />
-														<h4>天气</h4>
-												</td>
-												<td>
 													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp?UID=<%=uid %>&response_type=code&scope=snsapi_userinfo&state=<%=uid %>#wechat_redirect">
 														<img src="http://leshu.bj.bcebos.com/icon/Notification.png" /><h4>焦点追击</h4>
 													</a>
@@ -2055,22 +2049,17 @@ function getNowFormatDate() {
 												</td>
 												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="http://leshu.bj.bcebos.com/icon/menu-technology.png" />
 													<h4>消息推送</h4></td>
-											</tr>
-											<tr>
+													
 												<td>		<img    <%if(IsAuthenticated==true) { %> onclick="recognizationPanel()" <%}else{ %>onclick="noAuth()"<%} %>
 														src="http://leshu.bj.bcebos.com/icon/menu-recognition.png" />
 														<h4>奖项管理</h4>
 												</td>
-												<td> <!-- onclick="signaturePanel()"  -->
-												 <a href="Signature.jsp?UID=<%=uid%>">
-												<img 
-														src="http://leshu.bj.bcebos.com/icon/menu-pen.png" /></a>
-														<h4>电子签名</h4>
-												</td>
+											</tr>
+											<tr>
 												<td>
-												 <a href="http://nkctech.duapp.com/mdm/face.jsp?UID=<%=uid%>" target="_blank">
+												 <a href="http://nkctech.duapp.com/mdm/Navigator.jsp" target="_blank">
 												 <img src="http://leshu.bj.bcebos.com/icon/menu-face.png" /></a>
-													<h4>测颜值</h4></td>
+													<h4>自我修炼</h4></td>
 												<!-- <td onclick="getReminderForMore()">
 												<img src="../MetroStyleFiles/Add1.png" />
 													<h4>更多应用</h4></td> -->

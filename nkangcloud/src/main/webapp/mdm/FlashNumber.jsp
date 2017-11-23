@@ -5,10 +5,11 @@ int numCount = Integer.parseInt(request.getParameter("numCount"));
 int length = Integer.parseInt(request.getParameter("length")); 
 
 %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数-听算练习</title>
+<title>乐数-闪算练习</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 	<script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -16,12 +17,21 @@ int length = Integer.parseInt(request.getParameter("length"));
 	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
 	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/jquery-ui-1.11.0.css">
+
+<!-- slider -->
 <link rel="stylesheet" href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
+<!-- jquery, jqueryui --> 
 <script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script> 
+
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
+
 <script	src="../MetroStyleFiles/sweetalert.min.js"></script>
+<!-- slider --> 
 <script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script> 
-<script src="../Jsp/JS/speedTab/examples.js"></script>
+
+<!-- app --> 
+<script src="../Jsp/JS/speedTab/examples.js"></script> 
+<!-- app -->
 <link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
 </head>
 <body>
@@ -40,15 +50,7 @@ body {
 .sa {
 	text-align: center;
 }
-#Result {
-	border: 3px solid #40AA53;
-	margin: 0 auto;
-	text-align: center;
-	width: 100%;
-	padding: 50px 0;
-	background: #efe;
-	display: none;
-}
+
 .niput {
 	width: 100%;
 	height: 45px;
@@ -73,7 +75,7 @@ body {
 	text-align: center;
 }
 
-#endPanel,#right,#wrong,#chart-container {
+#processPanel,#endPanel,#right,#wrong,#chart-container {
 	display: none;
 }
 
@@ -126,7 +128,12 @@ i {
 </style>
 	<section id="startPanel">
 		<div class="selectPanel">
-			<div class="circle start bigger">听数开始</div>
+			<div class="circle start bigger">闪算开始</div>
+		</div>
+	</section>
+	<section id="processPanel">
+		<div class="selectPanel">
+			<div class="circle numPanel bigger"><span id="ShowNumberPanel"></span></div>
 		</div>
 	</section>
 	<section id="endPanel">
@@ -162,61 +169,86 @@ i {
 		
 		
 	</section>
-	
-	<div id="Result"></div>
-	<div id="chart-container">FusionCharts will render here</div>
+				 <div id="chart-container">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
-	<script src="../Jsp/JS/leshu/jQuery.speech.js"></script>
 	<script>
-var speed=<%= speed%>;
-var numCount=<%= numCount%>;
-var length=<%= length%>;
-	var text="开始,";
-	var tempArray=new Array();
+
+	var speed=<%= speed%>;
+	var numCount=<%= numCount%>;
+	var length=<%= length%>;
+var textToShow="";
+        var numberModel = null;
+        var numberLength = 0;
+        var showTime = 0;
+        var intervalTime = 0;
+        var view = null;
+        var nnto = null;
+        var snto = null;
 	var numCountArray=new Array(3,5,8,10);
 	var lengthArray=new Array(10,100,1000,10000);
+	
+        function start() {
+		timeStart();
+		$("#chart-container").hide();
+		var textToShow="";
+            view = $("#ShowNumberPanel");
+                $(".niput").val("");
+            answer = new Array();
+            currentShowCount = 0;
+            if (nnto != null)
+                clearTimeout(nnto);
+            if (snto != null)
+                clearTimeout(snto);
 
+            view.text("准备");
+			view.fadeOut(1000);
+            snto = setTimeout("ShowNumber()", 1000);
+        }
+        var answer = null;
+        var currentShowCount = 0;
+		var num=null;
+        function ShowNumber() {
+
+            if (currentShowCount >= numCountArray[numCount]) {
+                view.text("结束");
+				$("#processPanel").hide();
+				$("#endPanel").show();
+                return;
+            }
+			num=Math.round(Math.random()*lengthArray[length]);
+			
+			
+			view.fadeIn(speed*300);
+			
+            view.text(num);	
+
+			view.fadeOut(speed*300);
+			textToShow=textToShow+num+",";
+            snto = setTimeout("ShowNumber()", speed*600);
+            currentShowCount++;
+        }
+
+        function hideNumber() {
+		
+            view.text("");	
+            view.fadeIn(1000);
+        }
 
         var total=0;
 	function showAnswer(){
  $("#answerInput").html("");
+	var tempArray=textToShow.split(",");
 	for(var i=0;i<numCountArray[numCount];i++){
 	$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />")
 	}
 		total=0;
-	for(var i=0;i<tempArray.length;i++){
+	for(var i=0;i<tempArray.length-1;i++){
 	total+=parseInt(tempArray[i]);}
 
 	$("#total").val("正确答案：" + total);
 	
+	textToShow="";
 	} 
-	function getNum(){
-	
-	text="乐数珠心算开始,";
-	var temp=0;
-	for(var i=0;i<numCountArray[numCount];i++){
-	temp=Math.round(Math.random()*lengthArray[length]);
-	tempArray[i]=temp;
-	text=text+temp+",";
-	}
-	text=text+"结束";
-	$("#Result").text(text);
-	console.log(text);
-	return text;	
-	}
- function endVoice() {
- 
- $("#answerPanel").hide();
- $("#startPanel").hide();
- $("#answerInput").html("");
- $("#endPanel").show();
-};
-	
-	$('#Result').speech({
-		"speech": true,
-		"speed": speed,
-		"bg": "./images/speech.png"
-	});
 		$(".end").on("click",function(){
 		
 			var answer=$("#answer").val();
@@ -224,7 +256,6 @@ var length=<%= length%>;
 			swal("访问失败", "请输入你的答案哦~！", "error");;return;}
 			else{
 			timeStop();}
- showAnswer();
 	  FusionCharts.ready(function () {
     var cSatScoreChart = new FusionCharts({
         type: 'angulargauge',
@@ -234,7 +265,7 @@ var length=<%= length%>;
         dataFormat: 'json',
         dataSource: {
             "chart": {
-                "caption": "计时统计",
+                "caption": "耗时统计",
 				"subcaption": "计算时间(秒)",
                 "lowerLimit": "0",
                 "upperLimit": "60",
@@ -282,6 +313,13 @@ var length=<%= length%>;
 
 	$("#answerPanel").show();
 
+	});
+	$(".start").on("click",function(){
+	reset();
+	$("#answerPanel").hide();
+	$("#startPanel").hide();
+	$("#processPanel").show();
+	start();
 	});
 	
 	   var hour,minute,second;//时 分 秒
