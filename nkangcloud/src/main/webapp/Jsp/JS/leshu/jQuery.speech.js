@@ -10,7 +10,7 @@ blog: http://www.tuterm.com
 		var defaults = {
 			"speech": true, //通过点击链接播报，还是直接播报
 			"lang": "zh", //语言			
-			"speed": 3, //语速			
+			"speed": speed, //语速			
 			"sWidth": 16, //链接按钮的宽度			
 			"sHeight": 13, //链接按钮的高度		
 			"https": true, //启用https	
@@ -31,7 +31,7 @@ blog: http://www.tuterm.com
 				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
 				$(".niput").val("");
-				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+options.speed;				
+				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
 						var iframe = "<video controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></video>";
 						_this.append(iframe);
