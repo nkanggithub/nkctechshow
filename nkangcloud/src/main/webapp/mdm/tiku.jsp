@@ -12,8 +12,8 @@
       </tr>
       <tr>
         <td width="98"><div align="center"><a href="../AbacusQuiz/getAllAbacusQuizPool">&#25152;&#26377;&#39064;</a></div></td>
-        <td width="98"><div align="center"><a href="AddQuestions.jsp">&#20998;&#31867;&#26174;&#31034;</a></div></td>
-        <td width="119"><div align="center"><a href="../AddQuestions.jsp">&#28155;&#21152;</a></div></td>
+        <td width="98"><div align="center"><a href="/AddQuestions.jsp">&#20998;&#31867;&#26174;&#31034;</a></div></td>
+        <td width="119"><div align="center"><a href="/AddQuestions.jsp">&#28155;&#21152;</a></div></td>
       </tr>
     </table>
     <p>&nbsp;</p>
