@@ -171,7 +171,7 @@ i {
 	</section>
 	<section id="endPanel">
 		<div class="selectPanel">
-		  <p>请输入以上数字总和</p>
+		  <p>请输入答案</p>
 		  <input  id="answer" placeholder="请输入答案" type="text" class="niput" value="" style="border-bottom: 1px solid #22B26F;width: 60%;margin-bottom: 60px;">
 			<div class="circle end bigger">显示答案</div>
 		</div>
@@ -308,7 +308,7 @@ var speed=2;
         dataFormat: 'json',
         dataSource: {
             "chart": {
-                "caption": "耗时统计",
+                "caption": "计时统计",
 				"subcaption": "计算时间(秒)",
                 "lowerLimit": "0",
                 "upperLimit": "60",
