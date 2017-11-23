@@ -35,7 +35,7 @@ blog: http://www.tuterm.com
 				$(".niput").val("");
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
-						var iframe = "<video controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></video>";
+						var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";
 						_this.append(iframe);
 						$("#voice").attr("src",src);
 					})();

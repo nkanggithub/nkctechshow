@@ -10,23 +10,14 @@
 	<script src="../Jsp/JS/fusioncharts/fusioncharts.theme.fint.js"></script>
 	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
 	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/jquery-ui-1.11.0.css">
-
-<!-- slider -->
-<link rel="stylesheet" href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
-<!-- jquery, jqueryui --> 
-<script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script> 
-
-<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
-
-<script	src="../MetroStyleFiles/sweetalert.min.js"></script>
-<!-- slider --> 
-<script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script> 
-
-<!-- app --> 
-<script src="../Jsp/JS/speedTab/examples.js"></script> 
-<!-- app -->
-<link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
+	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/jquery-ui-1.11.0.css">
+	<link rel="stylesheet" href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
+	<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
+	<script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script> 
+	<script	src="../MetroStyleFiles/sweetalert.min.js"></script>
+	<script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script> 
+	<script src="../Jsp/JS/speedTab/examples.js"></script> 
+	<link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
 </head>
 <body>
 	<center>
@@ -204,21 +195,18 @@ i {
 	</section>
 	
 	<div id="Result"></div>
-				 <div id="chart-container">FusionCharts will render here</div>
+	<div id="chart-container">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script src="../Jsp/JS/leshu/jQuery.speech.js"></script>
 	<script>
-var speed=2;
-
+	var speed=2;
 	var text="开始,";
 	var tempArray=new Array();
 	var numCountArray=new Array(3,5,8,10);
 	var lengthArray=new Array(10,100,1000,10000);
-
-
-        var total=0;
+    var total=0;
 	function showAnswer(){
- $("#answerInput").html("");
+ 	$("#answerInput").html("");
 	for(var i=0;i<numCountArray[numCount];i++){
 	$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />")
 	}
@@ -243,19 +231,20 @@ var speed=2;
 	console.log(text);
 	return text;	
 	}
- function endVoice() {
- 
- $("#answerPanel").hide();
- $("#startPanel").hide();
- $("#answerInput").html("");
- $("#endPanel").show();
-};
+	
+	function endVoice() {
+		 $("#answerPanel").hide();
+		 $("#startPanel").hide();
+		 $("#answerInput").html("");
+		 $("#endPanel").show();
+	};
 	
 	$('#Result').speech({
 		"speech": true,
 		"speed": speed,
 		"bg": "./images/speech.png"
 	});
+	
 	var numCount=0;
 	var length=0;
 	$("#numCountPanel").find(".circle").hover(function(){
