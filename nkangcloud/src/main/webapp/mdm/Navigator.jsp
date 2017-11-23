@@ -57,7 +57,12 @@ body {
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	border:none;
 }
-
+.margin-left{
+margin-left:10px;
+}
+.margin-right{
+margin-right:10px;
+}
 .numPanel {
 	font-size: 45px !important;
 	color: #F94082 !important;
@@ -123,7 +128,8 @@ i {
           </div>
         </div>
 		
-		<i id="toMenu" class="fa fa-arrow-circle-right fa-5x"></i>
+		<i id="backLength" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
+		<i id="toMenu" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
 		<p style="line-height: 40px;">选择速度</p>
       </section>
 	<section id="numCountPanel">
@@ -144,7 +150,8 @@ i {
 			<div class="circle">三位</div>
 			<div class="circle">四位</div>
 		</div>
-		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x"></i>
+		<i id="backNumCount" class="fa fa-arrow-circle-left fa-5x  margin-right"></i>
+		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
 		<p style="line-height: 40px;">选择位数</p>
 	</section>
 	
@@ -154,6 +161,7 @@ i {
 			<div id="ss" class="circle">闪算</div>
 			<div id="ts" class="circle">听算</div>
 		</div>
+		<i id="backSpeed" class="fa fa-arrow-circle-left fa-5x"></i>
 	</section>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script>
@@ -196,6 +204,20 @@ i {
 	$("#toMenu").on("click",function(){
 	$("#speedAjust").hide();
 	$("#menuPanel").show();
+	});
+	
+
+	$("#backLength").on("click",function(){
+	$("#speedAjust").hide();
+	$("#lengthCountPanel").show();
+	});
+	$("#backNumCount").on("click",function(){
+	$("#numCountPanel").show();
+	$("#lengthCountPanel").hide();
+	});
+	$("#backSpeed").on("click",function(){
+	$("#speedAjust").show();
+	$("#menuPanel").hide();
 	});
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
