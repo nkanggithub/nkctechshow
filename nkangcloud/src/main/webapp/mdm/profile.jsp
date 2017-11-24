@@ -542,12 +542,10 @@ function checkReg() {
 			UID : $('#uid').val()
 		},
 		cache : false,
-		success : function(data) {
-			data = data.replace(/:null/g, ':"未注册"');
-			data = '{"results":' + data + '}';
-			var jsons = eval('(' + data + ')');
-			if (jsons.results.length > 0) {
-				if(jsons.results[0].phone=="未注册"){
+		success : function(users) {
+			users = users.replace(/:null/g, ':"未注册"');
+			if (users.length > 0) {
+				if(users[0].phone=="未注册"){
 					swal("你还未注册哦", "未注册用户很多功能不能使用,建议点击头像立即注册！", "error");
 				}
 			}
@@ -1155,13 +1153,11 @@ function isRegister()
 			UID : $('#uid').val()
 		},
 		cache : false,
-		success : function(data) {
-			if(data){
-				data = data.replace(/:null/g, ':"未注册"');
-				data = '{"results":' + data + '}';
-				var jsons = eval('(' + data + ')');
-				if (jsons.results.length > 0) {
-					if(jsons.results[0].phone =="未注册"){
+		success : function(users) {
+			if(users){
+				users = users.replace(/:null/g, ':"未注册"');
+				if (users.length > 0) {
+					if(users[0].phone =="未注册"){
 						 $(".registerArea").show();
 					}
 					
@@ -1179,19 +1175,17 @@ function register() {
 			UID : $('#uid').val()
 		},
 		cache : false,
-		success : function(data) {
-			data = data.replace(/:null/g, ':"未注册"');
-			data = '{"results":' + data + '}';
-			var jsons = eval('(' + data + ')');
-			if (jsons.results.length > 0) {
+		success : function(users) {
+			users = users.replace(/:null/g, ':"未注册"');
+			if (users.length > 0) {
 				$("#info_tag tr").html("");
-				if(jsons.results[0].role!="未注册"){
+				if(users[0].role!="未注册"){
 					$("#info_interact").css("display","none");
 					$("#info_interact2").css("display","none");
 					$("#info_imgurl").attr("src",$('#userImage').attr('src'));
-					/* if(jsons.results[0].tag!="未注册"){
-						for(var j=0;j<jsons.results[0].tag.length;j++){
-							var tag=jsons.results[0].tag[j];
+					/* if(users[0].tag!="未注册"){
+						for(var j=0;j<users[0].tag.length;j++){
+							var tag=users[0].tag[j];
 							for (var key in tag) { 
 								var td='<td>'
 									+'				<div id="'+key+'" data-dimension="70" data-text="'
@@ -1209,14 +1203,13 @@ function register() {
 							}
 						}
 					} */
-					data = data.replace(/:"未注册"/g, ':"未编辑"');
-					jsons = eval('(' + data + ')');
-					$("#info_username span").html(jsons.results[0].realName+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+jsons.results[0].role+']&nbsp;</span>'+'<img onclick="showRegister()" src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
+					users = users.replace(/:"未注册"/g, ':"未编辑"');
+					$("#info_username span").html(users[0].realName+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+users[0].role+']&nbsp;</span>'+'<img onclick="showRegister()" src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
 					$("#info_all").css('display','table');
-					$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].phone);
-					//$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].groupid);
-					$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].email);
-					$("#info_selfIntro").text(jsons.results[0].selfIntro);
+					$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].phone);
+					//$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].groupid);
+					$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].email);
+					$("#info_selfIntro").text(users[0].selfIntro);
 					$('#UserInfo').modal('show');
 				}else{
 					$("#info_all").css('display','none');
@@ -1242,29 +1235,27 @@ function showRegister(){
 			UID : $('#uid').val()
 		},
 		cache : false,
-		success : function(data) {
-			if(data){
+		success : function(users) {
+			if(users){
 				var realName="";
 				var phone="";
 				var email="";
 				var selfIntro="";
-				data = data.replace(/:null/g, ':"未注册"');
-				data = '{"results":' + data + '}';
-				var jsons = eval('(' + data + ')');
-				if (jsons.results.length > 0) {
-					if(jsons.results[0].realName !="未注册"){
-						realName=jsons.results[0].realName;
+				users = users.replace(/:null/g, ':"未注册"');
+				if (users.length > 0) {
+					if(users[0].realName !="未注册"){
+						realName=users[0].realName;
 						 $(".registerArea").show();
 					}
 					
-					if(jsons.results[0].phone !="未注册"){
-						phone=jsons.results[0].phone;
+					if(users[0].phone !="未注册"){
+						phone=users[0].phone;
 					}
-					if(jsons.results[0].email !="未注册"){
-						email=jsons.results[0].email;
+					if(users[0].email !="未注册"){
+						email=users[0].email;
 					}
-					 if(jsons.results[0].selfIntro !="未注册"){
-							selfIntro=jsons.results[0].selfIntro;
+					 if(users[0].selfIntro !="未注册"){
+							selfIntro=users[0].selfIntro;
 					    }
 					
 				}
@@ -1405,21 +1396,19 @@ function getUserInfo(username, headimgurl, openId) {
 					
 				},
 				cache : false,
-				success : function(data) {
-					data = data.replace(/:null/g, ':"未注册"');
-					data = '{"results":' + data + '}';
-					var jsons = eval('(' + data + ')');
-					if (jsons.results.length > 0) {
+				success : function(users) {
+					users = users.replace(/:null/g, ':"未注册"');
+					if (users.length > 0) {
 						$("#info_tag tr").html("");
-						$("#info_interact img.like").attr("onclick","toLike('"+username+"','"+jsons.results[0].openid+"')");
-						$("#info_interact2 span.like").text(jsons.results[0].like.number==""?0:jsons.results[0].like.number);
-						if(jsons.results[0].role!="未注册"){
-							$("#info_username span").html(jsons.results[0].realName);
-							$("#info_interact img.zan").attr("onclick","recognizationPanelByPerson('"+jsons.results[0].realName+"')");
-							$("#info_interact2 span.zan").text(jsons.results[0].CongratulateNum);
-							/* if(jsons.results[0].tag!="未注册"){
-								for(var j=0;j<jsons.results[0].tag.length;j++){
-									var tag=jsons.results[0].tag[j];
+						$("#info_interact img.like").attr("onclick","toLike('"+username+"','"+users[0].openid+"')");
+						$("#info_interact2 span.like").text(users[0].like.number==""?0:users[0].like.number);
+						if(users[0].role!="未注册"){
+							$("#info_username span").html(users[0].realName);
+							$("#info_interact img.zan").attr("onclick","recognizationPanelByPerson('"+users[0].realName+"')");
+							$("#info_interact2 span.zan").text(users[0].CongratulateNum);
+							/* if(users[0].tag!="未注册"){
+								for(var j=0;j<users[0].tag.length;j++){
+									var tag=users[0].tag[j];
 									for (var key in tag) { 
 										var td='<td>'
 											+'				<div id="'+key+'" data-dimension="70" data-text="'
@@ -1438,21 +1427,20 @@ function getUserInfo(username, headimgurl, openId) {
 									}
 								}
 							} */
-							data = data.replace(/:"未注册"/g, ':"未编辑"');
-							jsons = eval('(' + data + ')');
+							users = users.replace(/:"未注册"/g, ':"未编辑"');
 							$("#info_all").css('display','table');
 							$("img.zan").css('display','block');
 							$("span.zan").css('display','block');
 							var role="";
 							try{
-							 	role=RoleObj[jsons.results[0].role];
+							 	role=RoleObj[users[0].role];
 							}catch(e){
 							}
 							$("#info_username span").html(username+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+role+']</span>');
-							$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].phone);
-							//$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+jsons.results[0].groupid);
-							$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;<a style='color:#fff;' href='mailto:"+jsons.results[0].email+"'>"+jsons.results[0].email+"</a>");
-							$("#info_selfIntro").text(jsons.results[0].selfIntro);
+							$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].phone);
+							//$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].groupid);
+							$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;<a style='color:#fff;' href='mailto:"+users[0].email+"'>"+users[0].email+"</a>");
+							$("#info_selfIntro").text(users[0].selfIntro);
 						}else{
 							$("#info_username span").html('未注册');
 							$("img.zan").css('display','none');
@@ -1473,15 +1461,13 @@ function getMDLUserLists() {
 				url : "../userProfile/getMDLUserLists",
 				data : {},
 				cache : false,
-				success : function(data) {
-					data = '{"results":' + data + '}';
-					var jsons = eval('(' + data + ')');
+				success : function(users) {
 					var ul = "",regNumber=0;
 					var RoleNum=new Object(),noRoleNum=0;
 					//ul='<div class="Work_Mates_div_list_div2" style="border-bottom:0px;">';
 					ul='';
-					for (var i = 0; i < jsons.results.length; i++) {
-						var temp = jsons.results[i];
+					for (var i = 0; i < users.length; i++) {
+						var temp = users[i];
 						var selfIntro=temp.selfIntro;
 						var workDay=temp.workDay;
 						var tag=temp.tag;
@@ -1605,14 +1591,14 @@ function getMDLUserLists() {
 						ul += li;
 					}
 				/* 	ul='<div class="Work_Mates_div_list_div2">'
-					+'<span class="total_num"><img src="../MetroStyleFiles/role.png"/>总人数：'+ jsons.results.length
+					+'<span class="total_num"><img src="../MetroStyleFiles/role.png"/>总人数：'+ users.length
 					+'&nbsp;&nbsp;&nbsp;已注册人数：'+regNumber
 					+'</span><div class="clear"></div></div>'+ul; */
 					$("#Work_Mates_div").html(ul);
 					
 					
 					var data=[];
-					noRoleNum=jsons.results.length;
+					noRoleNum=users.length;
 					for(var i=0;i<RoleList.length;i++){
 						data[i]=new Object();
 						data[i]["value"] = (RoleNum[RoleList[i].id]==undefined?0:RoleNum[RoleList[i].id]) ;
@@ -1647,7 +1633,7 @@ function getMDLUserLists() {
 					                "showLegend": "1",
 					                "legendShadow": "0",
 					                "legendBorderAlpha": "0",
-					                "defaultCenterLabel": "共"+jsons.results.length+"人",
+					                "defaultCenterLabel": "共"+users.length+"人",
 					                "centerLabel": " $label",
 					                "centerLabelBold": "1",
 					                "showTooltip": "0",

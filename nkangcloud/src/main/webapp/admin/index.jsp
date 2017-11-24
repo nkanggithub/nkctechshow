@@ -692,13 +692,11 @@ jQuery
 		url : "../userProfile/getMDLUserLists",
 		data : {},
 		cache : false,
-		success : function(data) {
-			data = '{"results":' + data + '}';
-			var jsons = eval('(' + data + ')');
+		success : function(users) {
 			var ul = "",regNumber=0;
 			var RoleNum=new Object(),noRoleNum=0;
-			for (var i = 0; i < jsons.results.length; i++) {
-				var temp = jsons.results[i];
+			for (var i = 0; i < users.length; i++) {
+				var temp = users[i];
 				var selfIntro=temp.selfIntro;
 				var role;
 				try{
@@ -798,7 +796,7 @@ jQuery
 			$("#Work_Mates_div").html(ul);
 			
 			var data=[];
-			noRoleNum=jsons.results.length;
+			noRoleNum=users.length;
 			for(var i=0;i<RoleList.length;i++){
 				data[i]=new Object();
 				data[i]["value"] = (RoleNum[RoleList[i].id]==undefined?0:RoleNum[RoleList[i].id]) ;
@@ -833,7 +831,7 @@ jQuery
 			                "showLegend": "1",
 			                "legendShadow": "0",
 			                "legendBorderAlpha": "0",
-			                "defaultCenterLabel": "共"+jsons.results.length+"人",
+			                "defaultCenterLabel": "共"+users.length+"人",
 			                "centerLabel": " $label",
 			                "centerLabelBold": "1",
 			                "showTooltip": "0",
