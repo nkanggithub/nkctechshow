@@ -30,6 +30,7 @@ import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.Teamer;
 import com.nkang.kxmoment.baseobject.VideoMessage;
+import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.ImageUtil;
 import com.nkang.kxmoment.util.MongoDBBasic;
@@ -94,12 +95,13 @@ public class UserProfileController {
 		return curLoc;
 	}
 
-	@RequestMapping(value = "/getMDLUserLists", produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String getMDLUserLists(HttpServletRequest request,
+	@RequestMapping("/getMDLUserLists")
+	public @ResponseBody List<WeChatMDLUser> getMDLUserLists(HttpServletRequest request,
 			HttpServletResponse response) {
-		String openid = request.getParameter("UID");
-		return RestUtils.getMDLUserLists(openid);
+		String openid = request.getParameter("UID");		
+		List<WeChatMDLUser> ret = new ArrayList<WeChatMDLUser>();
+			ret = MongoDBBasic.getWeChatUserFromMongoDB(openid);
+		return ret;
 	}
 
 	@RequestMapping(value = "/getTax", produces = "text/html;charset=UTF-8")
