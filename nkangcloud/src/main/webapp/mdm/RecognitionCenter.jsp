@@ -290,7 +290,7 @@ wx.config({
                 </table></td>
               </tr>
              </tbody>
-            </table><p style="margin: 10px;line-height:14.0pt;"><span style="font-size: 15px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Below shows the impact you made to DXC:
+            </table><p style="margin: 10px;line-height:14.0pt;"><span style="font-size: 15px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Below shows the impact you made to Leshu:
               <o:p></o:p></span></p>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;display:table;border-spacing: 0">
              <tbody>
@@ -328,7 +328,7 @@ wx.config({
                 </table></td>
               </tr>
              </tbody>
-            </table><p style="margin: 10px;margin-bottom: 20px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Thank you for putting DXC values into action! A copy of this recognition was sent to your manager.
+            </table><p style="margin: 10px;margin-bottom: 20px;line-height:14.0pt;"><span style="font-size: 14px;font-family:&quot;Arial&quot;,sans-serif;color:black;">Thank you for putting Leshu values into action! A copy of this recognition was sent to your manager.
               <o:p></o:p></span></p>
             <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse;display:table;border-spacing: 0">
              <tbody>
