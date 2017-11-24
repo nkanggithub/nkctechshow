@@ -2057,7 +2057,7 @@ function getNowFormatDate() {
 											</tr>
 											<tr>
 												<td>
-												 <a href="http://nkctech.duapp.com/mdm/Navigator.jsp" target="_blank">
+												 <a href="http://nkctech.duapp.com/mdm/Navigator.jsp?UID=<%=uid %>" target="_blank">
 												 <img src="http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png" /></a>
 													<h4>自我修炼</h4></td>
 												<!-- <td onclick="getReminderForMore()">

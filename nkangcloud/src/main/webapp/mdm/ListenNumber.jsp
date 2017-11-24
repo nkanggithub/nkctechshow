@@ -23,18 +23,10 @@ int length = Integer.parseInt(request.getParameter("length"));
 <script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script> 
 <script src="../Jsp/JS/speedTab/examples.js"></script>
 <link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
-</head>
-<body>
-	<center>
-		<img
-			src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8wW&amp;oid=00D90000000pkXM"
-			height="51" width="100">
-	</center>
-	<style type="text/css">
+<style type="text/css">
 body {
 	background-color: #fff;
 	text-align: center;
-	padding-top: 50px;
 }
 
 .sa {
@@ -124,6 +116,16 @@ i {
 	color: white;
 }
 </style>
+</head>
+<body>
+	
+<div id="data_model_div" style="height:110px" >
+<i class="icon" style="position:absolute;top:20px;left:20px;z-index:100;">
+<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px; "></i>	
+<img style="position:absolute;top:8px;right:20px;z-index:100;height:60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
+<div style="width:100%;height: 80px;background: white;position:absolute;border-bottom: 4px solid #20b672;">
+</div></div>
+	
 	<section id="startPanel">
 		<div class="selectPanel">
 			<div class="circle start bigger">听数开始</div>
@@ -283,7 +285,10 @@ var length=<%= length%>;
 	$("#answerPanel").show();
 
 	});
-	
+
+		  $(".exit").on("click",function(){
+			  window.location.href="Navigator.jsp";
+		  });
 	   var hour,minute,second;//时 分 秒
     hour=minute=second=0;//初始化
     var millisecond=0;//毫秒

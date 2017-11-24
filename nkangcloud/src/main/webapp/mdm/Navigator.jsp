@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%
+String uid = request.getParameter("UID"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,18 +24,10 @@
 <script src="../Jsp/JS/speedTab/examples.js"></script> 
 <!-- app -->
 <link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
-</head>
-<body>
-	<center>
-		<img
-			src="https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EG8wW&amp;oid=00D90000000pkXM"
-			height="51" width="100">
-	</center>
 	<style type="text/css">
 body {
 	background-color: #fff;
 	text-align: center;
-	padding-top: 50px;
 }
 
 .sa {
@@ -120,6 +114,14 @@ i {
 	color: white;
 }
 </style>
+</head>
+<body><div id="data_model_div" style="height:110px" >
+<i class="icon" style="position:absolute;top:20px;left:20px;z-index:100;">
+<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px; "></i>	
+<img style="position:absolute;top:8px;right:20px;z-index:100;height:60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
+<div style="width:100%;height: 80px;background: white;position:absolute;border-bottom: 4px solid #20b672;">
+</div></div>
+
       <section class="sub-block" id="speedAjust">
 
         <div class="tabs-content">
@@ -169,7 +171,7 @@ i {
 	var numCountArray=new Array(3,5,8,10);
 	var lengthArray=new Array(10,100,1000,10000);
 	
-	
+	var uid='<%=uid%>';
 	var numCount=0;
 	var length=0;
 	$("#numCountPanel").find(".circle").hover(function(){
@@ -196,7 +198,10 @@ i {
 	$("#numCountPanel").hide();
 	$("#lengthCountPanel").show();
 	});
-	
+
+	  $(".exit").on("click",function(){
+		  window.location.href="profile.jsp?UID="+uid;
+	  });
 	$("#toSpeed").on("click",function(){
 	$("#lengthCountPanel").hide();
 	$("#speedAjust").show();
