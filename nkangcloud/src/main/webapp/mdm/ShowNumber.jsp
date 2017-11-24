@@ -3,6 +3,7 @@
 int speed =Integer.parseInt(request.getParameter("speed")); 
 int numCount = Integer.parseInt(request.getParameter("numCount")); 
 int length = Integer.parseInt(request.getParameter("length")); 
+String uid = request.getParameter("UID");
 
 %>
 <!DOCTYPE html>
@@ -171,6 +172,7 @@ i {
 	var speed=<%= speed%>;
 	var numCount=<%= numCount%>;
 	var length=<%= length%>;
+	var uid='<%=uid%>';
 var tempArray=new Array();
 	var numCountArray=new Array(3,5,8,10);
 	var lengthArray=new Array(10,100,1000,10000);
@@ -313,7 +315,7 @@ var tempArray=new Array();
     }
 
     $(".exit").on("click",function(){
-  	  window.location.href="Navigator.jsp";
+  	  window.location.href="Navigator.jsp?UID="+uid;
     });
     function timeStop()//暂停
     {

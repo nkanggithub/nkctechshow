@@ -227,17 +227,17 @@ i {
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length;
+	window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length+"&UID="+uid;
 	});
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length;
+	window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length+"&UID="+uid;
 	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length;
+	window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length+"&UID="+uid;
 	});
 </script>
 </body>

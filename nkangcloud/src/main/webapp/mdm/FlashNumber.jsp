@@ -3,6 +3,7 @@
 int speed =Integer.parseInt(request.getParameter("speed")); 
 int numCount = Integer.parseInt(request.getParameter("numCount")); 
 int length = Integer.parseInt(request.getParameter("length")); 
+String uid = request.getParameter("UID");
 
 %>
 <!DOCTYPE html>
@@ -178,6 +179,7 @@ i {
 	var speed=<%= speed%>;
 	var numCount=<%= numCount%>;
 	var length=<%= length%>;
+	var uid='<%=uid%>';
 var textToShow="";
         var numberModel = null;
         var numberLength = 0;
@@ -335,7 +337,7 @@ var textToShow="";
       $('#timetext').val('00时00分00秒000毫秒');
     }
   $(".exit").on("click",function(){
-	  window.location.href="Navigator.jsp";
+	  window.location.href="Navigator.jsp?UID="+uid;
   });
     function timeStart()//开始
     {
