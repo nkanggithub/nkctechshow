@@ -401,7 +401,7 @@ function showUpdateUserPanel(openid,name){
 			            +'														<td><input type="text" name="email" value="'+email+'"/></td>'
 			            +'													</tr>'
 			            +'													<tr>'
-			            +'														<td>用户职位:</td>'
+			            +'														<td>用户角色:</td>'
 			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
 			            +'														<td><select  name="role">'
 			            +roleSelect
@@ -446,7 +446,7 @@ function showUpdateUserPanel(openid,name){
 			            +'												    <tr>'
 			            +'												 </table>'
 			            +'												 </form>'
-			            +'												 <button class="btnAthena EbtnLess" style="background-color:#005CA1;margin-left: 90px;margin-top:15px;" id="updateUserInfoBtn">确定</button>');
+			            +'												 <button class="btnAthena EbtnLess" style="background-color:#20b672;margin-left: 90px;margin-top:15px;" id="updateUserInfoBtn">确定</button>');
 				$("#updateUserInfoBtn").click(function(){
 					var isRegistered = $("input[name='isRegistered']:checked").val();
 					var registerDate = $("#registerDate").val();
@@ -657,7 +657,7 @@ function getLogoLists() {
 	//	+'<hr style="border:2px solid '+temp.clientThemeColor+';width:75%;padding:0px;margin-top:0px;">'
 		+'							<p style="font-size:10px;margin-bottom:3px;margin-top:-3px;">©'+temp.clientCopyRight+'</p>'
 		+buttonText
-		+'							<div style="float: right; margin-top: -50px; background-color: #0197D6; color: #fff; font-weight:bold; font-size: 13px; padding: 3px;width:50px;text-align:center;border-radius:6px;" onclick="showLogoPanel('+i+')">'
+		+'							<div style="float: right; margin-top: -50px; background-color: #20b672; color: #fff; font-weight:bold; font-size: 13px; padding: 3px;width:50px;text-align:center;border-radius:6px;" onclick="showLogoPanel('+i+')">'
 		+'								编辑'
 		+'							</div>'
 		+'							<div class="clear"></div>'
