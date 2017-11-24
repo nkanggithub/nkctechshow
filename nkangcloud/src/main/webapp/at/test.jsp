@@ -86,16 +86,16 @@ if(res!=null){
         <div class="kb" title="我的课表安排" more="">
             <ul class="kb_item" title="级别" >
                 <li>
-                    <a target="_blank" href="../mdm/ListenNumber.jsp"><span class="class-name">启蒙班</span></a>
+                    <span class="class-name">启蒙班</span>
                     <span class="class-time">490</span>
                     <span class="class-price">1980</span>
-                    <span class="class-src">http://m.koolearn.com/product/47026_1.html</span>
+                    <span class="class-src">../mdm/ListenNumber.jsp</span>
                 </li>
                 <li>
-                    <a target="_blank" href="../mdm/ShowNumber.jsp"><span class="class-name">初级班</span></a>
+                    <span class="class-name">初级班</span>
                     <span class="class-time">437</span>
                     <span class="class-price">1980</span>
-                    <span class="class-src">http://m.koolearn.com/product/47027_1.html</span>
+                    <span class="class-src">../mdm/ShowNumber.jsp</span>
                 </li>
 				<li>
                     <span class="class-name">中级班</span>
@@ -425,7 +425,7 @@ if(res!=null){
                 </thead>
                 <tbody>
                     <tr v-for="classItem in kbIt.classItem">
-                        <td>{{classItem.className}}</td>
+                        <td><a target="_blank" :href="classItem.classSrc">{{classItem.className}}</a></td>
                         <td>{{classItem.classTime}}</td>
                         <td>￥{{classItem.classPrice}}</td>
                         <td><a class="buy" href="#">购买</a></td>
