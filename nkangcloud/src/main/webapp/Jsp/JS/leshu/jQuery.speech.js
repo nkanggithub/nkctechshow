@@ -32,6 +32,7 @@ blog: http://www.tuterm.com
 				_speech.on('click', function() { //捕获点击事件	
 					reset();
 					timeStart();
+					  $("#chart-container").hide();
 				$(".niput").val("");
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
