@@ -104,22 +104,6 @@ public class UserProfileController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/getTax", produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String getTax(HttpServletRequest request,
-			HttpServletResponse response) {
-		String taxIncomeStr = request.getParameter("taxIncome");
-		String taxstartStr = request.getParameter("taxstart");
-		String paymentStr = request.getParameter("payment");
-		double taxIncome = new Double(taxIncomeStr);
-		double taxstart = new Double(taxstartStr);
-		double payment = new Double(paymentStr);
-		HashMap<String, Double> result = new HashMap<String, Double>();
-		double levelcalc= ToolUtils.getlevelcalc(taxIncome - taxstart-payment);
-		double nolevelcalc= ToolUtils.getnolevelcalc(taxIncome - taxstart-payment);
-		return "{\"levelcalc\":"+levelcalc+",\"nolevelcalc\":"+nolevelcalc+"}";
-	}
-	
 	@RequestMapping(value = "/setSignature", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String setSignature(HttpServletRequest request,

@@ -8,7 +8,6 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%	
 
-
 String AccessKey = RestUtils.callGetValidAccessKey();
 String uid = request.getParameter("UID");
 MongoDBBasic.updateUser(uid);
@@ -354,14 +353,7 @@ height: 15px;}
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
 <script>
-/*  $(document).ajaxStart(function () {
-	$(".sk-circle").show();
-	$("#shadow").show();
-    }).ajaxStop(function () {
-    	$(".sk-circle").hide();
-    	$("#shadow").hide();
-    });
-    */
+
 $(function(){ 
 
 	$(".Work_Mates_div_list_div2").live("swipeleft",function(){
@@ -637,24 +629,7 @@ function getOld(){
 	        }
 	  	});
 	}
-function getTax(){
-	jQuery.ajax({
-		type : "GET",
-		url : "../userProfile/getTax",
-		data : {
-			taxIncome : $("#taxIncome").val(),
-			taxstart : $("#taxstart").val(),
-			payment : $("#payment").val()
-		},
-		cache : false,
-		success : function(data) {
-			var jsons = eval('(' + data + ')');
-			$("#levelcalc").text(jsons.levelcalc);
-			$("#nolevelcalc").text(jsons.nolevelcalc);
-			swal("Calculate successfully!", "Congratulations!", "success"); 
-		}
-	});
-}
+
 function getCompanyInfo(){
 	$.ajax({
 		type : "post",
@@ -932,110 +907,8 @@ function  WeatherPanel(){
 				}
 			});
 }
-function SpeechPanel(){
-	showCommonPanel();
-	$("body").append('<div id="taxPart" class="bouncePart" style="position:fixed;z-index:10000;top:100px;width:80%;margin-left:10%;"><legend>智能语音</legend><form id="labnol" method="get" action="https://www.bing.com/search">'
-			+'         <div class="speech">'
-			+'           <input type="text" name="q" id="transcript" placeholder="Speak" />'
-			+'           <img onclick="startDictation()" src="../MetroStyleFiles/cHidSVu.gif" />'
-			+'         </div>'
-			+'       </form></div>');
-	$('#taxPart').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-	      $(this).removeClass("bounceInDown animated");
-	    });
-}
-function taxPanel(){
-		showCommonPanel();
-		$("body").append('<div id="taxPart" class="bouncePart" style="position:fixed;z-index:10000;top:100px;width:80%;margin-left:10%;"><legend>税费计算</legend><table class="tax" style="margin-right:auto;margin-left:auto;">'
-				+'											<tr>'
-				+'												<td>起征点：</td>'
-				+'												<td><input type="text" id="taxstart" value="3500" /></td>'
-				+'											</tr>'
-				+'											<tr>'
-				+'												<td>总工资：</td>'
-				+'												<td><input type="text" id="taxIncome" value=""/></td>'
-				+'											</tr>'
-				+'											<tr>'
-				+'												<td>五险一金：</td>'
-				+'												<td><input type="text" id="payment" value=""/></td>'
-				+'											</tr>'
-				+'											<tr>'
-				+'												<td colspan="2" style="text-align: center; padding: 0px;">'
-				+'													<button class="btnAthena EbtnLess"'
-				+'														style="padding: 0px;background-color:'+clientThemeColor+';"'
-				+'														id="tax_submit_button" onclick="getTax()">计算</button>'
-				+'												</td>'
-				+'											</tr>'
-				+'											<tr>'
-				+'												<td>含税级距计算：</td>'
-				+'												<td><span id="levelcalc"></span></td>'
-				+'											</tr>'
-				+'											<tr>'
-				+'												<td>不含税级距计算：</td>'
-				+'												<td><span id="nolevelcalc"></span></td>'
-				+'											</tr>'
-				+'										</table></div>');
-		$('#taxPart').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-		      $(this).removeClass("bounceInDown animated");
-		    });
-}
-function signaturePanel(){
-	showCommonPanel();
-	$("body").append('<div id="taxPart" class="bouncePart" style="position:fixed;z-index:10000;top:100px;width:80%;margin-left:10%;"><legend>电子签名</legend><div id="old" style="vertical-align:middle;margin-bottom:-90px;padding-top:5px;height:170px;border:2px #56B39D solid;width:100%;margin-left:auto;margin-right:auto;text-align:center;margin-top:-10px;"></div>'
-			+'<div id="content">		'
-			+'	<div id="signatureparent">'
-			+'		<div id="signature"></div></div>'
-			+'	<div id="tools"></div>'
-			+'	'
-			+'</div></div>');
-	$('#taxPart').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-	      $(this).removeClass("bounceInDown animated");
-	    });
-	getOld();
-	// This is the part where jSignature is initialized.
-	var $sigdiv = $("#signature").jSignature({'UndoButton':true})
-	// All the code below is just code driving the demo. 
-	var $tools = $('#tools')
 
-	$('<input type="button" name="svg" value="保存签名"  style="float:right;color:#fff !important;background-color:#56B39D;border:none;padding:10px;font-size:18px;margin-top:0px;">').bind('click', function(e){
-		if (e.target.value !== ''){
-			//var data = $sigdiv.jSignature('getData', e.target.value)
-			var data = $sigdiv.jSignature('getData', 'svg')
-			if($.isArray(data) && data.length === 2){
-				var start=data[1].indexOf("<svg ");
-				var svg=data[1].substring(start,data[1].length);
-				if(svg!='<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0"></svg>')
-				jQuery.ajax({
-					type : "GET",
-					url : "../userProfile/setSignature",
-					data : {
-						svg : svg
-					},
-					cache : false,
-					success : function(data) {
-						if(data.indexOf("true")==0){
-							swal("签名保存成功!", "", "success"); 
-							getOld();
-							/*var canvas = document.getElementsByClassName('jSignature')[0];
-						  	var context = canvas.getContext('2d');
-						  	context.clearRect(0, 0, canvas.width, canvas.height); */
-						  	var $sigdiv = $("#signature")
-						  	$sigdiv.jSignature("reset"); //重置画布，可以进行重新作画.
-						}else{
-							swal("签名保存失败!", "", "error"); 
-						}
-					}
-				});
-			}
-		}
-	}).appendTo($tools)
-	
-	if (Modernizr.touch){
-		$('#scrollgrabber').height($('#content').height())		
-	}
-}
 function mesSend(){
-	
 	showCommonPanel();
 	$("body").append("<div id='sendR'>"
 			+"	<div class='rcommon' style='height:40px'><p class='bsLabel'>图文标题</p><input id='notificationTitle' style='height:35px;border:1px solid black' type='text' placeholder='请输入标题' class='input-xlarge bsBtn'></div>"
@@ -1165,8 +1038,7 @@ function isRegister()
 	});
 }
 function register() {
-	jQuery
-	.ajax({
+	jQuery.ajax({
 		type : "GET",
 		url : "../userProfile/getMDLUserLists",
 		data : {
@@ -1181,31 +1053,10 @@ function register() {
 					$("#info_interact").css("display","none");
 					$("#info_interact2").css("display","none");
 					$("#info_imgurl").attr("src",$('#userImage').attr('src'));
-					/* if(users[0].tag!="未注册"){
-						for(var j=0;j<users[0].tag.length;j++){
-							var tag=users[0].tag[j];
-							for (var key in tag) { 
-								var td='<td>'
-									+'				<div id="'+key+'" data-dimension="70" data-text="'
-									+tag[key]
-									+'%" data-info="" data-width="8" data-fontsize="18" data-percent="'
-									+tag[key]
-									+'" data-fgcolor="#FFF" data-bgcolor="#aaa" data-fill=""></div>'
-									+'				<span style="font-size:12px;">'
-									+key
-									+'</span>'
-									+'														</td>';
-
-								$("#info_tag tr").append(td);
-								$('#'+key).circliful();
-							}
-						}
-					} */
 					users = users.replace(/:"未注册"/g, ':"未编辑"');
 					$("#info_username span").html(users[0].realName+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+users[0].role+']&nbsp;</span>'+'<img onclick="showRegister()" src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
 					$("#info_all").css('display','table');
 					$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].phone);
-					//$("#info_group").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].groupid);
 					$("#info_email").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].email);
 					$("#info_selfIntro").text(users[0].selfIntro);
 					$('#UserInfo').modal('show');
@@ -1224,8 +1075,6 @@ function register() {
 	}
 	
 function showRegister(){
-//	$('#UserInfo').modal('hide');
-//	$('#registerform').modal('show');
 	$.ajax({
 		type : "GET",
 		url : "../userProfile/getMDLUserLists",
@@ -1314,13 +1163,6 @@ function returnRegisterBack()
 		var phone = $("#phone").val();
 		var email = $("#email").val();
 		var validateCode = $("#validateCode").val();
-		//var suppovisor = $("#suppovisor").val();
-		//var role = $("#roleSelect option:selected").val();
-		//var group = $("#groupSelect option:selected").val();
-		/* var javatag = $("#javatag").val();
-		var htmltag = $("#htmltag").val(); 
-		var webservicetag = $("#webservicetag").val();
-	    var etltag = $("#etltag").val(); */
 		var selfIntro = $("#selfIntro").val();
 		
 		 var phoneFilter = /^1[0-9]{10}/;
@@ -1385,8 +1227,7 @@ function getUserInfo(username, headimgurl, openId) {
 			$("#info_interact2").css("display","block");
 			$("#info_imgurl").attr("src",headimgurl);
 			//$("#info_username span").html(username+'<img src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
-	jQuery
-			.ajax({
+		jQuery.ajax({
 				type : "GET",
 				url : "../userProfile/getMDLUserLists",
 				data : {
@@ -1404,27 +1245,6 @@ function getUserInfo(username, headimgurl, openId) {
 							$("#info_username span").html(users[0].realName);
 							$("#info_interact img.zan").attr("onclick","recognizationPanelByPerson('"+users[0].realName+"')");
 							$("#info_interact2 span.zan").text(users[0].CongratulateNum);
-							/* if(users[0].tag!="未注册"){
-								for(var j=0;j<users[0].tag.length;j++){
-									var tag=users[0].tag[j];
-									for (var key in tag) { 
-										var td='<td>'
-											+'				<div id="'+key+'" data-dimension="70" data-text="'
-											+tag[key]
-											+'%" data-info="" data-width="8" data-fontsize="18" data-percent="'
-											+tag[key]
-											+'" data-fgcolor="#FFF" data-bgcolor="#aaa" data-fill=""></div>'
-											//+'" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd"></div>'
-											+'				<span style="font-size:12px;">'
-											+key
-											+'</span>'
-											+'														</td>';
-
-										$("#info_tag tr").append(td);
-										$('#'+key).circliful();
-									}
-								}
-							} */
 							users = users.replace(/:"未注册"/g, ':"未编辑"');
 							$("#info_all").css('display','table');
 							$("img.zan").css('display','block');
@@ -1453,8 +1273,7 @@ function getUserInfo(username, headimgurl, openId) {
 }
 
 function getMDLUserLists() {
-	jQuery
-			.ajax({
+	jQuery.ajax({
 				type : "GET",
 				url : "../userProfile/getMDLUserLists",
 				data : {},
@@ -1508,15 +1327,7 @@ function getMDLUserLists() {
 						if(role==null||role=='null'){
 							role="";
 						}
-						/* if(tag!=null&&tag!='null'){
-							for(var j=0;j<tag.length&&j<4;j++){
-								for (var key in tag[j]) { 
-									tagHtml+='													<div class="tag">'
-									+key
-									+'													</div>';
-								}
-							}
-						} */
+
 						if(phone!=null&&phone!='null'&&phone!=''){
 							 tagHtml+='													<div class="tag"><a href="tel:'+phone+'" style="color:#fff;">'
 									+'TEL:'+phone
