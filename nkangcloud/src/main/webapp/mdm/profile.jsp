@@ -54,8 +54,7 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/profile.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/icomoon/iconMoon.css"/>
-<link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-responsive.css"/><!-- 
-<link rel="stylesheet" type="text/css" href="../nkang/css_athena/font-awesome.css"> -->
+<link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-responsive.css"/>
 <link rel="stylesheet" type="text/css" href="../nkang/css_athena/style-default.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/CSS/sonhlab-base.css"/>
@@ -68,17 +67,16 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <script type="text/javascript" src="../nkang/easyui/jquery.min.js"></script>
 <script type="text/javascript">var $113 = $;</script>
 <script type="text/javascript" src="../nkang/easyui/jquery.easyui.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../MetroStyleFiles//CSS/animation-effects.css"/>
-	<link href="../nkang/editor/froala_editor.min.css" rel="stylesheet" type="text/css">
-	<link href="../nkang/editor/font-awesome.min.css" rel="stylesheet" type="text/css"> 
+<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/CSS/animation-effects.css"/>
+<link href="../nkang/editor/froala_editor.min.css" rel="stylesheet" type="text/css">
+<link href="../nkang/editor/font-awesome.min.css" rel="stylesheet" type="text/css"> 
 <link rel="stylesheet" type="text/css" href="../Jsp/CSS/common.css">
 <script type="text/javascript" src="../Jsp/JS/slides.js"></script>
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/component.css" />
+<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/demo.css" />
+<link rel="stylesheet" type="text/css" href="../mdm/uploadfile_css/component.css" />
 <script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 <script type="text/javascript" src="../nkang/jquery-form.js"></script>
-
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <script src="../Jsp/JS/fusioncharts.js" type="text/javascript"></script>
 <!--[if IE]>
