@@ -52,7 +52,7 @@ body {
 	border:none;
 }
 .margin-left{
-margin-left:10px;
+margin-left:100px;
 }
 .margin-right{
 margin-right:10px;
