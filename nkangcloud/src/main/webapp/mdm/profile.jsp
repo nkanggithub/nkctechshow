@@ -1914,7 +1914,7 @@ function getNowFormatDate() {
 					<!-- 	<input type="text" id="search" name="search" placeholder="Search.."> -->
 								
 							   <!-- slides show start -->
-							   <div class="slide-main" id="touchMain" style="margin-top:-20px;">
+							   <div class="slide-main" id="touchMain" style="margin-top:-25px;">
 
         <a class="prev" style="display:none" href="javascript:;" stat="prev1001"><img src="../MetroStyleFiles/image/l-btn.png" /></a>
 
