@@ -1610,15 +1610,14 @@ public class RestUtils {
 	public static String sendRecognitionToUser(String openId, String toOpenId,
 			CongratulateHistory ch) {
 		String result = "";
-		String str = "{\"title\":\"Congratulations!! "
+		String str = "{\"title\":\"恭喜您!! "
 				+ ch.getTo()
 				+ " \",\"description\":\""
 				+ ch.getTo()
-				+ " must have done something amazing and has been recognized by"
-				+ ch.getFrom() + "!!!\",\"url\":\"http://" + Constants.baehost
+				+ " 一定做了了不起的事情，收到了来至"
+				+ ch.getFrom() + " 的赞美与认可!!!\",\"url\":\"http://" + Constants.baehost
 				+ "/mdm/RecognitionCenter.jsp?num=" + ch.getNum() + "&uid="
-				+ openId + "\",\"picurl\":" + "\"http://" + Constants.baehost
-				+ "/MetroStyleFiles/RecognitionImage.jpg\"}";
+				+ openId + "\",\"picurl\":" + "\"http://leshu.bj.bcebos.com/standard/ThanksLetter.JPG\"}";
 		String json = "{\"touser\":\"" + toOpenId
 				+ "\",\"msgtype\":\"news\",\"news\":" +
 
