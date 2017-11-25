@@ -67,7 +67,7 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <script type="text/javascript">var $113 = $;</script>
 <script type="text/javascript" src="../nkang/easyui/jquery.easyui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/CSS/animation-effects.css"/>
-<link href="../nkang/editor/froala_editor.min.css" rel="stylesheet" type="text/css">
+<!-- <link href="../nkang/editor/froala_editor.min.css" rel="stylesheet" type="text/css"> -->  <!-- do not need this one -->
 <link href="../nkang/editor/font-awesome.min.css" rel="stylesheet" type="text/css"> 
 <link rel="stylesheet" type="text/css" href="../Jsp/CSS/common.css">
 <script type="text/javascript" src="../Jsp/JS/slides.js"></script>
@@ -78,6 +78,19 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <script type="text/javascript" src="../nkang/jquery-form.js"></script>
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <script src="../Jsp/JS/fusioncharts.js" type="text/javascript"></script>
+
+
+
+<script src="../mdm/uploadfile_js/custom-file-input.js"></script>
+<script src="../nkang/editor/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/froala_editor.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/colors.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/font_family.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/font_size.min.js"></script>
+<script type="text/javascript" src="../nkang/editor/block_styles.min.js"></script>
+
+
+
 <!--[if IE]>
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
@@ -1867,51 +1880,6 @@ function getNowFormatDate() {
 									</div>
 								</div>
 
-								<div id="tax_main_div" class="modal hide fade" tabindex="-1"
-									role="dialog" aria-labelledby="weather_main_div"
-									aria-hidden="true" data-backdrop="static">
-									<div class="modal-header" style="text-align: center;">
-										<h3>
-											<b>税费计算</b>
-										</h3>
-										<img src="../MetroStyleFiles/Close.png" data-dismiss="modal"
-											aria-hidden="true"
-											style="float: right; height: 25px; cursor: pointer; margin-top: -40px;" />
-									</div>
-									<div class="modal-body readmoreHpop"
-										style="white-space: pre-line; padding: 0px 10px;">
-										<table width="100%" style="margin-bottom: -20px;">
-											<tr>
-												<td>起征点：</td>
-												<td><input type="text" id="taxstart" value="3500" /></td>
-											</tr>
-											<tr>
-												<td>总工资：</td>
-												<td><input type="text" id="taxIncome2" /></td>
-											</tr>
-											<tr>
-												<td>五险一金：</td>
-												<td><input type="text" id="payment2" /></td>
-											</tr>
-											<tr>
-												<td colspan="2" style="text-align: center; padding: 0px;">
-													<button class="btnAthena EbtnLess clientTheme"
-														style="margin-top: -30px; padding: 0px;background-color:#00B287;"
-														id="tax_submit_button">计算</button>
-												</td>
-											</tr>
-											<tr>
-												<td>含税级距计算：</td>
-												<td><span id="levelcalc2"></span></td>
-											</tr>
-											<tr>
-												<td>不含税级距计算：</td>
-												<td><span id="nolevelcalc2"></span></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-
 								<div id="UserInfo" class="modal hide fade" tabindex="-1"
 									role="dialog" aria-labelledby="myModalLabel1"
 									aria-hidden="true" data-backdrop="static">
@@ -1995,49 +1963,7 @@ function getNowFormatDate() {
 	</div>
 		
 		<!-- START MESSAGE STATION -->
-	<div id="mes-station">
-		
-
-<!--  Start Tax Page  -->	
-		<div class="mes-container item-profileview transparent-black"
-			data-mesid="message-tax">
-			<!-- Start Content Holder -->
-			<div class="mes-contentholder">
-				<div class="item-profilebody">
-					<!-- Start Background -->
-					<div class="mes-content item-profilebg solid-smoke"
-						data-show="hmove" data-start="-100" data-showdura="400">
-						<img style="position:absolute;top:8px;right:20px;" src="" alt="Logo" class="HpLogo">
-						<div class="clientTheme" style="width:100%;height:4px;background:#56B39D;position:absolute;top:70px;"></div>
-						</div>
-					<!-- End Background -->
-					<!-- Start Control Bar -->
-					<div class="mes-content item-ctrlbar-5" data-show="fade"
-						data-showdura="200">
-						<div class="mes-closebt light-text floatleft">
-							<img src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
-								style="width: 30px; height: 30px;position:absolute;top:20px;left:20px;" />
-						</div>
-						<div class="clearspace"></div>
-					</div>
-					<!-- End Control Bar -->
-					<!-- Start Header Photo -->
-					<div class="mes-content item-headerphoto" style="width:80%;position:absolute;top:100px;left:10%;" data-show="bounceInDown">
-							<legend>世界时间</legend>
-							<div style="margin-top:0px;margin-bottom: -20px;background-color:#fff;">
-							
-									</div>
-					</div> 
-					<!-- End Header Photo -->
-				</div>
-				<img  src="../MetroStyleFiles//image/sitemaintenance_robot_animation.gif" alt="demo-headphoto">
-			</div>
-		</div>
-		<!-- End Content Holder -->
-<!--  End Tax Page  -->			
-		
-		
-		
+	<div id="mes-station">		
 </div>
 <!-- END MESSAGE STATION -->
 
@@ -2046,13 +1972,7 @@ function getNowFormatDate() {
 		<span class="clientCopyRight"><nobr></nobr></span>
 	</div>
 	<!-- END FOOTER -->
-		 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
-		 
-  <script src="../nkang/editor/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="../nkang/editor/froala_editor.min.js"></script>
-<script type="text/javascript" src="../nkang/editor/colors.min.js"></script>
-<script type="text/javascript" src="../nkang/editor/font_family.min.js"></script>
-<script type="text/javascript" src="../nkang/editor/font_size.min.js"></script>
-<script type="text/javascript" src="../nkang/editor/block_styles.min.js"></script>
+	
+
 </body>
 </html>
