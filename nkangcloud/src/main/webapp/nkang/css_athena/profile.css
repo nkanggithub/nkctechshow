@@ -240,7 +240,7 @@ a:hover,a:link {
 }
 
 #UserInfo {
-	background: url(../MetroStyleFiles/image/bg_NULL.png);
+	background: url(../MetroStyleFiles/image/bg.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -291,7 +291,7 @@ a:hover,a:link {
 }
 
 #registerform {
-	background: url(../MetroStyleFiles/image/bg_NULL.png);
+	background: url(../MetroStyleFiles/image/bg.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
