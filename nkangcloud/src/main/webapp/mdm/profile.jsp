@@ -82,7 +82,7 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 
 
 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
-<script src="../nkang/editor/jquery-1.11.1.min.js"></script>
+<!-- <script src="../nkang/editor/jquery-1.11.1.min.js"></script> -->
 <script type="text/javascript" src="../nkang/editor/froala_editor.min.js"></script>
 <script type="text/javascript" src="../nkang/editor/colors.min.js"></script>
 <script type="text/javascript" src="../nkang/editor/font_family.min.js"></script>
