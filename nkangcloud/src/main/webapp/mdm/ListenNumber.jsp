@@ -171,28 +171,27 @@ i {
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script src="../Jsp/JS/leshu/jQuery.speech.js"></script>
 	<script>
-var speed=<%= speed%>;
-var numCount=<%= numCount%>;
-var length=<%= length%>;
-var uid='<%=uid%>';
+	var speed=<%= speed%>;
+	var numCount=<%= numCount%>;
+	var length=<%= length%>;
+	var uid='<%=uid%>';
 	var text="开始,";
 	var tempArray=new Array();
 	var numCountArray=new Array(3,5,8,10);
 	var lengthArray=new Array(1,2,3,4);
 
 
-        var total=0;
+    var total=0;
 	function showAnswer(){
- $("#answerInput").html("");
-	for(var i=0;i<numCountArray[numCount];i++){
-	$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />")
-	}
+	 	$("#answerInput").html("");
+		for(var i=0;i<numCountArray[numCount];i++){
+			$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />")
+		}
 		total=0;
-	for(var i=0;i<tempArray.length;i++){
-	total+=parseInt(tempArray[i]);}
-
-	$("#total").val("正确答案：" + total);
-	
+		for(var i=0;i<tempArray.length;i++){
+			total+=parseInt(tempArray[i]);
+		}
+		$("#total").val("正确答案：" + total);
 	} 
 	var ge=0;
 	var shi=0;
@@ -200,81 +199,81 @@ var uid='<%=uid%>';
 	var qian=0;
 	function getNum(){
 	
-	text="乐数珠心算开始,";
+	text="乐数听算开始,";
 	var temp="";
 	for(var i=0;i<numCountArray[numCount];i++){
-	if(lengthArray[length]==1){
-	temp=Math.round(Math.random()*8)+1;
-	tempArray[i]=temp;
-	text=text+temp+",";
-	}
-	if(lengthArray[length]==2){
-	ge=Math.round(Math.random()*9);
-	shi=Math.round(Math.random()*8)+1;
-	if(ge!=0){
-	temp+=shi+"十"+ge+",";}
-	else{
-	temp+=shi+"十"+",";
-	}
-	tempArray[i]=shi*10+ge;
-	}
-	if(lengthArray[length]==3){
-	ge=Math.round(Math.random()*9);
-	shi=Math.round(Math.random()*9);
-	bai=Math.round(Math.random()*8)+1;
-	if(shi!=0){
-	if(ge!=0){
-	temp+=bai+"百"+shi+"十"+ge+",";
-	}
-	else{
-	temp+=bai+"百"+shi+"十"+",";
-	}
-	}else{
-		if(ge!=0){
-			temp+=bai+"百"+"零"+ge+",";
-		}else{
-			temp+=bai+"百";
+		if(lengthArray[length]==1){
+			temp=Math.round(Math.random()*8)+1;
+			tempArray[i]=temp;
+			text=text+temp+",";
 		}
+		if(lengthArray[length]==2){
+			ge=Math.round(Math.random()*9);
+			shi=Math.round(Math.random()*8)+1;
+			if(ge!=0){
+				temp+=shi+"十"+ge+",";}
+			else{
+				temp+=shi+"十"+",";
+			}
+			tempArray[i]=shi*10+ge;
 		}
-	tempArray[i]=bai*100+shi*10+ge;
-	}
-	if(lengthArray[length]==4){
-	ge=Math.round(Math.random()*9);
-	shi=Math.round(Math.random()*9);
-	bai=Math.round(Math.random()*9);
-	qian=Math.round(Math.random()*8)+1;
-	if(bai!=0){
-		if(shi!=0){
-			if(ge!=0){
-				temp+=qian+"千"+bai+"百"+shi+"十"+ge+",";
+		if(lengthArray[length]==3){
+			ge=Math.round(Math.random()*9);
+			shi=Math.round(Math.random()*9);
+			bai=Math.round(Math.random()*8)+1;
+			if(shi!=0){
+				if(ge!=0){
+					temp+=bai+"百"+shi+"十"+ge+",";
+				}
+				else{
+					temp+=bai+"百"+shi+"十"+",";
+				}
 			}else{
-				temp+=qian+"千"+bai+"百"+shi+"十"+",";
+				if(ge!=0){
+					temp+=bai+"百"+"零"+ge+",";
+				}else{
+					temp+=bai+"百";
+				}
 			}
-		}else{
-			if(ge!=0){
-				temp+=qian+"千"+bai+"百"+"零"+ge+",";
-			}else{
-				temp+=qian+"千"+bai+"百";
-			}
+			tempArray[i]=bai*100+shi*10+ge;
 		}
-	}else{
-		if(shi!=0){
-			if(ge!=0){
-				temp+=qian+"千"+"零"+shi+"十"+ge+",";
+		if(lengthArray[length]==4){
+			ge=Math.round(Math.random()*9);
+			shi=Math.round(Math.random()*9);
+			bai=Math.round(Math.random()*9);
+			qian=Math.round(Math.random()*8)+1;
+			if(bai!=0){
+				if(shi!=0){
+					if(ge!=0){
+						temp+=qian+"千"+bai+"百"+shi+"十"+ge+",";
+					}else{
+						temp+=qian+"千"+bai+"百"+shi+"十"+",";
+					}
+				}else{
+					if(ge!=0){
+						temp+=qian+"千"+bai+"百"+"零"+ge+",";
+					}else{
+						temp+=qian+"千"+bai+"百";
+					}
+				}
 			}else{
-				temp+=qian+"千"+"零"+shi+"十"+",";
+				if(shi!=0){
+					if(ge!=0){
+						temp+=qian+"千"+"零"+shi+"十"+ge+",";
+					}else{
+						temp+=qian+"千"+"零"+shi+"十"+",";
+					}
+				}else{
+					if(ge!=0){
+						temp+=qian+"千"+"零"+ge+",";
+					}else{
+						temp+=qian+"千";
+					}
+				}
+			
 			}
-		}else{
-			if(ge!=0){
-				temp+=qian+"千"+"零"+ge+",";
-			}else{
-				temp+=qian+"千";
-			}
+			tempArray[i]=qian*1000+bai*100+shi*10+ge;
 		}
-	
-	}
-	tempArray[i]=qian*1000+bai*100+shi*10+ge;
-	}
 	}
 	
 	text=text+temp+"结束";
