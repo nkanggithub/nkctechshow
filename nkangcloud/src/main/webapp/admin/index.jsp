@@ -542,7 +542,7 @@ function showLogoPanel(index){
 			cache : false,
 			success : function(data) {
 				if(data=="true"){
-					swal("Congratulations！", "LOGO信息修改成功!", "success"); 
+					swal("恭喜！", "LOGO信息修改成功!", "success"); 
 					window.location.reload();
 				}
 				else{
@@ -676,7 +676,7 @@ function updateLogo(id){
 		cache : false,
 		success : function(data) {
 			if(data=="true"){
-				swal("Congratulations！", "网站LOGO替换成功!", "success"); 
+				swal("恭喜！", "网站LOGO替换成功!", "success"); 
 				window.location.reload();
 			}
 			else{

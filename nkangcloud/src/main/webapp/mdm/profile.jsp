@@ -612,7 +612,7 @@ function toLike(likeToName,ToOpenId){
 	        timeout: 2000, 
 	        success: function(data,textStatus){
 	        	if(textStatus=='success'){
-	        		swal("Congratulations！", "今天你成功给"+likeToName+"点赞了", "success"); 
+	        		swal("太好了！", "今天你成功给"+likeToName+"点赞了", "success"); 
 	        		$("span.like").text(parseInt($("span.like").text())+1);
 	        		getMDLUserLists();
 	        	}else{
@@ -717,7 +717,7 @@ function showRecognitionDetail(from,to,point,type,coments)
 	var text=coments.toString();
 	$("body").append("<div id='recognitionCenter' style='width:100%;height:100%;'> <div style='height:90px;font-family: HP Simplified, Arial, Sans-Serif;border-bottom:5px solid #56B39D'><img style='position:absolute;top:20px;left:35px;' src='"+HpLogoSrc+"' alt='Logo' class='HpLogo'></div>"
 			+"<div style='position:absolute;top:140px;width:80%;left:10%;font-size:16px;'>"
-			+"<p style='float:left;width:110px;'>Congratulations</p><p id='to' style='float:left;'>"+to+"</p><p style='float:left;'>!</p></div>"
+			+"<p style='float:left;width:110px;'>认可</p><p id='to' style='float:left;'>"+to+"</p><p style='float:left;'>!</p></div>"
 			+"<div style='position:absolute;top:180px;width:80%;left:10%;height:auto;font-size:14px;font-family: HP Simplified, Arial, Sans-Serif;'>"
 			+"<p style='line-height:22px;'>You must have done something amazing! "+from+" has recognized you in the Manager-to-Employee FY16 program for M2E: "+type+". <p>"
 			+"<p style='width:100%;line-height:22px;font-size:16px;margin:15px 0px;'>Your award</p>"
