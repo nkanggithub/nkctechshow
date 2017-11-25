@@ -1489,9 +1489,9 @@ function getMDLUserLists() {
 							continue;
 						}
 						if(temp.isActive=="true"||temp.isActive==true){
-							role+='【在职】';
+							role+='【乐数】';
 						}else{
-							role+='【离职】';
+							role+='【看客】';
 						}
 						if(temp.openid==$('#uid').val()){
 							LastToLikeDate=temp.like.lastLikeDate;
