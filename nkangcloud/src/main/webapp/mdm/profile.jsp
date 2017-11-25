@@ -354,7 +354,7 @@ height: 15px;}
 
 <script>
 
-$(function(){ 
+/* $(function(){ 
 
 	$(".Work_Mates_div_list_div2").live("swipeleft",function(){
 		$(this).css("overflow","visible");
@@ -390,7 +390,7 @@ $(function(){
         })  
       
       
-    });
+    }); */
 
 var LastToLikeDate="",lastLikeTo="";
 var HpLogoSrc="",copyRight="",clientThemeColor="";
