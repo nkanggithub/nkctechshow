@@ -128,6 +128,8 @@ i {
           <div class="content active" id="show-rest-slider-result">
             <div id="show-rest-slider"></div>
           </div>
+			<i id="backLength" class="fa fa-bicycle fa-2x" style="float:left;"></i>
+			<i id="backLength" class="fa fa-fighter-jet fa-2x" style="float:right;"></i>
         </div>
 		
 		<i id="backLength" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
