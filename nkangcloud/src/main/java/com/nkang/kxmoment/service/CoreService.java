@@ -114,14 +114,14 @@ public class CoreService
 					Article article = new Article();
 					article.setTitle("【"+cm.getClientName()+"】欢迎您的到来，为了更好的为您提供服务，烦请注册。感谢一路有您");
 					article.setDescription("移动应用");
-					article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVjCT&oid=00D90000000pkXM");
+					article.setPicUrl("http://leshu.bj.bcebos.com/standard/registerherepls.JPG");
 					article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 					articleList.add(article);
 
 					Article article4 = new Article();
 					article4.setTitle("在此注册");
 					article4.setDescription("在此注册");
-					article4.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVjDC&oid=00D90000000pkXM");
+					article4.setPicUrl("http://leshu.bj.bcebos.com/standard/register_icon.png");
 					article4.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 					articleList.add(article4);
 					newsMessage.setArticleCount(articleList.size());
