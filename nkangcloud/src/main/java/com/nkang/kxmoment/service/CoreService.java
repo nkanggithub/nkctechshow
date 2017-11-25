@@ -112,7 +112,7 @@ public class CoreService
 					}
 					articleList.clear();
 					Article article = new Article();
-					article.setTitle("【"+cm.getClientName()+"】欢迎您的到来，为了更好的为您提供服务，烦请注册。感谢一路有您");
+					article.setTitle("【"+cm.getClientName()+"】感谢一路有您陪伴，注册有礼");
 					article.setDescription("移动应用");
 					article.setPicUrl("http://leshu.bj.bcebos.com/standard/registerherepls.JPG");
 					article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
