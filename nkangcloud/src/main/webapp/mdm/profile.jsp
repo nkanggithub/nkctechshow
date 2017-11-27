@@ -951,8 +951,8 @@ function recognizationPanel(){
 		
 		$("body").append("<div class='TAB2class bouncePart' id='recognizeForm'>"
 				+"	<ul class='nav nav-tabs' id='myTabs'>"
-				+"	<li id='aaElements' class='active'><a href='#aElements' data-toggle='tab'>对他人认可</a></li>"
-				+"	<li id='bbElements'><a href='#bElements' onclick='getRecognitionInfoByOpenID()' data-toggle='tab'>他人对我认可</a></li></ul>"
+				+"	<li id='aaElements' class='active'><a href='#aElements' data-toggle='tab'>对Ta点赞</a></li>"
+				+"	<li id='bbElements'><a href='#bElements' onclick='getRecognitionInfoByOpenID()' data-toggle='tab'>Ta对我点赞</a></li></ul>"
 				+"  <div class='tab-content' id='dvTabContent' style='border: 0px;'>"
 				+"	<div class='tab-pane active' id='aElements'>"
 				+"	<div id='sendRe' style='height:110%;width:108%;overflow:scroll;'>"
@@ -986,8 +986,8 @@ function recognizationPanelByPerson(personName){
 		
 		$("body").append("<div class='TAB2class bouncePart' id='recognizeForm'>"
 				+"	<ul class='nav nav-tabs' id='myTabs'>"
-				+"	<li id='aaElements' class='active'><a href='#aElements' data-toggle='tab'>对他人认可</a></li>"
-				+"	<li id='bbElements'><a href='#bElements' onclick='getRecognitionInfoByOpenID()' data-toggle='tab'>他人对我认可</a></li></ul>"
+				+"	<li id='aaElements' class='active'><a href='#aElements' data-toggle='tab'>对Ta点赞</a></li>"
+				+"	<li id='bbElements'><a href='#bElements' onclick='getRecognitionInfoByOpenID()' data-toggle='tab'>Ta对我点赞</a></li></ul>"
 				+"  <div class='tab-content' id='dvTabContent' style='border: 0px;'>"
 				+"	<div class='tab-pane active' id='aElements'>"
 				+"	<div id='sendRe' style='height:110%;width:108%;overflow:scroll;'>"
