@@ -2,7 +2,8 @@
 <%
 int speed =Integer.parseInt(request.getParameter("speed")); 
 int numCount = Integer.parseInt(request.getParameter("numCount")); 
-int length = Integer.parseInt(request.getParameter("length")); 
+int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
+int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
 String uid = request.getParameter("UID");
 
 %>
@@ -11,112 +12,26 @@ String uid = request.getParameter("UID");
 <head>
 <meta charset="utf-8" />
 <title>乐数-闪算练习</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
-	<script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
-	<script src="../Jsp/JS/fusioncharts/fusioncharts.theme.fint.js"></script>
-	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
-	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
+<script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
+<script src="../Jsp/JS/fusioncharts/fusioncharts.theme.fint.js"></script>
+<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/custom.css" />
+<script src="../Jsp/JS/leshu/custom.js"></script> 
+<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/jquery-ui-1.11.0.css">
-
-<!-- slider -->
 <link rel="stylesheet" href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
-<!-- jquery, jqueryui --> 
 <script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script> 
-
 <link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css"/>
-
 <script	src="../MetroStyleFiles/sweetalert.min.js"></script>
-<!-- slider --> 
 <script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script> 
-
-<!-- app --> 
 <script src="../Jsp/JS/speedTab/examples.js"></script> 
-<!-- app -->
 <link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
-	<style type="text/css">
-body {
-	background-color: #fff;
-	text-align: center;
-}
-
-.sa {
-	text-align: center;
-}
-
-.niput {
-	width: 100%;
-	height: 45px;
-	margin: 5px;
-	padding: 12px 12px;
-	font-size: 19px;
-	line-height: 1.42857143;
-	color: black;
-	text-align:center;
-	background-color: #fff;
-	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
-		ease-in-out .15s;
-	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
-		.15s;
-	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	border:none;
-}
-
-.numPanel {
-	font-size: 45px !important;
-	color: #F94082 !important;
-	text-align: center;
-}
+<style type="text/css">
 
 #processPanel,#endPanel,#right,#wrong,#chart-container {
 	display: none;
-}
-
-.middleBtn {
-	width: 120px;
-	height: 40px;
-	font-size: 18px;
-	background: #22B26F!important;
-	    border-color: #22B26F;
-}
-
-.selectPanel {
-	padding: 30px 30px;
-	text-align: center;
-	margin-top: 10px;
-}
-
-.selectPanel p
-{
-	font-size: 18px;
-    color: #717171;
-}
-.circle {
-	display: inline-block;
-	font-size: 22px;
-	margin: 8px;
-	border: 1px solid #22B26F;
-	border-radius: 100%;
-	text-align: center;
-	width: 130px;
-	height: 130px;
-	line-height: 130px;
-}
-
-.bigger {
-	width: 160px;
-	height: 160px;
-	line-height: 160px;
-}
-
-i {
-	color: #22B26F;
-}
-
-
-.default {
-	background-color: #22B26F;
-	color: white;
 }
 </style>
 </head>
@@ -147,39 +62,35 @@ i {
 		</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
-
 		<div class="selectPanel">
-		
 		<div id="right">
 		<i class="fa fa-smile-o fa-3x"></i>
-<span style="font-size: 18px;display: inline-block;height: 30px;position: relative;top: -5px;margin-left: 10px;">答案正确</span></div><div id="wrong">
-		<i class="fa fa-frown-o fa-3x" style="
-    color: #F94082;
-"></i>
-<span style="font-size: 18px;display: inline-block;height: 30px;position: relative;top: -5px;margin-left: 10px;">答案错误</span></div>
-			<div id="answerInput"></div>
-			<div>
-			<input style="border-top: 1px solid black;width: 60%;" id="total" type="text" class="niput " disabled="">
-			</div>
-			<div style="text-align: center; margin: 15px;">
-				<input type="button" class="btn btn-primary start middleBtn"
-					value="再来一次">
-					<!-- <input type="text" id="timetext" value="00时00分00秒" readonly><br>-->
-					 
-
-			</div>
+		<span style="font-size: 18px;display: inline-block;height: 30px;position: relative;top: -5px;margin-left: 10px;">答案正确</span>
 		</div>
-		
-		
+		<div id="wrong">
+		<i class="fa fa-frown-o fa-3x" style="color: #F94082;"></i>
+		<span style="font-size: 18px;display: inline-block;height: 30px;position: relative;top: -5px;margin-left: 10px;">答案错误</span>
+		</div>
+		<div id="answerInput"></div>
+		<div>
+		<input style="border-top: 1px solid black;width: 60%;" id="total" type="text" class="niput " disabled="">
+		</div>
+		<div style="text-align: center; margin: 15px;">
+		<input type="button" class="btn btn-primary start middleBtn" value="下一题">
+		</div>
+		</div>
 	</section>
-				 <div id="chart-container">FusionCharts will render here</div>
+	<div id="chart-container">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script>
 
 	var speed=<%= speed%>;
+	var speedArray=new Array(0,10,9,8,7,6,5,4,3,2,1);
 	var numCount=<%= numCount%>;
-	var length=<%= length%>;
+	var length=0;
 	var uid='<%=uid%>';
+	var lengthMin=<%=lengthMin%>;
+	var lengthMax=<%=lengthMax%>;
 var textToShow="";
         var numberModel = null;
         var numberLength = 0;
@@ -188,8 +99,7 @@ var textToShow="";
         var view = null;
         var nnto = null;
         var snto = null;
-	var numCountArray=new Array(3,5,8,10);
-	var lengthArray=new Array(10,100,1000,10000);
+	var lengthArray=new Array(0,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000);
 	
         function start() {
 		timeStart();
@@ -213,22 +123,22 @@ var textToShow="";
 		var num=null;
         function ShowNumber() {
 
-            if (currentShowCount >= numCountArray[numCount]) {
+            if (currentShowCount >= numCount) {
                 view.text("结束");
 				$("#processPanel").hide();
 				$("#endPanel").show();
                 return;
             }
-			num=Math.round(Math.random()*lengthArray[length]);
+            num=RandomNumBoth(lengthArray[lengthMin-1],lengthArray[lengthMax]);
 			
 			
-			view.fadeIn(speed*300);
+			view.fadeIn(speedArray[speed]*300);
 			
             view.text(num);	
 
-			view.fadeOut(speed*300);
+			view.fadeOut(speedArray[speed]*300);
 			textToShow=textToShow+num+",";
-            snto = setTimeout("ShowNumber()", speed*600);
+            snto = setTimeout("ShowNumber()", speedArray[speed]*600);
             currentShowCount++;
         }
 
@@ -237,12 +147,17 @@ var textToShow="";
             view.text("");	
             view.fadeIn(1000);
         }
-
+        function RandomNumBoth(Min,Max){
+            var Range = Max - Min;
+            var Rand = Math.random();
+            var num = Min + Math.round(Rand * Range); //四舍五入
+            return num;
+      }
         var total=0;
 	function showAnswer(){
  $("#answerInput").html("");
 	var tempArray=textToShow.split(",");
-	for(var i=0;i<numCountArray[numCount];i++){
+	for(var i=0;i<numCount;i++){
 	$("#answerInput").append("<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />")
 	}
 		total=0;
@@ -326,51 +241,9 @@ var textToShow="";
 	start();
 	});
 	
-	   var hour,minute,second;//时 分 秒
-    hour=minute=second=0;//初始化
-    var millisecond=0;//毫秒
-    var int;
-    function reset()//重置
-    {
-      window.clearInterval(int);
-      millisecond=hour=minute=second=0;
-      $('#timetext').val('00时00分00秒000毫秒');
-    }
   $(".exit").on("click",function(){
 	  window.location.href="Navigator.jsp?UID="+uid;
   });
-    function timeStart()//开始
-    {
-      int=setInterval(timer,50);
-    }
-  
-    function timer()//计时
-    {
-      millisecond=millisecond+50;
-      if(millisecond>=1000)
-      {
-        millisecond=0;
-        second=second+1;
-      }
-      if(second>=60)
-      {
-        second=0;
-        minute=minute+1;
-      }
-  
-      if(minute>=60)
-      {
-        minute=0;
-        hour=hour+1;
-      }
-      $('#timetext').val(hour+'时'+minute+'分'+second+'秒'+millisecond+'毫秒');
-
-    }
-  
-    function timeStop()//暂停
-    {
-      window.clearInterval(int);
-    }
 </script>
 </body>
 </html>

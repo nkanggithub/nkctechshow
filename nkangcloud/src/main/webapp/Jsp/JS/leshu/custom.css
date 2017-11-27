@@ -1,0 +1,77 @@
+body {
+	background-color: #fff;
+	text-align: center;
+}
+
+.sa {
+	text-align: center;
+}
+
+.niput {
+	width: 100%;
+	height: 45px;
+	margin: 5px;
+	padding: 12px 12px;
+	font-size: 19px;
+	line-height: 1.42857143;
+	color: black;
+	text-align:center;
+	background-color: #fff;
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	border:none;
+}
+.numPanel {
+	font-size: 45px !important;
+	color: #F94082 !important;
+	text-align: center;
+}
+
+.middleBtn {
+	width: 120px;
+	height: 40px;
+	font-size: 18px;
+	background: #22B26F !important;
+	border-color: #22B26F;
+}
+
+.selectPanel {
+	padding: 30px 30px;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.selectPanel p {
+	font-size: 18px;
+	color: #717171;
+}
+
+.circle {
+	display: inline-block;
+	font-size: 22px;
+	margin: 8px;
+	border: 1px solid #22B26F;
+	border-radius: 100%;
+	text-align: center;
+	width: 130px;
+	height: 130px;
+	line-height: 130px;
+}
+
+.bigger {
+	width: 160px;
+	height: 160px;
+	line-height: 160px;
+}
+
+i {
+	color: #22B26F;
+}
+
+.default {
+	background-color: #22B26F;
+	color: white;
+}

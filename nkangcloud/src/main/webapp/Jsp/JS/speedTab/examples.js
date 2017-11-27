@@ -64,6 +64,14 @@
 				speed=ui.value;
             });
 
+        $("#show-bi-slider")
+            .slider({ max: 20,min:1, value: 3 })
+            .slider("pips", {
+                rest: "label"
+            })
+			.on("slidechange", function(e,ui) {
+				numCount=ui.value;
+            });
 
 
 
@@ -145,14 +153,6 @@
 
 
 
-        $("#steps-fivepercent-slider")
-            .slider({ min: 0, max: 1000, range: true, values: [200, 800] })
-            .slider("pips", {
-                rest: "label"
-            })
-            .slider("float");
-
-
 
 
 
@@ -220,12 +220,26 @@
 
 
         $("#vertical-slider")
-            .slider({ min: 0, max: 20, orientation: "vertical" })
+            .slider({ min: 1, max: 10,range: true, values: [2, 5] , orientation: "vertical" })
             .slider("pips", {
                 rest: "label",
-                step: "5"
+            })
+            .slider("float")
+			
+			.on("slidechange", function(e,ui) {
+				lengthMin=ui.values[0];
+				lengthMax=ui.values[1];
             });
 
     });
+	        $("#steps-fivepercent-slider")
+            .slider({ min: 0, max: 1000, range: true, values: [200, 800] })
+            .slider("pips", {
+                rest: "label"
+            })
+            .slider("float");
+
+
+
 
 }(jQuery));
