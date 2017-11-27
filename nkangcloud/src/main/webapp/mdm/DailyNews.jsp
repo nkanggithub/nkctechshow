@@ -96,8 +96,7 @@ if(uid.equals(openid)){
 
 <img onClick="javascript:publishNews();" style='width:45px;cursor:pointer;position: fixed;bottom: 50px;z-index: 1002;' src='http://leshu.bj.bcebos.com/icon/speaker.png'>
 <a href="uploadArticle.jsp?UID=<%=uid%>"><img style="width: 45px;cursor:pointer;position: fixed;bottom: 50px;right: 0px;z-index: 1002;" src="http://leshu.bj.bcebos.com/icon/broadcast.png"></a>
-<!-- <button style="position: absolute;top: 40px;right: 20px;padding: 4px 8px;background: white;border-style: none;border: 1px solid black;border-radius: 5px;" onClick="javascript:publishNews();">发布新闻</button>
- --><% } %>
+<% } %>
 		<aside style="margin-top:50px;height:400px;position:absolute;width:80%;left:5%;top:80px;" id="default-popup" class="avgrund-popup">
 
 			<h2 id="title" style="margin-bottom:10px;"></h2>
@@ -192,7 +191,7 @@ $(function(){
 	function publishNews() {
 		var formText="<textarea style='height: 200px;font-size:14px;line-height:25px;width: 80%;margin-left: 10px;' id='news'></textarea>";
 		swal({  
-	        title:"发布新闻",  
+	        title:"发布乐数快讯",  
 	        text:formText,
 	        html:"true",
 	        showConfirmButton:true, 

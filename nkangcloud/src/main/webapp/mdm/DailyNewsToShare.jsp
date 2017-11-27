@@ -74,7 +74,7 @@ $(function(){
 	function publishNews() {
 		var formText="<textarea style='height: 200px;font-size:14px;line-height:25px;width: 80%;margin-left: 10px;' id='news'></textarea>";
 		swal({  
-	        title:"发布新闻",  
+	        title:"发布乐数快讯",  
 	        text:formText,
 	        html:"true",
 	        showConfirmButton:true, 
