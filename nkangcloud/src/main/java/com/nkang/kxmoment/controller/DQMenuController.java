@@ -28,24 +28,8 @@ public class DQMenuController {
 	{
 		System.out.println("start to load dqmenu class......");
 	}
-	@RequestMapping("/getOpenMes")
-	public @ResponseBody List<ClientInformation> getOpenMes(HttpServletRequest request, HttpServletResponse response)
-	{
-		List<ClientInformation> clientList = new ArrayList<ClientInformation>();
-		clientList = RestUtils.CallGetClientFromMongoDB();
-/*		ClientInformation ci=new ClientInformation();
-		ci.setClientDescription("test...");
-		ci.setClientID("1223sd");
-		ci.setClientIdentifier("sfsfsgf");
-		clientList.add(ci);
-		ci.setClientDescription("test2...");
-		clientList.add(ci);*/
-		return clientList;
-	}
-	
-	
-	
-	
+
+
 	@RequestMapping("/getRadar")
 	public @ResponseBody List<Radar[]> getRadar(HttpServletRequest request, HttpServletResponse response,@RequestParam(value = "userState") String userState)
 	{

@@ -356,70 +356,7 @@ public class MasterDataRestController {
 		}
 		return ret;
 	}
-	
-	
-	@RequestMapping("/LoadClientIntoMongoDB")
-	public static String CallLoadClientIntoMongoDB(@RequestParam(value="ClientID", required=false) String ClientID,
-			@RequestParam(value="ClientIdentifier", required=false) String ClientIdentifier,
-			@RequestParam(value="ClientDesc", required=false) String ClientDesc,
-			@RequestParam(value="WebService", required=false) String WebService){
-		String ret="Completed";
-		try{
-			ret = MongoDBBasic.CallLoadClientIntoMongoDB(ClientID,ClientIdentifier,ClientDesc, WebService);
-		}		
-		catch(Exception e){
-			ret = "error occurs...";
-		}
-		return ret;
-	}
-	
-/*	@RequestMapping(value="/LoadClientIntoMongoDB", method = RequestMethod.POST)
-	public static String CallLoadClientIntoMongoDB(HttpServletResponse response, HttpServletRequest request){
-		String ret="Completed";
-		try{
-			request.setCharacterEncoding("UTF-8");
-			log.info("--request---" + request.toString());
-			BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-			String jsonStr = null;
-			StringBuilder result = new StringBuilder();
-			try {
-				while ((jsonStr = reader.readLine()) != null) {
-					result.append(jsonStr);
-				}
-				log.info("--ret---" + result.toString());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			log.info("--2222111---");
-			reader.close();
-			JSONObject jsonObject = new JSONObject(result.toString());
-			log.info("--22222---");
-			String ClientID = jsonObject.getString("ClientID");
-			String ClientIdentifier = jsonObject.getString("ClientIdentifier");
-			String ClientDesc = jsonObject.getString("ClientDesc");
-			String WebService = jsonObject.getString("WebService");
-			log.info("--4444---");
-			ret = MongoDBBasic.CallLoadClientIntoMongoDB(ClientID,ClientIdentifier,ClientDesc, WebService);
-			log.info("--55555---");
-		}		
-		catch(Exception e){
-			ret = ret + "error occurs..." + e.getMessage();
-		}
-		return ret;
-	}
-	*/
-	@RequestMapping("/CallGetClientFromMongoDB")
-	public static List<ClientInformation> CallGetClientFromMongoDB(){
-		List<ClientInformation> ret = new ArrayList<ClientInformation>();
-		try{
-			ret = MongoDBBasic.CallGetClientFromMongoDB();
-		}		
-		catch(Exception e){
-			//ret.add(e.getMessage());
-		}
-		return ret;
-	}
-	
+
 
 	@RequestMapping("/CallGetWeChatUserFromMongoDB")
 	public static List<WeChatMDLUser> CallGetWeChatUserFromMongoDB(
