@@ -10,6 +10,14 @@ public class AbacusQuizPool {
 	public List<String> question;
 	public int answer;
 	public String grade;
+	public String operator;
+	
+	public String getOperator() {
+		return operator;
+	}
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
 	public String getId() {
 		return id;
 	}

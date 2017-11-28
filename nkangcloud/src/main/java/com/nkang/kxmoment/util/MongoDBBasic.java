@@ -3590,92 +3590,113 @@ public class MongoDBBasic {
  *  march for create AbacusQuizPool
  */
 	public static boolean createAbacusQuizPool(AbacusQuizPool abacusQuiz) {
-		mongoDB = getMongoDB();
+		
 		Boolean ret = false;
 		//String[] questions = new ArrayList();
 		
 		try {
 			//String[] questions=abacusQuiz.getQuestion().split(",");
 			DBObject insert = new BasicDBObject();
-			String uuid = UUID.randomUUID().toString().trim().replaceAll("-", ""); 
-			insert.put("id", uuid);
+			//String uuid = UUID.randomUUID().toString().trim().replaceAll("-", ""); 
+			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+			String id="b"+cursqlTS;
+			insert.put("id", id);
 			//insert.put("tag", abacusQuiz.getTag());
 			
 			insert.put("category", abacusQuiz.getCategory());
 			insert.put("checkpoint", abacusQuiz.getCheckpoint());
 			insert.put("grade", abacusQuiz.getGrade());	
 			List<String> question=abacusQuiz.getQuestion();
+			String operators = "";
 			int answer=0;
 			if(abacusQuiz.getAnswer()==0){
+				
 				for(String str : question){
-					answer=answer+Integer.parseInt(str);
+					Integer itg=Integer.parseInt(str);
+					answer=answer+itg;
+					if(Math.abs(itg)==itg){
+						operators=operators+"+,";
+					}else{
+						operators=operators+"-,";
+					}
 				}
 				insert.put("answer", answer);
+				insert.put("operator", operators);
+				if(answer<0){
+					return ret;
+				}
 			}
-			
+			mongoDB = getMongoDB();
 			mongoDB.getCollection(collectionAbacusQuizPool).insert(insert);
 			
-			addTagAndQuestion(uuid,abacusQuiz.getTag(),question);
-			ret = true;
+			
+			ret = addTagAndQuestion(id,abacusQuiz.getTag(),question);
 		} catch (Exception e) {
 			log.info("createAbacusQuizPool--" + e.getMessage());
 		}
 		return ret;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static boolean addTagAndQuestion(String id,List<String> taglist,List<String> questionlist){
-
-	boolean result = false;
-	mongoDB = getMongoDB();
-	DBObject query = new BasicDBObject();
-	query.put("id", id);
-	DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
-	BasicDBList Tags = (BasicDBList) queryresults.get("Tag");
-	BasicDBList Questions = (BasicDBList) queryresults.get("question");
-	List listtag = new ArrayList();
-	List listquestion = new ArrayList();
-	if (Tags != null) {
-		Object[] tagObjects = Tags.toArray();
-		for (Object dbobj : tagObjects) {
-			/*if (dbobj instanceof DBObject) {
-				HashMap<String, Object> temp = new HashMap<String, Object>();
-				temp.put("tag", ((DBObject) dbobj).get("tag").toString());				
-				listtag.add(temp);
-			}*/
-			listtag.add(dbobj);
-		}
-		if(taglist.size()>0){
-			for(String lt : taglist){
-				listtag.add(lt);
+		boolean result = false;
+		try{
+			DBObject query = new BasicDBObject();
+			query.put("id", id);
+			mongoDB = getMongoDB();
+			DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
+			BasicDBList Tags = (BasicDBList) queryresults.get("Tag");
+			BasicDBList Questions = (BasicDBList) queryresults.get("question");
+			List listtag = new ArrayList();
+			List listquestion = new ArrayList();
+			if (Tags != null) {
+				Object[] tagObjects = Tags.toArray();
+				for (Object dbobj : tagObjects) {
+					/*if (dbobj instanceof DBObject) {
+						HashMap<String, Object> temp = new HashMap<String, Object>();
+						temp.put("tag", ((DBObject) dbobj).get("tag").toString());				
+						listtag.add(temp);
+					}*/
+					listtag.add(dbobj);
+				}
+				if(taglist.size()>0){
+					for(String lt : taglist){
+						listtag.add(lt);
+					}
+				}
+			}else{
+				listtag=taglist;
 			}
-		}
-	}else{
-		listtag=taglist;
+			if(Questions !=null){
+				Object[] questionObjs = Questions.toArray();
+				for (Object dbobj : questionObjs) {
+					if (dbobj instanceof DBObject) {			
+						listquestion.add(dbobj);
+					}
+				}
+				if(questionlist.size()>0){
+					for(String lt : questionlist){
+						listquestion.add(Math.abs(Integer.parseInt(lt)));
+					}
+				}
+			}else if(questionlist.size()>0){
+				for(String lt : questionlist){
+					listquestion.add(Math.abs(Integer.parseInt(lt)));
+				}
+			}
+				
+			BasicDBObject doc = new BasicDBObject();
+			BasicDBObject update = new BasicDBObject();
+			update.append("tag", listtag);
+			update.append("question", listquestion);
+			doc.put("$set", update);
+			WriteResult wr = mongoDB.getCollection(collectionAbacusQuizPool).update(
+					new BasicDBObject().append("id", id), doc);
+			result = true;
+		} catch (Exception e) {
+		log.info("addTagAndQuestion--" + e.getMessage());
 	}
-	if(Questions !=null){
-		Object[] questionObjs = Questions.toArray();
-		for (Object dbobj : questionObjs) {
-			if (dbobj instanceof DBObject) {			
-				listquestion.add(dbobj);
-			}
-		}
-		if(questionlist.size()>0){
-			for(String lt : questionlist){
-				listquestion.add(lt);
-			}
-		}
-	}else{
-		listquestion=questionlist;
-	}
-
-	BasicDBObject doc = new BasicDBObject();
-	BasicDBObject update = new BasicDBObject();
-	update.append("tag", listtag);
-	update.append("question", listquestion);
-	doc.put("$set", update);
-	WriteResult wr = mongoDB.getCollection(collectionAbacusQuizPool).update(
-			new BasicDBObject().append("id", id), doc);
-	result = true;
+	
 	return result;
 
 	}
