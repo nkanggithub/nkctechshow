@@ -52,7 +52,7 @@ if(res!=null){
     <script type="text/javascript" src="lodash.js"></script>
     <script type="text/javascript" src="vue.js"></script>
     <script>
-        document.domain = 'nkctech.duapp.com';
+        document.domain = 'leshucq.bceapp.com';
     </script>
 </head>
 <body>
@@ -68,7 +68,7 @@ if(res!=null){
 <!--             <div id="i-header-info" class="header-rc i-head-login"> -->
             <div >
                 <span class="username colorBlue" id="username" style="color:white;">欢迎您：<%=name %></span><br />
-                <a style="float: right;" href="http://nkctech.duapp.com/mdm/profile.jsp?UID=<%= uid%>"> <img id="userImage" src="<%=headImgUrl %>" alt="userImage" class="userImage" style="border-radius: 25px; height: 35px; width: 35px;"></a></span>
+                <a style="float: right;" href="http://leshucq.bceapp.com/mdm/profile.jsp?UID=<%= uid%>"> <img id="userImage" src="<%=headImgUrl %>" alt="userImage" class="userImage" style="border-radius: 25px; height: 35px; width: 35px;"></a></span>
             </div>	
         </div>
     </div>
