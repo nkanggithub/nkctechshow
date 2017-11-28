@@ -13,7 +13,7 @@
       <tr>
        <td width="98"><div align="center"><a href="../AbacusQuiz/getAllAbacusQuizPool"><h3><strong>&#25152;&#26377;&#39064;</strong></h3></a></div></td>
         <td width="98"><div align="center"><a href="../AbacusQuiz/getAbacusQuizPoolBycategory1?category=c2"><h3><strong>&#20998;&#31867;&#26174;&#31034;</strong></h3></a></div></td>
-        <td width="119"><div align="center"><a href="http://nkctech.duapp.com/mdm/AddQuestions.jsp"><h3><strong>&#28155;&#21152;</strong></h3></a></div></td>
+        <td width="119"><div align="center"><a href="http://leshucq.bceapp.com/mdm/AddQuestions.jsp"><h3><strong>&#28155;&#21152;</strong></h3></a></div></td>
       </tr>
     </table>
     <p>&nbsp;</p>

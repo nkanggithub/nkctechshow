@@ -81,7 +81,7 @@
 	var fx_describefenxiang = "";
 	wx_share_out('乐数珠心算','',fx_describefenxiang);
 </script>	<!-- 如果微巴帐号 -->
-			<a href="http://nkctech.duapp.com/mdm/LeShuIntro.jsp">
+			<a href="http://leshucq.bceapp.com/mdm/LeShuIntro.jsp">
 			<footer>
 				重庆乐数珠心算			</footer>
 		</a>

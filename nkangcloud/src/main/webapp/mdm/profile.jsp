@@ -1569,7 +1569,7 @@ function getNowFormatDate() {
 													</a>
 												</td>
 												<td>
-												<a target="_self" href="http://nkctech.duapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"><img src="http://leshu.bj.bcebos.com/icon/menu-stock.png" />
+												<a target="_self" href="http://leshucq.bceapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"><img src="http://leshu.bj.bcebos.com/icon/menu-stock.png" />
 													<h4>乐数足迹</h4></a>
 												</td>
 												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="http://leshu.bj.bcebos.com/icon/menu-technology.png" />
@@ -1585,13 +1585,6 @@ function getNowFormatDate() {
 												 <a href="http://<%=Constants.baehost%>/mdm/Navigator.jsp?UID=<%=uid %>" target="_blank">
 												 <img src="http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png" /></a>
 													<h4>自我修炼</h4></td>
-												<!-- <td onclick="getReminderForMore()">
-												<img src="../MetroStyleFiles/Add1.png" />
-													<h4>更多应用</h4></td> -->
-<!-- 													<td>
-													 <a href="http://nkctech.duapp.com/mdm/uploadVideo.jsp" target="_blank">
-												 <img src="../MetroStyleFiles/Add1.png" /></a>
-													<h4>上传视频</h4></td>  -->
 											</tr>
 										</table>
 									</div>
