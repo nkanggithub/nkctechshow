@@ -230,43 +230,7 @@ public class RestUtils {
 		return wcu;
 	}
 
-	public static String getWeatherInform(String cityName) {
-		String baiduUrl = "http://"
-				+ Constants.baiduapihost
-				+ "/telematics/v3/weather?location=??&output=json&ak=75cXdwpimZ6GaFMMdQj20GvS";
-		StringBuffer strBuf;
-		try {
-			baiduUrl = "http://" + Constants.baiduapihost
-					+ "/telematics/v3/weather?location="
-					+ URLEncoder.encode(cityName, "utf-8")
-					+ "&output=json&ak=75cXdwpimZ6GaFMMdQj20GvS";
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		}
-		strBuf = new StringBuffer();
-		try {
-			URL url = new URL(baiduUrl);
-			if (localInd == "Y") {
-				System.setProperty("http.proxyHost", Constants.proxyInfo);
-				System.setProperty("http.proxyPort", "8080");
-			}
-			System.setProperty("sun.net.client.defaultConnectTimeout", "30000");
-			System.setProperty("sun.net.client.defaultReadTimeout", "30000");
-			URLConnection conn = url.openConnection();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					conn.getInputStream(), "utf-8"));// ???
-			String line = null;
-			while ((line = reader.readLine()) != null)
-				strBuf.append(line + " ");
-			reader.close();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return strBuf.toString();
-	}
+	
 
 	public static String getUserCurLocStrWithLatLng(String lat, String lng) {
 		String ret = "";

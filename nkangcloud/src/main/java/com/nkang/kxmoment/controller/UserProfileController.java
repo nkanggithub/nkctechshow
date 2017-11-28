@@ -62,19 +62,6 @@ public class UserProfileController {
 //		WeChatUser user=RestUtils.getWeChatUserInfo(akey, IdLists.get(0).replaceAll("\"",""));
 //		return IdLists.get(0)+"==========="+user.toString();
 	}
-	@RequestMapping(value = "/getWeather", produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String getWeather(HttpServletRequest request,
-			HttpServletResponse response) {
-		String city = (String) request.getSession()
-				.getAttribute("city");
-		// String location=request.getParameter("location");
-		if (city == null || "".equals(city)) {
-			city = "重庆市";
-		}
-		String weather = RestUtils.getWeatherInform(city);
-		return weather;
-	}
 
 	@RequestMapping(value = "/getLocation", produces = "text/html;charset=UTF-8")
 	@ResponseBody
