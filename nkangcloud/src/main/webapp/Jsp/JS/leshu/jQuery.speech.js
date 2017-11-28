@@ -30,9 +30,15 @@ blog: http://www.tuterm.com
 				//点击链接播报
 				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
-					reset();
-					timeStart();
-					  $("#chart-container").hide();
+					if(totalTime==10){
+						reset();
+						totalTime=0;
+						 $("#chart-container").hide();
+					}
+					totalTime++;
+					if(totalTime==0){
+						timeStart();
+					}
 				$(".niput").val("");
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {

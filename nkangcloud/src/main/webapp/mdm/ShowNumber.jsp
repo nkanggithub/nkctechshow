@@ -100,8 +100,16 @@
 		var lengthArray = new Array(0, 10, 100, 1000, 10000, 100000, 1000000,
 				10000000, 100000000, 1000000000);
 		$(".start").on("click", function() {
-			reset();
-			timeStart();
+
+			if(totalTime==10){
+				reset();
+				totalTime=0;
+				 $("#chart-container").hide();
+			}
+			if(totalTime==0){
+				timeStart();
+			}
+			totalTime++;
 			$("#chart-container").hide();
 			getNum();
 
@@ -189,52 +197,54 @@
 				swal("访问失败", "请输入你的答案哦~！", "error");
 				;
 				return;
-			} else {
+			} 
+			if(totalTime==10){
 				timeStop();
-			}
-			FusionCharts.ready(function() {
-				var cSatScoreChart = new FusionCharts({
-					type : 'angulargauge',
-					renderAt : 'chart-container',
-					width : '400',
-					height : '250',
-					dataFormat : 'json',
-					dataSource : {
-						"chart" : {
-							"caption" : "计时统计",
-							"subcaption" : "计算时间(秒)",
-							"lowerLimit" : "0",
-							"upperLimit" : "60",
-							"lowerLimitDisplay" : "真棒",
-							"upperLimitDisplay" : "加油",
-							"showValue" : "1",
-							"valueBelowPivot" : "1",
-							"theme" : "fint"
-						},
-						"colorRange" : {
-							"color" : [ {
-								"minValue" : "0",
-								"maxValue" : "24",
-								"code" : "#6baa01"
-							}, {
-								"minValue" : "24",
-								"maxValue" : "48",
-								"code" : "#f8bd19"
-							}, {
-								"minValue" : "48",
-								"maxValue" : "60",
-								"code" : "#e44a00"
-							} ]
-						},
-						"dials" : {
-							"dial" : [ {
-								"value" : millisecond / 1000 + second - 1
-							} ]
+
+				FusionCharts.ready(function() {
+					var cSatScoreChart = new FusionCharts({
+						type : 'angulargauge',
+						renderAt : 'chart-container',
+						width : '400',
+						height : '250',
+						dataFormat : 'json',
+						dataSource : {
+							"chart" : {
+								"caption" : "计时统计",
+								"subcaption" : "计算时间(秒)",
+								"lowerLimit" : "0",
+								"upperLimit" : "60",
+								"lowerLimitDisplay" : "真棒",
+								"upperLimitDisplay" : "加油",
+								"showValue" : "1",
+								"valueBelowPivot" : "1",
+								"theme" : "fint"
+							},
+							"colorRange" : {
+								"color" : [ {
+									"minValue" : "0",
+									"maxValue" : "24",
+									"code" : "#6baa01"
+								}, {
+									"minValue" : "24",
+									"maxValue" : "48",
+									"code" : "#f8bd19"
+								}, {
+									"minValue" : "48",
+									"maxValue" : "60",
+									"code" : "#e44a00"
+								} ]
+							},
+							"dials" : {
+								"dial" : [ {
+									"value" : millisecond / 1000 + second - 1
+								} ]
+							}
 						}
-					}
-				}).render();
-			});
-			$("#chart-container").show();
+					}).render();
+				});
+				$("#chart-container").show();
+			}
 
 			showAnswer();
 			if (answer == tempTotal) {
