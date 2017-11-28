@@ -197,8 +197,8 @@
 				if(length!=1){
 				temp+=replaceZero(tempString,length)+','+chars;}
 				else{
-				
-				temp+=Math.round(Math.random()*8)+1+','+chars;
+
+					temp+=yitemp+','+chars;
 				}
 				}
 				else{
@@ -206,8 +206,8 @@
 				if(length!=1){
 				temp+=replaceZero(tempString,length)+','+chars;}
 				else{
-				
-				temp+=Math.round(Math.random()*8)+1+','+chars;
+
+					temp+=yitemp+','+chars;
 				}
 				}
 
@@ -220,11 +220,10 @@
 		}
 
 		
-
+		var yitemp="";
 		function getVoiceForNumber(i){
 		if(length==1){
-		var yitemp=Math.round(Math.random()*8)+1;
-		temp+=yitemp+','+chars;
+		yitemp=Math.round(Math.random()*8)+1;
 		tempArray[i]=yitemp;
 		}
 		if(length==2){
