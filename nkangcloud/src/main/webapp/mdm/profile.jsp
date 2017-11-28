@@ -6,8 +6,7 @@
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%	
-
+<%
 String AccessKey = RestUtils.callGetValidAccessKey();
 String uid = request.getParameter("UID");
 MongoDBBasic.updateUser(uid);
@@ -78,9 +77,6 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <script type="text/javascript" src="../nkang/jquery-form.js"></script>
 <link rel="stylesheet" href="../nkang/jquery.mobile.min.css" />
 <script src="../Jsp/JS/fusioncharts.js" type="text/javascript"></script>
-
-
-
 <script src="../mdm/uploadfile_js/custom-file-input.js"></script>
 <!-- <script src="../nkang/editor/jquery-1.11.1.min.js"></script> -->
 <script type="text/javascript" src="../nkang/editor/froala_editor.min.js"></script>
@@ -89,15 +85,7 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 <script type="text/javascript" src="../nkang/editor/font_size.min.js"></script>
 <script type="text/javascript" src="../nkang/editor/block_styles.min.js"></script>
 
-
-
-<!--[if IE]>
-		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
-	<![endif]-->
-	<!-- remove this if you use Modernizr -->
-		<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
-
-<!-- <link rel="stylesheet" href="../Jsp/CSS/w3.css"> -->
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 <style>
 	.mySlides {display:none}
 	.w3-left, .w3-right, .w3-badge {cursor:pointer}
@@ -219,39 +207,42 @@ input#search:focus {
 }
 
 .imgSelect{
-height:50%;
-width:24%;
-position:relative;
-float:left;
+	height:50%;
+	width:24%;
+	position:relative;
+	float:left;
 }
 .imgSelect img{
-width: 100%;height:100%;}
+	width: 100%;height:100%;
+}
 .imgCB
 {
-position: absolute;
-bottom: 2px;
-right: 2px;
-width: 15px;
-height: 15px;}
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+	width: 15px;
+	height: 15px;
+}
 /*ajax*/
 
 .sk-circle {
-  margin: 40px auto;
-  width: 40px;
-  height: 40px;
-      position: absolute;
-    top: 38%;
-    left: 45%;
-    display:none;
-    z-index:100000;
-     }
-  .sk-circle .sk-child {
+	margin: 40px auto;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 38%;
+	left: 45%;
+	display:none;
+	z-index:100000;
+}
+.sk-circle .sk-child {
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
-    top: 0; }
-  .sk-circle .sk-child:before {
+    top: 0; 
+}
+.sk-circle .sk-child:before {
     content: '';
     display: block;
     margin: 0 auto;
@@ -356,7 +347,6 @@ height: 15px;}
             transform: scale(1); } }
 </style>
 
-
 <script src="../nkang/js_athena/jquery.circliful.min.js"></script>
 <script src="../nkang/assets_athena/bootstrap/js/bootstrap.js"></script>
 <script	src="../MetroStyleFiles/sweetalert.min.js"></script>
@@ -366,55 +356,14 @@ height: 15px;}
 <script type="text/javascript" src="../nkang/autocomplete/jquery-ui.js"></script>
 
 <script>
-
-/* $(function(){ 
-
-	$(".Work_Mates_div_list_div2").live("swipeleft",function(){
-		$(this).css("overflow","visible");
-		$(this).addClass("editBtn");
-		var openid=$(this).find("span.openid").text();
-		var name=$(this).find("span.name").text();
-		$(this).append("<div class='edit'><p onclick='toLike(\""+name+"\",\""+openid+"\")'><img src='../mdm/images/focus.png' slt='' />点赞</p></div>");
-		$(this).append("<div class='edit km'><p onclick='showKMPanel(\""+openid+"\",\""+name+"\")'>**<br/>奖章</p></div>");
-		$(this).siblings().removeClass("editBtn");
-		$(this).siblings().find(".edit").remove();
-	});
-	$(".Work_Mates_div_list_div2").live("swiperight",function(){
-		$(this).css("overflow","hidden");
-		$(this).removeClass("editBtn");
-		$(this).find(".edit").remove();
-	}); 
-    $('#return-top').hide();  
-    $(function(){  
-        $(window).scroll(function(){  
-            if($(window).scrollTop()>200){  
-                $('#return-top').fadeIn(200);  
-                }  
-                else{$('#return-top').fadeOut(200);}  
-              
-            });  
-            $('#return-top').click(function(){  
-                  
-                $('body,html').animate({scrollTop:0},200);  
-                return false;  
-                  
-                })  
-          
-        })  
-      
-      
-    }); */
-
 var LastToLikeDate="",lastLikeTo="";
 var HpLogoSrc="",copyRight="",clientThemeColor="";
 var RoleList=[];
 var RoleObj=new Object();
 getLogo();
-
 var selectedType="<option value='communication'>常规沟通</option>";
 
 $(window).load(function() {
-	
 	$('head').append("<style>.naviArrow.is-selected::after{content: ''; display: block;width: 0;height: 0;border-left: .9em solid transparent;border-right: .9em solid transparent;border-top: .9em solid "+clientThemeColor+";position: relative;top: 0px;left: 50%;-webkit-transform: translateX(-50%); -ms-transform: translateX(-50%);transform: translateX(-50%);}</style>");
 	$("#navSupport").on("click",function(){
 		$(this).append("<a class='naviArrow is-selected'></a>").css("border-top","10px solid "+clientThemeColor);
@@ -449,11 +398,8 @@ $(window).load(function() {
 		$("#BoardContent").hide();
 		$("#WorkMates").show();
 	});
-		//$(".mes-openbt").openmes({ext: 'php'});
 		$('input#search:focus').css('background-color',clientThemeColor);
-	//	var stockUrl = "http://hq.sinajs.cn/list=gb_$ixic,gb_$dji,gb_$inx,gb_hpe,gb_hpq,gb_dxc";
 		checkReg();
-	//	getStockData(stockUrl);
 		getCompanyInfo();
 		getRealName();
 		getAllRegisterUsers();
@@ -534,7 +480,7 @@ function skim(jsons){
 }
 function noAuth(){
 
-		swal("you are unauthoried", "please contact admin to get the access", "error");
+		swal("您没有权限哦", "请联系管理员获取权限", "error");
 
 }
 function checkReg() {
@@ -549,7 +495,7 @@ function checkReg() {
 			users = users.replace(/:null/g, ':"未注册"');
 			if (users.length > 0) {
 				if(users[0].phone=="未注册"){
-					swal("你还未注册哦", "未注册用户很多功能不能使用,建议点击头像立即注册！", "error");
+					swal("您还未注册哦", "未注册用户很多功能不能使用,建议点击头像立即注册！", "error");
 				}
 			}
 		}
@@ -577,22 +523,7 @@ function uploadGiftPic(obj){
 	}
 	return false;
 }
-function startDictation() {
-    if (window.hasOwnProperty('webkitSpeechRecognition')) 
-      var recognition = new webkitSpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = false;
-      recognition.lang = "cmn-Hans-CN";
-      recognition.start();
-      recognition.onresult = function(e) {
-        document.getElementById('transcript').value = e.results[0][0].transcript;
-        recognition.stop();
-        document.getElementById('labnol').submit();
-      };
-      recognition.onerror = function(e) {
-        recognition.stop();
-      }
-}
+
 function toLike(likeToName,ToOpenId){
 	if(ToOpenId==$('#uid').val()){
 		swal("不能给自己点赞哦!", "可别太自恋啦。。。", "error"); 
@@ -622,26 +553,6 @@ function toLike(likeToName,ToOpenId){
 	  	});
 	}
 }
-function getOld(){
-	var url="../CallGetUserWithSignature?openid="+$('#uid').val();
-	  	$.ajax({  
-	        cache : true,  
-	        url:url,
-	        type: 'GET', 
-	        timeout: 2000, 
-	        success: function(data,textStatus){
-	        	if(textStatus=='success'){
-		        	if(data!=null&&data!=""&&data!="null"){
-		       		 	$('#old').html(data.substring(1,data.length-1));
-		        	}else{
-		        		$('#old').html("你还未保存个性签名！");
-		        	}
-	        	}else{
-	        		$('#old').html("服务器繁忙！");
-	        	}
-	        }
-	  	});
-	}
 
 function getCompanyInfo(){
 	$.ajax({
@@ -849,76 +760,6 @@ function postNotification(){
         }
     });
 
-}
-function  WeatherPanel(){
-	showCommonPanel();
-	jQuery.ajax({
-				type : "GET",
-				url : "../userProfile/getWeather",
-				data : {},
-				cache : false,
-				success : function(data) {
-					var jsons = eval('(' + data + ')');
-					if (jsons.status == 'success'
-							&& jsons.results.length > 0) {
-						var tbody="";
-						for (var i = 0; i < jsons.results[0].weather_data.length; i++) {
-							var temp = jsons.results[0].weather_data[i];
-							var tr = "<tr>";
-							if (i == 0) {
-								var dateT = temp.date;
-								var start = dateT.lastIndexOf("：");
-								var end = dateT.lastIndexOf(")");
-								dateT = dateT.substring(start + 1, end);
-								tr += '<td colspan="3" align="center"><div  style="float:left;padding-bottom:10px;margin-bottom:-50px;"><img id="refreshImg" src="../MetroStyleFiles/refresh.png" style="height:25px;cursor:pointer;" onclick="getWeather();"/></div><b> <img src="../MetroStyleFiles/temperature.png" style="height:25px;"/>'
-										+ dateT
-										+ '</b> <div  style="float:right;padding-bottom:10px;margin-bottom:-50px;"><a class="" data-toggle="modal" href="#WeatherDetails"  data-dismiss="modal" aria-hidden="true"><img src="../MetroStyleFiles/details.png" style="height:25px;cursor:pointer;"/> </a></div></td></tr><tr>';
-								tr += '<td width="20%" align="left">今天</td>';
-							} else {
-								tr += '<td width="20%" align="left">'
-										+ temp.date + '</td>';
-							}
-							tr += '<td width="55%" align="left"><img src="'+temp.dayPictureUrl +'"/><img src="'+temp.nightPictureUrl +'"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-									+ temp.weather + '</td>';
-							tr += '<td width="25%" align="right">'
-									+ temp.temperature + ' </td>';
-							tr += "</tr>";
-							tbody += tr;
-						}
-						tbody += '<tr><td colspan="3" align="center">'
-								+ getNowFormatDate() + '</td></tr>';
-						$("body").append('<div id="WeatherPart" class="bouncePart" style="position:fixed;z-index:999;top:100px;width:80%;margin-left:10%;"><legend>天气</legend><div style="margin-top:0px;margin-bottom: -20px;background-color:#fff;">'
-								+'<table width="100%" id="weather2" style="margin-left:auto;margin-right:auto;">'
-								+tbody+'							</table>'
-								+'							</div>');
-						$('#WeatherPart').addClass('form-horizontal bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-						      $(this).removeClass("bounceInDown animated");
-						    });
-						tbody = "";
-						for (var i = 0; i < jsons.results[0].index.length; i++) {
-							var temp = jsons.results[0].index[i];
-							var tr = "<tr>";
-							var tipt;
-							if (temp.tipt.length > 4) {
-								tipt = "紫外线";
-							} else {
-								tipt = temp.tipt;
-							}
-							tr += '<td width="15%" align="right" valign="top" ><nobr><b>'
-									+ tipt + '：</b></nobr></td>';
-							tr += '<td width="85%" align="left">'
-									+ temp.des + '</td>';
-							tr += "</tr>";
-							tbody += tr;
-						}
-						$('#weather_suggest').html(tbody);
-						if ($("#refreshImg") != null
-								&& $("#refreshImg") != undefined)
-							$("#refreshImg").attr("src",
-									"../MetroStyleFiles/refresh.png");
-					}
-				}
-			});
 }
 
 function mesSend(){
@@ -1294,7 +1135,6 @@ function getMDLUserLists() {
 				success : function(users) {
 					var ul = "",regNumber=0;
 					var RoleNum=new Object(),noRoleNum=0;
-					//ul='<div class="Work_Mates_div_list_div2" style="border-bottom:0px;">';
 					ul='';
 					for (var i = 0; i < users.length; i++) {
 						var temp = users[i];
@@ -1495,129 +1335,6 @@ function getLocation() {
 					"../MetroStyleFiles/setuplocation.png");
 		}
 	});
-}
-function getWeather() {
-	if ($("#refreshImg") != null && $("#refreshImg") != undefined)
-		$("#refreshImg").attr("src", "../MetroStyleFiles/loading.gif");
-	jQuery.ajax({
-				type : "GET",
-				url : "../userProfile/getWeather",
-				data : {},
-				cache : false,
-				success : function(data) {
-					var jsons = eval('(' + data + ')');
-					if (jsons.status == 'success'
-							&& jsons.results.length > 0) {
-						var tbody;
-						for (var i = 0; i < jsons.results[0].weather_data.length; i++) {
-							var temp = jsons.results[0].weather_data[i];
-							var tr = "<tr>";
-							if (i == 0) {
-								var dateT = temp.date;
-								var start = dateT.lastIndexOf("：");
-								var end = dateT.lastIndexOf(")");
-								dateT = dateT.substring(start + 1, end);
-								tr += '<td colspan="3" align="center"><div  style="float:left;padding-bottom:10px;margin-bottom:-50px;"><img id="refreshImg" src="../MetroStyleFiles/refresh.png" style="height:25px;cursor:pointer;" onclick="getWeather();"/></div><b> <img src="../MetroStyleFiles/temperature.png" style="height:25px;"/>'
-										+ dateT
-										+ '</b> <div  style="float:right;padding-bottom:10px;margin-bottom:-50px;"><a class="" data-toggle="modal" href="#WeatherDetails"  data-dismiss="modal" aria-hidden="true"><img src="../MetroStyleFiles/details.png" style="height:25px;cursor:pointer;"/> </a></div></td></tr><tr>';
-								//tr+='<td colspan="3" align="center"><b>'+jsons.results[0].currentCity+'&nbsp;&nbsp;'+temp.date+'</b> <img src="../MetroStyleFiles/refresh.png" style="height:30px;cursor:pointer;" onclick="getWeather();"/></td></tr><tr>';
-								tr += '<td width="20%" align="left">今天</td>';
-							} else {
-								tr += '<td width="20%" align="left">'
-										+ temp.date + '</td>';
-							}
-							tr += '<td width="55%" align="left"><img src="'+temp.dayPictureUrl +'"/><img src="'+temp.nightPictureUrl +'"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-									+ temp.weather + '</td>';
-							tr += '<td width="25%" align="right">'
-									+ temp.temperature + ' </td>';
-							tr += "</tr>";
-							tbody += tr;
-						}
-						tbody += '<tr><td colspan="3" align="center">'
-								+ getNowFormatDate() + '</td></tr>';
-						$('#weather').html(tbody);
-						$('#weather2').html(tbody);
-						//	$('weather_div_loading').css({'display':'none'});
-						//	$('weather_div').css({'display':'block'});
-						tbody = "";
-						for (var i = 0; i < jsons.results[0].index.length; i++) {
-							var temp = jsons.results[0].index[i];
-							var tr = "<tr>";
-							var tipt;
-							if (temp.tipt.length > 4) {
-								tipt = "紫外线";
-							} else {
-								tipt = temp.tipt;
-							}
-							tr += '<td width="15%" align="right" valign="top" ><nobr><b>'
-									+ tipt + '：</b></nobr></td>';
-							tr += '<td width="85%" align="left">'
-									+ temp.des + '</td>';
-							tr += "</tr>";
-							tbody += tr;
-						}
-						$('#weather_suggest').html(tbody);
-						if ($("#refreshImg") != null
-								&& $("#refreshImg") != undefined)
-							$("#refreshImg").attr("src",
-									"../MetroStyleFiles/refresh.png");
-					}
-				}
-			});
-}
-
-
-function getStockData(url){
-	getNewData(url);
-	var refreshDataDefault = self.setInterval("getNewData('"+url+"')",2000);
-	$("#timer").val(refreshDataDefault);
-	
-}
-
-function getNewData(url){
-	var parameters = url.split('=')[1].split(',');
-	var length = url.split('=')[1].split(',').length;
-	var list = new Array();
-	for(var i=0; i<length; i++){
-		list.push("hq_str_"+parameters[i]);
-	}
-	$.ajax({  
-       cache : true,  
-       url:url,
-       type: 'GET', 
-       dataType: 'script', 
-       timeout: 2000, 
-       success: function(data, textStatus, jqXHR){
-       	if(textStatus=='success'){
-       		var tbody="";
-            var tr = "<tr>";
-				tr+="<td>证券名称</td><td>现价</td><td>涨幅</td><td>涨跌</td></tr>";
-       		for(var i=0;i<list.length;i++){
-       			var stockData = eval(list[i]).split(',');
-       			var stockType = list[i].substring(7,stockData.length);
-       			if(stockType.indexOf("gb")==0){
-       				tr+="<tr class='stockline'>"+"<td>"+stockData[0].substring(0,26)+"</td>"+"<td class='stockcolor'>"+stockData[1]+"</td>"+"<td id='increase' class='stockcolor'>"+parseFloat(stockData[2])+"%"+"</td>"+"<td class='stockcolor'>"+stockData[4]+"</td></tr>";
-       			} else {
-       				tr+="<tr class='stockline'>"+"<td>"+stockData[0].substring(0,26)+"</td>"+"<td class='stockcolor'>"+stockData[1]+"</td>"+"<td id='increase' class='stockcolor'>"+parseFloat(stockData[2])+"%"+"</td>"+"<td class='stockcolor'>"+stockData[3]+"</td></tr>";
-       			}
-       		}
-       	} 
-		tbody += tr;
-		$('#stock').html(tbody); 
-		$(".stockline").each(function(){
-			if(parseFloat($(this).find('td').eq(2).text())>0){
-	             $(this).find('td').eq(1).css("color","red");
-	             $(this).find('td').eq(2).css("color","red");
-	             $(this).find('td').eq(3).css("color","red");
-			} else if(parseFloat($(this).find('td').eq(2).text())<0){
-				$(this).find('td').eq(1).css("color","green");
-	            $(this).find('td').eq(2).css("color","green");
-	            $(this).find('td').eq(3).css("color","green");
-			}
-		})
-		
-       }
-   });
 }
 
 function getNowFormatDate() {
