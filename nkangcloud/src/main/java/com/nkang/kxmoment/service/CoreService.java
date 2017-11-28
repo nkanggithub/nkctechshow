@@ -276,7 +276,6 @@ public class CoreService
 						article.setTitle(cm.getClientName()+"| 欢迎进入自我修炼");
 						article.setDescription("乐数在线考试练习系统");
 						article.setPicUrl("http://leshu.bj.bcebos.com/standard/onlinetest.png");
-//						article.setUrl("http://"+Constants.baehost+"/mdm/RoleOfAreaMap.jsp?UID=" + fromUserName+"&num="+randNum);
 						article.setUrl("http://"+Constants.baehost+"/at/test.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
