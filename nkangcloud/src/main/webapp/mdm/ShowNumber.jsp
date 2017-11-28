@@ -31,7 +31,7 @@
 <script src="../Jsp/JS/speedTab/examples.js"></script>
 <link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
 <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/custom.css" />
-<script src="../Jsp/JS/leshu/custom.js"></script> 
+<script src="../Jsp/JS/leshu/custom.js"></script>
 <style type="text/css">
 #processPanel,#endPanel,#right,#wrong,#chart-container {
 	display: none;
@@ -42,13 +42,14 @@
 	<div id="data_model_div" style="height: 110px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
-			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px;">
-		</i> 
-		<img
+			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
+			style="width: 30px; height: 30px;">
+		</i> <img
 			style="position: absolute; top: 8px; right: 20px; z-index: 100; height: 60px;"
 			class="HpLogo"
 			src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
-		<div style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
+		<div
+			style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
 		</div>
 	</div>
 
@@ -58,12 +59,12 @@
 		</div>
 	</section>
 	<section id="processPanel">
-		<div id="questionInput" class="selectPanel"></div>
+		<div id="questionInput"  style="width:60%;margin-left:20%;margin-top: 0px;padding-top: 0;" class="selectPanel"></div>
 
 		<div class="circle end bigger">显示答案</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
-		<div class="selectPanel">
+		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案正确</span>
@@ -72,7 +73,7 @@
 				<i class="fa fa-frown-o fa-3x" style="color: #F94082;"></i> <span
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案错误</span>
 			</div>
-			<div id="answerInput"></div>
+			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
 			<div>
 				<input style="border-top: 1px solid black; width: 60%;" id="total"
 					type="text" class="niput " disabled="">
@@ -93,8 +94,11 @@
 	var lengthMin=<%=lengthMin%>;
 	var lengthMax=<%=lengthMax%>;
 	var uid='<%=uid%>';
-	var tempArray = new Array();
-	var lengthArray=new Array(0,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000);
+		var charArray = new Array('-', '+', '+');
+		var tempCharArray = new Array();
+		var tempArray = new Array();
+		var lengthArray = new Array(0, 10, 100, 1000, 10000, 100000, 1000000,
+				10000000, 100000000, 1000000000);
 		$(".start").on("click", function() {
 			reset();
 			timeStart();
@@ -105,16 +109,57 @@
 			$("#startPanel").hide();
 			$("#processPanel").show();
 		});
+
+		var charQ = 0;
+		var chars;
+		var tempTotal = 0;
+		function count(chara, oldNumer, newNumber) {
+			var result;
+			if (chara == '+') {
+				result = oldNumer + newNumber;
+			} else {
+
+				result = oldNumer - newNumber;
+			}
+			return result;
+		}
 		function getNum() {
 			$("#questionInput").html("");
 			var temp = 0;
 			for (var i = 0; i < numCount; i++) {
-				temp=Math.round(Math.random()*(lengthArray[lengthMax]-lengthArray[lengthMin-1])+lengthArray[lengthMin-1]);
-				
+				temp = Math.round(Math.random()
+						* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
+						+ lengthArray[lengthMin - 1]);
+				if (i != 0) {
+					charQ = Math.round(Math.random() * (charArray.length - 1));
+					chars = charArray[charQ];
+					tempCharArray[i] = chars;
+					if (chars == '-') {
+						while (tempTotal - temp < 0) {
+							temp = Math
+									.round(Math.random()
+											* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
+											+ lengthArray[lengthMin - 1]);
+						}
+						tempArray[i] = temp;
+					} else {
+						tempArray[i] = temp;
+					}
+
+					tempTotal = count(tempCharArray[i], tempTotal, tempArray[i]);
+				} else {
+					tempCharArray[0] = "+";
+					tempArray[0] = temp;
+					tempTotal = temp;
+				}
 				$("#questionInput")
 						.append(
-								"<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+temp+" disabled />");
-				tempArray[i] = temp;
+								"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+										+ tempCharArray[i]
+										+ " disabled />"
+										+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+										+ temp + " disabled />");
+
 			}
 			$("#questionInput")
 					.append(
@@ -127,14 +172,14 @@
 			for (var i = 0; i < numCount; i++) {
 				$("#answerInput")
 						.append(
-								"<input type='text' style='margin:0;padding:0;height:40px;' class='niput' value="+tempArray[i]+" disabled />");
-			}
-			total = 0;
-			for (var i = 0; i < tempArray.length; i++) {
-				total += parseInt(tempArray[i]);
+								"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+										+ tempCharArray[i]
+										+ " disabled />"
+										+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+										+ tempArray[i] + " disabled />");
 			}
 
-			$("#total").val("正确答案：" + total);
+			$("#total").val("正确答案：" + tempTotal);
 
 		}
 		$(".end").on("click", function() {
@@ -192,7 +237,7 @@
 			$("#chart-container").show();
 
 			showAnswer();
-			if (answer == total) {
+			if (answer == tempTotal) {
 				$("#right").show();
 				$("#wrong").hide();
 			} else {

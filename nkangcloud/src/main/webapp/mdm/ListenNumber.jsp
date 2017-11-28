@@ -68,7 +68,7 @@
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 
-		<div class="selectPanel">
+		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
 
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
@@ -78,7 +78,7 @@
 				<i class="fa fa-frown-o fa-3x" style="color: #F94082;"></i> <span
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案错误</span>
 			</div>
-			<div id="answerInput"></div>
+			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
 			<div>
 				<input style="border-top: 1px solid black; width: 60%;" id="total"
 					type="text" class="niput " disabled="">
@@ -105,10 +105,16 @@
 		var uid='<%=uid%>';
 		var text = "开始,";
 		var tempArray = new Array();
-		var numCount=<%=numCount%>;
-		var lengthMin=<%=lengthMin%>;
-		var lengthMax=<%=lengthMax%>;
-		var charArray=new Array('减','加','加');
+		var numCount =
+	<%=numCount%>
+		;
+		var lengthMin =
+	<%=lengthMin%>
+		;
+		var lengthMax =
+	<%=lengthMax%>
+		;
+		var charArray = new Array('减', '加', '加');
 		var tempCharArray = new Array();
 
 		function count(chara, oldNumer, newNumber) {
@@ -138,10 +144,20 @@
 			var c;
 			for (var i = 0; i < numCount; i++) {
 				if (i == 0) {
-					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:right;padding-right:40px;' class='niput' value='+' disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
+					$("#answerInput")
+							.append(
+									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='+' disabled />"
+											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+											+ tempArray[i] + " disabled />");
 				} else {
 					c = switchChar(tempCharArray[i - 1]);
-					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:right;padding-right:40px;' class='niput' value="+c+" disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
+					$("#answerInput")
+							.append(
+									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+											+ c
+											+ " disabled />"
+											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+											+ tempArray[i] + " disabled />");
 				}
 			}
 			total = 0;
@@ -149,7 +165,7 @@
 				if (i == 0) {
 					total = parseInt(tempArray[i]);
 				} else {
-					total = count(tempCharArray[i-1], total,
+					total = count(tempCharArray[i - 1], total,
 							parseInt(tempArray[i]));
 				}
 
@@ -157,27 +173,28 @@
 
 			}
 		}
-		var ge=0;
-		var shi=0;
-		var bai=0;
-		var qian=0;
-		var wan=0;
-		var shiwan=0;
-		var baiwan=0;
-		var qianwan=0;
-		var yi=0;
-		var shiyi=0;
+		var ge = 0;
+		var shi = 0;
+		var bai = 0;
+		var qian = 0;
+		var wan = 0;
+		var shiwan = 0;
+		var baiwan = 0;
+		var qianwan = 0;
+		var yi = 0;
+		var shiyi = 0;
 		var charQ = 0;
 		var chars;
 		var temp = "";
 		function getNum() {
-			temp="";
+			temp = "";
 			text = "乐数珠心算开始,";
 			for (var i = 0; i < numCount; i++) {
 
-				length=Math.round(Math.random()*(lengthMax-lengthMin)+lengthMin);
+				length = Math.round(Math.random() * (lengthMax - lengthMin)
+						+ lengthMin);
 				if (i != numCount - 1) {
-					charQ = Math.round(Math.random()*(charArray.length-1));
+					charQ = Math.round(Math.random() * (charArray.length - 1));
 					chars = charArray[charQ];
 					tempCharArray[i] = chars;
 					chars = chars + ',';
@@ -185,30 +202,35 @@
 					chars = '';
 				}
 
-				if(i!=0&&tempCharArray[i-1]=='减'){
-				var minusNumber=getVoiceForNumber(i);
-				while(tempArray[i-1]-minusNumber<=0||currentTotal-minusNumber<=0){
-				if(length!=1&&length!=lengthMin){
-				length=length-1;
-				}
-				minusNumber=getVoiceForNumber(i);
-				}
-				tempArray[i]=minusNumber;
-				if(length!=1){
-				temp+=replaceZero(tempString,length)+','+chars;}
-				else{
+				if (i != 0 && tempCharArray[i - 1] == '减') {
+					var minusNumber = getVoiceForNumber(i);
+					while (tempArray[i - 1] - minusNumber <= 0
+							|| currentTotal - minusNumber <= 0) {
+						if (length != 1 && length != lengthMin) {
+							length = length - 1;
+						}
+						minusNumber = getVoiceForNumber(i);
+					}
+					tempArray[i] = minusNumber;
+					if (length != 1) {
+						temp += replaceZero(tempString, length) + ',' + chars;
+					} else {
 
-					temp+=yitemp+','+chars;
-				}
-				}
-				else{
-				getVoiceForNumber(i);
-				if(length!=1){
-				temp+=replaceZero(tempString,length)+','+chars;}
-				else{
+						temp += yitemp + ',' + chars;
+					}
+				} else {
+					getVoiceForNumber(i);
+					if (length != 1) {
+						temp += replaceZero(tempString, length) + ',' + chars;
+					} else {
 
-					temp+=yitemp+','+chars;
+						temp += yitemp + ',' + chars;
+					}
 				}
+
+				if (i != 0) {
+					currentTotal = count(tempCharArray[i - 1], currentTotal,
+							tempArray[i]);
 				}
 
 			}
@@ -219,110 +241,140 @@
 			return text;
 		}
 
-		
-		var yitemp="";
-		function getVoiceForNumber(i){
-		if(length==1){
-		yitemp=Math.round(Math.random()*8)+1;
-		tempArray[i]=yitemp;
-		}
-		if(length==2){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*8)+1;
-		tempString=switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=shi*10+ge;
-		}
-		if(length==3){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*8)+1;
-		tempString=switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=bai*100+shi*10+ge;
-		}
-		if(length==4){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*9);
-		qian=Math.round(Math.random()*8)+1;
-		tempString=switchString(qian,'千')+switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=qian*1000+bai*100+shi*10+ge;
-		}
-		if(length==5){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*9);
-		qian=Math.round(Math.random()*9);
-		wan=Math.round(Math.random()*8)+1;
-		tempString=switchString(wan,'万')+switchString(qian,'千')+switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=wan*10000+qian*1000+bai*100+shi*10+ge;
-		}
-		if(length==6){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*9);
-		qian=Math.round(Math.random()*9);
-		wan=Math.round(Math.random()*9);
-		shiwan=Math.round(Math.random()*8)+1;
-		tempString=switchString(shiwan,'十万')+switchString(wan,'万')+switchString(qian,'千')+switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=shiwan*100000+wan*10000+qian*1000+bai*100+shi*10+ge;
-		}
-		if(length==7){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*9);
-		qian=Math.round(Math.random()*9);
-		wan=Math.round(Math.random()*9);
-		shiwan=Math.round(Math.random()*9);
-		baiwan=Math.round(Math.random()*8)+1;
-		tempString=switchString(baiwan,'百万')+switchString(shiwan,'十万')+switchString(wan,'万')+switchString(qian,'千')+switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=baiwan*1000000+shiwan*100000+wan*10000+qian*1000+bai*100+shi*10+ge;
-		}
-		if(length==8){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*9);
-		qian=Math.round(Math.random()*9);
-		wan=Math.round(Math.random()*9);
-		shiwan=Math.round(Math.random()*9);
-		baiwan=Math.round(Math.random()*9);
-		qianwan=Math.round(Math.random()*8)+1;
-		tempString=switchString(qianwan,'千万')+switchString(baiwan,'百万')+switchString(shiwan,'十万')+switchString(wan,'万')+switchString(qian,'千')+switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=qianwan*10000000+baiwan*1000000+shiwan*100000+wan*10000+qian*1000+bai*100+shi*10+ge;
-		}
-		if(length==9){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*9);
-		qian=Math.round(Math.random()*9);
-		wan=Math.round(Math.random()*9);
-		shiwan=Math.round(Math.random()*9);
-		baiwan=Math.round(Math.random()*9);
-		qianwan=Math.round(Math.random()*9);
-		yi=Math.round(Math.random()*8)+1;
-		tempString=switchString(yi,'亿')+switchString(qianwan,'千万')+switchString(baiwan,'百万')+switchString(shiwan,'十万')+switchString(wan,'万')+switchString(qian,'千')+switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=yi*100000000+qianwan*10000000+baiwan*1000000+shiwan*100000+wan*10000+qian*1000+bai*100+shi*10+ge;
-		}
-		
-		if(length==10){
-		ge=Math.round(Math.random()*9);
-		shi=Math.round(Math.random()*9);
-		bai=Math.round(Math.random()*9);
-		qian=Math.round(Math.random()*9);
-		wan=Math.round(Math.random()*9);
-		shiwan=Math.round(Math.random()*9);
-		baiwan=Math.round(Math.random()*9);
-		qianwan=Math.round(Math.random()*9);
-		yi=Math.round(Math.random()*9);
-		shiyi=Math.round(Math.random()*8)+1;
-		tempString=switchString(shiyi,'十亿')+switchString(qianwan,'千万')+switchString(baiwan,'百万')+switchString(shiwan,'十万')+switchString(wan,'万')+switchString(qian,'千')+switchString(bai,'百')+switchString(shi,'十')+switchString(ge,'');
-		tempArray[i]=shiyi*1000000000+yi*100000000+qianwan*10000000+baiwan*1000000+shiwan*100000+wan*10000+qian*1000+bai*100+shi*10+ge;
-		}
-		if(i==0||i==1){
-		currentTotal=tempArray[0];
-		}else{
-		currentTotal+=tempArray[i-1];
-		}
-		return tempArray[i];
+		var yitemp = "";
+		function getVoiceForNumber(i) {
+			if (length == 1) {
+				yitemp = Math.round(Math.random() * 8) + 1;
+				tempArray[i] = yitemp;
+			}
+			if (length == 2) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(shi, '十') + switchString(ge, '');
+				tempArray[i] = shi * 10 + ge;
+			}
+			if (length == 3) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(bai, '百') + switchString(shi, '十')
+						+ switchString(ge, '');
+				tempArray[i] = bai * 100 + shi * 10 + ge;
+			}
+			if (length == 4) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 9);
+				qian = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(qian, '千') + switchString(bai, '百')
+						+ switchString(shi, '十') + switchString(ge, '');
+				tempArray[i] = qian * 1000 + bai * 100 + shi * 10 + ge;
+			}
+			if (length == 5) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 9);
+				qian = Math.round(Math.random() * 9);
+				wan = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(wan, '万') + switchString(qian, '千')
+						+ switchString(bai, '百') + switchString(shi, '十')
+						+ switchString(ge, '');
+				tempArray[i] = wan * 10000 + qian * 1000 + bai * 100 + shi * 10
+						+ ge;
+			}
+			if (length == 6) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 9);
+				qian = Math.round(Math.random() * 9);
+				wan = Math.round(Math.random() * 9);
+				shiwan = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(shiwan, '十万')
+						+ switchString(wan, '万') + switchString(qian, '千')
+						+ switchString(bai, '百') + switchString(shi, '十')
+						+ switchString(ge, '');
+				tempArray[i] = shiwan * 100000 + wan * 10000 + qian * 1000
+						+ bai * 100 + shi * 10 + ge;
+			}
+			if (length == 7) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 9);
+				qian = Math.round(Math.random() * 9);
+				wan = Math.round(Math.random() * 9);
+				shiwan = Math.round(Math.random() * 9);
+				baiwan = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(baiwan, '百万')
+						+ switchString(shiwan, '十万') + switchString(wan, '万')
+						+ switchString(qian, '千') + switchString(bai, '百')
+						+ switchString(shi, '十') + switchString(ge, '');
+				tempArray[i] = baiwan * 1000000 + shiwan * 100000 + wan * 10000
+						+ qian * 1000 + bai * 100 + shi * 10 + ge;
+			}
+			if (length == 8) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 9);
+				qian = Math.round(Math.random() * 9);
+				wan = Math.round(Math.random() * 9);
+				shiwan = Math.round(Math.random() * 9);
+				baiwan = Math.round(Math.random() * 9);
+				qianwan = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(qianwan, '千万')
+						+ switchString(baiwan, '百万')
+						+ switchString(shiwan, '十万') + switchString(wan, '万')
+						+ switchString(qian, '千') + switchString(bai, '百')
+						+ switchString(shi, '十') + switchString(ge, '');
+				tempArray[i] = qianwan * 10000000 + baiwan * 1000000 + shiwan
+						* 100000 + wan * 10000 + qian * 1000 + bai * 100 + shi
+						* 10 + ge;
+			}
+			if (length == 9) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 9);
+				qian = Math.round(Math.random() * 9);
+				wan = Math.round(Math.random() * 9);
+				shiwan = Math.round(Math.random() * 9);
+				baiwan = Math.round(Math.random() * 9);
+				qianwan = Math.round(Math.random() * 9);
+				yi = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(yi, '亿')
+						+ switchString(qianwan, '千万')
+						+ switchString(baiwan, '百万')
+						+ switchString(shiwan, '十万') + switchString(wan, '万')
+						+ switchString(qian, '千') + switchString(bai, '百')
+						+ switchString(shi, '十') + switchString(ge, '');
+				tempArray[i] = yi * 100000000 + qianwan * 10000000 + baiwan
+						* 1000000 + shiwan * 100000 + wan * 10000 + qian * 1000
+						+ bai * 100 + shi * 10 + ge;
+			}
+
+			if (length == 10) {
+				ge = Math.round(Math.random() * 9);
+				shi = Math.round(Math.random() * 9);
+				bai = Math.round(Math.random() * 9);
+				qian = Math.round(Math.random() * 9);
+				wan = Math.round(Math.random() * 9);
+				shiwan = Math.round(Math.random() * 9);
+				baiwan = Math.round(Math.random() * 9);
+				qianwan = Math.round(Math.random() * 9);
+				yi = Math.round(Math.random() * 9);
+				shiyi = Math.round(Math.random() * 8) + 1;
+				tempString = switchString(shiyi, '十亿')
+						+ switchString(qianwan, '千万')
+						+ switchString(baiwan, '百万')
+						+ switchString(shiwan, '十万') + switchString(wan, '万')
+						+ switchString(qian, '千') + switchString(bai, '百')
+						+ switchString(shi, '十') + switchString(ge, '');
+				tempArray[i] = shiyi * 1000000000 + yi * 100000000 + qianwan
+						* 10000000 + baiwan * 1000000 + shiwan * 100000 + wan
+						* 10000 + qian * 1000 + bai * 100 + shi * 10 + ge;
+			}
+			if (i == 0) {
+				currentTotal = tempArray[0];
+			}
+			return tempArray[i];
 		}
 		function endVoice() {
 
