@@ -141,7 +141,7 @@
 					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;' class='niput' value='' disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
 				} else {
 					c = switchChar(tempCharArray[i - 1]);
-					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;' class='niput' value="+c+" disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
+					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:right;padding-right:40px;' class='niput' value="+c+" disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
 				}
 			}
 			total = 0;
