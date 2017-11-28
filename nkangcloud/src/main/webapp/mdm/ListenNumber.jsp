@@ -223,7 +223,8 @@
 
 		function getVoiceForNumber(i){
 		if(length==1){
-		temp+=Math.round(Math.random()*8)+1+','+chars;
+		var yitemp=Math.round(Math.random()*8)+1;
+		temp+=yitemp+','+chars;
 		tempArray[i]=temp;
 		}
 		if(length==2){
