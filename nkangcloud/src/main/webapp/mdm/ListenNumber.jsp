@@ -138,7 +138,7 @@
 			var c;
 			for (var i = 0; i < numCount; i++) {
 				if (i == 0) {
-					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;' class='niput' value='' disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
+					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:right;padding-right:40px;' class='niput' value='+' disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
 				} else {
 					c = switchChar(tempCharArray[i - 1]);
 					$("#answerInput").append("<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:right;padding-right:40px;' class='niput' value="+c+" disabled />"+"<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:left' class='niput' value="+tempArray[i]+" disabled />");
@@ -187,7 +187,7 @@
 
 				if(i!=0&&tempCharArray[i-1]=='减'){
 				var minusNumber=getVoiceForNumber(i);
-				while(tempArray[i-1]-minusNumber<0||currentTotal-minusNumber<0){
+				while(tempArray[i-1]-minusNumber<=0||currentTotal-minusNumber<=0){
 				if(length!=1&&length!=lengthMin){
 				length=length-1;
 				}
@@ -225,7 +225,7 @@
 		if(length==1){
 		var yitemp=Math.round(Math.random()*8)+1;
 		temp+=yitemp+','+chars;
-		tempArray[i]=temp;
+		tempArray[i]=yitemp;
 		}
 		if(length==2){
 		ge=Math.round(Math.random()*9);
