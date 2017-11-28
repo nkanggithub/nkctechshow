@@ -144,13 +144,13 @@ public class CoreService
 						article.setTitle("欢迎参与乐数试听课程");
 						article.setDescription("欢迎参与乐数试听课程");
 						article.setPicUrl("http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg");
-						article.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
+						article.setUrl("http://"+Constants.baehost+"/at/yy/yy.jsp");
 						articleList.add(article);
 						Article article4 = new Article();
 						article4.setTitle("预约试听");
 						article4.setDescription("预约试听");
 						article4.setPicUrl("http://leshu.bj.bcebos.com/icon/ReservationICON.png");
-						article4.setUrl("http://nkctech.duapp.com/at/yy/yy.jsp");
+						article4.setUrl("http://"+Constants.baehost+"/at/yy/yy.jsp");
 						articleList.add(article4);
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
