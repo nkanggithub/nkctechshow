@@ -183,7 +183,7 @@
 		var temp = "";
 		function getNum() {
 			temp = "";
-			text = "乐数珠心算开始,";
+			text = "请听题,";
 			for (var i = 0; i < numCount; i++) {
 
 				length = Math.round(Math.random() * (lengthMax - lengthMin)

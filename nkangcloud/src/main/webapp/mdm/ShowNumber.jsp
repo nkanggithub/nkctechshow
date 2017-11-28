@@ -94,6 +94,8 @@
 	var lengthMin=<%=lengthMin%>;
 	var lengthMax=<%=lengthMax%>;
 	var uid='<%=uid%>';
+
+	var totalTime=0;
 		var charArray = new Array('-', '+', '+');
 		var tempCharArray = new Array();
 		var tempArray = new Array();
