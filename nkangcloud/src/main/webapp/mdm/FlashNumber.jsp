@@ -124,7 +124,7 @@ var textToShow="";
         function ShowNumber() {
 
             if (currentShowCount >= numCount) {
-                view.text("结束");
+                view.text("请答题");
 				$("#processPanel").hide();
 				$("#endPanel").show();
                 return;

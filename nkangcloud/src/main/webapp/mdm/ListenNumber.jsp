@@ -213,7 +213,7 @@
 
 			}
 
-			text = text + temp + "结束";
+			text = text + temp + "请答题";
 			$("#Result").text(text);
 			console.log(text);
 			return text;
