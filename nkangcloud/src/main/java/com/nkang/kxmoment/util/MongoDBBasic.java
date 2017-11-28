@@ -3609,7 +3609,7 @@ public class MongoDBBasic {
 			List<String> question=abacusQuiz.getQuestion();
 			String operators = "";
 			int answer=0;
-			if(abacusQuiz.getAnswer()==0){
+			if(answer==0){
 				
 				for(String str : question){
 					Integer itg=Integer.parseInt(str);
