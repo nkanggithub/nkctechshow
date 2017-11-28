@@ -109,7 +109,7 @@
 			$("#questionInput").html("");
 			var temp = 0;
 			for (var i = 0; i < numCount; i++) {
-				temp=Math.round(Math.random()*(lengthArray[lengthMax]-lengthArray[lengthMin-1]+1)+lengthArray[lengthMin-1]);
+				temp=Math.round(Math.random()*(lengthArray[lengthMax]-lengthArray[lengthMin-1])+lengthArray[lengthMin-1]);
 				
 				$("#questionInput")
 						.append(

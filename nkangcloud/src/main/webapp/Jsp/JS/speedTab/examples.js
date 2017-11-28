@@ -63,17 +63,32 @@
 			.on("slidechange", function(e,ui) {
 				speed=ui.value;
             });
-
+		var numbers = [2,3,4,5,6,7,8,9,10,15,20];
         $("#show-bi-slider")
-            .slider({ max: 20,min:1, value: 3 })
+            .slider({ max: numbers.length-1,min:0, value: 3 })
             .slider("pips", {
-                rest: "label"
+                rest: "label",
+                labels: numbers
             })
 			.on("slidechange", function(e,ui) {
-				numCount=ui.value;
+				numCount=numbers[ui.value];
             });
 
+   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var activeMonth = new Date().getMonth();
 
+        $("#custom-labels-output").text( "The current month is: " + months[activeMonth] );
+
+        $("#custom-labels-slider")
+            .slider({ min: 0, max: months.length-1, value: activeMonth })
+            .slider("pips", {
+                rest: "label",
+                labels: months
+            })
+            .on("slidechange", function(e,ui) {
+                $("#custom-labels-output").text( "You selected " + months[ui.value] + " (" + ui.value + ")");
+            });
+            //.trigger("slidechange");
 
 
         $("#hide-rest-slider")
@@ -108,21 +123,7 @@
 
 
 
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var activeMonth = new Date().getMonth();
-
-        $("#custom-labels-output").text( "The current month is: " + months[activeMonth] );
-
-        $("#custom-labels-slider")
-            .slider({ min: 0, max: months.length-1, value: activeMonth })
-            .slider("pips", {
-                rest: "label",
-                labels: months
-            })
-            .on("slidechange", function(e,ui) {
-                $("#custom-labels-output").text( "You selected " + months[ui.value] + " (" + ui.value + ")");
-            });
-            //.trigger("slidechange");
+     
 
 
 
@@ -220,7 +221,7 @@
 
 
         $("#vertical-slider")
-            .slider({ min: 1, max: 10,range: true, values: [2, 5] , orientation: "vertical" })
+            .slider({ min: 1, max: 10,range: true, values: [1, 5] , orientation: "vertical" })
             .slider("pips", {
                 rest: "label",
             })
