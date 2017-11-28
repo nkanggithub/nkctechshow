@@ -3723,7 +3723,7 @@ public class MongoDBBasic {
 					abacusQuizPool.setCheckpoint(o.get("checkpoint")+"");
 					abacusQuizPool.setGrade(o.get("grade")+"");
 					abacusQuizPool.setId(o.get("id")+"");
-					
+					abacusQuizPool.setCategory(o.get("category")+"");
 					BasicDBList tags = (BasicDBList) o.get("tag");
 					BasicDBList hist = (BasicDBList) o.get("question");
 					if (hist != null) {
@@ -3772,7 +3772,7 @@ public class MongoDBBasic {
 					abacusQuizPool.setCheckpoint(o.get("checkpoint")+"");
 					abacusQuizPool.setGrade(o.get("grade")+"");
 					abacusQuizPool.setId(o.get("id")+"");
-					
+					abacusQuizPool.setCategory(o.get("category")+"");
 					BasicDBList tags = (BasicDBList) o.get("tag");
 					BasicDBList hist = (BasicDBList) o.get("question");
 					if (hist != null) {
