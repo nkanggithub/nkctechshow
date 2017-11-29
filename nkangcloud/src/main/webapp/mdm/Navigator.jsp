@@ -28,7 +28,7 @@ margin-left:100px;
 .margin-right{
 margin-right:10px;
 }
-#speedAjust,#menuPanel,#lengthCountPanel {
+#speedAjust,#menuPanel,#lengthCountPanel,#numCountPanel {
 	display: none;
 }
 </style>
@@ -54,13 +54,24 @@ margin-right:10px;
 		<i id="toMenu" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
 		<p style="line-height: 40px;">选择速度</p>
       </section>
+      	<section id="questionTypePanel">
+		<div class="selectPanel">  
+			<div id="tenQ" class="circle default">十道题</div>
+			<div id="tenM" class="circle">十分钟</div>
+          </div>    
+		</div>
+		<i id="toNumCount" class="fa fa-arrow-circle-right fa-5x"></i>
+		<p style="line-height: 40px;">选择答题类型</p>
+	</section>
 	<section id="numCountPanel">
 		<div class="selectPanel">  
           <div id="show-bi-slider-result">
             <div id="show-bi-slider"></div>
           </div>    
 		</div>
-		<i id="toLength" class="fa fa-arrow-circle-right fa-5x"></i>
+		
+		<i id="backQT" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
+		<i id="toLength" class="fa fa-arrow-circle-right fa-5x margin-left"></i>
 		<p style="line-height: 40px;">选择笔数</p>
 	</section>
 
@@ -91,25 +102,23 @@ margin-right:10px;
 	var lengthMin=2;
 	var uid='<%=uid%>';
 	var numCount=3;
-	$("#numCountPanel").find(".circle").hover(function(){
+	var qt='question';
+	$("#tenM").on("click",function(){
 	$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
 	$(this).siblings().css({"background-color":"white","color":"black"});
-	numCount=$(this).index();
-	},function(){
-		$(this).css("background-color","white");
-	$(this).css("color","black");
+	qt='minute';
 	});
-	
-	$("#lengthCountPanel").find(".circle").hover(function(){
-	$(this).css("background-color","#22B26F");
-	$(this).css("color","white");
-	$(this).siblings().css({"background-color":"white","color":"black"});
-	length=$(this).index();
-	},function(){
-		$(this).css("background-color","white");
-	$(this).css("color","black");
-	});
+	$("#tenQ").on("click",function(){
+		$(this).css("background-color","#22B26F");
+		$(this).css("color","white");
+		$(this).siblings().css({"background-color":"white","color":"black"});
+		qt='question';
+		});
+	$("#toNumCount").on("click",function(){
+		$("#numCountPanel").show();
+		$("#questionTypePanel").hide();
+		});
 	
 	$("#toLength").on("click",function(){
 	$("#numCountPanel").hide();
@@ -128,7 +137,10 @@ margin-right:10px;
 	$("#menuPanel").show();
 	});
 	
-
+	$("#backQT").on("click",function(){
+		$("#numCountPanel").hide();
+		$("#questionTypePanel").show();
+		});
 	$("#backLength").on("click",function(){
 	$("#speedAjust").hide();
 	$("#lengthCountPanel").show();
@@ -144,17 +156,17 @@ margin-right:10px;
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&UID="+uid;
+	window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
 	});
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&UID="+uid;
+	window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
 	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&UID="+uid;
+	window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
 	});
 </script>
 </body>

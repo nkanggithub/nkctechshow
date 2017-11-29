@@ -6,7 +6,7 @@ function reset()// 重置
 {
 	window.clearInterval(int);
 	millisecond = hour = minute = second = 0;
-	$('#timetext').val('00时00分00秒000毫秒');
+	$('#timetext').val('0时0分0秒');
 }
 
 function timeStart()// 开始
@@ -31,7 +31,7 @@ function timer()// 计时
 		hour = hour + 1;
 	}
 	$('#timetext').val(
-			hour + '时' + minute + '分' + second + '秒' + millisecond + '毫秒');
+			hour + '时' + minute + '分' + second + '秒');
 
 }
 

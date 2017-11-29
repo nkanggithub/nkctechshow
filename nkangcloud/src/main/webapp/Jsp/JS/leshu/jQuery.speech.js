@@ -40,6 +40,7 @@ blog: http://www.tuterm.com
 						timeStart();
 					}
 				$(".niput").val("");
+				$("#answer").val("");
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
 						var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";

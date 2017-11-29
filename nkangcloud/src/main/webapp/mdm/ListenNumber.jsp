@@ -4,6 +4,7 @@
 	int numCount = Integer.parseInt(request.getParameter("numCount"));
 	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
 	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
+	String qt= request.getParameter("qt");
 	String uid = request.getParameter("UID");
 %>
 <html>
@@ -79,12 +80,12 @@
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案错误</span>
 			</div>
 			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
-			<div>
-				<input style="border-top: 1px solid black; width: 60%;" id="total"
-					type="text" class="niput " disabled="">
+			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
+			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="=" disabled=""/>
+			<input id="total" type="text" style="width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
-				<input type="button" class="btn btn-primary start middleBtn"
+				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
 				<!-- <input type="text" id="timetext" value="00时00分00秒" readonly><br>-->
 
@@ -111,6 +112,7 @@
 		var totalTime=0;
 		var charArray = new Array('减', '加', '加');
 		var tempCharArray = new Array();
+		var qt='<%=qt%>';
 
 		function count(chara, oldNumer, newNumber) {
 			var result;
