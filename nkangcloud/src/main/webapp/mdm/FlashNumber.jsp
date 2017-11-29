@@ -76,7 +76,7 @@
 			<input id="answer" type="text" class="niput" value=""
 				style="border-bottom: 1px solid #22B26F; width: 60%; margin-bottom: 60px;">
 
-			<div class="circle end bigger">显示答案</div>
+			<div class="circle end bigger">提交答案</div>
 		</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">

@@ -69,7 +69,7 @@
 	<section id="processPanel">
 		<div id="questionInput"  style="width:60%;margin-left:20%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
 		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;width: 70%;' type='text' class='niput'>
-		<div class="circle end bigger">显示答案</div>
+		<div class="circle end bigger">提交答案</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
