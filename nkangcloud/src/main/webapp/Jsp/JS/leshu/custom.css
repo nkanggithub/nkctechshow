@@ -7,23 +7,7 @@ body {
 	text-align: center;
 }
 }
-.niput {
-	width: 100%;
-	height: 45px;
-	margin: 5px;
-	padding: 12px 12px;
-	font-size: 19px;
-	line-height: 1.42857143;
-	color: black;
-	text-align:center;
-	background-color: #fff;
-	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
-		ease-in-out .15s;
-	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
-		.15s;
-	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	border:none;
-}
+
 .numPanel {
 	font-size: 45px !important;
 	color: #F94082 !important;
@@ -74,4 +58,21 @@ i {
 .default {
 	background-color: #22B26F;
 	color: white;
+}
+.niput {
+	width: 100%;
+	height: 45px;
+	margin: 5px;
+	padding: 12px 12px;
+	font-size: 19px;
+	line-height: 1.42857143;
+	color: black;
+	text-align:center;
+	background-color: #fff;
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	border:none;
 }

@@ -73,11 +73,11 @@
 
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
-					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案正确</span>
+					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">真棒</span>
 			</div>
 			<div id="wrong">
 				<i class="fa fa-frown-o fa-3x" style="color: #F94082;"></i> <span
-					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案错误</span>
+					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">加油</span>
 			</div>
 			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">

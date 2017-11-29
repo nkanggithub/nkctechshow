@@ -60,11 +60,13 @@
 			<div class="circle start bigger">闪算开始</div>
 		</div>
 	</section>
-	<section id="processPanel">
+	<section id="processPanel" style=" position: relative;">
+		<div id="ShowNumberPanel"
+			style="position: absolute; width: 100%; top: 100px; height: 50px; line-height: 50px; font-size: 30px;color:red"></div>
+		<div id="ShowCharPanel"
+			style="position: absolute; width: 100%; top: 60px; height: 50px; line-height: 50px; font-size: 40px;color:red"></div>
 		<div class="selectPanel">
-			<div class="circle numPanel bigger" style="position:relative;">
-				<span id="ShowNumberPanel" style="position: absolute;top: 15px;right: 40px;height: 20px;font-size: 30px;"></span>
-				<span id="ShowCharPanel" style="position: absolute;top: -30px;right: 60px;color: red;font-size: 50px;height: 20px;"></span>
+			<div class="circle numPanel bigger" style="position: relative;">
 			</div>
 		</div>
 	</section>
@@ -73,7 +75,7 @@
 			<p>请输入答案</p>
 			<input id="answer" type="text" class="niput" value=""
 				style="border-bottom: 1px solid #22B26F; width: 60%; margin-bottom: 60px;">
-			
+
 			<div class="circle end bigger">显示答案</div>
 		</div>
 	</section>
@@ -81,11 +83,11 @@
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
-					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案正确</span>
+					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">真棒</span>
 			</div>
 			<div id="wrong">
 				<i class="fa fa-frown-o fa-3x" style="color: #F94082;"></i> <span
-					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">答案错误</span>
+					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">加油</span>
 			</div>
 			<div id="answerInput" style="width: 60%; margin-left: 20%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
@@ -151,6 +153,7 @@
 			totalTime++;
 			var textToShow = "";
 			view = $("#ShowNumberPanel");
+			view2 = $("#ShowCharPanel");
 			$(".niput").val("");
 			answer = new Array();
 			currentShowCount = 0;
@@ -199,16 +202,17 @@
 				tempTotal = temp;
 			}
 			view.fadeIn(speedArray[speed] * 300);
+			view2.fadeIn(speedArray[speed] * 300);
 			if (i == 0) {
-				$("#ShowCharPanel").text("+");
 				view.text(tempArray[0]);
 			} else {
 
-				$("#ShowCharPanel").text(chars);
+				view2.text(chars);
 				view.text(tempArray[i]);
 			}
 
 			view.fadeOut(speedArray[speed] * 300);
+			view2.fadeOut(speedArray[speed] * 300);
 			snto = setTimeout("ShowNumber()", speedArray[speed] * 600);
 			i++;
 		}
@@ -217,6 +221,7 @@
 
 			view.text("");
 			view.fadeIn(1000);
+			view2.fadeIn(1000);
 		}
 		var total = 0;
 		function showAnswer() {
@@ -231,7 +236,7 @@
 										+ tempArray[i] + " disabled />");
 			}
 
-			$("#total").val("正确答案：" + tempTotal);
+			$("#total").val(tempTotal);
 
 		}
 		$(".end").on("click", function() {
