@@ -56,12 +56,12 @@ margin-right:10px;
       </section>
       	<section id="questionTypePanel">
 		<div class="selectPanel">  
-			<div id="tenQ" class="circle default">十道题</div>
-			<div id="tenM" class="circle">十分钟</div>
+			<div id="tenQ" class="circle default">计题练习</div>
+			<div id="tenM" class="circle">计时练习</div>
           </div>    
 		</div>
 		<i id="toNumCount" class="fa fa-arrow-circle-right fa-5x"></i>
-		<p style="line-height: 40px;">选择答题类型</p>
+		<p style="line-height: 40px;">选择修炼方式</p>
 	</section>
 	<section id="numCountPanel">
 		<div class="selectPanel">  
