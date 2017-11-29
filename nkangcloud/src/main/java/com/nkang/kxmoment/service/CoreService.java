@@ -112,7 +112,7 @@ public class CoreService
 					}
 					articleList.clear();
 					Article article = new Article();
-					article.setTitle("【"+cm.getClientName()+"】感谢一路有您陪伴，注册有礼");
+					article.setTitle("【"+cm.getClientName()+"】欢迎来到乐数大家庭，请完成注册，享受更多会员福利");
 					article.setDescription("移动应用");
 					article.setPicUrl("http://leshu.bj.bcebos.com/standard/registerherepls.JPG");
 					article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
@@ -180,6 +180,13 @@ public class CoreService
 							article3.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
 							articleList.add(article3);
+							
+							Article article4 = new Article();
+							article4.setTitle("乐数教师");
+							article4.setDescription("Administration");
+							article4.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
+							article4.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
+							articleList.add(article4);
 						}
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
