@@ -163,7 +163,7 @@ public class CoreService
 						article.setTitle(cm.getClientName()+"|移动应用");
 						article.setDescription("移动应用");
 						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuapp.JPG");
-						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
+						article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
 						article2.setTitle("乐数微应用");
@@ -182,7 +182,7 @@ public class CoreService
 							articleList.add(article3);
 							
 							Article article4 = new Article();
-							article4.setTitle("乐数教师");
+							article4.setTitle("乐数E教师");
 							article4.setDescription("Administration");
 							article4.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
 							article4.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
