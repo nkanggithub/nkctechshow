@@ -390,7 +390,7 @@
 
 			var answer = $("#answer").val();
 			if (answer == "") {
-				swal("访问失败", "请输入你的答案哦~！", "error");
+				swal("未答题", "请输入你的答案哦~！", "error");
 				;
 				return;
 			} 
