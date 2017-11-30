@@ -31,8 +31,9 @@ blog: http://www.tuterm.com
 				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
 					var tempTime=minute*60+ (millisecond / 1000) + second;
+					$("#startPanel").hide();
 					$("#answerPanel").hide();
-					$("#startPanel").show();
+					$("#fakePanel").show();
 					if($(this).val()=="查看战绩"){
 
 						FusionCharts.ready(function() {

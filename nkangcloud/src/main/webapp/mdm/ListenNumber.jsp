@@ -37,7 +37,7 @@
 <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/custom.css" />
 <script src="../Jsp/JS/leshu/custom.js"></script>
 <style type="text/css">
-#endPanel,#right,#wrong,#chart-container,#chart-container2,#Result {
+#endPanel,#right,#wrong,#chart-container,#chart-container2,#Result,#fakePanel {
 	display: none;
 }
 </style>
@@ -63,6 +63,11 @@
 	<section id="startPanel">
 		<div class="selectPanel">
 			<div class="circle start bigger">听数开始</div>
+		</div>
+	</section>
+	<section id="fakePanel">
+		<div class="selectPanel">
+			<div class="circle bigger">听数开始</div>
 		</div>
 	</section>
 	<section id="endPanel">
@@ -384,6 +389,7 @@
 		}
 		function endVoice() {
 
+			$("#fakePanel").hide();
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#answerInput").html("");
