@@ -30,17 +30,296 @@ blog: http://www.tuterm.com
 				//点击链接播报
 				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
+					var tempTime=minute*60+ (millisecond / 1000) + second;
+					$("#answerPanel").hide();
+					$("#startPanel").show();
+					if($(this).val()=="查看战绩"){
+
+						FusionCharts.ready(function() {
+							var cSatScoreChart = new FusionCharts({
+								type : 'angulargauge',
+								renderAt : 'chart-container',
+								width : '400',
+								height : '250',
+								dataFormat : 'json',
+								dataSource : {
+									"chart" : {
+										"caption" : "计时统计",
+										"subcaption" : "计算时间(秒)",
+										"lowerLimit" : "0",
+										"upperLimit" : "60",
+										"lowerLimitDisplay" : "真棒",
+										"upperLimitDisplay" : "加油",
+										"showValue" : "1",
+										"valueBelowPivot" : "1",
+										"theme" : "fint"
+									},
+									"colorRange" : {
+										"color" : [ {
+											"minValue" : "0",
+											"maxValue" : "24",
+											"code" : "#6baa01"
+										}, {
+											"minValue" : "24",
+											"maxValue" : "48",
+											"code" : "#f8bd19"
+										}, {
+											"minValue" : "48",
+											"maxValue" : "60",
+											"code" : "#e44a00"
+										} ]
+									},
+									"dials" : {
+										"dial" : [ {
+											"value" : tempTime
+										} ]
+									}
+								}
+							}).render();
+							var revenueChart = new FusionCharts({
+						        type: 'msbar2d',
+						        renderAt: 'chart-container2',
+						        width: '400',
+						        height: '250',
+						        dataFormat: 'json',
+						        dataSource: {
+						            "chart": {
+						                "caption": "看算正误统计",
+						                "yAxisname": "",
+						                "numberPrefix": "",
+						                "paletteColors": "#1aaf5d,#FF0005",
+						                "bgColor": "#ffffff",
+						                "showBorder": "0",
+						                "showHoverEffect":"1",
+						                "showCanvasBorder": "0",
+						                "usePlotGradientColor": "0",
+						                "plotBorderAlpha": "10",
+						                "legendBorderAlpha": "0",
+						                "legendShadow": "0",
+						                "placevaluesInside": "1",
+						                "valueFontColor": "#ffffff",
+						                "showXAxisLine": "1",
+						                "xAxisLineColor": "#999999",
+						                "divlineColor": "#999999",               
+						                "divLineIsDashed": "1",
+						                "showAlternateVGridColor": "0",
+						                "subcaptionFontBold": "0",
+						                "subcaptionFontSize": "14"
+						            },            
+						            "categories": [
+						                {
+						                    "category": [
+						                        {
+						                            "label": "看算"
+						                        }
+						                    ]
+						                }
+						            ],            
+						            "dataset": [
+						                {
+						                    "seriesname": "正确",
+						                    "data": [
+						                        {
+						                            "value": rightQ
+						                        }
+						                    ]
+						                }, 
+						                {
+						                    "seriesname": "错误",
+						                    "data": [
+						                        {
+						                            "value": wrongQ
+						                        }
+						                    ]
+						                }
+						            ],
+						            "trendlines": [
+						                {
+						                    "line": [
+						                        {
+						                            "startvalue": "2",
+						                            "color": "#0075c2",
+						                            "valueOnRight": "1",
+						                            "displayvalue": " "
+						                        },
+						                        {
+						                            "startvalue": "8",
+						                            "color": "#1aaf5d",
+						                            "valueOnRight": "1",
+						                            "displayvalue": " "
+						                        }
+						                    ]
+						                }
+						            ]
+						        }
+						    }).render();    
+						});
+
+						$("#chart-container2").show();
+						$("#chart-container").show();
+						$(this).val("下一题");
+						return;
+					}
+					$("#answer").val("");
+					if(qt=="question"){
 					if(totalTime==10){
 						reset();
 						totalTime=0;
 						 $("#chart-container").hide();
+						 $("#chart-container2").hide();
+						 wrongQ=0;
+						 rightQ=0;
 					}
-					totalTime++;
 					if(totalTime==0){
 						timeStart();
 					}
-				$(".niput").val("");
+					
+					}
+					else if(qt=="minute"){
+						if(millisecond==0&&second==0&&minute==0){
+						$("#chart-container").hide();
+						$("#chart-container2").hide();
+						timeStart();}
+						if(second>=30){
+							swal("答题结束", "三分钟到了噢~！", "warning");
+							timeStop();
+							FusionCharts.ready(function() {
+								var cSatScoreChart = new FusionCharts({
+									type : 'angulargauge',
+									renderAt : 'chart-container',
+									width : '400',
+									height : '250',
+									dataFormat : 'json',
+									dataSource : {
+										"chart" : {
+											"caption" : "计时统计",
+											"subcaption" : "计算时间(秒)",
+											"lowerLimit" : "0",
+											"upperLimit" : "60",
+											"lowerLimitDisplay" : "真棒",
+											"upperLimitDisplay" : "加油",
+											"showValue" : "1",
+											"valueBelowPivot" : "1",
+											"theme" : "fint"
+										},
+										"colorRange" : {
+											"color" : [ {
+												"minValue" : "0",
+												"maxValue" : "24",
+												"code" : "#6baa01"
+											}, {
+												"minValue" : "24",
+												"maxValue" : "48",
+												"code" : "#f8bd19"
+											}, {
+												"minValue" : "48",
+												"maxValue" : "60",
+												"code" : "#e44a00"
+											} ]
+										},
+										"dials" : {
+											"dial" : [ {
+												"value" : tempTime
+											} ]
+										}
+									}
+								}).render();
+								var revenueChart = new FusionCharts({
+							        type: 'msbar2d',
+							        renderAt: 'chart-container2',
+							        width: '400',
+							        height: '250',
+							        dataFormat: 'json',
+							        dataSource: {
+							            "chart": {
+							                "caption": "看算正误统计",
+							                "yAxisname": "",
+							                "numberPrefix": "",
+							                "paletteColors": "#1aaf5d,#FF0005",
+							                "bgColor": "#ffffff",
+							                "showBorder": "0",
+							                "showHoverEffect":"1",
+							                "showCanvasBorder": "0",
+							                "usePlotGradientColor": "0",
+							                "plotBorderAlpha": "10",
+							                "legendBorderAlpha": "0",
+							                "legendShadow": "0",
+							                "placevaluesInside": "1",
+							                "valueFontColor": "#ffffff",
+							                "showXAxisLine": "1",
+							                "xAxisLineColor": "#999999",
+							                "divlineColor": "#999999",               
+							                "divLineIsDashed": "1",
+							                "showAlternateVGridColor": "0",
+							                "subcaptionFontBold": "0",
+							                "subcaptionFontSize": "14"
+							            },            
+							            "categories": [
+							                {
+							                    "category": [
+							                        {
+							                            "label": "看算"
+							                        }
+							                    ]
+							                }
+							            ],            
+							            "dataset": [
+							                {
+							                    "seriesname": "正确",
+							                    "data": [
+							                        {
+							                            "value": rightQ
+							                        }
+							                    ]
+							                }, 
+							                {
+							                    "seriesname": "错误",
+							                    "data": [
+							                        {
+							                            "value": wrongQ
+							                        }
+							                    ]
+							                }
+							            ],
+							            "trendlines": [
+							                {
+							                    "line": [
+							                        {
+							                            "startvalue": "2",
+							                            "color": "#0075c2",
+							                            "valueOnRight": "1",
+							                            "displayvalue": " "
+							                        },
+							                        {
+							                            "startvalue": "8",
+							                            "color": "#1aaf5d",
+							                            "valueOnRight": "1",
+							                            "displayvalue": " "
+							                        }
+							                    ]
+							                }
+							            ]
+							        }
+							    }).render();    
+							});
+							$("#chart-container").show();
+							$("#chart-container2").show();
+							reset();
+							totalTime=0;
+							 wrongQ=0;
+							 rightQ=0;
+						return;
+						}
+					}
+
+					totalTime++;
+					if(qt=="question"){
+						$("#timestext").val(totalTime+"/10");
+					}else if(qt=="minute"){
+						$("#timestext").val("第"+totalTime+"题");
+					}
 				$("#answer").val("");
+				speed=speed+1;
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
 						var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";

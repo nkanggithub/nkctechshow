@@ -113,6 +113,7 @@
 		var lengthArray = new Array(0, 10, 100, 1000, 10000, 100000, 1000000,
 				10000000, 100000000, 1000000000);
 		$(".start").on("click", function() {
+			var tempTime=minute*60+ (millisecond / 1000) + second;
 			if($(this).val()=="查看战绩"){
 
 				FusionCharts.ready(function() {
@@ -151,7 +152,7 @@
 							},
 							"dials" : {
 								"dial" : [ {
-									"value" : millisecond / 1000 + second - 1
+									"value" :tempTime
 								} ]
 							}
 						}
@@ -159,8 +160,8 @@
 					var revenueChart = new FusionCharts({
 				        type: 'msbar2d',
 				        renderAt: 'chart-container2',
-				        width: '450',
-				        height: '420',
+				        width: '400',
+				        height: '250',
 				        dataFormat: 'json',
 				        dataSource: {
 				            "chart": {
@@ -200,7 +201,7 @@
 				                    "seriesname": "正确",
 				                    "data": [
 				                        {
-				                            "value": rightQ+""
+				                            "value": rightQ
 				                        }
 				                    ]
 				                }, 
@@ -208,7 +209,7 @@
 				                    "seriesname": "错误",
 				                    "data": [
 				                        {
-				                            "value": wrongQ+""
+				                            "value": wrongQ
 				                        }
 				                    ]
 				                }
@@ -299,7 +300,7 @@
 								},
 								"dials" : {
 									"dial" : [ {
-										"value" : millisecond / 1000 + second + minute*60 - 3
+										"value" :tempTime
 									} ]
 								}
 							}
@@ -307,8 +308,8 @@
 						var revenueChart = new FusionCharts({
 					        type: 'msbar2d',
 					        renderAt: 'chart-container2',
-					        width: '450',
-					        height: '420',
+					        width: '400',
+					        height: '250',
 					        dataFormat: 'json',
 					        dataSource: {
 					            "chart": {
@@ -348,7 +349,7 @@
 					                    "seriesname": "正确",
 					                    "data": [
 					                        {
-					                            "value": rightQ+""
+					                            "value": rightQ
 					                        }
 					                    ]
 					                }, 
@@ -356,7 +357,7 @@
 					                    "seriesname": "错误",
 					                    "data": [
 					                        {
-					                            "value": wrongQ+""
+					                            "value": wrongQ
 					                        }
 					                    ]
 					                }
