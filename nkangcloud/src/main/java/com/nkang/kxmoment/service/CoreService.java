@@ -138,23 +138,15 @@ public class CoreService
 
 				} else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
 					String eventKey = requestObject.element("EventKey").getText();
-					if(eventKey.equals("MDLAKE")){ // Data Lake
-						articleList.clear();
-						Article article = new Article();
-						article.setTitle("欢迎参与乐数试听课程");
-						article.setDescription("欢迎参与乐数试听课程");
-						article.setPicUrl("http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg");
-						article.setUrl("http://"+Constants.baehost+"/at/yy/yy.jsp");
-						articleList.add(article);
-						Article article4 = new Article();
-						article4.setTitle("预约试听");
-						article4.setDescription("预约试听");
-						article4.setPicUrl("http://leshu.bj.bcebos.com/icon/ReservationICON.png");
-						article4.setUrl("http://"+Constants.baehost+"/at/yy/yy.jsp");
-						articleList.add(article4);
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
+					if(eventKey.equals("myleshuclass")){ // Data Lake
+						respContent = "正在建设中，请等待";
+						textMessage.setContent(respContent);
+						respXml = MessageUtil.textMessageToXml(textMessage);
+					}
+					else if(eventKey.equals("mycoupen")){ // Data Lake
+						respContent = "正在建设中，请等待";
+						textMessage.setContent(respContent);
+						respXml = MessageUtil.textMessageToXml(textMessage);
 					}
 					else if(eventKey.equals("MYAPPS")){
 						articleList.clear();
