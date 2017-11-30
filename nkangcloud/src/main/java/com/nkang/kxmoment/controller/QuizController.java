@@ -121,6 +121,11 @@ public class QuizController {
 		List<AbacusQuizPool> quizs=MongoDBBasic.findAbacusQuizPoolBycategory(category);
 		return quizs;
 	}
+	@RequestMapping("/getAbacusQuizPoolById")
+	public @ResponseBody List<AbacusQuizPool> getAbacusQuizPoolById(@RequestParam(value="id")String id){
+		List<AbacusQuizPool> quizs=MongoDBBasic.findAbacusQuizPoolBycategory(id);
+		return quizs;
+	}
 	
 	@RequestMapping("/getAbacusQuizPoolBycategory1")
 	public ModelAndView getAbacusQuizPoolBycategory1(@RequestParam(value="category")String category,HttpSession session){
@@ -135,5 +140,30 @@ public class QuizController {
 		
 		
 		return mav;
+	}
+	
+
+	@RequestMapping("/deleteByID")
+	public ModelAndView deleteByID(@RequestParam(value="id")String id,HttpSession session){
+		List<AbacusQuizPool> quizs=MongoDBBasic.findAbacusQuizPoolById(id);
+		
+		ModelAndView mav;
+		
+		if(MongoDBBasic.deleteAbacusQuizPoolById(id)==true){
+			
+			mav = new ModelAndView("QuestionsManagement");
+			mav.addObject("time", new Date());
+			if(null!=quizs){
+				mav.getModel().put("aq",quizs.get(0));
+
+				session.setAttribute("list",quizs);
+			}
+		
+		}else{
+			mav = new ModelAndView("AddQuestions");
+		}
+		return mav;
+		
+		
 	}
 }

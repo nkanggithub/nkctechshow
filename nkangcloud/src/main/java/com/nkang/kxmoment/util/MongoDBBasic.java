@@ -3803,7 +3803,59 @@ public class MongoDBBasic {
 		}
 		return aqps;
 	}
-	
+	/*
+	 * find by id
+	 */
+	public static List<AbacusQuizPool> findAbacusQuizPoolById(String id){
+		List<AbacusQuizPool> aqps=new ArrayList<AbacusQuizPool>();
+		
+		try {
+			mongoDB = getMongoDB();
+			DBObject Query = new BasicDBObject();
+			Query.put("id", id);
+			DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find(Query);
+			if (null != queryresults) {
+				while (queryresults.hasNext()) {
+					AbacusQuizPool abacusQuizPool = new AbacusQuizPool();
+					List<String> tag = new ArrayList<String>();
+					List<String> question = new ArrayList<String>();
+					DBObject o = queryresults.next();
+					abacusQuizPool.setAnswer(Integer.parseInt(o.get("answer")+""));
+					abacusQuizPool.setCategory(o.get("category")+"");
+					abacusQuizPool.setCheckpoint(o.get("checkpoint")+"");
+					abacusQuizPool.setGrade(o.get("grade")+"");
+					abacusQuizPool.setId(o.get("id")+"");
+					abacusQuizPool.setOperator(o.get("operator")+"");
+					BasicDBList tags = (BasicDBList) o.get("tag");
+					BasicDBList hist = (BasicDBList) o.get("question");
+					if (hist != null) {
+						Object[] questions = hist.toArray();
+						for (Object dbobj : questions) {
+							if (dbobj instanceof String) {
+								question.add((String) dbobj);
+							}
+						}
+					}
+					abacusQuizPool.setQuestion(question);
+					if(tags!=null){
+						Object[] tagss = tags.toArray();
+						for (Object dbobj : tagss) {
+							if (dbobj instanceof String) {
+								tag.add((String) dbobj);
+							}
+						}
+					}
+					abacusQuizPool.setTag(tag);
+					if (abacusQuizPool != null) {
+						aqps.add(abacusQuizPool);
+					}
+				}
+			}
+		} catch (Exception e) {
+			log.info("findAbacusQuizPoolById--" + e.getMessage());
+		}
+		return aqps;
+	}
 	/*
 	 * delete all
 	 */
