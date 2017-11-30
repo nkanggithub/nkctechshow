@@ -277,7 +277,7 @@
 
 				$("#chart-container2").show();
 				$("#chart-container").show();
-				$(this).val("下一题");
+				$("#next").val("下一题");
 				return;
 			}
 			$("#answer").val("");
@@ -544,9 +544,10 @@
 
 		});
 		$(".start").on("click", function() {
+			if($("#next").val()!="查看战绩"){
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
-			$("#processPanel").show();
+			$("#processPanel").show();}
 			start();
 		});
 
