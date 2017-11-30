@@ -5,6 +5,10 @@
 	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
 	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
 	String qt= request.getParameter("qt");
+	String display="none";
+	if(qt.equals("minute")){
+		display="block";
+	}
 	String uid = request.getParameter("UID");
 %>
 <html>
@@ -33,7 +37,7 @@
 <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/custom.css" />
 <script src="../Jsp/JS/leshu/custom.js"></script>
 <style type="text/css">
-#endPanel,#right,#wrong,#chart-container,#Result {
+#endPanel,#right,#wrong,#chart-container,#chart-container2,#Result {
 	display: none;
 }
 </style>
@@ -53,6 +57,8 @@
 			style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
 		</div>
 	</div>
+<input type="text" id="timestext" class="niput" value="" style="position: absolute;width: 30%;left: 0px;text-align: left;top: 80px;z-index: -2;">
+<input type="text" id="timetext" class="niput" value="0时0分0秒" style="display:<%=display%>;width: 40%;padding: 0px;position: absolute;top: 80px;right: 10px;text-align: right;background: none;">
 
 	<section id="startPanel">
 		<div class="selectPanel">
@@ -64,12 +70,12 @@
 			<p>请输入答案</p>
 			<input id="answer" type="text" class="niput" value=""
 				style="border-bottom: 1px solid #22B26F; width: 60%; margin-bottom: 60px;">
-			<div class="circle end bigger">提交答案</div>
+			<div class="circle end bigger">显示答案</div>
 		</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 
-		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
+		<div class="selectPanel" style="margin-top: 0px;padding-top: 20px;">
 
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
@@ -98,6 +104,7 @@
 
 	<div id="Result"></div>
 	<div id="chart-container">FusionCharts will render here</div>
+	<div id="chart-container2">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script src="../Jsp/JS/leshu/jQuery.speech.js"></script>
 	<script>
@@ -113,6 +120,8 @@
 		var charArray = new Array('减', '加', '加');
 		var tempCharArray = new Array();
 		var qt='<%=qt%>';
+		var rightQ=0;
+		var wrongQ=0;
 
 		function count(chara, oldNumer, newNumber) {
 			var result;
@@ -166,7 +175,7 @@
 							parseInt(tempArray[i]));
 				}
 
-				$("#total").val("正确答案：" + total);
+				$("#total").val(total);
 
 			}
 		}
@@ -391,66 +400,24 @@
 			var answer = $("#answer").val();
 			if (answer == "") {
 				swal("未答题", "请输入你的答案哦~！", "error");
-				;
 				return;
 			} 
-			if(totalTime==10){
+			if(qt=="question"&&totalTime==10){
+				$("#next").val("查看战绩");
 				timeStop();
 
-				FusionCharts.ready(function() {
-					var cSatScoreChart = new FusionCharts({
-						type : 'angulargauge',
-						renderAt : 'chart-container',
-						width : '400',
-						height : '250',
-						dataFormat : 'json',
-						dataSource : {
-							"chart" : {
-								"caption" : "计时统计",
-								"subcaption" : "计算时间(秒)",
-								"lowerLimit" : "0",
-								"upperLimit" : "60",
-								"lowerLimitDisplay" : "真棒",
-								"upperLimitDisplay" : "加油",
-								"showValue" : "1",
-								"valueBelowPivot" : "1",
-								"theme" : "fint"
-							},
-							"colorRange" : {
-								"color" : [ {
-									"minValue" : "0",
-									"maxValue" : "24",
-									"code" : "#6baa01"
-								}, {
-									"minValue" : "24",
-									"maxValue" : "48",
-									"code" : "#f8bd19"
-								}, {
-									"minValue" : "48",
-									"maxValue" : "60",
-									"code" : "#e44a00"
-								} ]
-							},
-							"dials" : {
-								"dial" : [ {
-									"value" : millisecond / 1000 + second - 3
-								} ]
-							}
-						}
-					}).render();
-				});
-				$("#chart-container").show();
 			}
-			showAnswer();
 
 			$("#endPanel").hide();
 			showAnswer();
 			if (answer == total) {
 				$("#right").show();
 				$("#wrong").hide();
+				rightQ++;
 			} else {
 				$("#wrong").show();
 				$("#right").hide();
+				wrongQ++;
 			}
 
 			$("#answerPanel").show();
