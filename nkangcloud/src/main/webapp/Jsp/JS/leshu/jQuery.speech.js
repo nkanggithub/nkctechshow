@@ -84,7 +84,7 @@ blog: http://www.tuterm.com
 						        dataFormat: 'json',
 						        dataSource: {
 						            "chart": {
-						                "caption": "看算正误统计",
+						                "caption": "听算正误统计",
 						                "yAxisname": "",
 						                "numberPrefix": "",
 						                "paletteColors": "#1aaf5d,#FF0005",
@@ -110,7 +110,7 @@ blog: http://www.tuterm.com
 						                {
 						                    "category": [
 						                        {
-						                            "label": "看算"
+						                            "label": "听算"
 						                        }
 						                    ]
 						                }
@@ -178,7 +178,9 @@ blog: http://www.tuterm.com
 					else if(qt=="minute"){
 						if(millisecond==0&&second==0&&minute==0){
 						$("#chart-container").hide();
-						$("#chart-container2").hide();
+						$("#chart-container2").hide();				 
+						wrongQ=0;
+						 rightQ=0;
 						timeStart();}
 						if(second>=30){
 							swal("答题结束", "三分钟到了噢~！", "warning");
@@ -232,7 +234,7 @@ blog: http://www.tuterm.com
 							        dataFormat: 'json',
 							        dataSource: {
 							            "chart": {
-							                "caption": "看算正误统计",
+							                "caption": "听算正误统计",
 							                "yAxisname": "",
 							                "numberPrefix": "",
 							                "paletteColors": "#1aaf5d,#FF0005",
@@ -258,7 +260,7 @@ blog: http://www.tuterm.com
 							                {
 							                    "category": [
 							                        {
-							                            "label": "看算"
+							                            "label": "听算"
 							                        }
 							                    ]
 							                }
@@ -306,8 +308,6 @@ blog: http://www.tuterm.com
 							$("#chart-container2").show();
 							reset();
 							totalTime=0;
-							 wrongQ=0;
-							 rightQ=0;
 						return;
 						}
 					}
@@ -319,7 +319,6 @@ blog: http://www.tuterm.com
 						$("#timestext").val("第"+totalTime+"题");
 					}
 				$("#answer").val("");
-				speed=speed+1;
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
 						var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";

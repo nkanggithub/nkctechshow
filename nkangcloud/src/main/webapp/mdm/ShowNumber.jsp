@@ -260,6 +260,8 @@
 				if(millisecond==0&&second==0&&minute==0){
 				$("#chart-container").hide();
 				$("#chart-container2").hide();
+				 wrongQ=0;
+				 rightQ=0;
 				timeStart();}
 				if(second>=30){
 					swal("答题结束", "三分钟到了噢~！", "warning");
@@ -387,8 +389,6 @@
 					$("#chart-container2").show();
 					reset();
 					totalTime=0;
-					 wrongQ=0;
-					 rightQ=0;
 				return;
 				}
 			}
@@ -480,7 +480,7 @@
 				swal("未答题", "请输入你的答案哦~！", "error");
 				return;
 			} 
-			if(totalTime==10){
+			if(qt=="question"&&totalTime==10){
 				$("#next").val("查看战绩");
 				timeStop();
 

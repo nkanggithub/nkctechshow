@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%
-	int speed = Integer.parseInt(request.getParameter("speed"));
+	int speed = Integer.parseInt(request.getParameter("speed"))+1;
 	int numCount = Integer.parseInt(request.getParameter("numCount"));
 	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
 	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));

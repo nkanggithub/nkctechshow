@@ -195,83 +195,84 @@
 							}
 						}
 					}).render();
-					var revenueChart = new FusionCharts({
-				        type: 'msbar2d',
-				        renderAt: 'chart-container2',
-				        width: '400',
-				        height: '250',
-				        dataFormat: 'json',
-				        dataSource: {
-				            "chart": {
-				                "caption": "看算正误统计",
-				                "yAxisname": "",
-				                "numberPrefix": "",
-				                "paletteColors": "#1aaf5d,#FF0005",
-				                "bgColor": "#ffffff",
-				                "showBorder": "0",
-				                "showHoverEffect":"1",
-				                "showCanvasBorder": "0",
-				                "usePlotGradientColor": "0",
-				                "plotBorderAlpha": "10",
-				                "legendBorderAlpha": "0",
-				                "legendShadow": "0",
-				                "placevaluesInside": "1",
-				                "valueFontColor": "#ffffff",
-				                "showXAxisLine": "1",
-				                "xAxisLineColor": "#999999",
-				                "divlineColor": "#999999",               
-				                "divLineIsDashed": "1",
-				                "showAlternateVGridColor": "0",
-				                "subcaptionFontBold": "0",
-				                "subcaptionFontSize": "14"
-				            },            
-				            "categories": [
-				                {
-				                    "category": [
-				                        {
-				                            "label": "看算"
-				                        }
-				                    ]
-				                }
-				            ],            
-				            "dataset": [
-				                {
-				                    "seriesname": "正确",
-				                    "data": [
-				                        {
-				                            "value": rightQ
-				                        }
-				                    ]
-				                }, 
-				                {
-				                    "seriesname": "错误",
-				                    "data": [
-				                        {
-				                            "value": wrongQ
-				                        }
-				                    ]
-				                }
-				            ],
-				            "trendlines": [
-				                {
-				                    "line": [
-				                        {
-				                            "startvalue": "2",
-				                            "color": "#0075c2",
-				                            "valueOnRight": "1",
-				                            "displayvalue": " "
-				                        },
-				                        {
-				                            "startvalue": "8",
-				                            "color": "#1aaf5d",
-				                            "valueOnRight": "1",
-				                            "displayvalue": " "
-				                        }
-				                    ]
-				                }
-				            ]
-				        }
-				    }).render();    
+
+					   var revenueChart = new FusionCharts({
+					        type: 'msbar2d',
+					        renderAt: 'chart-container2',
+					        width: '400',
+					        height: '250',
+					        dataFormat: 'json',
+					        dataSource: {
+					            "chart": {
+					                "caption": "闪算正误统计",
+					                "yAxisname": "",
+					                "numberPrefix": "",
+					                "paletteColors": "#1aaf5d,#FF0005",
+					                "bgColor": "#ffffff",
+					                "showBorder": "0",
+					                "showHoverEffect":"1",
+					                "showCanvasBorder": "0",
+					                "usePlotGradientColor": "0",
+					                "plotBorderAlpha": "10",
+					                "legendBorderAlpha": "0",
+					                "legendShadow": "0",
+					                "placevaluesInside": "1",
+					                "valueFontColor": "#ffffff",
+					                "showXAxisLine": "1",
+					                "xAxisLineColor": "#999999",
+					                "divlineColor": "#999999",               
+					                "divLineIsDashed": "1",
+					                "showAlternateVGridColor": "0",
+					                "subcaptionFontBold": "0",
+					                "subcaptionFontSize": "14"
+					            },            
+					            "categories": [
+					                {
+					                    "category": [
+					                        {
+					                            "label": "闪算"
+					                        }
+					                    ]
+					                }
+					            ],            
+					            "dataset": [
+					                {
+					                    "seriesname": "正确",
+					                    "data": [
+					                        {
+					                            "value": rightQ
+					                        }
+					                    ]
+					                }, 
+					                {
+					                    "seriesname": "错误",
+					                    "data": [
+					                        {
+					                            "value": wrongQ
+					                        }
+					                    ]
+					                }
+					            ],
+					            "trendlines": [
+					                {
+					                    "line": [
+					                        {
+					                            "startvalue": "2",
+					                            "color": "#0075c2",
+					                            "valueOnRight": "1",
+					                            "displayvalue": " "
+					                        },
+					                        {
+					                            "startvalue": "8",
+					                            "color": "#1aaf5d",
+					                            "valueOnRight": "1",
+					                            "displayvalue": " "
+					                        }
+					                    ]
+					                }
+					            ]
+					        }
+					    }).render();  
 				});
 
 				$("#chart-container2").show();
@@ -298,6 +299,8 @@
 				if(millisecond==0&&second==0&&minute==0){
 				$("#chart-container").hide();
 				$("#chart-container2").hide();
+				 wrongQ=0;
+				 rightQ=0;
 				timeStart();}
 				if(second>=30){
 					swal("答题结束", "三分钟到了噢~！", "warning");
@@ -343,90 +346,88 @@
 								}
 							}
 						}).render();
-						var revenueChart = new FusionCharts({
-					        type: 'msbar2d',
-					        renderAt: 'chart-container2',
-					        width: '400',
-					        height: '250',
-					        dataFormat: 'json',
-					        dataSource: {
-					            "chart": {
-					                "caption": "看算正误统计",
-					                "yAxisname": "",
-					                "numberPrefix": "",
-					                "paletteColors": "#1aaf5d,#FF0005",
-					                "bgColor": "#ffffff",
-					                "showBorder": "0",
-					                "showHoverEffect":"1",
-					                "showCanvasBorder": "0",
-					                "usePlotGradientColor": "0",
-					                "plotBorderAlpha": "10",
-					                "legendBorderAlpha": "0",
-					                "legendShadow": "0",
-					                "placevaluesInside": "1",
-					                "valueFontColor": "#ffffff",
-					                "showXAxisLine": "1",
-					                "xAxisLineColor": "#999999",
-					                "divlineColor": "#999999",               
-					                "divLineIsDashed": "1",
-					                "showAlternateVGridColor": "0",
-					                "subcaptionFontBold": "0",
-					                "subcaptionFontSize": "14"
-					            },            
-					            "categories": [
-					                {
-					                    "category": [
-					                        {
-					                            "label": "看算"
-					                        }
-					                    ]
-					                }
-					            ],            
-					            "dataset": [
-					                {
-					                    "seriesname": "正确",
-					                    "data": [
-					                        {
-					                            "value": rightQ
-					                        }
-					                    ]
-					                }, 
-					                {
-					                    "seriesname": "错误",
-					                    "data": [
-					                        {
-					                            "value": wrongQ
-					                        }
-					                    ]
-					                }
-					            ],
-					            "trendlines": [
-					                {
-					                    "line": [
-					                        {
-					                            "startvalue": "2",
-					                            "color": "#0075c2",
-					                            "valueOnRight": "1",
-					                            "displayvalue": " "
-					                        },
-					                        {
-					                            "startvalue": "8",
-					                            "color": "#1aaf5d",
-					                            "valueOnRight": "1",
-					                            "displayvalue": " "
-					                        }
-					                    ]
-					                }
-					            ]
-					        }
-					    }).render();    
+						   var revenueChart = new FusionCharts({
+						        type: 'msbar2d',
+						        renderAt: 'chart-container2',
+						        width: '400',
+						        height: '250',
+						        dataFormat: 'json',
+						        dataSource: {
+						            "chart": {
+						                "caption": "闪算正误统计",
+						                "yAxisname": "",
+						                "numberPrefix": "",
+						                "paletteColors": "#1aaf5d,#FF0005",
+						                "bgColor": "#ffffff",
+						                "showBorder": "0",
+						                "showHoverEffect":"1",
+						                "showCanvasBorder": "0",
+						                "usePlotGradientColor": "0",
+						                "plotBorderAlpha": "10",
+						                "legendBorderAlpha": "0",
+						                "legendShadow": "0",
+						                "placevaluesInside": "1",
+						                "valueFontColor": "#ffffff",
+						                "showXAxisLine": "1",
+						                "xAxisLineColor": "#999999",
+						                "divlineColor": "#999999",               
+						                "divLineIsDashed": "1",
+						                "showAlternateVGridColor": "0",
+						                "subcaptionFontBold": "0",
+						                "subcaptionFontSize": "14"
+						            },            
+						            "categories": [
+						                {
+						                    "category": [
+						                        {
+						                            "label": "闪算"
+						                        }
+						                    ]
+						                }
+						            ],            
+						            "dataset": [
+						                {
+						                    "seriesname": "正确",
+						                    "data": [
+						                        {
+						                            "value": rightQ
+						                        }
+						                    ]
+						                }, 
+						                {
+						                    "seriesname": "错误",
+						                    "data": [
+						                        {
+						                            "value": wrongQ
+						                        }
+						                    ]
+						                }
+						            ],
+						            "trendlines": [
+						                {
+						                    "line": [
+						                        {
+						                            "startvalue": "2",
+						                            "color": "#0075c2",
+						                            "valueOnRight": "1",
+						                            "displayvalue": " "
+						                        },
+						                        {
+						                            "startvalue": "8",
+						                            "color": "#1aaf5d",
+						                            "valueOnRight": "1",
+						                            "displayvalue": " "
+						                        }
+						                    ]
+						                }
+						            ]
+						        }
+						    }).render();  
 					});
 					$("#chart-container").show();
 					$("#chart-container2").show();
 					reset();
 					totalTime=0;
-					 wrongQ=0;
-					 rightQ=0;
 				return;
 				}
 			}
