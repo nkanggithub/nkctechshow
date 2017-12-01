@@ -11,6 +11,7 @@ public class WeChatMDLUser extends WeChatUser {
 	public int workDay;
 	public int CongratulateNum;
 	public String role;
+	public String level;
 	public String selfIntro;
 	public String email;
 	public String phone;
@@ -24,6 +25,13 @@ public class WeChatMDLUser extends WeChatUser {
 	public HashMap like;
 
 	public double distance;
+
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
 	public String getIsSmsTeam() {
 		return IsSmsTeam;
 	}

@@ -75,6 +75,8 @@ public class RegisterController {
 		String isAdmin = request.getParameter("isAdmin");
 		String registerDate = request.getParameter("registerDate");
 		String role = request.getParameter("role");
+		String level = request.getParameter("level");
+		System.out.println("get level is"+level);
 		String realName = request.getParameter("realName");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
@@ -86,6 +88,7 @@ public class RegisterController {
 		user.setIsAuthenticated(isAuthenticated);
 		user.setIsRegistered(isRegistered);
 		user.setRole(role);
+		user.setLevel(level);
 		user.setRealName(realName);
 		user.setPhone(phone);
 		user.setEmail(email);

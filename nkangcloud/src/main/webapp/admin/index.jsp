@@ -376,6 +376,24 @@ function showUpdateUserPanel(openid,name){
 				var phone=data[0].phone==null?'':data[0].phone;
 				var email=data[0].email==null?'':data[0].email;
 				var role=data[0].role==null?'':data[0].role;
+				var levelList=new Array('basic','primary','middle','high');
+				var levelNameList=new Array('启蒙','初级','中级','高级');
+				var selectedName="";
+				var level=data[0].level==null?'':data[0].level;
+				if(level!=''){
+					for(var q=0;q<levelList.length;q++){
+						if(level==levelList[q]){
+							levelList.splice(q,1);
+							selectedName=levelNameList[q];
+							levelNameList.splice(q,1);
+							break;
+						}
+					}
+				}
+				var levelSelect="<option selected='true' value='"+level+"'>"+selectedName+"</option>";
+				for(var p=0;p<levelList.length;p++){
+					levelSelect+="<option value='"+levelList[p]+"'>"+levelNameList[p]+"</option>";
+				}
 				var selfIntro=data[0].selfIntro==null?'':data[0].selfIntro;
 				var roleSelect='														<option value="">-请选择-</option>';
 				for(var i=0;i<RoleList.length;i++){
@@ -405,6 +423,12 @@ function showUpdateUserPanel(openid,name){
 			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
 			            +'														<td><select  name="role">'
 			            +roleSelect
+			            +'													    </select></td>'
+			            +'													</tr>'
+			            +'													<tr>'
+			            +'														<td>学员级别:</td>'
+			            +'														<td><select  name="level">'
+			            +levelSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
 			            +'												    <tr>'
@@ -453,9 +477,10 @@ function showUpdateUserPanel(openid,name){
 					if(isRegistered==null || registerDate==null){
 						swal("修改信息失败", "请输入正确的信息", "error");
 					}
+					var datas=$("#atest").serialize();
 					$.ajax({
 						url:"../updateUserInfo",
-						data:$("#atest").serialize(),
+						data:datas,
 						type:"POST",
 						dataType:"json",
 						contentType: "application/x-www-form-urlencoded; charset=UTF-8",

@@ -1140,6 +1140,8 @@ public class MongoDBBasic {
 			update.put("Teamer.email", user.getEmail());
 			update.put("Teamer.phone", user.getPhone());
 			update.put("Teamer.role", user.getRole());
+			update.put("Teamer.level", user.getLevel());
+			System.out.println("get level from mongoBasic"+user.getLevel());
 			doc.put("$set", update);
 			WriteResult wr = mongoDB.getCollection(wechat_user)
 					.update(new BasicDBObject().append("OpenID",
@@ -2052,7 +2054,10 @@ public class MongoDBBasic {
 								weChatMDLUser.setRole(teamobj.get("role")
 										.toString());
 							}
-
+							if (teamobj.get("level") != null) {
+								weChatMDLUser.setLevel(teamobj.get("level")
+										.toString());
+							}
 							if (o.get("LastUpdatedDate") != null) {
 								weChatMDLUser.setLastUpdatedDate(o.get(
 										"LastUpdatedDate").toString());
