@@ -92,7 +92,7 @@
 			</div>
 			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
-			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="=" disabled=""/>
+			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
@@ -157,18 +157,26 @@
 				if (i == 0) {
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='+' disabled />"
+									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 											+ tempArray[i] + " disabled />");
 				} else {
 					c = switchChar(tempCharArray[i - 1]);
+					if(c=="+"){
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
-											+ c
-											+ " disabled />"
+									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 											+ tempArray[i] + " disabled />");
+					}
+					else{
+
+						$("#answerInput")
+								.append(
+										"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="+ c + " disabled />"
+												+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+												+ tempArray[i] + " disabled />");
+					}
 				}
 			}
 			total = 0;
@@ -208,7 +216,11 @@
 					charQ = Math.round(Math.random() * (charArray.length - 1));
 					chars = charArray[charQ];
 					tempCharArray[i] = chars;
-					chars = chars + ',';
+					if(chars=="减"){
+						chars = chars + ',';
+					}else{
+						chars = '';
+					}
 				} else {
 					chars = '';
 				}

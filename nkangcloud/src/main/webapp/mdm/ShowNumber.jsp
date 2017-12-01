@@ -83,7 +83,7 @@
 			</div>
 			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
-			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="=" disabled=""/>
+			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
@@ -446,13 +446,26 @@
 					tempArray[0] = temp;
 					tempTotal = temp;
 				}
-				$("#questionInput")
-						.append(
-								"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
-										+ tempCharArray[i]
-										+ " disabled />"
-										+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-										+ temp + " disabled />");
+
+				var c=tempCharArray[i];
+				if(c=="+"){
+
+					$("#questionInput")
+							.append(
+									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
+											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+											+ temp + " disabled />");
+				}
+				else{
+
+					$("#questionInput")
+							.append(
+									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+											+ c
+											+ " disabled />"
+											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+											+ temp + " disabled />");
+				}
 
 			}
 		}
@@ -461,10 +474,12 @@
 		function showAnswer() {
 			$("#answerInput").html("");
 			for (var i = 0; i < numCount; i++) {
+				var c=tempCharArray[i];
+				if(c=="+"){c="";}
 				$("#answerInput")
 						.append(
 								"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
-										+ tempCharArray[i]
+										+ c
 										+ " disabled />"
 										+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 										+ tempArray[i] + " disabled />");
