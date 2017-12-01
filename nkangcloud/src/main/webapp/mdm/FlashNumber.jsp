@@ -428,6 +428,7 @@
 					$("#chart-container2").show();
 					reset();
 					totalTime=0;
+					
 				return;
 				}
 			}
@@ -544,10 +545,14 @@
 
 		});
 		$(".start").on("click", function() {
+			if(qt=="minute"&&second>30){
+				$("#next").val("查看战绩");
+			}
 			if($("#next").val()!="查看战绩"){
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").show();}
+			$("#next").val("下一题");
 			start();
 		});
 
