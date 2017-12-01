@@ -31,11 +31,18 @@ blog: http://www.tuterm.com
 				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
 					var tempTime=minute*60+ (millisecond / 1000) + second;
+					if(qt=="minute"&&second>30){
+						$("#next").val("查看战绩");
+					}
+					if($("#next").val()!="查看战绩"){
 					$("#startPanel").hide();
 					$("#answerPanel").hide();
 					$("#fakePanel").show();
+					}
+					if(qt=="minute"&&second>30){
+						$("#next").val("下一题");
+					}
 					if($(this).val()=="查看战绩"){
-
 						FusionCharts.ready(function() {
 							var cSatScoreChart = new FusionCharts({
 								type : 'angulargauge',
