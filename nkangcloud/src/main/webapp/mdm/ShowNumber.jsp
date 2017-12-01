@@ -475,14 +475,22 @@
 			$("#answerInput").html("");
 			for (var i = 0; i < numCount; i++) {
 				var c=tempCharArray[i];
-				if(c=="+"){c="";}
+				if(c=="+"){
 				$("#answerInput")
 						.append(
-								"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
-										+ c
-										+ " disabled />"
+								"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
 										+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 										+ tempArray[i] + " disabled />");
+				}
+				else{
+					$("#answerInput")
+					.append(
+							"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+									+ c
+									+ " disabled />"
+									+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+									+ tempArray[i] + " disabled />");
+				}
 			}
 
 			$("#total").val(tempTotal);

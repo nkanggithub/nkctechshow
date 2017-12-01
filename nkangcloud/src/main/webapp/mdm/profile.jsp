@@ -37,6 +37,7 @@ Date date=new Date();
 String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get("NickName"));
+String level=res.get("level");
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -1582,7 +1583,7 @@ function getNowFormatDate() {
 											</tr>
 											<tr>
 												<td>
-												 <a href="http://<%=Constants.baehost%>/mdm/Navigator.jsp?UID=<%=uid %>" target="_blank">
+												 <a  <%if(level.equals("basic")) { %> href="http://<%=Constants.baehost%>/mdm/NavigatorForBasic.jsp?UID=<%=uid %>"  <%}else{ %>href="http://<%=Constants.baehost%>/mdm/Navigator.jsp?UID=<%=uid %>" <%} %> target="_blank">
 												 <img src="http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png" /></a>
 													<h4>自我修炼</h4></td>
 											</tr>

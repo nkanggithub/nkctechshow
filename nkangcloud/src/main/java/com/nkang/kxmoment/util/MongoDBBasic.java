@@ -520,6 +520,11 @@ public class MongoDBBasic {
 				if (teamobj.get("role") != null) {
 					res.put("role", teamobj.get("role").toString());
 				}
+
+				if (teamobj.get("level") != null) {
+					res.put("level", teamobj.get("level").toString());
+					System.out.println("level----------:"+teamobj.get("level").toString());
+				}
 				if (teamobj.get("phone") != null) {
 					res.put("phone", teamobj.get("phone").toString());
 				}
