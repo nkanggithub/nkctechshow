@@ -493,7 +493,7 @@
 				$("#ShowCharPanel").text("");
 			} else {
 				$("#ShowNumberPanel").text(tempArray[i]);
-				if(chars=='加'){
+				if(chars=="+"){
 					$("#ShowCharPanel").text("");
 				}
 				else{
@@ -567,7 +567,9 @@
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").show();}
-			$("#next").val("下一题");
+			if(qt=="minute"&&second>30){
+				$("#next").val("下一题");
+			}
 			start();
 		});
 
