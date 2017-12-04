@@ -3842,9 +3842,7 @@ public class MongoDBBasic {
 					if (hist != null) {
 						Object[] questions = hist.toArray();
 						for (Object dbobj : questions) {
-							if (dbobj instanceof String) {
-								question.add((String) dbobj);
-							}
+							question.add(dbobj+"");
 						}
 					}
 					abacusQuizPool.setQuestion(question);
@@ -3861,6 +3859,62 @@ public class MongoDBBasic {
 						aqps.add(abacusQuizPool);
 					}
 				}
+			}
+		} catch (Exception e) {
+			log.info("findAbacusQuizPoolById--" + e.getMessage());
+		}
+		return aqps;
+	}
+	
+	/*
+	 * find by idd
+	 */
+	public static List<AbacusQuizPool> findAbacusQuizPoolByIdd(String idd){
+		List<AbacusQuizPool> aqps=new ArrayList<AbacusQuizPool>();
+		
+		try {
+			mongoDB = getMongoDB();
+			DBObject Query = new BasicDBObject();
+			Query.put("id", idd);
+			//DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find(Query);
+			DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(Query);
+			if (null != queryresults) {
+
+				AbacusQuizPool abacusQuizPool = new AbacusQuizPool();
+				List<String> tag = new ArrayList<String>();
+				List<String> question = new ArrayList<String>();
+				DBObject o = queryresults;
+				abacusQuizPool.setAnswer(Integer.parseInt(o.get("answer")+""));
+				abacusQuizPool.setCategory(o.get("category")+"");
+				abacusQuizPool.setCheckpoint(o.get("checkpoint")+"");
+				abacusQuizPool.setGrade(o.get("grade")+"");
+				abacusQuizPool.setId(o.get("id")+"");
+				abacusQuizPool.setOperator(o.get("operator")+"");
+				BasicDBList tags = (BasicDBList) o.get("tag");
+				BasicDBList hist = (BasicDBList) o.get("question");
+				if (hist != null) {
+					Object[] questions = hist.toArray();
+					for (Object dbobj : questions) {
+						if (dbobj instanceof String) {
+							question.add((String) dbobj);
+						}
+					}
+				}
+				abacusQuizPool.setQuestion(question);
+				if(tags!=null){
+					Object[] tagss = tags.toArray();
+					for (Object dbobj : tagss) {
+						if (dbobj instanceof String) {
+							tag.add((String) dbobj);
+						}
+					}
+				}
+				abacusQuizPool.setTag(tag);
+				if (abacusQuizPool != null) {
+					aqps.add(abacusQuizPool);
+				}
+			
+				//while (queryresults.hasNext()) {}
 			}
 		} catch (Exception e) {
 			log.info("findAbacusQuizPoolById--" + e.getMessage());
