@@ -290,9 +290,9 @@ li {
         percentage: 45
       });
     $(".fnt-content").on("click",function(){
-    	var text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='32题' disabled='true'/>"
-    	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='2题' disabled='true'/>"
-    +"<p style='width:40%;float:left;height:40px;line-height:40px;'>总共完成：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='34题' disabled='true'/>";
+    	var text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='32题' disabled='true'/>"
+    	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='2题' disabled='true'/>"
+    +"<p style='width:40%;float:left;height:40px;line-height:40px;'>总共完成：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='34题' disabled='true'/>";
     	swal({  
             title:"第一关战绩统计",  
             text:text,
