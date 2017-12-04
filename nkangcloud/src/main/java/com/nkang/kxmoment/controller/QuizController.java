@@ -127,11 +127,7 @@ public class QuizController {
 		return quizs;
 	}
 	
-	@RequestMapping("/getAbacusQuizPoolByIdd")
-	public @ResponseBody List<AbacusQuizPool> getAbacusQuizPoolByIdd(@RequestParam(value="id")String id){
-		List<AbacusQuizPool> quizs=MongoDBBasic.findAbacusQuizPoolByIdd(id);
-		return quizs;
-	}
+	
 	
 	@RequestMapping("/getAbacusQuizPoolBycategory1")
 	public ModelAndView getAbacusQuizPoolBycategory1(@RequestParam(value="category")String category,HttpSession session){
