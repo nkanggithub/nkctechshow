@@ -3609,7 +3609,7 @@ public class MongoDBBasic {
 			DBObject insert = new BasicDBObject();
 			//String uuid = UUID.randomUUID().toString().trim().replaceAll("-", ""); 
 			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
-			String id="b"+cursqlTS;
+			String id="b"+cursqlTS.toString().trim();
 			insert.put("id", id);
 			//insert.put("tag", abacusQuiz.getTag());
 			
@@ -3824,6 +3824,7 @@ public class MongoDBBasic {
 			DBObject Query = new BasicDBObject();
 			Query.put("id", id);
 			DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find(Query);
+			//DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
 			if (null != queryresults) {
 				while (queryresults.hasNext()) {
 					AbacusQuizPool abacusQuizPool = new AbacusQuizPool();
