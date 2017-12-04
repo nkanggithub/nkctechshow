@@ -5,134 +5,204 @@ String uid = request.getParameter("UID"); %><!DOCTYPE html>
 <head>
 <meta charset="utf-8" />
 <title>乐数-练习参数</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/bootstrap.min.css" />
-	<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/jquery-ui-1.11.0.css">
-<link rel="stylesheet" href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
-<script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script> 
-<script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script> 
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<link rel="stylesheet" type="text/css"
+	href="../Jsp/JS/leshu/bootstrap.min.css" />
+<link href="../Jsp/JS/leshu/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="http://www.jq22.com/jquery/jquery-ui-1.11.0.css">
+<link rel="stylesheet"
+	href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
+<script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script>
+<script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script>
 <script src="../Jsp/JS/speedTab/examples.js"></script>
 <link rel="stylesheet" href="../Jsp/JS/speedTab/app.min.css" />
-
+<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css" />
+<script src="../MetroStyleFiles/sweetalert.min.js"></script>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <link rel="stylesheet" type="text/css" href="../Jsp/JS/leshu/custom.css" />
-<script src="../Jsp/JS/leshu/custom.js"></script> 
-<link rel="stylesheet" type="text/css" href="../Jsp/JS/scrollMenu/funnyNewsTicker.css">
-<script type="text/javascript" src="../Jsp/JS/scrollMenu/funnyNewsTicker.js"></script>
+<link rel="stylesheet" type="text/css" href="../Jsp/JS/progressBar/number-pb.css">
+<script type="text/javascript" src="../Jsp/JS/progressBar/jquery.velocity.min.js"></script>
+<script type="text/javascript" src="../Jsp/JS/progressBar/number-pb.js"></script>
+<script src="../Jsp/JS/leshu/custom.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../Jsp/JS/scrollMenu/funnyNewsTicker.css">
+<script type="text/javascript"
+	src="../Jsp/JS/scrollMenu/funnyNewsTicker.js"></script>
 <style type="text/css">
-#show-bi-slider-result{
-height:100px;}
-#show-bi-slider{
-margin-top:100px;}
-.margin-left{
-margin-left:100px;
+#show-bi-slider-result {
+	height: 100px;
 }
-.margin-right{
-margin-right:10px;
+
+#show-bi-slider {
+	margin-top: 100px;
 }
-#speedAjust,#menuPanel,#lengthCountPanel,#numCountPanel,#questionTypePanel {
+
+.margin-left {
+	margin-left: 100px;
+}
+
+.margin-right {
+	margin-right: 10px;
+}
+
+#speedAjust,#menuPanel,#lengthCountPanel,#numCountPanel,#questionTypePanel
+	{
 	display: none;
 }
-li{
-height:100px!important;}
+
+li {
+	height: 100px !important;
+}
 </style>
 </head>
-<body><div id="data_model_div" style="height:110px" >
-<i class="icon" style="position:absolute;top:20px;left:20px;z-index:100;">
-<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px; "></i>	
-<img style="position:absolute;top:8px;right:20px;z-index:100;height:60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
-<div style="width:100%;height: 80px;background: white;position:absolute;border-bottom: 4px solid #20b672;">
-</div></div>
-      	<section id="levelMenuPanel">
-		<div class="selectPanel" style="padding:0;height:400px;">  
-		            <div class="funnyNewsTicker fnt-radius fnt-shadow fnt-easing" style="padding:0!important;padding-top:60px;height:100%;" id="funnyNewsTicker1">
-                <ul>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第一关] 一位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第二关] 两位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第三关] 三位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第四关] 四位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第五关] 五位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第六关] 六位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第七关] 七位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第八关] 八位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">[第九关] 九位数直加直减</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十一关</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十二关</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十三关</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十四关</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十五关</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十六关</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十七关</div>
-                    </li>
-                    <li>
-                        <div class="fnt-content" data-link="###">第十八关</div>
-                    </li>
-                </ul>
-            </div>
-          </div>    
+<body>
+	<div id="data_model_div" style="height: 110px">
+		<i class="icon"
+			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
+			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
+			style="width: 30px; height: 30px;">
+		</i> <img
+			style="position: absolute; top: 8px; right: 20px; z-index: 100; height: 60px;"
+			class="HpLogo"
+			src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
+		<div
+			style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
 		</div>
-		
+	</div>
+	<section id="levelMenuPanel">
+		<div class="selectPanel" style="padding: 0; height: 400px;">
+			<div class="funnyNewsTicker fnt-radius fnt-shadow fnt-easing"
+				style="padding: 0 !important; padding-top: 60px; height: 100%;"
+				id="funnyNewsTicker1">
+				<ul>
+					<li>
+						<div class="fnt-content" data-link="###">【第一关】 一位数直加直减</div>
+						<div class="number-pb">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第二关】+1=+5-4
+							-1=+4-5</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第三关】+2=+5-3
+							-2=+3-5</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第四关】+3=+5-2
+							-3=+2-5</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第五关】+4=+5-1
+							-4=+1-5</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第六关】1-5综合练习</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第七关】 +1=-9+10
+							-1=-10+9</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第八关】 +2=-8+10
+							-2=-10+8</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第九关】 +3=-7+10
+							-3=-10+7</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十关】 +4=-6+10
+							-4=-10+6</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十一关】 +5=-5+10
+							-5=-10+5</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十二关】+6=-4+10
+							-6=-10+4</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十三关】 +7=-3+10
+							-7=-10+3</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十四关】 +8=-2+10
+							-8=-10+2</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十五关】 +9=-1+10
+							-9=-10+1</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十六关】 综合练习1</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十七关】 综合练习2</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十八关】 综合练习3</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第十九关】 一位数综合练习4</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第二十关】 一位数综合练习5</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第二十一关】 一位数8笔综合练习1</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第二十二关】 一位数8笔综合练习2</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第二十三关】 一位数8笔综合练习3</div>
+					</li>
+					<li>
+						<div class="fnt-content" data-link="###">【第二十四关】 一位数8笔综合练习4</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+
 		<i id="toQT" class="fa fa-arrow-circle-right fa-5x"></i>
 		<p style="line-height: 40px;">选择关数</p>
 	</section>
 
-      	<section id="questionTypePanel">
-		<div class="selectPanel">  
+	<section id="questionTypePanel">
+		<div class="selectPanel">
 			<div id="tenQ" class="circle default">计题练习</div>
 			<div id="tenM" class="circle">计时练习</div>
-          </div>    
+		</div>
 		</div>
 		<i id="backLM" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
-		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x margin-left"></i>	
+		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x margin-left"></i>
 		<p style="line-height: 40px;">选择修炼方式</p>
 	</section>
-	
-		      <section class="sub-block" id="speedAjust">
 
-        <div class="tabs-content">
-          <div class="content active" id="show-rest-slider-result">
-            <div id="show-rest-slider"></div>
-          </div>
-			<i id="slowspeed" class="fa fa-bicycle fa-2x" style="float:left;margin-top:-60px;margin-left:15px;"></i>
-			<i id="fastspeed" class="fa fa-fighter-jet fa-2x" style="float:right;margin-top:-60px;margin-right:15px;"></i>
-        </div>
-		
+	<section class="sub-block" id="speedAjust">
+
+		<div class="tabs-content">
+			<div class="cont" src/main/webapp/MetroStyleFiles"ent
+				active" id="show-rest-slider-result">
+				<div id="show-rest-slider"></div>
+			</div>
+			<i id="slowspeed" class="fa fa-bicycle fa-2x"
+				style="float: left; margin-top: -60px; margin-left: 15px;"></i> <i
+				id="fastspeed" class="fa fa-fighter-jet fa-2x"
+				style="float: right; margin-top: -60px; margin-right: 15px;"></i>
+		</div>
+
 		<i id="backQT" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
 		<i id="toMenu" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
 		<p style="line-height: 40px;">选择速度</p>
-      </section>
+	</section>
 	<section id="menuPanel">
 		<div class="selectPanel">
 			<div id="ks" class="circle">看算</div>
@@ -215,6 +285,31 @@ height:100px!important;}
 	$(this).css("color","white");
 	window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
 	});
+    var controlBar = $('.number-pb').NumberProgressBar({
+        duration: 5000,
+        percentage: 45
+      });
+    $(".fnt-content").on("click",function(){
+    	var text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='32题' disabled='true'/>"
+    	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='2题' disabled='true'/>"
+    +"<p style='width:40%;float:left;height:40px;line-height:40px;'>总共完成：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;' type='text' value='34题' disabled='true'/>";
+    	swal({  
+            title:"第一关战绩统计",  
+            text:text,
+            html:"true",
+            showConfirmButton:false, 
+    		showCancelButton: true,   
+    		closeOnConfirm: false,  
+            confirmButtonText:"是",  
+            cancelButtonText:"关闭",
+            animation:"slide-from-top"  
+          }, 
+    		function(inputValue){
+    			if (inputValue === false){}
+    			else{
+    			}});
+
+    })
 </script>
 </body>
 </html>

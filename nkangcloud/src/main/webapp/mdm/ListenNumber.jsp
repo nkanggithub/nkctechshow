@@ -28,8 +28,7 @@
 <link rel="stylesheet"
 	href="../Jsp/JS/speedTab/jquery-ui-slider-pips.min.css" />
 <script src="../Jsp/JS/speedTab/jquery-plus-ui.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="../MetroStyleFiles/sweetalert.css" />
+<link rel="stylesheet" type="text/css" href="../MetroStyleFiles/sweetalert.css" />
 <script src="../MetroStyleFiles/sweetalert.min.js"></script>
 <script src="../Jsp/JS/speedTab/jquery-ui-slider-pips.js"></script>
 <script src="../Jsp/JS/speedTab/examples.js"></script>

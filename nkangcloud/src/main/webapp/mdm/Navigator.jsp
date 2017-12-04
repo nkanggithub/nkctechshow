@@ -101,7 +101,7 @@ margin-right:10px;
 	var lengthMax=5;
 	var lengthMin=2;
 	var uid='<%=uid%>';
-	var numCount=3;
+	var numCount=5;
 	var qt='question';
 	$("#tenM").on("click",function(){
 	$(this).css("background-color","#22B26F");

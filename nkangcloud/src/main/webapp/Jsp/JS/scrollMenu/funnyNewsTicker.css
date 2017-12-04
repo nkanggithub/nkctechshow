@@ -2,7 +2,7 @@
 .funnyNewsTicker{width:100%; overflow:hidden; height:100%!important;padding:0!important;padding-top:60px!important; position:relative; padding:0 5px; box-sizing:border-box; margin:0 auto;}
 .funnyNewsTicker>ul{padding:0; margin:0; list-style-type:none; position:relative;}
 .funnyNewsTicker>ul>li{display:none; width:100%; height:100px; background:#FFF; position:absolute;  overflow:hidden}
-.funnyNewsTicker>ul>li>.fnt-content{position:absolute; top:0; bottom:30px; left:0; right:0; box-sizing:border-box; padding:5%; overflow:hidden;line-height:50px;}
+.funnyNewsTicker>ul>li>.fnt-content{position:absolute; top:3px; bottom:30px; left:0; right:0; box-sizing:border-box;overflow:hidden;line-height:50px;}
 .funnyNewsTicker>ul>li>.fnt-content a{text-decoration:none;}
 .funnyNewsTicker>ul>li>.fnt-content a:hover{text-decoration:underline;}
 .funnyNewsTicker>ul>li>.fnt-info{position:absolute; bottom:0; left:0; right:0; height:20px; padding:5px; border-top:solid 1px #DDD;}
