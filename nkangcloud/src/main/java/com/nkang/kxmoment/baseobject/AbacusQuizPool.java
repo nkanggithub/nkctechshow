@@ -3,6 +3,7 @@ package com.nkang.kxmoment.baseobject;
 import java.util.List;
 
 public class AbacusQuizPool {
+	public String title;
 	public String id;
 	public String category;
 	public List<String> tag;
@@ -12,6 +13,12 @@ public class AbacusQuizPool {
 	public String grade;
 	public String operator;
 	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getOperator() {
 		return operator;
 	}
