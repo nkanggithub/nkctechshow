@@ -268,7 +268,9 @@ var textToShow="";
 
   <form name="loginForm" method="post" action="../AbacusQuiz/addAbacusQuizPool">
     <table>
-     
+     <tr>
+        <td>title:<input type="text" name="title"></td>
+      </tr>
        <tr>
         <td>category:<input type="text" name="category"></td>
       </tr>
@@ -288,13 +290,12 @@ var textToShow="";
       <tr>
         <td><input type="submit" value="提交" style="background-color:pink">  <input type="reset" value="重置" style="background-color:red"></td>     
       </tr>
+      <tr>
+      </tr>
     </table>
   </form>
 
-
-<c:forEach items="${requestScope.aq }"var="u">
-  
-  </c:forEach>
+<p>
 
 </body>
 </html>
