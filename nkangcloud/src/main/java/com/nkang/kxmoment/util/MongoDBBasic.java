@@ -795,7 +795,7 @@ public class MongoDBBasic {
 		}
 		return pointSum;
 	}
-
+	
 	public static boolean registerUser(Teamer teamer) {
 		mongoDB = getMongoDB();
 		java.sql.Timestamp cursqlTS = new java.sql.Timestamp(
@@ -811,6 +811,7 @@ public class MongoDBBasic {
 					DBObject dbo = new BasicDBObject();
 					dbo.put("Teamer.openid", teamer.getOpenid());
 					// dbo.put("Teamer.groupid", teamer.getGroupid());
+					dbo.put("IsRegistered", "true");
 					dbo.put("Teamer.realName", teamer.getRealName());
 					dbo.put("Teamer.email", teamer.getEmail());
 					dbo.put("Teamer.phone", teamer.getPhone());
