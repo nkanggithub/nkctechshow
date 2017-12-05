@@ -3735,7 +3735,7 @@ public class MongoDBBasic {
 					abacusQuizPool.setGrade(o.get("grade")+"");
 					abacusQuizPool.setId(o.get("id")+"");
 					abacusQuizPool.setOperator(o.get("operator")+"");
-					BasicDBList tags = (BasicDBList) o.get("tag");
+					//BasicDBList tags = (BasicDBList) o.get("tag");
 					BasicDBList hist = (BasicDBList) o.get("question");
 					if (hist != null) {
 						Object[] questions = hist.toArray();
@@ -3744,13 +3744,13 @@ public class MongoDBBasic {
 						}
 					}
 					abacusQuizPool.setQuestion(question);
-					if(tags!=null){
+					/*if(tags!=null){
 						Object[] tagss = tags.toArray();
 						for (Object dbobj : tagss) {
 							tag.add(dbobj+"");
 						}
-					}
-					abacusQuizPool.setTag(tag);
+					}*/
+					//abacusQuizPool.setTag(tag);
 					if (abacusQuizPool != null) {
 						aqps.add(abacusQuizPool);
 					}
@@ -3784,7 +3784,7 @@ public class MongoDBBasic {
 					abacusQuizPool.setGrade(o.get("grade")+"");
 					abacusQuizPool.setId(o.get("id")+"");
 					abacusQuizPool.setOperator(o.get("operator")+"");
-					BasicDBList tags = (BasicDBList) o.get("tag");
+					//BasicDBList tags = (BasicDBList) o.get("tag");
 					BasicDBList hist = (BasicDBList) o.get("question");
 					if (hist != null) {
 						Object[] questions = hist.toArray();
@@ -3795,7 +3795,7 @@ public class MongoDBBasic {
 						}
 					}
 					abacusQuizPool.setQuestion(question);
-					if(tags!=null){
+					/*if(tags!=null){
 						Object[] tagss = tags.toArray();
 						for (Object dbobj : tagss) {
 							if (dbobj instanceof String) {
@@ -3803,7 +3803,7 @@ public class MongoDBBasic {
 							}
 						}
 					}
-					abacusQuizPool.setTag(tag);
+					abacusQuizPool.setTag(tag);*/
 					if (abacusQuizPool != null) {
 						aqps.add(abacusQuizPool);
 					}
@@ -3838,7 +3838,7 @@ public class MongoDBBasic {
 					abacusQuizPool.setGrade(o.get("grade")+"");
 					abacusQuizPool.setId(o.get("id")+"");
 					abacusQuizPool.setOperator(o.get("operator")+"");
-					BasicDBList tags = (BasicDBList) o.get("tag");
+					//BasicDBList tags = (BasicDBList) o.get("tag");
 					BasicDBList hist = (BasicDBList) o.get("question");
 					if (hist != null) {
 						Object[] questions = hist.toArray();
@@ -3847,7 +3847,7 @@ public class MongoDBBasic {
 						}
 					}
 					abacusQuizPool.setQuestion(question);
-					if(tags!=null){
+					/*if(tags!=null){
 						Object[] tagss = tags.toArray();
 						for (Object dbobj : tagss) {
 							if (dbobj instanceof String) {
@@ -3855,7 +3855,7 @@ public class MongoDBBasic {
 							}
 						}
 					}
-					abacusQuizPool.setTag(tag);
+					abacusQuizPool.setTag(tag);*/
 					if (abacusQuizPool != null) {
 						aqps.add(abacusQuizPool);
 					}
