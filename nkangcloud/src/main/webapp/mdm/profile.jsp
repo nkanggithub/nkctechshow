@@ -1570,7 +1570,11 @@ function getNowFormatDate() {
 												<td>
 												 <a  <%if(level.equals("basic")) { %> href="http://<%=Constants.baehost%>/mdm/NavigatorForBasic.jsp?UID=<%=uid %>"  <%}else{ %>href="http://<%=Constants.baehost%>/mdm/Navigator.jsp?UID=<%=uid %>" <%} %> target="_blank">
 												 <img src="http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png" /></a>
-													<h4>自我修炼</h4></td>
+													<%if(level.equals("basic")) { %>
+													<h4>迷时师渡</h4> 
+													<%}else{ %>
+													<h4>悟时自渡</h4> 
+													<%} %> </td>
 											</tr>
 										</table>
 									</div>

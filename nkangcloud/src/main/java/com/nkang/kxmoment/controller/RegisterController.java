@@ -51,9 +51,9 @@ public class RegisterController {
 		user.setRealName(URLEncoder.encode(name, "UTF-8"));
 	//	user.setRole(URLEncoder.encode(role, "UTF-8"));
 		user.setRegisterDate(registerDate);
-		user.setSelfIntro(URLEncoder.encode(selfIntro, "UTF-8"));
+//		user.setSelfIntro(URLEncoder.encode(selfIntro, "UTF-8"));
 		user.setPhone(URLEncoder.encode(telephone, "UTF-8"));
-		user.setEmail(URLEncoder.encode(email, "UTF-8"));
+//		user.setEmail(URLEncoder.encode(email, "UTF-8"));
 	//	user.setGroupid(URLEncoder.encode(group, "UTF-8"));
 	//	user.setTag(list);
 		//if(validateRegist(user)){
