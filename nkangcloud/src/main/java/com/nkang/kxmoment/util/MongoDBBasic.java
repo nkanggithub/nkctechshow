@@ -3608,8 +3608,9 @@ public class MongoDBBasic {
 			//String[] questions=abacusQuiz.getQuestion().split(",");
 			DBObject insert = new BasicDBObject();
 			//String uuid = UUID.randomUUID().toString().trim().replaceAll("-", ""); 
-			java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
-			String id="b"+cursqlTS.toString().trim();
+			//java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+			Date d = new Date();
+			String id="B2017"+d.getTime();
 			insert.put("id", id);
 			//insert.put("tag", abacusQuiz.getTag());
 			
