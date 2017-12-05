@@ -1,15 +1,22 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.nkang.kxmoment.util.*"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%@ page import="java.util.*,org.json.JSONObject"%>
 <%
 	int speed = Integer.parseInt(request.getParameter("speed"));
 	int numCount = Integer.parseInt(request.getParameter("numCount"));
 	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
 	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
+	String uid = request.getParameter("UID");
 	String qt= request.getParameter("qt");
+	String level="";
+	if(uid==null||uid==""){
+	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+	level=res.get("level");}
 	String display="none";
 	if(qt.equals("minute")){
 		display="block";
 	}
-	String uid = request.getParameter("UID");
 %>
 <!DOCTYPE html>
 <html>
@@ -103,6 +110,7 @@
 	var lengthMin=<%=lengthMin%>;
 	var lengthMax=<%=lengthMax%>;
 	var uid='<%=uid%>';
+	var level='<%=level%>';
 	var qt='<%=qt%>';
 	var rightQ=0;
 	var wrongQ=0;
@@ -525,7 +533,10 @@
 
 		});
 		$(".exit").on("click", function() {
-			window.location.href = "Navigator.jsp?UID=" + uid;
+			if(level=='basic'){
+				window.location.href = "NavigatorForBasic.jsp?UID=" + uid;}
+			else{
+				window.location.href = "Navigator.jsp?UID=" + uid;}
 		});
 	</script>
 </body>

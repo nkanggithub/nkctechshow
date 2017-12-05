@@ -786,11 +786,14 @@ jQuery
 					lastUpdatedDate=temp.lastUpdatedDate.substring(0,10);
 				}
 				
-				if(temp.congratulateNum==null||temp.congratulateNum=='null'||temp.congratulateNum==undefined||temp.congratulateNum==0){
-					
-				}else{
-					congratulate='<div style="float:right;"><img src="../MetroStyleFiles/reward.png" style="height:25px;"/>'
-						+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+temp.congratulateNum+'</span><div>';
+				if(temp.level!=null){
+					var levelText;
+					if(temp.level=='basic'){levelText='启蒙';}
+					if(temp.level=='primary'){levelText='初级';}
+					if(temp.level=='middle'){levelText='中级';}
+					if(temp.level=='high'){levelText='高级';}
+					congratulate='<div style="float:right;">'
+						+ '<span style="font-size:12px;color:#07090B;font-weight:normal;">'+levelText+'</span><div>';
 				}
 				var li='	<li class="Work_Mates_div_list_div2">'
 					+'                                           	 	<div class="Work_Mates_img_div2"  style="margin-top:-10px;margin-bottom:-20px;">'

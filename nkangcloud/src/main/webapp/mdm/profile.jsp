@@ -493,9 +493,8 @@ function checkReg() {
 		},
 		cache : false,
 		success : function(users) {
-			users = users.replace(/:null/g, ':"未注册"');
 			if (users.length > 0) {
-				if(users[0].phone=="未注册"){
+				if(users[0].phone==null){
 					swal("您还未注册哦", "未注册用户很多功能不能使用,建议点击头像立即注册！", "error");
 				}
 			}
@@ -881,9 +880,8 @@ function isRegister()
 		cache : false,
 		success : function(users) {
 			if(users){
-				users = users.replace(/:null/g, ':"未注册"');
 				if (users.length > 0) {
-					if(users[0].phone =="未注册"){
+					if(users[0].phone ==null){
 						 $(".registerArea").show();
 					}
 					
@@ -901,14 +899,12 @@ function register() {
 		},
 		cache : false,
 		success : function(users) {
-			users = users.replace(/:null/g, ':"未注册"');
 			if (users.length > 0) {
 				$("#info_tag tr").html("");
-				if(users[0].role!="未注册"){
+				if(users[0].role!=null){
 					$("#info_interact").css("display","none");
 					$("#info_interact2").css("display","none");
 					$("#info_imgurl").attr("src",$('#userImage').attr('src'));
-					users = users.replace(/:"未注册"/g, ':"未编辑"');
 					$("#info_username span").html(users[0].realName+'<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;['+users[0].role+']&nbsp;</span>'+'<img onclick="showRegister()" src="../MetroStyleFiles/edit.png" style="height: 20px; cursor: pointer;padding-left:5px;"/>');
 					$("#info_all").css('display','table');
 					$("#info_phone").html("&nbsp;&nbsp;&nbsp;&nbsp;"+users[0].phone);
@@ -943,20 +939,19 @@ function showRegister(){
 				var phone="";
 				var email="";
 				var selfIntro="";
-				users = users.replace(/:null/g, ':"未注册"');
 				if (users.length > 0) {
-					if(users[0].realName !="未注册"){
+					if(users[0].realName !=null){
 						realName=users[0].realName;
 						 $(".registerArea").show();
 					}
 					
-					if(users[0].phone !="未注册"){
+					if(users[0].phone !=null){
 						phone=users[0].phone;
 					}
-					if(users[0].email !="未注册"){
+					if(users[0].email !=null){
 						email=users[0].email;
 					}
-					 if(users[0].selfIntro !="未注册"){
+					 if(users[0].selfIntro !=null){
 							selfIntro=users[0].selfIntro;
 					    }
 					
@@ -1091,16 +1086,14 @@ function getUserInfo(username, headimgurl, openId) {
 				},
 				cache : false,
 				success : function(users) {
-					users = users.replace(/:null/g, ':"未注册"');
 					if (users.length > 0) {
 						$("#info_tag tr").html("");
 						$("#info_interact img.like").attr("onclick","toLike('"+username+"','"+users[0].openid+"')");
 						$("#info_interact2 span.like").text(users[0].like.number==""?0:users[0].like.number);
-						if(users[0].role!="未注册"){
+						if(users[0].role!=null){
 							$("#info_username span").html(users[0].realName);
 							$("#info_interact img.zan").attr("onclick","recognizationPanelByPerson('"+users[0].realName+"')");
 							$("#info_interact2 span.zan").text(users[0].CongratulateNum);
-							users = users.replace(/:"未注册"/g, ':"未编辑"');
 							$("#info_all").css('display','table');
 							$("img.zan").css('display','block');
 							$("span.zan").css('display','block');
@@ -1381,14 +1374,6 @@ function getNowFormatDate() {
 <p class="icon">  <i class="fa fa-check fa-lg" style="font-size:21px;"></i></p>
 <p class="inputArea"><input id="validateCode" type="text" placeholder="请输入你的验证码"/> </p>
 <p class="sendCode" onclick="sendValidateCode()">发送验证码</p>
-</div>
-<div class="singleInput">
-<p class="icon">  <i class="fa fa-envelope-o fa-lg" style="font-size:21px;"></i></p>
-<p class="inputArea"><input id="email" type="text" placeholder="请输入你的邮箱地址"/> </p>
-</div>
-<div class="singleInput">
-<p class="icon">  <i class="fa fa-pencil fa-lg" style="font-size:21px;"></i></p>
-<p class="inputArea"><input id="selfIntro" type="text" placeholder="请输入你的个人简介"/> </p>
 </div>
 </div>
 <div class="register_btn" onclick="updateInfo()"><img src="../mdm/images/finger-up.png" style="margin-top: 10px;width: 30px;height: 30px;"><span style="display: block;
