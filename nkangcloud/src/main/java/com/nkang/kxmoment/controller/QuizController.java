@@ -70,7 +70,7 @@ public class QuizController {
 		String category = request.getParameter("category");
 		String checkpoint = request.getParameter("checkpoint");
 		String questions = request.getParameter("question");
-		//int answer = Integer.parseInt(request.getParameter("answer"));
+		String title = request.getParameter("title");
 		String grade = request.getParameter("grade");
 		String tag = request.getParameter("tag");
 		AbacusQuizPool aq = new AbacusQuizPool();
@@ -92,7 +92,7 @@ public class QuizController {
 		aq.setQuestion(que);
 		aq.setGrade(grade);
 		aq.setTag(tg);
-
+		aq.setTitle(title);
 		
 		if(MongoDBBasic.createAbacusQuizPool(aq)){
 			//request.getSession().setAttribute("test", "123");
