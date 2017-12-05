@@ -3658,16 +3658,16 @@ public class MongoDBBasic {
 			DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
 			BasicDBList Tags = (BasicDBList) queryresults.get("Tag");
 			BasicDBList Questions = (BasicDBList) queryresults.get("question");
-			List listtag = new ArrayList();
+			//List listtag = new ArrayList();
 			List listquestion = new ArrayList();
-			if (Tags != null) {
+		/*	if (Tags != null) {
 				Object[] tagObjects = Tags.toArray();
 				for (Object dbobj : tagObjects) {
-					/*if (dbobj instanceof DBObject) {
+					if (dbobj instanceof DBObject) {
 						HashMap<String, Object> temp = new HashMap<String, Object>();
 						temp.put("tag", ((DBObject) dbobj).get("tag").toString());				
 						listtag.add(temp);
-					}*/
+					}
 					listtag.add(dbobj);
 				}
 				if(taglist.size()>0){
@@ -3677,7 +3677,7 @@ public class MongoDBBasic {
 				}
 			}else{
 				listtag=taglist;
-			}
+			}*/
 			if(Questions !=null){
 				Object[] questionObjs = Questions.toArray();
 				for (Object dbobj : questionObjs) {
@@ -3698,7 +3698,7 @@ public class MongoDBBasic {
 				
 			BasicDBObject doc = new BasicDBObject();
 			BasicDBObject update = new BasicDBObject();
-			update.append("tag", listtag);
+			//update.append("tag", listtag);
 			update.append("question", listquestion);
 			doc.put("$set", update);
 			WriteResult wr = mongoDB.getCollection(collectionAbacusQuizPool).update(
