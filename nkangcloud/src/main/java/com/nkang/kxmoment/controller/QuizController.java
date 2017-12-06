@@ -74,9 +74,9 @@ public class QuizController {
 		String grade = request.getParameter("grade");
 		String tag = request.getParameter("tag");
 		//序号
-		int questionSequence = Integer.parseInt(request.getParameter("qSequence"));
+		String questionSequence = request.getParameter("qSequence");
 		//题号
-		int batchId = Integer.parseInt(request.getParameter("batchId"));
+		String batchId = request.getParameter("batchId");
 		AbacusQuizPool aq = new AbacusQuizPool();
 		String[] tags = tags=tag.split(",");
 		List<String> tg = new ArrayList();

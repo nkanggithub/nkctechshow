@@ -12,17 +12,21 @@ public class AbacusQuizPool {
 	public int answer;
 	public String grade;
 	public String operator;
-	public int questionSequence;
-	public int batchId;
+	public String questionSequence;
+	public String batchId;
 	
-	public int getQuestionSequence() {
+	
+	public String getQuestionSequence() {
 		return questionSequence;
 	}
-	public void setQuestionSequence(int questionSequence) {
+	public void setQuestionSequence(String questionSequence) {
 		this.questionSequence = questionSequence;
 	}
-	public int getBatchId() {
+	public String getBatchId() {
 		return batchId;
+	}
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
 	}
 	public void setBatchId(int batchId) {
 		this.batchId = batchId;

@@ -3644,7 +3644,7 @@ public class MongoDBBasic {
 			mongoDB.getCollection(collectionAbacusQuizPool).insert(insert);
 			
 			
-			ret = addTagAndQuestion(id,abacusQuiz.getTag(),question);
+			ret = addTagAndQuestion(id,question);
 		} catch (Exception e) {
 			log.info("createAbacusQuizPool--" + e.getMessage());
 		}
@@ -3652,7 +3652,7 @@ public class MongoDBBasic {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static boolean addTagAndQuestion(String id,List<String> taglist,List<String> questionlist){
+	public static boolean addTagAndQuestion(String id,List<String> questionlist){
 		boolean result = false;
 		try{
 			DBObject query = new BasicDBObject();
@@ -3739,8 +3739,8 @@ public class MongoDBBasic {
 					abacusQuizPool.setGrade(o.get("grade")+"");
 					abacusQuizPool.setId(o.get("id")+"");
 					abacusQuizPool.setOperator(o.get("operator")+"");
-					abacusQuizPool.setQuestionSequence((int)o.get("questionSequence"));
-					abacusQuizPool.setBatchId((int)o.get("batchId"));
+					abacusQuizPool.setQuestionSequence(o.get("questionSequence")+"");
+					abacusQuizPool.setBatchId(o.get("batchId")+"");
 					//BasicDBList tags = (BasicDBList) o.get("tag");
 					BasicDBList hist = (BasicDBList) o.get("question");
 					if (hist != null) {
