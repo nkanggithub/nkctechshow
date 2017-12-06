@@ -70,7 +70,9 @@ public class QuizController {
 		String category = request.getParameter("category");
 		String qNumber = request.getParameter("qNumber");
 		HistoryQuiz hq = new HistoryQuiz();
-		
+		hq.setCategory(category);
+		hq.setOpenID(openID);
+		hq.setqNumber(qNumber);
 		if(MongoDBBasic.updateHistoryQuiz(hq)){
 			//request.getSession().setAttribute("test", "123");
 			//session.setAttribute("test", "123");
@@ -88,7 +90,11 @@ public class QuizController {
 		return quizs;
 	}
 	
-	
+	@RequestMapping("/findHistoryQuizByOpenidAndCategory")
+	public @ResponseBody HistoryQuiz findHistoryQuizByOpenidAndCategory(@RequestParam(value="openid")String openid,@RequestParam(value="category")String category){
+		HistoryQuiz quizs=MongoDBBasic.findHistoryQuizByOpenidAndCategory(openid,category);
+		return quizs;
+	}
 	
 	@RequestMapping("/addAbacusQuizPool")
 	@ResponseBody
