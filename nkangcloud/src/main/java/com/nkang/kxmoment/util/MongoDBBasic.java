@@ -3938,18 +3938,18 @@ public class MongoDBBasic {
 	 */
 	public static boolean updateHistoryQuiz(HistoryQuiz historyQuiz) {
 		boolean ret = false;
-		//DBObject query = new BasicDBObject();
-		//query.put("openid", historyQuiz.getOpenID());
-		//query.put("category", historyQuiz.getCategory());
+		DBObject query = new BasicDBObject();
+		query.put("openid", historyQuiz.getOpenID());
+		query.put("category", historyQuiz.getCategory());
 		try {
 			mongoDB = getMongoDB();
-			//DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
+			DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
 			DBObject dbo = new BasicDBObject();
 			String openid=historyQuiz.getOpenID();
 			dbo.put("openid",openid);
 			dbo.put("category",historyQuiz.getCategory());
 			dbo.put("qNumber",historyQuiz.getqNumber());
-			if(findHistoryQuizByOpenidAndCategory(historyQuiz.getOpenID(),historyQuiz.getCategory())!=null){
+			if(queryresults!=null){
 				BasicDBObject doc = new BasicDBObject();
 				doc.put("$set", dbo);
 				mongoDB.getCollection(collectionHistoryAbacus).update(new BasicDBObject().append("openid",openid), doc);
@@ -3972,12 +3972,12 @@ public class MongoDBBasic {
 	public static HistoryQuiz findHistoryQuizByOpenidAndCategory(String openid,String category){
 		HistoryQuiz historyQuiz = new HistoryQuiz();
 		DBObject query = new BasicDBObject();
-		DBObject queryresults=null;
+		
 		query.put("openid", openid);
 		query.put("category", category);
 		try {
 			mongoDB = getMongoDB();
-			queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
+			DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
 			if (null != queryresults) {
 				historyQuiz.setCategory(queryresults.get("category")+"");
 				historyQuiz.setqNumber(queryresults.get("qNumber")+"");

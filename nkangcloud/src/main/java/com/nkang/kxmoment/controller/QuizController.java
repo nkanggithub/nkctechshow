@@ -80,7 +80,22 @@ public class QuizController {
 		}
 		
 		
-		return "输入有误 或者服务器异常,稍后再试";
+		return "输入有误 或者服务器异常,try";
+		
+	}
+	
+	@RequestMapping("/updateHistoryQuizByOpenIDAndCategory")
+	@ResponseBody
+	public String updateHistoryQuizByOpenIDAndCategory(@RequestParam(value="openid")String openid,
+			@RequestParam(value="category")String category,@RequestParam(value="qNumber")String qNumber){
+		HistoryQuiz hq = new HistoryQuiz();
+		hq.setCategory(category);
+		hq.setOpenID(openid);
+		hq.setqNumber(qNumber);
+		if(MongoDBBasic.updateHistoryQuiz(hq)){
+			return "ok";
+		}
+		return "输入有误 或者服务器异常,try";
 		
 	}
 	
@@ -143,7 +158,7 @@ public class QuizController {
 		}
 		
 		
-		return "输入有误 或者服务器异常,稍后再试";
+		return "输入有误 或者服务器异常,try";
 		
 	}
 	
