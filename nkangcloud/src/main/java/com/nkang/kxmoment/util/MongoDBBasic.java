@@ -3942,7 +3942,7 @@ public class MongoDBBasic {
 		query.put("openid", historyQuiz.getOpenID());
 		try {
 			mongoDB = getMongoDB();
-			DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
+			DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
 			DBObject dbo = new BasicDBObject();
 			String openid=historyQuiz.getOpenID();
 			dbo.put("openid",openid);
@@ -3974,7 +3974,7 @@ public class MongoDBBasic {
 			mongoDB = getMongoDB();
 			DBObject Query = new BasicDBObject();
 			Query.put("openid", openid);
-			DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(Query);
+			DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(Query);
 			//DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
 			if (null != queryresults) {
 				historyQuiz.setCategory(queryresults.get("category")+"");
