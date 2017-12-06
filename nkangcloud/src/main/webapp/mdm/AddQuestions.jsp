@@ -299,24 +299,6 @@ var textToShow="";
   </form>
 
 <p>
-<br>
-<form name="loginForm1" method="post" action="../AbacusQuiz/updateHistoryQuiz">
-    <table>
-     <tr>
-        <td>openID:<input type="text" name="openID"></td>
-      </tr>
-       <tr>
-        <td>category:<input type="text" name="category"></td>
-      </tr>
-       <tr>
-        <td>qNumber:<input type="text" name="qNumber"></td>
-      </tr>
-      <tr>
-        <td><input type="submit" value="提交" style="background-color:pink">  <input type="reset" value="重置" style="background-color:red"></td>     
-      </tr>
-      <tr>
-      </tr>
-    </table>
-  </form>
+
 </body>
 </html>
