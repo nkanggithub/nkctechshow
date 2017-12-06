@@ -3793,8 +3793,8 @@ public class MongoDBBasic {
 					abacusQuizPool.setOperator(o.get("operator")+"");
 					//BasicDBList tags = (BasicDBList) o.get("tag");
 					BasicDBList hist = (BasicDBList) o.get("question");
-					abacusQuizPool.setQuestionSequence((int)o.get("questionSequence"));
-					abacusQuizPool.setBatchId((int)o.get("batchId"));
+					abacusQuizPool.setQuestionSequence(o.get("questionSequence")+"");
+					abacusQuizPool.setBatchId(o.get("batchId")+"");
 					if (hist != null) {
 						Object[] questions = hist.toArray();
 						for (Object dbobj : questions) {
@@ -3847,8 +3847,8 @@ public class MongoDBBasic {
 					abacusQuizPool.setId(o.get("id")+"");
 					abacusQuizPool.setOperator(o.get("operator")+"");
 					//BasicDBList tags = (BasicDBList) o.get("tag");
-					abacusQuizPool.setQuestionSequence((int)o.get("questionSequence"));
-					abacusQuizPool.setBatchId((int)o.get("batchId"));
+					abacusQuizPool.setQuestionSequence(o.get("questionSequence")+"");
+					abacusQuizPool.setBatchId(o.get("batchId")+"");
 					BasicDBList hist = (BasicDBList) o.get("question");
 					if (hist != null) {
 						Object[] questions = hist.toArray();
