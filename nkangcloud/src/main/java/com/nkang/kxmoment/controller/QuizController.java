@@ -74,9 +74,9 @@ public class QuizController {
 		String grade = request.getParameter("grade");
 		String tag = request.getParameter("tag");
 		//序号
-		String questionSequence = request.getParameter("qSequence");
+		int questionSequence = Integer.parseInt(request.getParameter("qSequence"));
 		//题号
-		String batchId = request.getParameter("batchId");
+		int batchId = Integer.parseInt(request.getParameter("batchId"));
 		AbacusQuizPool aq = new AbacusQuizPool();
 		String[] tags = tags=tag.split(",");
 		List<String> tg = new ArrayList();
@@ -97,8 +97,9 @@ public class QuizController {
 		aq.setGrade(grade);
 		aq.setTag(tg);
 		aq.setTitle(title);
-		aq.setGrade(questionSequence);
-		aq.setGrade(batchId);
+		
+		aq.setQuestionSequence(questionSequence);
+		aq.setBatchId(batchId);
 		
 		if(MongoDBBasic.createAbacusQuizPool(aq)){
 			//request.getSession().setAttribute("test", "123");
