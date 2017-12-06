@@ -3936,7 +3936,8 @@ public class MongoDBBasic {
 	 * update HistoryQuiz
 	 * 
 	 */
-	public static void updateHistoryQuiz(HistoryQuiz historyQuiz) {
+	public static boolean updateHistoryQuiz(HistoryQuiz historyQuiz) {
+		boolean ret = false;
 		try {
 			mongoDB = getMongoDB();
 			DBObject dbo = new BasicDBObject();
@@ -3948,8 +3949,10 @@ public class MongoDBBasic {
 			doc.put("$set", dbo);
 			mongoDB.getCollection(collectionHistoryAbacus).update(new BasicDBObject().append("openid",openid), doc);
 			log.info("updateHistoryQuiz end");
+			ret = true;
 		} catch (Exception e) {
 			log.info("updateTicket--" + e.getMessage());
 		}
+		return ret;
 	}
 }
