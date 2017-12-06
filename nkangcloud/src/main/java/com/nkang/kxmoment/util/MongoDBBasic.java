@@ -3791,9 +3791,7 @@ public class MongoDBBasic {
 					if (hist != null) {
 						Object[] questions = hist.toArray();
 						for (Object dbobj : questions) {
-							if (dbobj instanceof String) {
-								question.add((String) dbobj);
-							}
+							question.add(dbobj+"");
 						}
 					}
 					abacusQuizPool.setQuestion(question);
