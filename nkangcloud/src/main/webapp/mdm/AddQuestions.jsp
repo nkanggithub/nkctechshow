@@ -282,7 +282,10 @@ var textToShow="";
       </tr>
       
        <tr>
-        <td>tag:<input type="text" name="tag"></td>
+        <td>batchId:<input type="text" name="batchId"></td>
+      </tr>
+       <tr>
+        <td>questionSequence:<input type="text" name="qSequence"></td>
       </tr>
        <tr>
         <td>grade:<input type="text" name="grade"></td>
