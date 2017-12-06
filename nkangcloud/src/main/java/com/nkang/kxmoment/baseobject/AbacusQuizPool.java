@@ -28,9 +28,7 @@ public class AbacusQuizPool {
 	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
-	public void setBatchId(int batchId) {
-		this.batchId = batchId;
-	}
+
 	public String getTitle() {
 		return title;
 	}
