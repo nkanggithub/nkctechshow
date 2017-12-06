@@ -1555,7 +1555,8 @@ function getNowFormatDate() {
 													</a>
 												</td>
 												<td>
-												<a target="_self" href="http://leshucq.bceapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"><img src="http://leshu.bj.bcebos.com/icon/menu-stock.png" />
+												<a target="_self" <%if(IsAuthenticated==true) { %> href="http://leshucq.bceapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"  <%}else{ %>onclick="noAuth()"<%} %>
+												><img src="http://leshu.bj.bcebos.com/icon/menu-stock.png" />
 													<h4>乐数足迹</h4></a>
 												</td>
 												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="http://leshu.bj.bcebos.com/icon/menu-technology.png" />
@@ -1568,13 +1569,18 @@ function getNowFormatDate() {
 											</tr>
 											<tr>
 												<td>
-												 <a  <%if(level.equals("basic")) { %> href="http://<%=Constants.baehost%>/mdm/NavigatorForBasic.jsp?UID=<%=uid %>"  <%}else{ %>href="http://<%=Constants.baehost%>/mdm/Navigator.jsp?UID=<%=uid %>" <%} %> target="_blank">
-												 <img src="http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png" /></a>
-													<%if(level.equals("basic")) { %>
+												<%if(level.equals("basic")) { %>
+												
+												 <a href="http://<%=Constants.baehost%>/mdm/NavigatorForBasic.jsp?UID=<%=uid %>"  target="_blank">
+												 <img src="http://leshucq.bj.bcebos.com/standard/leshuTeacher.png" /></a>
 													<h4>迷时师渡</h4> 
-													<%}else{ %>
+												<%}else{ %>
+												
+												 <a href="http://<%=Constants.baehost%>/mdm/Navigator.jsp?UID=<%=uid %>"  target="_blank">
+												 <img src="http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png" /></a>
 													<h4>悟时自渡</h4> 
-													<%} %> </td>
+												<% } %> 
+													</td>
 											</tr>
 										</table>
 									</div>

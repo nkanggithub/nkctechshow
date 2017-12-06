@@ -55,6 +55,10 @@ String uid = request.getParameter("UID"); %><!DOCTYPE html>
 li {
 	height: 100px !important;
 }
+.hiddenLevel
+{
+display:none;
+}
 </style>
 </head>
 <body>
@@ -79,6 +83,7 @@ li {
 				<ul>
 					<li>
 						<div class="fnt-content" data-link="###">【第一关】 一位数直加直减</div>
+						<span class="hiddenLevel">第一关</span>
 						<div class="number-pb">
 							<div class="number-pb-shown"></div>
 							<div class="number-pb-num" style="left: 85%;">0%</div>
@@ -87,84 +92,107 @@ li {
 					<li>
 						<div class="fnt-content" data-link="###">【第二关】+1=+5-4
 							-1=+4-5</div>
+						<span class="hiddenLevel">第二关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第三关】+2=+5-3
 							-2=+3-5</div>
+						<span class="hiddenLevel">第三关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第四关】+3=+5-2
 							-3=+2-5</div>
+						<span class="hiddenLevel">第四关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第五关】+4=+5-1
 							-4=+1-5</div>
+						<span class="hiddenLevel">第五关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第六关】1-5综合练习</div>
+						<span class="hiddenLevel">第六关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第七关】 +1=-9+10
 							-1=-10+9</div>
+						<span class="hiddenLevel">第七关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第八关】 +2=-8+10
 							-2=-10+8</div>
+						<span class="hiddenLevel">第八关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第九关】 +3=-7+10
 							-3=-10+7</div>
+						<span class="hiddenLevel">第九关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十关】 +4=-6+10
 							-4=-10+6</div>
+						<span class="hiddenLevel">第十关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十一关】 +5=-5+10
 							-5=-10+5</div>
+						<span class="hiddenLevel">第十一关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十二关】+6=-4+10
 							-6=-10+4</div>
+						<span class="hiddenLevel">第十二关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十三关】 +7=-3+10
 							-7=-10+3</div>
+						<span class="hiddenLevel">第十三关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十四关】 +8=-2+10
 							-8=-10+2</div>
+						<span class="hiddenLevel">第十四关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十五关】 +9=-1+10
 							-9=-10+1</div>
+						<span class="hiddenLevel">第十五关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十六关】 综合练习1</div>
+						<span class="hiddenLevel">第十六关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十七关】 综合练习2</div>
+						<span class="hiddenLevel">第十七关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十八关】 综合练习3</div>
+						<span class="hiddenLevel">第十八关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十九关】 一位数综合练习4</div>
+						<span class="hiddenLevel">第十九关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十关】 一位数综合练习5</div>
+						<span class="hiddenLevel">第二十关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十一关】 一位数8笔综合练习1</div>
+						<span class="hiddenLevel">第二十一关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十二关】 一位数8笔综合练习2</div>
+						<span class="hiddenLevel">第二十二关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十三关】 一位数8笔综合练习3</div>
+						<span class="hiddenLevel">第二十三关</span>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十四关】 一位数8笔综合练习4</div>
+						<span class="hiddenLevel">第二十四关</span>
 					</li>
 				</ul>
 			</div>
@@ -213,10 +241,8 @@ li {
 	</section>
 
 	<script>
-	var speed=2;
-	var lengthMax=5;
-	var lengthMin=2;
-	var numCount=3;
+	var speed=5;
+	var category="";
 	var uid='<%=uid%>';
 	var qt='question';
 	$(document).ready(function(){
@@ -235,8 +261,10 @@ li {
 		qt='question';
 		});
 	$("#toQT").on("click",function(){
-	$("#levelMenuPanel").hide();
-	$("#questionTypePanel").show();
+		category=$(".fnt-active").find(".hiddenLevel").text();
+		console.log($(".fnt-active").find(".hiddenLevel").text());
+		$("#levelMenuPanel").hide();
+		$("#questionTypePanel").show();
 	});
 	$("#backLM").on("click",function(){
 	$("#levelMenuPanel").show();
@@ -273,17 +301,17 @@ li {
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
+	window.location.href="FlashNumberForBasic.jsp?category="+category+"&speed="+speed+"&qt="+qt+"&UID="+uid;
 	});
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
+	window.location.href="ShowNumberForBasic.jsp?category="+category+"&speed="+speed+"&qt="+qt+"&UID="+uid;
 	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
+	window.location.href="ListenNumberForBasic.jsp?category="+category+"&speed="+speed+"&qt="+qt+"&UID="+uid;
 	});
     var controlBar = $('.number-pb').NumberProgressBar({
         duration: 5000,
