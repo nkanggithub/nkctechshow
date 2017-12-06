@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mysql.jdbc.StringUtils;
 import com.nkang.kxmoment.baseobject.AbacusQuizPool;
+import com.nkang.kxmoment.baseobject.HistoryQuiz;
 import com.nkang.kxmoment.baseobject.Quiz;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.util.MongoDBBasic;
@@ -60,6 +61,29 @@ public class QuizController {
 		boolean quizs=MongoDBBasic.createAbacusQuizPool(aq);
 		return tag;
 	}
+	@RequestMapping("/updateHistoryQuiz")
+	@ResponseBody
+	public String updateHistoryQuiz(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+		request.setCharacterEncoding("UTF-8"); 
+
+		String openID = request.getParameter("openID");
+		String category = request.getParameter("category");
+		String qNumber = request.getParameter("qNumber");
+		HistoryQuiz hq = new HistoryQuiz();
+		
+		if(MongoDBBasic.updateHistoryQuiz(hq)){
+			//request.getSession().setAttribute("test", "123");
+			//session.setAttribute("test", "123");
+			return openID;
+		}
+		
+		
+		return "输入有误 或者服务器异常,稍后再试";
+		
+	}
+	
+	
+	
 	
 	@RequestMapping("/addAbacusQuizPool")
 	@ResponseBody
