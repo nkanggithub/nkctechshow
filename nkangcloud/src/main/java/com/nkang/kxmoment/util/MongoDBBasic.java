@@ -3961,22 +3961,17 @@ public class MongoDBBasic {
 	 */
 	public static HistoryQuiz findHistoryQuizByOpenid(String openid){
 		//List<HistoryQuiz> aqps=new ArrayList<HistoryQuiz>();
-		
+		HistoryQuiz historyQuiz = new HistoryQuiz();
 		try {
 			mongoDB = getMongoDB();
 			DBObject Query = new BasicDBObject();
 			Query.put("openid", openid);
-			DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find(Query);
+			DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(Query);
 			//DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
 			if (null != queryresults) {
-				while (queryresults.hasNext()) {
-					HistoryQuiz historyQuiz = new HistoryQuiz();
-					DBObject o = queryresults.next();
-					historyQuiz.setCategory(o.get("category")+"");
-					historyQuiz.setqNumber(o.get("qNumber")+"");
-					
-				}
-					
+				historyQuiz.setCategory(queryresults.get("category")+"");
+				historyQuiz.setqNumber(queryresults.get("qNumber")+"");
+		
 			}
 		} catch (Exception e) {
 			log.info("findAbacusQuizPoolById--" + e.getMessage());
