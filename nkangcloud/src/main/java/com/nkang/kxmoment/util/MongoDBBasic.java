@@ -3942,21 +3942,21 @@ public class MongoDBBasic {
 		query.put("openid", historyQuiz.getOpenID());
 		try {
 			mongoDB = getMongoDB();
-			//DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
+			DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
 			DBObject dbo = new BasicDBObject();
 			String openid=historyQuiz.getOpenID();
 			dbo.put("openid",openid);
 			dbo.put("category",historyQuiz.getCategory());
 			dbo.put("qNumber",historyQuiz.getqNumber());
-			//if(queryresults!=null){
+			if(queryresults!=null){
 				BasicDBObject doc = new BasicDBObject();
 				doc.put("$set", dbo);
 				mongoDB.getCollection(collectionHistoryAbacus).update(new BasicDBObject().append("openid",openid), doc);
 				log.info("updateHistoryQuiz end");
 				ret = true;
-			//}else{
-			//	mongoDB.getCollection(collectionHistoryAbacus).insert(dbo);
-			//}
+			}else{
+				mongoDB.getCollection(collectionHistoryAbacus).insert(dbo);
+			}
 			
 		} catch (Exception e) {
 			log.info("updateTicket--" + e.getMessage());
