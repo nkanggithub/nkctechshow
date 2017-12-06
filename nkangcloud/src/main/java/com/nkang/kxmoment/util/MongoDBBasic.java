@@ -38,6 +38,7 @@ import com.nkang.kxmoment.baseobject.ClientInformation;
 import com.nkang.kxmoment.baseobject.ClientMeta;
 import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
+import com.nkang.kxmoment.baseobject.HistoryQuiz;
 import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.Quiz;
@@ -3728,7 +3729,7 @@ public class MongoDBBasic {
 				
 				while (queryresults.hasNext()) {
 					abacusQuizPool = new AbacusQuizPool();
-					List<String> tag = new ArrayList<String>();
+					//List<String> tag = new ArrayList<String>();
 					List<String> question = new ArrayList<String>();
 					DBObject o = queryresults.next();
 					abacusQuizPool.setTitle(o.get("title")+"");
@@ -3928,5 +3929,27 @@ public class MongoDBBasic {
 				log.info("deleteAbacusQuizPoolById--" + e.getMessage());
 			}
 			return result;
+	}
+	
+	/*
+	 * 
+	 * update HistoryQuiz
+	 * 
+	 */
+	public static void updateHistoryQuiz(HistoryQuiz historyQuiz) {
+		try {
+			mongoDB = getMongoDB();
+			DBObject dbo = new BasicDBObject();
+			String openid=historyQuiz.getOpenID();
+			dbo.put("openid",openid);
+			dbo.put("category",historyQuiz.getCategory());
+			dbo.put("qNumber",historyQuiz.getqNumber());
+			BasicDBObject doc = new BasicDBObject();
+			doc.put("$set", dbo);
+			mongoDB.getCollection(collectionHistoryAbacus).update(new BasicDBObject().append("openid",openid), doc);
+			log.info("updateHistoryQuiz end");
+		} catch (Exception e) {
+			log.info("updateTicket--" + e.getMessage());
+		}
 	}
 }
