@@ -66,23 +66,23 @@ public class QuizController {
 	public String addAbacusQuizPool(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
 		ModelAndView model = new ModelAndView("AddQuestions");
 		request.setCharacterEncoding("UTF-8"); 
-		String id = request.getParameter("id");
+		//String id = request.getParameter("id");
 		String category = request.getParameter("category");
 		String checkpoint = request.getParameter("checkpoint");
 		String questions = request.getParameter("question");
 		String title = request.getParameter("title");
 		String grade = request.getParameter("grade");
-		String tag = request.getParameter("tag");
+		//String tag = request.getParameter("tag");
 		//序号
 		String questionSequence = request.getParameter("qSequence");
 		//题号
 		String batchId = request.getParameter("batchId");
 		AbacusQuizPool aq = new AbacusQuizPool();
-		String[] tags = tags=tag.split(",");
+		/*String[] tags = tags=tag.split(",");
 		List<String> tg = new ArrayList();
 		for(String str : tags){
 			tg.add(str);
-		}
+		}*/
 		
 		String[] question = questions.split(",");
 		List<String> que = new ArrayList();
@@ -92,10 +92,10 @@ public class QuizController {
 		//aq.setAnswer(answer);
 		aq.setCategory(category);
 		aq.setCheckpoint(checkpoint);
-		aq.setId(id);
+		//aq.setId(id);
 		aq.setQuestion(que);
 		aq.setGrade(grade);
-		aq.setTag(tg);
+		//aq.setTag(tg);
 		aq.setTitle(title);
 		
 		aq.setQuestionSequence(questionSequence);
@@ -108,7 +108,7 @@ public class QuizController {
 		}
 		
 		
-		return tg.toString();
+		return "输入有误 或者服务器异常,稍后再试";
 		
 	}
 	
