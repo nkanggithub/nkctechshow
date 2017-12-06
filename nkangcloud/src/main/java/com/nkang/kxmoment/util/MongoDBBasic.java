@@ -3955,4 +3955,33 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+	
+	/*
+	 * find by openid
+	 */
+	public static HistoryQuiz findHistoryQuizByOpenid(String openid){
+		//List<HistoryQuiz> aqps=new ArrayList<HistoryQuiz>();
+		
+		try {
+			mongoDB = getMongoDB();
+			DBObject Query = new BasicDBObject();
+			Query.put("openid", openid);
+			DBCursor queryresults = mongoDB.getCollection(collectionAbacusQuizPool).find(Query);
+			//DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
+			if (null != queryresults) {
+				while (queryresults.hasNext()) {
+					HistoryQuiz historyQuiz = new HistoryQuiz();
+					DBObject o = queryresults.next();
+					historyQuiz.setCategory(o.get("category")+"");
+					historyQuiz.setqNumber(o.get("qNumber")+"");
+					
+				}
+					
+			}
+		} catch (Exception e) {
+			log.info("findAbacusQuizPoolById--" + e.getMessage());
+		}
+		return historyQuiz;
+	}
+	
 }

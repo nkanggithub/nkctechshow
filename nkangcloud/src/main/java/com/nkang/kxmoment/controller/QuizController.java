@@ -82,6 +82,11 @@ public class QuizController {
 		
 	}
 	
+	@RequestMapping("/getHistoryQuizByOpenId")
+	public @ResponseBody HistoryQuiz getHistoryQuizByOpenId(@RequestParam(value="openid")String openid){
+		HistoryQuiz quizs=MongoDBBasic.findHistoryQuizByOpenid(openid);
+		return quizs;
+	}
 	
 	
 	
