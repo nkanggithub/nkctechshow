@@ -7,7 +7,7 @@
 	String uid = request.getParameter("UID");
 	String qt= request.getParameter("qt");
 	String level="";
-	if(uid==null||uid==""){
+	if(uid!=null&&uid!=""){
 	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 	level=res.get("level");}
 	String display="none";
@@ -108,297 +108,44 @@
 	var qt='<%=qt%>';
 	var rightQ=0;
 	var wrongQ=0;
-	var totalTime=0;
 	var questions=null;
-	var questionNumber=-1;
+	var questionNumber=0;
+	var questionObj = null;
+	var answers="";
+	var tempSequence = 0;
 	getQuestions();
+	getHistoryQuestion();
 		$(".start").on("click", function() {
-			questionNumber++;
-			var tempTime=minute*60+ (millisecond / 1000) + second;
-			if($(this).val()=="查看战绩"){
+			if(questionNumber%10==0){
+				swal({  
+			        title:"真棒，休息一下吧？",  
+			        text:"<input type='hidden'>",
+			        html:"true",
+			        showConfirmButton:"true", 
+					showCancelButton: true,   
+					closeOnConfirm: false,  
+			        confirmButtonText:"我要休息",  
+			        cancelButtonText:"我要继续",
+			        animation:"slide-from-top"  
+			      }, 
+					function(inputValue){
+						if (inputValue === false){
 
-				FusionCharts.ready(function() {
-					var cSatScoreChart = new FusionCharts({
-						type : 'angulargauge',
-						renderAt : 'chart-container',
-						width : '400',
-						height : '250',
-						dataFormat : 'json',
-						dataSource : {
-							"chart" : {
-								"caption" : "计时统计",
-								"subcaption" : "计算时间(秒)",
-								"lowerLimit" : "0",
-								"upperLimit" : "60",
-								"lowerLimitDisplay" : "真棒",
-								"upperLimitDisplay" : "加油",
-								"showValue" : "1",
-								"valueBelowPivot" : "1",
-								"theme" : "fint"
-							},
-							"colorRange" : {
-								"color" : [ {
-									"minValue" : "0",
-									"maxValue" : "24",
-									"code" : "#6baa01"
-								}, {
-									"minValue" : "24",
-									"maxValue" : "48",
-									"code" : "#f8bd19"
-								}, {
-									"minValue" : "48",
-									"maxValue" : "60",
-									"code" : "#e44a00"
-								} ]
-							},
-							"dials" : {
-								"dial" : [ {
-									"value" :tempTime
-								} ]
-							}
+							return false;
 						}
-					}).render();
-					var revenueChart = new FusionCharts({
-				        type: 'msbar2d',
-				        renderAt: 'chart-container2',
-				        width: '400',
-				        height: '250',
-				        dataFormat: 'json',
-				        dataSource: {
-				            "chart": {
-				                "caption": "看算正误统计",
-				                "yAxisname": "",
-				                "numberPrefix": "",
-				                "paletteColors": "#1aaf5d,#FF0005",
-				                "bgColor": "#ffffff",
-				                "showBorder": "0",
-				                "showHoverEffect":"1",
-				                "showCanvasBorder": "0",
-				                "usePlotGradientColor": "0",
-				                "plotBorderAlpha": "10",
-				                "legendBorderAlpha": "0",
-				                "legendShadow": "0",
-				                "placevaluesInside": "1",
-				                "valueFontColor": "#ffffff",
-				                "showXAxisLine": "1",
-				                "xAxisLineColor": "#999999",
-				                "divlineColor": "#999999",               
-				                "divLineIsDashed": "1",
-				                "showAlternateVGridColor": "0",
-				                "subcaptionFontBold": "0",
-				                "subcaptionFontSize": "14"
-				            },            
-				            "categories": [
-				                {
-				                    "category": [
-				                        {
-				                            "label": "看算"
-				                        }
-				                    ]
-				                }
-				            ],            
-				            "dataset": [
-				                {
-				                    "seriesname": "正确",
-				                    "data": [
-				                        {
-				                            "value": rightQ
-				                        }
-				                    ]
-				                }, 
-				                {
-				                    "seriesname": "错误",
-				                    "data": [
-				                        {
-				                            "value": wrongQ
-				                        }
-				                    ]
-				                }
-				            ],
-				            "trendlines": [
-				                {
-				                    "line": [
-				                        {
-				                            "startvalue": "2",
-				                            "color": "#0075c2",
-				                            "valueOnRight": "1",
-				                            "displayvalue": " "
-				                        },
-				                        {
-				                            "startvalue": "8",
-				                            "color": "#1aaf5d",
-				                            "valueOnRight": "1",
-				                            "displayvalue": " "
-				                        }
-				                    ]
-				                }
-				            ]
-				        }
-				    }).render();    
-				});
-
-				$("#chart-container2").show();
-				$("#chart-container").show();
-				$(this).val("下一题");
-				return;
-			}
-			$("#answer").val("");
-			if(qt=="question"){
-			if(totalTime==10){
-				reset();
-				totalTime=0;
-				 $("#chart-container").hide();
-				 $("#chart-container2").hide();
-				 wrongQ=0;
-				 rightQ=0;
-			}
-			if(totalTime==0){
-				timeStart();
-			}
+						else{
+							window.location.href = "NavigatorForBasic.jsp?UID=" + uid;
+						}
+			      });
 			
 			}
-			else if(qt=="minute"){
-				if(millisecond==0&&second==0&&minute==0){
-				$("#chart-container").hide();
-				$("#chart-container2").hide();
-				 wrongQ=0;
-				 rightQ=0;
-				timeStart();}
-				if(second>=30){
-					swal("答题结束", "三分钟到了噢~！", "warning");
-					timeStop();
-					FusionCharts.ready(function() {
-						var cSatScoreChart = new FusionCharts({
-							type : 'angulargauge',
-							renderAt : 'chart-container',
-							width : '400',
-							height : '250',
-							dataFormat : 'json',
-							dataSource : {
-								"chart" : {
-									"caption" : "计时统计",
-									"subcaption" : "计算时间(秒)",
-									"lowerLimit" : "0",
-									"upperLimit" : "60",
-									"lowerLimitDisplay" : "真棒",
-									"upperLimitDisplay" : "加油",
-									"showValue" : "1",
-									"valueBelowPivot" : "1",
-									"theme" : "fint"
-								},
-								"colorRange" : {
-									"color" : [ {
-										"minValue" : "0",
-										"maxValue" : "24",
-										"code" : "#6baa01"
-									}, {
-										"minValue" : "24",
-										"maxValue" : "48",
-										"code" : "#f8bd19"
-									}, {
-										"minValue" : "48",
-										"maxValue" : "60",
-										"code" : "#e44a00"
-									} ]
-								},
-								"dials" : {
-									"dial" : [ {
-										"value" :tempTime
-									} ]
-								}
-							}
-						}).render();
-						var revenueChart = new FusionCharts({
-					        type: 'msbar2d',
-					        renderAt: 'chart-container2',
-					        width: '400',
-					        height: '250',
-					        dataFormat: 'json',
-					        dataSource: {
-					            "chart": {
-					                "caption": "看算正误统计",
-					                "yAxisname": "",
-					                "numberPrefix": "",
-					                "paletteColors": "#1aaf5d,#FF0005",
-					                "bgColor": "#ffffff",
-					                "showBorder": "0",
-					                "showHoverEffect":"1",
-					                "showCanvasBorder": "0",
-					                "usePlotGradientColor": "0",
-					                "plotBorderAlpha": "10",
-					                "legendBorderAlpha": "0",
-					                "legendShadow": "0",
-					                "placevaluesInside": "1",
-					                "valueFontColor": "#ffffff",
-					                "showXAxisLine": "1",
-					                "xAxisLineColor": "#999999",
-					                "divlineColor": "#999999",               
-					                "divLineIsDashed": "1",
-					                "showAlternateVGridColor": "0",
-					                "subcaptionFontBold": "0",
-					                "subcaptionFontSize": "14"
-					            },            
-					            "categories": [
-					                {
-					                    "category": [
-					                        {
-					                            "label": "看算"
-					                        }
-					                    ]
-					                }
-					            ],            
-					            "dataset": [
-					                {
-					                    "seriesname": "正确",
-					                    "data": [
-					                        {
-					                            "value": rightQ
-					                        }
-					                    ]
-					                }, 
-					                {
-					                    "seriesname": "错误",
-					                    "data": [
-					                        {
-					                            "value": wrongQ
-					                        }
-					                    ]
-					                }
-					            ],
-					            "trendlines": [
-					                {
-					                    "line": [
-					                        {
-					                            "startvalue": "2",
-					                            "color": "#0075c2",
-					                            "valueOnRight": "1",
-					                            "displayvalue": " "
-					                        },
-					                        {
-					                            "startvalue": "8",
-					                            "color": "#1aaf5d",
-					                            "valueOnRight": "1",
-					                            "displayvalue": " "
-					                        }
-					                    ]
-					                }
-					            ]
-					        }
-					    }).render();    
-					});
-					$("#chart-container").show();
-					$("#chart-container2").show();
-					reset();
-					totalTime=0;
-				return;
-				}
-			}
-			getQuestion(questionNumber);
-			totalTime++;
+			questionNumber++;
+			$("#answer").val("");
+			questionNumber=getQuestion(questionNumber);
 			if(qt=="question"){
-				$("#timestext").val(totalTime+"/10");
+				$("#timestext").val(questionNumber+"/"+totalQuestion);
 			}else if(qt=="minute"){
-				$("#timestext").val("第"+totalTime+"题");
+				$("#timestext").val("第"+questionNumber+"题");
 			}
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
@@ -419,8 +166,6 @@
 			return result;
 		}
 		function getQuestions(){
-			var charString="";
-			var numString="";
 			$.ajax({
 				type : "GET",
 				url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
@@ -431,26 +176,88 @@
 				success : function(data) {
 					if(data){
 						questions=data;
+						totalQuestion=data.length;
 					}
 				}
 			});
 		}
+		function getHistoryQuestion(){
+			$.ajax({
+				type : "GET",
+				url : "../AbacusQuiz/findHistoryQuizByOpenidAndCategory",
+				data : {
+					category : category,
+					openid : uid
+				},
+				cache : false,
+				success : function(data) {
+					if(data&&data.questionSequence!=0&&data.questionSequence!=null){
+						answers=data.answers;
+						var b=parseInt(data.batchId);
+						var s=parseInt(data.questionSequence);
+						var ts=(b-1)*10+s;
+						questionNumber=ts;
+					}
+				}
+			});
+		}
+
+		var batchId=0;
+		var sequence=0;
+		var index=0;
 		function getQuestion(questionNumber) {
 			$("#questionInput").html("");
-			var questionObj=questions[questionNumber];
-			var question=questionObj.question;
-			var operator=questionObj.operator;
-			var operatorArray=operator.split(",");
-			for(var i=0;i<question.length;i++){
- 				if(operatorArray[i]=="+"){
+			if(questionNumber>totalQuestion){	
+
+				swal({  
+		        title:"没有更多的题了，需要重置吗？",  
+		        text:"<input type='hidden'>",
+		        html:"true",
+		        showConfirmButton:"true", 
+				showCancelButton: true,   
+				closeOnConfirm: false,  
+		        confirmButtonText:"是",  
+		        cancelButtonText:"否",
+		        animation:"slide-from-top"  
+		      }, 
+				function(inputValue){
+					if (inputValue === false){
+					$("#processPanel").hide();
+					 return false;}
+					else{$.ajax({
+						type : "GET",
+						url : "../AbacusQuiz/updateHistoryQuiz",
+						data : {
+							openID:uid,
+							category : category,
+							batchId:1,
+							questionSequence:0,
+							answers:""
+						},
+						cache : false,
+						success : function(data) {
+							if(data){
+								window.location.href="ShowNumberForBasic.jsp?category="+category+"&qt="+qt+"&UID="+uid;
+							}
+						}
+					});
+					}});
+
+				return;
+			}
+			questionNumber=findNextQuestion(questionNumber);
+			var question = questionObj.question;
+			var operator = questionObj.operator;
+			var operatorArray = operator.split(",");
+			for (var i = 0; i < question.length; i++) {
+				if (operatorArray[i] == "+") {
 
 					$("#questionInput")
 							.append(
 									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 											+ question[i] + " disabled />");
-				}
-				else{
+				} else {
 
 					$("#questionInput")
 							.append(
@@ -458,30 +265,67 @@
 											+ operatorArray[i]
 											+ " disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-											+  question[i] + " disabled />");
-				} 
+											+ question[i] + " disabled />");
+				}
 			}
-
+			return questionNumber;
 		}
+		
+		function findNextQuestion(questionNumber){
 
+			for (var q = 0; q < questions.length; q++) {
+				batchId = parseInt(questions[q].batchId);
+				sequence = parseInt(questions[q].questionSequence);
+				tempSequence = (batchId - 1) * 10 + sequence;
+				if (tempSequence == questionNumber) {
+					questionObj = questions[q];
+					index = q;
+					break;
+				}
+			}
+			if(questionObj==null){
+				batchId=Math.floor(questionNumber/10)+1;
+				sequence=questionNumber%10;
+				answers=answers+"MISS,";
+				$.ajax({
+					type : "GET",
+					url : "../AbacusQuiz/updateHistoryQuiz",
+					data : {
+						openID : uid,
+						category : category,
+						batchId : batchId,
+						questionSequence : sequence,
+						answers : answers
+					},
+					cache : false,
+					success : function(data) {
+						if (data) {
+						}
+					}
+				});
+				questionNumber++;
+				findNextQuestion(questionNumber);
+			}
+			return questionNumber;
+			
+		}
 		var total = 0;
 		var currentAnswer;
 		function showAnswer(questionNumber) {
 			$("#answerInput").html("");
-			var questionObj=questions[questionNumber];
-			var question=questionObj.question;
-			var operator=questionObj.operator;
-			var operatorArray=operator.split(",");
-			for(var i=0;i<question.length;i++){
- 				if(operatorArray[i]=="+"){
+			var questionObj = questions[questionNumber];
+			var question = questionObj.question;
+			var operator = questionObj.operator;
+			var operatorArray = operator.split(",");
+			for (var i = 0; i < question.length; i++) {
+				if (operatorArray[i] == "+") {
 
 					$("#answerInput")
 							.append(
 									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 											+ question[i] + " disabled />");
-				}
-				else{
+				} else {
 
 					$("#answerInput")
 							.append(
@@ -489,10 +333,10 @@
 											+ operatorArray[i]
 											+ " disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-											+  question[i] + " disabled />");
-				} 
+											+ question[i] + " disabled />");
+				}
 			}
-			currentAnswer=questionObj.answer;
+			currentAnswer = questionObj.answer;
 			$("#total").val(currentAnswer);
 
 		}
@@ -502,33 +346,46 @@
 			if (answer == "") {
 				swal("未答题", "请输入你的答案哦~！", "error");
 				return;
-			} 
-			if(qt=="question"&&totalTime==10){
-				$("#next").val("查看战绩");
-				timeStop();
-
 			}
 
-			showAnswer(questionNumber);
+			showAnswer(index);
 			if (answer == currentAnswer) {
 				$("#right").show();
 				$("#wrong").hide();
+				answers += batchId + "/" + sequence + "/" + "1,";
 				rightQ++;
 			} else {
 				$("#wrong").show();
 				$("#right").hide();
 				wrongQ++;
+				answers += batchId + "/" + sequence + "/" + "0,";
 			}
-
+			$.ajax({
+				type : "GET",
+				url : "../AbacusQuiz/updateHistoryQuiz",
+				data : {
+					openID : uid,
+					category : category,
+					batchId : batchId,
+					questionSequence : sequence,
+					answers : answers
+				},
+				cache : false,
+				success : function(data) {
+					if (data) {
+					}
+				}
+			});
 			$("#processPanel").hide();
 			$("#answerPanel").show();
 
 		});
 		$(".exit").on("click", function() {
-			if(level=='basic'){
-				window.location.href = "NavigatorForBasic.jsp?UID=" + uid;}
-			else{
-				window.location.href = "Navigator.jsp?UID=" + uid;}
+			if (level == 'basic') {
+				window.location.href = "NavigatorForBasic.jsp?UID=" + uid;
+			} else {
+				window.location.href = "Navigator.jsp?UID=" + uid;
+			}
 		});
 	</script>
 </body>

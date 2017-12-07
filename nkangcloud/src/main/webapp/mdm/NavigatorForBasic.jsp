@@ -55,10 +55,11 @@ String uid = request.getParameter("UID"); %><!DOCTYPE html>
 li {
 	height: 100px !important;
 }
-.hiddenLevel
+.hiddenLevel,.hiddenLevelNumber
 {
 display:none;
 }
+
 </style>
 </head>
 <body>
@@ -84,7 +85,8 @@ display:none;
 					<li>
 						<div class="fnt-content" data-link="###">【第一关】 一位数直加直减</div>
 						<span class="hiddenLevel">第一关</span>
-						<div class="number-pb">
+						<span class="hiddenLevelNumber">1</span>
+						<div class="number-pb" id="process1">
 							<div class="number-pb-shown"></div>
 							<div class="number-pb-num" style="left: 85%;">0%</div>
 						</div>
@@ -93,110 +95,225 @@ display:none;
 						<div class="fnt-content" data-link="###">【第二关】+1=+5-4
 							-1=+4-5</div>
 						<span class="hiddenLevel">第二关</span>
+						<span class="hiddenLevelNumber">2</span>
+						<div class="number-pb" id="process2">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第三关】+2=+5-3
 							-2=+3-5</div>
 						<span class="hiddenLevel">第三关</span>
+						<span class="hiddenLevelNumber">3</span>
+						<div class="number-pb" id="process3">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第四关】+3=+5-2
 							-3=+2-5</div>
 						<span class="hiddenLevel">第四关</span>
+						<span class="hiddenLevelNumber">4</span>
+						<div class="number-pb" id="process4">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第五关】+4=+5-1
 							-4=+1-5</div>
 						<span class="hiddenLevel">第五关</span>
+						<span class="hiddenLevelNumber">5</span>
+						<div class="number-pb" id="process5">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第六关】1-5综合练习</div>
 						<span class="hiddenLevel">第六关</span>
+						<span class="hiddenLevelNumber">6</span>
+						<div class="number-pb" id="process6">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第七关】 +1=-9+10
 							-1=-10+9</div>
 						<span class="hiddenLevel">第七关</span>
+						<span class="hiddenLevelNumber">7</span>
+						<div class="number-pb" id="process7">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第八关】 +2=-8+10
 							-2=-10+8</div>
 						<span class="hiddenLevel">第八关</span>
+						<span class="hiddenLevelNumber">8</span>
+						<div class="number-pb" id="process8">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
+			
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第九关】 +3=-7+10
 							-3=-10+7</div>
 						<span class="hiddenLevel">第九关</span>
+						<span class="hiddenLevelNumber">9</span>
+						<div class="number-pb" id="process9">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十关】 +4=-6+10
 							-4=-10+6</div>
 						<span class="hiddenLevel">第十关</span>
+						<span class="hiddenLevelNumber">10</span>
+						<div class="number-pb" id="process10">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十一关】 +5=-5+10
 							-5=-10+5</div>
 						<span class="hiddenLevel">第十一关</span>
+						<span class="hiddenLevelNumber">11</span>
+						<div class="number-pb" id="process11">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十二关】+6=-4+10
 							-6=-10+4</div>
 						<span class="hiddenLevel">第十二关</span>
+						<span class="hiddenLevelNumber">12</span>
+						<div class="number-pb" id="process12">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十三关】 +7=-3+10
 							-7=-10+3</div>
 						<span class="hiddenLevel">第十三关</span>
+						<span class="hiddenLevelNumber">13</span>
+						<div class="number-pb" id="process13">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十四关】 +8=-2+10
 							-8=-10+2</div>
 						<span class="hiddenLevel">第十四关</span>
+						<span class="hiddenLevelNumber">14</span>
+						<div class="number-pb" id="process14">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十五关】 +9=-1+10
 							-9=-10+1</div>
 						<span class="hiddenLevel">第十五关</span>
+						<span class="hiddenLevelNumber">15</span>
+						<div class="number-pb" id="process15">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十六关】 综合练习1</div>
 						<span class="hiddenLevel">第十六关</span>
+						<span class="hiddenLevelNumber">16</span>
+						<div class="number-pb" id="process16">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十七关】 综合练习2</div>
 						<span class="hiddenLevel">第十七关</span>
+						<span class="hiddenLevelNumber">17</span>
+						<div class="number-pb" id="process17">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十八关】 综合练习3</div>
 						<span class="hiddenLevel">第十八关</span>
+						<span class="hiddenLevelNumber">18</span>
+						<div class="number-pb" id="process18">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第十九关】 一位数综合练习4</div>
 						<span class="hiddenLevel">第十九关</span>
+						<span class="hiddenLevelNumber">19</span>
+						<div class="number-pb" id="process19">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十关】 一位数综合练习5</div>
 						<span class="hiddenLevel">第二十关</span>
+						<span class="hiddenLevelNumber">20</span>
+						<div class="number-pb" id="process20">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十一关】 一位数8笔综合练习1</div>
 						<span class="hiddenLevel">第二十一关</span>
+						<span class="hiddenLevelNumber">21</span>
+						<div class="number-pb" id="process21">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十二关】 一位数8笔综合练习2</div>
 						<span class="hiddenLevel">第二十二关</span>
+						<span class="hiddenLevelNumber">22</span>
+						<div class="number-pb" id="process22">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十三关】 一位数8笔综合练习3</div>
 						<span class="hiddenLevel">第二十三关</span>
+						<span class="hiddenLevelNumber">23</span>
+						<div class="number-pb" id="process23">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 					<li>
 						<div class="fnt-content" data-link="###">【第二十四关】 一位数8笔综合练习4</div>
 						<span class="hiddenLevel">第二十四关</span>
+						<span class="hiddenLevelNumber">24</span>
+						<div class="number-pb" id="process24">
+							<div class="number-pb-shown"></div>
+							<div class="number-pb-num" style="left: 85%;">0%</div>
+						</div>
 					</li>
 				</ul>
 			</div>
-		</div>
 		</div>
 
 		<i id="toQT" class="fa fa-arrow-circle-right fa-5x"></i>
@@ -207,7 +324,6 @@ display:none;
 		<div class="selectPanel">
 			<div id="tenQ" class="circle default">计题练习</div>
 			<div id="tenM" class="circle">计时练习</div>
-		</div>
 		</div>
 		<i id="backLM" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
 		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x margin-left"></i>
@@ -242,12 +358,100 @@ display:none;
 
 	<script>
 	var speed=5;
-	var category="";
+	var category="第一关";
 	var uid='<%=uid%>';
 	var qt='question';
+	var percent;
+	var levelNumber = 1;
 	$(document).ready(function(){
+		getLevelPercent(category,levelNumber);
 	$("#funnyNewsTicker1").funnyNewsTicker({width:"80%",timer:100000,titlecolor:"#FFF",itembgcolor:"#1faf6d",infobgcolor:"#1a935c",buttonstyle:"white",bordercolor:"#1a935c"});		
-});	
+
+	$(".fnt-bottom-arrow").on("click",function(){
+    	category=$(".fnt-active").find(".hiddenLevel").text();
+    	levelNumber=$(".fnt-active").find(".hiddenLevelNumber").text();
+		getLevelPercent(category,levelNumber);
+	});
+	$(".fnt-top-arrow").on("click",function(){
+    	category=$(".fnt-active").find(".hiddenLevel").text();
+    	levelNumber=$(".fnt-active").find(".hiddenLevelNumber").text();
+		getLevelPercent(category,levelNumber);
+	});
+    $(".fnt-content").on("click",function(){
+    	category=$(this).parent().find(".hiddenLevel").text();
+    	var text="";
+    	var total=0;
+    	$.ajax({
+			type : "GET",
+			url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
+			data : {
+				category : category
+			},
+			cache : false,
+			success : function(data) {
+				if(data){
+					total=data.length;
+
+			    	$.ajax({
+					type : "GET",
+					url : "../AbacusQuiz/findHistoryQuizByOpenidAndCategory",
+					data : {
+						category : category,
+						openid : uid
+					},
+					cache : false,
+					success : function(data) {
+						if(data&&data.questionSequence!=0&&data.questionSequence!=null){
+							var answerArray=data.answers.split(",");
+							var tempChar;
+							var right=0;
+							var wrong=0;
+							var count=0;
+							for(var i=0;i<answerArray.length;i++){
+								if(answerArray[i]!='MISS'&&answerArray[i]!=""){
+									count++;
+									tempChar=answerArray[i].split("/");
+									if(tempChar[2]!=0){
+										right++;
+									}
+									else{
+										wrong++;
+									}
+								}
+							}
+					    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
+					        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
+					        +"<p style='width:40%;float:left;height:40px;line-height:40px;'>总共完成：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+count+"题/共"+total+"题' disabled='true'/>";
+
+						}
+						else
+						{
+							text="<p style='text-align:center;width:100%'>您还没开始做题呢~！</p>"
+						}
+					    swal({  
+				            title:category+"战绩统计",  
+				            text:text,
+				            html:"true",
+				            showConfirmButton:false, 
+				    		showCancelButton: true,   
+				    		closeOnConfirm: false,  
+				            confirmButtonText:"是",  
+				            cancelButtonText:"关闭",
+				            animation:"slide-from-top"  
+				          }, 
+				    		function(inputValue){
+				    			if (inputValue === false){}
+				    			else{
+				    			}});
+					}
+				});
+				}
+			}
+		});
+
+
+    });
+	});	
 	$("#tenM").on("click",function(){
 	$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
@@ -306,38 +510,57 @@ display:none;
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumberForBasic.jsp?category="+category+"&speed="+speed+"&qt="+qt+"&UID="+uid;
+	window.location.href="ShowNumberForBasic.jsp?category="+category+"&qt="+qt+"&UID="+uid;
 	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
 	window.location.href="ListenNumberForBasic.jsp?category="+category+"&speed="+speed+"&qt="+qt+"&UID="+uid;
 	});
-    var controlBar = $('.number-pb').NumberProgressBar({
-        duration: 5000,
-        percentage: 45
-      });
-    $(".fnt-content").on("click",function(){
-    	var text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='32题' disabled='true'/>"
-    	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='2题' disabled='true'/>"
-    +"<p style='width:40%;float:left;height:40px;line-height:40px;'>总共完成：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='34题' disabled='true'/>";
-    	swal({  
-            title:"第一关战绩统计",  
-            text:text,
-            html:"true",
-            showConfirmButton:false, 
-    		showCancelButton: true,   
-    		closeOnConfirm: false,  
-            confirmButtonText:"是",  
-            cancelButtonText:"关闭",
-            animation:"slide-from-top"  
-          }, 
-    		function(inputValue){
-    			if (inputValue === false){}
-    			else{
-    			}});
 
-    })
+    function getLevelPercent(category,levelNumber){
+    	var defaultTotal=0;
+    	var complete=0;
+    	$.ajax({
+			type : "GET",
+			url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
+			data : {
+				category : category
+			},
+			cache : false,
+			success : function(data) {
+				if(data){
+					defaultTotal=data.length;
+			    	$.ajax({
+					type : "GET",
+					url : "../AbacusQuiz/findHistoryQuizByOpenidAndCategory",
+					data : {
+						category : category,
+						openid : uid
+					},
+					cache : false,
+					success : function(data) {
+
+						if(data&&data.questionSequence!=0&&data.questionSequence!=null){
+						var answerArray=data.answers.split(",");
+						for(var i=0;i<answerArray.length;i++){
+							if(answerArray[i]!='MISS'&&answerArray[i]!=""){
+								complete++;
+							}
+						}
+				    	percent=parseInt((complete/defaultTotal)*100);
+				        var controlBar = $('#process'+levelNumber).NumberProgressBar({
+				            duration: 5000,
+				            percentage: percent
+				          });   
+					}
+					}
+			    	});
+					
+				}
+			}
+		});
+    }
 </script>
 </body>
 </html>

@@ -3941,21 +3941,45 @@ public class MongoDBBasic {
 		DBObject query = new BasicDBObject();
 		query.put("openid", historyQuiz.getOpenID());
 		query.put("category", historyQuiz.getCategory());
+
+		String level="2";
+		if(historyQuiz.getCategory().equals("第一关")){
+			level="1";
+		}
 		try {
 			mongoDB = getMongoDB();
 			DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
 			DBObject dbo = new BasicDBObject();
 			String openid=historyQuiz.getOpenID();
-			dbo.put("openid",openid);
-			dbo.put("category",historyQuiz.getCategory());
-			dbo.put("qNumber",historyQuiz.getqNumber());
+			String category=historyQuiz.getCategory();
+			if(historyQuiz.getBatchId()!=null&&historyQuiz.getBatchId()!=""){
+			dbo.put("batchId",historyQuiz.getBatchId());}
+			if(historyQuiz.getQuestionSequence()!=null&&historyQuiz.getQuestionSequence()!=""){
+			dbo.put("questionSequence",historyQuiz.getQuestionSequence());}
+			dbo.put("answers",historyQuiz.getAnswers());
 			if(queryresults!=null){
+				System.out.println("update record here ");
+
+				System.out.println("openID====="+historyQuiz.getOpenID()+"|| category===="+ level);
+				System.out.println("answers====="+historyQuiz.getAnswers());
+				System.out.println("batchID====="+historyQuiz.getBatchId()+"|| questionSequence===="+ historyQuiz.getQuestionSequence());
 				BasicDBObject doc = new BasicDBObject();
 				doc.put("$set", dbo);
-				mongoDB.getCollection(collectionHistoryAbacus).update(new BasicDBObject().append("openid",openid), doc);
+				BasicDBObject db=new BasicDBObject();
+				db.append("openid",openid);
+				db.append("category",category);
+				mongoDB.getCollection(collectionHistoryAbacus).update(db, doc);
 				log.info("updateHistoryQuiz end");
 				ret = true;
 			}else{
+
+				dbo.put("openid",openid);
+				dbo.put("category",historyQuiz.getCategory());
+				System.out.println("insert record here ");
+
+				System.out.println("openID====="+historyQuiz.getOpenID()+"|| category===="+ level);
+				System.out.println("answers====="+historyQuiz.getAnswers());
+				System.out.println("batchID====="+historyQuiz.getBatchId()+"|| questionSequence===="+ historyQuiz.getQuestionSequence());
 				mongoDB.getCollection(collectionHistoryAbacus).insert(dbo);
 			}
 			
@@ -3979,8 +4003,11 @@ public class MongoDBBasic {
 			mongoDB = getMongoDB();
 			DBObject queryresults = mongoDB.getCollection(collectionHistoryAbacus).findOne(query);
 			if (null != queryresults) {
+				historyQuiz.setOpenID(queryresults.get("openid")+"");
 				historyQuiz.setCategory(queryresults.get("category")+"");
-				historyQuiz.setqNumber(queryresults.get("qNumber")+"");
+				historyQuiz.setBatchId(queryresults.get("batchId")+"");
+				historyQuiz.setQuestionSequence(queryresults.get("questionSequence")+"");
+				historyQuiz.setAnswers(queryresults.get("answers")+"");
 			}
 		}catch (Exception e) {
 			log.info("findHistoryQuizByOpenidAndCategory--" + e.getMessage());
@@ -4001,7 +4028,9 @@ public class MongoDBBasic {
 			//DBObject queryresults = mongoDB.getCollection(collectionAbacusQuizPool).findOne(query);
 			if (null != queryresults) {
 				historyQuiz.setCategory(queryresults.get("category")+"");
-				historyQuiz.setqNumber(queryresults.get("qNumber")+"");
+				historyQuiz.setBatchId(queryresults.get("batchId")+"");
+				historyQuiz.setQuestionSequence(queryresults.get("questionSequence")+"");
+				historyQuiz.setAnswers(queryresults.get("answers")+"");
 		
 			}
 		} catch (Exception e) {

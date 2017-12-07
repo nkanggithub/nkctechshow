@@ -68,11 +68,15 @@ public class QuizController {
 
 		String openID = request.getParameter("openID");
 		String category = request.getParameter("category");
-		String qNumber = request.getParameter("qNumber");
+		String batchId = request.getParameter("batchId");
+		String questionSequence = request.getParameter("questionSequence");
+		String answers=request.getParameter("answers");
 		HistoryQuiz hq = new HistoryQuiz();
 		hq.setCategory(category);
 		hq.setOpenID(openID);
-		hq.setqNumber(qNumber);
+		hq.setBatchId(batchId);
+		hq.setQuestionSequence(questionSequence);
+		hq.setAnswers(answers);
 		if(MongoDBBasic.updateHistoryQuiz(hq)){
 			//request.getSession().setAttribute("test", "123");
 			//session.setAttribute("test", "123");
@@ -87,11 +91,15 @@ public class QuizController {
 	@RequestMapping("/updateHistoryQuizByOpenIDAndCategory")
 	@ResponseBody
 	public String updateHistoryQuizByOpenIDAndCategory(@RequestParam(value="openid")String openid,
-			@RequestParam(value="category")String category,@RequestParam(value="qNumber")String qNumber){
+			@RequestParam(value="category")String category,@RequestParam(value="batchId")String batchId,
+			@RequestParam(value="questionSequence")String questionSequence,
+			@RequestParam(value="answers")String answers){
 		HistoryQuiz hq = new HistoryQuiz();
 		hq.setCategory(category);
 		hq.setOpenID(openid);
-		hq.setqNumber(qNumber);
+		hq.setBatchId(batchId);
+		hq.setAnswers(answers);
+		hq.setQuestionSequence(questionSequence);
 		if(MongoDBBasic.updateHistoryQuiz(hq)){
 			return "ok";
 		}

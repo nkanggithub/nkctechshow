@@ -3,7 +3,27 @@ package com.nkang.kxmoment.baseobject;
 public class HistoryQuiz {
 	public String openID;
 	public String category;
-	public String qNumber;
+	public String batchId;
+	public String questionSequence;
+	public String getBatchId() {
+		return batchId;
+	}
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
+	}
+	public String getQuestionSequence() {
+		return questionSequence;
+	}
+	public void setQuestionSequence(String questionSequence) {
+		this.questionSequence = questionSequence;
+	}
+	public String answers;
+	public String getAnswers() {
+		return answers;
+	}
+	public void setAnswers(String answers) {
+		this.answers = answers;
+	}
 	public String getOpenID() {
 		return openID;
 	}
@@ -15,12 +35,6 @@ public class HistoryQuiz {
 	}
 	public void setCategory(String category) {
 		this.category = category;
-	}
-	public String getqNumber() {
-		return qNumber;
-	}
-	public void setqNumber(String qNumber) {
-		this.qNumber = qNumber;
 	}
 	
 	

@@ -15,6 +15,7 @@
     -moz-box-shadow: 0 0 3px 0 #499989;
     -webkit-box-shadow: 0 0 3px 0 #499989;
     box-shadow: 0 0 3px 0 #499989;
+    z-index:100000;
 }
 
 .number-pb .number-pb-num {
