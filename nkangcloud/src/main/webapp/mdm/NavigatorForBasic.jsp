@@ -316,20 +316,9 @@ display:none;
 			</div>
 		</div>
 
-		<i id="toQT" class="fa fa-arrow-circle-right fa-5x"></i>
+		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x"></i>
 		<p style="line-height: 40px;">选择关数</p>
 	</section>
-
-	<section id="questionTypePanel">
-		<div class="selectPanel">
-			<div id="tenQ" class="circle default">计题练习</div>
-			<div id="tenM" class="circle">计时练习</div>
-		</div>
-		<i id="backLM" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
-		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x margin-left"></i>
-		<p style="line-height: 40px;">选择修炼方式</p>
-	</section>
-
 	<section class="sub-block" id="speedAjust">
 
 		<div class="tabs-content">
@@ -343,7 +332,7 @@ display:none;
 				style="float: right; margin-top: -60px; margin-right: 15px;"></i>
 		</div>
 
-		<i id="backQT" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
+		<i id="backLM" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
 		<i id="toMenu" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
 		<p style="line-height: 40px;">选择速度</p>
 	</section>
@@ -452,51 +441,20 @@ display:none;
 
     });
 	});	
-	$("#tenM").on("click",function(){
-	$(this).css("background-color","#22B26F");
-	$(this).css("color","white");
-	$(this).siblings().css({"background-color":"white","color":"black"});
-	qt='minute';
-	});
-	$("#tenQ").on("click",function(){
-		$(this).css("background-color","#22B26F");
-		$(this).css("color","white");
-		$(this).siblings().css({"background-color":"white","color":"black"});
-		qt='question';
-		});
-	$("#toQT").on("click",function(){
-		category=$(".fnt-active").find(".hiddenLevel").text();
-		console.log($(".fnt-active").find(".hiddenLevel").text());
-		$("#levelMenuPanel").hide();
-		$("#questionTypePanel").show();
-	});
 	$("#backLM").on("click",function(){
 	$("#levelMenuPanel").show();
-	$("#questionTypePanel").hide();
+	$("#speedAjust").hide();
 	});
 	  $(".exit").on("click",function(){
 		  window.location.href="profile.jsp?UID="+uid;
 	  });
 	$("#toSpeed").on("click",function(){
-	$("#questionTypePanel").hide();
+	$("#levelMenuPanel").hide();
 	$("#speedAjust").show();
 	});
 	$("#toMenu").on("click",function(){
 	$("#speedAjust").hide();
 	$("#menuPanel").show();
-	});
-	
-	$("#backQT").on("click",function(){
-		$("#speedAjust").hide();
-		$("#questionTypePanel").show();
-		});
-	$("#backLength").on("click",function(){
-	$("#speedAjust").hide();
-	$("#lengthCountPanel").show();
-	});
-	$("#backNumCount").on("click",function(){
-	$("#numCountPanel").show();
-	$("#lengthCountPanel").hide();
 	});
 	$("#backSpeed").on("click",function(){
 	$("#speedAjust").show();
@@ -505,17 +463,17 @@ display:none;
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="FlashNumberForBasic.jsp?category="+category+"&speed="+speed+"&qt="+qt+"&UID="+uid;
+	window.location.href="FlashNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid;
 	});
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumberForBasic.jsp?category="+category+"&qt="+qt+"&UID="+uid;
+	window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid;
 	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ListenNumberForBasic.jsp?category="+category+"&speed="+speed+"&qt="+qt+"&UID="+uid;
+	window.location.href="ListenNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid;
 	});
 
     function getLevelPercent(category,levelNumber){

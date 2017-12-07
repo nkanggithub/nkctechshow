@@ -5,15 +5,10 @@
 <%
 	String category = request.getParameter("category");
 	String uid = request.getParameter("UID");
-	String qt= request.getParameter("qt");
 	String level="";
 	if(uid!=null&&uid!=""){
 	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 	level=res.get("level");}
-	String display="none";
-	if(qt.equals("minute")){
-		display="block";
-	}
 %>
 <!DOCTYPE html>
 <html>
@@ -64,7 +59,6 @@
 		</div>
 	</div>
 <input type="text" id="timestext" class="niput" value="" style="position: absolute;width: 30%;left: 0px;text-align: left;top: 80px;z-index: -2;">
-<input type="text" id="timetext" class="niput" value="0时0分0秒" style="display:<%=display%>;width: 40%;padding: 0px;position: absolute;top: 80px;right: 10px;text-align: right;background: none;">
 	<section id="startPanel">
 		<div class="selectPanel">
 			<div class="circle start bigger">看数开始</div>
@@ -105,7 +99,6 @@
 	var uid='<%=uid%>';
 	var category='<%=category%>';
 	var level='<%=level%>';
-	var qt='<%=qt%>';
 	var rightQ=0;
 	var wrongQ=0;
 	var questions=null;
@@ -142,11 +135,7 @@
 			questionNumber++;
 			$("#answer").val("");
 			questionNumber=getQuestion(questionNumber);
-			if(qt=="question"){
-				$("#timestext").val(questionNumber+"/"+totalQuestion);
-			}else if(qt=="minute"){
-				$("#timestext").val("第"+questionNumber+"题");
-			}
+			$("#timestext").val(questionNumber+"/"+totalQuestion);
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").show();
@@ -237,7 +226,7 @@
 						cache : false,
 						success : function(data) {
 							if(data){
-								window.location.href="ShowNumberForBasic.jsp?category="+category+"&qt="+qt+"&UID="+uid;
+								window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid;
 							}
 						}
 					});
