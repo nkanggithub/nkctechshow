@@ -88,7 +88,7 @@ level=res.get("level");}
 				<i class="fa fa-frown-o fa-3x" style="color: #F94082;"></i> <span
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">加油</span>
 			</div>
-			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
+			<div id="answerInput" style="width:40%;margin-left:30%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
 			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
