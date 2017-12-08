@@ -3,20 +3,13 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
-	int speed = Integer.parseInt(request.getParameter("speed"));
-	int numCount = Integer.parseInt(request.getParameter("numCount"));
-	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
-	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
-	String uid = request.getParameter("UID");
-	String qt= request.getParameter("qt");
-	String level="";
-	if(uid==null||uid==""){
-	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-	level=res.get("level");}
-	String display="none";
-	if(qt.equals("minute")){
-		display="block";
-	}
+int speed = Integer.parseInt(request.getParameter("speed"));
+String category = request.getParameter("category");
+String uid = request.getParameter("UID");
+String level="";
+if(uid!=null||uid!=""){
+HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+level=res.get("level");}
 %>
 <html>
 <head>
@@ -64,7 +57,6 @@
 		</div>
 	</div>
 <input type="text" id="timestext" class="niput" value="" style="position: absolute;width: 30%;left: 0px;text-align: left;top: 80px;z-index: -2;">
-<input type="text" id="timetext" class="niput" value="0时0分0秒" style="display:<%=display%>;width: 40%;padding: 0px;position: absolute;top: 80px;right: 10px;text-align: right;background: none;">
 
 	<section id="startPanel">
 		<div class="selectPanel">
@@ -120,292 +112,197 @@
 	<script src="../Jsp/JS/leshu/jQuery.speech.js"></script>
 	<script>
 		var speed=<%=speed%>;
-		var length=2;
 		var uid='<%=uid%>';
 		var level='<%=level%>';
+		var category='<%=category%>';
 		var text = "开始,";
-		var tempArray = new Array();
-		var numCount =<%=numCount%>;
-		var lengthMin =<%=lengthMin%>;
-		var lengthMax =<%=lengthMax%>;
 		var totalTime=0;
-		var charArray = new Array('减', '加', '加');
-		var tempCharArray = new Array();
-		var qt='<%=qt%>';
 		var rightQ=0;
 		var wrongQ=0;
 
-		function count(chara, oldNumer, newNumber) {
-			var result;
-			if (chara == '加') {
-				result = oldNumer + newNumber;
-			} else {
+		var questions=null;
+		var questionNumber=0;
+		var questionObj = null;
+		var answers="";
+		var tempSequence = 0;
 
-				result = oldNumer - newNumber;
-			}
-			return result;
+		var batchId=0;
+		var sequence=0;
+		var index=0;
+		var totalQuestion=0;
+		
+		getQuestions();
+		getHistoryQuestion();
+
+		function getQuestions(){
+			$.ajax({
+				type : "GET",
+				url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
+				data : {
+					category : category
+				},
+				cache : false,
+				success : function(data) {
+					if(data){
+						questions=data;
+						totalQuestion=data.length;
+					}
+				}
+			});
 		}
-		function switchChar(chara) {
-			var result;
-			if (chara == '加') {
-				result = '+';
-			} else {
-
-				result = '-';
-			}
-			return result;
+		function getHistoryQuestion(){
+			$.ajax({
+				type : "GET",
+				url : "../AbacusQuiz/findHistoryQuizByOpenidAndCategory",
+				data : {
+					category : category,
+					openid : uid
+				},
+				cache : false,
+				success : function(data) {
+					if(data&&data.questionSequence!=0&&data.questionSequence!=null){
+						answers=data.answers;
+						var b=parseInt(data.batchId);
+						var s=parseInt(data.questionSequence);
+						var ts=(b-1)*10+s;
+						questionNumber=ts;
+					}
+				}
+			});
 		}
 
+		var batchId=0;
+		var sequence=0;
+		var index=0;
+		
 		var total = 0;
-		function showAnswer() {
+		function showAnswer(questionNumber) {
+
 			$("#answerInput").html("");
-			var c;
-			for (var i = 0; i < numCount; i++) {
-				if (i == 0) {
+			var questionObj = questions[questionNumber];
+			var question = questionObj.question;
+			var operator = questionObj.operator;
+			var operatorArray = operator.split(",");
+			for (var i = 0; i < question.length; i++) {
+				if (operatorArray[i] == "+") {
+
 					$("#answerInput")
 							.append(
 									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-											+ tempArray[i] + " disabled />");
+											+ question[i] + " disabled />");
 				} else {
-					c = switchChar(tempCharArray[i - 1]);
-					if(c=="+"){
+
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
+									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+											+ operatorArray[i]
+											+ " disabled />"
 											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-											+ tempArray[i] + " disabled />");
-					}
-					else{
-
-						$("#answerInput")
-								.append(
-										"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="+ c + " disabled />"
-												+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-												+ tempArray[i] + " disabled />");
-					}
+											+ question[i] + " disabled />");
 				}
 			}
-			total = 0;
-			for (var i = 0; i < tempArray.length; i++) {
-				if (i == 0) {
-					total = parseInt(tempArray[i]);
-				} else {
-					total = count(tempCharArray[i - 1], total,
-							parseInt(tempArray[i]));
-				}
-
-				$("#total").val(total);
-
-			}
+			currentAnswer = questionObj.answer;
+			$("#total").val(currentAnswer);
 		}
-		var ge = 0;
-		var shi = 0;
-		var bai = 0;
-		var qian = 0;
-		var wan = 0;
-		var shiwan = 0;
-		var baiwan = 0;
-		var qianwan = 0;
-		var yi = 0;
-		var shiyi = 0;
-		var charQ = 0;
-		var chars;
-		var temp = "";
-		function getNum() {
-			temp = "";
-			text = "请听题,";
-			for (var i = 0; i < numCount; i++) {
+		function findNextQuestion(questionNumber){
 
-				length = Math.round(Math.random() * (lengthMax - lengthMin)
-						+ lengthMin);
-				if (i != numCount - 1) {
-					charQ = Math.round(Math.random() * (charArray.length - 1));
-					chars = charArray[charQ];
-					tempCharArray[i] = chars;
-					if(chars=="减"){
-						chars = chars + ',';
-					}else{
-						chars = '';
-					}
-				} else {
-					chars = '';
+			for (var q = 0; q < questions.length; q++) {
+				batchId = parseInt(questions[q].batchId);
+				sequence = parseInt(questions[q].questionSequence);
+				tempSequence = (batchId - 1) * 10 + sequence;
+				if (tempSequence == questionNumber) {
+					questionObj = questions[q];
+					index = q;
+					break;
 				}
-
-				if (i != 0 && tempCharArray[i - 1] == '减') {
-					var minusNumber = getVoiceForNumber(i);
-					while (tempArray[i - 1] - minusNumber <= 0
-							|| currentTotal - minusNumber <= 0) {
-						if (length != 1 && length != lengthMin) {
-							length = length - 1;
-						}
-						minusNumber = getVoiceForNumber(i);
-					}
-					tempArray[i] = minusNumber;
-					if (length != 1) {
-						temp += replaceZero(tempString, length) + ',' + chars;
-					} else {
-
-						temp += yitemp + ',' + chars;
-					}
-				} else {
-					getVoiceForNumber(i);
-					if (length != 1) {
-						temp += replaceZero(tempString, length) + ',' + chars;
-					} else {
-
-						temp += yitemp + ',' + chars;
-					}
-				}
-
-				if (i != 0) {
-					currentTotal = count(tempCharArray[i - 1], currentTotal,
-							tempArray[i]);
-				}
-
 			}
+			if(questionObj==null){
+				batchId=Math.floor(questionNumber/10)+1;
+				sequence=questionNumber%10;
+				answers=answers+"MISS,";
+				$.ajax({
+					type : "GET",
+					url : "../AbacusQuiz/updateHistoryQuiz",
+					data : {
+						openID : uid,
+						category : category,
+						batchId : batchId,
+						questionSequence : sequence,
+						answers : answers
+					},
+					cache : false,
+					success : function(data) {
+						if (data) {
+						}
+					}
+				});
+				questionNumber++;
+				findNextQuestion(questionNumber);
+			}
+			return questionNumber;
+			
+		}
+		function getNum() {
+			
+			text = "请听题,";
 
-			text = text + temp + "请答题";
-			$("#Result").text(text);
-			console.log(text);
+			$("#questionInput").html("");
+			if(questionNumber>totalQuestion){	
+
+				swal({  
+		        title:"没有更多的题了，需要重置吗？",  
+		        text:"<input type='hidden'>",
+		        html:"true",
+		        showConfirmButton:"true", 
+				showCancelButton: true,   
+				closeOnConfirm: false,  
+		        confirmButtonText:"是",  
+		        cancelButtonText:"否",
+		        animation:"slide-from-top"  
+		      }, 
+				function(inputValue){
+					if (inputValue === false){
+					$("#processPanel").hide();
+					 return false;}
+					else{$.ajax({
+						type : "GET",
+						url : "../AbacusQuiz/updateHistoryQuiz",
+						data : {
+							openID:uid,
+							category : category,
+							batchId:1,
+							questionSequence:0,
+							answers:""
+						},
+						cache : false,
+						success : function(data) {
+							if(data){
+								window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid;
+							}
+						}
+					});
+					}});
+
+				return;
+			}
+			questionNumber=findNextQuestion(questionNumber);
+			var question = questionObj.question;
+			var operator = questionObj.operator;
+			var operatorArray = operator.split(",");
+
+			for (var i = 0; i < question.length; i++) {
+				if (operatorArray[i] == "+") {
+					text+=question[i]+",";
+				}else
+					{
+					text+="减"+question[i]+",";
+					}
+			}
 			return text;
 		}
 
 		var yitemp = "";
-		function getVoiceForNumber(i) {
-			if (length == 1) {
-				yitemp = Math.round(Math.random() * 8) + 1;
-				tempArray[i] = yitemp;
-			}
-			if (length == 2) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(shi, '十') + switchString(ge, '');
-				tempArray[i] = shi * 10 + ge;
-			}
-			if (length == 3) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(bai, '百') + switchString(shi, '十')
-						+ switchString(ge, '');
-				tempArray[i] = bai * 100 + shi * 10 + ge;
-			}
-			if (length == 4) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 9);
-				qian = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(qian, '千') + switchString(bai, '百')
-						+ switchString(shi, '十') + switchString(ge, '');
-				tempArray[i] = qian * 1000 + bai * 100 + shi * 10 + ge;
-			}
-			if (length == 5) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 9);
-				qian = Math.round(Math.random() * 9);
-				wan = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(wan, '万') + switchString(qian, '千')
-						+ switchString(bai, '百') + switchString(shi, '十')
-						+ switchString(ge, '');
-				tempArray[i] = wan * 10000 + qian * 1000 + bai * 100 + shi * 10
-						+ ge;
-			}
-			if (length == 6) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 9);
-				qian = Math.round(Math.random() * 9);
-				wan = Math.round(Math.random() * 9);
-				shiwan = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(shiwan, '十万')
-						+ switchString(wan, '万') + switchString(qian, '千')
-						+ switchString(bai, '百') + switchString(shi, '十')
-						+ switchString(ge, '');
-				tempArray[i] = shiwan * 100000 + wan * 10000 + qian * 1000
-						+ bai * 100 + shi * 10 + ge;
-			}
-			if (length == 7) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 9);
-				qian = Math.round(Math.random() * 9);
-				wan = Math.round(Math.random() * 9);
-				shiwan = Math.round(Math.random() * 9);
-				baiwan = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(baiwan, '百万')
-						+ switchString(shiwan, '十万') + switchString(wan, '万')
-						+ switchString(qian, '千') + switchString(bai, '百')
-						+ switchString(shi, '十') + switchString(ge, '');
-				tempArray[i] = baiwan * 1000000 + shiwan * 100000 + wan * 10000
-						+ qian * 1000 + bai * 100 + shi * 10 + ge;
-			}
-			if (length == 8) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 9);
-				qian = Math.round(Math.random() * 9);
-				wan = Math.round(Math.random() * 9);
-				shiwan = Math.round(Math.random() * 9);
-				baiwan = Math.round(Math.random() * 9);
-				qianwan = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(qianwan, '千万')
-						+ switchString(baiwan, '百万')
-						+ switchString(shiwan, '十万') + switchString(wan, '万')
-						+ switchString(qian, '千') + switchString(bai, '百')
-						+ switchString(shi, '十') + switchString(ge, '');
-				tempArray[i] = qianwan * 10000000 + baiwan * 1000000 + shiwan
-						* 100000 + wan * 10000 + qian * 1000 + bai * 100 + shi
-						* 10 + ge;
-			}
-			if (length == 9) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 9);
-				qian = Math.round(Math.random() * 9);
-				wan = Math.round(Math.random() * 9);
-				shiwan = Math.round(Math.random() * 9);
-				baiwan = Math.round(Math.random() * 9);
-				qianwan = Math.round(Math.random() * 9);
-				yi = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(yi, '亿')
-						+ switchString(qianwan, '千万')
-						+ switchString(baiwan, '百万')
-						+ switchString(shiwan, '十万') + switchString(wan, '万')
-						+ switchString(qian, '千') + switchString(bai, '百')
-						+ switchString(shi, '十') + switchString(ge, '');
-				tempArray[i] = yi * 100000000 + qianwan * 10000000 + baiwan
-						* 1000000 + shiwan * 100000 + wan * 10000 + qian * 1000
-						+ bai * 100 + shi * 10 + ge;
-			}
-
-			if (length == 10) {
-				ge = Math.round(Math.random() * 9);
-				shi = Math.round(Math.random() * 9);
-				bai = Math.round(Math.random() * 9);
-				qian = Math.round(Math.random() * 9);
-				wan = Math.round(Math.random() * 9);
-				shiwan = Math.round(Math.random() * 9);
-				baiwan = Math.round(Math.random() * 9);
-				qianwan = Math.round(Math.random() * 9);
-				yi = Math.round(Math.random() * 9);
-				shiyi = Math.round(Math.random() * 8) + 1;
-				tempString = switchString(shiyi, '十亿')
-						+ switchString(qianwan, '千万')
-						+ switchString(baiwan, '百万')
-						+ switchString(shiwan, '十万') + switchString(wan, '万')
-						+ switchString(qian, '千') + switchString(bai, '百')
-						+ switchString(shi, '十') + switchString(ge, '');
-				tempArray[i] = shiyi * 1000000000 + yi * 100000000 + qianwan
-						* 10000000 + baiwan * 1000000 + shiwan * 100000 + wan
-						* 10000 + qian * 1000 + bai * 100 + shi * 10 + ge;
-			}
-			if (i == 0) {
-				currentTotal = tempArray[0];
-			}
-			return tempArray[i];
-		}
 		function endVoice() {
 
 			$("#fakePanel").hide();
@@ -422,29 +319,42 @@
 		});
 		$(".end").on("click", function() {
 
+
 			var answer = $("#answer").val();
 			if (answer == "") {
 				swal("未答题", "请输入你的答案哦~！", "error");
 				return;
-			} 
-			if(qt=="question"&&totalTime==10){
-				$("#next").val("查看战绩");
-				timeStop();
-
 			}
 
-			$("#endPanel").hide();
-			showAnswer();
-			if (answer == total) {
+			showAnswer(index);
+			if (answer == currentAnswer) {
 				$("#right").show();
 				$("#wrong").hide();
+				answers += batchId + "/" + sequence + "/" + "1,";
 				rightQ++;
 			} else {
 				$("#wrong").show();
 				$("#right").hide();
 				wrongQ++;
+				answers += batchId + "/" + sequence + "/" + "0,";
 			}
-
+			$.ajax({
+				type : "GET",
+				url : "../AbacusQuiz/updateHistoryQuiz",
+				data : {
+					openID : uid,
+					category : category,
+					batchId : batchId,
+					questionSequence : sequence,
+					answers : answers
+				},
+				cache : false,
+				success : function(data) {
+					if (data) {
+					}
+				}
+			});
+			$("#endPanel").hide();
 			$("#answerPanel").show();
 
 		});

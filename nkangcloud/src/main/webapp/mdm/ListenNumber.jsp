@@ -117,7 +117,7 @@
 	<div id="chart-container">FusionCharts will render here</div>
 	<div id="chart-container2">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
-	<script src="../Jsp/JS/leshu/jQuery.speech.js"></script>
+	<script src="../Jsp/JS/leshu/jQuery.speech2.js"></script>
 	<script>
 		var speed=<%=speed%>;
 		var length=2;
