@@ -346,7 +346,7 @@ display:none;
 	</section>
 
 	<script>
-	var speed=5;
+	var speed=2;
 	var category="第一关";
 	var uid='<%=uid%>';
 	var qt='question';
