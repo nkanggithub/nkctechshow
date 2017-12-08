@@ -132,7 +132,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第六关】1-5综合练习</div>
+						<div class="fnt-content" data-link="###">【第六关】两位数直加直减</div>
 						<span class="hiddenLevel">第六关</span>
 						<span class="hiddenLevelNumber">6</span>
 						<div class="number-pb" id="process6">
@@ -259,7 +259,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十九关】 一位数综合练习4</div>
+						<div class="fnt-content" data-link="###">【第十九关】 一位数8笔综合练习1</div>
 						<span class="hiddenLevel">第十九关</span>
 						<span class="hiddenLevelNumber">19</span>
 						<div class="number-pb" id="process19">
@@ -268,7 +268,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二十关】 一位数综合练习5</div>
+						<div class="fnt-content" data-link="###">【第二十关】 一位数8笔综合练习2</div>
 						<span class="hiddenLevel">第二十关</span>
 						<span class="hiddenLevelNumber">20</span>
 						<div class="number-pb" id="process20">
@@ -277,7 +277,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二十一关】 一位数8笔综合练习1</div>
+						<div class="fnt-content" data-link="###">【第二十一关】 一位数8笔综合练习3</div>
 						<span class="hiddenLevel">第二十一关</span>
 						<span class="hiddenLevelNumber">21</span>
 						<div class="number-pb" id="process21">
@@ -286,7 +286,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二十二关】 一位数8笔综合练习2</div>
+						<div class="fnt-content" data-link="###">【第二十二关】一位数10笔综合练习1</div>
 						<span class="hiddenLevel">第二十二关</span>
 						<span class="hiddenLevelNumber">22</span>
 						<div class="number-pb" id="process22">
@@ -295,7 +295,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二十三关】 一位数8笔综合练习3</div>
+						<div class="fnt-content" data-link="###">【第二十三关】 一位数10笔综合练习2</div>
 						<span class="hiddenLevel">第二十三关</span>
 						<span class="hiddenLevelNumber">23</span>
 						<div class="number-pb" id="process23">
@@ -304,7 +304,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二十四关】 一位数8笔综合练习4</div>
+						<div class="fnt-content" data-link="###">【第二十四关】一位数10笔综合练习3</div>
 						<span class="hiddenLevel">第二十四关</span>
 						<span class="hiddenLevelNumber">24</span>
 						<div class="number-pb" id="process24">
