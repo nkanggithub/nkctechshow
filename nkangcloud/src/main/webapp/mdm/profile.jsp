@@ -1419,7 +1419,8 @@ function getNowFormatDate() {
 						<div id="divBoardName" style="dispaly: none" title='LBName'></div>
 						<h2>
 							<nobr>
-								<span class="colorDarkBlue" id="location" style="float: left;padding-left:25px;"><%=curLoc%></span>  <img
+								<%-- <span class="colorDarkBlue" id="location" style="float: left;padding-left:25px;"><%=curLoc%></span>  --%> 
+								<img
 									src="../MetroStyleFiles/setuplocation.png"
 									onclick="getLocation();" id="locationImg"
 									style="height: 21px;padding-top:4px;float:right; cursor: pointer; margin-top: -5px;z-index:10000;" />

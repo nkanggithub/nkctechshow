@@ -183,13 +183,21 @@ margin-right:10px;
 }
 </style>
 </head>
-<body><div id="data_model_div" style="height:110px" >
-<i class="icon" style="position:absolute;top:20px;left:20px;z-index:100;">
-<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px; "></i>	
-<img style="position:absolute;top:8px;right:20px;z-index:100;height:60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
-<div style="width:100%;height: 80px;background: white;position:absolute;border-bottom: 4px solid #20b672;">
-</div></div>
+<body>
 
+<div id="data_model_div" style="height: 110px">
+		<i class="icon" style="position: absolute;top: 25px;z-index: 100;right: 20px;">
+			<!-- <img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
+			style="width: 30px; height: 30px;"> -->
+<div style="width: 30px;height: 30px;float: left;border-radius: 50%;overflow: hidden;">
+<img class="exit" src="<%=user.getHeadImgUrl() %>" style="width: 30px; height: 30px;">
+</div>
+<span style="position: relative;top: 8px;left: 5px;"><%=user.getNickname() %></span>
+		</i> <img style="position: absolute;top: 8px;left: 10px;z-index: 100;height: 60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
+		<div style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
+		</div>
+	</div>
+	<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="position: absolute;width: 30px;top: 100px;left: 30px;">
       <section class="sub-block" id="speedAjust">
 
         <div class="tabs-content">
@@ -250,7 +258,7 @@ margin-right:10px;
 	var speed=2;
 	var lengthMax=5;
 	var lengthMin=2;
-	var uid='<%=uid%>';
+	var uid='<%=openid%>';
 	var numCount=5;
 	var qt='question';
 	$("#tenM").on("click",function(){
