@@ -123,7 +123,7 @@ wx.config({
    //  var shareTitle="乐数在线测试("+currentdate+")";
     var shareTitle="乐数看听闪算擂台开擂了";
      var shareDesc="乐数小擂台欢迎来挑战！看算闪算听算随时恭候";
-     var shareImgUrl="http://leshucq.bj.bcebos.com/standard/leshuLogo.png";
+     var shareImgUrl="http://leshucq.bj.bcebos.com/standard/leshuLogo2.jpg";
 	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
          title: shareTitle, // 分享标题
