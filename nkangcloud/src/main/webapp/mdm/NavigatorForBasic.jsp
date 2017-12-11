@@ -1,6 +1,59 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.nkang.kxmoment.util.OAuthUitl.SNSUserInfo,java.lang.*"%>
+<%@ page import="java.util.*,org.json.JSONObject"%>
+<%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+
 <%
-String uid = request.getParameter("UID"); %><!DOCTYPE html>
+SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
+String uid = request.getParameter("UID"); 
+String originalUid = uid;
+if(request.getParameter("UID")==null&&request.getParameter("UID")==""){
+	originalUid=(String)request.getAttribute("state"); 
+}
+String name = "";
+String headImgUrl ="";
+String myuid="";
+String openid="";
+if(null != user) {
+	openid=user.getOpenId();
+	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(user.getOpenId());
+	if(res!=null){
+		if(res.get("HeadUrl")!=null){
+			myuid = user.getOpenId();
+			headImgUrl=res.get("HeadUrl");
+		}else{
+			headImgUrl = user.getHeadImgUrl(); 
+		}
+		if(res.get("NickName")!=null){
+			myuid = user.getOpenId();
+			name=res.get("NickName");
+		}else{
+			name = user.getNickname();
+			headImgUrl = user.getHeadImgUrl(); 
+			myuid="oI3krwR_gGNsz38r1bdB1_SkcoNw";
+		}
+	}else{
+		name = user.getNickname();
+		headImgUrl = user.getHeadImgUrl(); 
+		myuid="oI3krwR_gGNsz38r1bdB1_SkcoNw";
+	}
+	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
+	Date date=new Date();
+	String currentDate = format.format(date);
+	if(openid.equals(originalUid)){
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"NavigatorForBasic",user.getHeadImgUrl(),name);
+	}
+	else
+	{
+		MongoDBBasic.updateVisited(user.getOpenId(),currentDate,"NavigatorForBasic",user.getHeadImgUrl(),name);
+		HashMap<String, String> resOriginal=MongoDBBasic.getWeChatUserFromOpenID(originalUid);
+		MongoDBBasic.updateShared(originalUid,currentDate,"NavigatorForBasic",user.getHeadImgUrl(),name,resOriginal.get("HeadUrl"),resOriginal.get("NickName"));
+		}
+}
+%>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />

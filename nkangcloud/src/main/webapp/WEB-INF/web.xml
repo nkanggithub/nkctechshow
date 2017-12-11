@@ -52,7 +52,8 @@
   <url-pattern>/mdm/RecognitionCenter.jsp</url-pattern> 
   <url-pattern>/mdm/NotificationCenter.jsp</url-pattern> 
   <url-pattern>/mdm/Lucky.jsp</url-pattern> 
-  <url-pattern>/mdm/DailyNews.jsp</url-pattern> 
+  <url-pattern>/mdm/DailyNews.jsp</url-pattern>
+  <url-pattern>/mdm/NavigatorForBasic.jsp</url-pattern> 
 
  </filter-mapping>  
 	<!-- <servlet>
