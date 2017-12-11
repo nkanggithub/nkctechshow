@@ -145,8 +145,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二关】1-9直加直减
-							-1=+4-5</div>
+						<div class="fnt-content" data-link="###">【第二关】1-9直加直减</div>
 						<span class="hiddenLevel">第二关</span>
 						<span class="hiddenLevelNumber">2</span>
 						<div class="number-pb" id="process2">
@@ -155,8 +154,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第三关】1的满5破5
-							-2=+3-5</div>
+						<div class="fnt-content" data-link="###">【第三关】1的满5破5</div>
 						<span class="hiddenLevel">第三关</span>
 						<span class="hiddenLevelNumber">3</span>
 						<div class="number-pb" id="process3">
@@ -165,8 +163,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第四关】2的满5破5
-							-3=+2-5</div>
+						<div class="fnt-content" data-link="###">【第四关】2的满5破5</div>
 						<span class="hiddenLevel">第四关</span>
 						<span class="hiddenLevelNumber">4</span>
 						<div class="number-pb" id="process4">
@@ -175,8 +172,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第五关】3的满5破5
-							-4=+1-5</div>
+						<div class="fnt-content" data-link="###">【第五关】3的满5破5</div>
 						<span class="hiddenLevel">第五关</span>
 						<span class="hiddenLevelNumber">5</span>
 						<div class="number-pb" id="process5">
@@ -194,8 +190,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第七关】 满5破5综合练习
-							-1=-10+9</div>
+						<div class="fnt-content" data-link="###">【第七关】 满5破5综合练习</div>
 						<span class="hiddenLevel">第七关</span>
 						<span class="hiddenLevelNumber">7</span>
 						<div class="number-pb" id="process7">
@@ -204,8 +199,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第八关】 两位数直加直减
-							-2=-10+8</div>
+						<div class="fnt-content" data-link="###">【第八关】 两位数直加直减</div>
 						<span class="hiddenLevel">第八关</span>
 						<span class="hiddenLevelNumber">8</span>
 						<div class="number-pb" id="process8">
@@ -215,8 +209,7 @@ display:none;
 			
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第九关】1的进退位
-							-3=-10+7</div>
+						<div class="fnt-content" data-link="###">【第九关】1的进退位</div>
 						<span class="hiddenLevel">第九关</span>
 						<span class="hiddenLevelNumber">9</span>
 						<div class="number-pb" id="process9">
@@ -225,8 +218,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十关】 2的进退位
-							-4=-10+6</div>
+						<div class="fnt-content" data-link="###">【第十关】 2的进退位</div>
 						<span class="hiddenLevel">第十关</span>
 						<span class="hiddenLevelNumber">10</span>
 						<div class="number-pb" id="process10">
@@ -235,8 +227,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十一关】 3的进退位
-							-5=-10+5</div>
+						<div class="fnt-content" data-link="###">【第十一关】 3的进退位</div>
 						<span class="hiddenLevel">第十一关</span>
 						<span class="hiddenLevelNumber">11</span>
 						<div class="number-pb" id="process11">
@@ -245,8 +236,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十二关】4的进退位
-							-6=-10+4</div>
+						<div class="fnt-content" data-link="###">【第十二关】4的进退位</div>
 						<span class="hiddenLevel">第十二关</span>
 						<span class="hiddenLevelNumber">12</span>
 						<div class="number-pb" id="process12">
@@ -255,8 +245,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十三关】 5的进退位
-							-7=-10+3</div>
+						<div class="fnt-content" data-link="###">【第十三关】 5的进退位</div>
 						<span class="hiddenLevel">第十三关</span>
 						<span class="hiddenLevelNumber">13</span>
 						<div class="number-pb" id="process13">
@@ -265,8 +254,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十四关】 6的进退位
-							-8=-10+2</div>
+						<div class="fnt-content" data-link="###">【第十四关】 6的进退位</div>
 						<span class="hiddenLevel">第十四关</span>
 						<span class="hiddenLevelNumber">14</span>
 						<div class="number-pb" id="process14">
@@ -275,8 +263,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十五关】 7的进退位
-							-9=-10+1</div>
+						<div class="fnt-content" data-link="###">【第十五关】 7的进退位</div>
 						<span class="hiddenLevel">第十五关</span>
 						<span class="hiddenLevelNumber">15</span>
 						<div class="number-pb" id="process15">
