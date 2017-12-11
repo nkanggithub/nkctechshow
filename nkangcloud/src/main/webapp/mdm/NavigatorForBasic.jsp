@@ -136,7 +136,7 @@ display:none;
 				id="funnyNewsTicker1">
 				<ul>
 					<li>
-						<div class="fnt-content" data-link="###">【第一关】 一位数直加直减</div>
+						<div class="fnt-content" data-link="###">【第一关】 1-5直加直减</div>
 						<span class="hiddenLevel">第一关</span>
 						<span class="hiddenLevelNumber">1</span>
 						<div class="number-pb" id="process1">
@@ -145,7 +145,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二关】+1=+5-4
+						<div class="fnt-content" data-link="###">【第二关】1-9直加直减
 							-1=+4-5</div>
 						<span class="hiddenLevel">第二关</span>
 						<span class="hiddenLevelNumber">2</span>
@@ -155,7 +155,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第三关】+2=+5-3
+						<div class="fnt-content" data-link="###">【第三关】1的满5破5
 							-2=+3-5</div>
 						<span class="hiddenLevel">第三关</span>
 						<span class="hiddenLevelNumber">3</span>
@@ -165,7 +165,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第四关】+3=+5-2
+						<div class="fnt-content" data-link="###">【第四关】2的满5破5
 							-3=+2-5</div>
 						<span class="hiddenLevel">第四关</span>
 						<span class="hiddenLevelNumber">4</span>
@@ -175,7 +175,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第五关】+4=+5-1
+						<div class="fnt-content" data-link="###">【第五关】3的满5破5
 							-4=+1-5</div>
 						<span class="hiddenLevel">第五关</span>
 						<span class="hiddenLevelNumber">5</span>
@@ -185,7 +185,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第六关】两位数直加直减</div>
+						<div class="fnt-content" data-link="###">【第六关】4的满5破5</div>
 						<span class="hiddenLevel">第六关</span>
 						<span class="hiddenLevelNumber">6</span>
 						<div class="number-pb" id="process6">
@@ -194,7 +194,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第七关】 +1=-9+10
+						<div class="fnt-content" data-link="###">【第七关】 满5破5综合练习
 							-1=-10+9</div>
 						<span class="hiddenLevel">第七关</span>
 						<span class="hiddenLevelNumber">7</span>
@@ -204,7 +204,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第八关】 +2=-8+10
+						<div class="fnt-content" data-link="###">【第八关】 两位数直加直减
 							-2=-10+8</div>
 						<span class="hiddenLevel">第八关</span>
 						<span class="hiddenLevelNumber">8</span>
@@ -215,7 +215,7 @@ display:none;
 			
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第九关】 +3=-7+10
+						<div class="fnt-content" data-link="###">【第九关】1的进退位
 							-3=-10+7</div>
 						<span class="hiddenLevel">第九关</span>
 						<span class="hiddenLevelNumber">9</span>
@@ -225,7 +225,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十关】 +4=-6+10
+						<div class="fnt-content" data-link="###">【第十关】 2的进退位
 							-4=-10+6</div>
 						<span class="hiddenLevel">第十关</span>
 						<span class="hiddenLevelNumber">10</span>
@@ -235,7 +235,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十一关】 +5=-5+10
+						<div class="fnt-content" data-link="###">【第十一关】 3的进退位
 							-5=-10+5</div>
 						<span class="hiddenLevel">第十一关</span>
 						<span class="hiddenLevelNumber">11</span>
@@ -245,7 +245,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十二关】+6=-4+10
+						<div class="fnt-content" data-link="###">【第十二关】4的进退位
 							-6=-10+4</div>
 						<span class="hiddenLevel">第十二关</span>
 						<span class="hiddenLevelNumber">12</span>
@@ -255,7 +255,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十三关】 +7=-3+10
+						<div class="fnt-content" data-link="###">【第十三关】 5的进退位
 							-7=-10+3</div>
 						<span class="hiddenLevel">第十三关</span>
 						<span class="hiddenLevelNumber">13</span>
@@ -265,7 +265,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十四关】 +8=-2+10
+						<div class="fnt-content" data-link="###">【第十四关】 6的进退位
 							-8=-10+2</div>
 						<span class="hiddenLevel">第十四关</span>
 						<span class="hiddenLevelNumber">14</span>
@@ -275,7 +275,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十五关】 +9=-1+10
+						<div class="fnt-content" data-link="###">【第十五关】 7的进退位
 							-9=-10+1</div>
 						<span class="hiddenLevel">第十五关</span>
 						<span class="hiddenLevelNumber">15</span>
@@ -285,7 +285,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十六关】 综合练习1</div>
+						<div class="fnt-content" data-link="###">【第十六关】 8的进退位</div>
 						<span class="hiddenLevel">第十六关</span>
 						<span class="hiddenLevelNumber">16</span>
 						<div class="number-pb" id="process16">
@@ -294,7 +294,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十七关】 综合练习2</div>
+						<div class="fnt-content" data-link="###">【第十七关】 9的进退位</div>
 						<span class="hiddenLevel">第十七关</span>
 						<span class="hiddenLevelNumber">17</span>
 						<div class="number-pb" id="process17">
@@ -303,7 +303,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十八关】 综合练习3</div>
+						<div class="fnt-content" data-link="###">【第十八关】 一位数综合练习5笔</div>
 						<span class="hiddenLevel">第十八关</span>
 						<span class="hiddenLevelNumber">18</span>
 						<div class="number-pb" id="process18">
@@ -312,7 +312,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第十九关】 一位数8笔综合练习1</div>
+						<div class="fnt-content" data-link="###">【第十九关】一位数综合练习8笔</div>
 						<span class="hiddenLevel">第十九关</span>
 						<span class="hiddenLevelNumber">19</span>
 						<div class="number-pb" id="process19">
@@ -321,46 +321,10 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="fnt-content" data-link="###">【第二十关】 一位数8笔综合练习2</div>
+						<div class="fnt-content" data-link="###">【第二十关】 一位数综合练习10笔</div>
 						<span class="hiddenLevel">第二十关</span>
 						<span class="hiddenLevelNumber">20</span>
 						<div class="number-pb" id="process20">
-							<div class="number-pb-shown"></div>
-							<div class="number-pb-num" style="left: 85%;">0%</div>
-						</div>
-					</li>
-					<li>
-						<div class="fnt-content" data-link="###">【第二十一关】 一位数8笔综合练习3</div>
-						<span class="hiddenLevel">第二十一关</span>
-						<span class="hiddenLevelNumber">21</span>
-						<div class="number-pb" id="process21">
-							<div class="number-pb-shown"></div>
-							<div class="number-pb-num" style="left: 85%;">0%</div>
-						</div>
-					</li>
-					<li>
-						<div class="fnt-content" data-link="###">【第二十二关】一位数10笔综合练习1</div>
-						<span class="hiddenLevel">第二十二关</span>
-						<span class="hiddenLevelNumber">22</span>
-						<div class="number-pb" id="process22">
-							<div class="number-pb-shown"></div>
-							<div class="number-pb-num" style="left: 85%;">0%</div>
-						</div>
-					</li>
-					<li>
-						<div class="fnt-content" data-link="###">【第二十三关】 一位数10笔综合练习2</div>
-						<span class="hiddenLevel">第二十三关</span>
-						<span class="hiddenLevelNumber">23</span>
-						<div class="number-pb" id="process23">
-							<div class="number-pb-shown"></div>
-							<div class="number-pb-num" style="left: 85%;">0%</div>
-						</div>
-					</li>
-					<li>
-						<div class="fnt-content" data-link="###">【第二十四关】一位数10笔综合练习3</div>
-						<span class="hiddenLevel">第二十四关</span>
-						<span class="hiddenLevelNumber">24</span>
-						<div class="number-pb" id="process24">
 							<div class="number-pb-shown"></div>
 							<div class="number-pb-num" style="left: 85%;">0%</div>
 						</div>
