@@ -134,8 +134,8 @@ wx.config({
 	    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
 	            
    //  var shareTitle="乐数在线测试("+currentdate+")";
-    var shareTitle="乐数珠心算在线习题测验";
-     var shareDesc="乐在其中，心中有数";
+    var shareTitle="乐数看听闪算擂台开擂了";
+     var shareDesc="乐数小擂台欢迎来挑战！看算闪算听算随时恭候";
      var shareImgUrl="http://leshucq.bj.bcebos.com/standard/leshuLogo.png";
 	//----------“分享给朋友”
      wx.onMenuShareAppMessage({
