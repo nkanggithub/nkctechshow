@@ -18,6 +18,7 @@ String name = "";
 String headImgUrl ="";
 String myuid="";
 String openid="";
+String displayName="";
 if(null != user) {
 	openid=user.getOpenId();
 	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(user.getOpenId());
@@ -31,6 +32,7 @@ if(null != user) {
 		if(res.get("NickName")!=null){
 			myuid = user.getOpenId();
 			name=res.get("NickName");
+			user.setNickname(name);
 		}else{
 			name = user.getNickname();
 			headImgUrl = user.getHeadImgUrl(); 

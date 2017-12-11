@@ -30,6 +30,7 @@ if(null != user) {
 		if(res.get("NickName")!=null){
 			myuid = user.getOpenId();
 			name=res.get("NickName");
+			user.setNickname(name);
 		}else{
 			name = user.getNickname();
 			headImgUrl = user.getHeadImgUrl(); 
