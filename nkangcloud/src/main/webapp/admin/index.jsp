@@ -414,10 +414,10 @@ function showUpdateUserPanel(openid,name){
 			            +'														<td>手机号码:</td>'
 			            +'														<td><input type="text" name="phone" value="'+phone+'"/></td>'
 			            +'													</tr>'
-			            +'													<tr>'
+			            /* +'													<tr>'
 			            +'														<td>电子邮箱:</td>'
 			            +'														<td><input type="text" name="email" value="'+email+'"/></td>'
-			            +'													</tr>'
+			            +'													</tr>' */
 			            +'													<tr>'
 			            +'														<td>用户角色:</td>'
 			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
