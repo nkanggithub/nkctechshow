@@ -41,7 +41,10 @@
 #processPanel,#endPanel,#right,#wrong,#chart-container,#chart-container2 {
 	display: none;
 }
-
+.form_edit {    
+width: 95%;
+margin-left: 4%;
+}
 </style>
 </head>
 <body>
@@ -67,7 +70,19 @@
 	<section id="processPanel">
 		<div id="questionInput"  style="width:40%;margin-left:30%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
 		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;width: 70%;' type='text' class='niput'>
-		<div class="circle end bigger">提交答案</div>
+<div class="form_edit clearfix">
+				<div class="num">1</div>
+				<div class="num">2</div>
+				<div class="num">3</div>
+				<div class="num">4</div>
+				<div class="num">5</div>
+				<div class="num">6</div>
+				<div class="num">7</div>
+				<div class="num">8</div>
+				<div class="num">9</div>
+				<div id="remove">删除</div>
+				<div class="num">0</div>
+				<div id="remove" class="end">提交</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
@@ -107,6 +122,16 @@
 	var tempSequence = 0;
 	getQuestions();
 	getHistoryQuestion();
+	$('.form_edit .num').click(function(){
+		var oDiv = $("#answer");
+		var answer=oDiv.val()+this.innerHTML;
+		oDiv.val(answer);
+	})
+	$('#remove').click(function(){
+		var oDiv = $("#answer");
+		var oDivHtml = oDiv.val();
+		oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
+	})
 		$(".start").on("click", function() {
 			if(questionNumber!=0&&questionNumber%10==0){
 				swal({  
