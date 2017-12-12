@@ -8,6 +8,26 @@ body {
 }
 }
 
+
+.clearfix:after {
+    content: "\200B";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.form_edit> div {
+    margin-bottom: 2px;
+    margin-right: 0.5%;
+    float: left;
+    width: 32%;
+    height: 45px;
+    color: white;
+    text-align: center;
+    line-height: 45px;
+    font-size: 18px;
+    background-color: #20B672;
+}
+	
 .numPanel {
 	font-size: 45px !important;
 	color: #F94082 !important;

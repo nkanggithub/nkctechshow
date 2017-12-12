@@ -49,6 +49,17 @@ blog: http://www.tuterm.com
 							function(inputValue){
 								if (inputValue === false){
 
+
+									questionNumber++;
+									$("#answer").val("");
+									$("#timestext").val(questionNumber+"/"+totalQuestion);
+								var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;		
+								console.log("getNumber:"+getNum());
+									_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
+										var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";
+										_this.append(iframe);
+										$("#voice").attr("src",src);
+									})();
 									return false;
 								}
 								else{
@@ -56,7 +67,7 @@ blog: http://www.tuterm.com
 								}
 					      });
 					
-					}
+					}else{
 					questionNumber++;
 					$("#answer").val("");
 					$("#timestext").val(questionNumber+"/"+totalQuestion);
@@ -66,7 +77,7 @@ blog: http://www.tuterm.com
 						var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";
 						_this.append(iframe);
 						$("#voice").attr("src",src);
-					})();
+					})();}
 				});
 			} else { //自动播报
 				_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
