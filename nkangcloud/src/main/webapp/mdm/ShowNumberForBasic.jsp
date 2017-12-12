@@ -69,7 +69,7 @@ margin-left: 4%;
 	</section>
 	<section id="processPanel">
 		<div id="questionInput"  style="width:40%;margin-left:30%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
-		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;width: 70%;' type='text' class='niput'>
+		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;width: 70%;font-size:25px;color:black;' type='text' class='niput' disabled />
 <div class="form_edit clearfix">
 				<div class="num">1</div>
 				<div class="num">2</div>
@@ -83,6 +83,7 @@ margin-left: 4%;
 				<div id="remove">删除</div>
 				<div class="num">0</div>
 				<div id="remove" class="end">提交</div>
+				</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
@@ -95,9 +96,9 @@ margin-left: 4%;
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">加油</span>
 			</div>
 			<div id="answerInput" style="width:40%;margin-left:30%;"></div>
-			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
-			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
+			<div style="border-top: 1px solid black;width: 40%;margin-left: 30%;">
+			<input type="text" style="width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
+			<input id="total" type="text" style="width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%" class="niput" value="" disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
@@ -131,7 +132,7 @@ margin-left: 4%;
 		var oDiv = $("#answer");
 		var oDivHtml = oDiv.val();
 		oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
-	})
+	});
 		$(".start").on("click", function() {
 			if(questionNumber!=0&&questionNumber%10==0){
 				swal({  
@@ -267,17 +268,17 @@ margin-left: 4%;
 
 					$("#questionInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
-											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
+											+ "<input type='text' style='width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%' class='niput' value="
 											+ question[i] + " disabled />");
 				} else {
 
 					$("#questionInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;' class='niput' value="
 											+ operatorArray[i]
 											+ " disabled />"
-											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+											+ "<input type='text' style='width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%' class='niput' value="
 											+ question[i] + " disabled />");
 				}
 			}
@@ -335,17 +336,17 @@ margin-left: 4%;
 
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
-											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;font-size:30px;font-weight:600;padding-right:10px;' class='niput' value='' disabled />"
+											+ "<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%' class='niput' value="
 											+ question[i] + " disabled />");
 				} else {
 
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;font-size:30px;font-weight:600;padding-right:10px;' class='niput' value="
 											+ operatorArray[i]
 											+ " disabled />"
-											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+											+ "<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%' class='niput' value="
 											+ question[i] + " disabled />");
 				}
 			}

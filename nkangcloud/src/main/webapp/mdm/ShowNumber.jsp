@@ -49,7 +49,10 @@
 #processPanel,#endPanel,#right,#wrong,#chart-container,#chart-container2 {
 	display: none;
 }
-
+.form_edit {    
+width: 95%;
+margin-left: 4%;
+}
 </style>
 </head>
 <body>
@@ -75,8 +78,21 @@
 	</section>
 	<section id="processPanel">
 		<div id="questionInput"  style="width:60%;margin-left:20%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
-		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;width: 70%;' type='text' class='niput'>
-		<div class="circle end bigger">提交答案</div>
+		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;font-size:23px;width: 70%;' type='text' class='niput' disabled />
+		<div class="form_edit clearfix">
+				<div class="num">1</div>
+				<div class="num">2</div>
+				<div class="num">3</div>
+				<div class="num">4</div>
+				<div class="num">5</div>
+				<div class="num">6</div>
+				<div class="num">7</div>
+				<div class="num">8</div>
+				<div class="num">9</div>
+				<div id="remove">删除</div>
+				<div class="num">0</div>
+				<div id="remove" class="end">提交</div>
+				</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
@@ -90,8 +106,8 @@
 			</div>
 			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
-			<input type="text" style="width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
+			<input type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
+			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
@@ -120,6 +136,17 @@
 		var tempArray = new Array();
 		var lengthArray = new Array(0, 10, 100, 1000, 10000, 100000, 1000000,
 				10000000, 100000000, 1000000000);
+
+		$('.form_edit .num').click(function(){
+			var oDiv = $("#answer");
+			var answer=oDiv.val()+this.innerHTML;
+			oDiv.val(answer);
+		})
+		$('#remove').click(function(){
+			var oDiv = $("#answer");
+			var oDivHtml = oDiv.val();
+			oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
+		});
 		$(".start").on("click", function() {
 			var tempTime=minute*60+ (millisecond / 1000) + second;
 			if($(this).val()=="查看战绩"){
@@ -460,18 +487,18 @@
 
 					$("#questionInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
-											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
+											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 											+ temp + " disabled />");
 				}
 				else{
 
 					$("#questionInput")
 							.append(
-									"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
 											+ c
 											+ " disabled />"
-											+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 											+ temp + " disabled />");
 				}
 
@@ -486,17 +513,17 @@
 				if(c=="+"){
 				$("#answerInput")
 						.append(
-								"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
-										+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+								"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
+										+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 										+ tempArray[i] + " disabled />");
 				}
 				else{
 					$("#answerInput")
 					.append(
-							"<input type='text' style='width:20%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
+							"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="
 									+ c
 									+ " disabled />"
-									+ "<input type='text' style='width:70%;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+									+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
 									+ tempArray[i] + " disabled />");
 				}
 			}
