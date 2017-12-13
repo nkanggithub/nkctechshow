@@ -22,7 +22,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数-闪算练习</title>
+<title>乐数非启蒙-闪算练习</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -121,7 +121,7 @@ margin-left: 4%;
 			<div id="answerInput" style="width: 60%; margin-left: 20%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
 			<input type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%" class="niput" value="" disabled="">
+			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput" value="" disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
@@ -542,7 +542,15 @@ margin-left: 4%;
 		var total = 0;
 		function showAnswer() {
 			$("#answerInput").html("");
+			var tempString="";
+			var length=0;
 			for (var i = 0; i < numCount; i++) {
+
+				tempString=tempArray[i] .toString();
+				length=tempString.length;
+				for(var z=0;z<lengthMax-length+1;z++){
+					tempString='&nbsp;&nbsp;'+tempString;
+				}
 				var c=tempCharArray[i];
 				if(c=="+"){
 
@@ -550,19 +558,24 @@ margin-left: 4%;
 							.append(
 									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value='' disabled />"
 											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-											+ tempArray[i] + " disabled />");
+											+ tempString + " disabled />");
 				}
 				else{
 
 					$("#answerInput")
 							.append(
 									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput' value="+ c+ " disabled />"
-											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
-											+ tempArray[i] + " disabled />");
+											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput' value="
+											+ tempString + " disabled />");
 				}
 			}
 
-			$("#total").val(tempTotal);
+			tempString=tempTotal.toString();
+			length=tempString.length;
+			for(var z=0;z<lengthMax-length+1;z++){
+				tempString=' '+tempString;
+			}
+			$("#total").val(tempString);
 
 		}
 		$(".end").on("click", function() {

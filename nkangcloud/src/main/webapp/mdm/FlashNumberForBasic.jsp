@@ -15,7 +15,7 @@ String category = request.getParameter("category");
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数-闪算练习</title>
+<title>乐数启蒙-闪算练习</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -198,26 +198,75 @@ margin-left: 4%;
 		var index=0;
 		function start() {
 			if(questionNumber!=0&&questionNumber%10==0){
-				swal({  
-			        title:"真棒，休息一下吧？",  
-			        text:"<input type='hidden'>",
-			        html:"true",
-			        showConfirmButton:"true", 
-					showCancelButton: true,   
-					closeOnConfirm: false,  
-			        confirmButtonText:"我要休息",  
-			        cancelButtonText:"我要继续",
-			        animation:"slide-from-top"  
-			      }, 
-					function(inputValue){
-						if (inputValue === false){
+			 	$.ajax({
+					type : "GET",
+					url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
+					data : {
+						category : category
+					},
+					cache : false,
+					success : function(data) {
+						if(data){
+							total=data.length;
 
-							return false;
+					    	$.ajax({
+							type : "GET",
+							url : "../AbacusQuiz/findHistoryQuizByOpenidAndCategory",
+							data : {
+								category : category,
+								openid : uid
+							},
+							cache : false,
+							success : function(data) {
+								if(data&&data.questionSequence!=0&&data.questionSequence!=null){
+									var answerArray=data.answers.split(",");
+									var tempChar;
+									var right=0;
+									var wrong=0;
+									var count=0;
+									for(var i=answerArray.length-2;i>answerArray.length-12;i--){
+										if(answerArray[i]!='MISS'&&answerArray[i]!=""){
+											count++;
+											tempChar=answerArray[i].split("/");
+											if(tempChar[2]!=0){
+												right++;
+											}
+											else{
+												wrong++;
+											}
+										}
+									}
+							    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
+							        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
+
+
+									swal({  
+								        title:"真棒，休息一下吧？",  
+								        text:text,
+								        html:"true",
+								        showConfirmButton:"true", 
+										showCancelButton: true,   
+										closeOnConfirm: false,  
+								        confirmButtonText:"我要休息",  
+								        cancelButtonText:"我要继续",
+								        animation:"slide-from-top"  
+								      }, 
+										function(inputValue){
+											if (inputValue === false){
+
+												return false;
+											}
+											else{
+												window.location.href = "NavigatorForBasic.jsp?UID=" + uid;
+											}
+								      });
+								}
+							}
+						});
 						}
-						else{
-							window.location.href = "NavigatorForBasic.jsp?UID=" + uid;
-						}
-			      });
+					}
+				});
+
 			
 			}
 			questionNumber++;
