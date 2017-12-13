@@ -119,7 +119,7 @@ margin-left: 4%;
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">加油</span>
 			</div>
 			<div id="answerInput" style="width: 98%; margin-left: 1%;"></div>
-			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
+			<div style="border-top: 1px solid black;width: 98%;margin-left: 1%;">
 			<input type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput sxt" value="" disabled="">
 			</div>

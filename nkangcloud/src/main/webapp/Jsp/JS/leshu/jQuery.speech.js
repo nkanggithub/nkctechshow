@@ -100,7 +100,7 @@ blog: http://www.tuterm.com
 
 											questionNumber++;
 											$("#answer").val("");
-											$("#timestext").val(questionNumber+"/"+totalQuestion);
+											$("#timestext").val(questionNumber);
 										var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;		
 										console.log("getNumber:"+getNum());
 											_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
@@ -125,7 +125,7 @@ blog: http://www.tuterm.com
 					}else{
 					questionNumber++;
 					$("#answer").val("");
-					$("#timestext").val(questionNumber+"/"+totalQuestion);
+					$("#timestext").val(questionNumber);
 				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;		
 				console.log("getNumber:"+getNum());
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {

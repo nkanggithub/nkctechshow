@@ -277,7 +277,7 @@ margin-left: 4%;
 			questionNumber++;
 			$("#answer").val("");
 
-			$("#timestext").val(questionNumber+"/"+totalQuestion);
+			$("#timestext").val(questionNumber);
 			view = $("#ShowNumberPanel");
 			$("#ShowNumberPanel").text("准备");
 			view.fadeOut(1000);

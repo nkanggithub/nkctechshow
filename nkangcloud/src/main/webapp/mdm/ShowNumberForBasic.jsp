@@ -97,8 +97,8 @@ margin-left: 4%;
 			</div>
 			<div id="answerInput" style="width:40%;margin-left:30%;"></div>
 			<div style="border-top: 1px solid black;width: 40%;margin-left: 30%;">
-			<input type="text" style="width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%" class="niput sxt" value="" disabled="">
+			<input type="text" style="width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled/>
+			<input id="total" type="text" style="width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%" class="niput sxt" value="" disabled />
 			</div>
 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
@@ -127,14 +127,14 @@ margin-left: 4%;
 		var oDiv = $("#answer");
 		var answer=oDiv.val()+this.innerHTML;
 		oDiv.val(answer);
-	})
+	});
 	$('#remove').click(function(){
 		var oDiv = $("#answer");
 		var oDivHtml = oDiv.val();
 		oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
 	});
 		$(".start").on("click", function() {
-			if(questionNumber!=0&&questionNumber%10==0){
+			if(questionNumber!=0&&questionNumber%10==0&&questionNumber<totalQuestion){
 			 	$.ajax({
 					type : "GET",
 					url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
@@ -174,13 +174,13 @@ margin-left: 4%;
 										}
 									}
 							    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
-							        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
+							        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>";
 							        var reminder="";
 							        	if(right>=8){
 							        		reminder="真棒!";
 							        	}
 							        	else{
-							        		reminder="加油哦~"
+							        		reminder="加油哦~";
 							        	}
 
 									swal({  
@@ -197,6 +197,13 @@ margin-left: 4%;
 										function(inputValue){
 											if (inputValue === false){
 
+												questionNumber++;
+												$("#answer").val("");
+												questionNumber=getQuestion(questionNumber);
+												$("#timestext").val(questionNumber);
+												$("#answerPanel").hide();
+												$("#startPanel").hide();
+												$("#processPanel").show();
 												return false;
 											}
 											else{
@@ -211,14 +218,101 @@ margin-left: 4%;
 				});
 
 			
+			}else if(questionNumber!=0&&questionNumber%10==0&&questionNumber>=totalQuestion){
+
+				$("#timestext").val("");
+				$("#answerPanel").hide();
+				$("#startPanel").hide();
+				$("#processPanel").hide();
+				$.ajax({
+					type : "GET",
+					url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
+					data : {
+						category : category
+					},
+					cache : false,
+					success : function(data) {
+						if(data){
+							total=data.length;
+
+					    	$.ajax({
+							type : "GET",
+							url : "../AbacusQuiz/findHistoryQuizByOpenidAndCategory",
+							data : {
+								category : category,
+								openid : uid
+							},
+							cache : false,
+							success : function(data) {
+								if(data&&data.questionSequence!=0&&data.questionSequence!=null){
+									var answerArray=data.answers.split(",");
+									var tempChar;
+									var right=0;
+									var wrong=0;
+									var count=0;
+									for(var i=answerArray.length-2;i>answerArray.length-12;i--){
+										if(answerArray[i]!='MISS'&&answerArray[i]!=""){
+											count++;
+											tempChar=answerArray[i].split("/");
+											if(tempChar[2]!=0){
+												right++;
+											}
+											else{
+												wrong++;
+											}
+										}
+									}
+							    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
+							        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>";
+									swal({  
+								        title:"没有更多的题了，需要重置吗？",  
+								        text:text,
+								        html:"true",
+								        showConfirmButton:"true", 
+										showCancelButton: true,   
+										closeOnConfirm: false,  
+								        confirmButtonText:"是",  
+								        cancelButtonText:"否",
+								        animation:"slide-from-top"  
+								      }, 
+										function(inputValue){
+								    	  if (inputValue === false){
+												 return false;}
+												else{$.ajax({
+													type : "GET",
+													url : "../AbacusQuiz/updateHistoryQuiz",
+													data : {
+														openID:uid,
+														category : category,
+														batchId:1,
+														questionSequence:0,
+														answers:""
+													},
+													cache : false,
+													success : function(data) {
+														if(data){
+															window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid;
+														}
+													}
+												});
+												}
+								      });
+								}
+							}
+						});
+						}
+					}
+				});
 			}
+			
+			else{
 			questionNumber++;
 			$("#answer").val("");
 			questionNumber=getQuestion(questionNumber);
-			$("#timestext").val(questionNumber+"/"+totalQuestion);
+			$("#timestext").val(questionNumber);
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
-			$("#processPanel").show();
+			$("#processPanel").show();}
 		});
 
 		var charQ = 0;
@@ -312,7 +406,7 @@ margin-left: 4%;
 					});
 					}});
 
-				return;
+				return false;
 			}
 			questionNumber=findNextQuestion(questionNumber);
 			var question = questionObj.question;
