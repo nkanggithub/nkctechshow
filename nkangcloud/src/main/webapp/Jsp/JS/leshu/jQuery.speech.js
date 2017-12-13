@@ -34,38 +34,87 @@ blog: http://www.tuterm.com
 					$("#startPanel").hide();
 					$("#answerPanel").hide();
 					$("#fakePanel").show();
+
 					if(questionNumber!=0&&questionNumber%10==0){
-						swal({  
-					        title:"真棒，休息一下吧？",  
-					        text:"<input type='hidden'>",
-					        html:"true",
-					        showConfirmButton:"true", 
-							showCancelButton: true,   
-							closeOnConfirm: false,  
-					        confirmButtonText:"我要休息",  
-					        cancelButtonText:"我要继续",
-					        animation:"slide-from-top"  
-					      }, 
-							function(inputValue){
-								if (inputValue === false){
+					 	$.ajax({
+							type : "GET",
+							url : "../AbacusQuiz/getAbacusQuizPoolBycategory",
+							data : {
+								category : category
+							},
+							cache : false,
+							success : function(data) {
+								if(data){
+									total=data.length;
+
+							    	$.ajax({
+									type : "GET",
+									url : "../AbacusQuiz/findHistoryQuizByOpenidAndCategory",
+									data : {
+										category : category,
+										openid : uid
+									},
+									cache : false,
+									success : function(data) {
+										if(data&&data.questionSequence!=0&&data.questionSequence!=null){
+											var answerArray=data.answers.split(",");
+											var tempChar;
+											var right=0;
+											var wrong=0;
+											var count=0;
+											for(var i=answerArray.length-2;i>answerArray.length-12;i--){
+												if(answerArray[i]!='MISS'&&answerArray[i]!=""){
+													count++;
+													tempChar=answerArray[i].split("/");
+													if(tempChar[2]!=0){
+														right++;
+													}
+													else{
+														wrong++;
+													}
+												}
+											}
+									    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
+									        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
+
+								swal({  
+							        title:"真棒，休息一下吧？",  
+							        text:"<input type='hidden'>",
+							        html:"true",
+							        showConfirmButton:"true", 
+									showCancelButton: true,   
+									closeOnConfirm: false,  
+							        confirmButtonText:"我要休息",  
+							        cancelButtonText:"我要继续",
+							        animation:"slide-from-top"  
+							      }, 
+									function(inputValue){
+										if (inputValue === false){
 
 
-									questionNumber++;
-									$("#answer").val("");
-									$("#timestext").val(questionNumber+"/"+totalQuestion);
-								var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;		
-								console.log("getNumber:"+getNum());
-									_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
-										var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";
-										_this.append(iframe);
-										$("#voice").attr("src",src);
-									})();
-									return false;
+											questionNumber++;
+											$("#answer").val("");
+											$("#timestext").val(questionNumber+"/"+totalQuestion);
+										var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=' + getNum() + '&spd='+speed;		
+										console.log("getNumber:"+getNum());
+											_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
+												var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";
+												_this.append(iframe);
+												$("#voice").attr("src",src);
+											})();
+											return false;
+										}
+										else{
+											window.location.href = "NavigatorForBasic.jsp?UID=" + uid;
+										}
+							      });
+										}
+									}
+								});
 								}
-								else{
-									window.location.href = "NavigatorForBasic.jsp?UID=" + uid;
-								}
-					      });
+							}
+						});
+
 					
 					}else{
 					questionNumber++;
