@@ -72,7 +72,7 @@ margin-left: 4%;
 	<section id="processPanel" style=" position: relative;">
 	<div id="numberChar">
 		<div id="ShowNumberPanel"
-			style="position: absolute; width: 100%; top: 90px; height: 50px; line-height: 50px; font-size: 30px;color:red"></div>
+			style="position: absolute; width: 100%; top: 90px; height: 50px; line-height: 50px; font-size: 30px;color:red" class="sxt"></div>
 			</div>
 		<div class="selectPanel">
 			<div class="circle numPanel bigger" style="position: relative;">
@@ -82,7 +82,7 @@ margin-left: 4%;
 	<section id="endPanel">
 		<div class="selectPanel">
 			<p>请输入答案</p>
-			<input id="answer" type="text" class="niput" value=""
+			<input id="answer" type="text" class="niput sxt" value=""
 				style="border-bottom: 1px solid #22B26F; width: 60%; font-size:25px;margin-bottom: 60px;" disabled />
 <div class="form_edit clearfix">
 				<div class="num">1</div>
@@ -113,7 +113,7 @@ margin-left: 4%;
 			<div id="answerInput" style="width: 40%; margin-left: 30%;"></div>
 			<div style="border-top: 1px solid black;width: 40%;margin-left: 30%;">
 			<input type="text" style="width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%" class="niput" value="" disabled="">
+			<input id="total" type="text" style="width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%" class="niput sxt " value="" disabled="">
 			</div>
 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
@@ -238,10 +238,15 @@ margin-left: 4%;
 									}
 							    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
 							        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
-
-
+							        var reminder="";
+						        	if(right>=8){
+						        		reminder="真棒!";
+						        	}
+						        	else{
+						        		reminder="加油哦~"
+						        	}
 									swal({  
-								        title:"真棒，休息一下吧？",  
+								        title:reminder+"休息一下吧？",    
 								        text:text,
 								        html:"true",
 								        showConfirmButton:"true", 
@@ -357,17 +362,17 @@ margin-left: 4%;
 
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;' class='niput' value='' disabled />"
-											+ "<input type='text' style='width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%' class='niput' value="
+									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;' class='niput sxt' value='' disabled />"
+											+ "<input type='text' style='width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%' class='niput sxt' value="
 											+ question[i] + " disabled />");
 				} else {
 
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;' class='niput' value="
+									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;' class='niput sxt' value="
 											+ operatorArray[i]
 											+ " disabled />"
-											+ "<input type='text' style='width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%' class='niput' value="
+											+ "<input type='text' style='width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%' class='niput sxt' value="
 											+ question[i] + " disabled />");
 				}
 			}
