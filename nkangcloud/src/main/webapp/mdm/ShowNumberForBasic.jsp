@@ -392,7 +392,7 @@ margin-left: 4%;
 					$("#answerInput")
 							.append(
 									"<input type='text' style='width:40%;margin:0;padding:0;height:40px;text-align:right;font-size:30px;font-weight:600;padding-right:10px;' class='niput sxt' value='' disabled />"
-											+ "<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%' class='niput' value="
+											+ "<input type='text' style='width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%' class='niput sxt' value="
 											+ question[i] + " disabled />");
 				} else {
 

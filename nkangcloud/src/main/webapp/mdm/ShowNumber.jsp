@@ -77,7 +77,7 @@ margin-left: 4%;
 		</div>
 	</section>
 	<section id="processPanel">
-		<div id="questionInput"  style="width:60%;margin-left:20%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
+		<div id="questionInput"  style="width:98%;margin-left:1%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
 		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;font-size:23px;width: 70%;' type='text' class='niput sxt' disabled />
 		<div class="form_edit clearfix">
 				<div class="num">1</div>
@@ -104,7 +104,7 @@ margin-left: 4%;
 				<i class="fa fa-frown-o fa-3x" style="color: #F94082;"></i> <span
 					style="font-size: 18px; display: inline-block; height: 30px; position: relative; top: -5px; margin-left: 10px;">加油</span>
 			</div>
-			<div id="answerInput" style="width:60%;margin-left:20%;"></div>
+			<div id="answerInput" style="width:98%;margin-left:1%;"></div>
 			<div style="border-top: 1px solid black;width: 60%;margin-left: 20%;">
 			<input type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="sxt niput" value="" disabled="">

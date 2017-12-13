@@ -76,10 +76,16 @@ blog: http://www.tuterm.com
 											}
 									    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
 									        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
-
+										        var reminder="";
+								        	if(right>=8){
+								        		reminder="真棒!";
+								        	}
+								        	else{
+								        		reminder="加油哦~"
+								        	}
 								swal({  
-							        title:"真棒，休息一下吧？",  
-							        text:"<input type='hidden'>",
+									title:reminder+"休息一下吧？",   
+							        text:text,
 							        html:"true",
 							        showConfirmButton:"true", 
 									showCancelButton: true,   

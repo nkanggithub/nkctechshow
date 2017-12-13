@@ -2,7 +2,14 @@ body {
 	background-color: #fff;
 	text-align: center;
 }
+.sxt {
+	font-family: shuxieti;
+}
 
+@font-face {
+	font-family: shuxieti;
+	src: url('shuxieti.TTF');
+}
 .sa {
 	text-align: center;
 }
