@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mysql.jdbc.StringUtils;
 import com.nkang.kxmoment.baseobject.AbacusQuizPool;
+import com.nkang.kxmoment.baseobject.AbacusRank;
 import com.nkang.kxmoment.baseobject.HistoryQuiz;
 import com.nkang.kxmoment.baseobject.Quiz;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
@@ -231,6 +232,36 @@ public class QuizController {
 		}
 		return mav;
 		
+		
+	}
+	
+	@RequestMapping("/updateAbacusRank")
+	@ResponseBody
+	public String updateAbacusRank(@RequestParam(value="openID")String openID,
+			@RequestParam(value="type")String type,
+			@RequestParam(value="numCount")String numCount,
+			@RequestParam(value="lengthMax")String lengthMax,
+			@RequestParam(value="lengthMin")String lengthMin,
+			@RequestParam(value="speed")String speed,
+			@RequestParam(value="rightRate")String rightRate,
+			@RequestParam(value="way")String way
+			) throws UnsupportedEncodingException{
+		AbacusRank ar = new AbacusRank();
+		ar.setLengthMax(lengthMax);
+		ar.setLengthMin(lengthMin);
+		ar.setNumCount(numCount);
+		ar.setOpenID(openID);
+		ar.setRightRate(rightRate);
+		ar.setSpeed(speed);
+		ar.setType(type);
+		ar.setWay(way);
+		if(MongoDBBasic.createAbacusRank(ar)){
+			
+			return openID;
+		}
+		
+		
+		return "输入有误 或者服务器异常,try";
 		
 	}
 }

@@ -32,6 +32,7 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
 import com.nkang.kxmoment.baseobject.AbacusQuizPool;
+import com.nkang.kxmoment.baseobject.AbacusRank;
 import com.nkang.kxmoment.baseobject.Appointment;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientInformation;
@@ -70,6 +71,7 @@ public class MongoDBBasic {
 	private static String role_area = "RoleOfAreaMap";
 	private static String collectionVisited = "Visited";
 	private static String collectionHistoryAbacus = "HistoryAbacus";
+	private static String collectionAbacusRank="AbacusRank";
 	public static DB getMongoDB() {
 		if (mongoDB != null) {
 			return mongoDB;
@@ -4039,4 +4041,59 @@ public class MongoDBBasic {
 		return historyQuiz;
 	}
 	
+	
+public static boolean createAbacusRank(AbacusRank ar) {
+		
+		Boolean ret = false;
+		
+		try {
+			mongoDB = getMongoDB();
+			
+			DBObject insert = new BasicDBObject();
+			insert.put("openid", ar.getOpenID().trim());
+			insert.put("lengthMax",ar.getLengthMax() );			
+			insert.put("lengthMin", ar.getLengthMin());
+			insert.put("numCount", ar.getNumCount());
+			insert.put("rightRate", ar.getRightRate());	
+			insert.put("speed", ar.getSpeed());	
+			insert.put("type", ar.getType());	
+			insert.put("way", ar.getWay());	
+			DBObject queryresults = mongoDB.getCollection(collectionAbacusRank).findOne(insert);
+			if(queryresults!=null){
+				BasicDBObject doc = new BasicDBObject();
+				doc.put("$set", insert);
+				mongoDB.getCollection(collectionAbacusRank).update(new BasicDBObject().append("openid",ar.getOpenID().trim()), doc);
+				log.info("updateAbacusRank end");
+				ret = true;
+			}else{
+				mongoDB.getCollection(collectionAbacusRank).insert(insert);
+				ret = true;
+			}
+		} catch (Exception e) {
+			log.info("createAbacusQuizPool--" + e.getMessage());
+		}
+		return ret;
+	}
+public static AbacusRank findAbacusRankByOpenid(String openid){
+	AbacusRank ar = new AbacusRank();
+	try {
+		mongoDB = getMongoDB();
+		DBObject Query = new BasicDBObject();
+		Query.put("openid", openid);
+		DBObject queryresults = mongoDB.getCollection(collectionAbacusRank).findOne(Query);
+		if (null != queryresults) {
+			ar.setLengthMax(queryresults.get("lengthMax")+"");
+			ar.setLengthMin(queryresults.get("lengthMin")+"");
+			ar.setNumCount(queryresults.get("numCount")+"");
+			ar.setOpenID(queryresults.get("openID")+"");
+			ar.setRightRate(queryresults.get("rightRate")+"");
+			ar.setSpeed(queryresults.get("speed")+"");
+			ar.setType(queryresults.get("type")+"");
+			ar.setWay(queryresults.get("way")+"");
+		}
+	} catch (Exception e) {
+		log.info("findAbacusRankByOpenid--" + e.getMessage());
+	}
+	return ar;
+	}
 }
