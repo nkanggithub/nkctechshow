@@ -264,4 +264,11 @@ public class QuizController {
 		return "输入有误 或者服务器异常,try";
 		
 	}
+	
+	
+	@RequestMapping("/getAbacusRankByOpenID")
+	public @ResponseBody AbacusRank getAbacusRankByOpenID(@RequestParam(value="openid")String id){
+		AbacusRank quizs=MongoDBBasic.findAbacusRankByOpenid(id);
+		return quizs;
+	}
 }
