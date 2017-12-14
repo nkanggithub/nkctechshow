@@ -49,7 +49,7 @@ margin-left: 4%;
 </head>
 <body>
 
-	<div id="data_model_div" style="height: 110px">
+	<div id="data_model_div" style="height: 80px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
 			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
@@ -100,7 +100,7 @@ margin-left: 4%;
 				</div>
 		</div>
 	</section>
-	<section id="answerPanel" class="white intro" style="display: none">
+	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 20px;">
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
@@ -115,10 +115,11 @@ margin-left: 4%;
 			<input type="text" style="width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%" class="niput sxt " value="" disabled="">
 			</div>
+			<!-- 
 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-			</div>
+			</div> -->
 		</div>
 	</section>
 	<div id="chart-container">FusionCharts will render here</div>
@@ -197,6 +198,50 @@ margin-left: 4%;
 		var sequence=0;
 		var index=0;
 		function start() {
+
+			$("#questionInput").html("");
+			if(questionNumber>totalQuestion){	
+
+				swal({  
+		        title:"没有更多的题了，需要重置吗？",  
+		        text:"<input type='hidden'>",
+		        html:"true",
+		        showConfirmButton:"true", 
+				showCancelButton: true,   
+				closeOnConfirm: false,  
+		        confirmButtonText:"是",  
+		        cancelButtonText:"否",
+		        animation:"slide-from-top"  
+		      }, 
+				function(inputValue){
+					if (inputValue === false){
+					$("#processPanel").hide();
+					 return false;}
+					else{$.ajax({
+						type : "GET",
+						url : "../AbacusQuiz/updateHistoryQuiz",
+						data : {
+							openID:uid,
+							category : category,
+							batchId:1,
+							questionSequence:0,
+							answers:""
+						},
+						cache : false,
+						success : function(data) {
+							if(data){
+								window.location.href="FlashNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid;
+							}
+						}
+					});
+					}});
+
+				return;
+			}
+			
+			$("#answerPanel").hide();
+			$("#startPanel").hide();
+			$("#processPanel").show();
 			if(questionNumber!=0&&questionNumber%10==0){
 			 	$.ajax({
 					type : "GET",
@@ -259,6 +304,16 @@ margin-left: 4%;
 										function(inputValue){
 											if (inputValue === false){
 
+												questionNumber++;
+												$("#answer").val("");
+
+												$("#timestext").val(questionNumber);
+												view = $("#ShowNumberPanel");
+												$("#ShowNumberPanel").text("准备");
+												view.fadeOut(1000);
+												m=0;
+												questionNumber=findNextQuestion(questionNumber);
+												snto = setTimeout("ShowNumber()", 1000);
 												return false;
 											}
 											else{
@@ -273,7 +328,7 @@ margin-left: 4%;
 				});
 
 			
-			}
+			}else{
 			questionNumber++;
 			$("#answer").val("");
 
@@ -283,7 +338,7 @@ margin-left: 4%;
 			view.fadeOut(1000);
 			m=0;
 			questionNumber=findNextQuestion(questionNumber);
-			snto = setTimeout("ShowNumber()", 1000);
+			snto = setTimeout("ShowNumber()", 1000);}
 		}
 		var m=0;
 		function ShowNumber() {
@@ -295,7 +350,7 @@ margin-left: 4%;
 				$("#endPanel").show();
 				return;
 			}
-			view.fadeIn(speedArray[speed] * 150);
+			view.fadeIn(speedArray[speed] * 100);
 
 			var operator = questionObj.operator;
 			var operatorArray = operator.split(",");
@@ -308,8 +363,8 @@ margin-left: 4%;
 				
 			}
 				m++;
-			view.fadeOut(speedArray[speed] * 150);
-			snto = setTimeout("ShowNumber()", speedArray[speed] * 300);
+			view.fadeOut(speedArray[speed] * 100);
+			snto = setTimeout("ShowNumber()", speedArray[speed] * 200);
 		}
 		function findNextQuestion(questionNumber){
 
@@ -419,52 +474,11 @@ margin-left: 4%;
 			$("#endPanel").hide();
 			$("#answerPanel").show();
 
+			setTimeout("start()",1000);
+
 		});
 		$(".start").on("click", function() {
 
-			$("#questionInput").html("");
-			if(questionNumber>totalQuestion){	
-
-				swal({  
-		        title:"没有更多的题了，需要重置吗？",  
-		        text:"<input type='hidden'>",
-		        html:"true",
-		        showConfirmButton:"true", 
-				showCancelButton: true,   
-				closeOnConfirm: false,  
-		        confirmButtonText:"是",  
-		        cancelButtonText:"否",
-		        animation:"slide-from-top"  
-		      }, 
-				function(inputValue){
-					if (inputValue === false){
-					$("#processPanel").hide();
-					 return false;}
-					else{$.ajax({
-						type : "GET",
-						url : "../AbacusQuiz/updateHistoryQuiz",
-						data : {
-							openID:uid,
-							category : category,
-							batchId:1,
-							questionSequence:0,
-							answers:""
-						},
-						cache : false,
-						success : function(data) {
-							if(data){
-								window.location.href="FlashNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid;
-							}
-						}
-					});
-					}});
-
-				return;
-			}
-			
-			$("#answerPanel").hide();
-			$("#startPanel").hide();
-			$("#processPanel").show();
 			start();
 		});
 

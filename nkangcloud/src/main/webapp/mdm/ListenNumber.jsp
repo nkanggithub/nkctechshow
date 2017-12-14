@@ -3,7 +3,7 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
-	int speed = Integer.parseInt(request.getParameter("speed"));
+	int speed = Integer.parseInt(request.getParameter("speed"))+2;
 	int numCount = Integer.parseInt(request.getParameter("numCount"));
 	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
 	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
@@ -21,7 +21,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数非启蒙-听算练习</title>
+<title>乐数-非启蒙-听算-<%=lengthMin %><%=lengthMax %>位</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -54,7 +54,7 @@ margin-left: 4%;
 </head>
 <body>
 
-	<div id="data_model_div" style="height: 110px">
+	<div id="data_model_div" style="height: 80px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
 			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
@@ -101,7 +101,7 @@ margin-left: 4%;
 				</div>
 		</div>
 	</section>
-	<section id="answerPanel" class="white intro" style="display: none">
+	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 20px;">
 
@@ -115,16 +115,13 @@ margin-left: 4%;
 			</div>
 			<div id="answerInput" style="width:98%;margin-left:1%;"></div>
 			<div style="border-top: 1px solid black;width: 98%;margin-left: 1%;">
-			<input type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
+			<input id="totalO" type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput sxt" value="" disabled="">
 			</div>
-			<div style="text-align: center; margin: 15px;">
+<!-- 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-				<!-- <input type="text" id="timetext" value="00时00分00秒" readonly><br>-->
-
-
-			</div>
+			</div> -->
 		</div>
 
 
@@ -151,7 +148,17 @@ margin-left: 4%;
 		var qt='<%=qt%>';
 		var rightQ=0;
 		var wrongQ=0;
-
+		var operatorL="";
+		var numberL="";
+		if(lengthMax>5){
+			operatorL="20%";
+			numberL="70%";
+			$("#totalO").css("width","20%");
+			$("#total").css("width","70%");
+		}else{
+			operatorL="40%";
+			numberL="50%";
+		}
 		function count(chara, oldNumer, newNumber) {
 			var result;
 			if (chara == '加') {
@@ -189,16 +196,16 @@ margin-left: 4%;
 				if (i == 0) {
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
-											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
+									"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
+											+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 											+ tempString + " disabled />");
 				} else {
 					c = switchChar(tempCharArray[i - 1]);
 					if(c=="+"){
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
-											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
+									"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
+											+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 											+ tempString + " disabled />");
 					}
 					else{
@@ -487,7 +494,12 @@ margin-left: 4%;
 
 			$("#answerPanel").show();
 
+			setTimeout("fakeClick()",1000);
+
 		});
+		function fakeClick(){
+			$(".start").click();
+		}
 		$(".exit").on("click", function() {
 			if(level=='basic'){
 				window.location.href = "NavigatorForBasic.jsp?UID=" + uid;}

@@ -3,7 +3,7 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
-int speed = Integer.parseInt(request.getParameter("speed"));
+int speed = Integer.parseInt(request.getParameter("speed"))+2;
 String category = request.getParameter("category");
 String uid = request.getParameter("UID");
 String level="";
@@ -47,7 +47,7 @@ margin-left: 4%;
 </head>
 <body>
 
-	<div id="data_model_div" style="height: 110px">
+	<div id="data_model_div" style="height: 80px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
 			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
@@ -93,7 +93,7 @@ margin-left: 4%;
 				</div>
 		</div>
 	</section>
-	<section id="answerPanel" class="white intro" style="display: none">
+	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 20px;">
 
@@ -110,13 +110,10 @@ margin-left: 4%;
 			<input type="text" style="width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;font-size:30px;font-weight:600;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:50%;margin:0;padding:0;font-size:25px;height:40px;text-align:center;padding-right:10%" class="niput sxt" value="" disabled="">
 			</div>
-			<div style="text-align: center; margin: 15px;">
+<!-- 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-				<!-- <input type="text" id="timetext" value="00时00分00秒" readonly><br>-->
-
-
-			</div>
+			</div> -->
 		</div>
 
 
@@ -383,8 +380,14 @@ margin-left: 4%;
 			});
 			$("#endPanel").hide();
 			$("#answerPanel").show();
+			$("#answerPanel").show();
+
+			setTimeout("fakeClick()",1000);
 
 		});
+		function fakeClick(){
+			$(".start").click();
+		}
 		$(".exit").on("click", function() {
 			if(level=='basic'){
 				window.location.href = "NavigatorForBasic.jsp?UID=" + uid;}

@@ -22,7 +22,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数非启蒙-看算练习</title>
+<title>乐数-非启蒙-看算-<%=lengthMin %><%=lengthMax %>位</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -56,7 +56,7 @@ margin-left: 4%;
 </style>
 </head>
 <body>
-	<div id="data_model_div" style="height: 110px">
+	<div id="data_model_div" style="height: 80px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
 			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
@@ -94,7 +94,7 @@ margin-left: 4%;
 				<div id="remove" class="end">提交</div>
 				</div>
 	</section>
-	<section id="answerPanel" class="white intro" style="display: none">
+	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
@@ -106,13 +106,13 @@ margin-left: 4%;
 			</div>
 			<div id="answerInput" style="width:98%;margin-left:1%;"></div>
 			<div style="border-top: 1px solid black;width: 98%;margin-left: 1%;">
-			<input type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="sxt niput" value="" disabled="">
-			</div>
+			<input id="totalO" type="text" style="width:40%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
+			<input id="total" type="text" style="width:50%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="sxt niput" value="" disabled="">
+			</div><!-- 
 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-			</div>
+			</div> -->
 		</div>
 
 
@@ -135,7 +135,7 @@ margin-left: 4%;
 		var tempCharArray = new Array();
 		var tempArray = new Array();
 		var lengthArray = new Array(0, 10, 100, 1000, 10000, 100000, 1000000,
-				10000000, 100000000, 1000000000);
+				10000000, 100000000, 1000000000,10000000000);
 
 		$('.form_edit .num').click(function(){
 			var oDiv = $("#answer");
@@ -147,7 +147,10 @@ margin-left: 4%;
 			var oDivHtml = oDiv.val();
 			oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
 		});
-		$(".start").on("click", function() {
+		$(".start").on("click", function(){
+			start();
+		});
+			function start() {
 			var tempTime=minute*60+ (millisecond / 1000) + second;
 			if($(this).val()=="查看战绩"){
 
@@ -437,7 +440,7 @@ margin-left: 4%;
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").show();
-		});
+		};
 
 		var charQ = 0;
 		var chars;
@@ -451,6 +454,18 @@ margin-left: 4%;
 				result = oldNumer - newNumber;
 			}
 			return result;
+		}
+
+		var operatorL="";
+		var numberL="";
+		if(lengthMax>5){
+			operatorL="20%";
+			numberL="70%";
+			$("#totalO").css("width","20%");
+			$("#total").css("width","70%");
+		}else{
+			operatorL="40%";
+			numberL="50%";
 		}
 		function getNum() {
 			$("#questionInput").html("");
@@ -491,18 +506,18 @@ margin-left: 4%;
 
 					$("#questionInput")
 							.append(
-									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
-											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
+									"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
+											+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 											+ tempString + " disabled />");
 				}
 				else{
 
 					$("#questionInput")
 							.append(
-									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="
+									"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="
 											+ c
 											+ " disabled />"
-											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
+											+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 											+ tempString + " disabled />");
 				}
 
@@ -525,17 +540,17 @@ margin-left: 4%;
 				if(c=="+"){
 				$("#answerInput")
 						.append(
-								"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
-										+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
+								"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
+										+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 										+ tempString + " disabled />");
 				}
 				else{
 					$("#answerInput")
 					.append(
-							"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="
+							"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="
 									+ c
 									+ " disabled />"
-									+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
+									+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 									+ tempString + " disabled />");
 				}
 			}
@@ -574,6 +589,8 @@ margin-left: 4%;
 
 			$("#processPanel").hide();
 			$("#answerPanel").show();
+
+			setTimeout("start()",1000);
 
 		});
 		$(".exit").on("click", function() {

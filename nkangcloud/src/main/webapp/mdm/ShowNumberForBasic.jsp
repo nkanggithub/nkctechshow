@@ -48,7 +48,7 @@ margin-left: 4%;
 </style>
 </head>
 <body>
-	<div id="data_model_div" style="height: 110px">
+	<div id="data_model_div" style="height: 80px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
 			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
@@ -85,7 +85,7 @@ margin-left: 4%;
 				<div id="remove" class="end">提交</div>
 				</div>
 	</section>
-	<section id="answerPanel" class="white intro" style="display: none">
+	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
@@ -100,10 +100,10 @@ margin-left: 4%;
 			<input type="text" style="width:40%;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled/>
 			<input id="total" type="text" style="width:50%;margin:0;padding:0;height:40px;text-align:center;font-size:25px;padding-right:10%" class="niput sxt" value="" disabled />
 			</div>
-			<div style="text-align: center; margin: 15px;">
+		<!-- 	<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-			</div>
+			</div> -->
 		</div>
 
 
@@ -133,7 +133,10 @@ margin-left: 4%;
 		var oDivHtml = oDiv.val();
 		oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
 	});
-		$(".start").on("click", function() {
+	$(".start").on("click", function(){
+		start();
+	});
+		function start() {
 			if(questionNumber!=0&&questionNumber%10==0&&questionNumber<totalQuestion){
 			 	$.ajax({
 					type : "GET",
@@ -313,7 +316,7 @@ margin-left: 4%;
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").show();}
-		});
+		};
 
 		var charQ = 0;
 		var chars;
@@ -541,6 +544,7 @@ margin-left: 4%;
 			});
 			$("#processPanel").hide();
 			$("#answerPanel").show();
+			setTimeout("start()",1000);
 
 		});
 		$(".exit").on("click", function() {

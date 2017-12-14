@@ -204,29 +204,9 @@ wx.config({
 	display: none;
 }
 
-
-li{
-position: relative;
-    width: 88%;
-    margin-left: 6%;
-    height: 45px!important;
-    list-style: none;
-    border-radius: 10px;
-    background: rgba(34,178,111,1);
-    margin-bottom: 10px;}
-.gk{
-    width: 100%;
-    height: 30px;
-    line-height: 30px;
-    font-size: 14px;
-    color: white;
+li {
+	height: 100px !important;
 }
-
-ul{
-margin: 0!important;
-    width: 80%;
-    position: relative;
-    left: 10%;}
 .hiddenLevel,.hiddenLevelNumber
 {
 display:none;
@@ -235,23 +215,27 @@ display:none;
 </style>
 </head>
 <body>
-<div id="data_model_div" style="height: 100px">
+<div id="data_model_div" style="height: 110px">
 		<i class="icon" style="position: absolute;top: 25px;z-index: 100;right: 20px;">
 			<!-- <img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
 			style="width: 30px; height: 30px;"> -->
 <div style="width: 30px;height: 30px;float: left;border-radius: 50%;overflow: hidden;">
-<img class="exit" src="<%=user.getHeadImgUrl() %>" style="width: 30px; height: 30px;" />
+<img class="exit" src="<%=user.getHeadImgUrl() %>" style="width: 30px; height: 30px;">
 </div>
 <span style="position: relative;top: 8px;left: 5px;"><%=user.getNickname() %></span>
 		</i> <img style="position: absolute;top: 8px;left: 10px;z-index: 100;height: 60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
 		<div style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
 		</div>
 	</div>
+	<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="position: absolute;width: 30px;top: 100px;left: 30px;">
 	<section id="levelMenuPanel">
-		<div class="selectPanel" style="padding: 0; height: 1000px;">
+		<div class="selectPanel" style="padding: 0; height: 400px;">
+			<div class="funnyNewsTicker fnt-radius fnt-shadow fnt-easing"
+				style="padding: 0 !important; padding-top: 60px; height: 100%;"
+				id="funnyNewsTicker1">
 				<ul>
 					<li>
-						<div class="gk">【第一关】 1-5直加直减</div>
+						<div class="fnt-content" data-link="###">【第一关】 1-5直加直减</div>
 						<span class="hiddenLevel">第一关</span>
 						<span class="hiddenLevelNumber">1</span>
 						<div class="number-pb" id="process1">
@@ -260,7 +244,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第二关】1-9直加直减</div>
+						<div class="fnt-content" data-link="###">【第二关】1-9直加直减</div>
 						<span class="hiddenLevel">第二关</span>
 						<span class="hiddenLevelNumber">2</span>
 						<div class="number-pb" id="process2">
@@ -269,7 +253,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第三关】1的满5破5</div>
+						<div class="fnt-content" data-link="###">【第三关】1的满5破5</div>
 						<span class="hiddenLevel">第三关</span>
 						<span class="hiddenLevelNumber">3</span>
 						<div class="number-pb" id="process3">
@@ -278,7 +262,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第四关】2的满5破5</div>
+						<div class="fnt-content" data-link="###">【第四关】2的满5破5</div>
 						<span class="hiddenLevel">第四关</span>
 						<span class="hiddenLevelNumber">4</span>
 						<div class="number-pb" id="process4">
@@ -287,7 +271,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第五关】3的满5破5</div>
+						<div class="fnt-content" data-link="###">【第五关】3的满5破5</div>
 						<span class="hiddenLevel">第五关</span>
 						<span class="hiddenLevelNumber">5</span>
 						<div class="number-pb" id="process5">
@@ -296,7 +280,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第六关】4的满5破5</div>
+						<div class="fnt-content" data-link="###">【第六关】4的满5破5</div>
 						<span class="hiddenLevel">第六关</span>
 						<span class="hiddenLevelNumber">6</span>
 						<div class="number-pb" id="process6">
@@ -305,7 +289,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第七关】 满5破5综合练习</div>
+						<div class="fnt-content" data-link="###">【第七关】 满5破5综合练习</div>
 						<span class="hiddenLevel">第七关</span>
 						<span class="hiddenLevelNumber">7</span>
 						<div class="number-pb" id="process7">
@@ -314,7 +298,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第八关】 两位数直加直减</div>
+						<div class="fnt-content" data-link="###">【第八关】 两位数直加直减</div>
 						<span class="hiddenLevel">第八关</span>
 						<span class="hiddenLevelNumber">8</span>
 						<div class="number-pb" id="process8">
@@ -324,7 +308,7 @@ display:none;
 			
 					</li>
 					<li>
-						<div class="gk">【第九关】1的进退位</div>
+						<div class="fnt-content" data-link="###">【第九关】1的进退位</div>
 						<span class="hiddenLevel">第九关</span>
 						<span class="hiddenLevelNumber">9</span>
 						<div class="number-pb" id="process9">
@@ -333,7 +317,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十关】 2的进退位</div>
+						<div class="fnt-content" data-link="###">【第十关】 2的进退位</div>
 						<span class="hiddenLevel">第十关</span>
 						<span class="hiddenLevelNumber">10</span>
 						<div class="number-pb" id="process10">
@@ -342,8 +326,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-					
-						<div class="gk">【第十一关】 3的进退位</div>
+						<div class="fnt-content" data-link="###">【第十一关】 3的进退位</div>
 						<span class="hiddenLevel">第十一关</span>
 						<span class="hiddenLevelNumber">11</span>
 						<div class="number-pb" id="process11">
@@ -352,7 +335,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十二关】4的进退位</div>
+						<div class="fnt-content" data-link="###">【第十二关】4的进退位</div>
 						<span class="hiddenLevel">第十二关</span>
 						<span class="hiddenLevelNumber">12</span>
 						<div class="number-pb" id="process12">
@@ -361,7 +344,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十三关】 5的进退位</div>
+						<div class="fnt-content" data-link="###">【第十三关】 5的进退位</div>
 						<span class="hiddenLevel">第十三关</span>
 						<span class="hiddenLevelNumber">13</span>
 						<div class="number-pb" id="process13">
@@ -370,7 +353,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十四关】 6的进退位</div>
+						<div class="fnt-content" data-link="###">【第十四关】 6的进退位</div>
 						<span class="hiddenLevel">第十四关</span>
 						<span class="hiddenLevelNumber">14</span>
 						<div class="number-pb" id="process14">
@@ -379,7 +362,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十五关】 7的进退位</div>
+						<div class="fnt-content" data-link="###">【第十五关】 7的进退位</div>
 						<span class="hiddenLevel">第十五关</span>
 						<span class="hiddenLevelNumber">15</span>
 						<div class="number-pb" id="process15">
@@ -388,7 +371,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十六关】 8的进退位</div>
+						<div class="fnt-content" data-link="###">【第十六关】 8的进退位</div>
 						<span class="hiddenLevel">第十六关</span>
 						<span class="hiddenLevelNumber">16</span>
 						<div class="number-pb" id="process16">
@@ -397,7 +380,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十七关】 9的进退位</div>
+						<div class="fnt-content" data-link="###">【第十七关】 9的进退位</div>
 						<span class="hiddenLevel">第十七关</span>
 						<span class="hiddenLevelNumber">17</span>
 						<div class="number-pb" id="process17">
@@ -406,7 +389,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十八关】 一位数综合练习5笔</div>
+						<div class="fnt-content" data-link="###">【第十八关】 一位数综合练习5笔</div>
 						<span class="hiddenLevel">第十八关</span>
 						<span class="hiddenLevelNumber">18</span>
 						<div class="number-pb" id="process18">
@@ -415,7 +398,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第十九关】一位数综合练习8笔</div>
+						<div class="fnt-content" data-link="###">【第十九关】一位数综合练习8笔</div>
 						<span class="hiddenLevel">第十九关</span>
 						<span class="hiddenLevelNumber">19</span>
 						<div class="number-pb" id="process19">
@@ -424,7 +407,7 @@ display:none;
 						</div>
 					</li>
 					<li>
-						<div class="gk">【第二十关】 一位数综合练习10笔</div>
+						<div class="fnt-content" data-link="###">【第二十关】 一位数综合练习10笔</div>
 						<span class="hiddenLevel">第二十关</span>
 						<span class="hiddenLevelNumber">20</span>
 						<div class="number-pb" id="process20">
@@ -433,8 +416,11 @@ display:none;
 						</div>
 					</li>
 				</ul>
+			</div>
 		</div>
 
+		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x"></i>
+		<p style="line-height: 40px;">选择关数</p>
 	</section>
 	<section class="sub-block" id="speedAjust">
 
@@ -469,25 +455,22 @@ display:none;
 	var qt='question';
 	var percent;
 	var levelNumber = 1;
-	var levelArray=new Array("第一关","第二关","第三关","第四关","第五关","第六关","第七关","第八关",
-			"第九关","第十关","第十一关","第十二关","第十三关","第十四关","第十五关","第十六关",
-			"第十七关","第十八关","第十九关","第二十关");
-	
-	function getAllLevelPercent(){
-		for(var i=0;i<levelArray.length;i++){
-			getLevelPercent(levelArray[i],i+1);
-		}
-	}
 	$(document).ready(function(){
-		getAllLevelPercent();
-
-		
+		getLevelPercent(category,levelNumber);
 	$("#funnyNewsTicker1").funnyNewsTicker({width:"80%",timer:100000,titlecolor:"#FFF",itembgcolor:"#1faf6d",infobgcolor:"#1a935c",buttonstyle:"white",bordercolor:"#1a935c"});		
 
-
-    $(".gk").on("click",function(){
-
-    	category=$(this).parent("li").find(".hiddenLevel").text();
+	$(".fnt-bottom-arrow").on("click",function(){
+    	category=$(".fnt-active").find(".hiddenLevel").text();
+    	levelNumber=$(".fnt-active").find(".hiddenLevelNumber").text();
+		getLevelPercent(category,levelNumber);
+	});
+	$(".fnt-top-arrow").on("click",function(){
+    	category=$(".fnt-active").find(".hiddenLevel").text();
+    	levelNumber=$(".fnt-active").find(".hiddenLevelNumber").text();
+		getLevelPercent(category,levelNumber);
+	});
+    $(".fnt-content").on("click",function(){
+    	category=$(this).parent().find(".hiddenLevel").text();
     	var text="";
     	var total=0;
     	$.ajax({
@@ -541,23 +524,16 @@ display:none;
 				            title:category+"战绩统计",  
 				            text:text,
 				            html:"true",
-				            showConfirmButton:true, 
+				            showConfirmButton:false, 
 				    		showCancelButton: true,   
 				    		closeOnConfirm: false,  
-				            confirmButtonText:"继续闯关",  
-				            cancelButtonText:"我知道了",
+				            confirmButtonText:"是",  
+				            cancelButtonText:"关闭",
 				            animation:"slide-from-top"  
 				          }, 
 				    		function(inputValue){
-				    			if (inputValue === false){
-				    				return false;
-				    			}
+				    			if (inputValue === false){}
 				    			else{
-
-				    				$("#levelMenuPanel").hide();
-				    				$("#speedAjust").show();
-				    				$(".sweet-overlay").hide();
-				    				$(".sweet-alert").hide();
 				    			}});
 					}
 				});
@@ -575,6 +551,10 @@ display:none;
 	  $(".exit").on("click",function(){
 		  window.location.href="profile.jsp?UID="+uid;
 	  });
+	$("#toSpeed").on("click",function(){
+	$("#levelMenuPanel").hide();
+	$("#speedAjust").show();
+	});
 	$("#toMenu").on("click",function(){
 	$("#speedAjust").hide();
 	$("#menuPanel").show();

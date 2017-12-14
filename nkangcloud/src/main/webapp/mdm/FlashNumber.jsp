@@ -22,7 +22,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数非启蒙-闪算练习</title>
+<title>乐数-非启蒙-闪算-<%=lengthMin %><%=lengthMax %>位</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -56,7 +56,7 @@ margin-left: 4%;
 </head>
 <body>
 
-	<div id="data_model_div" style="height: 110px">
+	<div id="data_model_div" style="height: 80px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
 			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
@@ -108,7 +108,7 @@ margin-left: 4%;
 				</div>
 		</div>
 	</section>
-	<section id="answerPanel" class="white intro" style="display: none">
+	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 20px;">
 			<div id="right">
 				<i class="fa fa-smile-o fa-3x"></i> <span
@@ -120,13 +120,13 @@ margin-left: 4%;
 			</div>
 			<div id="answerInput" style="width: 98%; margin-left: 1%;"></div>
 			<div style="border-top: 1px solid black;width: 98%;margin-left: 1%;">
-			<input type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput sxt" value="" disabled="">
+			<input id="totalO" type="text" style="width:40%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
+			<input id="total" type="text" style="width:50%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput sxt" value="" disabled="">
 			</div>
-			<div style="text-align: center; margin: 15px;">
+<!-- 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-			</div>
+			</div> -->
 		</div>
 	</section>
 	<div id="chart-container">FusionCharts will render here</div>
@@ -157,7 +157,7 @@ margin-left: 4%;
 		var rightQ=0;
 		var wrongQ=0;
 		var lengthArray = new Array(1, 10, 100, 1000, 10000, 100000, 1000000,
-				10000000, 100000000, 1000000000);
+				10000000, 100000000, 1000000000,10000000000);
 		var charQ = 0;
 		var chars;
 		var tempTotal = 0;
@@ -183,7 +183,29 @@ margin-left: 4%;
 			return result;
 		}
 		var totalTime = 0;
+
+		var operatorL="";
+		var numberL="";
+		if(lengthMax>5){
+			operatorL="20%";
+			numberL="70%";
+			$("#totalO").css("width","20%");
+			$("#total").css("width","70%");
+		}else{
+			operatorL="40%";
+			numberL="50%";
+		}
 		function start() {
+			if(qt=="minute"&&second>30){
+				$("#next").val("查看战绩");
+			}
+			if($("#next").val()!="查看战绩"){
+			$("#answerPanel").hide();
+			$("#startPanel").hide();
+			$("#processPanel").show();}
+			if(qt=="minute"&&second>30){
+				$("#next").val("下一题");
+			}
 			var tempTime=minute*60+ (millisecond / 1000) + second;
 			if($("#next").val()=="查看战绩"){
 
@@ -520,7 +542,7 @@ margin-left: 4%;
 				tempArray[0] = temp;
 				tempTotal = temp;
 			}
-			view.fadeIn(speedArray[speed] * 150);
+			view.fadeIn(speedArray[speed] * 100);
 			if (i == 0) {
 				$("#ShowNumberPanel").text(tempArray[0]);
 			} else {
@@ -534,8 +556,8 @@ margin-left: 4%;
 				}
 			}
 
-			view.fadeOut(speedArray[speed] * 150);
-			snto = setTimeout("ShowNumber()", speedArray[speed] * 300);
+			view.fadeOut(speedArray[speed] * 100);
+			snto = setTimeout("ShowNumber()", speedArray[speed] * 200);
 			i++;
 		}
 
@@ -556,16 +578,16 @@ margin-left: 4%;
 
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
-											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:right;padding-right:10%' class='niput' value="
+									"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value='' disabled />"
+											+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 											+ tempString + " disabled />");
 				}
 				else{
 
 					$("#answerInput")
 							.append(
-									"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="+ c+ " disabled />"
-											+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput' value="
+									"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="+ c+ " disabled />"
+											+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
 											+ tempString + " disabled />");
 				}
 			}
@@ -603,19 +625,11 @@ margin-left: 4%;
 			}
 
 			$("#answerPanel").show();
+			setTimeout("start()",1000);
 
 		});
 		$(".start").on("click", function() {
-			if(qt=="minute"&&second>30){
-				$("#next").val("查看战绩");
-			}
-			if($("#next").val()!="查看战绩"){
-			$("#answerPanel").hide();
-			$("#startPanel").hide();
-			$("#processPanel").show();}
-			if(qt=="minute"&&second>30){
-				$("#next").val("下一题");
-			}
+		
 			start();
 		});
 
