@@ -466,6 +466,7 @@ display:none;
 	</section>
 
 	<script>
+	var wrongCollection="";
 	var speed=2;
 	var category="第一关";
 	var uid='<%=openid%>';
@@ -531,9 +532,9 @@ display:none;
 									}
 								}
 							}
-					    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'>正确：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
-					        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'>错误：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
-					        +"<p style='width:40%;float:left;height:40px;line-height:40px;'>总共完成：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+count+"题/共"+total+"题' disabled='true'/>";
+					    	text="<p style='width:40%;float:left;height:40px;line-height:40px;'><i class='fa fa-smile-o fa-3x' style='position: relative;bottom: 5px;'></i></p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+right+"题' disabled='true'/>"
+					        	+"<p style='width:40%;float:left;height:40px;line-height:40px;'><i onclick='wrongClick()' class='fa fa-frown-o fa-3x' style='position: relative;color: #F94082;bottom: 5px;'></i></p><input id='wrongQT' style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+wrong+"题' disabled='true'/>"
+					        +"<p style='width:40%;float:left;height:40px;line-height:40px;'>总共完成：</p><input style='margin-top:0px;width:50%;height:35px;display:block;float:left;color: black;' type='text' value='"+count+"题' disabled='true'/>";
 
 						}
 						else
@@ -541,7 +542,7 @@ display:none;
 							text="<p style='text-align:center;width:100%'>您还没开始做题呢~！</p>"
 						}
 					    swal({  
-				            title:category+"闯关统计",  
+				            title:category+"【"+total+"题】",  
 				            text:text,
 				            html:"true",
 				            showConfirmButton:true, 
@@ -575,6 +576,7 @@ display:none;
 	$("#levelMenuPanel").show();
 	$("#speedAjust").hide();
 	});
+
 	  $(".exit").on("click",function(){
 		  window.location.href="profile.jsp?UID="+uid;
 	  });
@@ -589,19 +591,28 @@ display:none;
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="FlashNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid;
+	window.location.href="FlashNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid+wrongCollection;
 	});
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid;
+	window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid+wrongCollection;
 	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ListenNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid;
+	window.location.href="ListenNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid+wrongCollection;
 	});
-
+	function wrongClick(){
+		if($("#wrongQT").val()!="0题"){
+		wrongCollection="&wrongCollection=yes";
+		$("#levelMenuPanel").hide();
+		$("#speedAjust").show();
+		$(".sweet-overlay").hide();
+		$(".sweet-alert").hide();
+		}
+	}
+	window.wrongClick=wrongClick;
     function getLevelPercent(category,levelNumber){
     	var defaultTotal=0;
     	var complete=0;

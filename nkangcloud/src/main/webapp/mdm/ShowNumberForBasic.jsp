@@ -4,6 +4,7 @@
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
 	String category = request.getParameter("category");
+	String wrongCollection = request.getParameter("wrongCollection");
 	String uid = request.getParameter("UID");
 	String level="";
 	if(uid!=null&&uid!=""){
@@ -112,6 +113,7 @@ margin-left: 4%;
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script>
 	var uid='<%=uid%>';
+	var wrongCollection='<%=wrongCollection%>';
 	var category='<%=category%>';
 	var level='<%=level%>';
 	var rightQ=0;
@@ -120,6 +122,8 @@ margin-left: 4%;
 	var questionNumber=0;
 	var questionObj = null;
 	var answers="";
+	var answerArray=new Array();
+	var wrongIndexArray=new Array();
 	var wrongIndex="";
 	var tempSequence = 0;
 	getQuestions();
@@ -135,8 +139,44 @@ margin-left: 4%;
 		oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
 	});
 	$(".start").on("click", function(){
-		start();
+		if(wrongCollection!=""&&wrongCollection=="yes"){
+			wrongStart();
+		}else{
+		start();}
 	});
+
+	var wrongIndexs=0;
+	var wrongIndexStatic=0;
+	function wrongStart(){
+
+		getHistoryQuestion();
+		wrongIndexStatic=wrongIndexArray[wrongIndexs];
+		wrongIndexs++;
+		$("#answer").val("");
+		if(wrongIndexStatic!=""){
+		getQuestion(wrongIndexStatic);
+		$("#timestext").val(wrongIndexStatic);
+		$("#answerPanel").hide();
+		$("#startPanel").hide();
+		$("#processPanel").show();
+		}
+		else{
+
+			$("#timestext").val(wrongIndexStatic);
+			$("#answerPanel").hide();
+			$("#startPanel").hide();
+			$("#processPanel").hide();
+		}
+	}
+	
+	function arrayToString(array){
+		var string="";
+		for(var i=0;i<array.length-1;i++){
+			string +=array[i]+",";
+		}
+		return string;
+	}
+	
 		function start() {
 			if(questionNumber!=0&&questionNumber%10==0&&questionNumber<totalQuestion){
 			 	$.ajax({
@@ -364,6 +404,9 @@ margin-left: 4%;
 						wrongIndex=data.wrongIndex;
 						var b=parseInt(data.batchId);
 						var s=parseInt(data.questionSequence);
+
+						answerArray=data.answers.split(",");
+						wrongIndexArray=data.wrongIndex.split(",");
 						var ts=(b-1)*10+s;
 						questionNumber=ts;
 					}
@@ -374,47 +417,9 @@ margin-left: 4%;
 		var batchId=0;
 		var sequence=0;
 		var index=0;
-		function getQuestion(questionNumber) {
+		function getQuestion(numa) {
 			$("#questionInput").html("");
-			if(questionNumber>totalQuestion){	
-
-				swal({  
-		        title:"没有更多的题了，需要重置吗？",  
-		        text:"<input type='hidden'>",
-		        html:"true",
-		        showConfirmButton:"true", 
-				showCancelButton: true,   
-				closeOnConfirm: false,  
-		        confirmButtonText:"是",  
-		        cancelButtonText:"否",
-		        animation:"slide-from-top"  
-		      }, 
-				function(inputValue){
-					if (inputValue === false){
-					$("#processPanel").hide();
-					 return false;}
-					else{$.ajax({
-						type : "GET",
-						url : "../AbacusQuiz/updateHistoryQuiz",
-						data : {
-							openID:uid,
-							category : category,
-							batchId:1,
-							questionSequence:0,
-							answers:""
-						},
-						cache : false,
-						success : function(data) {
-							if(data){
-								window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid;
-							}
-						}
-					});
-					}});
-
-				return false;
-			}
-			questionNumber=findNextQuestion(questionNumber);
+			numa=findNextQuestion(numa);
 			var question = questionObj.question;
 			var operator = questionObj.operator;
 			var operatorArray = operator.split(",");
@@ -437,24 +442,26 @@ margin-left: 4%;
 											+ question[i] + " disabled />");
 				}
 			}
-			return questionNumber;
+			return numa;
 		}
 		
-		function findNextQuestion(questionNumber){
+		function findNextQuestion(num){
 
 			for (var q = 0; q < questions.length; q++) {
 				batchId = parseInt(questions[q].batchId);
 				sequence = parseInt(questions[q].questionSequence);
 				tempSequence = (batchId - 1) * 10 + sequence;
-				if (tempSequence == questionNumber) {
+				if (tempSequence == num) {
 					questionObj = questions[q];
 					index = q;
 					break;
 				}
 			}
+
+			if(wrongCollection!="yes"){
 			if(questionObj==null){
-				batchId=Math.floor(questionNumber/10)+1;
-				sequence=questionNumber%10;
+				batchId=Math.floor(num/10)+1;
+				sequence=num%10;
 				answers=answers+"MISS,";
 				$.ajax({
 					type : "GET",
@@ -472,8 +479,9 @@ margin-left: 4%;
 						}
 					}
 				});
-				questionNumber++;
-				findNextQuestion(questionNumber);
+				num++;
+				findNextQuestion(num);
+			}
 			}
 			return questionNumber;
 			
@@ -517,7 +525,44 @@ margin-left: 4%;
 				swal("未答题", "请输入你的答案哦~！", "error");
 				return;
 			}
+			if(wrongCollection!=""&&wrongCollection=="yes"){
+				var si=wrongIndexStatic%10;
+				var bi=Math.floor(wrongIndexStatic/10)+1;
+				showAnswer(index);
+				if (answer == currentAnswer) {
+					$("#right").show();
+					$("#wrong").hide();
 
+					answerArray[wrongIndexStatic-1]=bi+"/"+si+"/"+"1";
+					wrongIndexArray.splice(wrongIndexs-1,1);
+					var wrongAnswers=arrayToString(answerArray);
+					var wrongIndexString=arrayToString(wrongIndexArray);
+					$.ajax({
+						type : "GET",
+						url : "../AbacusQuiz/updateHistoryQuiz",
+						data : {
+							openID : uid,
+							category : category,
+							answers : wrongAnswers,
+							wrongIndex:wrongIndexString
+						},
+						cache : false,
+						success : function(data) {
+							if (data) {
+							}
+						}
+					});
+					wrongIndexs=0;
+				} else {
+					$("#wrong").show();
+					$("#right").hide();
+				}
+
+				$("#processPanel").hide();
+				$("#answerPanel").show();
+				setTimeout("wrongStart()",1000);
+			}
+			else{
 			showAnswer(index);
 			if (answer == currentAnswer) {
 				$("#right").show();
@@ -552,7 +597,7 @@ margin-left: 4%;
 			$("#processPanel").hide();
 			$("#answerPanel").show();
 			setTimeout("start()",1000);
-
+			}
 		});
 		$(".exit").on("click", function() {
 			if (level == 'basic') {
