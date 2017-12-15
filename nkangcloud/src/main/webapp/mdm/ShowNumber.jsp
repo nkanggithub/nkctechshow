@@ -56,7 +56,7 @@ margin-left: 4%;
 </style>
 </head>
 <body>
-	<div id="data_model_div" style="height: 80px">
+	<div id="data_model_div" style="height: 110px">
 		<i class="icon"
 			style="position: absolute; top: 20px; left: 20px; z-index: 100;">
 			<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
@@ -108,11 +108,11 @@ margin-left: 4%;
 			<div style="border-top: 1px solid black;width: 98%;margin-left: 1%;">
 			<input id="totalO" type="text" style="width:40%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:50%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="sxt niput" value="" disabled="">
-			</div><!-- 
-			<div style="text-align: center; margin: 15px;">
+			</div> 
+			<div style="text-align: center; margin: 15px;display:none">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-			</div> -->
+			</div> 
 		</div>
 
 
@@ -152,7 +152,7 @@ margin-left: 4%;
 		});
 			function start() {
 			var tempTime=minute*60+ (millisecond / 1000) + second;
-			if($(this).val()=="查看战绩"){
+			if($("#next").val()=="查看战绩"){
 
 				FusionCharts.ready(function() {
 					var cSatScoreChart = new FusionCharts({
@@ -277,6 +277,9 @@ margin-left: 4%;
 				$("#chart-container2").show();
 				$("#chart-container").show();
 				$(this).val("下一题");
+
+				$("#answerPanel").hide();
+				$("#startPanel").show();
 				return;
 			}
 			$("#answer").val("");
@@ -425,6 +428,9 @@ margin-left: 4%;
 					});
 					$("#chart-container").show();
 					$("#chart-container2").show();
+
+					$("#answerPanel").hide();
+					$("#startPanel").show();
 					reset();
 					totalTime=0;
 				return;

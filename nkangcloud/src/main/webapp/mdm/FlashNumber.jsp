@@ -333,6 +333,8 @@ margin-left: 4%;
 				$("#chart-container2").show();
 				$("#chart-container").show();
 				$("#next").val("下一题");
+				$("#startPanel").show();
+				$("#processPanel").hide();
 				return;
 			}
 			$("#answer").val("");
@@ -481,6 +483,9 @@ margin-left: 4%;
 					});
 					$("#chart-container").show();
 					$("#chart-container2").show();
+
+					$("#startPanel").show();
+					$("#processPanel").hide();
 					reset();
 					totalTime=0;
 					

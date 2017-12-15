@@ -165,6 +165,8 @@ blog: http://www.tuterm.com
 
 						$("#chart-container2").show();
 						$("#chart-container").show();
+						$("#startPanel").show();
+						$("#fakePanel").hide();
 						$(this).val("下一题");
 						return;
 					}
@@ -314,6 +316,8 @@ blog: http://www.tuterm.com
 							});
 							$("#chart-container").show();
 							$("#chart-container2").show();
+							$("#startPanel").show();
+							$("#fakePanel").hide();
 							reset();
 							totalTime=0;
 						return;

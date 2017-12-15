@@ -115,8 +115,8 @@ margin-left: 4%;
 			</div>
 			<div id="answerInput" style="width:98%;margin-left:1%;"></div>
 			<div style="border-top: 1px solid black;width: 98%;margin-left: 1%;">
-			<input id="totalO" type="text" style="width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
-			<input id="total" type="text" style="width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput sxt" value="" disabled="">
+			<input id="totalO" type="text" style="width:40%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
+			<input id="total" type="text" style="width:50%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput sxt" value="" disabled="">
 			</div>
 <!-- 			<div style="text-align: center; margin: 15px;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
@@ -212,9 +212,9 @@ margin-left: 4%;
 
 						$("#answerInput")
 								.append(
-										"<input type='text' style='width:30%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="+ c + " disabled />"
-												+ "<input type='text' style='width:60%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
-												+ tempArray[i] + " disabled />");
+										"<input type='text' style='width:"+operatorL+";font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;' class='niput sxt' value="+ c + " disabled />"
+												+ "<input type='text' style='width:"+numberL+";font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%' class='niput sxt' value="
+												+ tempString + " disabled />");
 					}
 				}
 			}
