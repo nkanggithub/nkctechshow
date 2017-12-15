@@ -5,6 +5,13 @@ public class HistoryQuiz {
 	public String category;
 	public String batchId;
 	public String questionSequence;
+	public String wrongIndex;
+	public String getWrongIndex() {
+		return wrongIndex;
+	}
+	public void setWrongIndex(String wrongIndex) {
+		this.wrongIndex = wrongIndex;
+	}
 	public String getBatchId() {
 		return batchId;
 	}

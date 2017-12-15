@@ -120,6 +120,7 @@ margin-left: 4%;
 	var questionNumber=0;
 	var questionObj = null;
 	var answers="";
+	var wrongIndex="";
 	var tempSequence = 0;
 	getQuestions();
 	getHistoryQuestion();
@@ -281,7 +282,8 @@ margin-left: 4%;
 										function(inputValue){
 								    	  if (inputValue === false){
 												 return false;}
-												else{$.ajax({
+												else{
+													$.ajax({
 													type : "GET",
 													url : "../AbacusQuiz/updateHistoryQuiz",
 													data : {
@@ -359,6 +361,7 @@ margin-left: 4%;
 				success : function(data) {
 					if(data&&data.questionSequence!=0&&data.questionSequence!=null){
 						answers=data.answers;
+						wrongIndex=data.wrongIndex;
 						var b=parseInt(data.batchId);
 						var s=parseInt(data.questionSequence);
 						var ts=(b-1)*10+s;
@@ -506,8 +509,9 @@ margin-left: 4%;
 			$("#total").val(currentAnswer);
 
 		}
-		$(".end").on("click", function() {
 
+		$(".end").on("click", function() {
+			var tempIndex=0;
 			var answer = $("#answer").val();
 			if (answer == "") {
 				swal("未答题", "请输入你的答案哦~！", "error");
@@ -525,6 +529,8 @@ margin-left: 4%;
 				$("#right").hide();
 				wrongQ++;
 				answers += batchId + "/" + sequence + "/" + "0,";
+				tempIndex=(batchId-1)*10+sequence;
+				wrongIndex += tempIndex+",";
 			}
 			$.ajax({
 				type : "GET",
@@ -534,7 +540,8 @@ margin-left: 4%;
 					category : category,
 					batchId : batchId,
 					questionSequence : sequence,
-					answers : answers
+					answers : answers,
+					wrongIndex:wrongIndex
 				},
 				cache : false,
 				success : function(data) {

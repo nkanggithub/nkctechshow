@@ -3959,6 +3959,7 @@ public class MongoDBBasic {
 			if(historyQuiz.getQuestionSequence()!=null&&historyQuiz.getQuestionSequence()!=""){
 			dbo.put("questionSequence",historyQuiz.getQuestionSequence());}
 			dbo.put("answers",historyQuiz.getAnswers());
+			dbo.put("wrongIndex",historyQuiz.getWrongIndex());
 			if(queryresults!=null){
 				System.out.println("update record here ");
 
@@ -4010,6 +4011,7 @@ public class MongoDBBasic {
 				historyQuiz.setBatchId(queryresults.get("batchId")+"");
 				historyQuiz.setQuestionSequence(queryresults.get("questionSequence")+"");
 				historyQuiz.setAnswers(queryresults.get("answers")+"");
+				historyQuiz.setWrongIndex(queryresults.get("wrongIndex")+"");
 			}
 		}catch (Exception e) {
 			log.info("findHistoryQuizByOpenidAndCategory--" + e.getMessage());
