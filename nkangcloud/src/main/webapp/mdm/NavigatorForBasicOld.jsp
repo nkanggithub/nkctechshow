@@ -521,7 +521,7 @@ display:none;
 							text="<p style='text-align:center;width:100%'>您还没开始做题呢~！</p>"
 						}
 					    swal({  
-				            title:category+"战绩统计",  
+				            title:category+"闯关统计",  
 				            text:text,
 				            html:"true",
 				            showConfirmButton:false, 
