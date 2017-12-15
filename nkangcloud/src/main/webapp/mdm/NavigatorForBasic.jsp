@@ -214,12 +214,13 @@ position: relative;
     border-radius: 10px;
     background: rgba(34,178,111,1);
     margin-bottom: 10px;}
-.gk{
-    width: 100%;
+.gk{   
+	width: 100%;
     height: 30px;
     line-height: 30px;
     font-size: 14px;
     color: white;
+    text-align: left;
 }
 
 ul{
