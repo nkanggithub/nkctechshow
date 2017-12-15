@@ -226,7 +226,9 @@ ul{
 margin: 0!important;
     width: 95%;
     position: relative;
-    left: 2%;}
+    left: 2%;
+ margin-bottom: 5px;
+ }
 .hiddenLevel,.hiddenLevelNumber
 {
 display:none;
