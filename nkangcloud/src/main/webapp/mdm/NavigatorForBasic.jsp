@@ -207,8 +207,8 @@ wx.config({
 
 li{
 position: relative;
-    width: 88%;
-    margin-left: 6%;
+    width: 99%;
+    margin-left: 1%;
     height: 45px!important;
     list-style: none;
     border-radius: 10px;
@@ -224,9 +224,9 @@ position: relative;
 
 ul{
 margin: 0!important;
-    width: 80%;
+    width: 95%;
     position: relative;
-    left: 10%;}
+    left: 2%;}
 .hiddenLevel,.hiddenLevelNumber
 {
 display:none;
