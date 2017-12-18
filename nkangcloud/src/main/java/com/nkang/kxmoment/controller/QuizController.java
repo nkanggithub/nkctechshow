@@ -71,6 +71,7 @@ public class QuizController {
 		String category = request.getParameter("category");
 		String batchId = request.getParameter("batchId");
 		String questionSequence = request.getParameter("questionSequence");
+		String wrongIndex = request.getParameter("wrongIndex");
 		String answers=request.getParameter("answers");
 		HistoryQuiz hq = new HistoryQuiz();
 		hq.setCategory(category);
@@ -78,6 +79,7 @@ public class QuizController {
 		hq.setBatchId(batchId);
 		hq.setQuestionSequence(questionSequence);
 		hq.setAnswers(answers);
+		hq.setWrongIndex(wrongIndex);
 		if(MongoDBBasic.updateHistoryQuiz(hq)){
 			//request.getSession().setAttribute("test", "123");
 			//session.setAttribute("test", "123");
