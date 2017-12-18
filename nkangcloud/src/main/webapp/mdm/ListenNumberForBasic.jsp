@@ -5,6 +5,7 @@
 <%
 int speed = Integer.parseInt(request.getParameter("speed"))+2;
 String category = request.getParameter("category");
+String wrongCollection = request.getParameter("wrongCollection");
 String uid = request.getParameter("UID");
 String level="";
 if(uid!=null||uid!=""){
@@ -133,6 +134,10 @@ margin-left: 4%;
 		var totalTime=0;
 		var rightQ=0;
 		var wrongQ=0;
+		var wrongCollection='<%=wrongCollection%>';
+		var wrongIndexArray=new Array();
+		var wrongIndex="";
+		var answerArray=new Array();
 
 		var questions=null;
 		var questionNumber=0;
@@ -186,8 +191,12 @@ margin-left: 4%;
 				success : function(data) {
 					if(data&&data.questionSequence!=0&&data.questionSequence!=null){
 						answers=data.answers;
+						wrongIndex=data.wrongIndex;
 						var b=parseInt(data.batchId);
 						var s=parseInt(data.questionSequence);
+
+						answerArray=data.answers.split(",");
+						wrongIndexArray=data.wrongIndex.split(",");
 						var ts=(b-1)*10+s;
 						questionNumber=ts;
 					}
@@ -241,6 +250,8 @@ margin-left: 4%;
 					break;
 				}
 			}
+
+			if(wrongCollection!="yes"){
 			if(questionObj==null){
 				batchId=Math.floor(questionNumber/10)+1;
 				sequence=questionNumber%10;
@@ -263,6 +274,7 @@ margin-left: 4%;
 				});
 				questionNumber++;
 				findNextQuestion(questionNumber);
+			}
 			}
 			return questionNumber;
 			
@@ -297,7 +309,8 @@ margin-left: 4%;
 							category : category,
 							batchId:1,
 							questionSequence:0,
-							answers:""
+							answers:"",
+							wrongIndex:""
 						},
 						cache : false,
 						success : function(data) {
@@ -325,7 +338,31 @@ margin-left: 4%;
 			}
 			return text;
 		}
+		function arrayToString(array){
+			var string="";
+			for(var i=0;i<array.length-1;i++){
+				string +=array[i]+",";
+			}
+			return string;
+		}
+		function getWrongNum(num){
 
+			text = "请听题,";
+			num=findNextQuestion(num);
+			var question = questionObj.question;
+			var operator = questionObj.operator;
+			var operatorArray = operator.split(",");
+
+			for (var i = 0; i < question.length; i++) {
+				if (operatorArray[i] == "+") {
+					text+=question[i]+",";
+				}else
+					{
+					text+="减"+question[i]+",";
+					}
+			}
+			return text;
+		}
 		var yitemp = "";
 		function endVoice() {
 
@@ -343,13 +380,53 @@ margin-left: 4%;
 		});
 		$(".end").on("click", function() {
 
-
+			var tempIndex=0;
 			var answer = $("#answer").val();
 			if (answer == "") {
 				swal("未答题", "请输入你的答案哦~！", "error");
 				return;
 			}
 
+
+			if(wrongCollection!=""&&wrongCollection=="yes"){
+
+				var si=wrongIndexStatic%10;
+				var bi=Math.floor(wrongIndexStatic/10)+1;
+				showAnswer(index);
+				if (answer == currentAnswer) {
+					$("#right").show();
+					$("#wrong").hide();
+
+					answerArray[wrongIndexStatic-1]=bi+"/"+si+"/"+"1";
+					wrongIndexArray.splice(wrongIndexs-1,1);
+					var wrongAnswers=arrayToString(answerArray);
+					var wrongIndexString=arrayToString(wrongIndexArray);
+					$.ajax({
+						type : "GET",
+						url : "../AbacusQuiz/updateHistoryQuiz",
+						data : {
+							openID : uid,
+							category : category,
+							answers : wrongAnswers,
+							wrongIndex:wrongIndexString
+						},
+						cache : false,
+						success : function(data) {
+							if (data) {
+							}
+						}
+					});
+					wrongIndexs=0;
+				} else {
+					$("#wrong").show();
+					$("#right").hide();
+				}
+
+				$("#endPanel").hide();
+				$("#answerPanel").show();
+				setTimeout("wrongStart()",1000);
+				
+			}else{
 			showAnswer(index);
 			if (answer == currentAnswer) {
 				$("#right").show();
@@ -361,6 +438,8 @@ margin-left: 4%;
 				$("#right").hide();
 				wrongQ++;
 				answers += batchId + "/" + sequence + "/" + "0,";
+				tempIndex=(batchId-1)*10+sequence;
+				wrongIndex += tempIndex+",";
 			}
 			$.ajax({
 				type : "GET",
@@ -370,7 +449,8 @@ margin-left: 4%;
 					category : category,
 					batchId : batchId,
 					questionSequence : sequence,
-					answers : answers
+					answers : answers,
+					wrongIndex:wrongIndex
 				},
 				cache : false,
 				success : function(data) {
@@ -380,14 +460,47 @@ margin-left: 4%;
 			});
 			$("#endPanel").hide();
 			$("#answerPanel").show();
-			$("#answerPanel").show();
 
 			setTimeout("fakeClick()",1000);
+		}
 
 		});
 		function fakeClick(){
 			$(".start").click();
 		}
+
+		var wrongIndexs=0;
+		var wrongIndexStatic=0;
+		function wrongStart(){
+			$('#Result').html("");
+			getHistoryQuestion();
+			wrongIndexStatic=wrongIndexArray[wrongIndexs];
+			wrongIndexs++;
+			$("#answer").val("");
+			if(wrongIndexStatic!=""){
+
+				$("#timestext").val(wrongIndexStatic);
+				$("#startPanel").hide();
+				$("#answerPanel").hide();
+				$("#fakePanel").show();
+				var _iframe = $('#Result').find(".speech_iframe");
+				var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + getWrongNum(wrongIndexStatic) + '&spd='+speed;		
+				console.log("getNumber:"+getWrongNum(wrongIndexStatic));
+					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
+						var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";
+						$('#Result').append(iframe);
+						$("#voice").attr("src",src);
+					})();
+			}
+			else{
+
+				$("#timestext").val(wrongIndexStatic);
+				$("#startPanel").hide();
+				$("#answerPanel").hide();
+				$("#fakePanel").hide();
+			}
+		}
+		
 		$(".exit").on("click", function() {
 			if(level=='basic'){
 				window.location.href = "NavigatorForBasic.jsp?UID=" + uid;}

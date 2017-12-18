@@ -30,6 +30,11 @@ blog: http://www.tuterm.com
 				//点击链接播报
 				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
+
+					if(wrongCollection!=""&&wrongCollection=="yes"){
+						wrongStart();
+					}
+					else{
 					_this.html("");
 					$("#startPanel").hide();
 					$("#answerPanel").hide();
@@ -133,7 +138,8 @@ blog: http://www.tuterm.com
 						_this.append(iframe);
 						$("#voice").attr("src",src);
 					})();}
-				});
+				}
+			});
 			} else { //自动播报
 				_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
 					var iframe = "<iframe height='0' width='0' class='speech_iframe' scrolling='no' frameborder='0' src='" + src + "' ></iframe>";

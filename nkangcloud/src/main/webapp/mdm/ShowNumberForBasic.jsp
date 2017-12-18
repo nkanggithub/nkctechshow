@@ -331,7 +331,8 @@ margin-left: 4%;
 														category : category,
 														batchId:1,
 														questionSequence:0,
-														answers:""
+														answers:"",
+														wrongIndex:""
 													},
 													cache : false,
 													success : function(data) {

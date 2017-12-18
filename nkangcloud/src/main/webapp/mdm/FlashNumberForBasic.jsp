@@ -4,7 +4,8 @@
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
 	int speed = Integer.parseInt(request.getParameter("speed"));
-String category = request.getParameter("category");
+	String wrongCollection = request.getParameter("wrongCollection");
+	String category = request.getParameter("category");
 	String uid = request.getParameter("UID");
 	String level="";
 	if(uid!=null||uid!=""){
@@ -132,8 +133,10 @@ margin-left: 4%;
 		var uid='<%=uid%>';
 		var level='<%=level%>';
 		var category='<%=category%>';
+		var wrongCollection='<%=wrongCollection%>';
 		var rightQ=0;
 		var wrongQ=0;
+		var answerArray=new Array();
 		var questions=null;
 		var questionNumber=0;
 		var questionObj = null;
@@ -144,6 +147,8 @@ margin-left: 4%;
 		var rightQ=0;
 		var wrongQ=0;
 		var totalQuestion=0;
+		var wrongIndexArray=new Array();
+		var wrongIndex="";
 
 		$('.form_edit .num').click(function(){
 			var oDiv = $("#answer");
@@ -185,8 +190,12 @@ margin-left: 4%;
 				success : function(data) {
 					if(data&&data.questionSequence!=0&&data.questionSequence!=null){
 						answers=data.answers;
+						wrongIndex=data.wrongIndex;
 						var b=parseInt(data.batchId);
 						var s=parseInt(data.questionSequence);
+
+						answerArray=data.answers.split(",");
+						wrongIndexArray=data.wrongIndex.split(",");
 						var ts=(b-1)*10+s;
 						questionNumber=ts;
 					}
@@ -225,7 +234,8 @@ margin-left: 4%;
 							category : category,
 							batchId:1,
 							questionSequence:0,
-							answers:""
+							answers:"",
+							wrongIndex:""
 						},
 						cache : false,
 						success : function(data) {
@@ -378,6 +388,7 @@ margin-left: 4%;
 					break;
 				}
 			}
+			if(wrongCollection!="yes"){
 			if(questionObj==null){
 				batchId=Math.floor(questionNumber/10)+1;
 				sequence=questionNumber%10;
@@ -400,6 +411,7 @@ margin-left: 4%;
 				});
 				questionNumber++;
 				findNextQuestion(questionNumber);
+			}
 			}
 			return questionNumber;
 			
@@ -437,12 +449,52 @@ margin-left: 4%;
 		}
 		$(".end").on("click", function() {
 
+			var tempIndex=0;
 			var answer = $("#answer").val();
 			if (answer == "") {
 				swal("未答题", "请输入你的答案哦~！", "error");
 				return;
 			}
 
+			if(wrongCollection!=""&&wrongCollection=="yes"){
+
+				var si=wrongIndexStatic%10;
+				var bi=Math.floor(wrongIndexStatic/10)+1;
+				showAnswer(index);
+				if (answer == currentAnswer) {
+					$("#right").show();
+					$("#wrong").hide();
+
+					answerArray[wrongIndexStatic-1]=bi+"/"+si+"/"+"1";
+					wrongIndexArray.splice(wrongIndexs-1,1);
+					var wrongAnswers=arrayToString(answerArray);
+					var wrongIndexString=arrayToString(wrongIndexArray);
+					$.ajax({
+						type : "GET",
+						url : "../AbacusQuiz/updateHistoryQuiz",
+						data : {
+							openID : uid,
+							category : category,
+							answers : wrongAnswers,
+							wrongIndex:wrongIndexString
+						},
+						cache : false,
+						success : function(data) {
+							if (data) {
+							}
+						}
+					});
+					wrongIndexs=0;
+				} else {
+					$("#wrong").show();
+					$("#right").hide();
+				}
+
+				$("#endPanel").hide();
+				$("#answerPanel").show();
+				setTimeout("wrongStart()",1000);
+				
+			}else{
 			showAnswer(index);
 			if (answer == currentAnswer) {
 				$("#right").show();
@@ -454,6 +506,8 @@ margin-left: 4%;
 				$("#right").hide();
 				wrongQ++;
 				answers += batchId + "/" + sequence + "/" + "0,";
+				tempIndex=(batchId-1)*10+sequence;
+				wrongIndex += tempIndex+",";
 			}
 			$.ajax({
 				type : "GET",
@@ -463,7 +517,8 @@ margin-left: 4%;
 					category : category,
 					batchId : batchId,
 					questionSequence : sequence,
-					answers : answers
+					answers : answers,
+					wrongIndex:wrongIndex
 				},
 				cache : false,
 				success : function(data) {
@@ -475,12 +530,52 @@ margin-left: 4%;
 			$("#answerPanel").show();
 
 			setTimeout("start()",1000);
+			}
 
 		});
-		$(".start").on("click", function() {
-
-			start();
+		$(".start").on("click", function(){
+			if(wrongCollection!=""&&wrongCollection=="yes"){
+				wrongStart();
+			}else{
+			start();}
 		});
+
+		var wrongIndexs=0;
+		var wrongIndexStatic=0;
+		function wrongStart(){
+			getHistoryQuestion();
+			wrongIndexStatic=wrongIndexArray[wrongIndexs];
+			wrongIndexs++;
+			$("#answer").val("");
+			if(wrongIndexStatic!=""){
+
+				$("#timestext").val(wrongIndexStatic);
+				$("#answerPanel").hide();
+				$("#startPanel").hide();
+				$("#processPanel").show();
+				view = $("#ShowNumberPanel");
+				$("#ShowNumberPanel").text("准备");
+				view.fadeOut(1000);
+				m=0;
+				wrongIndexStatic=findNextQuestion(wrongIndexStatic);
+				snto = setTimeout("ShowNumber()", 1000);
+			}
+			else{
+
+				$("#timestext").val(wrongIndexStatic);
+				$("#answerPanel").hide();
+				$("#startPanel").hide();
+				$("#processPanel").hide();
+			}
+		}
+		
+		function arrayToString(array){
+			var string="";
+			for(var i=0;i<array.length-1;i++){
+				string +=array[i]+",";
+			}
+			return string;
+		}
 
 		$(".exit").on("click", function() {
 			if(level=='basic'){
