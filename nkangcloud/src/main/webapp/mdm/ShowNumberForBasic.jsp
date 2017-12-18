@@ -148,26 +148,30 @@ margin-left: 4%;
 	var wrongIndexs=0;
 	var wrongIndexStatic=0;
 	function wrongStart(){
-
+		if(wrongIndexs>=wrongIndexArray.length-1){
+			wrongIndexs=0;
+		}
 		getHistoryQuestion();
 		wrongIndexStatic=wrongIndexArray[wrongIndexs];
 		wrongIndexs++;
 		$("#answer").val("");
-		if(wrongIndexStatic!=""){
-		getQuestion(wrongIndexStatic);
-		$("#timestext").val(wrongIndexStatic);
-		$("#answerPanel").hide();
-		$("#startPanel").hide();
-		$("#processPanel").show();
-		}
-		else{
+		if(wrongIndexStatic==""&&wrongIndexArray.length==1){
 
+			swal("很棒哦~！", "错题都被纠正了！", "success");
 			$("#timestext").val(wrongIndexStatic);
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").hide();
+		}else{
+
+			getQuestion(wrongIndexStatic);
+			$("#timestext").val(wrongIndexStatic);
+			$("#answerPanel").hide();
+			$("#startPanel").hide();
+			$("#processPanel").show();
+			}
 		}
-	}
+	
 	
 	function arrayToString(array){
 		var string="";
