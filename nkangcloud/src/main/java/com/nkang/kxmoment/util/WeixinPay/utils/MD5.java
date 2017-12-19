@@ -48,11 +48,9 @@ public class MD5 {
         String resultString = null;
         try {
             resultString = origin;
-            System.out.println("--Original String--"+resultString);
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(resultString.getBytes("UTF-8"));
             resultString = byteArrayToHexString(md.digest());
-            System.out.println(resultString.toUpperCase());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -109,7 +109,7 @@ public class PayQrCode {
 		setBody("LeshuCourse");
 		setDevice_info("WEB");
 		setNotify_url("http://leshucq.bceapp.com/mdm/AddQuestions.jsp");
-		setOut_trade_no("123456");
+		setOut_trade_no("111");
 		setSign_type("MD5");
 		setTotal_fee("1");
 		setTrade_type("JSAPI");
