@@ -11,6 +11,7 @@ public class WeChatMDLUser extends WeChatUser {
 	public int workDay;
 	public int CongratulateNum;
 	public String role;
+	public String teacher;
 	public String level;
 	public String selfIntro;
 	public String email;
@@ -140,6 +141,12 @@ public class WeChatMDLUser extends WeChatUser {
 	public void setPoint(String point) {
 		this.point = point;
 	}
-	
+
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
 	
 }
