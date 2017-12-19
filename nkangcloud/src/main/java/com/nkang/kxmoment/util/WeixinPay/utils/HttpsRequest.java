@@ -117,8 +117,6 @@ public class HttpsRequest{
         StringEntity postEntity = new StringEntity(postDataXML, "UTF-8");
         httpPost.addHeader("Content-Type", "text/xml");
         httpPost.setEntity(postEntity);
-/*		System.setProperty("http.proxyHost", Constants.proxyInfo);
-		System.setProperty("http.proxyPort", "8080");*/
         httpPost.setConfig(requestConfig);
 
         try {

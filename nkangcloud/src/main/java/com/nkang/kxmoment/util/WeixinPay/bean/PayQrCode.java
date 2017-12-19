@@ -23,17 +23,97 @@ public class PayQrCode {
 	private String nonce_str ="";
 	private String product_id = "";
 	private String sign = "";
+	private String body = "";
+	private String device_info = "";
+	private String notify_url = "";
+	private String out_trade_no = "";
+	private String sign_type = "";
+	private String total_fee = "";
+	private String trade_type = "";
+	private String openid = "";
 	
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public String getDevice_info() {
+		return device_info;
+	}
+
+	public void setDevice_info(String device_info) {
+		this.device_info = device_info;
+	}
+
+	public String getNotify_url() {
+		return notify_url;
+	}
+
+	public void setNotify_url(String notify_url) {
+		this.notify_url = notify_url;
+	}
+
+	public String getOut_trade_no() {
+		return out_trade_no;
+	}
+
+	public void setOut_trade_no(String out_trade_no) {
+		this.out_trade_no = out_trade_no;
+	}
+
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
+
+	public String getTotal_fee() {
+		return total_fee;
+	}
+
+	public void setTotal_fee(String total_fee) {
+		this.total_fee = total_fee;
+	}
+
+	public String getTrade_type() {
+		return trade_type;
+	}
+
+	public void setTrade_type(String trade_type) {
+		this.trade_type = trade_type;
+	}
+
 	/**
 	 * @param product_id
 	 */
 	public PayQrCode(String product_id){
 		setAppid(Configure.getAppid());
 		setMch_id(Configure.getMchid());
-		setTime_stamp(System.currentTimeMillis()/1000+"");
-		setNonce_str(UUID.randomUUID().toString().replace("-", ""));
-		setProduct_id(product_id);
-		
+		//setTime_stamp(System.currentTimeMillis()/1000+"");
+		//setNonce_str(UUID.randomUUID().toString().replace("-", ""));
+		setNonce_str("123");
+		//setProduct_id(product_id);
+		setBody("LeshuCourse");
+		setDevice_info("WEB");
+		setNotify_url("http://leshucq.bceapp.com/mdm/AddQuestions.jsp");
+		setOut_trade_no("123456");
+		setSign_type("MD5");
+		setTotal_fee("1");
+		setTrade_type("JSAPI");
+		setOpenid("oqPI_xLq1YEJOczHi4DS2-1U0zqc");
 		try {
 			Map<String, String> map = BeanUtils.describe(this);
 			map.remove("class");

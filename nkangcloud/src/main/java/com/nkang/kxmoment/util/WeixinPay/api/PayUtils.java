@@ -37,7 +37,15 @@ public class PayUtils {
 		map.put("time_stamp", qrCode.getTime_stamp());
 		map.put("nonce_str", qrCode.getNonce_str());
 		
-		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>1482792242</mch_id><nonce_str>4cbfd90c6359431f8ed48b75b5e746f8</nonce_str><notify_url>http://leshucq.bceapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>123456</out_trade_no><sign_type>HMAC-SHA256</sign_type><spbill_create_ip>123.12.12.123</spbill_create_ip><total_fee>1</total_fee><trade_type>NATIVE</trade_type><sign>"+qrCode.getSign()+"</sign></xml>";
+/*		map.put("body", "LeshuCourse");
+		map.put("device_info", "WEB");
+		map.put("notify_url", "http://leshucq.bceapp.com/mdm/AddQuestions.jsp");
+		map.put("out_trade_no", "123456");
+		map.put("sign_type", "MD5");
+		map.put("total_fee", "1");
+		map.put("trade_type", "JSAPI");*/
+		
+		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>123</nonce_str><notify_url>http://leshucq.bceapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>123456</out_trade_no><sign_type>MD5</sign_type><total_fee>1</total_fee><trade_type>JSAPI</trade_type><openid>oqPI_xLq1YEJOczHi4DS2-1U0zqc</openid><sign>"+qrCode.getSign()+"</sign></xml>";
 		return xmlStr;
 		//return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	}
