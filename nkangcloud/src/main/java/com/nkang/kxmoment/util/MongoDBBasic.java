@@ -4175,6 +4175,7 @@ public static AbacusRank findAbacusRankByOpenid(String openid){
 					WeChatMDLUser weChatMDLUser = new WeChatMDLUser();
 					DBObject o = queryresults.next();
 					weChatMDLUser.setOpenid(o.get("OpenID")+"");
+					weChatMDLUser.setOpenid(o.get("HeadUrl")+"");
 					Object teamer = o.get("Teamer");
 					DBObject teamobj = new BasicDBObject();
 					teamobj = (DBObject) teamer;

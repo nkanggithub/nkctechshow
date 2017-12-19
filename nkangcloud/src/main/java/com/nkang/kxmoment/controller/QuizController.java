@@ -273,4 +273,5 @@ public class QuizController {
 		AbacusRank quizs=MongoDBBasic.findAbacusRankByOpenid(id);
 		return quizs;
 	}
+	
 }
