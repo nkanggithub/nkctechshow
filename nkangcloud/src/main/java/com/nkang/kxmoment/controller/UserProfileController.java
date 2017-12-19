@@ -440,8 +440,12 @@ public class UserProfileController {
 	
 	
 	@RequestMapping("/findUsersByRole")
-	public @ResponseBody List<WeChatMDLUser> findUsersByRole(@RequestParam(value="role")String role) throws Exception{
-		return MongoDBBasic.findUsersByRole(role);
+	public @ResponseBody List<WeChatMDLUser> findUsersByRole() throws Exception{
+		List<WeChatMDLUser> wu = new ArrayList<WeChatMDLUser>();
+		wu.addAll(MongoDBBasic.findUsersByRole("Role001"));
+		wu.addAll(MongoDBBasic.findUsersByRole("Role004"));
+		wu.addAll(MongoDBBasic.findUsersByRole("Role005"));
+		return wu;
 	}
 
 	@RequestMapping("/updateUserByOpenid")
