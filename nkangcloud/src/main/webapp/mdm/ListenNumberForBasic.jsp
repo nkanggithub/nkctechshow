@@ -473,12 +473,24 @@ margin-left: 4%;
 		var wrongIndexStatic=0;
 		function wrongStart(){
 			$('#Result').html("");
+
+			if(wrongIndexs>=wrongIndexArray.length-1){
+				wrongIndexs=0;
+			}
 			getHistoryQuestion();
 			wrongIndexStatic=wrongIndexArray[wrongIndexs];
 			wrongIndexs++;
 			$("#answer").val("");
-			if(wrongIndexStatic!=""){
+			if(wrongIndexStatic==""&&wrongIndexArray.length==1){
+				swal("很棒哦~！", "错题都被纠正了！", "success");
+				$("#timestext").val(wrongIndexStatic);
+				$("#startPanel").hide();
+				$("#answerPanel").hide();
+				$("#fakePanel").hide();
 
+			}
+			else{
+				
 				$("#timestext").val(wrongIndexStatic);
 				$("#startPanel").hide();
 				$("#answerPanel").hide();
@@ -491,13 +503,6 @@ margin-left: 4%;
 						$('#Result').append(iframe);
 						$("#voice").attr("src",src);
 					})();
-			}
-			else{
-
-				$("#timestext").val(wrongIndexStatic);
-				$("#startPanel").hide();
-				$("#answerPanel").hide();
-				$("#fakePanel").hide();
 			}
 		}
 		
