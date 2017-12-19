@@ -4098,4 +4098,98 @@ public static AbacusRank findAbacusRankByOpenid(String openid){
 	}
 	return ar;
 	}
+
+
+/*
+ * findUsersByRole
+ */
+	public static List<WeChatMDLUser> findUsersByRole(String role){
+		List<WeChatMDLUser> wmList = new ArrayList<WeChatMDLUser>();
+		try {
+			mongoDB = getMongoDB();
+			BasicDBObject query = new BasicDBObject();
+			query.put("Teamer.role", role);
+			DBCursor queryresults = mongoDB.getCollection(wechat_user).find(query);
+			if (null != queryresults) {
+				while (queryresults.hasNext()) {
+					WeChatMDLUser weChatMDLUser = new WeChatMDLUser();
+					DBObject o = queryresults.next();
+					weChatMDLUser.setOpenid(o.get("OpenID")+"");
+					Object teamer = o.get("Teamer");
+					DBObject teamobj = new BasicDBObject();
+					teamobj = (DBObject) teamer;
+					if (teamobj != null) {
+						if (teamobj.get("selfIntro") != null) {
+							weChatMDLUser.setSelfIntro(teamobj.get(
+									"selfIntro").toString());
+						}
+						if (teamobj.get("realName") != null) {
+							weChatMDLUser.setNickname(teamobj.get(
+									"realName").toString());
+						}
+					}
+					wmList.add(weChatMDLUser);
+				}
+			}
+		} catch (Exception e) {
+			log.info("findUsersByRole--" + e.getMessage());
+		}
+		return wmList;
+	}
+	
+	/*
+	 * updateUserByid
+	 */
+	public static boolean updateUserByOpenid(String studentID,String teacherID) {
+		mongoDB = getMongoDB();
+		
+		Boolean ret = false;
+		try {
+			BasicDBObject doc = new BasicDBObject();
+			DBObject update = new BasicDBObject();
+			update.put("Teacher", teacherID);
+			doc.put("$set", update);
+			WriteResult wr = mongoDB.getCollection(wechat_user).update(
+					new BasicDBObject().append("OpenID", studentID), doc);
+			ret = true;
+		} catch (Exception e) {
+			log.info("updateUser--" + e.getMessage());
+		}
+		return ret;
+	}
+	
+	
+	/*
+	 * GET student by teacher
+	 */
+	public static List<WeChatMDLUser> getUserByTeacherOpenid(String studentID,String teacherID) {
+		List<WeChatMDLUser> students = new ArrayList<WeChatMDLUser>();
+		mongoDB = getMongoDB();
+		
+		try {
+			BasicDBObject query = new BasicDBObject();
+			query.put("Teacher", teacherID);
+			DBCursor queryresults = mongoDB.getCollection(wechat_user).find(query);
+			if (null != queryresults) {
+				while (queryresults.hasNext()) {
+					WeChatMDLUser weChatMDLUser = new WeChatMDLUser();
+					DBObject o = queryresults.next();
+					weChatMDLUser.setOpenid(o.get("OpenID")+"");
+					Object teamer = o.get("Teamer");
+					DBObject teamobj = new BasicDBObject();
+					teamobj = (DBObject) teamer;
+					if (teamobj != null) {
+						if (teamobj.get("realName") != null) {
+							weChatMDLUser.setNickname(teamobj.get("realName").toString());
+						}
+					}
+					students.add(weChatMDLUser);
+				}
+			}
+		} catch (Exception e) {
+			log.info("updateUser--" + e.getMessage());
+		}
+		return students;
+	}
+	
 }

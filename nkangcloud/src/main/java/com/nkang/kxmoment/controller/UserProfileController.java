@@ -437,5 +437,20 @@ public class UserProfileController {
 		    return message;
 
 	}
+	
+	
+	@RequestMapping("/findUsersByRole")
+	public @ResponseBody List<WeChatMDLUser> findUsersByRole(@RequestParam(value="role")String role) throws Exception{
+		return MongoDBBasic.findUsersByRole(role);
+	}
 
+	@RequestMapping("/updateUserByOpenid")
+	public @ResponseBody boolean updateUserByOpenid(@RequestParam(value="studentID")String studentID,@RequestParam(value="teacherID")String teacherID) throws Exception{
+		return MongoDBBasic.updateUserByOpenid(studentID,teacherID);
+	}
+	
+	@RequestMapping("/getUserByTeacherOpenid")
+	public @ResponseBody List<WeChatMDLUser> getUserByTeacherOpenid(@RequestParam(value="studentID")String studentID,@RequestParam(value="teacherID")String teacherID) throws Exception{
+		return MongoDBBasic.getUserByTeacherOpenid(studentID,teacherID);
+	}
 }

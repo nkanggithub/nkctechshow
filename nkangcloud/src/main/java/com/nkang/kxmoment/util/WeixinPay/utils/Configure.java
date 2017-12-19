@@ -10,7 +10,7 @@ public class Configure {
 
 	private static String subMchID = "1482792242";
 
-	private static String certLocalPath = "C:\\cert\\apiclient_cert.p12";
+	private static String certLocalPath = "C:\\CERT\\apiclient_cert.p12";
 
 	private static String certPassword = "1482792242";
 	
