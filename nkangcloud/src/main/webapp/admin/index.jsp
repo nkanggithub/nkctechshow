@@ -463,7 +463,7 @@ function showUpdateUserPanel(openid,name){
 			            +'													    </select></td>'
 			            +'													</tr>'
 			            +'													<tr>'
-			            +'														<td>老师:</td>'
+			            +'														<td>乐数老师:</td>'
 			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
 			            +'														<td><select  name="teacher">'
 			            +teacherSelect
