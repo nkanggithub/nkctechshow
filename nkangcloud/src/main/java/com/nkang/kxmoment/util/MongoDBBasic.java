@@ -1150,6 +1150,7 @@ public class MongoDBBasic {
 			update.put("Teamer.phone", user.getPhone());
 			update.put("Teamer.role", user.getRole());
 			update.put("Teamer.level", user.getLevel());
+			update.put("Teacher", user.getTeacher());
 			System.out.println("get level from mongoBasic"+user.getLevel());
 			doc.put("$set", update);
 			WriteResult wr = mongoDB.getCollection(wechat_user)
@@ -2036,6 +2037,10 @@ public class MongoDBBasic {
 						}
 						if (o.get("NickName") != null) {
 							weChatMDLUser.setNickname(o.get("NickName")
+									.toString());
+						}
+						if (o.get("Teacher") != null) {
+							weChatMDLUser.setTeacher(o.get("Teacher")
 									.toString());
 						}
 						Object CongratulateHistory = o

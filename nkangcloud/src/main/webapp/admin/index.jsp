@@ -347,8 +347,28 @@ function findRoleList(){
 	});
 	
 }
+var teacherIds=new Array();
+var teacherNames=new Array();
+function findTeacherList(){
+	$.ajax({
+		 url:'../userProfile/findUsersByRole',
+		 type:"GET",
+		 data : {},
+		 success:function(data){
+			 if(data){
+				 for(var i=0;i<data.length;i++){
+					 teacherIds[i]=data[i].openid;
+					 teacherNames[i]=data[i].nickname;
+				 }
+			 }
+			 
+		}
+	});
+	
+}
 function showUpdateUserPanel(openid,name){
 	showCommonPanel();
+	findTeacherList();
 	$(".Work_Mates_div_list_div2").removeClass("editBtn");
 	$(".Work_Mates_div_list_div2").remove(".edit");
 	$("body").append('<div id="UpdateUserPart" class="bouncePart" style="position:fixed;z-index:999;top:100px;width:80%;margin-left:10%;"><legend>编辑【'+name+'】的基本信息</legend><div id="UpdateUserPartDiv" style="margin-top:0px;margin-bottom: -20px;background-color:#fff;">'
@@ -379,7 +399,9 @@ function showUpdateUserPanel(openid,name){
 				var levelList=new Array('basic','primary','middle','high');
 				var levelNameList=new Array('启蒙','初级','中级','高级');
 				var selectedName="";
+				var selectedTeacherName="";
 				var level=data[0].level==null?'':data[0].level;
+				var teacher=data[0].Teacher==null?'':data[0].Teacher;
 				if(level!=''){
 					for(var q=0;q<levelList.length;q++){
 						if(level==levelList[q]){
@@ -390,9 +412,24 @@ function showUpdateUserPanel(openid,name){
 						}
 					}
 				}
+				if(teacher!=''){
+					for(var p=0;p<teacherIds.length;p++){
+						if(teacher==teacherIds[p]){
+							teacherIds.splice(p,1);
+							selectedTeacherName=teacherNames[p];
+							teacherNames.splice(p,1);
+							break;
+						}
+					}
+				}
 				var levelSelect="<option selected='true' value='"+level+"'>"+selectedName+"</option>";
 				for(var p=0;p<levelList.length;p++){
 					levelSelect+="<option value='"+levelList[p]+"'>"+levelNameList[p]+"</option>";
+				}
+
+				var teacherSelect="<option selected='true' value='"+teacher+"'>"+selectedTeacherName+"</option>";
+				for(var p=0;p<teacherIds.length;p++){
+					teacherSelect+="<option value='"+teacherIds[p]+"'>"+teacherNames[p]+"</option>";
 				}
 				var selfIntro=data[0].selfIntro==null?'':data[0].selfIntro;
 				var roleSelect='														<option value="">-请选择-</option>';
@@ -423,6 +460,13 @@ function showUpdateUserPanel(openid,name){
 			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
 			            +'														<td><select  name="role">'
 			            +roleSelect
+			            +'													    </select></td>'
+			            +'													</tr>'
+			            +'													<tr>'
+			            +'														<td>老师:</td>'
+			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
+			            +'														<td><select  name="teachers">'
+			            +teacherSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
 			            +'													<tr>'
