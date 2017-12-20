@@ -401,7 +401,7 @@ function showUpdateUserPanel(openid,name){
 				var selectedName="";
 				var selectedTeacherName="";
 				var level=data[0].level==null?'':data[0].level;
-				var teacher=data[0].Teacher==null?'':data[0].Teacher;
+				var teacher=data[0].teacher==null?'':data[0].teacher;
 				if(level!=''){
 					for(var q=0;q<levelList.length;q++){
 						if(level==levelList[q]){
@@ -465,7 +465,7 @@ function showUpdateUserPanel(openid,name){
 			            +'													<tr>'
 			            +'														<td>老师:</td>'
 			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
-			            +'														<td><select  name="teachers">'
+			            +'														<td><select  name="teacher">'
 			            +teacherSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
