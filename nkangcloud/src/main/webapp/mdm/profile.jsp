@@ -31,6 +31,13 @@ if (session.getAttribute("location") == null) {
 	wcu = (WeChatUser) session.getAttribute("wcu");
 	curLoc = (String) session.getAttribute("location");
 }
+String role=MongoDBBasic.queryAttrByOpenID("role", uid,true);
+System.out.println("role is========"+role);
+boolean isTeacher=false;
+if(role.equals("Role001")||role.equals("Role004")||role.equals("Role005")){
+	isTeacher=true;
+System.out.println("isTeacher is true");
+}
 boolean IsAuthenticated=MongoDBBasic.checkUserAuth(uid,"IsAuthenticated");
 SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 Date date=new Date();
@@ -38,6 +45,8 @@ String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get("NickName"));
 String level=res.get("level");
+
+System.out.println("isTeacher====="+isTeacher);
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -1580,6 +1589,12 @@ function getNowFormatDate() {
 													<h4>悟时自渡</h4> 
 												<% } %> 
 													</td>
+													<%if(isTeacher==true) { %>
+												<td>
+												<a target="_self"  href="http://leshucq.bceapp.com/mdm/HomeWork.jsp?UID=<%=uid %>">
+												<img src="http://leshucq.bj.bcebos.com/standard/leshuTeacher.png" />
+													<h4>我的学员</h4></a>
+												</td><% } %>
 											</tr>
 										</table>
 									</div>

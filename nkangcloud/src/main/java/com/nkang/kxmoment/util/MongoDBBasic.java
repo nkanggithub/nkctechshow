@@ -679,6 +679,35 @@ public class MongoDBBasic {
 		}
 		return ret;
 	}
+	@SuppressWarnings("null")
+	public static String queryAttrByOpenID(String attr,String OpenID,boolean isTeamer) {
+		mongoDB = getMongoDB();
+		try {
+			DBObject query = new BasicDBObject();
+			query.put("OpenID", OpenID);
+			DBObject queryresult = mongoDB.getCollection(wechat_user).findOne(
+					query);
+			if (queryresult != null) {
+				if(isTeamer){
+					Object teamer = queryresult.get("Teamer");
+					DBObject teamobj = new BasicDBObject();
+					teamobj = (DBObject) teamer;
+					if (teamobj != null) {
+						if (teamobj.get(attr) != null) {
+
+							return teamobj.get(attr).toString();
+						}
+					}
+					
+				}else{
+				return queryresult.get(attr).toString();
+				}
+			}
+		} catch (Exception e) {
+			log.info("queryWeChatUser--" + e.getMessage());
+		}
+		return "";
+	}
 	
 	public static boolean queryWeChatUserTelephone(String telephone) {
 		mongoDB = getMongoDB();

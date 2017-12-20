@@ -146,8 +146,17 @@ $.ajax({
 
 }
 function popSweetAlert(uid){
-	var text="<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第一关\")'>第一关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第二关\")'>第二关</p></div>"
-	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第三关\")'>第三关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第四关\")'>第四关</p></div>";	swal({  
+	var text="<div style='width:100%;height: 250px;overflow:scroll;'><div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第一关\")'>第一关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第二关\")'>第二关</p></div>"
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第三关\")'>第三关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第四关\")'>第四关</p></div>"	
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第五关\")'>第五关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第六关\")'>第六关</p></div>"	
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第七关\")'>第七关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第八关\")'>第八关</p></div>"	
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第九关\")'>第九关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十关\")'>第十关</p></div>"	
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十一关\")'>第十一关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十二关\")'>第十二关</p></div>"
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十三关\")'>第十三关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十四关\")'>第十四关</p></div>"	
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十五关\")'>第十五关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十六关\")'>第十六关</p></div>"	
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十七关\")'>第十七关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十八关\")'>第十八关</p></div>"	
+	+"<div style='width:100%;height:40px;line-height:40px;margin-top:10px'><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第十九关\")'>第十九关</p><p class='gk' onclick='getHistoryAbacus(\""+uid+"\",\"第二十关\")'>第二十关</p></div></div>";	
+	swal({  
         title:"请选择关卡",  
         text:text,
         html:"true",
