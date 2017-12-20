@@ -94,6 +94,8 @@ public class RegisterController {
 		user.setRealName(realName);
 		user.setPhone(phone);
 		user.setEmail(email);
+
+		System.out.println("Teacher first" + user.getTeacher());
 		if(!StringUtils.isNullOrEmpty(registerDate)){
 			user.setRegisterDate(registerDate);
 		}

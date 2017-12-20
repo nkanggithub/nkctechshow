@@ -454,7 +454,7 @@ public class UserProfileController {
 	}
 	
 	@RequestMapping("/getUserByTeacherOpenid")
-	public @ResponseBody List<WeChatMDLUser> getUserByTeacherOpenid(@RequestParam(value="studentID")String studentID,@RequestParam(value="teacherID")String teacherID) throws Exception{
-		return MongoDBBasic.getUserByTeacherOpenid(studentID,teacherID);
+	public @ResponseBody List<WeChatMDLUser> getUserByTeacherOpenid(@RequestParam(value="teacherID")String teacherID) throws Exception{
+		return MongoDBBasic.getUserByTeacherOpenid(teacherID);
 	}
 }

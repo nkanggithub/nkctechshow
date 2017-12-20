@@ -1151,6 +1151,8 @@ public class MongoDBBasic {
 			update.put("Teamer.role", user.getRole());
 			update.put("Teamer.level", user.getLevel());
 			update.put("Teacher", user.getTeacher());
+
+			log.info("Teacher--" + user.getTeacher());
 			System.out.println("get level from mongoBasic"+user.getLevel());
 			doc.put("$set", update);
 			WriteResult wr = mongoDB.getCollection(wechat_user)
@@ -4167,7 +4169,7 @@ public static AbacusRank findAbacusRankByOpenid(String openid){
 	/*
 	 * GET student by teacher
 	 */
-	public static List<WeChatMDLUser> getUserByTeacherOpenid(String studentID,String teacherID) {
+	public static List<WeChatMDLUser> getUserByTeacherOpenid(String teacherID) {
 		List<WeChatMDLUser> students = new ArrayList<WeChatMDLUser>();
 		mongoDB = getMongoDB();
 		
@@ -4180,7 +4182,7 @@ public static AbacusRank findAbacusRankByOpenid(String openid){
 					WeChatMDLUser weChatMDLUser = new WeChatMDLUser();
 					DBObject o = queryresults.next();
 					weChatMDLUser.setOpenid(o.get("OpenID")+"");
-					weChatMDLUser.setOpenid(o.get("HeadUrl")+"");
+					weChatMDLUser.setHeadimgurl(o.get("HeadUrl")+"");
 					Object teamer = o.get("Teamer");
 					DBObject teamobj = new BasicDBObject();
 					teamobj = (DBObject) teamer;
