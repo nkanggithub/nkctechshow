@@ -123,10 +123,10 @@ margin-left: 4%;
 			<input id="totalO" type="text" style="width:40%;font-size:30px;font-weight:600;margin:0;padding:0;height:40px;text-align:right;padding-right:10px;" class="niput" value="" disabled=""/>
 			<input id="total" type="text" style="width:50%;font-size:23px;margin:0;padding:0;height:40px;text-align:left;padding-right:10%" class="niput sxt" value="" disabled="">
 			</div>
-<!-- 			<div style="text-align: center; margin: 15px;">
+			<div style="text-align: center; margin: 15px;display:none;">
 				<input id="next" type="button" class="btn btn-primary start middleBtn"
 					value="下一题">
-			</div> -->
+			</div> 
 		</div>
 	</section>
 	<div id="chart-container">FusionCharts will render here</div>

@@ -276,7 +276,7 @@ margin-left: 4%;
 
 				$("#chart-container2").show();
 				$("#chart-container").show();
-				$(this).val("下一题");
+				$("#next").val("下一题");
 
 				$("#answerPanel").hide();
 				$("#startPanel").show();
