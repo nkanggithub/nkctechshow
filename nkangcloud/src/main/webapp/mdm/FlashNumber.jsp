@@ -334,6 +334,7 @@ margin-left: 4%;
 				$("#chart-container").show();
 				$("#next").val("下一题");
 				$("#startPanel").show();
+				$("#answerPanel").hide();
 				$("#processPanel").hide();
 				return;
 			}
@@ -485,6 +486,7 @@ margin-left: 4%;
 					$("#chart-container2").show();
 
 					$("#startPanel").show();
+					$("#answerPanel").hide();
 					$("#processPanel").hide();
 					reset();
 					totalTime=0;
