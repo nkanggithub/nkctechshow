@@ -494,6 +494,7 @@ margin-left: 4%;
 
 			$("#answerPanel").show();
 
+			$(".circle").removeClass("start");
 			setTimeout("fakeClick()",1000);
 
 		});
