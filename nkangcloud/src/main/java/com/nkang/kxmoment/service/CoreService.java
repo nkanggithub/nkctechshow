@@ -163,7 +163,7 @@ public class CoreService
 						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/weiapp.png");
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article2);
-						String hardcodeUID = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
+						String hardcodeUID = "oO8exvz-DZOu8wc0f81v9EHYq2HE";
 						String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
 						if(hardcodeUID2.equalsIgnoreCase(fromUserName)||hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
 							Article article3 = new Article();
