@@ -273,7 +273,7 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle(cm.getClientName()+"|欢迎进入自我修炼");
 						article.setDescription("乐数在线练习");
-						article.setPicUrl("http://leshucq.bj.bcebos.com/standard/leshuTeacher.png");
+						article.setPicUrl("http://leshucq.bj.bcebos.com/standard/standard_leshuslide1.jpg");
 						article.setUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
 						articleList.add(article);
 						
@@ -287,7 +287,7 @@ public class CoreService
 						Article article3 = new Article();
 						article3.setTitle("乐数在线练习 - 迷时师渡");
 						article3.setDescription("乐数在线练习 - 迷时师渡");
-						article3.setPicUrl("http://leshu.bj.bcebos.com/icon/parenteacher.png");
+						article3.setPicUrl("http://leshucq.bj.bcebos.com/standard/leshuTeacher.png");
 						article1.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigator.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
 						articleList.add(article3);
 						
