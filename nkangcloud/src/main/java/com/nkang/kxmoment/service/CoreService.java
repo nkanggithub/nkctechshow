@@ -288,7 +288,7 @@ public class CoreService
 						article3.setTitle("乐数在线练习 - 迷时师渡");
 						article3.setDescription("乐数在线练习 - 迷时师渡");
 						article3.setPicUrl("http://leshucq.bj.bcebos.com/standard/leshuTeacher.png");
-						article1.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigator.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
+						article3.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigator.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
 						articleList.add(article3);
 						
 						newsMessage.setArticleCount(articleList.size());
