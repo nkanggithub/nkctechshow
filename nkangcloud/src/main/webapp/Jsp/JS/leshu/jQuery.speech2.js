@@ -31,7 +31,7 @@ blog: http://www.tuterm.com
 				var _speech = $(".start");
 				_speech.on('click', function() { //捕获点击事件	
 					var tempTime=minute*60+ (millisecond / 1000) + second;
-					if(qt=="minute"&&second>30){
+					if(qt=="minute"&&second>300){
 						$("#next").val("查看战绩");
 					}
 					if($("#next").val()!="查看战绩"){
@@ -39,7 +39,7 @@ blog: http://www.tuterm.com
 					$("#answerPanel").hide();
 					$("#fakePanel").show();
 					}
-					if(qt=="minute"&&second>30){
+					if(qt=="minute"&&second>300){
 						$("#next").val("下一题");
 					}
 					if($(this).val()=="查看战绩"){
@@ -193,8 +193,8 @@ blog: http://www.tuterm.com
 						wrongQ=0;
 						 rightQ=0;
 						timeStart();}
-						if(second>=30){
-							swal("答题结束", "三分钟到了噢~！", "warning");
+						if(second>=300){
+							swal("答题结束", "五分钟到了噢~！", "warning");
 							timeStop();
 							FusionCharts.ready(function() {
 								var cSatScoreChart = new FusionCharts({
