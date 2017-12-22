@@ -2,10 +2,9 @@ package com.nkang.kxmoment.util;
 
 public final class Constants {
 	private Constants(){}
-	public static final String WECHAT_TOKEN = "SDFCTOKENNKCNKANG";
-	public static final String APP_ID = "wx022b55e5bdea4c51";
-	public static final String APPSECRET = "53fead94b3acec49763585f18b7b6eac";
-
+	public static final String WECHAT_TOKEN = "9066589d8155cfd6a83044547bbd37c8";
+	public static final String APP_ID = "wxe542e71449270554";
+	public static final String APPSECRET = "e90098f1abd35f8db1ce9a124c80a840";
 /*	leshu config*/
 	public static final String BAIDU_APPKEY = "8025350dc1c143b9a52816fd8edf994a";
 	public static final String BAIDU_APPSECRET  = "c3868fd3d2874e0abf05ec4936659bb7";
