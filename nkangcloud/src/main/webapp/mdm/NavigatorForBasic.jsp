@@ -34,12 +34,12 @@ if(null != user) {
 		}else{
 			name = user.getNickname();
 			headImgUrl = user.getHeadImgUrl(); 
-			myuid="oI3krwR_gGNsz38r1bdB1_SkcoNw";
+			myuid="oO8exvz-DZOu8wc0f81v9EHYq2HE";
 		}
 	}else{
 		name = user.getNickname();
 		headImgUrl = user.getHeadImgUrl(); 
-		myuid="oI3krwR_gGNsz38r1bdB1_SkcoNw";
+		myuid="oO8exvz-DZOu8wc0f81v9EHYq2HE";
 	}
 	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 	Date date=new Date();

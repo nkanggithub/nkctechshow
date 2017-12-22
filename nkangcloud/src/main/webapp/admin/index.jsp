@@ -10,7 +10,7 @@ Date date=new Date();
 String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 MongoDBBasic.updateVisited(uid,currentDate,"index",res.get("HeadUrl"),res.get("NickName"));
-String hardcodeUID = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
+String hardcodeUID = "oO8exvz-DZOu8wc0f81v9EHYq2HE";
 String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
 if(MongoDBBasic.checkUserAuth(uid, "isAdmin")||hardcodeUID.equalsIgnoreCase(uid)||hardcodeUID2.equalsIgnoreCase(uid)){
 }else{
