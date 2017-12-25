@@ -153,7 +153,7 @@ margin-left: 4%;
 		var wrongIndex="";
 		$('#Result').speech({
 			"speech" : true,
-			"speed" : speed,
+			"speed" : 3,
 			"bg" : "./images/speech.png"
 		});
 

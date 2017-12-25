@@ -10,7 +10,7 @@ blog: http://www.tuterm.com
 		var defaults = {
 			"speech": true, //通过点击链接播报，还是直接播报
 			"lang": "zh", //语言			
-			"speed": speed, //语速			
+			"speed": 3, //语速			
 			"sWidth": 16, //链接按钮的宽度			
 			"sHeight": 13, //链接按钮的高度		
 			"https": true, //启用https	

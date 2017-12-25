@@ -132,7 +132,7 @@ margin-left: 4%;
 	getHistoryQuestion();
 	$('#Result').speech({
 		"speech" : true,
-		"speed" : speed,
+		"speed" : 3,
 		"bg" : "./images/speech.png"
 	});
 
