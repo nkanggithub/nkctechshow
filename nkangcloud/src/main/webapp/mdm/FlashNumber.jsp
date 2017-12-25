@@ -36,7 +36,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数-非启蒙-闪算-<%=title %>位</title>
+<title>乐数-提升级-闪算-<%=title %>位</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
