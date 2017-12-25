@@ -32,7 +32,7 @@ blog: http://www.tuterm.com
 				_speech.on('click', function() { //捕获点击事件	
 
 					_this.html("");
-				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=三,二,一,请答题&spd=3';				
+				var src = http + '://tts.baidu.com/text2audio?lan=' + options.lang + '&ie=UTF-8&text=当,当,当,请答题&spd=3';				
 					_iframe.length > 0 ? _iframe.attr("src", src) : (function() {
 						var iframe = "<audio controls='' autoplay='' name='media' onended='endVoice()'><source id='voice' src='' type='audio/mp3'></audio>";
 						_this.append(iframe);
