@@ -4,9 +4,21 @@
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
 	int speed = Integer.parseInt(request.getParameter("speed"));
-	int numCount = Integer.parseInt(request.getParameter("numCount"));
-	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
-	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
+	int numCount = Integer.parseInt(request.getParameter("numCount"));	
+	int length=0;
+	int lengthMin=0;
+	int lengthMax=0;
+	String title="";
+	if(request.getParameter("length")!=""||request.getParameter("length")!=null){
+		length = Integer.parseInt(request.getParameter("length"));
+		title=length+"";
+	}
+	else
+	{
+		lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
+		lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
+		title=lengthMax+""+lengthMin;
+	}
 	String uid = request.getParameter("UID");
 	String qt= request.getParameter("qt");
 	String level="";
@@ -22,7 +34,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数-非启蒙-看算-<%=lengthMin %><%=lengthMax %>位</title>
+<title>乐数-非启蒙-看算-<%=title %>位</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -125,6 +137,7 @@ margin-left: 4%;
 	var numCount=<%=numCount%>;
 	var lengthMin=<%=lengthMin%>;
 	var lengthMax=<%=lengthMax%>;
+	var length =<%=length%>;
 	var uid='<%=uid%>';
 	var level='<%=level%>';
 	var qt='<%=qt%>';
@@ -477,19 +490,26 @@ margin-left: 4%;
 			$("#questionInput").html("");
 			var temp = 0;
 			for (var i = 0; i < numCount; i++) {
-				temp = Math.round(Math.random()
-						* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
-						+ lengthArray[lengthMin - 1]);
+				if(length==0){
+					temp = Math.round(Math.random()
+							* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
+							+ lengthArray[lengthMin - 1]);}
+					else{
+						temp=length;
+					}
 				if (i != 0) {
 					charQ = Math.round(Math.random() * (charArray.length - 1));
 					chars = charArray[charQ];
 					tempCharArray[i] = chars;
 					if (chars == '-') {
 						while (tempTotal - temp < 0) {
-							temp = Math
-									.round(Math.random()
-											* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
-											+ lengthArray[lengthMin - 1]);
+							if(length==0){
+								temp = Math.round(Math.random()
+										* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
+										+ lengthArray[lengthMin - 1]);}
+								else{
+									temp=length;
+								}
 						}
 						tempArray[i] = temp;
 					} else {

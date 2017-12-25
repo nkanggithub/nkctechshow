@@ -183,6 +183,21 @@ margin-right:10px;
 #speedAjust,#menuPanel,#lengthCountPanel,#numCountPanel {
 	display: none;
 }
+.numTitle{
+    margin-bottom: 10px;}
+.numS{
+    position: relative;
+    bottom: 6px;
+    width: 100px;
+	background-color:white;
+	text-align:center;
+	border-style:none;
+	border:1px solid #22B26F;
+	height:30px;
+	
+}
+.high{
+margin-bottom:20px;}
 </style>
 </head>
 <body>
@@ -202,13 +217,20 @@ margin-right:10px;
 	<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="position: absolute;width: 30px;top: 100px;left: 30px;">
       <section class="sub-block" id="speedAjust">
 
-        <div class="tabs-content">
-          <div class="content active" id="show-rest-slider-result">
-            <div id="show-rest-slider"></div>
+        <div class="selectPanel">
+		<div class="high">
+		<p class="numTitle">最高位</p>
+		<i id="highLower" class="fa fa-minus-circle fa-2x"></i>
+		<input id="highNum" class="numS" type="text" value="1" disabled />
+		<i id="highUpper" class="fa fa-plus-circle fa-2x"></i>
+		</div>
+		
+		<div class="low">
+		<p class="numTitle">最低位</p>
+		<i id="lowLower" class="fa fa-minus-circle fa-2x"></i>
+		<input id="lowNum"  class="numS" type="text" value="1" disabled />
+		<i id="lowUpper" class="fa fa-plus-circle fa-2x"></i></div>
           </div>
-			<i id="slowspeed" class="fa fa-bicycle fa-2x" style="float:left;margin-top:-60px;margin-left:15px;"></i>
-			<i id="fastspeed" class="fa fa-fighter-jet fa-2x" style="float:right;margin-top:-60px;margin-right:15px;"></i>
-        </div>
 		
 		<i id="backLength" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
 		<i id="toMenu" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
@@ -262,7 +284,30 @@ margin-right:10px;
 	var lengthMin=2;
 	var uid='<%=openid%>';
 	var numCount=5;
-	var qt='question';
+	var qt='question';	
+	var highNum=1;
+	var lowNum=1;
+	$("#highUpper").on("click",function(){
+	if(highNum>=1&&highNum<10){
+	highNum++;
+	$("#highNum").val(highNum);}
+	});
+	$("#highLower").on("click",function(){
+	if(highNum<=10&&highNum>1){
+	highNum--;
+	$("#highNum").val(highNum);}
+	});
+	$("#lowUpper").on("click",function(){
+	if(lowNum>=1&&lowNum<10){
+	lowNum++;
+	$("#lowNum").val(lowNum);}
+	});
+	$("#lowLower").on("click",function(){
+	if(lowNum<=10&&lowNum>1){
+	lowNum--;
+	$("#lowNum").val(lowNum);}
+	});
+
 	$("#tenM").on("click",function(){
 	$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
@@ -293,6 +338,11 @@ margin-right:10px;
 	$("#speedAjust").show();
 	});
 	$("#toMenu").on("click",function(){
+		lengthMax=highNum;
+		lengthMin=lowNum;
+		if(highNum==lowNum){
+			length=highNum;
+		}
 	$("#speedAjust").hide();
 	$("#menuPanel").show();
 	});
@@ -316,18 +366,31 @@ margin-right:10px;
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
+	if(hignNum==lowNum){
+		window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
+	}
+	else{
+		window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;		
+	}
 	});
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
-	});
+	if(hignNum==lowNum){
+		window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
+	}
+	else{
+		window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;		
+	}	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;
-	});
+	if(hignNum==lowNum){
+		window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
+	}
+	else{
+		window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;		
+	}	});
 </script>
 </body>
 </html>

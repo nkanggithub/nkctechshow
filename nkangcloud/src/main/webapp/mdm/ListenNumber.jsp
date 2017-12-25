@@ -4,9 +4,23 @@
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
 	int speed = Integer.parseInt(request.getParameter("speed"))+2;
-	int numCount = Integer.parseInt(request.getParameter("numCount"));
-	int lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
-	int lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
+	int numCount = Integer.parseInt(request.getParameter("numCount"));	
+	int length=0;
+	int lengthMin=0;
+	int lengthMax=0;
+	String title="";
+	if(request.getParameter("length")!=""||request.getParameter("length")!=null){
+		length = Integer.parseInt(request.getParameter("length"));
+		title=length+"";
+		lengthMax=length;
+		lengthMin=length;
+	}
+	else
+	{
+		lengthMax = Integer.parseInt(request.getParameter("lengthMax"));
+		lengthMin = Integer.parseInt(request.getParameter("lengthMin"));
+		title=lengthMax+""+lengthMin;
+	}
 	String uid = request.getParameter("UID");
 	String qt= request.getParameter("qt");
 	String level="";
@@ -21,7 +35,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>乐数-非启蒙-听算-<%=lengthMin %><%=lengthMax %>位</title>
+<title>乐数-非启蒙-听算-<%=title %>位</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <script src="../Jsp/JS/fusioncharts/fusioncharts.js"></script>
 <script src="../Jsp/JS/fusioncharts/fusioncharts.widgets.js"></script>
@@ -142,6 +156,7 @@ margin-left: 4%;
 		var numCount =<%=numCount%>;
 		var lengthMin =<%=lengthMin%>;
 		var lengthMax =<%=lengthMax%>;
+		var requestLength =<%=length%>;
 		var totalTime=0;
 		var charArray = new Array('减', '加', '加');
 		var tempCharArray = new Array();
@@ -263,9 +278,13 @@ margin-left: 4%;
 			temp = "";
 			text = "请听题,";
 			for (var i = 0; i < numCount; i++) {
-
+				if(requestLength==0){
 				length = Math.round(Math.random() * (lengthMax - lengthMin)
 						+ lengthMin);
+				}
+				else{
+					length=requestLength;
+				}
 				if (i != numCount - 1) {
 					charQ = Math.round(Math.random() * (charArray.length - 1));
 					chars = charArray[charQ];
