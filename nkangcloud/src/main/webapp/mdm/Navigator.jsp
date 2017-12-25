@@ -217,21 +217,13 @@ margin-bottom:20px;}
 	<img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="position: absolute;width: 30px;top: 100px;left: 30px;">
       <section class="sub-block" id="speedAjust">
 
-        <div class="selectPanel">
-		<div class="high">
-		<p class="numTitle">最高位</p>
-		<i id="highLower" class="fa fa-minus-circle fa-2x"></i>
-		<input id="highNum" class="numS" type="text" value="1" disabled />
-		<i id="highUpper" class="fa fa-plus-circle fa-2x"></i>
-		</div>
-		
-		<div class="low">
-		<p class="numTitle">最低位</p>
-		<i id="lowLower" class="fa fa-minus-circle fa-2x"></i>
-		<input id="lowNum"  class="numS" type="text" value="1" disabled />
-		<i id="lowUpper" class="fa fa-plus-circle fa-2x"></i></div>
+		 <div class="tabs-content">
+          <div class="content active" id="show-rest-slider-result">
+            <div id="show-rest-slider"></div>
           </div>
-		
+			<i id="slowspeed" class="fa fa-bicycle fa-2x" style="float:left;margin-top:-60px;margin-left:15px;"></i>
+			<i id="fastspeed" class="fa fa-fighter-jet fa-2x" style="float:right;margin-top:-60px;margin-right:15px;"></i>
+        </div>
 		<i id="backLength" class="fa fa-arrow-circle-left fa-5x margin-right"></i>
 		<i id="toMenu" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
 		<p style="line-height: 40px;">选择速度</p>
@@ -258,12 +250,20 @@ margin-bottom:20px;}
 	</section>
 
 	<section id="lengthCountPanel">
-		<div class="selectPanel">    
-		<div id="vertical-slider-result">
-            <div id="vertical-slider"></div>
-          </div>
-          </div>
+        <div class="selectPanel">
+		<div class="high">
+		<p class="numTitle">最高位</p>
+		<i id="highLower" class="fa fa-minus-circle fa-2x"></i>
+		<input id="highNum" class="numS" type="text" value="1" disabled />
+		<i id="highUpper" class="fa fa-plus-circle fa-2x"></i>
 		</div>
+		
+		<div class="low">
+		<p class="numTitle">最低位</p>
+		<i id="lowLower" class="fa fa-minus-circle fa-2x"></i>
+		<input id="lowNum"  class="numS" type="text" value="1" disabled />
+		<i id="lowUpper" class="fa fa-plus-circle fa-2x"></i></div>
+          </div>
 		<i id="backNumCount" class="fa fa-arrow-circle-left fa-5x  margin-right"></i>
 		<i id="toSpeed" class="fa fa-arrow-circle-right fa-5x  margin-left"></i>
 		<p style="line-height: 40px;">选择位数</p>
