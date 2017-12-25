@@ -150,14 +150,18 @@ public class RestUtils {
 			byte[] jsonBytes = new byte[size];
 			is.read(jsonBytes);
 			String message = new String(jsonBytes, "UTF-8");
+			log.info("-----" + message);
 			JSONObject demoJson = new JSONObject(message);
 			if (demoJson.has("data")) {
+				log.info("-----1");
 				JSONObject Resultdata = demoJson.getJSONObject("data");
 				if (Resultdata.has("openid")) {
+					log.info("-----2");
 					String openIDs = Resultdata.getString("openid");
 					String str = openIDs.substring(1, openIDs.length() - 1);
 					String[] strArray = str.split(",");
 					for (String s : strArray) {
+						log.info("-----" + s);
 						listOfOpenID.add(s);
 					}
 				}
@@ -165,6 +169,7 @@ public class RestUtils {
 			is.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.info("-----" + e.toString());
 		}
 		return listOfOpenID;
 	}
