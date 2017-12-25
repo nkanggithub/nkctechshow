@@ -47,27 +47,18 @@ public class UserProfileController {
 			HttpServletResponse response) {
 		boolean res;
 		int sucNum=0;
-
-		System.out.println("start to get all openids");
 		String akey=RestUtils.getAccessKey();
 		List<String> IdLists=RestUtils.getWeChatUserListID(akey);
-		for(int i=0;i<IdLists.size();i++){
-
-			System.out.println("openID"+i+"-------"+IdLists.get(i));
-		}
 		MongoDBBasic.delNullUser();
 		for (int i = 0; i < IdLists.size(); i++) {
 			WeChatUser user=RestUtils.getWeChatUserInfo(akey,IdLists.get(i).replaceAll("\"",""));
-			System.out.println("userName-------"+user.getNickname());
 			res=MongoDBBasic.syncWechatUserToMongo(user);
 //			res=MongoDBBasic.createUser(user);
 			if(res==true){
 				sucNum++;
 			}
 		}
-		return (sucNum+1)+"条数据同步成功!";
-//		WeChatUser user=RestUtils.getWeChatUserInfo(akey, IdLists.get(0).replaceAll("\"",""));
-//		return IdLists.get(0)+"==========="+user.toString();
+		return sucNum+"条数据同步成功!";
 	}
 
 	@RequestMapping(value = "/getLocation", produces = "text/html;charset=UTF-8")
