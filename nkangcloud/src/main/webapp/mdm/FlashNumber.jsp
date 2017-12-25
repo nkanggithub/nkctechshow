@@ -12,6 +12,8 @@
 	if(request.getParameter("length")!=""||request.getParameter("length")!=null){
 		length = Integer.parseInt(request.getParameter("length"));
 		title=length+"";
+		lengthMax=length;
+		lengthMin=length;
 	}
 	else
 	{
@@ -150,13 +152,11 @@ margin-left: 4%;
 		var speedArray=new Array(0,10,9,8,7,6,5,4,3,2,1);
 		var numCount=<%=numCount%>;
 		var tempArray = new Array();
-		var length=0;
 		var uid='<%=uid%>';
 		var qt='<%=qt%>';
 		var level='<%=level%>';
 		var lengthMin =<%=lengthMin%>;
 		var lengthMax =<%=lengthMax%>;
-		var length =<%=length%>;
 		var textToShow = "";
 		var charArray = new Array('-', '+', '+');
 		var tempCharArray = new Array();
@@ -537,13 +537,9 @@ margin-left: 4%;
 				$("#endPanel").show();
 				return;
 			}
-			if(length==0){
 			temp = Math.round(Math.random()
 					* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
-					+ lengthArray[lengthMin - 1]);}
-			else{
-				temp=length;
-			}
+					+ lengthArray[lengthMin - 1]);
 			if (i != 0) {
 				charQ = Math.round(Math.random() * (charArray.length - 1));
 				chars = charArray[charQ];
@@ -551,12 +547,12 @@ margin-left: 4%;
 				if (chars == '-') {
 					while (tempTotal - temp < 0) {
 
-						if(length==0){
+						if(requestLength==0){
 						temp = Math.round(Math.random()
 								* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
 								+ lengthArray[lengthMin - 1]);}
 						else{
-							temp=length;
+							temp=requestLength;
 						}
 					}
 					tempArray[i] = temp;

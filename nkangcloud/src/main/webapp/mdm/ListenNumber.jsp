@@ -156,7 +156,6 @@ margin-left: 4%;
 		var numCount =<%=numCount%>;
 		var lengthMin =<%=lengthMin%>;
 		var lengthMax =<%=lengthMax%>;
-		var requestLength =<%=length%>;
 		var totalTime=0;
 		var charArray = new Array('减', '加', '加');
 		var tempCharArray = new Array();
@@ -278,13 +277,8 @@ margin-left: 4%;
 			temp = "";
 			text = "请听题,";
 			for (var i = 0; i < numCount; i++) {
-				if(requestLength==0){
 				length = Math.round(Math.random() * (lengthMax - lengthMin)
 						+ lengthMin);
-				}
-				else{
-					length=requestLength;
-				}
 				if (i != numCount - 1) {
 					charQ = Math.round(Math.random() * (charArray.length - 1));
 					chars = charArray[charQ];

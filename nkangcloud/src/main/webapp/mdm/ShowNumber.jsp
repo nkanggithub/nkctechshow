@@ -12,6 +12,8 @@
 	if(request.getParameter("length")!=""||request.getParameter("length")!=null){
 		length = Integer.parseInt(request.getParameter("length"));
 		title=length+"";
+		lengthMax=length;
+		lengthMin=length;
 	}
 	else
 	{
@@ -137,7 +139,6 @@ margin-left: 4%;
 	var numCount=<%=numCount%>;
 	var lengthMin=<%=lengthMin%>;
 	var lengthMax=<%=lengthMax%>;
-	var length =<%=length%>;
 	var uid='<%=uid%>';
 	var level='<%=level%>';
 	var qt='<%=qt%>';
@@ -490,26 +491,18 @@ margin-left: 4%;
 			$("#questionInput").html("");
 			var temp = 0;
 			for (var i = 0; i < numCount; i++) {
-				if(length==0){
 					temp = Math.round(Math.random()
 							* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
-							+ lengthArray[lengthMin - 1]);}
-					else{
-						temp=length;
-					}
+							+ lengthArray[lengthMin - 1]);
 				if (i != 0) {
 					charQ = Math.round(Math.random() * (charArray.length - 1));
 					chars = charArray[charQ];
 					tempCharArray[i] = chars;
 					if (chars == '-') {
 						while (tempTotal - temp < 0) {
-							if(length==0){
 								temp = Math.round(Math.random()
 										* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
-										+ lengthArray[lengthMin - 1]);}
-								else{
-									temp=length;
-								}
+										+ lengthArray[lengthMin - 1]);
 						}
 						tempArray[i] = temp;
 					} else {
@@ -522,7 +515,7 @@ margin-left: 4%;
 					tempArray[0] = temp;
 					tempTotal = temp;
 				}
-				var tempString=temp.toString();
+				var tempString=temp+"";
 				var length=tempString.length;
 				for(var z=0;z<lengthMax-length+1;z++){
 					tempString='&nbsp;&nbsp;'+tempString;

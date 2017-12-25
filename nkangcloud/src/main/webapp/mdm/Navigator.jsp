@@ -293,12 +293,12 @@ margin-bottom:20px;}
 	$("#highNum").val(highNum);}
 	});
 	$("#highLower").on("click",function(){
-	if(highNum<=10&&highNum>1&&highNum>=lowNum){
+	if(highNum<=10&&highNum>1&&highNum>lowNum){
 	highNum--;
 	$("#highNum").val(highNum);}
 	});
 	$("#lowUpper").on("click",function(){
-	if(lowNum>=1&&lowNum<10&&lowNum<=highNum){
+	if(lowNum>=1&&lowNum<10&&lowNum<highNum){
 	lowNum++;
 	$("#lowNum").val(lowNum);}
 	});
@@ -367,7 +367,7 @@ margin-bottom:20px;}
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
 	if(highNum==lowNum){
-		window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
+		window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length+"&qt="+qt+"&UID="+uid;
 	}
 	else{
 		window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;		
@@ -377,7 +377,7 @@ margin-bottom:20px;}
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
 	if(highNum==lowNum){
-		window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
+		window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length+"&qt="+qt+"&UID="+uid;
 	}
 	else{
 		window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;		
@@ -386,7 +386,7 @@ margin-bottom:20px;}
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
 	if(highNum==lowNum){
-		window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
+		window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&length="+length+"&qt="+qt+"&UID="+uid;
 	}
 	else{
 		window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&lengthMax="+lengthMax+"&lengthMin="+lengthMin+"&qt="+qt+"&UID="+uid;		
