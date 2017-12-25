@@ -281,15 +281,15 @@ public class CoreService
 						article1.setTitle("乐数在线练习 - 悟时自渡");
 						article1.setDescription("乐数在线练习 - 悟时自渡");
 						article1.setPicUrl("http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png");
-						article1.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigatorForBasic.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
+						article1.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigator.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
 						articleList.add(article1);
 
-						Article article3 = new Article();
+/*						Article article3 = new Article();
 						article3.setTitle("乐数在线练习 - 迷时师渡");
 						article3.setDescription("乐数在线练习 - 迷时师渡");
 						article3.setPicUrl("http://leshucq.bj.bcebos.com/standard/leshuTeacher.png");
 						article3.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigator.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
-						articleList.add(article3);
+						articleList.add(article3);*/
 						
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
