@@ -9,7 +9,7 @@
 	int lengthMin=0;
 	int lengthMax=0;
 	String title="";
-	if(request.getParameter("length")!=""||request.getParameter("length")!=null){
+	if(request.getParameter("length")!=""&&request.getParameter("length")!=null){
 		length = Integer.parseInt(request.getParameter("length"));
 		title=length+"";
 		lengthMax=length;
@@ -87,7 +87,7 @@ margin-left: 4%;
 <input type="text" id="timetext" class="niput" value="0时0分0秒" style="display:<%=display%>;width: 40%;padding: 0px;position: absolute;top: 80px;right: 10px;text-align: right;background: none;">
 	<section id="startPanel">
 		<div class="selectPanel">
-			<div class="circle start bigger">看数开始</div>
+			<div class="circle startVoice bigger">看数开始</div>
 		</div>
 	</section>
 	<section id="processPanel">
@@ -131,9 +131,11 @@ margin-left: 4%;
 
 
 	</section>
+	<div id="Result" style="display:none;"></div>
 	<div id="chart-container">FusionCharts will render here</div>
 	<div id="chart-container2">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
+	<script src="../Jsp/JS/leshu/speech.js"></script>
 	<script>
 	var speed=<%=speed%>;
 	var numCount=<%=numCount%>;
@@ -145,12 +147,21 @@ margin-left: 4%;
 	var rightQ=0;
 	var wrongQ=0;
 	var totalTime=0;
+	
 		var charArray = new Array('-', '+', '+');
 		var tempCharArray = new Array();
 		var tempArray = new Array();
 		var lengthArray = new Array(0, 10, 100, 1000, 10000, 100000, 1000000,
 				10000000, 100000000, 1000000000,10000000000);
+		$('#Result').speech({
+			"speech" : true,
+			"speed" : speed,
+			"bg" : "./images/speech.png"
+		});
 
+		function endVoice() {
+			start();
+		};
 		$('.form_edit .num').click(function(){
 			var oDiv = $("#answer");
 			var answer=oDiv.val()+this.innerHTML;
@@ -160,9 +171,6 @@ margin-left: 4%;
 			var oDiv = $("#answer");
 			var oDivHtml = oDiv.val();
 			oDiv.val(oDivHtml.substring(0,oDivHtml.length-1));
-		});
-		$(".start").on("click", function(){
-			start();
 		});
 			function start() {
 			var tempTime=minute*60+ (millisecond / 1000) + second;

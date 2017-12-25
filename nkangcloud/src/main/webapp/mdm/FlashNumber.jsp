@@ -9,7 +9,7 @@
 	int lengthMin=0;
 	int lengthMax=0;
 	String title="";
-	if(request.getParameter("length")!=""||request.getParameter("length")!=null){
+	if(request.getParameter("length")!=""&&request.getParameter("length")!=null){
 		length = Integer.parseInt(request.getParameter("length"));
 		title=length+"";
 		lengthMax=length;
@@ -88,7 +88,7 @@ margin-left: 4%;
 
 	<section id="startPanel">
 		<div class="selectPanel">
-			<div class="circle start bigger">闪算开始</div>
+			<div class="circle startVoice bigger">闪算开始</div>
 		</div>
 	</section>
 	<section id="processPanel" style=" position: relative;">
@@ -143,9 +143,12 @@ margin-left: 4%;
 			</div> 
 		</div>
 	</section>
+	
+	<div id="Result" style="display:none;"></div>
 	<div id="chart-container">FusionCharts will render here</div>
 	<div id="chart-container2">FusionCharts will render here</div>
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
+	<script src="../Jsp/JS/leshu/speech.js"></script>
 	<script>
 
 		var speed=<%=speed%>;
@@ -175,6 +178,15 @@ margin-left: 4%;
 		var chars;
 		var tempTotal = 0;
 
+		$('#Result').speech({
+			"speech" : true,
+			"speed" : speed,
+			"bg" : "./images/speech.png"
+		});
+
+		function endVoice() {
+			start();
+		};
 		$('.form_edit .num').click(function(){
 			var oDiv = $("#answer");
 			var answer=oDiv.val()+this.innerHTML;
@@ -547,13 +559,9 @@ margin-left: 4%;
 				if (chars == '-') {
 					while (tempTotal - temp < 0) {
 
-						if(requestLength==0){
 						temp = Math.round(Math.random()
 								* (lengthArray[lengthMax] - lengthArray[lengthMin - 1])
-								+ lengthArray[lengthMin - 1]);}
-						else{
-							temp=requestLength;
-						}
+								+ lengthArray[lengthMin - 1]);
 					}
 					tempArray[i] = temp;
 				} else {
@@ -651,10 +659,6 @@ margin-left: 4%;
 			$("#answerPanel").show();
 			setTimeout("start()",1000);
 
-		});
-		$(".start").on("click", function() {
-		
-			start();
 		});
 
 		$(".exit").on("click", function() {

@@ -9,7 +9,7 @@
 	int lengthMin=0;
 	int lengthMax=0;
 	String title="";
-	if(request.getParameter("length")!=""||request.getParameter("length")!=null){
+	if(request.getParameter("length")!=""&&request.getParameter("length")!=null){
 		length = Integer.parseInt(request.getParameter("length"));
 		title=length+"";
 		lengthMax=length;
