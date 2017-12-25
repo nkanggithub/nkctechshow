@@ -1669,7 +1669,7 @@ public class MongoDBBasic {
 		try {
 			BasicDBObject sort = new BasicDBObject();
 			sort.put("Active", -1);
-			queryresults = mongoDB.getCollection(ClientMeta).find().limit(500)
+			queryresults = mongoDB.getCollection(ClientMeta).find().limit(1000)
 					.sort(sort);
 			if (null != queryresults) {
 				while (queryresults.hasNext()) {
@@ -2048,7 +2048,7 @@ public class MongoDBBasic {
 				sort.put("Teamer.registerDate", 1);
 				sort.put("Created", 1);
 				queryresults = mongoDB.getCollection(wechat_user).find()
-						.limit(500).sort(sort);
+						.limit(1000).sort(sort);
 			}
 			if (null != queryresults) {
 				while (queryresults.hasNext()) {
