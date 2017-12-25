@@ -293,12 +293,12 @@ margin-bottom:20px;}
 	$("#highNum").val(highNum);}
 	});
 	$("#highLower").on("click",function(){
-	if(highNum<=10&&highNum>1){
+	if(highNum<=10&&highNum>1&&highNum>=lowNum){
 	highNum--;
 	$("#highNum").val(highNum);}
 	});
 	$("#lowUpper").on("click",function(){
-	if(lowNum>=1&&lowNum<10){
+	if(lowNum>=1&&lowNum<10&&lowNum<=highNum){
 	lowNum++;
 	$("#lowNum").val(lowNum);}
 	});
@@ -366,7 +366,7 @@ margin-bottom:20px;}
 	$("#ss").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	if(hignNum==lowNum){
+	if(highNum==lowNum){
 		window.location.href="FlashNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
 	}
 	else{
@@ -376,7 +376,7 @@ margin-bottom:20px;}
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	if(hignNum==lowNum){
+	if(highNum==lowNum){
 		window.location.href="ShowNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
 	}
 	else{
@@ -385,7 +385,7 @@ margin-bottom:20px;}
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	if(hignNum==lowNum){
+	if(highNum==lowNum){
 		window.location.href="ListenNumber.jsp?speed="+speed+"&numCount="+numCount+"&length"+length+"&qt="+qt+"&UID="+uid;
 	}
 	else{
