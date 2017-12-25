@@ -1,6 +1,7 @@
 package com.nkang.kxmoment.util;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -126,6 +127,18 @@ public class RestUtils {
 		}
 	}
 
+	public static byte[] readStream(InputStream inStream) throws Exception {  
+	    ByteArrayOutputStream outSteam = new ByteArrayOutputStream();  
+	    byte[] buffer = new byte[1024];  
+	    int len = -1;  
+	    while ((len = inStream.read(buffer)) != -1) {  
+	        outSteam.write(buffer, 0, len);  
+	    }  
+	    outSteam.close();  
+	    inStream.close();  
+	    return outSteam.toByteArray();  
+	} 
+	
 	public static List<String> getWeChatUserListID(String akey) {
 		List<String> listOfOpenID = new ArrayList<String>();
 		String url = "https://" + Constants.wechatapihost
@@ -146,34 +159,40 @@ public class RestUtils {
 			System.setProperty("sun.net.client.defaultReadTimeout", "30000");
 			http.connect();
 			InputStream is = http.getInputStream();
-			int size = is.available();
-			byte[] jsonBytes = new byte[size];
+			//System.out.println("444");
+			//int size = readStream(is);
+			byte[] jsonBytes = readStream(is);
+			//System.out.println("333");
+			//byte[] jsonBytes = new byte[size];
 			is.read(jsonBytes);
 			String message = new String(jsonBytes, "UTF-8");
-			log.info("-----" + message);
 			JSONObject demoJson = new JSONObject(message);
+			System.out.println("222");
 			if (demoJson.has("data")) {
-				log.info("-----1");
+				System.out.println("111");
 				JSONObject Resultdata = demoJson.getJSONObject("data");
 				if (Resultdata.has("openid")) {
-					log.info("-----2");
 					String openIDs = Resultdata.getString("openid");
 					String str = openIDs.substring(1, openIDs.length() - 1);
 					String[] strArray = str.split(",");
+					//int i = 0;
 					for (String s : strArray) {
-						log.info("-----" + s);
 						listOfOpenID.add(s);
+						//i = i + 1;
+						//System.out.println(i+"===" + s);
 					}
 				}
 			}
 			is.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.info("-----" + e.toString());
+			System.out.println("-----" + e.toString());
 		}
 		return listOfOpenID;
 	}
 
+
+	
 	public static WeChatUser getWeChatUserInfo(String akey, String openID) {
 		WeChatUser wcu = new WeChatUser();
 
