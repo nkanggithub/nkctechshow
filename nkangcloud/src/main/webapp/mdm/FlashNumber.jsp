@@ -23,10 +23,17 @@
 	}
 	String uid = request.getParameter("UID");
 	String qt= request.getParameter("qt");
-	String level="";
-	if(uid==null||uid==""){
-	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-	level=res.get("level");}
+	String level="";	
+	String isExternal="no";
+	if(uid!=null&&uid!=""){
+		HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+		if(res!=null){
+			level=res.get("level");
+		}
+		else{
+			isExternal="yes";
+		}
+	}
 	String display="none";
 	if(qt.equals("minute")){
 		display="block";
@@ -155,6 +162,7 @@ margin-left: 4%;
 		var speedArray=new Array(0,10,9,8,7,6,5,4,3,2,1);
 		var numCount=<%=numCount%>;
 		var tempArray = new Array();
+		var isExternal='<%=isExternal%>';
 		var uid='<%=uid%>';
 		var qt='<%=qt%>';
 		var level='<%=level%>';
@@ -234,6 +242,11 @@ margin-left: 4%;
 			var tempTime=minute*60+ (millisecond / 1000) + second;
 			if($("#next").val()=="查看战绩"){
 
+				if(isExternal=="yes"){
+					swal("关注我吧", "长按二维码识别哦~！", "warning");
+					$("#endPanel").hide();
+				}
+				else{
 				FusionCharts.ready(function() {
 					var cSatScoreChart = new FusionCharts({
 						type : 'angulargauge',
@@ -362,6 +375,7 @@ margin-left: 4%;
 				$("#answerPanel").hide();
 				$("#processPanel").hide();
 				return;
+			}
 			}
 			$("#answer").val("");
 			if(qt=="question"){

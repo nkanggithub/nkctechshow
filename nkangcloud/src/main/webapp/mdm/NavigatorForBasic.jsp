@@ -8,6 +8,7 @@
 
 String ticket=RestUtils.getTicket();
 SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
+System.out.println("snsUserInfo----"+user.getOpenId()+"---img---"+user.getHeadImgUrl());
 String uid = request.getParameter("UID"); 
 String originalUid = uid;
 if(request.getParameter("UID")==null&&request.getParameter("UID")==""){
@@ -39,7 +40,7 @@ if(null != user) {
 	}else{
 		name = user.getNickname();
 		headImgUrl = user.getHeadImgUrl(); 
-		myuid="oO8exvz-DZOu8wc0f81v9EHYq2HE";
+		//myuid="oO8exvz-DZOu8wc0f81v9EHYq2HE";
 	}
 	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd"); 
 	Date date=new Date();

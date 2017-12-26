@@ -20,6 +20,7 @@ String myuid="";
 String openid="";
 String displayName="";
 if(null != user) {
+	System.out.println("snsUserInfo----"+user.getOpenId()+"---img---"+user.getHeadImgUrl());
 	openid=user.getOpenId();
 	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(user.getOpenId());
 	if(res!=null){

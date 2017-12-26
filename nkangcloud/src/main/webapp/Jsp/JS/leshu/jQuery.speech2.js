@@ -43,6 +43,12 @@ blog: http://www.tuterm.com
 						$("#next").val("下一题");
 					}
 					if($(this).val()=="查看战绩"){
+
+						if(isExternal=="yes"){
+							swal("关注我吧", "长按二维码识别哦~！", "warning");
+							$("#endPanel").hide();
+						}
+						else{
 						FusionCharts.ready(function() {
 							var cSatScoreChart = new FusionCharts({
 								type : 'angulargauge',
@@ -170,6 +176,7 @@ blog: http://www.tuterm.com
 						$("#fakePanel").hide();
 						$(this).val("下一题");
 						return;
+					}
 					}
 					$("#answer").val("");
 					if(qt=="question"){

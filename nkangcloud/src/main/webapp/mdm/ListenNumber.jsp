@@ -23,10 +23,17 @@
 	}
 	String uid = request.getParameter("UID");
 	String qt= request.getParameter("qt");
-	String level="";
-	if(uid==null||uid==""){
-	HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
-	level=res.get("level");}
+	String level="";	
+	String isExternal="no";
+	if(uid!=null&&uid!=""){
+		HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
+		if(res!=null){
+			level=res.get("level");
+		}
+		else{
+			isExternal="yes";
+		}
+	}
 	String display="none";
 	if(qt.equals("minute")){
 		display="block";
@@ -156,6 +163,7 @@ margin-left: 4%;
 		var numCount =<%=numCount%>;
 		var lengthMin =<%=lengthMin%>;
 		var lengthMax =<%=lengthMax%>;
+		var isExternal='<%=isExternal%>';
 		var totalTime=0;
 		var charArray = new Array('减', '加', '加');
 		var tempCharArray = new Array();
