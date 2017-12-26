@@ -92,8 +92,13 @@ margin-left: 4%;
 	</section>
 	<section id="processPanel">
 		<div id="questionInput"  style="width:98%;margin-left:1%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
-		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;font-size:23px;width: 70%;' type='text' class='niput sxt' disabled />
-		<div class="form_edit clearfix">
+	</section>
+		<section id="endPanel">
+		<div class="selectPanel">
+			<p>请输入答案</p>
+			<input id="answer" type="text" class="niput sxt" value=""
+				style="border-bottom: 1px solid #22B26F; width: 60%; font-size:25px;margin-bottom: 60px;" disabled />
+<div class="form_edit clearfix">
 				<div class="num">1</div>
 				<div class="num">2</div>
 				<div class="num">3</div>
@@ -107,6 +112,7 @@ margin-left: 4%;
 				<div class="num">0</div>
 				<div id="remove" class="end">提交</div>
 				</div>
+		</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
@@ -138,6 +144,7 @@ margin-left: 4%;
 	<script src="../Jsp/JS/leshu/speech.js"></script>
 	<script>
 	var speed=<%=speed%>;
+	var speedArray=new Array(0,10,9,8,7,6,5,4,3,2,1);
 	var numCount=<%=numCount%>;
 	var lengthMin=<%=lengthMin%>;
 	var lengthMax=<%=lengthMax%>;
@@ -159,6 +166,11 @@ margin-left: 4%;
 			"bg" : "./images/speech.png"
 		});
 
+		
+		function hideNum(){
+			$("#processPanel").hide();
+			$("#endPanel").show();
+		}
 		function endVoice() {
 			start();
 		};
@@ -468,6 +480,7 @@ margin-left: 4%;
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").show();
+			setTimeout("hideNum()",speedArray[speed]*300);
 		};
 
 		var charQ = 0;
@@ -615,6 +628,7 @@ margin-left: 4%;
 			}
 
 			$("#processPanel").hide();
+			$("#endPanel").hide();
 			$("#answerPanel").show();
 
 			setTimeout("start()",1000);

@@ -596,7 +596,7 @@ display:none;
 	$("#ks").on("click",function(){
 		$(this).css("background-color","#22B26F");
 	$(this).css("color","white");
-	window.location.href="ShowNumberForBasic.jsp?category="+category+"&UID="+uid+wrongCollection;
+	window.location.href="ShowNumberForBasic.jsp?category="+category+"&speed="+speed+"&UID="+uid+wrongCollection;
 	});
 	$("#ts").on("click",function(){
 		$(this).css("background-color","#22B26F");

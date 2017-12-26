@@ -3,6 +3,7 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%
+	int speed = Integer.parseInt(request.getParameter("speed"));
 	String category = request.getParameter("category");
 	String wrongCollection = request.getParameter("wrongCollection");
 	String uid = request.getParameter("UID");
@@ -70,7 +71,12 @@ margin-left: 4%;
 	</section>
 	<section id="processPanel">
 		<div id="questionInput"  style="width:40%;margin-left:30%;margin-top: 0px;padding-top: 20px;padding-bottom:0" class="selectPanel"></div>
-		<input id='answer' placeholder='请输入答案' style='border-top: 1px solid black;width: 70%;font-size:25px;color:black;' type='text' class='niput sxt' disabled />
+	</section>
+	<section id="endPanel">
+		<div class="selectPanel">
+			<p>请输入答案</p>
+			<input id="answer" type="text" class="niput sxt" value=""
+				style="border-bottom: 1px solid #22B26F; width: 60%; font-size:25px;margin-bottom: 60px;" disabled />
 <div class="form_edit clearfix">
 				<div class="num">1</div>
 				<div class="num">2</div>
@@ -85,6 +91,7 @@ margin-left: 4%;
 				<div class="num">0</div>
 				<div id="remove" class="end">提交</div>
 				</div>
+		</div>
 	</section>
 	<section id="answerPanel" class="white intro" style="display: none;margin-top:15px;">
 		<div class="selectPanel" style="margin-top: 0px;padding-top: 0;">
@@ -114,6 +121,9 @@ margin-left: 4%;
 	<script src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<script src="../Jsp/JS/leshu/speech.js"></script>
 	<script>
+
+	var speed=<%=speed%>;
+	var speedArray=new Array(0,10,9,8,7,6,5,4,3,2,1);
 	var uid='<%=uid%>';
 	var wrongCollection='<%=wrongCollection%>';
 	var category='<%=category%>';
@@ -178,6 +188,7 @@ margin-left: 4%;
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
 			$("#processPanel").show();
+			setTimeout("hideNum()",speedArray[speed]*300);
 			}
 		}
 	
@@ -261,6 +272,7 @@ margin-left: 4%;
 												$("#answerPanel").hide();
 												$("#startPanel").hide();
 												$("#processPanel").show();
+												setTimeout("hideNum()",speedArray[speed]*300);
 												return false;
 											}
 											else{
@@ -371,9 +383,15 @@ margin-left: 4%;
 			$("#timestext").val(questionNumber);
 			$("#answerPanel").hide();
 			$("#startPanel").hide();
-			$("#processPanel").show();}
+			$("#processPanel").show();
+			setTimeout("hideNum()",speedArray[speed]*300);
+			}
 		};
-
+		
+		function hideNum(){
+			$("#processPanel").hide();
+			$("#endPanel").show();
+		}
 		var charQ = 0;
 		var chars;
 		var tempTotal = 0;
@@ -571,7 +589,7 @@ margin-left: 4%;
 					$("#wrong").show();
 					$("#right").hide();
 				}
-
+				$("#endPanel").hide();
 				$("#processPanel").hide();
 				$("#answerPanel").show();
 				setTimeout("wrongStart()",1000);
@@ -608,6 +626,7 @@ margin-left: 4%;
 					}
 				}
 			});
+			$("#endPanel").hide();
 			$("#processPanel").hide();
 			$("#answerPanel").show();
 			setTimeout("start()",1000);
