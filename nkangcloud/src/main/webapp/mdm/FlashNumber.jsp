@@ -245,6 +245,10 @@ margin-left: 4%;
 				if(isExternal=="yes"){
 					swal("关注我吧", "长按二维码识别哦~！", "warning");
 					$("#endPanel").hide();
+					$("#timestext").hide();
+					$("#timetext").hide();
+					$("#answerPanel").hide();
+					return;
 				}
 				else{
 				FusionCharts.ready(function() {
