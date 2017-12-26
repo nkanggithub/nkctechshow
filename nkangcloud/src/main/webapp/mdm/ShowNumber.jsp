@@ -195,7 +195,22 @@ margin-left: 4%;
 			var tempTime=minute*60+ (millisecond / 1000) + second;
 			if($("#next").val()=="查看战绩"){
 				if(isExternal=="yes"){
-					swal("关注我吧", "长按二维码识别哦~！", "warning");
+					swal({  
+				        title:"长按二维码关注我们的公众号吧~",  
+				        text:"<img src='http://leshucq.bj.bcebos.com/standard/QRCode.jpg' alt='' />",
+				        html:"true",
+				        showConfirmButton:false, 
+						showCancelButton: true,   
+						closeOnConfirm: false,   
+				        cancelButtonText:"我知道了",
+				        animation:"slide-from-top"  
+				      }, 
+						function(inputValue){
+							if (inputValue === false){
+								return false;
+							}
+				      });
+				
 					$("#endPanel").hide();
 					$("#timestext").hide();
 					$("#timetext").hide();
