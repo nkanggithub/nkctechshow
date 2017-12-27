@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.WeixinPay.utils.Configure;
 import com.nkang.kxmoment.util.WeixinPay.utils.MapUtil;
 import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
@@ -113,7 +114,7 @@ public class PayQrCode {
 		setSign_type("MD5");
 		setTotal_fee("1");
 		setTrade_type("JSAPI");
-		setOpenid("oqPI_xLq1YEJOczHi4DS2-1U0zqc");
+		setOpenid(Constants.devOpenID);
 		try {
 			Map<String, String> map = BeanUtils.describe(this);
 			map.remove("class");

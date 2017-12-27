@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.WeixinPay.bean.PayCallbackNotify;
 import com.nkang.kxmoment.util.WeixinPay.bean.PayNativeInput;
 import com.nkang.kxmoment.util.WeixinPay.bean.PayPackage;
@@ -45,7 +46,7 @@ public class PayUtils {
 		map.put("total_fee", "1");
 		map.put("trade_type", "JSAPI");*/
 		
-		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>123</nonce_str><notify_url>http://leshucq.bceapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>111</out_trade_no><sign_type>MD5</sign_type><total_fee>1</total_fee><trade_type>JSAPI</trade_type><openid>oqPI_xLq1YEJOczHi4DS2-1U0zqc</openid><sign>"+qrCode.getSign()+"</sign></xml>";
+		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>123</nonce_str><notify_url>http://leshucq.bceapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>111</out_trade_no><sign_type>MD5</sign_type><total_fee>1</total_fee><trade_type>JSAPI</trade_type><openid>"+Constants.devOpenID+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
 		return xmlStr;
 		//return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	}

@@ -8,13 +8,13 @@ public class Configure {
 
 	private static String appID = Constants.APP_ID;
 
-	private static String mchID = "1482792242";
+	private static String mchID = "1469932302";
 
-	private static String subMchID = "1482792242";
+	private static String subMchID = "1469932302";
 
-	private static String certLocalPath = "C:\\cert\\apiclient_cert.p12";
+	private static String certLocalPath = "C:\\CERTS\\NKCTechShow\\apiclient_cert.p12";
 
-	private static String certPassword = "1482792242";
+	private static String certPassword = "1469932302";
 	
 	private static String key = "53fead94b3acec49763585f18b7b6nkc";
 	
