@@ -22,7 +22,7 @@ public final class Constants {
 	public static final String ucpass_token = "6dc9593907118f61208d1c1531337bc0";
 	public static final String ucpass_appId = "d9944779258e42ad8683b2ac2c4e92da";
 	
-	
+	public static final String devOpenID = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
 	/**
 	 * 
 	 * MongoDB 集合名字
