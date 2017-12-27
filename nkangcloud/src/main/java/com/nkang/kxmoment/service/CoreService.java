@@ -1,13 +1,24 @@
 package com.nkang.kxmoment.service;
 
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.apache.log4j.Logger;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.xml.sax.InputSource;
+
 import com.mongodb.DBObject;
 import com.nkang.kxmoment.baseobject.ArticleMessage;
 import com.nkang.kxmoment.baseobject.ClientMeta;
@@ -21,6 +32,8 @@ import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.MessageUtil;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
+import com.nkang.kxmoment.util.WeixinPay.api.PayUtils;
+import com.nkang.kxmoment.util.WeixinPay.utils.HttpsRequest;
 
 public class CoreService
 {
@@ -274,14 +287,14 @@ public class CoreService
 						article.setTitle(cm.getClientName()+"|欢迎进入自我修炼");
 						article.setDescription("乐数在线练习");
 						article.setPicUrl("http://leshucq.bj.bcebos.com/standard/standard_leshuslide1.jpg");
-						article.setUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
+						article.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp");
 						articleList.add(article);
 						
 						Article article1 = new Article();
 						article1.setTitle("乐数在线练习 - 悟时自渡");
 						article1.setDescription("乐数在线练习 - 悟时自渡");
 						article1.setPicUrl("http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png");
-						article1.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigator.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
+						article1.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp");
 						articleList.add(article1);
 
 /*						Article article3 = new Article();

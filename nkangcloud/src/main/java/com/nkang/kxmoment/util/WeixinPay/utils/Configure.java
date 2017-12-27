@@ -16,7 +16,7 @@ public class Configure {
 
 	private static String certPassword = "1469932302";
 	
-	private static String key = "53fead94b3acec49763585f18b7b6nkc";
+	private static String key = Constants.partnerKey;
 	
 	private static String notifyCallbackUrl = "http://nkctech.duapp.com/mdm/AddQuestions.jsp";
 			
