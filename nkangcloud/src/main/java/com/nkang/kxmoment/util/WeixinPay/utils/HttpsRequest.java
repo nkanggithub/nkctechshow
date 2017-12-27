@@ -3,6 +3,8 @@ package com.nkang.kxmoment.util.WeixinPay.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 import java.net.SocketTimeoutException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -58,9 +60,8 @@ public class HttpsRequest{
     }
 
     private void init() throws IOException, KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyManagementException {
-
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
-        FileInputStream instream = new FileInputStream(new File(Configure.getCertLocalPath()));//加载本地的证书进行https加密传输
+        InputStream instream=HttpsRequest.class.getClassLoader().getResourceAsStream("apiclient_cert.p12");
         try {
             keyStore.load(instream, Configure.getCertPassword().toCharArray());//设置证书密码
         } catch (CertificateException e) {
@@ -109,7 +110,7 @@ public class HttpsRequest{
         if (!hasInit) {
             init();
         }
-
+        logger.info("----I am here in HttpsRequest sendPost");
         String result = null;
 
         HttpPost httpPost = new HttpPost(url);
@@ -143,7 +144,7 @@ public class HttpsRequest{
         } finally {
             httpPost.abort();
         }
-
+        logger.info("----I am here in HttpsRequest sendPost finish");
         return result;
     }
 
