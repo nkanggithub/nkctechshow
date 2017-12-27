@@ -110,7 +110,6 @@ public class HttpsRequest{
         if (!hasInit) {
             init();
         }
-        logger.info("----I am here in HttpsRequest sendPost");
         String result = null;
 
         HttpPost httpPost = new HttpPost(url);
@@ -118,8 +117,6 @@ public class HttpsRequest{
         StringEntity postEntity = new StringEntity(postDataXML, "UTF-8");
         httpPost.addHeader("Content-Type", "text/xml");
         httpPost.setEntity(postEntity);
-/*		System.setProperty("http.proxyHost", Constants.proxyInfo);
-		System.setProperty("http.proxyPort", "8080");*/
         httpPost.setConfig(requestConfig);
 
         try {
@@ -144,7 +141,6 @@ public class HttpsRequest{
         } finally {
             httpPost.abort();
         }
-        logger.info("----I am here in HttpsRequest sendPost finish");
         return result;
     }
 
