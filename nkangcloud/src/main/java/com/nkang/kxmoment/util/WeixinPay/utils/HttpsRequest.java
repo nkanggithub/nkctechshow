@@ -31,7 +31,7 @@ import com.nkang.kxmoment.util.Constants;
 
 /**
  * 
- * @author louiseliu
+ * @author Ning Kang
  *
  */
 public class HttpsRequest{
