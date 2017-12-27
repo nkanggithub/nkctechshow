@@ -1,6 +1,8 @@
 package com.nkang.kxmoment.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,26 +50,27 @@ public class WXPaymentController {
             // 统一下单 https://api.mch.weixin.qq.com/pay/unifiedorder  
             String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";  
   */
-        	log.info("---Ii am here---");
 	    	String b = PayUtils.generateMchPayNativeRequestURL(Constants.prodID);
-	    	log.info("---Ii am here b---" + b);
 	    	HttpsRequest req =  new HttpsRequest();
 	    	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", b);
-	    	log.info("---Ii am here---2" + xmlStr);
+	    	log.info("---XMLString From payment request---" + xmlStr);
+
+
 /*            String xml = ArrayToXml(paraMap);  */
   
             /*String xmlStr = HttpKit.post(url, xml);  */
   
-            // 预付商品id  
-            String prepay_id = "111111111";  //from xmlStr parse
+            // 预付商品id
+    		String[] a =xmlStr.split("prepay_id");
+    		String aa =  a[1].substring(10);
+    		String prepay_id = aa.substring(0,aa.length()-5);
+
   
 /*            if (xmlStr.indexOf("SUCCESS") != -1) {  
                 Map<String, String> map = doXMLParse(xmlStr);  
                 prepay_id = (String) map.get("prepay_id");  
             }  */
-            
-            prepay_id = "111111111";
-  
+
             String timeStamp = "12345";  
             String nonceStr = "12345";
             Map<String, String> payMap = new HashMap<String, String>();  
@@ -77,7 +80,6 @@ public class WXPaymentController {
             payMap.put("signType", "MD5");  
             payMap.put("package", "prepay_id=" + prepay_id);  
             String paySign = Signature.generateSign(payMap);  
-              
             payMap.put("pg", prepay_id);  
             payMap.put("paySign", paySign);  
               
@@ -90,12 +92,14 @@ public class WXPaymentController {
                         .append("signType:'MD5',")  
                         .append("paySign:'").append(paySign).append("'");  
             sBuilder.append("}]");  
+            log.info("---StringPaymentAfter" + sBuilder.toString());
             response.getWriter().print(sBuilder.toString());  
             response.getWriter().close();  
+            
         } catch (Exception e) {  
             e.printStackTrace();  
-        }  
+            log.info("---Ii am here---3:" + e.toString());  
+        }
+        log.info("---PaymentController has no problem");
     }
-
-	
 }
