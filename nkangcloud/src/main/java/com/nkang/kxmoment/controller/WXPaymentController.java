@@ -50,6 +50,7 @@ public class WXPaymentController {
   */
         	log.info("---Ii am here---");
 	    	String b = PayUtils.generateMchPayNativeRequestURL(Constants.prodID);
+	    	log.info("---Ii am here b---" + b);
 	    	HttpsRequest req =  new HttpsRequest();
 	    	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", b);
 	    	log.info("---Ii am here---2" + xmlStr);
