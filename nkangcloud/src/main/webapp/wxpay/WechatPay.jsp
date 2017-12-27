@@ -11,9 +11,7 @@
 </head>  
 <body>  
     <div class="index_box">  
-        <div class="apply_name">微信js支付测试</div>  
-        <div class="branch_con">  
- 
+        
             <p class="cz_btn"><a href="javascript:pay();" class="btn_1">立即支付</a></p>  
         </div>  
     </div>  
@@ -70,7 +68,7 @@ String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
                        onBridgeReady();  
                     }   
                 }  
-            },"http://nkctech.duapp.com/pay/payparm");  
+            },"http://nkctech.duapp.com/pay/payparm",true);  
         }  
 function send_request(callback, urladdress,isReturnData){        
     var xmlhttp = getXMLHttpRequest();  
