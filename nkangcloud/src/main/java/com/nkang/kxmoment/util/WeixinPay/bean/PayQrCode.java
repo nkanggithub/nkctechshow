@@ -100,7 +100,7 @@ public class PayQrCode {
 	/**
 	 * @param product_id
 	 */
-	public PayQrCode(String product_id){
+	public PayQrCode(String product_id, String out_trade_no){
 		setAppid(Configure.getAppid());
 		setMch_id(Configure.getMchid());
 		//setTime_stamp(System.currentTimeMillis()/1000+"");
@@ -110,7 +110,7 @@ public class PayQrCode {
 		setBody("LeshuCourse");
 		setDevice_info("WEB");
 		setNotify_url("http://leshucq.bceapp.com/mdm/AddQuestions.jsp");
-		setOut_trade_no("111");
+		setOut_trade_no(out_trade_no);
 		setSign_type("MD5");
 		setTotal_fee("1");
 		setTrade_type("JSAPI");

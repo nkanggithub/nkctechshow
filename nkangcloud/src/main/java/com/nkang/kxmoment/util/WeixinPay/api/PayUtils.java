@@ -29,7 +29,11 @@ public class PayUtils {
 	private static final Logger logger = Logger.getLogger(PayUtils.class);
 	 
 	public static String generateMchPayNativeRequestURL(String productid){
-		PayQrCode qrCode = new PayQrCode(productid);
+		
+		String timeStamp = String.valueOf((System.currentTimeMillis()/1000));//1970年到现在的秒数
+		String out_trade_no = "nkc"+ timeStamp;
+		
+		PayQrCode qrCode = new PayQrCode(productid, out_trade_no);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("sign", qrCode.getSign());
 		map.put("appid", qrCode.getAppid());
@@ -46,7 +50,7 @@ public class PayUtils {
 		map.put("total_fee", "1");
 		map.put("trade_type", "JSAPI");*/
 		
-		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>123</nonce_str><notify_url>http://leshucq.bceapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>111</out_trade_no><sign_type>MD5</sign_type><total_fee>1</total_fee><trade_type>JSAPI</trade_type><openid>"+Constants.devOpenID+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
+		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>123</nonce_str><notify_url>http://leshucq.bceapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>"+out_trade_no+"</out_trade_no><sign_type>MD5</sign_type><total_fee>1</total_fee><trade_type>JSAPI</trade_type><openid>"+Constants.devOpenID+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
 		return xmlStr;
 		//return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	}
