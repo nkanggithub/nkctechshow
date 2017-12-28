@@ -18,14 +18,15 @@
 <%  
 String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw"; 
  %>  
-<%-- <input type="text" id="code" value="<%out.print(code); %>"/>  
-<input type="text" id="path" value="${pageContext.request.contextPath}"/>  
-<div><hr/>  
-    code:<%out.print(code); %>  
-</div>  --%> 
     <script type="text/javascript">  
-        var appId,timeStamp,nonceStr,pg,signType,paySign;  
-      function onBridgeReady(){  
+       var appId;
+       var timeStamp;
+       var nonceStr;
+       var pg;
+       var signType;
+       var paySign;
+      function onBridgeReady(){
+    	   alert("onBridgeReady start"+"\n"+"appId:"+appId+"\n"+"timeStamp:" + timeStamp+"\n"+"nonceStr:"+nonceStr+"\n"+"pg:"+pg+"\n"+"signType:"+signType+"\n"+"paySign:"+paySign+"\n");
            WeixinJSBridge.invoke(  
                'getBrandWCPayRequest', {  
                    "appId" : appId,     //公众号名称，由商户传入       
@@ -36,53 +37,46 @@ String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
                    "paySign" : paySign    //微信签名   
                },  
                function(res){       
-                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {  
-                         
+                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {   
                        alert("支付成功");  
-                   }   
+                   }
+                   else{
+       	    	    alert('支付失败'+res.err_msg);//这里一直返回getBrandWCPayRequest提示fail_invalid appid
+        	       }   
                }  
-           );   
+           ); 
+           alert("onBridgeReady end");
         }  
-        function pay(){  
-            var code = "oI3krwR_gGNsz38r1bdB1_SkcoNw"; 
-            //var code = document.getElementById("code").value;  
- 		 alert(code);
+        function pay(){   
             send_request(function(value){  
                 var json = eval("(" + value + ")");  
-                alert("guess");
                 if(json.length > 0){  
                     appId = json[0].appId;  
-                    alert("appId="+appId);
                     timeStamp = json[0].timeStamp;  
                     nonceStr = json[0].nonceStr;
-                    alert("nonceStr="+nonceStr);
                     pg = json[0].pg;  
                     signType = json[0].signType;  
-                    paySign = json[0].paySign;  
+                    paySign = json[0].paySign;
+                    
                     if (typeof WeixinJSBridge == "undefined"){  
-                       if( document.addEventListener ){  
+                       if( document.addEventListener ){
                            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);  
                        }else if (document.attachEvent){  
-                           document.attachEvent('WeixinJSBridgeReady', onBridgeReady);   
+                           document.attachEvent('WeixinJSBridgeReady', onBridgeReady);  
                            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);  
                        }  
-                    }else{  
-                       onBridgeReady();  
+                    }else{
+                       onBridgeReady(); 
                     }   
                 }  
             },"http://nkctech.duapp.com/pay/payparm",true);  
         }  
 function send_request(callback, urladdress,isReturnData){        
     var xmlhttp = getXMLHttpRequest();  
-    alert("urladdress==="+ urladdress);
-    xmlhttp.onreadystatechange = function(){  
-    	alert("callback==="+callback);
-    	
+    xmlhttp.onreadystatechange = function(){      	
             if (xmlhttp.readyState == 4) {  
-            	alert("xmlhttp.readyState == "+xmlhttp.readyState);
                     try{  
                     if(xmlhttp.status == 200){  
-                    	alert("status == 200");
                         if(isReturnData && isReturnData==true){
                         	alert("responseText="+xmlhttp.responseText);
                             callback(xmlhttp.responseText);  
@@ -95,9 +89,7 @@ function send_request(callback, urladdress,isReturnData){
                 }  
            }  
     } 
-    alert("haha");
     xmlhttp.open("POST", urladdress, true);
-    alert("baba");
     xmlhttp.send(null);  
 }  
 function getXMLHttpRequest() {  

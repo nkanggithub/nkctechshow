@@ -74,11 +74,20 @@ public class WXPaymentController {
             String timeStamp = "12345";  
             String nonceStr = "12345";
             Map<String, String> payMap = new HashMap<String, String>();  
-            payMap.put("appId", Constants.APP_ID);  
+/*            payMap.put("appId", Constants.APP_ID);  
             payMap.put("timeStamp", timeStamp);  
             payMap.put("nonceStr", nonceStr);  
             payMap.put("signType", "MD5");  
-            payMap.put("package", "prepay_id=" + prepay_id);  
+            payMap.put("package", "prepay_id=" + prepay_id); */ 
+            
+            payMap.put("appId", Constants.APP_ID);  
+            payMap.put("timeStamp", timeStamp);  
+            payMap.put("nonceStr", nonceStr);  
+            payMap.put("partnerid", "1469932302");  
+            payMap.put("prepayid", prepay_id);
+            payMap.put("package", "Sign=" + "WXPay"); 
+            
+            
             String paySign = Signature.generateSign(payMap);  
             payMap.put("pg", prepay_id);  
             payMap.put("paySign", paySign);  
