@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>  
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%> 
+<%  
+String code = request.getParameter("UID");
+ %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
 <html>  
 <head>  
@@ -15,9 +18,7 @@
             <p class="cz_btn"><a href="javascript:pay();" class="btn_1">立即支付</a></p>  
         </div>  
     </div>  
-<%  
-String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw"; 
- %>  
+  
     <script type="text/javascript">  
        var appId;
        var timeStamp;
@@ -68,7 +69,7 @@ String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
                        onBridgeReady(); 
                     }   
                 }  
-            },"http://nkctech.duapp.com/pay/payparm",true);  
+            },"http://nkctech.duapp.com/pay/payparm?openId=<%= code%>",true);  
         }  
 function send_request(callback, urladdress,isReturnData){        
     var xmlhttp = getXMLHttpRequest();  

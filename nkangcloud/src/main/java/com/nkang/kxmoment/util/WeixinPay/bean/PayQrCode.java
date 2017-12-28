@@ -100,7 +100,7 @@ public class PayQrCode {
 	/**
 	 * @param product_id
 	 */
-	public PayQrCode(String product_id, String out_trade_no){
+	public PayQrCode(String product_id, String out_trade_no, String openId){
 		setAppid(Configure.getAppid());
 		setMch_id(Configure.getMchid());
 		//setTime_stamp(System.currentTimeMillis()/1000+"");
@@ -114,7 +114,7 @@ public class PayQrCode {
 		setSign_type("MD5");
 		setTotal_fee("1");
 		setTrade_type("JSAPI");
-		setOpenid(Constants.devOpenID);
+		setOpenid(openId);
 		try {
 			Map<String, String> map = BeanUtils.describe(this);
 			map.remove("class");

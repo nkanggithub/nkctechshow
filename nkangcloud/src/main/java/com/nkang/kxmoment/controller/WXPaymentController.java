@@ -13,6 +13,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nkang.kxmoment.service.CoreService;
 import com.nkang.kxmoment.util.Constants;
@@ -24,10 +25,10 @@ import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
 public class WXPaymentController {
 	private static Logger log = Logger.getLogger(CoreService.class);
 	@RequestMapping("/pay/payparm")  
-    public void payparm(HttpServletRequest request, HttpServletResponse response){  
+    public void payparm(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "openId") String openId){  
         try {  
 
-	    	String b = PayUtils.generateMchPayNativeRequestURL(Constants.prodID);
+	    	String b = PayUtils.generateMchPayNativeRequestURL(Constants.prodID,openId);
 	    	HttpsRequest req =  new HttpsRequest();
 	    	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", b);
 	    	log.info("---XMLString From payment request---" + xmlStr);

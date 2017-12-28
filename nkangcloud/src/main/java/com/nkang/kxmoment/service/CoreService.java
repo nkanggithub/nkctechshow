@@ -287,7 +287,7 @@ public class CoreService
 						article.setTitle(cm.getClientName()+"|欢迎进入自我修炼");
 						article.setDescription("乐数在线练习");
 						article.setPicUrl("http://leshucq.bj.bcebos.com/standard/standard_leshuslide1.jpg");
-						article.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp");
+						article.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						
 						Article article1 = new Article();
