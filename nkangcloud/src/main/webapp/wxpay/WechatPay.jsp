@@ -26,19 +26,18 @@ String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
        var signType;
        var paySign;
       function onBridgeReady(){
-    	   alert("onBridgeReady start"+"\n"+"appId:"+appId+"\n"+"timeStamp:" + timeStamp+"\n"+"nonceStr:"+nonceStr+"\n"+"pg:"+pg+"\n"+"signType:"+signType+"\n"+"paySign:"+paySign+"\n");
-           WeixinJSBridge.invoke(  
+    	  WeixinJSBridge.invoke(  
                'getBrandWCPayRequest', {  
                    "appId" : appId,     //公众号名称，由商户传入       
-                   "timeStamp": timeStamp,         //时间戳，自1970年以来的秒数       
-                   "nonceStr" : nonceStr, //随机串   
-                   "partnerid": "1469932302",
-                   "package" : pg,       
-                   "signType" : signType,         //微信签名方式:       
+                   "timeStamp": timeStamp, //时间戳，自1970年以来的秒数       
+                   "nonceStr" : nonceStr, //随机串       
+                   "package" : pg,
+                   "signType" : signType, //微信签名方式:       
                    "paySign" : paySign    //微信签名   
-               }, 
+               },  
                function(res){       
-                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {   
+                   if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
+                	   window.location.href = "http://nkctech.duapp.com/mdm/AddQuestions.jsp";
                        alert("支付成功");  
                    }
                    else{
@@ -46,7 +45,6 @@ String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
         	       }   
                }  
            ); 
-           alert("onBridgeReady end");
         }  
         function pay(){   
             send_request(function(value){  
