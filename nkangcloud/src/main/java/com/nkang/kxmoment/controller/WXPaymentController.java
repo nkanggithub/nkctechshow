@@ -18,7 +18,6 @@ import com.nkang.kxmoment.service.CoreService;
 import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.WeixinPay.api.PayUtils;
 import com.nkang.kxmoment.util.WeixinPay.utils.HttpsRequest;
-import com.nkang.kxmoment.util.WeixinPay.utils.MD5;
 import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
 
 @Controller
@@ -37,8 +36,8 @@ public class WXPaymentController {
     		String aa =  a[1].substring(10);
     		String prepay_id = aa.substring(0,aa.length()-5);
 
-    		String timeStamp = String.valueOf((System.currentTimeMillis()/1000));//1970年到现在的秒数
-            String nonceStr = MD5.getNonceStr().toUpperCase(); 
+    		String timeStamp = "12345";  
+            String nonceStr = "12345";
             Map<String, String> payMap = new HashMap<String, String>();  
 
             payMap.put("appId", Constants.APP_ID);  
@@ -51,7 +50,7 @@ public class WXPaymentController {
             payMap.put("pg", "prepay_id=" + prepay_id);
             payMap.put("paySign", paySign);
               
-            // 拼接并返回json  
+            // æ‹¼æŽ¥å¹¶è¿”å›žjson  
             StringBuilder sBuilder = new StringBuilder("[{");  
             sBuilder.append("appId:'").append(Constants.APP_ID).append("',")  
                         .append("timeStamp:'").append(timeStamp).append("',")  

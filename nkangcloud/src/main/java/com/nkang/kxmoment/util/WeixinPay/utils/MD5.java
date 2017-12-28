@@ -1,11 +1,6 @@
 package com.nkang.kxmoment.util.WeixinPay.utils;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.security.MessageDigest;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
@@ -17,9 +12,9 @@ public class MD5 {
             "8", "9", "a", "b", "c", "d", "e", "f"};
 
     /**
-     * 转换字节数组为16进制字串
-     * @param b 字节数组
-     * @return 16进制字串
+     * è½¬æ�¢å­—èŠ‚æ•°ç»„ä¸º16è¿›åˆ¶å­—ä¸²
+     * @param b å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å­—ä¸²
      */
     public static String byteArrayToHexString(byte[] b) {
         StringBuilder resultSb = new StringBuilder();
@@ -30,9 +25,9 @@ public class MD5 {
     }
 
     /**
-     * 转换byte到16进制
-     * @param b 要转换的byte
-     * @return 16进制格式
+     * è½¬æ�¢byteåˆ°16è¿›åˆ¶
+     * @param b è¦�è½¬æ�¢çš„byte
+     * @return 16è¿›åˆ¶æ ¼å¼�
      */
     private static String byteToHexString(byte b) {
         int n = b;
@@ -45,9 +40,9 @@ public class MD5 {
     }
 
     /**
-     * MD5编码
-     * @param origin 原始字符串
-     * @return 经过MD5加密之后的结果
+     * MD5ç¼–ç �
+     * @param origin åŽŸå§‹å­—ç¬¦ä¸²
+     * @return ç»�è¿‡MD5åŠ å¯†ä¹‹å�Žçš„ç»“æžœ
      */
     public static String MD5Encode(String origin) {
         String resultString = null;
@@ -60,35 +55,6 @@ public class MD5 {
             e.printStackTrace();
         }
         return resultString;
-    }
-    
-
-    public static String getNonceStr(){
-        String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder sb = new StringBuilder();
-        Random rd = new Random();
-        for(int i = 0 ; i < 32 ; i ++ ){
-            sb.append(str.charAt(rd.nextInt(str.length())));
-        }
-        return sb.toString();
-    }
-    
-    public static String getIpAddr(HttpServletRequest request) {  
-        InetAddress addr = null;  
-        try {  
-            addr = InetAddress.getLocalHost();  
-        } catch (UnknownHostException e) {  
-            return request.getRemoteAddr();  
-        }  
-        byte[] ipAddr = addr.getAddress();  
-        String ipAddrStr = "";  
-        for (int i = 0; i < ipAddr.length; i++) {  
-            if (i > 0) {  
-                ipAddrStr += ".";  
-            }  
-            ipAddrStr += ipAddr[i] & 0xFF;  
-        }  
-        return ipAddrStr;  
     }
 
 }

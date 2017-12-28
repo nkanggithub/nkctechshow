@@ -16,7 +16,7 @@ public class Signature {
 	public static String generateSign(Map<String, String> map){
     	Map<String, String> orderMap = MapUtil.order(map);
 		
-    	String result = MapUtil.mapJoin(orderMap,true,false);
+    	String result = MapUtil.mapJoin(orderMap,false,false);
         result += "&key=" + Configure.getKey();
         log.info("====:" + result);
         //result =  result.toUpperCase();
