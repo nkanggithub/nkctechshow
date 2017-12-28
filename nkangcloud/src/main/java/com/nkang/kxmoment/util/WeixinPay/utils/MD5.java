@@ -1,7 +1,11 @@
 package com.nkang.kxmoment.util.WeixinPay.utils;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
@@ -58,16 +62,34 @@ public class MD5 {
         return resultString;
     }
     
-    public static String getRandomString(int length) { //length表示生成字符串的长度      
-        String base = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";         
-        Random random = new Random();         
-        StringBuffer sb = new StringBuffer();         
-        for (int i = 0; i < length; i++) {         
-            int number = random.nextInt(base.length());         
-            sb.append(base.charAt(number));         
-        }         
-        return sb.toString();         
-   }
+
+    public static String getNonceStr(){
+        String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder sb = new StringBuilder();
+        Random rd = new Random();
+        for(int i = 0 ; i < 32 ; i ++ ){
+            sb.append(str.charAt(rd.nextInt(str.length())));
+        }
+        return sb.toString();
+    }
+    
+    public static String getIpAddr(HttpServletRequest request) {  
+        InetAddress addr = null;  
+        try {  
+            addr = InetAddress.getLocalHost();  
+        } catch (UnknownHostException e) {  
+            return request.getRemoteAddr();  
+        }  
+        byte[] ipAddr = addr.getAddress();  
+        String ipAddrStr = "";  
+        for (int i = 0; i < ipAddr.length; i++) {  
+            if (i > 0) {  
+                ipAddrStr += ".";  
+            }  
+            ipAddrStr += ipAddr[i] & 0xFF;  
+        }  
+        return ipAddrStr;  
+    }
 
 }
 

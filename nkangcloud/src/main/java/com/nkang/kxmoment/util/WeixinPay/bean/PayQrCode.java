@@ -7,6 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.WeixinPay.utils.Configure;
+import com.nkang.kxmoment.util.WeixinPay.utils.MD5;
 import com.nkang.kxmoment.util.WeixinPay.utils.MapUtil;
 import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
 
@@ -102,11 +103,16 @@ public class PayQrCode {
 	 * @param product_id
 	 */
 	public PayQrCode(String product_id, String out_trade_no){
+		
+		String timeStamp = String.valueOf((System.currentTimeMillis()/1000));//1970年到现在的秒数
+        String nonceStr = MD5.getNonceStr().toUpperCase(); 
+        
+        
 		setAppid(Configure.getAppid());
 		setMch_id(Configure.getMchid());
-		//setTime_stamp(System.currentTimeMillis()/1000+"");
-		//setNonce_str(UUID.randomUUID().toString().replace("-", ""));
-		setNonce_str("123");
+		//setTime_stamp(timeStamp);
+		setNonce_str(nonceStr);
+		//setNonce_str("123");
 		//setProduct_id(product_id);
 		setBody("LeshuCourse");
 		setDevice_info("WEB");

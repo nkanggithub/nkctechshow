@@ -53,7 +53,7 @@ public class PayUtils {
 		map.put("total_fee", "1");
 		map.put("trade_type", "JSAPI");*/
 		
-		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>123</nonce_str><notify_url>http://nkctech.duapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>"+outOfTrade+"</out_trade_no><sign_type>MD5</sign_type><total_fee>1</total_fee><trade_type>JSAPI</trade_type><openid>"+Constants.devOpenID+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
+		String xmlStr = "<xml><appid>"+qrCode.getAppid()+"</appid><body>LeshuCourse</body><device_info>WEB</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>"+qrCode.getNonce_str()+"</nonce_str><notify_url>http://nkctech.duapp.com/mdm/AddQuestions.jsp</notify_url><out_trade_no>"+outOfTrade+"</out_trade_no><sign_type>MD5</sign_type><total_fee>1</total_fee><trade_type>JSAPI</trade_type><openid>"+Constants.devOpenID+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
 		return xmlStr;
 		//return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	}
