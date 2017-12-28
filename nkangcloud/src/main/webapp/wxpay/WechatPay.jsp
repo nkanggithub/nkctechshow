@@ -46,14 +46,16 @@ String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
         function pay(){  
             var code = "oI3krwR_gGNsz38r1bdB1_SkcoNw"; 
             //var code = document.getElementById("code").value;  
- 
+ 		 alert(code);
             send_request(function(value){  
                 var json = eval("(" + value + ")");  
                 alert("guess");
                 if(json.length > 0){  
                     appId = json[0].appId;  
+                    alert("appId="+appId);
                     timeStamp = json[0].timeStamp;  
-                    nonceStr = json[0].nonceStr;  
+                    nonceStr = json[0].nonceStr;
+                    alert("nonceStr="+nonceStr);
                     pg = json[0].pg;  
                     signType = json[0].signType;  
                     paySign = json[0].paySign;  
@@ -72,11 +74,17 @@ String code = "oI3krwR_gGNsz38r1bdB1_SkcoNw";
         }  
 function send_request(callback, urladdress,isReturnData){        
     var xmlhttp = getXMLHttpRequest();  
+    alert("urladdress==="+ urladdress);
     xmlhttp.onreadystatechange = function(){  
+    	alert("callback==="+callback);
+    	
             if (xmlhttp.readyState == 4) {  
+            	alert("xmlhttp.readyState == "+xmlhttp.readyState);
                     try{  
                     if(xmlhttp.status == 200){  
-                        if(isReturnData && isReturnData==true){  
+                    	alert("status == 200");
+                        if(isReturnData && isReturnData==true){
+                        	alert("responseText="+xmlhttp.responseText);
                             callback(xmlhttp.responseText);  
                         }  
                     }else{  
