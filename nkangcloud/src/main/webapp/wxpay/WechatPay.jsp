@@ -10,14 +10,12 @@ String code = request.getParameter("UID");
 <meta name="apple-mobile-web-app-capable" content="yes" />  
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />  
 <meta name="format-detection" content="telephone=no" />  
-<title>测试支付</title>   
+<title>微信支付</title>   
 </head>  
 <body>  
     <div class="index_box">  
-        
-            <p class="cz_btn"><a href="javascript:pay();" class="btn_1">立即支付</a></p>  
+            <a href="javascript:pay();" class="btn_1"><img src="http://nkctech.gz.bcebos.com/wechatpay.png" style="height:150px;width:150px;margin-left:150px;margin-top:150px;"></a> 
         </div>  
-    </div>  
   
     <script type="text/javascript">  
        var appId;
@@ -39,10 +37,10 @@ String code = request.getParameter("UID");
                function(res){       
                    if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
                 	   window.location.href = "http://nkctech.duapp.com/mdm/AddQuestions.jsp";
-                       alert("支付成功");  
+                       alert("感谢您的支持,支付成功!");  
                    }
                    else{
-       	    	    alert('支付失败'+res.err_msg);//这里一直返回getBrandWCPayRequest提示fail_invalid appid
+       	    	    alert('抱歉系统故障，支付失败！请联系商家'+res.err_msg);//这里一直返回getBrandWCPayRequest提示fail_invalid appid
         	       }   
                }  
            ); 
@@ -78,7 +76,7 @@ function send_request(callback, urladdress,isReturnData){
                     try{  
                     if(xmlhttp.status == 200){  
                         if(isReturnData && isReturnData==true){
-                        	alert("responseText="+xmlhttp.responseText);
+                        	/* alert("responseText="+xmlhttp.responseText); */
                             callback(xmlhttp.responseText);  
                         }  
                     }else{  
