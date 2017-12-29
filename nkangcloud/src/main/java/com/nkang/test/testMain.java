@@ -8,8 +8,6 @@ import javax.net.ssl.SSLSession;
 import com.nkang.kxmoment.util.Constants;
 
 
-
-import com.nkang.kxmoment.util.WeixinPay.api.PayUtils;
 import com.nkang.kxmoment.util.WeixinPay.utils.HttpsRequest;
 
 import java.io.*;

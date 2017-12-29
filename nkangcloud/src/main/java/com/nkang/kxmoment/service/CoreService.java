@@ -32,7 +32,6 @@ import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.MessageUtil;
 import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.RestUtils;
-import com.nkang.kxmoment.util.WeixinPay.api.PayUtils;
 import com.nkang.kxmoment.util.WeixinPay.utils.HttpsRequest;
 
 public class CoreService
