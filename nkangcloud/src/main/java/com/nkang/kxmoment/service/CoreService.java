@@ -281,20 +281,20 @@ public class CoreService
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 
-					}else if (eventKey.equals("SelfTraining")) {//我的订阅
+					}else if (eventKey.equals("onlinePay")) {//我的订阅
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle(cm.getClientName()+"|欢迎进入自我修炼");
+						article.setTitle("在线支付购买您的课程");
 						article.setDescription("乐数在线练习");
-						article.setPicUrl("http://leshucq.bj.bcebos.com/standard/standard_leshuslide1.jpg");
+						article.setPicUrl("http://nkctech.gz.bcebos.com/wechatpaybig.JPG");
 						article.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						
 						Article article1 = new Article();
-						article1.setTitle("乐数在线练习 - 悟时自渡");
-						article1.setDescription("乐数在线练习 - 悟时自渡");
-						article1.setPicUrl("http://ww1.prweb.com/prfiles/2013/10/31/11293784/gI_134943_Icon%201024%20cropped.png");
-						article1.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp");
+						article1.setTitle("在线购买课时");
+						article1.setDescription("在线购买课时");
+						article1.setPicUrl("http://nkctech.gz.bcebos.com/wechatpay.png");
+						article1.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName);
 						articleList.add(article1);
 
 /*						Article article3 = new Article();
