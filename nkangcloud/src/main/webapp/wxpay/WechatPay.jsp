@@ -14,7 +14,7 @@ String code = request.getParameter("UID");
 </head>  
 <body>  
     <div class="index_box">  
-            <a href="javascript:pay();" class="btn_1"><img src="http://nkctech.gz.bcebos.com/wechatpay.png" style="height:150px;width:150px;margin-left:150px;margin-top:150px;"></a> 
+            <a href="javascript:pay();" class="btn_1"><img src="http://nkctech.gz.bcebos.com/wechatpay.png" style="height:150px;width:150px;margin-left:130px;margin-top:170px;"></a> 
         </div>  
   
     <script type="text/javascript">  
