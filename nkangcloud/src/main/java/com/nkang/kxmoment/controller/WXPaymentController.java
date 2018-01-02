@@ -25,14 +25,10 @@ public class WXPaymentController {
     		@RequestParam(value = "openId") String openId,
     		@RequestParam(value = "totalfee") String totalfee){  
         try {  
-
         	String timeStamps = String.valueOf((System.currentTimeMillis()/1000));//1970年到现在的秒数
     		String out_trade_no = Constants.clientCode + timeStamps;
-    		
     		PayQrCode qrCode = new PayQrCode(Constants.prodID, out_trade_no, openId,totalfee);
-
     		String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><body>"+Constants.payBody+"</body><device_info>"+Constants.deviceInfo+"</device_info><mch_id>"+Constants.mcthID+"</mch_id><nonce_str>123</nonce_str><notify_url>"+Constants.notifyURL+"</notify_url><out_trade_no>"+out_trade_no+"</out_trade_no><sign_type>"+Constants.signType+"</sign_type><total_fee>"+totalfee+"</total_fee><trade_type>"+Constants.tradeType+"</trade_type><openid>"+openId+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
-
 	    	HttpsRequest req =  new HttpsRequest();
 	    	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", xmlStrp);
 /*	    	log.info("---XMLString From payment request---" + xmlStrp);*/
@@ -54,8 +50,7 @@ public class WXPaymentController {
             String paySign = Signature.generateSign(payMap);  
             payMap.put("pg", "prepay_id=" + prepay_id);
             payMap.put("paySign", paySign);
-              
-            // æ‹¼æŽ¥å¹¶è¿”å›žjson  
+            
             StringBuilder sBuilder = new StringBuilder("[{");  
             sBuilder.append("appId:'").append(Constants.APP_ID).append("',")  
                         .append("timeStamp:'").append(timeStamp).append("',")  
@@ -68,6 +63,9 @@ public class WXPaymentController {
             response.getWriter().print(sBuilder.toString());  
             response.getWriter().close();  
             
+            
+         // TOD - Save the data to the database for further query
+            
         } catch (Exception e) {  
             e.printStackTrace();  
         }
@@ -79,14 +77,12 @@ public class WXPaymentController {
     		@RequestParam(value = "openId") String openId,
     		@RequestParam(value = "transactionid") String transactionid){  
         try {  
-
         	PayQrCode qrCode = new PayQrCode(transactionid);
         	String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><mch_id>"+Constants.mcthID+"</mch_id><nonce_str>123</nonce_str><transaction_id>"+qrCode.getTransaction_id()+"</transaction_id>><sign>"+qrCode.getSign()+"</sign></xml>";
-
         	HttpsRequest req =  new HttpsRequest();
         	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/orderquery", xmlStrp);
         	log.info(xmlStr);
-            
+        	// TOD - Save the data to the database for further query
         } catch (Exception e) {  
             e.printStackTrace();  
         }
