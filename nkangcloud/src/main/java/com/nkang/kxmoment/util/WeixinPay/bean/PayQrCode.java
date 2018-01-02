@@ -32,6 +32,19 @@ public class PayQrCode {
 	private String trade_type = "";
 	private String openid = "";
 	
+	//
+	private String transaction_id = "";
+	
+	
+	
+	public String getTransaction_id() {
+		return transaction_id;
+	}
+
+	public void setTransaction_id(String transaction_id) {
+		this.transaction_id = transaction_id;
+	}
+
 	public String getOpenid() {
 		return openid;
 	}
@@ -113,6 +126,23 @@ public class PayQrCode {
 		setTotal_fee(totalfee);
 		setTrade_type(Constants.tradeType);
 		setOpenid(openId);
+		try {
+			Map<String, String> map = BeanUtils.describe(this);
+			map.remove("class");
+			
+			String sign = Signature.generateSign(map);
+	        setSign(sign);
+		} catch (Exception e) {
+		}
+	}
+	
+	public PayQrCode(String transaction_id){
+		setAppid(Constants.APP_ID);
+		setMch_id(Constants.mcthID);
+		//setTime_stamp(System.currentTimeMillis()/1000+"");
+		//setNonce_str(UUID.randomUUID().toString().replace("-", ""));
+		setNonce_str("123");
+		setTransaction_id(transaction_id);
 		try {
 			Map<String, String> map = BeanUtils.describe(this);
 			map.remove("class");

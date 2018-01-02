@@ -31,7 +31,7 @@ public class WXPaymentController {
     		
     		PayQrCode qrCode = new PayQrCode(Constants.prodID, out_trade_no, openId,totalfee);
 
-    		String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><body>"+Constants.payBody+"</body><device_info>"+Constants.deviceInfo+"</device_info><mch_id>"+qrCode.getMch_id()+"</mch_id><nonce_str>123</nonce_str><notify_url>"+Constants.notifyURL+"</notify_url><out_trade_no>"+out_trade_no+"</out_trade_no><sign_type>"+Constants.signType+"</sign_type><total_fee>"+totalfee+"</total_fee><trade_type>"+Constants.tradeType+"</trade_type><openid>"+openId+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
+    		String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><body>"+Constants.payBody+"</body><device_info>"+Constants.deviceInfo+"</device_info><mch_id>"+Constants.mcthID+"</mch_id><nonce_str>123</nonce_str><notify_url>"+Constants.notifyURL+"</notify_url><out_trade_no>"+out_trade_no+"</out_trade_no><sign_type>"+Constants.signType+"</sign_type><total_fee>"+totalfee+"</total_fee><trade_type>"+Constants.tradeType+"</trade_type><openid>"+openId+"</openid><sign>"+qrCode.getSign()+"</sign></xml>";
 
 	    	HttpsRequest req =  new HttpsRequest();
 	    	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", xmlStrp);
