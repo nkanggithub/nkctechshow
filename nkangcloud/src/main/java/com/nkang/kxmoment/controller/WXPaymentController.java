@@ -27,7 +27,7 @@ public class WXPaymentController {
         try {  
 
         	String timeStamps = String.valueOf((System.currentTimeMillis()/1000));//1970年到现在的秒数
-    		String out_trade_no = "nkc"+ timeStamps;
+    		String out_trade_no = Constants.clientCode + timeStamps;
     		
     		PayQrCode qrCode = new PayQrCode(Constants.prodID, out_trade_no, openId,totalfee);
 
@@ -72,4 +72,25 @@ public class WXPaymentController {
             e.printStackTrace();  
         }
     }
+	
+	
+	@RequestMapping("/pay/orderqueryparm")  
+    public void orderqueryparm(HttpServletRequest request, HttpServletResponse response, 
+    		@RequestParam(value = "openId") String openId,
+    		@RequestParam(value = "transactionid") String transactionid){  
+        try {  
+
+        	PayQrCode qrCode = new PayQrCode(transactionid);
+        	String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><mch_id>"+Constants.mcthID+"</mch_id><nonce_str>123</nonce_str><transaction_id>"+qrCode.getTransaction_id()+"</transaction_id>><sign>"+qrCode.getSign()+"</sign></xml>";
+
+        	HttpsRequest req =  new HttpsRequest();
+        	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/orderquery", xmlStrp);
+        	log.info(xmlStr);
+            
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }
+    }
+	
+	
 }
