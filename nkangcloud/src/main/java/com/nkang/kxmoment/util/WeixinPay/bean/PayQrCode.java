@@ -1,19 +1,18 @@
 package com.nkang.kxmoment.util.WeixinPay.bean;
 
 import java.util.Map;
-import java.util.UUID;
+
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.nkang.kxmoment.util.Constants;
-import com.nkang.kxmoment.util.WeixinPay.utils.Configure;
-import com.nkang.kxmoment.util.WeixinPay.utils.MapUtil;
+
 import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
 
 
 /**
  * 
- * @author louiseliu
+ * @author Ning Kang
  *
  */
 public class PayQrCode {
@@ -100,20 +99,19 @@ public class PayQrCode {
 	/**
 	 * @param product_id
 	 */
-	public PayQrCode(String product_id, String out_trade_no, String openId){
-		setAppid(Configure.getAppid());
-		setMch_id(Configure.getMchid());
+	public PayQrCode(String product_id, String out_trade_no, String openId, String totalfee){
+		setAppid(Constants.APP_ID);
+		setMch_id(Constants.mcthID);
 		//setTime_stamp(System.currentTimeMillis()/1000+"");
 		//setNonce_str(UUID.randomUUID().toString().replace("-", ""));
 		setNonce_str("123");
-		//setProduct_id(product_id);
-		setBody("LeshuCourse");
-		setDevice_info("WEB");
-		setNotify_url("http://leshucq.bceapp.com/mdm/AddQuestions.jsp");
+		setBody(Constants.payBody);
+		setDevice_info(Constants.deviceInfo);
+		setNotify_url(Constants.notifyURL);
 		setOut_trade_no(out_trade_no);
-		setSign_type("MD5");
-		setTotal_fee("1");
-		setTrade_type("JSAPI");
+		setSign_type(Constants.signType);
+		setTotal_fee(totalfee);
+		setTrade_type(Constants.tradeType);
 		setOpenid(openId);
 		try {
 			Map<String, String> map = BeanUtils.describe(this);
