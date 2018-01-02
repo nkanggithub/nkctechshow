@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%> 
 <%  
 String code = request.getParameter("UID");
+String price = request.getParameter("TOTALFEE");
  %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
 <html>  
@@ -67,7 +68,7 @@ String code = request.getParameter("UID");
                        onBridgeReady(); 
                     }   
                 }  
-            },"http://nkctech.duapp.com/pay/payparm?openId=<%= code%>",true);  
+            },"http://nkctech.duapp.com/pay/payparm?openId=<%= code%>&totalfee=<%= price%>",true);  
         }  
 function send_request(callback, urladdress,isReturnData){        
     var xmlhttp = getXMLHttpRequest();  
@@ -76,7 +77,7 @@ function send_request(callback, urladdress,isReturnData){
                     try{  
                     if(xmlhttp.status == 200){  
                         if(isReturnData && isReturnData==true){
-                        	/* alert("responseText="+xmlhttp.responseText); */
+/*                         	alert("responseText="+xmlhttp.responseText); */
                             callback(xmlhttp.responseText);  
                         }  
                     }else{  

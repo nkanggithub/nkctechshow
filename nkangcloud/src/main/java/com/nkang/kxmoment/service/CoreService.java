@@ -286,14 +286,14 @@ public class CoreService
 						article.setTitle("在线支付购买您的课程");
 						article.setDescription("乐数在线练习");
 						article.setPicUrl("http://nkctech.gz.bcebos.com/wechatpaybig.JPG");
-						article.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName);
+						article.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName+"&TOTALFEE=1");
 						articleList.add(article);
 						
 						Article article1 = new Article();
 						article1.setTitle("在线购买课时");
 						article1.setDescription("在线购买课时");
 						article1.setPicUrl("http://nkctech.gz.bcebos.com/wechatpay.png");
-						article1.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName);
+						article1.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName+"&TOTALFEE=5");
 						articleList.add(article1);
 
 /*						Article article3 = new Article();
