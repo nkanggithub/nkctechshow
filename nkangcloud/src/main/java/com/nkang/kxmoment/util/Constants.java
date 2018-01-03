@@ -32,7 +32,7 @@ public final class Constants {
 	public static final String mcthID= "1469932302";
 	public static final String payBody= "LeshuCourse";
 	public static final String deviceInfo= "WEB";
-	public static final String notifyURL= "http://leshucq.bceapp.com/mdm/LeShuIntro.jsp";
+	public static final String notifyURL= "http://nkctech.duapp.com/mdm/profile.jsp";
 	public static final String signType= "MD5";
 	public static final String tradeType= "JSAPI";
 	public static final String totalFee= "1";
