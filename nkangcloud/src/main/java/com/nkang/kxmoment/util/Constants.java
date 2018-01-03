@@ -1,6 +1,5 @@
 package com.nkang.kxmoment.util;
 
-import com.nkang.kxmoment.util.WeixinPay.utils.Configure;
 
 public final class Constants {
 	private Constants(){}
