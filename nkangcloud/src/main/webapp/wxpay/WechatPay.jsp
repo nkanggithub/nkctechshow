@@ -144,6 +144,10 @@ text-align:center;
     z-index: 1002;
     left: 0;
 }
+.default{
+	color:white;
+	background:#000000;
+}
 	</style>
 	</head>
 <body>
@@ -246,6 +250,8 @@ function getXMLHttpRequest() {
 $(function(){
 	$(".infoItem").on("click",function(){
 		totalfee=$(this).children("span").text();
+		$(this).addClass("default");
+		$(this).siblings().removeClass("default");
 		totalfee = totalfee+"00";
 		totalfee = "1";
 	});
@@ -272,7 +278,7 @@ $(function(){
     </div>
     <div class="infoPanel">
       <div class="infoPay">
-	  <div class="infoItem"><span>2160</span>元<br>24次课</div>
+	  <div class="infoItem default"><span>2160</span>元<br>24次课</div>
 	  <div class="infoItem"><span>3880</span>元<br>48次课</div>
 	  <div class="infoItem"><span>6680</span>元<br>96次课</div>
      </div>
@@ -287,7 +293,7 @@ $(function(){
           <div class="infoPanel">
       <div class="infoPay">
 	  <div class="infoItem" style="color:gray;border:1px solid gray;line-height:50px;">支付宝支付</div>
-	  <div class="infoItem" style="line-height:50px;">微信支付</div>
+	  <div class="infoItem default" style="line-height:50px;">微信支付</div>
      </div>
     </div>
       <div class="infoArea pay"><a href="javascript:pay();" style="color:white;">立即支付</a></div>
