@@ -5,6 +5,7 @@
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
+<%@ page import="com.nkang.kxmoment.util.Constants"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
 String uid = request.getParameter("UID");
@@ -32,7 +33,7 @@ if(res!=null){
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>微信支付</title>
+  <title><%= Constants.clientCodeCN%>-微信支付</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<script type="text/javascript" src="../Jsp/JS/jquery-1.8.0.js"></script>
 	<style>
