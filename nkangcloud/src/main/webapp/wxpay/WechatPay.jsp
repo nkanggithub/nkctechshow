@@ -265,9 +265,9 @@ function getXMLHttpRequest() {
     </div>
     <div class="infoPanel">
       <div class="infoPay">
-	  <div class="infoItem">2160元<br>24次课</div>
-	  <div class="infoItem">3880元<br>48次课</div>
-	  <div class="infoItem">6680元<br>96次课</div>
+	  <div class="infoItem"><span>2160</span>元<br>24次课</div>
+	  <div class="infoItem"><span>3880</span>元<br>48次课</div>
+	  <div class="infoItem"><span>6680</span>元<br>96次课</div>
      </div>
     </div>
 
