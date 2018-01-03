@@ -291,7 +291,7 @@ $(function(){
     </div>
       <div class="infoArea pay"><a href="javascript:pay();">立即支付</a></div>
     	<div id="footer">
-		<span class="clientCopyRight"><nobr>©版权所有 | 重庆乐数艺术培训有限公司</nobr></span>
+		<span class="clientCopyRight"><nobr>©版权所有 | 重庆NKC科技有限公司</nobr></span>
 	</div>
 	</body>
 </html>
