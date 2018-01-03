@@ -8,7 +8,7 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
 String uid = request.getParameter("UID");
-String code = request.getParameter("UID");
+String code = uid;
 String price = request.getParameter("TOTALFEE");
 
 String name = "";
