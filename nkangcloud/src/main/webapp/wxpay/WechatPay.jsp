@@ -103,7 +103,7 @@ a:visited{
     text-align: center;
     height:50px;
     line-height: 50px;
-    background: #20b672;
+    background: #000000;
     color: white;
     position:absolute;
     bottom:30px;}
@@ -125,8 +125,8 @@ width:30%;
 margin-left:2%;
 height:50px;
 float:left;
-border:1px solid #20b672;
-color:#20b672;
+border:1px solid #000000;
+color:#000000;
 border-radius:5px;
 line-height:25px;
 font-size:0.8rem;
@@ -262,7 +262,7 @@ $(function(){
 			<span style="position: relative;top: 8px;left: 5px;font-style:normal"><%=name %></span>
 		</i>
 		<img style="position: absolute;top: 8px;left: 10px;z-index: 100;height: 60px;" class="HpLogo" src="http://nkctech.gz.bcebos.com/nkclogo.png" alt="Logo">
-		<div style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;"></div>
+		<div style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #000000;"></div>
 	</div>
     <div class="infoPanel">
       <div class="infoArea">
