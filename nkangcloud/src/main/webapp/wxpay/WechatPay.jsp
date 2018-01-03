@@ -176,27 +176,27 @@ text-align:center;
         }  
         function pay(){   
             send_request(function(value){  
-                var json = eval("(" + value + ")");  
-                if(json.length > 0){  
-                    appId = json[0].appId;  
-                    timeStamp = json[0].timeStamp;  
-                    nonceStr = json[0].nonceStr;
-                    pg = json[0].pg;  
-                    signType = json[0].signType;  
-                    paySign = json[0].paySign;
-                    
-                    if (typeof WeixinJSBridge == "undefined"){  
-                       if( document.addEventListener ){
-                           document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);  
-                       }else if (document.attachEvent){  
-                           document.attachEvent('WeixinJSBridgeReady', onBridgeReady);  
-                           document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);  
-                       }  
-                    }else{
-                       onBridgeReady(); 
-                    }   
-                }  
-            },"http://nkctech.duapp.com/pay/payparm?openId=<%= code%>&totalfee=<%= price%>",true);  
+            var json = eval("(" + value + ")");  
+            if(json.length > 0){  
+                appId = json[0].appId;  
+                timeStamp = json[0].timeStamp;  
+                nonceStr = json[0].nonceStr;
+                pg = json[0].pg;  
+                signType = json[0].signType;  
+                paySign = json[0].paySign;
+                alert("--" + quotation);
+                if (typeof WeixinJSBridge == "undefined"){  
+                   if( document.addEventListener ){
+                       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);  
+                   }else if (document.attachEvent){  
+                       document.attachEvent('WeixinJSBridgeReady', onBridgeReady);  
+                       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);  
+                   }  
+                }else{
+                   onBridgeReady(); 
+                }   
+            }  
+            },"http://nkctech.duapp.com/pay/payparm?openId=<%= code%>&totalfee=<%= price%>", true);  
         }  
 function send_request(callback, urladdress,isReturnData){        
     var xmlhttp = getXMLHttpRequest();  
@@ -246,16 +246,14 @@ function getXMLHttpRequest() {
 	
 	
 	<div id="data_model_div" style="height: 100px">
-	<i class="icon" style="position: absolute;top: 25px;z-index: 100;right: 20px;">
-			<!-- <img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png"
-			style="width: 30px; height: 30px;"> -->
-<div style="width: 30px;height: 30px;float: left;border-radius: 50%;overflow: hidden;">
-<img class="exit" src="<%=headImgUrl %>" style="width: 30px; height: 30px;" />
-</div>
-<span style="position: relative;top: 8px;left: 5px;font-style:normal"><%=name %></span></i>
-	<img style="position: absolute;top: 8px;left: 10px;z-index: 100;height: 60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
-		<div style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
-		</div>
+		<i class="icon" style="position: absolute;top: 25px;z-index: 100;right: 20px;">
+			<div style="width: 30px;height: 30px;float: left;border-radius: 50%;overflow: hidden;">
+				<img class="exit" src="<%=headImgUrl %>" style="width: 30px; height: 30px;" />
+			</div>
+			<span style="position: relative;top: 8px;left: 5px;font-style:normal"><%=name %></span>
+		</i>
+		<img style="position: absolute;top: 8px;left: 10px;z-index: 100;height: 60px;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
+		<div style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;"></div>
 	</div>
     <div class="infoPanel">
       <div class="infoArea">
@@ -265,13 +263,13 @@ function getXMLHttpRequest() {
     </div>
     <div class="infoPanel">
       <div class="infoPay">
-	  <div class="infoItem"><span>2160</span>元<br>24次课</div>
-	  <div class="infoItem"><span>3880</span>元<br>48次课</div>
-	  <div class="infoItem"><span>6680</span>元<br>96次课</div>
+	  <div class="infoItem"><span id="p1" value="1">2160</span>元<br>24次课</div>
+	  <div class="infoItem"><span id="p2" value="2">3880</span>元<br>48次课</div>
+	  <div class="infoItem"><span id="p3" value="3">6680</span>元<br>96次课</div>
      </div>
     </div>
 
-<div class="infoPanel">
+	<div class="infoPanel">
       <div class="infoArea">
         <p class="infoTitle">支付方式</p>
         <p class="infoVal"></p>
