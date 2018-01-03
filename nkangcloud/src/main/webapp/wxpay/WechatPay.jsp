@@ -245,6 +245,8 @@ function getXMLHttpRequest() {
 $(function(){
 	$(".infoItem").on("click",function(){
 		totalfee=$(this).children("span").text();
+		totalfee = totalfee+"00";
+		totalfee = "1";
 	});
 });
     </script>
