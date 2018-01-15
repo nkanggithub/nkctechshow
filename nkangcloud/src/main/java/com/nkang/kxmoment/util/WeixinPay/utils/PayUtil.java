@@ -178,7 +178,7 @@ public class PayUtil {
             logger.debug("xml为空：");  
         }*/
 
-      String appid = getXmlPara(notifyXml,"appid");;  
+/*      String appid = getXmlPara(notifyXml,"appid");;  
         String bank_type = getXmlPara(notifyXml,"bank_type");  
         String cash_fee = getXmlPara(notifyXml,"cash_fee");
         String fee_type = getXmlPara(notifyXml,"fee_type");  
@@ -235,7 +235,7 @@ public class PayUtil {
          	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/orderquery", xmlStrp);
          	logger.info("call result response:：" + xmlStr);
 
-        }
+        }*/
         return notifyXml;
     }
     /**
