@@ -117,6 +117,7 @@ public class PayQrCode {
 		setMch_id(Constants.mcthID);
 		//setTime_stamp(System.currentTimeMillis()/1000+"");
 		//setNonce_str(UUID.randomUUID().toString().replace("-", ""));
+		//setNonce_str(out_trade_no.substring(3));
 		setNonce_str("123");
 		setBody(Constants.payBody);
 		setDevice_info(Constants.deviceInfo);
@@ -136,12 +137,12 @@ public class PayQrCode {
 		}
 	}
 	
-	public PayQrCode(String transaction_id){
+	public PayQrCode(String transaction_id, String nonce_str){
 		setAppid(Constants.APP_ID);
 		setMch_id(Constants.mcthID);
 		//setTime_stamp(System.currentTimeMillis()/1000+"");
 		//setNonce_str(UUID.randomUUID().toString().replace("-", ""));
-		setNonce_str("123");
+		setNonce_str(nonce_str);
 		setTransaction_id(transaction_id);
 		try {
 			Map<String, String> map = BeanUtils.describe(this);
