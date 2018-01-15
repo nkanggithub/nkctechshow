@@ -11,7 +11,7 @@
 String uid = request.getParameter("UID");
 String code = uid;
 String price = request.getParameter("TOTALFEE");
-
+String notifyURL = Constants.notifyURL;
 String name = "";
 String headImgUrl ="";
 String phone="";
@@ -171,9 +171,8 @@ text-align:center;
                    "paySign" : paySign    //微信签名   
                },  
                function(res){       
-                   if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
-                	   window.location.href = "http://nkctech.duapp.com/mdm/profile.jsp?UID=<%= code%>";
-                       alert("感谢您的支持,支付成功!");  
+                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                	   window.location.href = "<%= notifyURL%>";
                    }
                    else{
        	    	    alert('抱歉系统故障，支付失败！请联系商家'+res.err_msg);//这里一直返回getBrandWCPayRequest提示fail_invalid appid

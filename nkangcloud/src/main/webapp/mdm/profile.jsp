@@ -6,9 +6,11 @@
 <%@ page import="com.nkang.kxmoment.baseobject.WeChatUser"%>
 <%@ page import="com.nkang.kxmoment.baseobject.ClientMeta"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="com.nkang.kxmoment.util.WeixinPay.utils.PayUtil"%>
 <%
 String AccessKey = RestUtils.callGetValidAccessKey();
 String uid = request.getParameter("UID");
+
 MongoDBBasic.updateUser(uid);
 String curLoc=null;
 String city=null;
@@ -47,6 +49,10 @@ MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get(
 String level=res.get("level");
 
 System.out.println("isTeacher====="+isTeacher);
+
+
+
+
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
