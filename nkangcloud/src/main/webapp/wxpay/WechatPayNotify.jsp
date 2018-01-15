@@ -21,15 +21,14 @@ String myresXml = "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_ms
 response.getWriter().print(myresXml.toString());  
 response.getWriter().close();  
 
-String resXml = "<xml><appid><![CDATA[wx022b55e5bdea4c51]]></appid><bank_type><![CDATA[CFT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><device_info><![CDATA[WEB]]></device_info><fee_type><![CDATA[CNY]]></fee_type><is_subscribe><![CDATA[Y]]></is_subscribe><mch_id><![CDATA[1469932302]]></mch_id><nonce_str><![CDATA[123]]></nonce_str><openid><![CDATA[oI3krwR_gGNsz38r1bdB1_SkcoNw]]></openid><out_trade_no><![CDATA[NKC1515997814882]]></out_trade_no><result_code><![CDATA[SUCCESS]]></result_code><return_code><![CDATA[SUCCESS]]></return_code><sign><![CDATA[7B53540F235ADC710CF8A7C6E5C0A0FD]]></sign><time_end><![CDATA[20180115143022]]></time_end><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><transaction_id><![CDATA[4200000056201801154446651635]]></transaction_id></xml>";
+String notifyXML2 = "<xml><appid><![CDATA[wx022b55e5bdea4c51]]></appid><bank_type><![CDATA[CFT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><device_info><![CDATA[WEB]]></device_info><fee_type><![CDATA[CNY]]></fee_type><is_subscribe><![CDATA[Y]]></is_subscribe><mch_id><![CDATA[1469932302]]></mch_id><nonce_str><![CDATA[123]]></nonce_str><openid><![CDATA[oI3krwR_gGNsz38r1bdB1_SkcoNw]]></openid><out_trade_no><![CDATA[NKC1515997814882]]></out_trade_no><result_code><![CDATA[SUCCESS]]></result_code><return_code><![CDATA[SUCCESS]]></return_code><sign><![CDATA[7B53540F235ADC710CF8A7C6E5C0A0FD]]></sign><time_end><![CDATA[20180115143022]]></time_end><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><transaction_id><![CDATA[4200000056201801154446651635]]></transaction_id></xml>";
+notifyXML = notifyXML2;
 String uid = PayUtil.getXmlPara(notifyXML,"openid");
 String transaction_id =  PayUtil.getXmlPara(notifyXML,"transaction_id");
 String total_fee =  PayUtil.getXmlPara(notifyXML,"total_fee");
 String notifyURL = Constants.notifyURL;
 String bank_type = PayUtil.getXmlPara(notifyXML,"bank_type");
 String out_trade_no = PayUtil.getXmlPara(notifyXML,"out_trade_no");
-
-out_trade_no = "NKC1515997814882";
 Date date = new Date(Long.valueOf(out_trade_no.substring(3)));
 Format format = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
 %>
