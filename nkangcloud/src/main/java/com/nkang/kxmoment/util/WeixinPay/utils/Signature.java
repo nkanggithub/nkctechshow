@@ -18,7 +18,7 @@ public class Signature {
 		
     	String result = MapUtil.mapJoin(orderMap,false,false);
         result += "&key=" + Configure.getKey();
-        log.info("====:" + result);
+        log.info("=MD5 Calc Result===:" + result);
         //result =  result.toUpperCase();
         result = MD5.MD5Encode(result).toUpperCase();
         

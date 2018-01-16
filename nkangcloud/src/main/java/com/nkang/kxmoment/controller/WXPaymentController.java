@@ -50,7 +50,7 @@ public class WXPaymentController {
 	    	String prepay_id = PayUtil.getXmlPara(xmlStr,"prepay_id");
     		
     		String timeStamp = timeStamps;
-            String nonceStr = Constants.WECHAT_TOKEN;
+            String nonceStr = "123";
             Map<String, String> payMap = new HashMap<String, String>();  
 
             payMap.put("appId", Constants.APP_ID);  

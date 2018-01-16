@@ -174,13 +174,11 @@ public class PayUtil {
             e.printStackTrace();
         }
         logger.info("recevied xml result：" + notifyXml);  
-/*        if(ToolString.isEmpty(notifyXml)){  
-            logger.debug("xml为空：");  
-        }*/
 
-/*      String appid = getXmlPara(notifyXml,"appid");;  
+        String appid = getXmlPara(notifyXml,"appid");;  
         String bank_type = getXmlPara(notifyXml,"bank_type");  
         String cash_fee = getXmlPara(notifyXml,"cash_fee");
+        String device_info = getXmlPara(notifyXml,"device_info");
         String fee_type = getXmlPara(notifyXml,"fee_type");  
         String is_subscribe = getXmlPara(notifyXml,"is_subscribe");  
         String mch_id = getXmlPara(notifyXml,"mch_id");  
@@ -200,6 +198,7 @@ public class PayUtil {
                 "appid=" + appid +
                 "&bank_type=" + bank_type +
                 "&cash_fee=" + cash_fee +
+                "&device_info=" + device_info +
                 "&fee_type=" + fee_type +
                 "&is_subscribe=" + is_subscribe +
                 "&mch_id=" + mch_id +
@@ -213,29 +212,20 @@ public class PayUtil {
                 "&trade_type=" + trade_type +
                 "&transaction_id=" + transaction_id +
                 "&key=" + Constants.partnerKey;//注意这里的参数要根据ASCII码 排序
+        logger.info("LocalString--"+localSign);
         localSign = MD5.MD5Encode(localSign).toUpperCase();//将数据MD5加密
 
-        System.out.println("LocalSign：" + localSign);
-        logger.info("LocalSign：" + localSign);  
-        logger.info("WechatPay Sign：" + sign);
+        logger.info("Local Sign： " + localSign);  
+        logger.info("WechatPay Sign： " + sign);
 
         //本地计算签名与微信返回签名不同||返回结果为不成功
-        if(!"SUCCESS".equals(result_code) || !"SUCCESS".equals(return_code)){
-            logger.error("验证签名失败或返回错误结果码 - Sign Validation Failure or returned incorrect code---result_code--" + result_code + "--return_code--" + return_code);
+        if(!sign.equals(localSign) || !"SUCCESS".equals(result_code) || !"SUCCESS".equals(return_code)){
+            logger.info("Sign Validation Failure or returned incorrect code---result_code--" + result_code + "--return_code--" + return_code);
             resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>" + "<return_msg><![CDATA[FAIL]]></return_msg>" + "</xml> ";
         }else{
-             System.out.println("支付成功");
-             logger.debug("公众号支付成功，out_trade_no(订单号)为：" + out_trade_no);
+             logger.info("Wechat pay success. out_trade_no is：" + out_trade_no);
              resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>" + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
-             
-             
-         	PayQrCode qrCode = new PayQrCode(transaction_id,nonce_str);
-         	String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><mch_id>"+Constants.mcthID+"</mch_id><nonce_str>"+nonce_str+"</nonce_str><transaction_id>"+qrCode.getTransaction_id()+"</transaction_id>><sign>"+qrCode.getSign()+"</sign></xml>";
-         	HttpsRequest req =  new HttpsRequest();
-         	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/orderquery", xmlStrp);
-         	logger.info("call result response:：" + xmlStr);
-
-        }*/
+        }
         return notifyXml;
     }
     /**
