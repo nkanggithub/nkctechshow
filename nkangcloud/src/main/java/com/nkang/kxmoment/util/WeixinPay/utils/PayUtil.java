@@ -1,5 +1,6 @@
 package com.nkang.kxmoment.util.WeixinPay.utils;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -160,10 +162,11 @@ public class PayUtil {
      * @throws KeyManagementException 
      * @throws UnrecoverableKeyException 
      */
-    public static String getNotifyResult(HttpServletRequest request) throws UnrecoverableKeyException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException, IOException{
+    public static String getNotifyResult(HttpServletRequest request, HttpServletResponse response) throws UnrecoverableKeyException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException, IOException{
         String inputLine;  
         String notifyXml = "";
         String resXml = "";
+        response.setContentType("text/xml");    
         try {  
             while ((inputLine = request.getReader().readLine()) != null){  
                 notifyXml += inputLine;  
@@ -219,13 +222,21 @@ public class PayUtil {
         logger.info("WechatPay Sign： " + sign);
 
         //本地计算签名与微信返回签名不同||返回结果为不成功
-        if(!sign.equals(localSign) || !"SUCCESS".equals(result_code) || !"SUCCESS".equals(return_code)){
+        if(!localSign.equals(sign) || !"SUCCESS".equals(result_code) || !"SUCCESS".equals(return_code)){
             logger.info("Sign Validation Failure or returned incorrect code---result_code--" + result_code + "--return_code--" + return_code);
             resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>" + "<return_msg><![CDATA[FAIL]]></return_msg>" + "</xml> ";
         }else{
              logger.info("Wechat pay success. out_trade_no is：" + out_trade_no);
              resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>" + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
         }
+        
+        //resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>" + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+/*        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        out.write(resXml.getBytes());
+        out.flush();
+        out.close();*/
+        //response.getWriter().println(msg);
+        
         return notifyXml;
     }
     /**
