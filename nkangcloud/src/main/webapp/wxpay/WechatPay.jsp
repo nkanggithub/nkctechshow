@@ -172,7 +172,8 @@ text-align:center;
                },  
                function(res){       
                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-                	   window.location.href = "<%= notifyURL%>";
+                	   alert("支付成功，感谢您的参与。");
+                	   window.location.href = "<%= notifyURL%>?UID=<%= code%>";
                    }
                    else{
        	    	    alert('抱歉系统故障，支付失败！请联系商家'+res.err_msg);//这里一直返回getBrandWCPayRequest提示fail_invalid appid
