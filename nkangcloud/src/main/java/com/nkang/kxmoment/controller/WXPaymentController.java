@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nkang.kxmoment.service.CoreService;
 import com.nkang.kxmoment.util.Constants;
+import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.WeixinPay.bean.PayQrCode;
+import com.nkang.kxmoment.util.WeixinPay.bean.Payment;
 import com.nkang.kxmoment.util.WeixinPay.utils.HttpsRequest;
 import com.nkang.kxmoment.util.WeixinPay.utils.PayUtil;
 import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
@@ -73,9 +75,22 @@ public class WXPaymentController {
             sBuilder.append("}]");  
 /*            log.info("---StringPaymentAfter" + sBuilder.toString());*/
             response.getWriter().print(sBuilder.toString());  
-            response.getWriter().close();  
+            response.getWriter().close();
             
-            
+            //Save payment records to database
+            Payment pay = new Payment();
+            pay.setAppid(Constants.APP_ID);
+            pay.setOpenid(openId);
+            pay.setMch_id(Constants.mcthID);
+            pay.setTotal_fee(totalfee);
+            pay.setTransaction_id("TBD");
+            pay.setResult_code("TBD");
+            pay.setReturn_code("TBD");
+            pay.setOut_trade_no(out_trade_no);
+            pay.setPrepaypkgID(prepay_id);
+            pay.setCreatedDate(timeStamps);
+            MongoDBBasic.savePaymentHistory(pay);
+
          // TOD - Save the data to the database for further query
             
         } catch (Exception e) {  
