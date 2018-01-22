@@ -33,6 +33,7 @@ public final class Constants {
 	public static final String payBody= "LeshuCourse";
 	public static final String deviceInfo= "WEB";
 	public static final String notifyURL= "http://"+baehost+"/wxpay/WechatPayNotify.jsp";
+	public static final String notifyPresentURL= "http://"+baehost+"/wxpay/WechatPayPresent.jsp";
 	public static final String signType= "MD5";
 	public static final String tradeType= "JSAPI";
 	public static final String totalFee= "1";
