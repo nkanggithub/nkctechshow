@@ -29,7 +29,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.nkang.kxmoment.util.Constants;
+import com.nkang.kxmoment.util.MongoDBBasic;
 import com.nkang.kxmoment.util.WeixinPay.bean.PayQrCode;
+import com.nkang.kxmoment.util.WeixinPay.bean.Payment;
 
 public class PayUtil {
     private static Logger logger = Logger.getLogger(PayUtil.class); 
@@ -166,7 +168,7 @@ public class PayUtil {
         String inputLine;  
         String notifyXml = "";
         String resXml = "";
-        response.setContentType("text/xml");    
+           
         try {  
             while ((inputLine = request.getReader().readLine()) != null){  
                 notifyXml += inputLine;  
@@ -195,7 +197,6 @@ public class PayUtil {
         String total_fee = getXmlPara(notifyXml,"total_fee");
         String trade_type = getXmlPara(notifyXml,"trade_type");
         String transaction_id = getXmlPara(notifyXml,"transaction_id");
-
         //根据返回xml计算本地签名
         String localSign =
                 "appid=" + appid +
@@ -215,29 +216,31 @@ public class PayUtil {
                 "&trade_type=" + trade_type +
                 "&transaction_id=" + transaction_id +
                 "&key=" + Constants.partnerKey;//注意这里的参数要根据ASCII码 排序
-        logger.info("LocalString--"+localSign);
         localSign = MD5.MD5Encode(localSign).toUpperCase();//将数据MD5加密
 
-        logger.info("Local Sign： " + localSign);  
-        logger.info("WechatPay Sign： " + sign);
-
-        //本地计算签名与微信返回签名不同||返回结果为不成功
+        
+        
         if(!localSign.equals(sign) || !"SUCCESS".equals(result_code) || !"SUCCESS".equals(return_code)){
-            logger.info("Sign Validation Failure or returned incorrect code---result_code--" + result_code + "--return_code--" + return_code);
-            resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>" + "<return_msg><![CDATA[FAIL]]></return_msg>" + "</xml> ";
+            logger.info("Sign "+sign+"---"+ localSign + " or returned incorrect code---result_code--" + result_code + "--return_code--" + return_code);
+            resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>" + "<return_msg><![CDATA[FAIL]]></return_msg>" + "</xml>";
+            MongoDBBasic.updatePaymentHistory(notifyXml, "", out_trade_no, time_end, "N");
         }else{
-             logger.info("Wechat pay success. out_trade_no is：" + out_trade_no);
-             resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>" + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+			resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>" + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml>";
+			logger.info("Sign "+sign+"---"+ localSign + " -result_code--" + result_code + "--return_code--" + return_code);
+/*			Payment pay = new Payment();
+			pay.setResult_code("OK");
+			pay.setReturn_code("SUCCESS");
+			pay.setAppid(appid);
+			pay.setOpenid(openid);
+			pay.setOut_trade_no(out_trade_no);
+			pay.setTransaction_id(transaction_id);
+			pay.setTotal_fee(total_fee);
+			pay.setMch_id(mch_id);
+			pay.setPrepaypkgID(pkgID);*/
+			MongoDBBasic.updatePaymentHistory(notifyXml, transaction_id, out_trade_no, time_end, "Y");
         }
-        
-        //resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>" + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
-/*        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
-        out.write(resXml.getBytes());
-        out.flush();
-        out.close();*/
-        //response.getWriter().println(msg);
-        
-        return notifyXml;
+
+        return resXml;
     }
     /**
      * 获取32位随机字符串
