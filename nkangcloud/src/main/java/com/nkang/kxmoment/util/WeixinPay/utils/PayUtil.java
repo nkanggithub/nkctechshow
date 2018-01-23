@@ -42,6 +42,20 @@ public class PayUtil {
      * @throws IOException
      * @throws JSONException 
      */
+    
+	 public static String generateMchPayNativeRequestURL(String productid){
+		PayQrCode qrCode = new PayQrCode(productid);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sign", qrCode.getSign());
+		map.put("appid", qrCode.getAppid());
+		map.put("mch_id", qrCode.getMch_id());
+		map.put("product_id", qrCode.getProduct_id());
+		map.put("time_stamp", qrCode.getTime_stamp());
+		map.put("nonce_str", qrCode.getNonce_str());
+		
+		return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
+	 }
+	
      public static Map<String,Object> getOpenIdByCode(String code) throws IOException, JSONException {
         //请求该链接获取access_token
         HttpPost httppost = new HttpPost("https://api.weixin.qq.com/sns/oauth2/access_token");

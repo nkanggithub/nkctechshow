@@ -54,6 +54,7 @@ import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
 import com.nkang.kxmoment.util.Constants;
 import com.nkang.kxmoment.util.SmsUtils.RestTest;
+import com.nkang.kxmoment.util.WeixinPay.bean.Payment;
 
 public class MongoDBBasic {
 	private static Logger log = Logger.getLogger(MongoDBBasic.class);
@@ -72,6 +73,12 @@ public class MongoDBBasic {
 	private static String collectionVisited = "Visited";
 	private static String collectionHistoryAbacus = "HistoryAbacus";
 	private static String collectionAbacusRank="AbacusRank";
+	
+	// Payment table start
+	private static String collectionPayMgt="PayManagement";
+	// Payment table end
+	
+	
 	public static DB getMongoDB() {
 		if (mongoDB != null) {
 			return mongoDB;
@@ -4227,6 +4234,98 @@ public static AbacusRank findAbacusRankByOpenid(String openid){
 			log.info("updateUser--" + e.getMessage());
 		}
 		return students;
+	}
+	
+	/*
+	 * Ning Kang: Save payment history to database
+	 */
+	public static boolean savePaymentHistory(Payment pay) {
+		mongoDB = getMongoDB();
+		//java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+		Boolean ret = false;
+		try {
+			DBObject insert = new BasicDBObject();
+			insert.put("OpenID", pay.getOpenid());
+			insert.put("Appid", pay.getAppid());
+			insert.put("Mchid", pay.getMch_id());
+			insert.put("OutTradeNo", pay.getOut_trade_no());
+			insert.put("ResultCode", pay.getResult_code());
+			insert.put("ReturnCode", pay.getReturn_code());
+			insert.put("TotalFee", pay.getTotal_fee());
+			insert.put("TransactionId", pay.getTransaction_id());
+			insert.put("PrepayID", pay.getPrepaypkgID());
+			insert.put("CreateDate", pay.getCreatedDate());
+			mongoDB.getCollection(collectionPayMgt).insert(insert);
+			ret = true;
+		} catch (Exception e) {
+			log.info("savePaymentHistory--" + e.getMessage());
+		}
+		return ret;
+	}
+	
+	/*
+	 * Ning Kang: Save payment history to database
+	 */
+	public static boolean updatePaymentHistory(String notifyXml, String TransID, String out_trade_no, String updateTime, String Indicator) {
+
+		mongoDB = getMongoDB();
+		//java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+		Boolean ret = false;
+		if(Indicator.equalsIgnoreCase("Y")){
+			try {
+				BasicDBObject doc = new BasicDBObject();
+				DBObject update = new BasicDBObject();
+				update.put("TransactionId", TransID);
+				update.put("UpdateDate", updateTime);
+				update.put("ResultCode", "OK");
+				update.put("ReturnCode", "SUCCESS");
+				update.put("NotifyXml", notifyXml);
+				doc.put("$set", update);
+				WriteResult wr = mongoDB.getCollection(collectionPayMgt).update(new BasicDBObject().append("OutTradeNo", out_trade_no), doc);
+				ret = true;
+			} catch (Exception e) {
+				log.info("updatePaymentHistory--" + e.getMessage());
+			}
+		}
+		else if (Indicator.equalsIgnoreCase("N")){
+			try {
+				BasicDBObject doc = new BasicDBObject();
+				DBObject update = new BasicDBObject();
+				update.put("TransactionId", "");
+				update.put("UpdateDate", updateTime);
+				update.put("ResultCode", "FAIL");
+				update.put("ReturnCode", "FAIL");
+				update.put("NotifyXml", notifyXml);
+				doc.put("$set", update);
+				WriteResult wr = mongoDB.getCollection(collectionPayMgt).update(new BasicDBObject().append("OutTradeNo", out_trade_no), doc);
+				ret = true;
+			} catch (Exception e) {
+				log.info("updatePaymentHistory--" + e.getMessage());
+			}
+		}
+		
+		return ret;
+	}
+	
+	/*
+	 * Ning Kang: Save payment history to database
+	 */
+	public static String queryPaymentHistory(String prepayID) {
+		mongoDB = getMongoDB();
+		//java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+		String notifyXML =  "";
+		try {
+			DBObject Query = new BasicDBObject();
+			Query.put("PrepayID", prepayID.substring(10));
+			DBObject queryresults = mongoDB.getCollection(collectionPayMgt).findOne(Query);
+			if (null != queryresults) {
+				notifyXML = queryresults.get("NotifyXml")+"";
+			}
+		} catch (Exception e) {
+			log.info("queryPaymentHistory--" + e.getMessage());
+		}
+		
+		return notifyXML;
 	}
 	
 }

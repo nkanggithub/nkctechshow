@@ -36,6 +36,7 @@ public final class Constants {
 	public static final String notifyPresentURL= "http://"+baehost+"/wxpay/WechatPayPresent.jsp";
 	public static final String signType= "MD5";
 	public static final String tradeType= "JSAPI";
+	public static final String tradeTypeNative= "NATIVE";
 	public static final String totalFee= "1";
 	public static final String clientCNName= "重庆市神安化工建材有限公司";
 

@@ -2,11 +2,10 @@ package com.nkang.kxmoment.util.WeixinPay.bean;
 
 import java.util.Map;
 
-
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.nkang.kxmoment.util.Constants;
-
+import com.nkang.kxmoment.util.WeixinPay.utils.PayUtil;
 import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
 
 
@@ -144,6 +143,26 @@ public class PayQrCode {
 		//setNonce_str(UUID.randomUUID().toString().replace("-", ""));
 		setNonce_str(nonce_str);
 		setTransaction_id(transaction_id);
+		try {
+			Map<String, String> map = BeanUtils.describe(this);
+			map.remove("class");
+			
+			String sign = Signature.generateSign(map);
+	        setSign(sign);
+		} catch (Exception e) {
+		}
+	}
+	
+	/**
+	 * @param product_id
+	 */
+	public PayQrCode(String product_id){
+		setAppid(Constants.APP_ID);
+		setMch_id(Constants.mcthID);
+		setTime_stamp(System.currentTimeMillis()/1000+"");
+		setNonce_str(PayUtil.getNonceStr());
+		setProduct_id(product_id);
+		
 		try {
 			Map<String, String> map = BeanUtils.describe(this);
 			map.remove("class");
