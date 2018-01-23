@@ -295,6 +295,13 @@ public class CoreService
 						article1.setPicUrl("http://nkctech.gz.bcebos.com/wechatpay.png");
 						article1.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName+"&TOTALFEE=5");
 						articleList.add(article1);
+						
+						Article article2 = new Article();
+						article2.setTitle("扫码购买课时");
+						article2.setDescription("扫码购买课时");
+						article2.setPicUrl("http://nkctech.gz.bcebos.com/wechatpay.png");
+						article2.setUrl("http://nkctech.duapp.com/wxpay/WechatQRPay.jsp");
+						articleList.add(article2);
 
 /*						Article article3 = new Article();
 						article3.setTitle("乐数在线练习 - 迷时师渡");
