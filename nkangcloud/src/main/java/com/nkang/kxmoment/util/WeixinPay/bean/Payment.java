@@ -16,8 +16,15 @@ public class Payment {
 	private String createdDate = "";
 	private String updatedDate = "";
 	private String prepaypkgID = "";
+	private String codeurl = "";
 	
 	
+	public String getCodeurl() {
+		return codeurl;
+	}
+	public void setCodeurl(String codeurl) {
+		this.codeurl = codeurl;
+	}
 	public String getUpdatedDate() {
 		return updatedDate;
 	}

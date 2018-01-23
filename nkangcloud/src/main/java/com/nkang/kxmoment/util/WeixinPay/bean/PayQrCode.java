@@ -136,6 +136,27 @@ public class PayQrCode {
 		}
 	}
 	
+	public PayQrCode(String product_id, String out_trade_no, String totalfee){
+		setAppid(Constants.APP_ID);
+		setMch_id(Constants.mcthID);
+		setNonce_str("123");
+		setBody(Constants.payBody);
+		setDevice_info(Constants.deviceInfo);
+		setNotify_url(Constants.notifyURL);
+		setOut_trade_no(out_trade_no);
+		setSign_type(Constants.signType);
+		setTotal_fee(totalfee);
+		setTrade_type(Constants.tradeTypeNative);
+		try {
+			Map<String, String> map = BeanUtils.describe(this);
+			map.remove("class");
+			
+			String sign = Signature.generateSign(map);
+	        setSign(sign);
+		} catch (Exception e) {
+		}
+	}
+	
 	public PayQrCode(String transaction_id, String nonce_str){
 		setAppid(Constants.APP_ID);
 		setMch_id(Constants.mcthID);
