@@ -466,7 +466,7 @@ public class RestUtils {
 	}
 
 	public static String createMenu(String access_token) {
-		String menu = "{\"button\":[{\"name\":\"走进NKC\",\"sub_button\":[{\"type\":\"click\",\"name\":\"智能导航\",\"key\":\"sitenavigator\"},{\"type\":\"click\",\"name\":\"实时动态\",\"key\":\"nboppt\"},{\"type\":\"view\",\"name\":\"联系我们\",\"url\":\"http://"+Constants.baehost+"/at/yy/yy.jsp\"}]},{\"name\":\"我的团队\",\"sub_button\":[{\"type\":\"click\",\"name\":\"技术团队\",\"key\":\"myleshuclass\"},{\"type\":\"click\",\"name\":\"管理团队\",\"key\":\"mycoupen\"}]},{\"name\":\"我的应用\",\"sub_button\":[{\"type\":\"click\",\"name\":\"在线支付\",\"key\":\"onlinePay\"},{\"type\":\"click\",\"name\":\"微应用\",\"key\":\"MYAPPS\"}]}]}";
+		String menu = "{\"button\":[{\"name\":\"走进NKC\",\"sub_button\":[{\"type\":\"click\",\"name\":\"智能导航\",\"key\":\"sitenavigator\"},{\"type\":\"click\",\"name\":\"实时动态\",\"key\":\"nboppt\"},{\"type\":\"click\",\"name\":\"发现附近\",\"key\":\"nbcolleague\"},{\"type\":\"view\",\"name\":\"联系我们\",\"url\":\"http://"+Constants.baehost+"/at/yy/yy.jsp\"}]},{\"name\":\"我的团队\",\"sub_button\":[{\"type\":\"click\",\"name\":\"技术团队\",\"key\":\"myleshuclass\"},{\"type\":\"click\",\"name\":\"管理团队\",\"key\":\"mycoupen\"}]},{\"name\":\"我的应用\",\"sub_button\":[{\"type\":\"click\",\"name\":\"在线支付\",\"key\":\"onlinePay\"},{\"type\":\"click\",\"name\":\"微应用\",\"key\":\"MYAPPS\"}]}]}";
 		
 		String action = "https://" + Constants.wechatapihost
 				+ "/cgi-bin/menu/create?access_token=" + access_token;

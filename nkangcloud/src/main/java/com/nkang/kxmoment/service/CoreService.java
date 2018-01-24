@@ -124,7 +124,7 @@ public class CoreService
 					}
 					articleList.clear();
 					Article article = new Article();
-					article.setTitle("【"+cm.getClientName()+"】欢迎来到乐数大家庭，请完成注册，享受更多会员福利");
+					article.setTitle("【"+cm.getClientName()+"】欢迎您的到来。感谢一路有您");
 					article.setDescription("移动应用");
 					article.setPicUrl("http://leshu.bj.bcebos.com/standard/registerherepls.JPG");
 					article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
@@ -170,7 +170,7 @@ public class CoreService
 						article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
-						article2.setTitle("乐数微应用");
+						article2.setTitle("微应用");
 						article2.setDescription("My Personal Applications");
 						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/weiapp.png");
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
@@ -179,18 +179,12 @@ public class CoreService
 						String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
 						if(hardcodeUID2.equalsIgnoreCase(fromUserName)||hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
 							Article article3 = new Article();
-							article3.setTitle("乐数微管理");
+							article3.setTitle("微管理");
 							article3.setDescription("Administration");
 							article3.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
 							articleList.add(article3);
-							
-							Article article4 = new Article();
-							article4.setTitle("乐数E教师");
-							article4.setDescription("Administration");
-							article4.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
-							article4.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
-							articleList.add(article4);
+
 						}
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
@@ -258,7 +252,7 @@ public class CoreService
 						Article article = new Article();
 						Random rand = new Random();
 						int randNum = rand.nextInt(30);
-						article.setTitle("附近和我一起学习珠心算的乐数同学");
+						article.setTitle("发现附近");
 						article.setDescription("您当前所在位置:" + addr);
 						article.setPicUrl("http://leshu.bj.bcebos.com/standard/abacus.jpg");
 						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
@@ -283,22 +277,22 @@ public class CoreService
 					}else if (eventKey.equals("onlinePay")) {//我的订阅
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle("在线支付购买您的课程");
-						article.setDescription("乐数在线练习");
+						article.setTitle("在线支付随心所欲");
+						article.setDescription("在线支付随心所欲");
 						article.setPicUrl("http://nkctech.gz.bcebos.com/wechatpaybig.JPG");
 						article.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName+"&TOTALFEE=1");
 						articleList.add(article);
 						
 						Article article1 = new Article();
-						article1.setTitle("在线购买课时");
-						article1.setDescription("在线购买课时");
+						article1.setTitle("公众号支付");
+						article1.setDescription("您必须关注公众号");
 						article1.setPicUrl("http://nkctech.gz.bcebos.com/wechatpay.png");
 						article1.setUrl("http://nkctech.duapp.com/wxpay/WechatPay.jsp?UID=" + fromUserName+"&TOTALFEE=5");
 						articleList.add(article1);
 						
 						Article article2 = new Article();
-						article2.setTitle("扫码购买课时");
-						article2.setDescription("扫码购买课时");
+						article2.setTitle("扫码支付");
+						article2.setDescription("您不必关注公众号");
 						article2.setPicUrl("http://nkctech.gz.bcebos.com/wechatpay.png");
 						article2.setUrl("http://nkctech.duapp.com/wxpay/WechatQRPay.jsp");
 						articleList.add(article2);
