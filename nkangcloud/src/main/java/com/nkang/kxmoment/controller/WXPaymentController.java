@@ -1,5 +1,7 @@
 package com.nkang.kxmoment.controller;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nkang.kxmoment.service.CoreService;
 import com.nkang.kxmoment.util.Constants;
@@ -24,6 +27,8 @@ import com.nkang.kxmoment.util.WeixinPay.utils.Signature;
 @Controller
 public class WXPaymentController {
 	private static Logger log = Logger.getLogger(CoreService.class);
+	
+	
 	@RequestMapping("/pay/payparm")  
     public void payparm(HttpServletRequest request, HttpServletResponse response, 
     		@RequestParam(value = "openId") String openId,
@@ -73,7 +78,12 @@ public class WXPaymentController {
             pay.setReturn_code("TBD");
             pay.setOut_trade_no(out_trade_no);
             pay.setPrepaypkgID(prepay_id);
-            pay.setCreatedDate(timeStamps);
+            pay.setPayType("WCPay");
+            pay.setPayBody(Constants.payBody);
+	        Date createdDate = new Date(a.getTime());
+	        Format format = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+	        pay.setCreatedDate(format.format(createdDate));
+
             MongoDBBasic.savePaymentHistory(pay);
 
          // TOD - Save the data to the database for further query
@@ -85,27 +95,36 @@ public class WXPaymentController {
 	
 	
 	@RequestMapping("/pay/payqrparm")  
-    public Payment payqrparm(HttpServletRequest request, HttpServletResponse response, 
+    public @ResponseBody Payment payqrparm(HttpServletRequest request, HttpServletResponse response, 
     		@RequestParam(value = "totalfee") String totalfee){  
 		Payment qrpay = new Payment();
-		try {  
+		try {
+
         	Date a = new Date();
         	String timeStamps = String.valueOf(a.getTime());
+
     		String out_trade_no = Constants.clientCode + timeStamps;
     		PayQrCode qrCode = new PayQrCode(Constants.prodID, out_trade_no, totalfee);
     		String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><body>"+Constants.payBody+"</body><device_info>"+Constants.deviceInfo+"</device_info><mch_id>"+Constants.mcthID+"</mch_id><nonce_str>123</nonce_str><notify_url>"+Constants.notifyURL+"</notify_url><out_trade_no>"+out_trade_no+"</out_trade_no><sign_type>"+Constants.signType+"</sign_type><total_fee>"+totalfee+"</total_fee><trade_type>"+Constants.tradeTypeNative+"</trade_type><sign>"+qrCode.getSign()+"</sign></xml>";
         	HttpsRequest req =  new HttpsRequest();
         	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", xmlStrp);
-	    	
+
         	qrpay.setPrepaypkgID(PayUtil.getXmlPara(xmlStr,"prepay_id"));
+        	qrpay.setOut_trade_no(out_trade_no);
+        	qrpay.setTotal_fee(totalfee);
         	qrpay.setDevice_info(PayUtil.getXmlPara(xmlStr,"device_info"));
         	qrpay.setResult_code(PayUtil.getXmlPara(xmlStr,"return_msg"));
         	qrpay.setReturn_code(PayUtil.getXmlPara(xmlStr,"return_code"));
         	qrpay.setAppid(PayUtil.getXmlPara(xmlStr,"appid"));
         	qrpay.setMch_id(PayUtil.getXmlPara(xmlStr,"mch_id"));
         	qrpay.setCodeurl(PayUtil.getXmlPara(xmlStr,"code_url"));
+        	qrpay.setPayBody(Constants.payBody);
         	qrpay.setOpenid("NA");
-        	qrpay.setCreatedDate(timeStamps);
+        	qrpay.setTransaction_id("NA");
+        	qrpay.setPayType("QRScan");
+	        Date createdDate = new Date(a.getTime());
+	        Format format = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+        	qrpay.setCreatedDate(format.format(createdDate));
 
             MongoDBBasic.savePaymentHistory(qrpay);
 

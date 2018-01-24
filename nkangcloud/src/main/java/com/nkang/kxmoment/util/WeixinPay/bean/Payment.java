@@ -17,8 +17,22 @@ public class Payment {
 	private String updatedDate = "";
 	private String prepaypkgID = "";
 	private String codeurl = "";
+	private String payType = "";
+	private String payBody = "";
 	
 	
+	public String getPayBody() {
+		return payBody;
+	}
+	public void setPayBody(String payBody) {
+		this.payBody = payBody;
+	}
+	public String getPayType() {
+		return payType;
+	}
+	public void setPayType(String payType) {
+		this.payType = payType;
+	}
 	public String getCodeurl() {
 		return codeurl;
 	}

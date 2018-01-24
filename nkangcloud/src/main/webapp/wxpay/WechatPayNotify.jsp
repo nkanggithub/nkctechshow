@@ -35,37 +35,6 @@ out.print(notifyXML);
 <div class="zfcg_box ">
 	<div class="all_w"><img src="http://nkctech.gz.bcebos.com/cg_03.jpg" /> 支付成功 </div>
 </div>
-<%-- <div class="cgzf_info">
-	<div class="wenx_xx">
-	  <div class="mz"><%= Constants.clientCNName %></div>
-	  <div class="wxzf_price">￥<%= fee%></div>
-	</div>
-	
-	<div class="spxx_shop">
-		 <div class=" mlr_pm">
-			 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-				  <tbody><tr>
-				    <td>商品编码</td>
-				    <td align="right"><%= out_trade_no%></td>
-				  </tr>
-				   <tr>
-				    <td>交易时间</td>
-				    <td align="right"><%= format.format(date)%></td>
-				  </tr>
-				   <tr>
-				    <td>支付方式</td>
-				    <td align="right"><%= bank_type%></td>
-				  </tr>
-				   <tr>
-				    <td>交易单号</td>
-				    <td align="right"><%= transaction_id%></td>
-				  </tr>
-				</tbody>
-			</table>
-		 </div>
-	</div>
-</div> --%>
-
 
 <div class="wzxfcgde_tb"><img src="http://nkctech.gz.bcebos.com/cg_07.jpg" /></div>
 

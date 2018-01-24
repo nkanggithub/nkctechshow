@@ -12,10 +12,6 @@
 
 <%
 Payment qrpay = new Payment();
-qrpay = PayUtil.payqrparm("1");
-
-
-
 String uid = Constants.devOpenID;
 String code = uid;
 String price = "1";
@@ -158,21 +154,16 @@ text-align:center;
 	color:white;
 	background:#000000;
 }
+
+#qrcodeid{
+	position:absolute;
+	left:25%;
+}
 	</style>
 	</head>
 <body>
 	
-<script type="text/javascript">   
-	$(function(){
-		$(".infoItem").on("click",function(){
-			totalfee=$(this).children("span").text();
-			$(this).addClass("default");
-			$(this).siblings().removeClass("default");
-			totalfee = totalfee+"00";
-			totalfee = "1";
-		});
-	});
-</script>
+
     	
 	
 	
@@ -194,47 +185,58 @@ text-align:center;
     </div>
     <div class="infoPanel">
       <div class="infoPay">
-	  <div class="infoItem default"><span>2160</span>元<br>24次课</div>
+	  <div class="infoItem"><span>2160</span>元<br>24次课</div>
 	  <div class="infoItem"><span>3880</span>元<br>48次课</div>
 	  <div class="infoItem"><span>6680</span>元<br>96次课</div>
      </div>
     </div>
 
-<input id="qrtexttext" type="text" value="<%= qrpay.getCodeurl() %>" style="width:80%" hidden /><br />
+<%-- <input id="qrtext" type="text" value="<%= qrpay.getCodeurl() %>" style="width:80%; display:none;"  /><br /> --%>
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
-<script type="text/javascript">
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 100,
-	height : 100
-});
-
-function makeCode () {		
-	var elText = document.getElementById("qrtext");
-	
-	if (!elText.value) {
-		alert("Input a text");
-		elText.focus();
-		return;
-	}
-	
-	qrcode.makeCode(elText.value);
-}
-
-makeCode();
-
-$("#text").
-	on("blur", function () {
-		makeCode();
-	}).
-	on("keydown", function (e) {
-		if (e.keyCode == 13) {
-			makeCode();
-		}
+<script type="text/javascript"> 
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+		width : 200,
+		height : 200
 	});
+
+	$(function(){
+		$(".infoItem").on("click",function(){
+			totalfee=$(this).children("span").text();
+			$(this).addClass("default");
+			$(this).siblings().removeClass("default");
+			totalfee = totalfee+"00";
+			totalfee = "1";
+			$.ajax({
+				 url:'../pay/payqrparm',
+				 type:"GET",
+				 data : {
+					 totalfee:totalfee,
+				 },
+				 success:function(data){
+					 if(data){
+						 qrcode.makeCode(data.codeurl);
+					 }
+				}
+			});
+		});
+	});
+	
+
+
+/* 	function makeCode () {		
+		var elText = document.getElementById("qrtext");
+		
+		if (!elText.value) {
+			alert("Input a text");
+			elText.focus();
+			return;
+		}
+		
+		qrcode.makeCode(elText.value);
+	} */
+	
 </script>
-
-
       <div class="infoArea pay"><a href="javascript:makeCode();" style="color:white;">立即支付</a></div>
     	<div id="footer">
 		<span class="clientCopyRight"><nobr>©版权所有 | 重庆NKC科技有限公司</nobr></span>
