@@ -466,7 +466,7 @@ public class RestUtils {
 	}
 
 	public static String createMenu(String access_token) {
-		String menu = "{\"button\":[{\"name\":\"走进乐数\",\"sub_button\":[{\"type\":\"view\",\"name\":\"乐数主页\",\"url\":\"http://"+Constants.baehost+"/mdm/LeShuIntro.jsp\"},{\"type\":\"click\",\"name\":\"乐数导航\",\"key\":\"sitenavigator\"},{\"type\":\"click\",\"name\":\"乐数动态\",\"key\":\"nboppt\"},{\"type\":\"view\",\"name\":\"预约课程\",\"url\":\"http://"+Constants.baehost+"/at/yy/yy.jsp\"}]},{\"name\":\"我的乐数\",\"sub_button\":[{\"type\":\"click\",\"name\":\"我的课程\",\"key\":\"myleshuclass\"},{\"type\":\"click\",\"name\":\"我的优惠\",\"key\":\"mycoupen\"}]},{\"name\":\"乐数应用\",\"sub_button\":[{\"type\":\"click\",\"name\":\"在线支付\",\"key\":\"onlinePay\"},{\"type\":\"click\",\"name\":\"乐数应用\",\"key\":\"MYAPPS\"},{\"type\":\"view\",\"name\":\"育儿交流\",\"url\":\"http://mp.weixin.qq.com/s/EwgxfqfuzIuQgPss7jdNtQ\"},{\"type\":\"view\",\"name\":\"娱乐百分百\",\"url\":\"https://h5.07073.com/wap/?bf=&name=2048\"}]}]}";
+		String menu = "{\"button\":[{\"name\":\"走进NKC\",\"sub_button\":[{\"type\":\"click\",\"name\":\"智能导航\",\"key\":\"sitenavigator\"},{\"type\":\"click\",\"name\":\"实时动态\",\"key\":\"nboppt\"},{\"type\":\"view\",\"name\":\"联系我们\",\"url\":\"http://"+Constants.baehost+"/at/yy/yy.jsp\"}]},{\"name\":\"我的团队\",\"sub_button\":[{\"type\":\"click\",\"name\":\"技术团队\",\"key\":\"myleshuclass\"},{\"type\":\"click\",\"name\":\"管理团队\",\"key\":\"mycoupen\"}]},{\"name\":\"我的应用\",\"sub_button\":[{\"type\":\"click\",\"name\":\"在线支付\",\"key\":\"onlinePay\"},{\"type\":\"click\",\"name\":\"微应用\",\"key\":\"MYAPPS\"}]}]}";
 		
 		String action = "https://" + Constants.wechatapihost
 				+ "/cgi-bin/menu/create?access_token=" + access_token;
