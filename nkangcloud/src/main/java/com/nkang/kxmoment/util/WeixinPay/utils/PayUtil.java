@@ -58,39 +58,7 @@ public class PayUtil {
 		
 		return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	 }
-	 
-    public static Payment payqrparm(String totalfee){  
-		Payment qrpay = new Payment();
-		try {  
-        	Date a = new Date();
-        	String timeStamps = String.valueOf(a.getTime());
-    		String out_trade_no = Constants.clientCode + timeStamps;
-    		PayQrCode qrCode = new PayQrCode(Constants.prodID, out_trade_no, totalfee);
-    		String xmlStrp = "<xml><appid>"+Constants.APP_ID+"</appid><body>"+Constants.payBody+"</body><device_info>"+Constants.deviceInfo+"</device_info><mch_id>"+Constants.mcthID+"</mch_id><nonce_str>123</nonce_str><notify_url>"+Constants.notifyURL+"</notify_url><out_trade_no>"+out_trade_no+"</out_trade_no><sign_type>"+Constants.signType+"</sign_type><total_fee>"+totalfee+"</total_fee><trade_type>"+Constants.tradeTypeNative+"</trade_type><sign>"+qrCode.getSign()+"</sign></xml>";
-        	HttpsRequest req =  new HttpsRequest();
-        	String xmlStr = req.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", xmlStrp);
-	    	
-        	qrpay.setPrepaypkgID(PayUtil.getXmlPara(xmlStr,"prepay_id"));
-        	qrpay.setDevice_info(PayUtil.getXmlPara(xmlStr,"device_info"));
-        	qrpay.setResult_code(PayUtil.getXmlPara(xmlStr,"return_msg"));
-        	qrpay.setReturn_code(PayUtil.getXmlPara(xmlStr,"return_code"));
-        	qrpay.setAppid(PayUtil.getXmlPara(xmlStr,"appid"));
-        	qrpay.setMch_id(PayUtil.getXmlPara(xmlStr,"mch_id"));
-        	qrpay.setCodeurl(PayUtil.getXmlPara(xmlStr,"code_url"));
-        	qrpay.setOpenid("NA");
-        	qrpay.setCreatedDate(timeStamps);
 
-            MongoDBBasic.savePaymentHistory(qrpay);
-
-         // TOD - Save the data to the database for further query
-            
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }
-        
-        return qrpay;
-     }
-	
      public static Map<String,Object> getOpenIdByCode(String code) throws IOException, JSONException {
         //请求该链接获取access_token
         HttpPost httppost = new HttpPost("https://api.weixin.qq.com/sns/oauth2/access_token");
@@ -276,16 +244,7 @@ public class PayUtil {
         }else{
 			resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>" + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml>";
 			logger.info("Sign "+sign+"---"+ localSign + " -result_code--" + result_code + "--return_code--" + return_code);
-/*			Payment pay = new Payment();
-			pay.setResult_code("OK");
-			pay.setReturn_code("SUCCESS");
-			pay.setAppid(appid);
-			pay.setOpenid(openid);
-			pay.setOut_trade_no(out_trade_no);
-			pay.setTransaction_id(transaction_id);
-			pay.setTotal_fee(total_fee);
-			pay.setMch_id(mch_id);
-			pay.setPrepaypkgID(pkgID);*/
+
 			MongoDBBasic.updatePaymentHistory(notifyXml, transaction_id, out_trade_no, time_end, "Y");
         }
 
