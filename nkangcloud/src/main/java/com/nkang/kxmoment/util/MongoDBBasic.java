@@ -1885,25 +1885,16 @@ public class MongoDBBasic {
 		try {
 			DBObject query = new BasicDBObject();
 			query.put("Active", "Y");
-			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(
-					query);
-			String clientCopyRight = queryresults.get("ClientCopyRight") == null ? ""
-					: queryresults.get("ClientCopyRight").toString();
-			String clientLogo = queryresults.get("ClientLogo") == null ? ""
-					: queryresults.get("ClientLogo").toString();
-			String clientName = queryresults.get("ClientName") == null ? ""
-					: queryresults.get("ClientName").toString();
-			String clientSubName = queryresults.get("ClientSubName") == null ? ""
-					: queryresults.get("ClientSubName").toString();
-			String clientThemeColor = queryresults.get("ClientThemeColor") == null ? ""
-					: queryresults.get("ClientThemeColor").toString();
-			String clientStockCode = queryresults.get("ClientCode") == null ? ""
-					: queryresults.get("ClientCode").toString();
-			String clientActive = queryresults.get("Active") == null ? ""
-					: queryresults.get("Active").toString();
-			String SmsSwitch = queryresults.get("SmsSwitch") == null ? ""
-					: queryresults.get("SmsSwitch").toString();
-			BasicDBList skim = (BasicDBList) queryresults.get("SkimNum");
+			DBObject queryresults = mongoDB.getCollection(ClientMeta).findOne(query);
+			String clientCopyRight = queryresults.get("ClientCopyRight") == null ? "": queryresults.get("ClientCopyRight").toString();
+			String clientLogo = queryresults.get("ClientLogo") == null ? "": queryresults.get("ClientLogo").toString();
+			String clientName = queryresults.get("ClientName") == null ? "": queryresults.get("ClientName").toString();
+			String clientSubName = queryresults.get("ClientSubName") == null ? "": queryresults.get("ClientSubName").toString();
+			String clientThemeColor = queryresults.get("ClientThemeColor") == null ? "": queryresults.get("ClientThemeColor").toString();
+			String clientStockCode = queryresults.get("ClientCode") == null ? "": queryresults.get("ClientCode").toString();
+			String clientActive = queryresults.get("Active") == null ? "": queryresults.get("Active").toString();
+			String SmsSwitch = queryresults.get("SmsSwitch") == null ? "": queryresults.get("SmsSwitch").toString();
+/*			BasicDBList skim = (BasicDBList) queryresults.get("SkimNum");
 			if (skim != null) {
 				ArrayList list1 = new ArrayList();
 				Object[] sObjects = skim.toArray();
@@ -1918,7 +1909,7 @@ public class MongoDBBasic {
 					}
 				}
 				cm.setSkimNum(list1);
-			}
+			}*/
 			BasicDBList slide = (BasicDBList) queryresults.get("Slide");
 			if (slide != null) {
 				ArrayList list = new ArrayList();

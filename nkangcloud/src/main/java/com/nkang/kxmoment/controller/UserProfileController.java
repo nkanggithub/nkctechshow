@@ -217,7 +217,6 @@ public class UserProfileController {
 		companyInfo.add(cm.getClientLogo());
 		companyInfo.add(cm.getClientCopyRight());
 		return companyInfo;
-		
 	} 
 	@RequestMapping("/getRealName")
 	public @ResponseBody List<String> getRealName(HttpServletRequest request,
