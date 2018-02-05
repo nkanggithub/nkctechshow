@@ -1507,7 +1507,7 @@ public class RestUtils {
 				+ " 一定做了了不起的事情，收到了来至"
 				+ ch.getFrom() + " 的赞美与认可!!!\",\"url\":\"http://" + Constants.baehost
 				+ "/mdm/RecognitionCenter.jsp?num=" + ch.getNum() + "&uid="
-				+ openId + "\",\"picurl\":" + "\"http://leshu.bj.bcebos.com/standard/ThanksLetter.JPG\"}";
+				+ openId + "\",\"picurl\":" + "\"http://nkctech.gz.bcebos.com/standard/ThanksLetter.jpg\"}";
 		String json = "{\"touser\":\"" + toOpenId
 				+ "\",\"msgtype\":\"news\",\"news\":" +
 

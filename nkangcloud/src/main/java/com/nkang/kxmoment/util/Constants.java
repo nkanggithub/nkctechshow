@@ -7,7 +7,7 @@ public final class Constants {
 	public static final String APP_ID = "wx022b55e5bdea4c51";
 	public static final String APPSECRET = "d3d79cc28df35c18bd192761c77ddd74";
 
-	/*	leshu config*/
+	/*	wechat config*/
 	public static final String BAIDU_APPKEY = "92a801f6881743d1b222c58b7dbe2475";
 	public static final String BAIDU_APPSECRET  = "6d7fb5881a9b430596cc915d22ed7241";
 	public static final String GOOGLE_KEY = "AIzaSyB3bZ1N7XRiQu2M4ZB3QQMxd3VVLnzrRK4";

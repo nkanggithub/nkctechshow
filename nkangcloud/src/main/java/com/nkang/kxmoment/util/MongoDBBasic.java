@@ -3241,7 +3241,7 @@ public class MongoDBBasic {
 			} else {
 				mongoDB.getCollection(APPOINTMENT).insert(query);
 			}
-			//send message to leshu admin to get client engaged
+			//send message to  admin to get client engaged
 			List<String> telList = new ArrayList<String>();
 			String templateId="231590";
 			telList.add("15123944895"); //Ning
