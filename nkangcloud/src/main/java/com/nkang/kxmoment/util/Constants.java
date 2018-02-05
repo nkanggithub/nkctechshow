@@ -30,7 +30,7 @@ public final class Constants {
 	public static final String prodID= "1469932302";
 	public static final String partnerKey= "53fead94b3acec49763585f18b7b6nkc";
 	public static final String mcthID= "1469932302";
-	public static final String payBody= "在线课程购买";
+	public static final String payBody= "在线购买";
 	public static final String deviceInfo= "WEB";
 	public static final String notifyURL= "http://"+baehost+"/wxpay/WechatPayNotify.jsp";
 	public static final String notifyPresentURL= "http://"+baehost+"/wxpay/WechatPayPresent.jsp";
