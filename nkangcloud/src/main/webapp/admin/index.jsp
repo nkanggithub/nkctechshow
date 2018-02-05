@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ page import="java.util.*,org.json.JSONObject"%>
 <%@ page import="com.nkang.kxmoment.util.MongoDBBasic"%>
+<%@ page import="com.nkang.kxmoment.util.Constants"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
 String uid = request.getParameter("UID");
@@ -10,11 +11,10 @@ Date date=new Date();
 String currentDate = format.format(date);
 HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 MongoDBBasic.updateVisited(uid,currentDate,"index",res.get("HeadUrl"),res.get("NickName"));
-String hardcodeUID = "oO8exvz-DZOu8wc0f81v9EHYq2HE";
-String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
-if(MongoDBBasic.checkUserAuth(uid, "isAdmin")||hardcodeUID.equalsIgnoreCase(uid)||hardcodeUID2.equalsIgnoreCase(uid)){
+String hardcodeUID = Constants.devOpenID;
+if(MongoDBBasic.checkUserAuth(uid, "isAdmin")||hardcodeUID.equalsIgnoreCase(uid)){
 }else{
-	out.print("你没有查看该页面的权限！");
+	out.print("您没有查看该页面的权限！");
 	return;
 }
 MongoDBBasic.updateUser(uid);
@@ -25,7 +25,7 @@ MongoDBBasic.updateUser(uid);
 <head>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
-<meta content="" name="乐数" />
+<meta content="" name="NKC" />
 
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../nkang/assets_athena/bootstrap/css/bootstrap-responsive.min.css" />
@@ -451,26 +451,14 @@ function showUpdateUserPanel(openid,name){
 			            +'														<td>手机号码:</td>'
 			            +'														<td><input type="text" name="phone" value="'+phone+'"/></td>'
 			            +'													</tr>'
-			            /* +'													<tr>'
-			            +'														<td>电子邮箱:</td>'
-			            +'														<td><input type="text" name="email" value="'+email+'"/></td>'
-			            +'													</tr>' */
 			            +'													<tr>'
 			            +'														<td>用户角色:</td>'
-			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
 			            +'														<td><select  name="role">'
 			            +roleSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
 			            +'													<tr>'
-			            +'														<td>乐数老师:</td>'
-			           /*  +'														<td><input type="text" name="role" value="'+role+'"/></td>' */
-			            +'														<td><select  name="teacher">'
-			            +teacherSelect
-			            +'													    </select></td>'
-			            +'													</tr>'
-			            +'													<tr>'
-			            +'														<td>学员级别:</td>'
+			            +'														<td>用户级别:</td>'
 			            +'														<td><select  name="level">'
 			            +levelSelect
 			            +'													    </select></td>'
@@ -978,16 +966,13 @@ jQuery
 					<!-- end logoElements-->
 				</div>
 				<div class="tab-pane  active" id="WorkMates">
-				<img id="refreshUser"  src="http://leshu.bj.bcebos.com/icon/refresh2.png" style="height:25px;float:right;margin-top:8px;margin-left:15px;"/>
-					<img id="syncUser"  src="http://leshu.bj.bcebos.com/icon/sync.png" style="height:30px;float:right;margin-top:7px;"/>
+					<img id="syncUser"  src="http://nkctech.gz.bcebos.com/logo/sync.png" style="height:30px;float:right;margin-top:7px;"/>
 					<div id="chart-container" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
-					
-					
 					<div  style="position: absolute; top: 540px;overflow:hidden" data-role="page" style="padding-top:45px" data-theme="c">
 						<ul id="Work_Mates_div" class="Work_Mates_div2"  data-role="listview" data-autodividers="false" data-filter="true" data-filter-placeholder="输入关键字" data-inset="true" style="margin-top:15px">
 						</ul>
 					</div>
-					<div id="return-top" style="display: block;"><img class="scroll-top"  src="http://leshu.bj.bcebos.com/icon/upgrade.png"  alt="" width="50px"></div>
+					<div id="return-top" style="display: block;"><img class="scroll-top"  src="http://nkctech.gz.bcebos.com/logo/upgrade.png"  alt="" width="50px"></div>
 				</div>
 			</div>
 		</div>

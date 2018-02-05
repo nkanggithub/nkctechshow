@@ -48,11 +48,6 @@ HashMap<String, String> res=MongoDBBasic.getWeChatUserFromOpenID(uid);
 MongoDBBasic.updateVisited(uid,currentDate,"profile",res.get("HeadUrl"),res.get("NickName"));
 String level=res.get("level");
 
-System.out.println("isTeacher====="+isTeacher);
-
-
-
-
 %>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -1567,23 +1562,23 @@ function getNowFormatDate() {
 											<tr>
 												<td>
 													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp?UID=<%=uid %>&response_type=code&scope=snsapi_userinfo&state=<%=uid %>#wechat_redirect">
-														<img src="http://leshu.bj.bcebos.com/icon/Notification.png" /><h4>乐数快讯</h4>
+														<img src="http://nkctech.gz.bcebos.com/logo/Notification.png" /><h4>乐数快讯</h4>
 													</a>
 												</td>
 												<td>
-												<a target="_self" <%if(IsAuthenticated==true) { %> href="http://leshucq.bceapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"  <%}else{ %>onclick="noAuth()"<%} %>
-												><img src="http://leshu.bj.bcebos.com/icon/menu-stock.png" />
+												<a target="_self" <%if(IsAuthenticated==true) { %> href="http://nkctech.duapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"  <%}else{ %>onclick="noAuth()"<%} %>
+												><img src="http://nkctech.gz.bcebos.com/logo/visittrip.png" />
 													<h4>乐数足迹</h4></a>
 												</td>
-												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="http://leshu.bj.bcebos.com/icon/menu-technology.png" />
+												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="http://nkctech.gz.bcebos.com/logo/msgsend.png" />
 													<h4>消息推送</h4></td>
 													
 												<td>		<img    <%if(IsAuthenticated==true) { %> onclick="recognizationPanel()" <%}else{ %>onclick="noAuth()"<%} %>
-														src="http://leshu.bj.bcebos.com/icon/menu-recognition.png" />
+														src="http://nkctech.gz.bcebos.com/logo/recognition.png" />
 														<h4>奖项管理</h4>
 												</td>
 											</tr>
-											<tr>
+<%-- 											<tr>
 												<td>
 												<%if(level.equals("basic")) { %>
 												 <a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FNavigatorForBasic.jsp?UID=<%=uid %>&response_type=code&scope=snsapi_userinfo&state=<%=uid %>#wechat_redirect">
@@ -1601,7 +1596,7 @@ function getNowFormatDate() {
 												<img src="http://leshucq.bj.bcebos.com/standard/techerview.png" />
 													<h4>我的学员</h4></a>
 												</td><% } %>
-											</tr>
+											</tr> --%>
 										</table>
 									</div>
 								</div>

@@ -465,7 +465,7 @@ canvas{
     height: 0;
     border-left: .9em solid transparent;
     border-right: .9em solid transparent;
-    border-top: .9em solid #00b287;
+    border-top: .9em solid #000000;
     position: relative;
     top: 0px;
     left: 50%;
@@ -485,7 +485,7 @@ position: relative;
 }
 .isSelected{
 
-	border-top:10px solid #00b287!important;
+	border-top:10px solid #000000!important;
 }
 .navi
 {

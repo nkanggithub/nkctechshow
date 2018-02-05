@@ -119,8 +119,8 @@ Website: http://sonhlab.com
 
 /* Solid Colors */
 .solid-lightblue { background:#E4F0F7; }
-.solid-blue { background:#00b287; }
-.solid-blue-2 { background:#00b287; }
+.solid-blue { background:#000000; }
+.solid-blue-2 { background:#000000; }
 .solid-darkblue { background:#044E94; }
 .solid-violetred { background:#781766; }
 .solid-red { background:#E51400;}
@@ -133,7 +133,7 @@ Website: http://sonhlab.com
 .solid-coral { background:#CD5B45; }
 .solid-lightgreen { background:#F5FFFA; }
 .solid-green { background:#67B239; }
-.solid-green-2 {background:#00b287; }
+.solid-green-2 {background:#000000; }
 .solid-darkgreen { background:#016C38; }
 .solid-olive { background:#999900}
 .solid-grass { background:#CDCD00; }
