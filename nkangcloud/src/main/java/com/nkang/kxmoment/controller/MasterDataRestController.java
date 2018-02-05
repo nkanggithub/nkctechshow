@@ -560,7 +560,6 @@ public class MasterDataRestController {
 	@RequestMapping("/CallCreateShortNews")
 	public @ResponseBody String CallCreateShortNews(@RequestParam(value="content", required=true) String reqContent) throws JSONException{
 		MongoDBBasic.createShortNews(reqContent);
-	//	String url="http://"+Constants.baehost+"/mdm/DailyNewsToShare.jsp?UID=";
 		String url="";
 		String title="";
 		String content="";
