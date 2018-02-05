@@ -1,5 +1,7 @@
 package com.nkang.kxmoment.util;
 
+import java.math.BigDecimal;
+
 public class ToolUtils {
 	public static double getnolevelcalc(double salary) {
 		double level1, level2, level3, level4, level5, level6, tax = 0;
@@ -50,6 +52,11 @@ public class ToolUtils {
 		if (salary > 80000)
 			tax = level6 + (salary - 80000) * 0.45;
 		return tax;
+	}
+	
+	public static String scienceToNormal(String scienceNum) {
+		BigDecimal bd = new BigDecimal(scienceNum);
+		return bd.toPlainString();
 	}
 
 }
