@@ -279,7 +279,7 @@ function syncUser(){
 		cache : false,
 		success : function(data) {
 			swal("同步成功！", data, "success"); 
-			$("#syncUser").attr("src","http://leshu.bj.bcebos.com/icon/sync.png");
+			$("#syncUser").attr("src","http://nkctech.gz.bcebos.com/logo/sync.png");
 			getMDLUserLists();
 		}
 	});

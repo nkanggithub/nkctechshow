@@ -1612,7 +1612,7 @@ function getNowFormatDate() {
 										<div id="userInfoDiv">
 											<div id="info_interact"  style="position: absolute;width:100%;">
 												<img class="like" src="../MetroStyleFiles/like.png"/>
-												<img class="zan"  data-dismiss="modal" aria-hidden="true" onclick="recognizationPanel()" src="../MetroStyleFiles/zan.png"/>
+												<img class="zan"  data-dismiss="modal" aria-hidden="true" onclick="recognizationPanel()" src="http://nkctech.gz.bcebos.com/logo/zan.png"/>
 											</div>
 											<div id="info_interact2"
 												style="position: absolute; width: 100%; display: block; margin-top: 45px;">
