@@ -645,7 +645,7 @@ function showRecognitionDetail(from,to,point,type,coments)
 			+"<p style='line-height:22px;'>"+point+" Points have been added to your <a href='https://login.ext.hpe.com/idp/startSSO.ping?PartnerSpId=hpe_biw_sp'>MyRecognition@hpe</a> account. Enjoy surfing the catalogue and finding something that is perfect just for you: merchandise, travel, gift cards or vouchers. <p>"
 			+"<p style='width:100%;line-height:22px;font-size:16px;margin:15px 0px;'>Here’s what was said about you</p>"
 			+"<p style='line-height:22px;'>Thanks <span id='to'>"+to+"</span> for "+text+"</p>"
-			+"<img onclick='hideRecognitionCenter()' src='http://leshu.bj.bcebos.com/icon/EXIT1.png' style='width: 30px; height: 30px;position:relative;top:20px;left:250px;'></div></div>");
+			+"<img onclick='hideRecognitionCenter()' src='http://nkctech.gz.bcebos.com/logo/EXIT1.png' style='width: 30px; height: 30px;position:relative;top:20px;left:250px;'></div></div>");
 	$('#recognitionCenter').addClass('bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass("bounceInDown animated");
 	    });
@@ -864,7 +864,7 @@ function recognizationPanelByPerson(personName){
 	}
 function showCommonPanel()
 {
-	$("body").append("<div  id='data_model_div' style='z-index:999;'  class='dataModelPanel'><i class='icon' style='position:absolute;top:20px;left:20px;z-index:100;'><img class='exit' onclick='hideBouncePanel()' src='http://leshu.bj.bcebos.com/icon/EXIT1.png' style='width: 30px; height: 30px; -webkit-filter: drop-shadow(30px 0 "+clientThemeColor+");' /></i>	<img style='position:absolute;top:8px;right:20px;z-index:100;' class='HpLogo' src='"+HpLogoSrc+"' alt='Logo' class='HpLogo'><div style='width:100%;height: 74px;background: white;position:absolute;border-bottom: 4px solid "+clientThemeColor+";'></div></div>");
+	$("body").append("<div  id='data_model_div' style='z-index:999;'  class='dataModelPanel'><i class='icon' style='position:absolute;top:20px;left:20px;z-index:100;'><img class='exit' onclick='hideBouncePanel()' src='http://nkctech.gz.bcebos.com/logo/EXIT1.png' style='width: 30px; height: 30px; -webkit-filter: drop-shadow(30px 0 "+clientThemeColor+");' /></i>	<img style='position:absolute;top:8px;right:20px;z-index:100;' class='HpLogo' src='"+HpLogoSrc+"' alt='Logo' class='HpLogo'><div style='width:100%;height: 74px;background: white;position:absolute;border-bottom: 4px solid "+clientThemeColor+";'></div></div>");
 	$('#data_model_div').removeClass().addClass('panelShowAnmitation').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	      $(this).removeClass();
 	    }); }
