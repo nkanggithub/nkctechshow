@@ -44,7 +44,7 @@ public class CoreService
 		String respContent = "unknown request type.";
 		String AccessKey = MongoDBBasic.getValidAccessKey();
 		ClientMeta cm=MongoDBBasic.QueryClientMeta(Constants.clientCode);
-		String navPic = "http://leshu.bj.bcebos.com/standard/navigation.png";
+		String navPic = "http://nkctech.gz.bcebos.com/standard/navagtion.JPG";
 		try {
 			Element requestObject 	= 	MessageUtil.parseXml(request);
 			String fromUserName 	= 	requestObject.element("FromUserName").getText();
@@ -295,13 +295,6 @@ public class CoreService
 						article2.setUrl("http://nkctech.duapp.com/wxpay/WechatQRPay.jsp");
 						articleList.add(article2);
 
-/*						Article article3 = new Article();
-						article3.setTitle("乐数在线练习 - 迷时师渡");
-						article3.setDescription("乐数在线练习 - 迷时师渡");
-						article3.setPicUrl("http://leshucq.bj.bcebos.com/standard/leshuTeacher.png");
-						article3.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNavigator.jsp?UID="+fromUserName+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
-						articleList.add(article3);*/
-						
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
@@ -311,7 +304,7 @@ public class CoreService
 						
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle(cm.getClientName()+"|乐数风采");
+						article.setTitle(cm.getClientName()+"|风采");
 						article.setDescription("您可查看实时更新的产品运维报表");
 						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshumoment.JPG");
 						article.setUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
@@ -346,35 +339,35 @@ public class CoreService
 					else if (eventKey.equals("sitenavigator")){
 						articleList.clear();
 						Article article = new Article();
-						article.setTitle("乐数为您导航");
-						article.setDescription("乐数为您导航");
+						article.setTitle(cm.getClientName()+"为您导航");
+						article.setDescription("为您导航");
 						article.setPicUrl("http://leshu.bj.bcebos.com/standard/carnavigation.JPG");
 						article.setUrl("http://m.amap.com/search/view/keywords=%E5%8D%97%E5%9D%AA%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA2%E5%8F%B7%E5%86%99%E5%AD%97%E6%A5%BC11-6%20"); //http://map.baidu.com/mobile
 						articleList.add(article);
 						
 						Article articlenav1 = new Article();
-						articlenav1.setTitle("南坪校区[TEL:023-62387134]\n南坪万达广场2号写字楼11-6"); //九龙坡区铁路村198号
+						articlenav1.setTitle("南坪区[TEL:023-62387134]\n南坪万达广场2号写字楼11-6"); //九龙坡区铁路村198号
 						articlenav1.setDescription("南坪校区[TEL:023-62387134]");
 						articlenav1.setPicUrl(navPic);
 						articlenav1.setUrl("http://m.amap.com/search/view/keywords=%E5%8D%97%E5%9D%AA%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA2%E5%8F%B7%E5%86%99%E5%AD%97%E6%A5%BC11-6%20");
 						articleList.add(articlenav1);
 						
 						Article articlenav2 = new Article();
-						articlenav2.setTitle("江北观音桥校区[TEL:023-67616306]\n观音桥中信大厦25-10"); //港城工业园区C区
+						articlenav2.setTitle("江北观音桥区[TEL:023-67616306]\n观音桥中信大厦25-10"); //港城工业园区C区
 						articlenav2.setDescription("江北校区[TEL:023-67616306]");
 						articlenav2.setPicUrl(navPic);
 						articlenav2.setUrl("http://m.amap.com/search/view/keywords=%E8%A7%82%E9%9F%B3%E6%A1%A5%E4%B8%AD%E4%BF%A1%E5%A4%A7%E5%8E%A625-10");
 						articleList.add(articlenav2);
 						
 						Article articlenav4 = new Article();
-						articlenav4.setTitle("李家沱校区[TEL:023-67505761]\n李家沱都和广场A栋30-5"); //重庆沙坪坝区土主镇西部物流园区中石油仓储中心
+						articlenav4.setTitle("李家沱区[TEL:023-67505761]\n李家沱都和广场A栋30-5"); //重庆沙坪坝区土主镇西部物流园区中石油仓储中心
 						articlenav4.setDescription("李家沱校区[TEL:023-67505761]");
 						articlenav4.setPicUrl(navPic);
 						articlenav4.setUrl("http://m.amap.com/search/view/keywords=%E6%9D%8E%E5%AE%B6%E6%B2%B1%E9%83%BD%E5%92%8C%E5%B9%BF%E5%9C%BAA%E6%A0%8B30-5");
 						articleList.add(articlenav4);
 						
 						Article articlenav3 = new Article();
-						articlenav3.setTitle("杨家坪校区[TEL:13372680273]\n杨家坪步行街金州大厦16楼");
+						articlenav3.setTitle("杨家坪区[TEL:13372680273]\n杨家坪步行街金州大厦16楼");
 						articlenav3.setDescription("杨家坪校区[TEL:13372680273]");
 						articlenav3.setPicUrl(navPic);
 						articlenav3.setUrl("http://m.amap.com/search/view/keywords=%E6%9D%A8%E5%AE%B6%E5%9D%AA%E6%AD%A5%E8%A1%8C%E8%A1%97%E9%87%91%E5%B7%9E%E5%A4%A7%E5%8E%A616%E6%A5%BC");
@@ -394,7 +387,7 @@ public class CoreService
 					}
 					else if (eventKey.equals("nboppt")) {// Partner
 						Article article = new Article();
-						article.setTitle(cm.getClientName()+"| 更多精彩尽乐数动态 ");
+						article.setTitle(cm.getClientName()+"| 更多精彩尽在动态 ");
 						article.setDescription("更多精彩尽在动态 ");
 						article.setPicUrl("https://c.ap7.content.force.com/servlet/servlet.ImageServer?id=0159000000EDHHL&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/MesPushHistory.jsp?UID="+fromUserName);
