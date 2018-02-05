@@ -31,14 +31,14 @@ if (session.getAttribute("location") == null) {
     <meta charset="UTF-8">
     <title>扫描附近</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="ming.css">
+    <link rel="stylesheet" href="../Jsp/CSS/ming.css">
     
 <link rel="stylesheet" type="text/css"
-	href="../../nkang/css_athena/profile.css" />
-    <script src="jquery.min.js"></script>
-<script type="text/javascript" src="../../Jsp/JS/fusioncharts.js"></script>
-<script type="text/javascript" src="../../Jsp/JS/fusioncharts.powercharts.js"></script>
-<script type="text/javascript" src="../../Jsp/JS/fusioncharts.theme.fint.js"></script>
+	href="../nkang/css_athena/profile.css" />
+    <script src="../Jsp/JS/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../Jsp/JS/fusioncharts.js"></script>
+<script type="text/javascript" src="../Jsp/JS/fusioncharts.powercharts.js"></script>
+<script type="text/javascript" src="../Jsp/JS/fusioncharts.theme.fint.js"></script>
 <style>
 ul li.Work_Mates_div_list_div2 {
     list-style: none;

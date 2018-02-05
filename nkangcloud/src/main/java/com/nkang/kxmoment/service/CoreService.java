@@ -243,7 +243,7 @@ public class CoreService
 						article.setTitle("发现附近");
 						article.setDescription("您当前所在位置:" + addr);
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
-						article.setUrl("http://"+Constants.baehost+"/mdm/scan.jsp?UID=" + fromUserName+"&num="+randNum);
+						article.setUrl("http://"+Constants.baehost+"/mdm/Nearbyscan.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
