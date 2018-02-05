@@ -40,7 +40,6 @@ public class CoreService
 	private static Timer timer= new Timer();
 	public static String processRequest(HttpServletRequest request)
 	{
-		
 		String respXml = null;
 		String respContent = "unknown request type.";
 		String AccessKey = MongoDBBasic.getValidAccessKey();
@@ -166,22 +165,21 @@ public class CoreService
 						
 						article.setTitle(cm.getClientName()+"|移动应用");
 						article.setDescription("移动应用");
-						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuapp.JPG");
+						article.setPicUrl("https://c.ap7.content.force.com/servlet/servlet.ImageServer?id=0159000000E9mpP&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						Article article2 = new Article();
 						article2.setTitle("微应用");
 						article2.setDescription("My Personal Applications");
-						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/weiapp.png");
+						article2.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7K&oid=00D90000000pkXM");
 						article2.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 						articleList.add(article2);
-						String hardcodeUID = "oO8exvz-DZOu8wc0f81v9EHYq2HE";
-						String hardcodeUID2 = "oI3krwbSD3toGOnt_bhuhXQ0TVyo";
-						if(hardcodeUID2.equalsIgnoreCase(fromUserName)||hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
+						String hardcodeUID = Constants.devOpenID;
+						if(hardcodeUID.equalsIgnoreCase(fromUserName)||MongoDBBasic.checkUserAuth(fromUserName, "isAdmin")){
 							Article article3 = new Article();
 							article3.setTitle("微管理");
 							article3.setDescription("Administration");
-							article3.setPicUrl("http://leshu.bj.bcebos.com/icon/weiadmin.png");
+							article3.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7e&oid=00D90000000pkXM");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
 							articleList.add(article3);
 
@@ -254,7 +252,7 @@ public class CoreService
 						int randNum = rand.nextInt(30);
 						article.setTitle("发现附近");
 						article.setDescription("您当前所在位置:" + addr);
-						article.setPicUrl("http://leshu.bj.bcebos.com/standard/abacus.jpg");
+						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
@@ -389,7 +387,6 @@ public class CoreService
 						articlenav6.setUrl("http://m.amap.com/search/mapview/keywords=%E7%9F%B3%E5%AD%90%E5%B1%B1%E4%BD%93%E8%82%B2%E5%85%AC%E5%9B%AD%E7%AF%AE%E7%90%83%E5%9C%BA&city=500105&poiid=B0FFH0QH92");
 						articleList.add(articlenav6);
 						
-						
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
@@ -398,8 +395,8 @@ public class CoreService
 					else if (eventKey.equals("nboppt")) {// Partner
 						Article article = new Article();
 						article.setTitle(cm.getClientName()+"| 更多精彩尽乐数动态 ");
-						article.setDescription("更多精彩尽乐数动态 ");
-						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshuslide4.JPG");
+						article.setDescription("更多精彩尽在动态 ");
+						article.setPicUrl("https://c.ap7.content.force.com/servlet/servlet.ImageServer?id=0159000000EDHHL&oid=00D90000000pkXM");
 						article.setUrl("http://"+Constants.baehost+"/mdm/MesPushHistory.jsp?UID="+fromUserName);
 						articleList.add(article);
 						List<ArticleMessage> ams=MongoDBBasic.getArticleMessageByNum("");
