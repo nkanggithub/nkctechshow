@@ -149,17 +149,7 @@ public class CoreService
 
 				} else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
 					String eventKey = requestObject.element("EventKey").getText();
-					if(eventKey.equals("myleshuclass")){ // Data Lake
-						respContent = "正在建设中，请等待";
-						textMessage.setContent(respContent);
-						respXml = MessageUtil.textMessageToXml(textMessage);
-					}
-					else if(eventKey.equals("mycoupen")){ // Data Lake
-						respContent = "正在建设中，请等待";
-						textMessage.setContent(respContent);
-						respXml = MessageUtil.textMessageToXml(textMessage);
-					}
-					else if(eventKey.equals("MYAPPS")){
+					if(eventKey.equals("MYAPPS")){
 						articleList.clear();
 						Article article = new Article();
 						
@@ -193,7 +183,7 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle("My Lasted Recognitions");
 						article.setDescription("My Lasted Recognition");
-						article.setPicUrl("http://"+Constants.baehost+"/MetroStyleFiles/RecognitionImage.jpg");
+						article.setPicUrl("http://nkctech.gz.bcebos.com/standard/RecognitionImage.jpg");
 						article.setUrl("http://"+Constants.baehost+"/mdm/DQNavigate.jsp?UID=" + fromUserName);
 						articleList.add(article);
 						
@@ -208,7 +198,7 @@ public class CoreService
 						String icoURLPartnerFirst = "https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DkaRc&oid=00D90000000pkXM";
 						String icoURLBaisForAction = "https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DkaS6&oid=00D90000000pkXM";
 						String icoURLInnovator = "https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000DkaSa&oid=00D90000000pkXM";
-						String icoURL = "http://"+Constants.baehost+"/MetroStyleFiles/RecognitionImage.jpg";
+						String icoURL = "http://nkctech.gz.bcebos.com/standard/RecognitionImage.jpg";
 						for(int i = myRecog; i >= 1; i--){
 							myarticle = new Article();
 							congratulateHistory = new CongratulateHistory();
@@ -299,30 +289,7 @@ public class CoreService
 						respXml = MessageUtil.newsMessageToXml(newsMessage);
 						
 					}
-					else if (eventKey.equals("opsmetric")) {//我的订阅
-						
-						articleList.clear();
-						Article article = new Article();
-						article.setTitle(cm.getClientName()+"|风采");
-						article.setDescription("您可查看实时更新的产品运维报表");
-						article.setPicUrl("http://leshu.bj.bcebos.com/standard/leshumoment.JPG");
-						article.setUrl("http://leshu.bj.bcebos.com/standard/leshuslide2.JPG");
-						articleList.add(article);
-						
-						Article article1 = new Article();
-						article1.setTitle("学员风采");
-						article1.setDescription("IM统计情况");
-						article1.setPicUrl("http://leshu.bj.bcebos.com/icon/student.png");
-						article1.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
-						articleList.add(article1);
-						
-
-						
-						newsMessage.setArticleCount(articleList.size());
-						newsMessage.setArticles(articleList);
-						respXml = MessageUtil.newsMessageToXml(newsMessage);
-
-					}
+					
 					else if (eventKey.equals("sitenavigator")){
 						articleList.clear();
 						Article article = new Article();
@@ -392,7 +359,7 @@ public class CoreService
 							articlevar.setPicUrl(ams.get(i).getPicture());
 							}
 							else{
-								articlevar.setPicUrl("http://leshu.bj.bcebos.com/standard/reservationBigPic.jpg");
+								articlevar.setPicUrl("https://c.ap7.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j6l&oid=00D90000000pkXM");
 							}
 							articlevar.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+ams.get(i).getNum()+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");
 							System.out.println("url======="+"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FNotificationCenter.jsp?num="+ams.get(i).getNum()+"&response_type=code&scope=snsapi_userinfo&state="+fromUserName+"#wechat_redirect");

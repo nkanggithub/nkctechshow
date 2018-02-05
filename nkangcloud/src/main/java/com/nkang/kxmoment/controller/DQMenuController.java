@@ -153,7 +153,7 @@ public class DQMenuController {
 			wcu.setNickname("Vistitor");
 		}
 		if(wcu.getHeadimgurl() ==null && wcu.getHeadimgurl() == ""){
-			wcu.setHeadimgurl("MetroStyleFiles/gallery.jpg");
+			wcu.setHeadimgurl("http://nkctech.gz.bcebos.com/standard/RecognitionImage.jpg");
 		}
 		request.getSession().setAttribute("userInfo", wcu);
 		request.getSession().setAttribute("userState", state);
