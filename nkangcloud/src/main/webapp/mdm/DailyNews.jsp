@@ -109,7 +109,7 @@ if(uid.equals(openid)){
 
 		</aside>
 
-<div style="padding-left: 10px;height: 70px;border-bottom: 4px solid #20b672;padding-top: 10px;">
+<div style="padding-left: 10px;height: 70px;border-bottom: 4px solid #000000;padding-top: 10px;">
 <img src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo" class="HpLogo" style="display: inline !important; height:50px; float: none; padding: 0px; vertical-align: bottom;">
 <div style="width:100%;text-align:right;margin-top:-60px;">
 <ul class="nav pull-right top-menu" style="list-style: none;">
@@ -131,7 +131,7 @@ if(uid.equals(openid)){
 	<ul class="event_list">
 
 <%for(int i=0;i<size;i++){ %>
-		<li><span><%=shortNews.get(i).getDate() %><br></span><%if(IsAuthenticated==true) { %><button style="position:absolute;top:65px;left:70px;background: white;border-style: none;border: 1px solid #20b672;border-radius: 5px;" onclick="javascript:deleteNews('<%=shortNews.get(i).getMongoID() %>');">删除新闻</button><% } %><p><span onClick="javascript:openDialog(this);"><%=shortNews.get(i).getContent() %> </span></p></li>
+		<li><span><%=shortNews.get(i).getDate() %><br></span><%if(IsAuthenticated==true) { %><button style="position:absolute;top:65px;left:70px;background: white;border-style: none;border: 1px solid #000000;border-radius: 5px;" onclick="javascript:deleteNews('<%=shortNews.get(i).getMongoID() %>');">删除新闻</button><% } %><p><span onClick="javascript:openDialog(this);"><%=shortNews.get(i).getContent() %> </span></p></li>
 <%} %>
 	</ul>
 	<div class="more"><i class="pull_icon"></i><span>上拉加载...</span></div>

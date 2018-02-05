@@ -514,7 +514,7 @@ function showUpdateUserPanel(openid,name){
 			            +'												    <tr>'
 			            +'												 </table>'
 			            +'												 </form>'
-			            +'												 <button class="btnAthena EbtnLess" style="background-color:#20b672;margin-left: 90px;margin-top:15px;" id="updateUserInfoBtn">确定</button>');
+			            +'												 <button class="btnAthena EbtnLess" style="background-color:#000000;margin-left: 90px;margin-top:15px;" id="updateUserInfoBtn">确定</button>');
 				$("#updateUserInfoBtn").click(function(){
 					var isRegistered = $("input[name='isRegistered']:checked").val();
 					var registerDate = $("#registerDate").val();
@@ -726,7 +726,7 @@ function getLogoLists() {
 	//	+'<hr style="border:2px solid '+temp.clientThemeColor+';width:75%;padding:0px;margin-top:0px;">'
 		+'							<p style="font-size:10px;margin-bottom:3px;margin-top:-3px;">©'+temp.clientCopyRight+'</p>'
 		+buttonText
-		+'							<div style="float: right; margin-top: -50px; background-color: #20b672; color: #fff; font-weight:bold; font-size: 13px; padding: 3px;width:50px;text-align:center;border-radius:6px;" onclick="showLogoPanel('+i+')">'
+		+'							<div style="float: right; margin-top: -50px; background-color: #000000; color: #fff; font-weight:bold; font-size: 13px; padding: 3px;width:50px;text-align:center;border-radius:6px;" onclick="showLogoPanel('+i+')">'
 		+'								编辑'
 		+'							</div>'
 		+'							<div class="clear"></div>'
@@ -953,15 +953,15 @@ jQuery
 		</div>
 	</div>
 	<div class="TABclass">
-		<div id="logo_now_color" style="border-top: 4px solid #20b672; padding: 5px 0px;">
+		<div id="logo_now_color" style="border-top: 4px solid #000000; padding: 5px 0px;">
 			<ul class="nav nav-tabs" id="myTabs"
-				style="border-color: #20b672;">
+				style="border-color: #000000;">
 				<li  class="active"><a href="#WorkMates" data-toggle="tab"
-					style="border-right-color: #20b672; border-top-color: #20b672; border-left-color: #20b672;">人员管理</a></li>
+					style="border-right-color: #000000; border-top-color: #000000; border-left-color: #000000;">人员管理</a></li>
 				<li><a href="#visitManage" data-toggle="tab"
-					style="border-right-color: #20b672; border-top-color: #20b672; border-left-color: #20b672;">到访管理</a></li>
+					style="border-right-color: #000000; border-top-color: #000000; border-left-color: #000000;">到访管理</a></li>
 				<li><a href="#logoElements" data-toggle="tab"
-					style="border-right-color: #20b672; border-top-color: #20b672; border-left-color: #20b672;">LOGO管理</a></li>
+					style="border-right-color: #000000; border-top-color: #000000; border-left-color: #000000;">LOGO管理</a></li>
 			</ul>
 			<div class="tab-content" id="dvTabContent"
 				style="border: 0px; padding-top: 0px;margin-top:0px;">

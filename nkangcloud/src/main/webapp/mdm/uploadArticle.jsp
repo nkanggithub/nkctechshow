@@ -243,7 +243,7 @@ function uploadPic(obj){
 </head>
 <body style="margin: 0px !important;width:100%  !important; padding: 0px !important;">
   
-<div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:#20b672;"></div>
+<div id="shadow" style="display:none;width:100%;height:100%;position:absolute;z-index:99999;top:0px;left:0px;opacity:0.4;background:#000000;"></div>
  <div class="sk-circle">
       <div class="sk-circle1 sk-child"></div>
       <div class="sk-circle2 sk-child"></div>
@@ -258,7 +258,7 @@ function uploadPic(obj){
       <div class="sk-circle11 sk-child"></div>
       <div class="sk-circle12 sk-child"></div>
     </div>
-<div id="data_model_div" style="z-index:999;" class=""><a href="http://leshucq.bceapp.com/mdm/profile.jsp?UID=<%=uid%>"><i class="icon" style="position:absolute;top:20px;left:20px;z-index:100;"><img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px; "></i></a>	<img style="position:absolute;top:8px;right:20px;z-index:100;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo"><div style="width:100%;height: 74px;background: white;position:absolute;border-bottom: 4px solid #20b672;"></div></div>
+<div id="data_model_div" style="z-index:999;" class=""><a href="http://leshucq.bceapp.com/mdm/profile.jsp?UID=<%=uid%>"><i class="icon" style="position:absolute;top:20px;left:20px;z-index:100;"><img class="exit" src="http://leshu.bj.bcebos.com/icon/EXIT1.png" style="width: 30px; height: 30px; "></i></a>	<img style="position:absolute;top:8px;right:20px;z-index:100;" class="HpLogo" src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo"><div style="width:100%;height: 74px;background: white;position:absolute;border-bottom: 4px solid #000000;"></div></div>
 <div id='sendR'>
 <div class='rcommon' style='height:45px'>
 <p class='bsLabel'>图文标题</p>
@@ -276,7 +276,7 @@ function uploadPic(obj){
 </div>
 <div class="rcommon"><textarea id="content" style="height:180px;width:95%;line-height:20px;border:1px solid black" placeholder="请输入内容" class="input-xlarge bsBtn"></textarea></div>
 <div class='rcommon' >
-<button style='margin-top:20px;width:95%;background:#20b672;text-shadow:none;color:white!important;' onclick='uploadNews()' name='doublebutton-0' class='btn'>提交</button>
+<button style='margin-top:20px;width:95%;background:#000000;text-shadow:none;color:white!important;' onclick='uploadNews()' name='doublebutton-0' class='btn'>提交</button>
 </div>
 </div>
 <div id='footer'><span class='clientCopyRight'><nobr></nobr></span></div>

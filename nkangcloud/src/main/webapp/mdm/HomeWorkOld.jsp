@@ -52,14 +52,14 @@ width:100%;}
     margin-top: 5px;
 }
 i{
-color:#20B672;
+color:#000000;
 }
 .gk{
 width:40%;
 float:left!important;
 margin-left:5%!important;
 height:40px;
-background:#20B672;
+background:#000000;
 border-radius:5px;
 line-height:40px!important;
 color:white!important;}
@@ -203,7 +203,7 @@ $.ajax({
 			class="HpLogo"
 			src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
 		<div
-			style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
+			style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #000000;">
 		</div>
 	</div>
 	<div id="studentPanel"></div>

@@ -85,7 +85,7 @@ margin-left: 4%;
 			class="HpLogo"
 			src="http://leshu.bj.bcebos.com/standard/leshuLogo.png" alt="Logo">
 		<div
-			style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #20b672;">
+			style="width: 100%; height: 80px; background: white; position: absolute; border-bottom: 4px solid #000000;">
 		</div>
 	</div>
 <input type="text" id="timestext" class="niput" value="" style="position: absolute;width: 30%;left: 0px;text-align: left;top: 80px;z-index: -2;">
