@@ -1,6 +1,6 @@
 package com.nkang.kxmoment.baseobject;
 
-import com.nkang.kxmoment.util.NumberUtil;
+import com.nkang.kxmoment.util.ToolUtils;
 
 public class FaceObj {
 
@@ -76,7 +76,7 @@ public class FaceObj {
 		return anger;
 	}
 	public void setAnger(String anger) {
-		this.anger = NumberUtil.scienceToNormal(anger);
+		this.anger = ToolUtils.scienceToNormal(anger);
 	}
 	public String getContempt() {
 		return contempt;
