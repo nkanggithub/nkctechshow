@@ -125,14 +125,14 @@ public class CoreService
 					Article article = new Article();
 					article.setTitle("【"+cm.getClientName()+"】欢迎您的到来。感谢一路有您");
 					article.setDescription("移动应用");
-					article.setPicUrl("http://leshu.bj.bcebos.com/standard/registerherepls.JPG");
+					article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000EVjCT&oid=00D90000000pkXM");
 					article.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 					articleList.add(article);
 
 					Article article4 = new Article();
 					article4.setTitle("在此注册");
 					article4.setDescription("在此注册");
-					article4.setPicUrl("http://leshu.bj.bcebos.com/standard/register_icon.png");
+					article4.setPicUrl("https://c.ap7.content.force.com/servlet/servlet.ImageServer?id=0159000000EVjDC&oid=00D90000000pkXM");
 					article4.setUrl("http://"+Constants.baehost+"/mdm/profile.jsp?UID=" + fromUserName);
 					articleList.add(article4);
 					newsMessage.setArticleCount(articleList.size());
@@ -265,7 +265,6 @@ public class CoreService
 						int randNum = rand.nextInt(30);
 						article.setTitle("点击开启你的幸运旅程-每日抽奖");
 						article.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9rIB&oid=00D90000000pkXM");
-						//article.setUrl("http://"+Constants.baehost+"/mdm/scan/scan.jsp?UID=" + fromUserName+"&num="+randNum);
 						article.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+Constants.APP_ID+"&redirect_uri=http%3A%2F%2F"+Constants.baehost+"%2Fmdm%2FLucky.jsp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
 						articleList.add(article);
 						newsMessage.setArticleCount(articleList.size());
@@ -317,19 +316,7 @@ public class CoreService
 						article1.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
 						articleList.add(article1);
 						
-/*						Article article2 = new Article();
-						article2.setTitle("师资风采");
-						article2.setDescription("生产环境智能监控");
-						article2.setPicUrl("http://leshu.bj.bcebos.com/icon/Teacher.png");
-						article2.setUrl("http://wxe542e71449270554.dodoca.com/164368/phonewebsitet/websitet?uid=164368&openid=FANS_ID&id=99846#mp.weixin.qq.com");
-						articleList.add(article2);*/
-						
-						Article article3 = new Article();
-						article3.setTitle("家园共育");
-						article3.setDescription("家园共育");
-						article3.setPicUrl("http://leshu.bj.bcebos.com/icon/parenteacher.png");
-						article3.setUrl("http://mp.weixin.qq.com/s/EwgxfqfuzIuQgPss7jdNtQ");
-						articleList.add(article3);
+
 						
 						newsMessage.setArticleCount(articleList.size());
 						newsMessage.setArticles(articleList);
@@ -341,7 +328,7 @@ public class CoreService
 						Article article = new Article();
 						article.setTitle(cm.getClientName()+"为您导航");
 						article.setDescription("为您导航");
-						article.setPicUrl("http://leshu.bj.bcebos.com/standard/carnavigation.JPG");
+						article.setPicUrl(navPic);
 						article.setUrl("http://m.amap.com/search/view/keywords=%E5%8D%97%E5%9D%AA%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA2%E5%8F%B7%E5%86%99%E5%AD%97%E6%A5%BC11-6%20"); //http://map.baidu.com/mobile
 						articleList.add(article);
 						
