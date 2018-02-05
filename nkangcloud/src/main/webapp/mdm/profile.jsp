@@ -1578,6 +1578,17 @@ function getNowFormatDate() {
 														<h4>奖项管理</h4>
 												</td>
 											</tr>
+											<tr>
+												<td>
+													<a href="http://nkctech.duapp.com/mdm/face.jsp?UID=<%=uid %>" target="_blank">
+													<img src="../MetroStyleFiles/menu-face.png"></a>
+													<h4>测颜值</h4>
+												</td>									 							
+												<td onclick="getReminderForMore()">
+													<img src="../MetroStyleFiles/Add1.png">
+													<h4>更多应用</h4>
+												</td>
+											</tr>
 <%-- 											<tr>
 												<td>
 												<%if(level.equals("basic")) { %>
