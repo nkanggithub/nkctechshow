@@ -94,8 +94,8 @@ if(uid.equals(openid)){
 <body style="margin:0px">
 <%if(IsAuthenticated==true) { %>
 
-<img onClick="javascript:publishNews();" style='width:45px;cursor:pointer;position: fixed;bottom: 50px;z-index: 1002;' src='http://leshu.bj.bcebos.com/icon/speaker.png'>
-<a href="uploadArticle.jsp?UID=<%=uid%>"><img style="width: 45px;cursor:pointer;position: fixed;bottom: 50px;right: 0px;z-index: 1002;" src="http://leshu.bj.bcebos.com/icon/broadcast.png"></a>
+<img onClick="javascript:publishNews();" style='width:45px;cursor:pointer;position: fixed;bottom: 50px;z-index: 1002;' src='http://nkctech.gz.bcebos.com/logo/pushnews.png'>
+<a href="uploadArticle.jsp?UID=<%=uid%>"><img style="width: 45px;cursor:pointer;position: fixed;bottom: 50px;right: 0px;z-index: 1002;" src="http://nkctech.gz.bcebos.com/logo/broadcastnews.png"></a>
 <% } %>
 		<aside style="margin-top:50px;height:400px;position:absolute;width:80%;left:5%;top:80px;" id="default-popup" class="avgrund-popup">
 
