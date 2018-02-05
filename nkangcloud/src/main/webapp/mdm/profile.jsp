@@ -1562,13 +1562,13 @@ function getNowFormatDate() {
 											<tr>
 												<td>
 													<a target="_self" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%=Constants.APP_ID%>&redirect_uri=http%3A%2F%2F<%=Constants.baehost%>%2Fmdm%2FDailyNews.jsp?UID=<%=uid %>&response_type=code&scope=snsapi_userinfo&state=<%=uid %>#wechat_redirect">
-														<img src="http://nkctech.gz.bcebos.com/logo/Notification.png" /><h4>乐数快讯</h4>
+														<img src="http://nkctech.gz.bcebos.com/logo/Notification.png" /><h4>实时快讯</h4>
 													</a>
 												</td>
 												<td>
 												<a target="_self" <%if(IsAuthenticated==true) { %> href="http://nkctech.duapp.com/mdm/DataVisualization.jsp?UID=<%=uid %>"  <%}else{ %>onclick="noAuth()"<%} %>
 												><img src="http://nkctech.gz.bcebos.com/logo/visittrip.png" />
-													<h4>乐数足迹</h4></a>
+													<h4>访问足迹</h4></a>
 												</td>
 												<td><img  <%if(IsAuthenticated==true) { %> onclick="mesSend()" <%}else{ %>onclick="noAuth()"<%} %> src="http://nkctech.gz.bcebos.com/logo/msgsend.png" />
 													<h4>消息推送</h4></td>
