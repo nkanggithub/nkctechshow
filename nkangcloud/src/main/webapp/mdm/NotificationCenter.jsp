@@ -12,12 +12,10 @@
 //获取由OAuthServlet中传入的参数
 SNSUserInfo user = (SNSUserInfo)request.getAttribute("snsUserInfo"); 
 String originalUid=request.getParameter("state");
-System.out.println("state-----------------"+request.getParameter("state"));
 if(request.getParameter("state")==null&&request.getParameter("state")==""){
 	originalUid=request.getParameter("UID");
 	System.out.println("innerOriginalUid-----------------"+originalUid);
 }
-System.out.println("originalUid-----------------"+originalUid);
 String name = "";
 String phone = "";
 String headImgUrl ="";
