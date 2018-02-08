@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 
@@ -38,6 +39,7 @@ import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.ShortNews;
 import com.nkang.kxmoment.baseobject.Teamer;
+import com.nkang.kxmoment.baseobject.TeamerCredit;
 import com.nkang.kxmoment.baseobject.VideoMessage;
 import com.nkang.kxmoment.baseobject.Visited;
 import com.nkang.kxmoment.baseobject.WeChatAccessKey;
@@ -51,7 +53,6 @@ public class MongoDBBasic {
 	private static Logger log = Logger.getLogger(MongoDBBasic.class);
 	private static DB mongoDB = null;
 	private static String collectionMasterDataName = "masterdata";
-	private static String access_key = "Access_Key";
 	private static String wechat_user = "Wechat_User";
 	private static String short_news = "ShortNews";
 	private static String Article_Message = "Article_Message";
@@ -60,7 +61,7 @@ public class MongoDBBasic {
 	private static String ClientMeta = "Client_Meta";
 	private static String role_area = "RoleOfAreaMap";
 	private static String collectionVisited = "Visited";
-	
+	private static String collectionHistryTeamerCredit="HistryTeamerCredit";
 	// Payment table start
 	private static String collectionPayMgt="PayManagement";
 	// Payment table end
@@ -3726,6 +3727,127 @@ public class MongoDBBasic {
 		}
 		
 		return notifyXML;
+	}
+	
+	/* 
+	 * Credit Management
+	 * */
+	public static boolean addHistryTeamerCredit(TeamerCredit teamerCredit) {
+		mongoDB = getMongoDB();
+		Boolean ret = false;
+		java.sql.Timestamp cursqlTS = new java.sql.Timestamp(new java.util.Date().getTime());
+		try {
+			Date a = new Date();
+			DBObject dbo = new BasicDBObject();
+			dbo.put("DateTime", DateUtil.timestamp2Str(cursqlTS));
+			
+		    dbo.put("StudentOpenID",teamerCredit.getStudentOpenID());
+			dbo.put("Amount", teamerCredit.getAmount());
+			dbo.put("Operation", teamerCredit.getOperation());
+			dbo.put("Operator", teamerCredit.getOperator());
+			dbo.put("OperatorName", teamerCredit.getOperatorName());
+			dbo.put("ChangeJustification", teamerCredit.getChangeJustification());
+			
+			DBObject query = new BasicDBObject();
+			query.put("OpenID", teamerCredit.getStudentOpenID());
+			DBCursor dbcur = mongoDB.getCollection(wechat_user).find(query);
+			
+			while(dbcur.hasNext()){
+				DBObject updatedbo = new BasicDBObject();
+				DBObject dboj=dbcur.next();
+				Object teamer = dboj.get("Teamer");
+				DBObject tm = (DBObject)teamer;
+				if(tm!=null){
+					dbo.put("Name", tm.get("realName")+"");
+					
+					int creditPoints=0;
+					if("Increase".equals(teamerCredit.getOperation())){
+						if(null!=tm.get("CreditPoint")){
+							creditPoints=Integer.parseInt(tm.get("CreditPoint")+"")+Integer.parseInt(teamerCredit.getAmount());
+						}else{
+							creditPoints=Integer.parseInt(teamerCredit.getAmount());
+						}
+						updatedbo.put("Teamer.CreditPoint",creditPoints);
+					}else if("Decrease".equals(teamerCredit.getOperation())){
+						if(null!=tm.get("CreditPoint")){
+							creditPoints=Integer.parseInt(tm.get("CreditPoint")+"")-Integer.parseInt(teamerCredit.getAmount());
+						}else{
+							creditPoints=0;
+						}
+						if(creditPoints<=0){
+							creditPoints=0;
+						}
+						updatedbo.put("Teamer.CreditPoint",creditPoints);
+					}
+					BasicDBObject doc = new BasicDBObject();
+					doc.put("$set", updatedbo);
+					mongoDB.getCollection(collectionHistryTeamerCredit).insert(dbo);
+					mongoDB.getCollection(wechat_user).update(new BasicDBObject().append("OpenID",teamerCredit.getStudentOpenID()), doc);
+					ret = true;
+				}
+				
+			}
+		} catch (Exception e) {
+			log.info("addHistryTeamerCredit--" + e.getMessage());
+		}
+		return ret;
+	}
+	
+	
+	public static List<TeamerCredit> getHistryTeamerCredit(String id) {
+		mongoDB = getMongoDB();
+		List<TeamerCredit> listCredit = new ArrayList<TeamerCredit>();
+		TeamerCredit record=null;
+		try {
+			BasicDBObject db=new BasicDBObject();
+			db.append("StudentOpenID",id);
+			BasicDBObject sort = new BasicDBObject();
+			sort.put("DateTime", -1);
+			DBCursor dbo = mongoDB.getCollection(collectionHistryTeamerCredit).find(db).sort(sort);
+			while(dbo.hasNext()){
+				DBObject bdbo = dbo.next();
+				record = new TeamerCredit();
+				record.setAmount(bdbo.get("Amount")+"");
+				record.setChangeJustification(bdbo.get("ChangeJustification")+"");
+				record.setDateTime(bdbo.get("DateTime")+"");
+				record.setName(bdbo.get("Name")+"");
+				record.setOperation(bdbo.get("Operation")+"");
+				record.setOperator(bdbo.get("Operator")+"");
+				record.setOperatorName(bdbo.get("OperatorName")+"");
+				record.setStudentOpenID(id);
+				listCredit.add(record);
+			}
+		} catch (Exception e) {
+			log.info("getHistryTeamerCredit--" + e.getMessage());
+		}
+		return listCredit;
+	}
+	
+	public static TeamerCredit queryWeChatUserByTelephone(String telephone) {
+		mongoDB = getMongoDB();
+		TeamerCredit tc = null;
+		try {
+			DBObject query = new BasicDBObject();
+			query.put("Teamer.phone", telephone);
+			DBObject queryresult = mongoDB.getCollection(wechat_user).findOne(query);
+			if (queryresult != null) {
+				DBObject bdbo = (DBObject) queryresult.get("Teamer");
+				if(null!=bdbo){
+					tc = new TeamerCredit();
+					tc.setStudentOpenID(bdbo.get("openid")+"");
+					tc.setAmount(bdbo.get("CreditPoint")==null ? "0" : (bdbo.get("CreditPoint")+""));
+					tc.setName(bdbo.get("realName")+"");
+				}
+			}
+		} catch (Exception e) {
+			log.info("queryWeChatUserByTelephone--" + e.getMessage());
+		}
+		if(tc==null){
+			tc = new TeamerCredit();
+			tc.setName("");
+			tc.setAmount("0");
+		}
+		return tc;
 	}
 	
 }
