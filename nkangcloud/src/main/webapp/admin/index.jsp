@@ -66,6 +66,11 @@ MongoDBBasic.updateUser(uid);
 <script type="text/javascript" src="../nkang/jquery.mobile.min.js"></script>
 <style>
  #return-top{position:fixed;bottom:40px;right:10px; text-align:center; display:none;z-index:998;} 
+.editText {
+    margin: 0;
+    margin-top: 8px;
+    width: 80px;
+}
 .edit
 {
 	width: 60px;
@@ -442,64 +447,64 @@ function showUpdateUserPanel(openid,name){
 				}
 				$("#UpdateUserPartDiv").html('<form id="atest">'
 			            +'												<input type="hidden" name="uid" id="atest_uid" value="'+openid+'"/>'
-			            +'												<table id="tableForm" style="margin-top:-20px;">'
+			            +'												<table id="tableForm" style="margin-top:-20px;width:100%;">'
 			            +'													<tr>'
-			            +'														<td><nobr>真实姓名:</nobr></td>'
+			            +'														<td><p class="editText">真实姓名:</p></td>'
 			            +'														<td><input type="text" name="realName" value="'+realName+'"/></td>'
 			            +'													</tr>'
 			            +'													<tr>'
-			            +'														<td>手机号码:</td>'
+			            +'														<td><p class="editText">手机号码</p></td>'
 			            +'														<td><input type="text" name="phone" value="'+phone+'"/></td>'
 			            +'													</tr>'
 			            +'													<tr>'
-			            +'														<td>用户角色:</td>'
+			            +'														<td><p class="editText">用户角色</p></td>'
 			            +'														<td><select  name="role">'
 			            +roleSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
 			            +'													<tr>'
-			            +'														<td>用户级别:</td>'
+			            +'														<td><p class="editText">用户级别</p></td>'
 			            +'														<td><select  name="level">'
 			            +levelSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
 			            +'												    <tr>'
-			            +'													    <td>注册时间:</td>'
+			            +'													    <td><p class="editText">注册时间</p></td>'
 			            +'													    <td align="left" class="tdText" >'
 			            +'													    	<input name="registerDate" type="date" id="registerDate" required style="text-align: -webkit-center; width: 130px;"  value="'+registerDate+'">'
 			            +'													    </td>'
 			            +'												    </tr>'
 			            +'												    <tr>'
-			            +'												        <td>确认注册:</td>'
+			            +'												        <td><p class="editText">确认注册</p></td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isRegistered" value="true"  '+(IsRegistered=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isRegistered" '+(IsRegistered!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
 			            +'												    </tr> '
 			            +'												    <tr>'
-			            +'												        <td>聊天组:</td>'
+			            +'												        <td><p class="editText">聊天组</p></td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isActived" value="true"  '+(IsActived=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isActived" '+(IsActived!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
 			            +'												    </tr> '
 			            +'												    <tr>'
-			            +'												        <td>消息推送:</td>'
+			            +'												        <td><p class="editText">消息管理</p></td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isAuthenticated" value="true"  '+(IsAuthenticated=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAuthenticated" '+(IsAuthenticated!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
 			            +'												    </tr> '
 			            +'												    <tr>'
-			            +'												        <td>后台管理:</td>'
+			            +'												        <td><p class="editText">后台管理</p></td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isAdmin" value="true"  '+(isAdmin=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isAdmin" '+(isAdmin!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
 			            +'												    </tr> '
-			            +'												    <tr>'
-			            +'												        <td>短讯组:</td>'
+/* 			            +'												    <tr>'
+			            +'												        <td><p class="editText">短讯组</p></td>'
 			            +'												        <td  align="left" class="tdText">'
 			            +'												        	<input type="radio" name="isSmsTeam" value="true"  '+(isSmsTeam=="true"?'checked="checked"':'')+' />是&nbsp;&nbsp;&nbsp;<input type="radio" name="isSmsTeam" '+(isSmsTeam!="true"?'checked="checked"':'')+' value="false"/>否'
 			            +'												        </td>'
-			            +'												    </tr> '
-			            +'												    <tr>'
+			            +'												    </tr> ' */
+/* 			            +'												    <tr>' */
 			            +'												 </table>'
 			            +'												 </form>'
 			            +'												 <button class="btnAthena EbtnLess" style="background-color:#000000;margin-left: 90px;margin-top:15px;" id="updateUserInfoBtn">确定</button>');

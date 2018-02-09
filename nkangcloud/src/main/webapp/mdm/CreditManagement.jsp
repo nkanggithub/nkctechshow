@@ -9,8 +9,6 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
 String uid = request.getParameter("UID");
-String code = uid;
-String price = request.getParameter("TOTALFEE");
 String notifyURL = Constants.notifyURL;
 String name = "";
 String headImgUrl ="";
@@ -23,7 +21,6 @@ if(res!=null){
 	if(res.get("NickName")!=null){
 		name=res.get("NickName");
 	}
-
 	if(res.get("phone")!=null){
 		phone=res.get("phone");
 	}
@@ -163,8 +160,6 @@ text-align:center;
 var studentID;
 var studentCredit;
 function pay(){
-// 	var currentTime=getNowFormatDate();
-
 	if(studentID==null||studentID == ""){
 		swal("请输入正确的电话号码", "", "error");
 		return;
@@ -205,11 +200,11 @@ function pay(){
 				swal("提交成功!", "恭喜!", "success");
 				$("#user_current_credit").html(calculation);
 			 }else{
-				swal("提交失败!!", "网络异常，请稍后再试！", "error");
+				swal("提交失败!", "网络异常，请稍后再试！", "error");
 			}
 		},
 		error:function(){
-			swal("提交失败!", "网络异常，请稍后再试！", "error");
+			swal("提交异常!", "网络异常，请稍后再试！", "error");
         }
 	});
 	
@@ -390,7 +385,7 @@ $(function(){
 		    	<div style="text-align: center;height: 40px;line-height: 40px;font-size: 16px;color: #000000;">当前积分</div>
 			</center>
 		</div>
-		<a id="user_credit_history" href="javascript:creditHistory();" style="position: fixed;bottom: 65px;right: 10px;font-size: 14px;text-decoration: underline;color: #000000;display: none;">查看学生积分记录</a>
+		<a id="user_credit_history" href="javascript:creditHistory();" style="position: fixed;bottom: 65px;right: 10px;font-size: 14px;text-decoration: underline;color: #000000;display: none;">查看积分记录</a>
 	    <div class="infoArea pay"><a href="javascript:pay();" style="color:white;">提交请求</a></div>
 	</div>
 	<!-- copyright information -->
