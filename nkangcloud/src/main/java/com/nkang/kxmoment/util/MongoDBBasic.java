@@ -34,7 +34,6 @@ import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.MongoClientCollection;
 import com.nkang.kxmoment.baseobject.Notification;
-import com.nkang.kxmoment.baseobject.Quiz;
 import com.nkang.kxmoment.baseobject.QuoteVisit;
 import com.nkang.kxmoment.baseobject.RoleOfAreaMap;
 import com.nkang.kxmoment.baseobject.ShortNews;
