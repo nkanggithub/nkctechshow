@@ -447,7 +447,7 @@ function showUpdateUserPanel(openid,name){
 				}
 				$("#UpdateUserPartDiv").html('<form id="atest">'
 			            +'												<input type="hidden" name="uid" id="atest_uid" value="'+openid+'"/>'
-			            +'												<table id="tableForm" style="margin-top:-20px;width:100%;">'
+			            +'												<table id="tableForm" style="margin-top:-20px;width:100%;border-spacing: 3px;border-collapse: separate;">'
 			            +'													<tr>'
 			            +'														<td><p class="editText">真实姓名</p></td>'
 			            +'														<td><input type="text" name="realName" value="'+realName+'"/></td>'
