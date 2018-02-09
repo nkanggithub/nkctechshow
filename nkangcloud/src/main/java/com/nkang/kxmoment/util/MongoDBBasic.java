@@ -3831,9 +3831,11 @@ public class MongoDBBasic {
 			DBObject queryresult = mongoDB.getCollection(wechat_user).findOne(query);
 			if (queryresult != null) {
 				DBObject bdbo = (DBObject) queryresult.get("Teamer");
+				String openid = queryresult.get("OpenID").toString();
 				if(null!=bdbo){
 					tc = new TeamerCredit();
-					tc.setStudentOpenID(bdbo.get("openid")+"");
+					//tc.setStudentOpenID(bdbo.get("openid")+"");
+					tc.setStudentOpenID(openid);
 					tc.setAmount(bdbo.get("CreditPoint")==null ? "0" : (bdbo.get("CreditPoint")+""));
 					tc.setName(bdbo.get("realName")+"");
 				}
