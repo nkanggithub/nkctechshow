@@ -449,7 +449,7 @@ function showUpdateUserPanel(openid,name){
 			            +'												<input type="hidden" name="uid" id="atest_uid" value="'+openid+'"/>'
 			            +'												<table id="tableForm" style="margin-top:-20px;width:100%;">'
 			            +'													<tr>'
-			            +'														<td><p class="editText">真实姓名:</p></td>'
+			            +'														<td><p class="editText">真实姓名</p></td>'
 			            +'														<td><input type="text" name="realName" value="'+realName+'"/></td>'
 			            +'													</tr>'
 			            +'													<tr>'
@@ -468,12 +468,12 @@ function showUpdateUserPanel(openid,name){
 			            +levelSelect
 			            +'													    </select></td>'
 			            +'													</tr>'
-			            +'												    <tr>'
+/* 			            +'												    <tr>'
 			            +'													    <td><p class="editText">注册时间</p></td>'
 			            +'													    <td align="left" class="tdText" >'
 			            +'													    	<input name="registerDate" type="date" id="registerDate" required style="text-align: -webkit-center; width: 130px;"  value="'+registerDate+'">'
 			            +'													    </td>'
-			            +'												    </tr>'
+			            +'												    </tr>' */
 			            +'												    <tr>'
 			            +'												        <td><p class="editText">确认注册</p></td>'
 			            +'												        <td  align="left" class="tdText">'
