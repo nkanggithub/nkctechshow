@@ -172,6 +172,13 @@ public class CoreService
 							article3.setPicUrl("https://c.ap1.content.force.com/servlet/servlet.ImageServer?id=0159000000E9j7e&oid=00D90000000pkXM");
 							article3.setUrl("http://"+Constants.baehost+"/admin/index.jsp?UID=" + fromUserName);
 							articleList.add(article3);
+							
+							Article article5 = new Article();
+							article5.setTitle("微积分");
+							article5.setDescription("Administration");
+							article5.setPicUrl("http://leshucq.bj.bcebos.com/icon/creditbuy.png");
+							article5.setUrl("http://"+Constants.baehost+"/mdm/CreditManagement.jsp?UID=" + fromUserName);
+							articleList.add(article5);
 
 						}
 						newsMessage.setArticleCount(articleList.size());

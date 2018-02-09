@@ -29,6 +29,7 @@ import com.nkang.kxmoment.baseobject.CongratulateHistory;
 import com.nkang.kxmoment.baseobject.GeoLocation;
 import com.nkang.kxmoment.baseobject.Notification;
 import com.nkang.kxmoment.baseobject.Teamer;
+import com.nkang.kxmoment.baseobject.TeamerCredit;
 import com.nkang.kxmoment.baseobject.VideoMessage;
 import com.nkang.kxmoment.baseobject.WeChatMDLUser;
 import com.nkang.kxmoment.baseobject.WeChatUser;
@@ -453,5 +454,37 @@ public class UserProfileController {
 	@RequestMapping("/getUserByTeacherOpenid")
 	public @ResponseBody List<WeChatMDLUser> getUserByTeacherOpenid(@RequestParam(value="teacherID")String teacherID) throws Exception{
 		return MongoDBBasic.getUserByTeacherOpenid(teacherID);
+	}
+	
+	@RequestMapping("/addTeamerCredit")
+	public @ResponseBody boolean AddTeamerCredit(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "StudentOpenID") String StudentOpenID,
+			@RequestParam(value = "Operation") String Operation,
+			@RequestParam(value = "Operator") String Operator,
+			@RequestParam(value = "OperatorName") String OperatorName,
+			@RequestParam(value = "Amount") String Amount,
+			@RequestParam(value = "ChangeJustification") String ChangeJustification){
+		TeamerCredit tc = new TeamerCredit();
+		tc.setAmount(Amount);
+		tc.setChangeJustification(ChangeJustification);
+		tc.setOperation(Operation);
+		tc.setOperator(Operator);
+		tc.setOperatorName(OperatorName);
+		tc.setStudentOpenID(StudentOpenID);
+		if(MongoDBBasic.addHistryTeamerCredit(tc)){
+			return true;
+		}
+		return false;
+		
+	}
+			
+	@RequestMapping("/getHistryTeamerCredit")
+	public @ResponseBody List<TeamerCredit> getHistryTeamerCredit(@RequestParam(value = "StudentOpenID") String StudentOpenID) {
+		return MongoDBBasic.getHistryTeamerCredit(StudentOpenID);
+		
+	}
+	@RequestMapping("/getTeamerCredit")
+	public @ResponseBody TeamerCredit queryWeChatUserByTelephone(@RequestParam(value = "phone") String phone) {
+		return MongoDBBasic.queryWeChatUserByTelephone(phone);
 	}
 }
