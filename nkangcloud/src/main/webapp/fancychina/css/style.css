@@ -3224,8 +3224,8 @@ body .padding-ourblog{
     position: relative;
 }
 .blog-thumb img{
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: 60%;
 }
 .our-blog-item h6{
     color: #111111;
